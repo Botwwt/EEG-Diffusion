@@ -20,4 +20,7 @@ data/
 checkpoints/
 outputs/
 .DS_Store
+.coverage
+htmlcov/
+.ruff_cache/
 

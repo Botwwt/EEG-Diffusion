@@ -42,5 +42,13 @@ Before porting a GPU study, reconstruct its input manifests and dependency versi
 
 `eeg-diffusion verify` checks bundled source/asset SHA-256 values, consistency between the retrieval summary and aggregate extract, and two displayed arithmetic differences. The v/R4 values are explicitly marked as transcribed rounded report values. Historical intervals are retained; this package does not claim to recompute them without per-query features.
 
-`tests/` additionally checks paired resampling, target exclusion/tie behavior, duplicate physical trial handling and correlated-repeat uncertainty. Those tests validate numerical components, not image quality.
+`tests/` additionally checks paired resampling, target exclusion/tie behavior, duplicate physical trial handling, correlated-repeat uncertainty, stable high-precision conditioning and agreement with the frozen historical kernel. Those tests validate numerical components, not image quality.
+
+## Active-code refactor, v0.2
+
+The numerical core was separated from byte-identical source preservation. `provenance/refactors.json` records the former copied files. Historical originals remain in `experiments/archive/semantic/`; the active Gaussian kernel now uses typed interfaces, explicit shape and covariance validation, read-only owned moments and Cholesky precision solves. Regression tests compare both implementations on coupled multivariate cases, in addition to independent analytic cases.
+
+`provenance/evidence_manifest.json` separately protects the released aggregate JSON files. Figure hashes, renderer version, export dimensions and data hashes appear in `provenance/figure_manifest.json`. The HTML and CSV are deterministic standard-library builds. Matplotlib exports editable SVG and embedded-font PDF; fresh rendering may vary with the renderer/font environment, which is recorded rather than hidden.
+
+See [API.md](API.md) for the runnable demo, expected output and numerical assumptions. See [FIGURE_AND_CODE_STANDARDS.md](FIGURE_AND_CODE_STANDARDS.md) for the reporting guidance used and the remaining full-study requirements.
 

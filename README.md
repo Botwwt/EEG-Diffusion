@@ -1,64 +1,85 @@
 # EEG-Diffusion
 
+**Visual EEG-to-image reconstruction — numerical tools, experiments and evidence.**
+
+[Research report](https://botwwt.github.io/EEG-Diffusion/) · [Numerical API](docs/API.md) · [Experiment index](experiments/README.md) · [Reproduction scope](docs/REPRODUCIBILITY.md)
+
 [![checks](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml/badge.svg)](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml)
-[![License: MIT](https://img.shields.io/badge/code-MIT-287d75.svg)](LICENSE)
+[![Code license: MIT](https://img.shields.io/badge/code-MIT-35677c.svg)](LICENSE)
 
-Visual EEG-to-image reconstruction: code, development results, and a focused research report.
+We study how visual evidence decoded from EEG can guide image diffusion. This repository provides a tested CPU numerical core, frozen historical experiment sources, aggregate results and a bilingual research report. The clearest positive evidence is currently representation alignment; a stable original diffusion mechanism advantage on actual images has not been established.
 
-We study how visual evidence decoded from EEG survives the transition to an image diffusion model. The clearest positive result is currently **visual representation alignment**, not a validated new diffusion sampler. This is a research archive with small runnable numerical tools; it is not a pretrained end-to-end reconstruction product.
+## Run the code
 
-## Code
-
-Python 3.11+; the quick start requires no GPU, EEG, pretrained weights, or downloads beyond Python dependencies.
+Python **3.11+**, Linux or Windows. Use a virtual environment. The core requires NumPy; no GPU, EEG data or model weights are needed for this demo.
 
 ```bash
 git clone https://github.com/Botwwt/EEG-Diffusion.git
 cd EEG-Diffusion
-python -m pip install -e '.[test]'
-eeg-diffusion verify
+python -m pip install -e '.[dev,report]'
+
 eeg-diffusion reference-demo
+eeg-diffusion verify
 python -m pytest -q
-python scripts/build_report.py --check
 ```
 
-| Location | What is available |
-|---|---|
-| [`src/eeg_diffusion/`](src/eeg_diffusion) | CPU metrics, paired query bootstrap, classical Gaussian reference, integrity checks |
-| [`experiments/archive/`](experiments/archive) | Byte-identical historical training, sampling and diagnostic sources; **server-dependent** |
-| [`results/`](results) | Selected aggregate evidence and explicit evaluation protocols |
-| [`provenance/`](provenance) | Source hashes, origins and import inventory |
+The synthetic demo returns a posterior mean of `[0.4]`, covariance `[[0.5]]`, and two unique trials, up to floating-point precision. `verify` checks frozen-source and evidence hashes plus displayed arithmetic. Neither command retrains an encoder or regenerates historical images. [Installation, tested versions and measured demo times](docs/INSTALLATION.md)
 
-The archive includes intermediate-layer alignment, conditional priors, cross-fitting, direct image gradients, precision score-PDE, residual correction and SORT. See the [experiment-to-code index](experiments/README.md). Original upstream model classes are obtained separately and retain their licenses. The GPU experiments require external data, checkpoints and the original asset contracts; they are **not** reproduced by the quick start. [Reproduction scope →](docs/REPRODUCIBILITY.md)
+```python
+from eeg_diffusion.metrics import image_two_way, retrieval_top1
 
-## Research report
+scores = [[0.8, 0.9, 0.1]]
+target = [0]
+print(retrieval_top1(scores, target))  # [0.]
+print(image_two_way(scores, target))   # [0.5]
+```
 
-**[Read the HTML report →](https://botwwt.github.io/EEG-Diffusion/)** · [Open its source](docs/index.html) · [Experiment notes](docs/EXPERIMENTS.md)
+Pairwise identification and gallery Top-1 measure different things. Shapes, assumptions, tie handling, correlated-repeat conditioning and bootstrap units are documented in the [API reference](docs/API.md).
 
-The compact Chinese report contains three paper readings with **original English screenshots**, highlighted phrases, our paired results, fixed generated examples and the proposed next experiment. All paper figures are attributed. There is no slide deck requirement.
+## Read the report
 
-To view locally, open `docs/index.html`. To regenerate its charts and text from the released aggregates:
+### [Visual EEG-to-image reconstruction ↗](https://botwwt.github.io/EEG-Diffusion/)
+
+Three primary-paper readings use original English screenshots and highlighted passages. The report then presents paired results, fixed generated examples, unsuccessful mechanisms and the next research question. Statistical plots are available as editable SVG and vector PDF, with source data and rendering metadata.
 
 ```bash
-python scripts/build_report.py
+python scripts/build_report.py          # HTML + source-data CSV
+python scripts/build_figures.py         # SVG + PDF, requires [report]
+python scripts/build_report.py --check
+python scripts/build_figures.py --check
 ```
 
-## What the evidence says
+Open `docs/index.html` locally or use GitHub Pages. Figure captions distinguish seed points, aggregate means and archived intervals. [Figure and software reporting choices](docs/FIGURE_AND_CODE_STANDARDS.md)
 
-| Experiment | Observed result | Scope |
+## Evidence at a glance
+
+| Study | Observed result | Evaluation boundary |
 |---|---|---|
-| Intermediate CLIP layer + joint head | **81% / 83%** retrieval Top-1; final-layer joint head 35.5% / 33.5% | One subject, mean of 80 repeats, 200 candidates, two fixed training seeds |
-| Correct vs shuffled EEG, actual SDXL outputs | DINOv3 2AFC difference **+0.3519**, archived paired-image interval [0.2569, 0.4513] | 32 fixed development queries; one subject and training seed; 200-gallery Top-1 only **1/32** |
-| Standard v-parameterized prior | Repairs the tested epsilon configuration; advantage over the direct EEG query unconfirmed | Separate 32-concept image experiment; a borrowed baseline tool |
+| Layer-12 joint visual alignment | **81% / 83%** Top-1; final-layer joint head **35.5% / 33.5%** | One subject, mean80, 200 candidates, two fixed training seeds; retrieval |
+| Correct versus shuffled EEG | Image 2AFC difference **+0.3519**, archived interval **[0.2569, 0.4513]** | 32 fixed development queries, one trained model; 200-gallery Top-1 **1/32** |
+| Standard v prior | Repairs the tested epsilon configuration; advantage over the direct query unconfirmed | Separate actual-image experiment; a borrowed baseline tool |
 
-These are different systems/protocols, not a single performance trajectory. Retrieval accuracy is not image reconstruction accuracy. Reused development stimuli, limited subjects and fixed training seeds do not establish independent confirmation or SOTA. More complex mechanisms have not yet produced a stable original image-generation advantage. [Definitions and negative results →](docs/EXPERIMENTS.md)
+These are separate systems and protocols. Retrieval is not image reconstruction accuracy. Reused development stimuli and limited subjects do not establish independent confirmation or SOTA. The [experiment record](docs/EXPERIMENTS.md) includes negative results and limits.
 
-## Next question
+## Repository map
 
-Can an independently checked model of EEG visual-observation error improve image content under a fixed generator and sampling budget? We plan to separate measurement error from visual mapping error and denoising uncertainty. This is **a proposal, not a completed method**. Classical Gaussian posterior formulas and TMPD are references, not our new theory.
+```text
+src/eeg_diffusion/       Typed numerical core and CLI
+tests/                  Analytic, regression and integrity tests
+scripts/                Reproducible HTML and figure builders
+docs/                   Report, API and reproduction documentation
+results/                Aggregate evidence and source-data CSV
+provenance/             Hashes, figure metadata and refactor history
+experiments/archive/    Frozen executed sources; server-dependent
+```
 
-## Reuse and citation
+The archive covers visual alignment, conditional priors, cross-fitting, image gradients, precision score-PDE, repeat composition, residual correction and SORT. It retains original paths and asset contracts. Complete GPU replay requires separately obtained data, weights, caches and the original environment; it is not delivered by the quick start. [Inputs and dependencies](docs/REPRODUCIBILITY.md)
 
-Original code: [MIT](LICENSE). Paper screenshots, external models and stimuli have separate rights; see [third-party notices](THIRD_PARTY_NOTICES.md). Raw EEG, stimulus photographs, participant records, weights and operational credentials are not distributed.
+## Reproducibility and reuse
 
-Please cite the upstream methods used in your experiment as well as the exact release/commit of this archive. [`CITATION.cff`](CITATION.cff) describes this software archive, not an accepted research paper. Contributions should include a minimal example and identify the evaluation unit; see [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Validation:** [local results](docs/VALIDATION.md); CI checks Python 3.11/3.12 on Linux and Python 3.11 on Windows. Ruff applies to active code; historical executed files remain unchanged.
+- **Data availability:** selected aggregates, figure data and fixed output crops are included. Participant EEG, stimulus photographs and pretrained weights are external.
+- **Code availability:** original code is [MIT licensed](LICENSE). Upstream models and paper screenshots retain their own rights; see [third-party notices](THIRD_PARTY_NOTICES.md).
+- **Versioning:** cite the exact commit or software version using [CITATION.cff](CITATION.cff), and cite the upstream methods used. This archive is not an accepted method paper and has no minted DOI.
 
+Contributions should include a minimal example and the correct statistical unit. See [CONTRIBUTING.md](CONTRIBUTING.md).

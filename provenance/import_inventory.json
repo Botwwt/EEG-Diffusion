@@ -1,39 +1,452 @@
 [
   {
-    "path": "experiments/archive/visual/eeg_native_single_visual_reference_v1.py",
+    "path": "experiments/archive/semantic/audit_repeat_score_composition.py",
+    "imports": [
+      "argparse",
+      "diffusers",
+      "hashlib",
+      "itertools",
+      "json",
+      "native_statistics",
+      "numpy",
+      "pathlib",
+      "run_fast_learning",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/calibrate_precision_gradient.py",
+    "imports": [
+      "argparse",
+      "copy",
+      "datetime",
+      "diffusers",
+      "diffusion_prior",
+      "json",
+      "numpy",
+      "pathlib",
+      "precision_score_math",
+      "run_fast_learning",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/check_precision_score_operator.py",
+    "imports": [
+      "argparse",
+      "json",
+      "pathlib",
+      "precision_score_math",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/decompose_guidance_mean_cov.py",
+    "imports": [
+      "argparse",
+      "diffusers",
+      "itertools",
+      "json",
+      "native_statistics",
+      "numpy",
+      "pathlib",
+      "run_fast_learning",
+      "run_semantic_fiber",
+      "semantic_fiber_math",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/diagnose_sort_vacuity.py",
+    "imports": [
+      "argparse",
+      "json",
+      "numpy",
+      "pathlib",
+      "sort_endpoint",
+      "sort_math",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/evaluate_precision_score.py",
+    "imports": [
+      "argparse",
+      "datetime",
+      "diffusers",
+      "diffusion_prior",
+      "hashlib",
+      "inspect",
+      "json",
+      "native_statistics",
+      "numpy",
+      "pathlib",
+      "precision_score_math",
+      "run_fast_learning",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/gaussian_reference.py",
+    "imports": [
+      "dataclasses",
+      "numpy"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/mean_margin_prediction.py",
+    "imports": [
+      "argparse",
+      "diffusers",
+      "json",
+      "native_statistics",
+      "numpy",
+      "pathlib",
+      "run_fast_learning",
+      "run_semantic_fiber",
+      "scipy.special",
+      "semantic_fiber_math",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/native_prior_trace.py",
+    "imports": [
+      "argparse",
+      "native_prior_witness",
+      "numpy",
+      "paper_main_runtime",
+      "pathlib",
+      "sort_endpoint",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/native_prior_witness.py",
+    "imports": [
+      "argparse",
+      "ast",
+      "copy",
+      "datetime",
+      "diffusers",
+      "json",
+      "native_statistics",
+      "numpy",
+      "paper_main_runtime",
+      "pathlib",
+      "run_fast_learning",
+      "sys",
+      "time",
+      "torch",
+      "torch.utils.data",
+      "train_paper_main",
+      "types"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/paper_development_data.py",
+    "imports": [
+      "json",
+      "paper_main_runtime",
+      "pathlib",
+      "torch",
+      "torch.utils.data"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/paper_main_runtime.py",
     "imports": [
       "ast",
-      "ctypes",
+      "copy",
+      "einops.layers.torch",
+      "hashlib",
+      "importlib.util",
+      "math",
+      "models.loss",
+      "models.subject_layers.Embed",
+      "models.subject_layers.SelfAttention_Family",
+      "models.subject_layers.Transformer_EncDec",
+      "numpy",
+      "os",
+      "pathlib",
+      "re",
+      "subprocess",
+      "sys",
+      "torch",
+      "torch.nn",
+      "types"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/precision_score_math.py",
+    "imports": [
+      "json",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/prepare_precision_score.py",
+    "imports": [
+      "argparse",
       "datetime",
-      "fcntl",
-      "gc",
+      "diffusion_prior",
+      "hashlib",
+      "inspect",
+      "json",
+      "numpy",
+      "pathlib",
+      "precision_score_math",
+      "run_fast_learning",
+      "subprocess",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/r4_prior_match.py",
+    "imports": [
+      "argparse",
+      "native_prior_witness",
+      "native_statistics",
+      "numpy",
+      "paper_main_runtime",
+      "pathlib",
+      "sort_endpoint",
+      "sys",
+      "time",
+      "torch",
+      "torch.utils.data",
+      "train_paper_main"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/residual_direction_transport.py",
+    "imports": [
+      "argparse",
+      "datetime",
+      "diffusers",
+      "diffusion_prior",
       "hashlib",
       "json",
       "math",
+      "mean_margin_prediction",
+      "native_statistics",
+      "numpy",
+      "pathlib",
+      "run_fast_learning",
+      "run_semantic_fiber",
+      "semantic_fiber_math",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/run_precision_score.py",
+    "imports": [
+      "argparse",
+      "datetime",
+      "diffusers",
+      "diffusion_prior",
+      "gc",
+      "hashlib",
+      "inspect",
+      "json",
+      "math",
+      "numpy",
+      "pathlib",
+      "precision_score_math",
+      "run_fast_learning",
+      "shutil",
+      "subprocess",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/run_semantic_fiber.py",
+    "imports": [
+      "argparse",
+      "diffusers",
+      "itertools",
+      "json",
+      "native_statistics",
+      "numpy",
+      "pathlib",
+      "run_fast_learning",
+      "semantic_fiber_math",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/semantic_fiber_math.py",
+    "imports": [
+      "numpy"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/sort_endpoint.py",
+    "imports": [
+      "argparse",
+      "datetime",
+      "hashlib",
+      "json",
+      "native_prior_witness",
+      "native_statistics",
+      "numpy",
+      "paper_main_runtime",
+      "pathlib",
+      "scipy.special",
+      "sort_math",
+      "sys",
+      "time",
+      "torch"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/sort_math.py",
+    "imports": [
+      "math",
+      "numpy"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/train_paper_main.py",
+    "imports": [
+      "argparse",
+      "datetime",
+      "importlib.metadata",
+      "json",
       "numpy",
       "os",
+      "paper_main_runtime",
+      "pathlib",
+      "random",
+      "shutil",
+      "subprocess",
+      "time",
+      "torch",
+      "torch.utils.data",
+      "types"
+    ]
+  },
+  {
+    "path": "experiments/archive/semantic/validate_reference.py",
+    "imports": [
+      "argparse",
+      "gaussian_reference",
+      "hashlib",
+      "json",
+      "numpy",
+      "pathlib",
+      "time"
+    ]
+  },
+  {
+    "path": "experiments/archive/support/native_metric_core.py",
+    "imports": [
+      "hashlib",
+      "json",
+      "numpy",
+      "pathlib",
+      "scipy.spatial.distance",
+      "skimage.color",
+      "skimage.metrics",
+      "torch",
+      "torchvision",
+      "torchvision.models.feature_extraction"
+    ]
+  },
+  {
+    "path": "experiments/archive/support/native_statistics.py",
+    "imports": [
+      "numpy"
+    ]
+  },
+  {
+    "path": "experiments/archive/support/run_fast_learning.py",
+    "imports": [
+      "PIL",
+      "argparse",
+      "datetime",
+      "gc",
+      "hashlib",
+      "json",
+      "models.labram",
+      "native_generation",
+      "numpy",
+      "pathlib",
+      "random",
+      "shutil",
+      "subprocess",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn.functional",
+      "torchvision",
+      "torchvision.transforms.functional",
+      "utils.amp_sc",
+      "utils.lr_control",
+      "utils.misc"
+    ]
+  },
+  {
+    "path": "experiments/archive/visual/eeg_brainhive_condition_pullback_metrics_v1.py",
+    "imports": [
+      "PIL",
+      "datetime",
+      "dinov3.hub.backbones",
+      "hashlib",
+      "io",
+      "json",
+      "numpy",
       "pathlib",
       "sys",
       "time",
       "torch",
       "torch.nn.functional",
+      "torchvision",
+      "torchvision.transforms.functional",
       "traceback",
-      "typing"
+      "zipfile"
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_brainhive_post_adapter_reference_v1.py",
+    "path": "experiments/archive/visual/eeg_brainhive_condition_pullback_samples_v1.py",
     "imports": [
       "ast",
-      "ctypes",
       "datetime",
+      "diffusers",
+      "diffusers.configuration_utils",
+      "diffusers.loaders.single_file_utils",
+      "diffusers.models.attention_processor",
+      "diffusers.models.modeling_utils",
+      "diffusers.models.unets.unet_2d_condition",
       "fcntl",
       "hashlib",
       "json",
-      "math",
       "numpy",
       "os",
       "pathlib",
+      "safetensors.torch",
+      "shutil",
       "sys",
       "time",
       "torch",
@@ -66,24 +479,18 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_brainhive_condition_pullback_samples_v1.py",
+    "path": "experiments/archive/visual/eeg_brainhive_post_adapter_reference_v1.py",
     "imports": [
       "ast",
+      "ctypes",
       "datetime",
-      "diffusers",
-      "diffusers.configuration_utils",
-      "diffusers.loaders.single_file_utils",
-      "diffusers.models.attention_processor",
-      "diffusers.models.modeling_utils",
-      "diffusers.models.unets.unet_2d_condition",
       "fcntl",
       "hashlib",
       "json",
+      "math",
       "numpy",
       "os",
       "pathlib",
-      "safetensors.torch",
-      "shutil",
       "sys",
       "time",
       "torch",
@@ -93,7 +500,138 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_brainhive_condition_pullback_metrics_v1.py",
+    "path": "experiments/archive/visual/eeg_crossfit_point_priors_v1.py",
+    "imports": [
+      "ast",
+      "ctypes",
+      "datetime",
+      "diffusers.models.embeddings",
+      "diffusers.optimization",
+      "fcntl",
+      "gc",
+      "hashlib",
+      "json",
+      "math",
+      "numpy",
+      "os",
+      "pathlib",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn.functional",
+      "traceback"
+    ]
+  },
+  {
+    "path": "experiments/archive/visual/eeg_crossfit_prior_metrics_v2.py",
+    "imports": [
+      "PIL",
+      "datetime",
+      "dinov3.hub.backbones",
+      "fcntl",
+      "hashlib",
+      "io",
+      "json",
+      "numpy",
+      "os",
+      "pathlib",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn.functional",
+      "torchvision",
+      "torchvision.transforms.functional",
+      "traceback",
+      "zipfile"
+    ]
+  },
+  {
+    "path": "experiments/archive/visual/eeg_crossfit_prior_samples_v2.py",
+    "imports": [
+      "ast",
+      "ctypes",
+      "datetime",
+      "diffusers",
+      "diffusers.loaders.single_file_utils",
+      "diffusers.models.embeddings",
+      "fcntl",
+      "gc",
+      "hashlib",
+      "json",
+      "numpy",
+      "os",
+      "pathlib",
+      "safetensors.torch",
+      "sys",
+      "time",
+      "torch",
+      "traceback"
+    ]
+  },
+  {
+    "path": "experiments/archive/visual/eeg_direct_evidence_metrics_v1.py",
+    "imports": [
+      "PIL",
+      "datetime",
+      "dinov3.hub.backbones",
+      "fcntl",
+      "hashlib",
+      "io",
+      "json",
+      "numpy",
+      "os",
+      "pathlib",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn.functional",
+      "torchvision",
+      "torchvision.transforms.functional",
+      "traceback",
+      "zipfile"
+    ]
+  },
+  {
+    "path": "experiments/archive/visual/eeg_direct_evidence_samples_run_v1.py",
+    "imports": [
+      "PIL",
+      "diffusers",
+      "diffusers.loaders.single_file_utils",
+      "diffusers.models.embeddings",
+      "diffusers.schedulers.scheduling_euler_ancestral_discrete",
+      "gc",
+      "io",
+      "numpy",
+      "safetensors.torch",
+      "torch",
+      "torch.nn.functional",
+      "torchvision",
+      "torchvision.transforms",
+      "transformers",
+      "typing",
+      "zipfile"
+    ]
+  },
+  {
+    "path": "experiments/archive/visual/eeg_direct_evidence_samples_v1.py",
+    "imports": [
+      "ast",
+      "ctypes",
+      "datetime",
+      "fcntl",
+      "gc",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "sys",
+      "time",
+      "torch",
+      "traceback"
+    ]
+  },
+  {
+    "path": "experiments/archive/visual/eeg_native_conditional_prior_metrics_v1.py",
     "imports": [
       "PIL",
       "datetime",
@@ -111,30 +649,6 @@
       "torchvision.transforms.functional",
       "traceback",
       "zipfile"
-    ]
-  },
-  {
-    "path": "experiments/archive/visual/eeg_native_conditional_prior_training_v1.py",
-    "imports": [
-      "ast",
-      "ctypes",
-      "datetime",
-      "diffusers",
-      "diffusers.models.embeddings",
-      "diffusers.optimization",
-      "fcntl",
-      "gc",
-      "hashlib",
-      "json",
-      "math",
-      "numpy",
-      "os",
-      "pathlib",
-      "sys",
-      "time",
-      "torch",
-      "torch.nn.functional",
-      "traceback"
     ]
   },
   {
@@ -165,28 +679,7 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_native_conditional_prior_metrics_v1.py",
-    "imports": [
-      "PIL",
-      "datetime",
-      "dinov3.hub.backbones",
-      "hashlib",
-      "io",
-      "json",
-      "numpy",
-      "pathlib",
-      "sys",
-      "time",
-      "torch",
-      "torch.nn.functional",
-      "torchvision",
-      "torchvision.transforms.functional",
-      "traceback",
-      "zipfile"
-    ]
-  },
-  {
-    "path": "experiments/archive/visual/eeg_native_velocity_prior_training_v1.py",
+    "path": "experiments/archive/visual/eeg_native_conditional_prior_training_v1.py",
     "imports": [
       "ast",
       "ctypes",
@@ -210,24 +703,19 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_native_velocity_prior_samples_v2.py",
+    "path": "experiments/archive/visual/eeg_native_single_visual_reference_v1.py",
     "imports": [
       "ast",
+      "ctypes",
       "datetime",
-      "diffusers",
-      "diffusers.configuration_utils",
-      "diffusers.loaders.single_file_utils",
-      "diffusers.models.attention_processor",
-      "diffusers.models.modeling_utils",
-      "diffusers.models.unets.unet_2d_condition",
       "fcntl",
+      "gc",
       "hashlib",
       "json",
+      "math",
       "numpy",
       "os",
       "pathlib",
-      "safetensors.torch",
-      "shutil",
       "sys",
       "time",
       "torch",
@@ -258,80 +746,39 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_crossfit_point_priors_v1.py",
+    "path": "experiments/archive/visual/eeg_native_velocity_prior_samples_v2.py",
     "imports": [
       "ast",
-      "ctypes",
-      "datetime",
-      "diffusers.models.embeddings",
-      "diffusers.optimization",
-      "fcntl",
-      "gc",
-      "hashlib",
-      "json",
-      "math",
-      "numpy",
-      "os",
-      "pathlib",
-      "sys",
-      "time",
-      "torch",
-      "torch.nn.functional",
-      "traceback"
-    ]
-  },
-  {
-    "path": "experiments/archive/visual/eeg_crossfit_prior_samples_v2.py",
-    "imports": [
-      "ast",
-      "ctypes",
       "datetime",
       "diffusers",
+      "diffusers.configuration_utils",
       "diffusers.loaders.single_file_utils",
-      "diffusers.models.embeddings",
+      "diffusers.models.attention_processor",
+      "diffusers.models.modeling_utils",
+      "diffusers.models.unets.unet_2d_condition",
       "fcntl",
-      "gc",
       "hashlib",
       "json",
       "numpy",
       "os",
       "pathlib",
       "safetensors.torch",
-      "sys",
-      "time",
-      "torch",
-      "traceback"
-    ]
-  },
-  {
-    "path": "experiments/archive/visual/eeg_crossfit_prior_metrics_v2.py",
-    "imports": [
-      "PIL",
-      "datetime",
-      "dinov3.hub.backbones",
-      "fcntl",
-      "hashlib",
-      "io",
-      "json",
-      "numpy",
-      "os",
-      "pathlib",
+      "shutil",
       "sys",
       "time",
       "torch",
       "torch.nn.functional",
-      "torchvision",
-      "torchvision.transforms.functional",
       "traceback",
-      "zipfile"
+      "typing"
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_norm_stats_point_priors_v1.py",
+    "path": "experiments/archive/visual/eeg_native_velocity_prior_training_v1.py",
     "imports": [
       "ast",
       "ctypes",
       "datetime",
+      "diffusers",
       "diffusers.models.embeddings",
       "diffusers.optimization",
       "fcntl",
@@ -350,30 +797,7 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_norm_stats_prior_samples_v2.py",
-    "imports": [
-      "ast",
-      "ctypes",
-      "datetime",
-      "diffusers",
-      "diffusers.loaders.single_file_utils",
-      "diffusers.models.embeddings",
-      "fcntl",
-      "gc",
-      "hashlib",
-      "json",
-      "numpy",
-      "os",
-      "pathlib",
-      "safetensors.torch",
-      "sys",
-      "time",
-      "torch",
-      "traceback"
-    ]
-  },
-  {
-    "path": "experiments/archive/visual/eeg_norm_stats_prior_metrics_v2.py",
+    "path": "experiments/archive/visual/eeg_norm_stats_content_metrics_v2.py",
     "imports": [
       "PIL",
       "datetime",
@@ -419,7 +843,30 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_norm_stats_content_metrics_v2.py",
+    "path": "experiments/archive/visual/eeg_norm_stats_point_priors_v1.py",
+    "imports": [
+      "ast",
+      "ctypes",
+      "datetime",
+      "diffusers.models.embeddings",
+      "diffusers.optimization",
+      "fcntl",
+      "gc",
+      "hashlib",
+      "json",
+      "math",
+      "numpy",
+      "os",
+      "pathlib",
+      "sys",
+      "time",
+      "torch",
+      "torch.nn.functional",
+      "traceback"
+    ]
+  },
+  {
+    "path": "experiments/archive/visual/eeg_norm_stats_prior_metrics_v2.py",
     "imports": [
       "PIL",
       "datetime",
@@ -442,17 +889,22 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_direct_evidence_samples_v1.py",
+    "path": "experiments/archive/visual/eeg_norm_stats_prior_samples_v2.py",
     "imports": [
       "ast",
       "ctypes",
       "datetime",
+      "diffusers",
+      "diffusers.loaders.single_file_utils",
+      "diffusers.models.embeddings",
       "fcntl",
       "gc",
       "hashlib",
       "json",
+      "numpy",
       "os",
       "pathlib",
+      "safetensors.torch",
       "sys",
       "time",
       "torch",
@@ -460,468 +912,50 @@
     ]
   },
   {
-    "path": "experiments/archive/visual/eeg_direct_evidence_samples_run_v1.py",
-    "imports": [
-      "PIL",
-      "diffusers",
-      "diffusers.loaders.single_file_utils",
-      "diffusers.models.embeddings",
-      "diffusers.schedulers.scheduling_euler_ancestral_discrete",
-      "gc",
-      "io",
-      "numpy",
-      "safetensors.torch",
-      "torch",
-      "torch.nn.functional",
-      "torchvision",
-      "torchvision.transforms",
-      "transformers",
-      "typing",
-      "zipfile"
-    ]
+    "path": "src/eeg_diffusion/__init__.py",
+    "imports": []
   },
   {
-    "path": "experiments/archive/visual/eeg_direct_evidence_metrics_v1.py",
+    "path": "src/eeg_diffusion/audit.py",
     "imports": [
-      "PIL",
-      "datetime",
-      "dinov3.hub.backbones",
-      "fcntl",
+      "__future__",
       "hashlib",
-      "io",
       "json",
-      "numpy",
-      "os",
-      "pathlib",
-      "sys",
-      "time",
-      "torch",
-      "torch.nn.functional",
-      "torchvision",
-      "torchvision.transforms.functional",
-      "traceback",
-      "zipfile"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/gaussian_reference.py",
-    "imports": [
-      "dataclasses",
-      "numpy"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/precision_score_math.py",
-    "imports": [
-      "json",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/semantic_fiber_math.py",
-    "imports": [
-      "numpy"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/sort_math.py",
-    "imports": [
       "math",
-      "numpy"
+      "pathlib",
+      "typing"
     ]
   },
   {
-    "path": "experiments/archive/semantic/validate_reference.py",
+    "path": "src/eeg_diffusion/cli.py",
     "imports": [
+      "__future__",
       "argparse",
+      "audit",
       "gaussian_reference",
-      "hashlib",
       "json",
       "numpy",
       "pathlib",
-      "time"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/run_precision_score.py",
-    "imports": [
-      "argparse",
-      "datetime",
-      "diffusers",
-      "diffusion_prior",
-      "gc",
-      "hashlib",
-      "inspect",
-      "json",
-      "math",
-      "numpy",
-      "pathlib",
-      "precision_score_math",
-      "run_fast_learning",
-      "shutil",
-      "subprocess",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/prepare_precision_score.py",
-    "imports": [
-      "argparse",
-      "datetime",
-      "diffusion_prior",
-      "hashlib",
-      "inspect",
-      "json",
-      "numpy",
-      "pathlib",
-      "precision_score_math",
-      "run_fast_learning",
-      "subprocess",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/evaluate_precision_score.py",
-    "imports": [
-      "argparse",
-      "datetime",
-      "diffusers",
-      "diffusion_prior",
-      "hashlib",
-      "inspect",
-      "json",
-      "native_statistics",
-      "numpy",
-      "pathlib",
-      "precision_score_math",
-      "run_fast_learning",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/calibrate_precision_gradient.py",
-    "imports": [
-      "argparse",
-      "copy",
-      "datetime",
-      "diffusers",
-      "diffusion_prior",
-      "json",
-      "numpy",
-      "pathlib",
-      "precision_score_math",
-      "run_fast_learning",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/check_precision_score_operator.py",
-    "imports": [
-      "argparse",
-      "json",
-      "pathlib",
-      "precision_score_math",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/run_semantic_fiber.py",
-    "imports": [
-      "argparse",
-      "diffusers",
-      "itertools",
-      "json",
-      "native_statistics",
-      "numpy",
-      "pathlib",
-      "run_fast_learning",
-      "semantic_fiber_math",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/audit_repeat_score_composition.py",
-    "imports": [
-      "argparse",
-      "diffusers",
-      "hashlib",
-      "itertools",
-      "json",
-      "native_statistics",
-      "numpy",
-      "pathlib",
-      "run_fast_learning",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/decompose_guidance_mean_cov.py",
-    "imports": [
-      "argparse",
-      "diffusers",
-      "itertools",
-      "json",
-      "native_statistics",
-      "numpy",
-      "pathlib",
-      "run_fast_learning",
-      "run_semantic_fiber",
-      "semantic_fiber_math",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/mean_margin_prediction.py",
-    "imports": [
-      "argparse",
-      "diffusers",
-      "json",
-      "native_statistics",
-      "numpy",
-      "pathlib",
-      "run_fast_learning",
-      "run_semantic_fiber",
-      "scipy.special",
-      "semantic_fiber_math",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/residual_direction_transport.py",
-    "imports": [
-      "argparse",
-      "datetime",
-      "diffusers",
-      "diffusion_prior",
-      "hashlib",
-      "json",
-      "math",
-      "mean_margin_prediction",
-      "native_statistics",
-      "numpy",
-      "pathlib",
-      "run_fast_learning",
-      "run_semantic_fiber",
-      "semantic_fiber_math",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/r4_prior_match.py",
-    "imports": [
-      "argparse",
-      "native_prior_witness",
-      "native_statistics",
-      "numpy",
-      "paper_main_runtime",
-      "pathlib",
-      "sort_endpoint",
-      "sys",
-      "time",
-      "torch",
-      "torch.utils.data",
-      "train_paper_main"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/sort_endpoint.py",
-    "imports": [
-      "argparse",
-      "datetime",
-      "hashlib",
-      "json",
-      "native_prior_witness",
-      "native_statistics",
-      "numpy",
-      "paper_main_runtime",
-      "pathlib",
-      "scipy.special",
-      "sort_math",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/diagnose_sort_vacuity.py",
-    "imports": [
-      "argparse",
-      "json",
-      "numpy",
-      "pathlib",
-      "sort_endpoint",
-      "sort_math",
-      "sys",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/native_prior_trace.py",
-    "imports": [
-      "argparse",
-      "native_prior_witness",
-      "numpy",
-      "paper_main_runtime",
-      "pathlib",
-      "sort_endpoint",
-      "time",
-      "torch"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/native_prior_witness.py",
-    "imports": [
-      "argparse",
-      "ast",
-      "copy",
-      "datetime",
-      "diffusers",
-      "json",
-      "native_statistics",
-      "numpy",
-      "paper_main_runtime",
-      "pathlib",
-      "run_fast_learning",
-      "sys",
-      "time",
-      "torch",
-      "torch.utils.data",
-      "train_paper_main",
-      "types"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/paper_main_runtime.py",
-    "imports": [
-      "ast",
-      "copy",
-      "einops.layers.torch",
-      "hashlib",
-      "importlib.util",
-      "math",
-      "models.loss",
-      "models.subject_layers.Embed",
-      "models.subject_layers.SelfAttention_Family",
-      "models.subject_layers.Transformer_EncDec",
-      "numpy",
-      "os",
-      "pathlib",
-      "re",
-      "subprocess",
-      "sys",
-      "torch",
-      "torch.nn",
-      "types"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/train_paper_main.py",
-    "imports": [
-      "argparse",
-      "datetime",
-      "importlib.metadata",
-      "json",
-      "numpy",
-      "os",
-      "paper_main_runtime",
-      "pathlib",
-      "random",
-      "shutil",
-      "subprocess",
-      "time",
-      "torch",
-      "torch.utils.data",
-      "types"
-    ]
-  },
-  {
-    "path": "experiments/archive/semantic/paper_development_data.py",
-    "imports": [
-      "json",
-      "paper_main_runtime",
-      "pathlib",
-      "torch",
-      "torch.utils.data"
-    ]
-  },
-  {
-    "path": "experiments/archive/support/run_fast_learning.py",
-    "imports": [
-      "PIL",
-      "argparse",
-      "datetime",
-      "gc",
-      "hashlib",
-      "json",
-      "models.labram",
-      "native_generation",
-      "numpy",
-      "pathlib",
-      "random",
-      "shutil",
-      "subprocess",
-      "sys",
-      "time",
-      "torch",
-      "torch.nn.functional",
-      "torchvision",
-      "torchvision.transforms.functional",
-      "utils.amp_sc",
-      "utils.lr_control",
-      "utils.misc"
-    ]
-  },
-  {
-    "path": "experiments/archive/support/native_statistics.py",
-    "imports": [
-      "numpy"
-    ]
-  },
-  {
-    "path": "experiments/archive/support/native_metric_core.py",
-    "imports": [
-      "hashlib",
-      "json",
-      "numpy",
-      "pathlib",
-      "scipy.spatial.distance",
-      "skimage.color",
-      "skimage.metrics",
-      "torch",
-      "torchvision",
-      "torchvision.models.feature_extraction"
+      "sys"
     ]
   },
   {
     "path": "src/eeg_diffusion/gaussian_reference.py",
     "imports": [
+      "__future__",
+      "collections.abc",
       "dataclasses",
-      "numpy"
+      "numpy",
+      "numpy.typing"
     ]
   },
   {
-    "path": "src/eeg_diffusion/semantic_fiber_math.py",
+    "path": "src/eeg_diffusion/metrics.py",
     "imports": [
-      "numpy"
+      "__future__",
+      "dataclasses",
+      "numpy",
+      "numpy.typing"
     ]
   }
 ]

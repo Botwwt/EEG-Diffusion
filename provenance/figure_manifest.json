@@ -1,0 +1,44 @@
+{
+  "renderer": "matplotlib 3.10.8",
+  "font_family": "Arial",
+  "body_font_pt": 7,
+  "panel_label_pt": 8,
+  "width_mm": 174,
+  "pdf_fonts": "Embedded TrueType (type 42)",
+  "svg_text": "Editable text; no rasterized data marks",
+  "uncertainty": "Figure 1a: fixed seeds; 1b: aggregate points. Figure 2: archived paired 95% intervals.",
+  "data": [
+    {
+      "path": "results/summary.json",
+      "sha256": "de47511cfc482cdf385295d58b8e88f3d37ff9367fdcd9790afdfe5ff079e8a0"
+    },
+    {
+      "path": "results/image_pairing.json",
+      "sha256": "f361418c852c062698c0581a594ed4584fdcad1ce03104f7117d762b97ee94b3"
+    }
+  ],
+  "builder": [
+    {
+      "path": "scripts/build_figures.py",
+      "sha256": "1adb1d63e2b4f413c956dbdb51b555148ae82314edea6b98af3c23fcf3bc7f15"
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/assets/figure-1.svg",
+      "sha256": "72af2108dd433042ebe48c2d2ae8206f1e9912e6d98cd7379ebce64597bf719b"
+    },
+    {
+      "path": "docs/assets/figure-1.pdf",
+      "sha256": "80a701acc43688ca114714da94a84bbbf86aee4e1cc163da9c200b0bd42028b7"
+    },
+    {
+      "path": "docs/assets/figure-2.svg",
+      "sha256": "387c4a5a6f5d80444ee3cee856814ae2d532a74b890268b6c5bf5c6b08b8a1e1"
+    },
+    {
+      "path": "docs/assets/figure-2.pdf",
+      "sha256": "54708b3a21d995d76d67f2123ecf703cf5dd146914b80f42d5d765520715676a"
+    }
+  ]
+}

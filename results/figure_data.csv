@@ -1,13 +1,16 @@
-experiment,arm,training_seed,metric,value,unit
-retrieval_mean80,final_fixed,2026109501,Top-1,0.255,proportion
-retrieval_mean80,final_fixed,2026109502,Top-1,0.255,proportion
-retrieval_mean80,final_joint,2026109501,Top-1,0.355,proportion
-retrieval_mean80,final_joint,2026109502,Top-1,0.335,proportion
-retrieval_mean80,middle12_joint,2026109501,Top-1,0.81,proportion
-retrieval_mean80,middle12_joint,2026109502,Top-1,0.83,proportion
-image_pairing_32,native_full_target,fixed single seed,DINOv3_2AFC,0.7759107942692935,proportion
-image_pairing_32,reduced_target,fixed single seed,DINOv3_2AFC,0.7771670743823051,proportion
-image_pairing_32,reduced_target_shrunk,fixed single seed,DINOv3_2AFC,0.6160489916655933,proportion
-image_pairing_32,constant_training_mean,fixed single seed,DINOv3_2AFC,0.5353329071658663,proportion
-image_pairing_32,native_full_target_cyclic_shift,fixed single seed,DINOv3_2AFC,0.42399497258884367,proportion
-image_pairing_32,oracle_true_image_reference,fixed single seed,DINOv3_2AFC,1.0,proportion
+experiment,arm,training_seed,metric,value,unit,ci95_lower,ci95_upper,uncertainty_scope
+retrieval_mean80,final_fixed,2026109501,Top-1,0.255,proportion,,,Individual fixed training seed; not a confidence interval
+retrieval_mean80,final_fixed,2026109502,Top-1,0.255,proportion,,,Individual fixed training seed; not a confidence interval
+retrieval_mean80,final_joint,2026109501,Top-1,0.355,proportion,,,Individual fixed training seed; not a confidence interval
+retrieval_mean80,final_joint,2026109502,Top-1,0.335,proportion,,,Individual fixed training seed; not a confidence interval
+retrieval_mean80,middle12_joint,2026109501,Top-1,0.81,proportion,,,Individual fixed training seed; not a confidence interval
+retrieval_mean80,middle12_joint,2026109502,Top-1,0.83,proportion,,,Individual fixed training seed; not a confidence interval
+image_pairing_32,native_full_target,fixed single seed,DINOv3_2AFC,0.7759107942692935,proportion,,,Aggregate mean; intervals stored in image_pairing.json
+image_pairing_32,reduced_target,fixed single seed,DINOv3_2AFC,0.7771670743823051,proportion,,,Aggregate mean; intervals stored in image_pairing.json
+image_pairing_32,reduced_target_shrunk,fixed single seed,DINOv3_2AFC,0.6160489916655933,proportion,,,Aggregate mean; intervals stored in image_pairing.json
+image_pairing_32,constant_training_mean,fixed single seed,DINOv3_2AFC,0.5353329071658663,proportion,,,Aggregate mean; intervals stored in image_pairing.json
+image_pairing_32,native_full_target_cyclic_shift,fixed single seed,DINOv3_2AFC,0.42399497258884367,proportion,,,Aggregate mean; intervals stored in image_pairing.json
+image_pairing_32,oracle_true_image_reference,fixed single seed,DINOv3_2AFC,1.0,proportion,,,Aggregate mean; intervals stored in image_pairing.json
+v_parameterization_32,v - epsilon,two fixed seeds,DINO2AFC_difference,0.256048,proportion,0.155746,0.353327,Archived descriptive paired interval; transcribed precision
+v_parameterization_32,v - norm-corrected regression,two fixed seeds,DINO2AFC_difference,0.05998,proportion,-0.022681,0.143145,Archived descriptive paired interval; transcribed precision
+v_parameterization_32,v - original EEG query,two fixed seeds,DINO2AFC_difference,0.002016,proportion,-0.064516,0.066028,Archived descriptive paired interval; transcribed precision

@@ -1,101 +1,180 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="视觉 EEG 到图像扩散重建：三篇文献、近期实验与下一步研究问题。">
-<meta name="theme-color" content="#287d75">
-<title>EEG-Diffusion · 文献与实验</title>
-<style>
-:root{--ink:#202725;--muted:#616c68;--rule:#d9dfdb;--accent:#287d75;--paper:#fff;--tint:#f4f7f5}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:60px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}a:hover{text-decoration:underline}button{font:inherit}header{border-bottom:1px solid var(--rule)}.top{max-width:1120px;margin:auto;padding:13px 30px;display:flex;align-items:center;justify-content:space-between;gap:25px}.brand{font-weight:650;text-decoration:none;color:var(--ink);letter-spacing:.2px}nav{display:flex;gap:24px;font-size:13px}nav a{text-decoration:none;color:var(--muted)}main{max-width:1120px;margin:auto;padding:45px 30px 25px}.eyebrow,.meta{color:var(--muted);font-size:13px}h1{font-size:36px;font-weight:650;letter-spacing:-.5px;line-height:1.3;margin:8px 0 15px}h2{font-size:23px;font-weight:650;margin:0 0 22px;line-height:1.4}h2 span{font:12px/1 Arial,sans-serif;color:var(--accent);margin-right:15px;vertical-align:middle}h3{font-size:18px;margin:0 0 8px;line-height:1.5}p{margin:10px 0 16px}.intro{max-width:830px;font-size:18px}.route{font-size:14px;word-spacing:4px;color:var(--muted);padding:11px 0 20px}section{padding:34px 0;border-top:1px solid var(--rule)}.first{margin-top:20px}.lead{font-size:19px;max-width:870px}.reading{padding:0 0 24px;margin:0 0 25px;border-bottom:1px solid #edf0ed}.reading:last-of-type{border:0;margin-bottom:0;padding-bottom:0}.paper-head{display:flex;gap:16px;justify-content:space-between;align-items:baseline;margin-bottom:9px}.paper-head .meta{flex-shrink:0}.paper-head h3{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:21px}.paper-title{font:14px/1.5 Georgia,"Times New Roman",serif;color:var(--muted);max-width:790px;margin-top:0}.paper-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;align-items:center}figure{margin:0}figure img{display:block;width:100%;height:auto}.paper-image{max-height:200px;object-fit:contain}.excerpt{max-height:160px;object-fit:contain;object-position:left center}.fig-note,figcaption{font-size:12px;line-height:1.55;color:var(--muted);margin-top:7px}.quote-label{font-size:11px;color:var(--muted);margin-bottom:9px;text-transform:uppercase;letter-spacing:.8px}.clickable{cursor:zoom-in}.bridge{border-left:3px solid var(--accent);padding-left:16px;margin-top:25px;max-width:900px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:38px}.panel h3{font-size:18px}.protocol{font-size:12px;color:var(--muted);margin:3px 0 9px}.chart{width:100%;display:block}.finding{font-size:14px;margin:10px 0 7px}.finding strong{color:var(--accent)}.note{font-size:13px;color:var(--muted)}.scope{background:var(--tint);border-left:3px solid #a6b9b1;padding:12px 16px;font-size:14px;margin-top:20px}table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.6;margin:12px 0}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #e1e5e2;vertical-align:top}th{font-weight:600;color:var(--muted);border-bottom:1px solid #8a9690;font-size:12px}td:first-child,th:first-child{padding-left:0}td:last-child,th:last-child{padding-right:0}tbody tr:last-child td{border-bottom:0}.table-wrap{overflow-x:auto}.table-wrap table{min-width:470px}details{border-top:1px solid var(--rule);margin-top:22px;padding-top:13px}summary{cursor:pointer;font-size:14px;color:var(--accent);font-weight:550}details[open] summary{margin-bottom:18px}.example-grid{display:grid;grid-template-columns:115px repeat(4,minmax(0,1fr));gap:9px;align-items:center;max-width:780px;margin:15px auto}.example-grid img{width:100%;aspect-ratio:1;object-fit:contain}.example-grid .label{font-size:12px;color:var(--muted)}.example-grid .col{font-size:12px;font-weight:600}.equation{font:26px/1.55 Georgia,"Times New Roman",serif;padding:15px 0;color:var(--accent)}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin:22px 0}.steps p{font-size:14px}.steps b{font-size:14px}.steps .num{font:12px Arial,sans-serif;color:var(--accent);display:block;margin-bottom:8px}.code-links{font-size:14px}pre{background:var(--tint);padding:14px 17px;overflow:auto;font:13px/1.75 Consolas,monospace;border-left:2px solid var(--rule)}footer{max-width:1120px;margin:auto;padding:16px 30px 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--rule)}.footer-links{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:10px}.print-button{border:0;border-bottom:1px solid var(--rule);color:var(--muted);background:transparent;padding:0;cursor:pointer;font-size:12px}.lightbox{width:min(94vw,1450px);max-width:none;max-height:95vh;border:1px solid var(--rule);padding:45px 20px 20px;background:#fff}.lightbox::backdrop{background:#111a}.lightbox img{max-width:100%;max-height:80vh;display:block;margin:auto;object-fit:contain}.lightbox button{position:absolute;right:15px;top:9px;background:none;border:0;font-size:24px;cursor:pointer}.lightbox p{font-size:12px;color:var(--muted);margin:10px 0 0}
-@media(max-width:760px){.top{padding:12px 20px;align-items:start}nav{gap:12px;flex-wrap:wrap;justify-content:flex-end;font-size:12px}main{padding:30px 20px 15px}h1{font-size:28px}.intro{font-size:16px}.paper-head{display:block}.paper-head .meta{margin:5px 0}.paper-grid,.two-col,.steps{grid-template-columns:1fr;gap:20px}.paper-image{max-height:240px}.excerpt{max-height:170px}.two-col{gap:32px}.example-grid{grid-template-columns:65px repeat(4,minmax(0,1fr));gap:5px}.example-grid .col,.example-grid .label{font-size:10px}.equation{font-size:21px}.paper-head h3{font-size:20px}footer{padding:16px 20px 30px}.steps{gap:8px}.steps p{margin-top:5px}.steps .num{display:inline;margin-right:10px}}
-@media print{body{font-size:11pt}nav,.print-button,details:not([open]){display:none}main{padding:15px 0;max-width:100%}.top,footer{padding-left:0;padding-right:0}section{padding:22px 0}h1{font-size:25pt}h2{font-size:18pt}.reading,.panel,.steps{break-inside:avoid}a{color:inherit}.paper-image{max-height:175px}.excerpt{max-height:140px}.lightbox{display:none}.first{margin-top:0}.note,.meta,.fig-note,figcaption{font-size:8pt}}
-.two-col>*,.paper-grid>*{min-width:0}.paper-grid.wide{grid-template-columns:1fr;gap:10px}.paper-grid.wide .paper-image{max-height:200px;max-width:800px;object-position:left center}.paper-grid.wide .excerpt{max-width:960px;max-height:95px}.paper-grid.wide figure:last-child{margin-top:4px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="视觉 EEG 条件图像重建：核心文献、可追溯实验图版、生成机制与研究代码。">
+  <meta name="theme-color" content="#973d32">
+  <title>EEG-Diffusion | Visual EEG-to-image reconstruction</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
 </head>
 <body>
-<header><div class="top"><a class="brand" href="https://github.com/Botwwt/EEG-Diffusion">EEG-Diffusion</a><nav aria-label="页面导航"><a href="#reading">文献</a><a href="#results">实验</a><a href="#next">下一步</a><a href="#code">代码</a></nav></div></header>
-<main>
-<div class="eyebrow">研究讨论 · 2026.10.18</div>
-<h1>视觉 EEG 与图像扩散重建</h1>
-<p class="intro">从看图时的脑电中读取视觉证据，让生成图片更接近所见内容。近期最明确的进展在视觉表征；生成端已看到配对作用，精确内容恢复仍有距离。</p>
-<div class="route">视觉 EEG → 视觉表征 → 条件先验 → 图像扩散 → 重建图片</div>
+<a class="skip-link" href="#report">跳转至报告</a>
+<header class="masthead wrap">
+  <a class="wordmark" href="https://github.com/Botwwt/EEG-Diffusion">EEG<span>—</span>DIFFUSION</a>
+  <nav aria-label="主导航">
+    <a href="#literature">文献阅读</a><a href="#findings">实验结果</a><a href="#outlook">研究方向</a>
+    <a class="repository-link" href="https://github.com/Botwwt/EEG-Diffusion">GitHub <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
 
-<section class="first" id="reading">
-<h2><span>01</span>Three papers to read</h2>
-<article class="reading">
-<div class="paper-head"><h3>NVOL</h3><div class="meta">Wang et al. · arXiv 2026 · v1</div></div>
-<p class="paper-title">EEG-based Visual Retrieval and Reconstruction: From Neurally Visible Optimal Layer to Hierarchical Diffusion Generation</p>
-<div class="paper-grid"><figure><img class="paper-image clickable" src="assets/nvol_figure.png" alt="NVOL original Figure 1, PDF page 3" tabindex="0"><figcaption>Original Fig. 1 · PDF p.3 · <a href="https://arxiv.org/abs/2609.02582">Paper</a></figcaption></figure><figure><div class="quote-label">Original contribution paragraph · p.2</div><img class="excerpt clickable" src="assets/nvol_original_passage.png" alt="NVOL original English paragraph with yellow highlight, page 2" tabindex="0"><figcaption>Yellow highlight added for discussion. Original typography retained.</figcaption></figure></div>
-</article>
-<article class="reading">
-<div class="paper-head"><h3>BrainHIVE</h3><div class="meta">Zheng et al. · ICLR 2026</div></div>
-<p class="paper-title">Learning Brain Representation with Hierarchical Visual Embeddings</p>
-<div class="paper-grid wide"><figure><img class="paper-image clickable" src="assets/brainhive_figure.png" alt="BrainHIVE original Figure 1, PDF page 4" tabindex="0"><figcaption>Original Fig. 1 · arXiv v1, PDF p.4 · <a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/c5506f154e5f2203a7dca2bee2faeced-Abstract-Conference.html">Paper</a></figcaption></figure><figure><div class="quote-label">Original excerpt · p.2</div><img class="excerpt clickable" src="assets/brainhive_original_passage.png" alt="BrainHIVE original English sentence with yellow highlight, page 2" tabindex="0"><figcaption>Yellow highlight added for discussion. Original typography retained.</figcaption></figure></div>
-</article>
-<article class="reading">
-<div class="paper-head"><h3>Tweedie Moment Projected Diffusions</h3><div class="meta">Boys et al. · arXiv v3, 2024</div></div>
-<p class="paper-title">Tweedie Moment Projected Diffusions For Inverse Problems</p>
-<div class="paper-grid wide"><figure><img class="paper-image clickable" src="assets/tmpd_figure.png" alt="TMPD original Equation 10, PDF page 5" tabindex="0"><figcaption>Original Eq. (10) · PDF p.5 · <a href="https://arxiv.org/abs/2310.06721">Paper</a></figcaption></figure><figure><div class="quote-label">Original paragraph · p.5</div><img class="excerpt clickable" src="assets/tmpd_original_passage.png" alt="TMPD original English paragraph with yellow highlight, page 5" tabindex="0"><figcaption>Yellow highlight added for discussion. Original typography retained.</figcaption></figure></div>
-</article>
-<p class="bridge">这三篇分别对应三个问题：EEG 应对齐哪一层视觉表征；学到的表征怎样接入生成器；观测与去噪的不确定性怎样进入后验近似。中间层选择、融合先验和协方差导引都有已有工作，后续贡献需要有更具体的技术差别。</p>
-</section>
+<main id="report" class="wrap">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">RESEARCH NOTE <span>18 OCTOBER 2026</span></div>
+      <h1 lang="en">Visual EEG-to-image<br>reconstruction</h1>
+      <p class="subtitle">视觉证据，怎样进入并约束图像扩散？</p>
+      <p class="abstract">我们已经从 EEG 中读取到较强的视觉表征，也在实际出图中观察到配对信息。接下来的问题是：如何把这些证据转化为更忠实的图片，同时保留脑电尚不能确定的部分。</p>
+      <div class="hero-meta"><span class="status-dot" aria-hidden="true"></span>开发研究 · 文献、结果与待验证假设分列</div>
+    </div>
+    <figure class="opening-plate">
+      <div class="plate-heading"><span>THE RECONSTRUCTION GAP</span><span>query 99 · jeep</span></div>
+      <div class="opening-images">
+        <div><img src="assets/ours_0_eeg.png" alt="jeep 查询99，正确EEG条件生成的图片" class="zoomable" tabindex="0"><span>EEG condition</span></div>
+        <div><img src="assets/ours_0_oracle.png" alt="jeep 查询99，真图嵌入条件生成的参考图片，非EEG-only结果" class="zoomable" tabindex="0"><span>Image-feature reference*</span></div>
+      </div>
+      <figcaption>清晰度不等于内容恢复。两张均为生成图；右图使用真图嵌入，仅作不可部署的参考。</figcaption>
+    </figure>
+  </div>
 
-<section id="results">
-<h2><span>02</span>近期得到的正向证据</h2>
-<div class="two-col">
-<article class="panel"><h3>中间层更容易从 EEG 读取</h3><div class="protocol">sub-01 · 200 候选 · mean80 · 两个固定训练种子</div><img class="chart" src="assets/retrieval.svg" alt="检索结果：末层固定25.5/25.5%，末层联合35.5/33.5%，第12层联合81/83%"><p class="finding">第 12 层联合头平均 <strong>82.0%</strong>，相对末层联合头提高 <strong>47.5 个百分点</strong>。</p><p class="note">全 16,540 张训练图；mean80 表示 80 次重复平均。视觉输入宽度与头参数也有变化。这里评价检索，不能解释为 82% 的图片被还原。<a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/results/retrieval.json">聚合数据</a></p></article>
-<article class="panel"><h3>实际出图保留了 EEG 配对信息</h3><div class="protocol">32 个固定开发查询 · 单被试 · 一个训练种子</div><img class="chart" src="assets/image_pairing.svg" alt="图像DINOv3 2AFC：正确EEG0.7759，训练均值0.5353，打乱EEG0.4240"><p class="finding">正确减打乱 <strong>+0.3519</strong>，归档的配对图片 95% 区间 [+0.2569, +0.4513]。</p><p class="note">2AFC 比较匹配图与其余 199 张真图。200 图库 Top-1 仍只有 <strong>1/32</strong>；配对优势尚未变成精确恢复。<a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/results/image_pairing.json">聚合数据</a></p></article>
-</div>
-<div class="scope">两项来自不同阶段、不同系统。它们支持保留视觉表征与生成管线，尚未证明新的扩散机制有效；开发刺激反复使用，也不能作为独立确认。</div>
-<details id="examples"><summary>查看固定顺序的生成样例</summary>
-<p class="note">归档预固定 8 个样例中的前 3 个，展示四个条件；省略 reduced EEG 与 reduced + shrinkage。下面全部是生成结果，未展示刺激原图。未按效果重新挑选或增强图片。</p>
-<div class="example-grid">
-<div></div><div class="col">正确 EEG</div><div class="col">训练均值</div><div class="col">打乱 EEG</div><div class="col">真图嵌入参考*</div>
-<div class="label">jeep · 99</div><img class="clickable" tabindex="0" src="assets/ours_0_eeg.png" alt="jeep 99, generated with correct EEG"><img class="clickable" tabindex="0" src="assets/ours_0_mean.png" alt="jeep 99, generated with training mean"><img class="clickable" tabindex="0" src="assets/ours_0_shuffled.png" alt="jeep 99, generated with shuffled EEG"><img class="clickable" tabindex="0" src="assets/ours_0_oracle.png" alt="jeep 99, generated with true-image embedding, oracle">
-<div class="label">freezer · 78</div><img class="clickable" tabindex="0" src="assets/ours_1_eeg.png" alt="freezer 78, generated with correct EEG"><img class="clickable" tabindex="0" src="assets/ours_1_mean.png" alt="freezer 78, generated with training mean"><img class="clickable" tabindex="0" src="assets/ours_1_shuffled.png" alt="freezer 78, generated with shuffled EEG"><img class="clickable" tabindex="0" src="assets/ours_1_oracle.png" alt="freezer 78, generated with true-image embedding, oracle">
-<div class="label">basil · 6</div><img class="clickable" tabindex="0" src="assets/ours_2_eeg.png" alt="basil 6, generated with correct EEG"><img class="clickable" tabindex="0" src="assets/ours_2_mean.png" alt="basil 6, generated with training mean"><img class="clickable" tabindex="0" src="assets/ours_2_shuffled.png" alt="basil 6, generated with shuffled EEG"><img class="clickable" tabindex="0" src="assets/ours_2_oracle.png" alt="basil 6, generated with true-image embedding, oracle">
-</div><p class="note">* 真图嵌入列是不可部署的生成参考，不是刺激照片，也不计入 EEG-only 成绩。</p>
-</details>
-</section>
+  <div class="report-layout">
+    <aside class="contents" aria-label="报告目录">
+      <span class="rail-title">IN THIS REPORT</span>
+      <a href="#literature"><b>01</b> 核心文献</a>
+      <a href="#findings"><b>02</b> 正向证据</a>
+      <a href="#images"><b>03</b> 生成图版</a>
+      <a href="#lessons"><b>04</b> 机制复核</a>
+      <a href="#outlook"><b>05</b> 下一步</a>
+      <a href="#code"><b>06</b> 代码与复现</a>
+      <div class="rail-note">只讨论视觉 EEG<br>与图像扩散重建</div>
+    </aside>
 
-<section id="lessons">
-<h2><span>03</span>有效修正与没有通过的改动</h2>
-<div class="two-col"><article><h3>v 参数化修复了较差的 epsilon 配置</h3><div class="protocol">实际图片 · 32 概念 · 两训练种子 · 576 张新图</div><div class="table-wrap"><table><thead><tr><th>匹配比较</th><th>Δ DINO2AFC</th><th>描述性 95% 区间</th></tr></thead><tbody><tr><td>v - epsilon</td><td>+0.2560</td><td>[+0.1557, +0.3533]</td></tr><tr><td>v - norm-corrected regression</td><td>+0.0600</td><td>[-0.0227, +0.1431]</td></tr><tr><td>v - original EEG query</td><td>+0.0020</td><td>[-0.0645, +0.0660]</td></tr></tbody></table></div><p class="note">相对原 EEG 查询的区间跨零。标准 v 属于既有方法，不能把修复弱参照当作原创生成优势。</p></article><article><h3>重复数匹配改善了语义 prior</h3><div class="protocol">另一套 R4 协议 · 语义向量 · 未新增图片</div><table><thead><tr><th>方法</th><th>200-way R@1</th></tr></thead><tbody><tr><td>R1-trained prior</td><td>5.67%</td></tr><tr><td>R4-trained prior</td><td>11.33%</td></tr><tr><td>直接 EEG 编码</td><td>17.50%</td></tr></tbody></table><p class="note">R4−R1 为 +5.67 pp [2.50, 9.17]，仍低于直接编码。与 mean80 不同，不跨协议排名。</p></article></div>
-<table><thead><tr><th>与下一步最相关的尝试</th><th>实际观察</th><th>含义</th></tr></thead><tbody><tr><td>把教师监督移到适配器之后</td><td>图像 ΔDINO2AFC −0.0861</td><td>接口一致性没有自动变成收益</td></tr><tr><td>直接使用 EEG 图像证据梯度</td><td>0.5927，低于点回归的 0.7198</td><td>内部匹配分数不能代替独立图像评价</td></tr><tr><td>补回隐变量均值与尺度</td><td>扩展复核 Δ+0.0005，区间跨零</td><td>初始线索没有在扩大样本后保住</td></tr></tbody></table>
-<p class="note">三行各属不同实验，不作横向性能排名。其他重复融合、score-PDE、残差纠偏与 SORT 的结果见 <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/docs/EXPERIMENTS.md">完整实验记录</a>；对应源码见 <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/experiments/README.md">代码索引</a>。</p>
-</section>
+    <div class="report-body">
+      <section id="literature" class="report-section">
+        <div class="section-kicker">01 / LITERATURE</div>
+        <h2>从这三篇工作开始</h2>
+        <p class="section-intro">表征选择、生成接口与后验近似，分别对应当前系统中的三个关键环节。下方保留论文原图与英文原文；黄色仅为本次阅读标注。</p>
+        <div class="paper-tabs" role="tablist" aria-label="核心文献">
+          <button id="tab-nvol" role="tab" aria-selected="true" aria-controls="paper-nvol">NVOL <small>Representation</small></button>
+          <button id="tab-brainhive" role="tab" aria-selected="false" aria-controls="paper-brainhive">BrainHIVE <small>Interface</small></button>
+          <button id="tab-tmpd" role="tab" aria-selected="false" aria-controls="paper-tmpd">TMPD <small>Posterior</small></button>
+        </div>
+        <div class="paper-reader">
+          <article id="paper-nvol" class="paper-panel" role="tabpanel" aria-labelledby="tab-nvol">
+            <div class="paper-bibliography"><span>Wang et al. · arXiv 2026 · v1</span><a href="https://arxiv.org/abs/2609.02582">Read paper ↗</a></div>
+            <h3 lang="en">EEG-based Visual Retrieval and Reconstruction: From Neurally Visible Optimal Layer to Hierarchical Diffusion Generation</h3>
+            <figure class="paper-original"><img class="zoomable" tabindex="0" src="assets/nvol_figure.png" alt="NVOL original Figure 1, PDF page 3"><figcaption>Original Fig. 1 · PDF p.3</figcaption></figure>
+            <div class="passage-label">ORIGINAL CONTRIBUTION PARAGRAPH · P.2</div>
+            <img class="original-passage zoomable" tabindex="0" src="assets/nvol_original_passage.png" alt="NVOL original English paragraph, page 2; key phrase highlighted in yellow">
+            <p class="paper-connection"><b>与我们最直接的关系</b>中间视觉层选择已有明确近邻。我们的中层检索结果适合作为生成研究的基础，不能据此宣称方法首创。</p>
+          </article>
+          <article id="paper-brainhive" class="paper-panel" role="tabpanel" aria-labelledby="tab-brainhive">
+            <div class="paper-bibliography"><span>Zheng et al. · ICLR 2026</span><a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/c5506f154e5f2203a7dca2bee2faeced-Abstract-Conference.html">Read paper ↗</a></div>
+            <h3 lang="en">Learning Brain Representation with Hierarchical Visual Embeddings</h3>
+            <figure class="paper-original"><img class="zoomable" tabindex="0" src="assets/brainhive_figure.png" alt="BrainHIVE original Figure 1, arXiv v1 PDF page 4"><figcaption>Original Fig. 1 · arXiv v1, PDF p.4</figcaption></figure>
+            <div class="passage-label">ORIGINAL EXCERPT · P.2</div>
+            <img class="original-passage zoomable" tabindex="0" src="assets/brainhive_original_passage.png" alt="BrainHIVE original English sentence, page 2; key phrase highlighted in yellow">
+            <p class="paper-connection"><b>与我们最直接的关系</b>联合视觉空间与生成器条件空间需要衔接。本文的 Fusion Prior 是相关参照；我们没有完整复现其多教师系统。</p>
+          </article>
+          <article id="paper-tmpd" class="paper-panel" role="tabpanel" aria-labelledby="tab-tmpd">
+            <div class="paper-bibliography"><span>Boys et al. · arXiv v3, 2024</span><a href="https://arxiv.org/abs/2310.06721">Read paper ↗</a></div>
+            <h3 lang="en">Tweedie Moment Projected Diffusions For Inverse Problems</h3>
+            <figure class="paper-original equation-original"><img class="zoomable" tabindex="0" src="assets/tmpd_figure.png" alt="TMPD original Equation 10, PDF page 5"><figcaption>Original Eq. (10) · PDF p.5</figcaption></figure>
+            <div class="passage-label">ORIGINAL PARAGRAPH · P.5</div>
+            <img class="original-passage zoomable" tabindex="0" src="assets/tmpd_original_passage.png" alt="TMPD original English paragraph, page 5; key phrase highlighted in yellow">
+            <p class="paper-connection"><b>与我们最直接的关系</b>观测误差和去噪条件协方差共同进入似然近似。公式是已有概率工具，EEG 误差校验与实际图片收益才是待研究部分。</p>
+          </article>
+        </div>
+        <p class="source-line">原图未重绘；保留论文字体与标号。<a href="paper_sources.json">页码、版本、裁剪与标黄记录</a> · 点击图片放大</p>
+      </section>
 
-<section id="next">
-<h2><span>04</span>下一步：先校验 EEG 视觉证据的误差</h2>
-<p class="lead">哪些 EEG 方向真正提供视觉信息？生成到当前一步时，应该信任多少？</p>
-<p>重复一致只能说明测量的部分稳定性，不能说明稳定成分都与视觉内容相关。候选方案先用训练内 EEG–图片配对区分测量误差和视觉映射误差，再在新概念上检验，最后让观测误差与去噪不确定性共同决定导引。</p>
-<div class="equation" aria-label="V t equals Sigma e plus A C t A transpose">V<sub>t</sub> = Σ<sub>e</sub> + A C<sub>t</sub> A<sup>T</sup></div>
-<p class="note">线性 Gaussian 参考：U = AX₀ + η，η ∼ N(0,Σₑ)，X₀ | xₜ ∼ N(mₜ,Cₜ)，则 U | xₜ ∼ N(Amₜ,Vₜ)。A 是视觉到 EEG 特征的映射，不是导联场。这个经典公式及 TMPD 思路不作为我们的新定理；非 Gaussian 性、状态相关协方差和模型误设仍需处理。</p>
-<div class="steps"><div><span class="num">1 / CALIBRATE</span><b>先验证误差模型</b><p>训练内拟合，在新概念检验覆盖、残差与视觉预测；不能只凭重复一致性指定置信度。</p></div><div><span class="num">2 / COMPARE</span><b>只比较条件机制</b><p>固定强 EEG 编码器和图像生成器，对照直接回归、标准 prior、既有后验近似与新候选。</p></div><div><span class="num">3 / EVALUATE</span><b>用实际图片作判断</b><p>每 query/seed 一张，正确/打乱/缺失 EEG 分列；同时评价内容、质量、多样性和推理成本。</p></div></div>
-<p class="scope">待检验假设：经过校验的观测可靠性，能在相同生成预算下提高图片内容忠实度。该候选尚未启动，当前没有稳定的原创扩散图像优势。</p>
-</section>
+      <section id="findings" class="report-section">
+        <div class="section-kicker">02 / FINDINGS</div>
+        <h2>最明确的进展在视觉表征端</h2>
+        <p class="section-intro">中间层联合对齐的平均检索 Top-1 达到 82.0%；另一项实际图片实验中，正确 EEG 也明显优于打乱条件。两项证据应分别阅读。</p>
+        <figure class="research-figure">
+          <div class="figure-topline"><span>FIGURE 1</span><div><a href="assets/figure-1.pdf">PDF</a><a href="assets/figure-1.svg">SVG</a><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/results/figure_data.csv">Source data</a></div></div>
+          <img src="assets/figure-1.svg" class="zoomable" tabindex="0" alt="图1。a：末层固定25.5/25.5%，末层联合35.5/33.5%，第12层联合81/83%，点表示两个固定训练种子。b：正确EEG图像DINOv3两路识别0.7759，均值0.5353，打乱0.4240。">
+          <figcaption><b>图 1｜视觉表征与实际图片中的配对证据。</b><b>a，</b>sub-01，200 候选，mean80；全 16,540 张训练图。两点表示两个固定训练种子，非置信区间。第 12 层相对末层联合头的均值差为 47.5 个百分点。视觉输入宽度与头参数同时变化。<b>b，</b>另一套 SDXL 开发实验，32 个固定查询，单被试、一个训练种子；点为图像 DINOv3 2AFC 均值。</figcaption>
+        </figure>
+        <div class="interpretation">
+          <div><span class="marginal-label">支持什么</span><p>保留较强的中层视觉表征。实际出图中，正确减打乱的 2AFC 为 <strong>+0.3519</strong>，归档的配对图片 95% 区间为 [+0.2569, +0.4513]。</p></div>
+          <div><span class="marginal-label">边界在哪里</span><p>mean80 是 80 次重复平均，不是单次 EEG。图片实验的 200 图库 Top-1 仍只有 <strong>1/32</strong>；检索分数和 2AFC 均不能读作图片正确还原率。</p></div>
+        </div>
+        <p class="source-line"><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/results/retrieval.json">检索聚合记录</a> · <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/results/image_pairing.json">图片配对记录</a> · 开发刺激有复用，尚无独立多被试确认</p>
+      </section>
 
-<section id="code">
-<h2><span>05</span>代码与复现入口</h2>
-<p class="code-links"><a href="https://github.com/Botwwt/EEG-Diffusion">GitHub 仓库</a> · <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/experiments/README.md">实验与源码对应表</a> · <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/docs/REPRODUCIBILITY.md">复现范围</a> · <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/results/figure_data.csv">作图数据 CSV</a></p>
-<pre>git clone https://github.com/Botwwt/EEG-Diffusion.git
+      <section id="images" class="report-section">
+        <div class="section-kicker">03 / GENERATED IMAGES</div>
+        <h2>画面可以清晰，内容仍可能错误</h2>
+        <p class="section-intro">按照归档固定顺序展示前三个查询。所有格子都是生成图；左侧为刺激标签，右列是真图嵌入条件生成的参考，不是刺激照片。</p>
+        <figure class="image-plate">
+          <div class="image-matrix">
+            <div></div><div class="column-label">Correct EEG</div><div class="column-label">Training mean</div><div class="column-label">Shuffled EEG</div><div class="column-label oracle-label">Image-feature<br>reference*</div>
+            <div class="row-label"><b>jeep</b><span>query 99</span></div><img class="zoomable" tabindex="0" src="assets/ours_0_eeg.png" alt="jeep 99, correct EEG generated output"><img class="zoomable" tabindex="0" src="assets/ours_0_mean.png" alt="jeep 99, training mean generated output"><img class="zoomable" tabindex="0" src="assets/ours_0_shuffled.png" alt="jeep 99, shuffled EEG generated output"><img class="zoomable" tabindex="0" src="assets/ours_0_oracle.png" alt="jeep 99, true-image embedding generated reference, oracle">
+            <div class="row-label"><b>freezer</b><span>query 78</span></div><img class="zoomable" tabindex="0" src="assets/ours_1_eeg.png" alt="freezer 78, correct EEG generated output"><img class="zoomable" tabindex="0" src="assets/ours_1_mean.png" alt="freezer 78, training mean generated output"><img class="zoomable" tabindex="0" src="assets/ours_1_shuffled.png" alt="freezer 78, shuffled EEG generated output"><img class="zoomable" tabindex="0" src="assets/ours_1_oracle.png" alt="freezer 78, true-image embedding generated reference, oracle">
+            <div class="row-label"><b>basil</b><span>query 6</span></div><img class="zoomable" tabindex="0" src="assets/ours_2_eeg.png" alt="basil 6, correct EEG generated output"><img class="zoomable" tabindex="0" src="assets/ours_2_mean.png" alt="basil 6, training mean generated output"><img class="zoomable" tabindex="0" src="assets/ours_2_shuffled.png" alt="basil 6, shuffled EEG generated output"><img class="zoomable" tabindex="0" src="assets/ours_2_oracle.png" alt="basil 6, true-image embedding generated reference, oracle">
+          </div>
+          <figcaption><b>固定样例图版。</b>预固定 8 个查询中的前 3 个，展示六条件中的四列；省略 reduced EEG 与 reduced + shrinkage。未按效果重新挑选或增强。* 参考列读取真图嵌入，不计入 EEG-only 成绩。<a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/provenance/generated_examples.json">样例顺序与裁剪来源</a></figcaption>
+        </figure>
+      </section>
+
+      <section id="lessons" class="report-section">
+        <div class="section-kicker">04 / MECHANISM CHECKS</div>
+        <h2>修复了参照，还没有建立新机制优势</h2>
+        <p class="section-intro">标准 v 参数化修复了当前 epsilon 配置的严重退化，但相对强直接 EEG 查询的优势尚未确认。</p>
+        <figure class="research-figure compact-figure">
+          <div class="figure-topline"><span>FIGURE 2</span><div><a href="assets/figure-2.pdf">PDF</a><a href="assets/figure-2.svg">SVG</a></div></div>
+          <img src="assets/figure-2.svg" class="zoomable" tabindex="0" alt="图2，v参数化相对epsilon的DINO2AFC差为0.2560，95%区间0.1557至0.3533；相对范数修正回归与原EEG查询的区间均跨零。">
+          <figcaption><b>图 2｜同一图片实验中的配对比较。</b>32 个源概念、两个固定训练种子，共 576 张新图。点为均值差，误差线为归档的描述性 95% 区间；虚线表示零差。标准 v 是已有工具，不计作我们的新理论。</figcaption>
+        </figure>
+        <div class="table-scroll"><table class="evidence-table"><thead><tr><th>已测配置</th><th>实际观察</th><th>研究判断</th></tr></thead><tbody>
+          <tr><td>适配后教师监督</td><td>图像 Δ2AFC −0.0861</td><td>条件空间一致性没有自动转化为图像收益</td></tr>
+          <tr><td>直接图像证据梯度</td><td>0.5927；点回归 0.7198</td><td>内部兼容分数不足以代替独立图片评价</td></tr>
+          <tr><td>补回隐变量均值与尺度</td><td>扩展复核 Δ+0.0005，区间跨零</td><td>初始线索未在扩展样本中保持</td></tr>
+        </tbody></table></div>
+        <p class="source-line">三行来自不同实验，不作横向排名。<a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/docs/EXPERIMENTS.md">十项 idea 的结果、样本与限制</a></p>
+        <details><summary>另一个有效修正：R4 条件匹配（仅语义向量）</summary><p>另一套 R4 协议中，R1-trained prior 的 200-way R@1 为 5.67%，R4-trained prior 为 11.33%，直接编码为 17.50%。匹配增量 +5.67 pp [2.50, 9.17]，仍低于直接编码。该阶段没有新增图片，也不与 mean80 检索合并排名。</p></details>
+      </section>
+
+      <section id="outlook" class="report-section">
+        <div class="section-kicker">05 / OUTLOOK · NOT YET VALIDATED</div>
+        <h2>先校验视觉证据，再决定导引强度</h2>
+        <p class="section-intro">重复一致性只反映部分测量稳定性。候选研究需要先回答：EEG 的哪些方向确实预测视觉内容，当前生成阶段又应当信任多少？</p>
+        <div class="theory-panel">
+          <div class="theory-label">LINEAR–GAUSSIAN REFERENCE</div>
+          <div class="equation" aria-label="V t equals Sigma e plus A C t A transpose">V<sub>t</sub> = <span>Σ<sub>e</sub></span> + A C<sub>t</sub> A<sup>T</sup></div>
+          <div class="equation-key"><span>Σ<sub>e</sub>　视觉观测误差</span><span>A C<sub>t</sub> A<sup>T</sup>　当前去噪的不确定性</span></div>
+          <p>若 U = AX₀ + η，η ∼ N(0,Σₑ)，且 X₀ | xₜ ∼ N(mₜ,Cₜ)，则 U | xₜ ∼ N(Amₜ,Vₜ)。A 是视觉到 EEG 特征的统计映射，不是导联场。经典公式和 TMPD 均为参照；非 Gaussian 性、状态相关协方差与模型误设仍需处理。</p>
+        </div>
+        <ol class="research-sequence"><li><b>误差校验</b><p>训练内拟合测量与视觉映射误差，在新概念上验证；不以重复稳定性代替视觉可靠性。</p></li><li><b>匹配比较</b><p>冻结强 EEG 编码器与生成器，对照直接回归、标准 prior、已有后验近似和新候选。</p></li><li><b>实际图片确认</b><p>每 query/seed 一张，正确、打乱与缺失 EEG 分列；报告内容、质量、多样性和全部计算成本。</p></li></ol>
+        <p class="research-question"><span>待检验问题</span>经过校验的观测可靠性，能否在相同生成预算下带来可重复的图片内容增量？</p>
+      </section>
+
+      <section id="code" class="report-section code-section">
+        <div class="section-kicker">06 / CODE &amp; REPRODUCIBILITY</div>
+        <h2>从代码入口到证据来源</h2>
+        <p class="section-intro">数值工具可在 CPU 上运行。历史训练与采样脚本按原始哈希冻结，完整 GPU 重跑所需的外部数据、权重与环境另行说明。</p>
+        <div class="code-toolbar"><span>QUICK START · PYTHON 3.11+</span><button id="copy-code" type="button">复制命令</button></div>
+        <pre><code id="quickstart">git clone https://github.com/Botwwt/EEG-Diffusion.git
 cd EEG-Diffusion
-python -m pip install -e '.[test]'
+python -m pip install -e '.[dev,report]'
 eeg-diffusion verify
-python -m pytest -q</pre>
-<p class="note">以上运行文件完整性、聚合数值核对与数值单元测试，不执行 GPU 训练。旧训练/采样源码按原始哈希保存；完整重跑还需外部数据、权重、缓存及旧环境。报告由公开聚合值重建，本次未新增实验。</p>
-</section>
+python -m pytest -q</code></pre>
+        <div class="resource-list">
+          <a href="https://github.com/Botwwt/EEG-Diffusion"><b>Repository</b><span>源码、安装与自动检查 ↗</span></a>
+          <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/docs/API.md"><b>Numerical API</b><span>变量、形状、假设与示例 ↗</span></a>
+          <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/experiments/README.md"><b>Experiment index</b><span>每项 idea 对应的历史源码 ↗</span></a>
+          <a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/docs/REPRODUCIBILITY.md"><b>Reproduction scope</b><span>可运行部分、外部依赖与证据边界 ↗</span></a>
+        </div>
+        <p class="availability"><b>Code &amp; data availability.</b>原始代码按 MIT 发布，论文截图与外部模型保留各自权利。仓库提供聚合结果与作图数据；不分发原始 EEG、刺激照片或权重。本页面整理不新增训练、图片或方法成功声明。</p>
+      </section>
+    </div>
+  </div>
 </main>
-<footer><div class="footer-links"><a href="paper_sources.json">论文页码与裁剪记录</a><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/provenance/source_manifest.json">源码 / 素材哈希</a><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/THIRD_PARTY_NOTICES.md">引用与素材权利</a><button class="print-button" id="print">打印 / 保存 PDF</button></div><div>图表区分实验单位、重复数与开发范围；不将检索成绩冒充生成准确率。论文图及短节选保留原貌，黄色为讨论标注。点击图片可放大。</div></footer>
-<dialog class="lightbox" id="lightbox" aria-label="原图放大"><button id="close" aria-label="关闭">×</button><img id="large-image" alt=""><p id="large-caption"></p></dialog>
-<script>
-const box=document.getElementById('lightbox');let opener=null;
-function openImage(img){opener=img;document.getElementById('large-image').src=img.src;document.getElementById('large-image').alt=img.alt;document.getElementById('large-caption').textContent=img.alt;box.showModal()}
-document.querySelectorAll('.clickable').forEach(img=>{img.addEventListener('click',()=>openImage(img));img.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openImage(img)}})});
-document.getElementById('close').addEventListener('click',()=>box.close());box.addEventListener('close',()=>opener?.focus());box.addEventListener('click',event=>{if(event.target===box){const r=box.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)box.close()}});
-document.getElementById('print').addEventListener('click',()=>window.print());
-</script>
+<footer class="wrap site-footer"><div><a class="footer-mark" href="https://github.com/Botwwt/EEG-Diffusion">EEG—DIFFUSION</a><p>Visual evidence. Traceable experiments.</p></div><div><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/CITATION.cff">Cite this archive</a><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/THIRD_PARTY_NOTICES.md">Attribution</a><button id="print-report">Print / PDF</button><span>Research archive · v0.2</span></div></footer>
+<dialog id="image-dialog" class="image-dialog" aria-label="图片放大"><button id="close-image" aria-label="关闭图片">×</button><img id="large-image" alt=""><p id="large-caption"></p></dialog>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
 </body>
 </html>

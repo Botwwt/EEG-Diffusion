@@ -367,20 +367,6 @@
       "byte_identical": true
     },
     {
-      "path": "src/eeg_diffusion/gaussian_reference.py",
-      "origin": "atm_diffusion/mced_research/gaussian_reference.py",
-      "sha256": "c4ef8f1cfce7644ca12fba3f9d1eb6aa74c6de8213c77d811663b4f69ec4a41e",
-      "kind": "portable-original-module",
-      "byte_identical": true
-    },
-    {
-      "path": "src/eeg_diffusion/semantic_fiber_math.py",
-      "origin": "atm_diffusion/mced_research/semantic_fiber_math.py",
-      "sha256": "3d406ff8fdc1b8058a0bb5a4044a2fea815fe2334c3f86ceebbd4f9cc7841a3e",
-      "kind": "portable-original-module",
-      "byte_identical": true
-    },
-    {
       "path": "docs/assets/nvol_figure.png",
       "origin": "output/supervisor_brief_20261018/assets/nvol_figure.png",
       "sha256": "c5959bdaa53ab864c93408958a0ec1cfa55a52f92fd71c6f46611c391daefc54",

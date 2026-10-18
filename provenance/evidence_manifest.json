@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "results/retrieval.json",
+      "sha256": "87f4ad39f9a177ad936050101909e1532490a12db9b78b54e01a8a2f508d06f2"
+    },
+    {
+      "path": "results/image_pairing.json",
+      "sha256": "f361418c852c062698c0581a594ed4584fdcad1ce03104f7117d762b97ee94b3"
+    },
+    {
+      "path": "results/summary.json",
+      "sha256": "de47511cfc482cdf385295d58b8e88f3d37ff9367fdcd9790afdfe5ff079e8a0"
+    }
+  ]
+}
