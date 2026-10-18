@@ -50,7 +50,38 @@
       ],
       "word_count": 24
     },
-    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement."
+    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement.",
+    "result_tables": [
+      {
+        "label": "Table II",
+        "page": 5,
+        "clip": [
+          55,
+          54,
+          558,
+          341
+        ],
+        "asset": "assets/nvol_table_2.png",
+        "render_scale": 5,
+        "asset_sha256": "5f680a1bad77735a3f95fc270bc07093d433d178352cffbc8114593ce5b70c61",
+        "processing": "Unmodified rectangular PDF render; complete table, no highlighting."
+      },
+      {
+        "label": "Table III",
+        "page": 7,
+        "clip": [
+          310,
+          434,
+          565,
+          551
+        ],
+        "asset": "assets/nvol_table_3.png",
+        "render_scale": 5,
+        "asset_sha256": "1dd681f63d80d8454e811b81439589b71cf1dbe5ee32747c9189db9cec2ccc96",
+        "processing": "Unmodified rectangular PDF render; complete table, no highlighting."
+      }
+    ],
+    "displayed_in_core_reading": true
   },
   {
     "id": "brainhive",
@@ -97,7 +128,38 @@
       ],
       "word_count": 22
     },
-    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement."
+    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement.",
+    "result_tables": [
+      {
+        "label": "Table 1",
+        "page": 7,
+        "clip": [
+          104,
+          329,
+          508,
+          532
+        ],
+        "asset": "assets/brainhive_table_1.png",
+        "render_scale": 5,
+        "asset_sha256": "7b63b4f43fb56716f2594dc1f9afe50960921e97ef89c9f019e51bab0abd106f",
+        "processing": "Unmodified rectangular PDF render; complete table, no highlighting."
+      },
+      {
+        "label": "Table 2",
+        "page": 8,
+        "clip": [
+          106,
+          78,
+          506,
+          240
+        ],
+        "asset": "assets/brainhive_table_2.png",
+        "render_scale": 5,
+        "asset_sha256": "5d365b986e1dbd4b8d4d2fba615801c91c9d39003769329dc09db0405fe42993",
+        "processing": "Unmodified rectangular PDF render; complete table, no highlighting."
+      }
+    ],
+    "displayed_in_core_reading": true
   },
   {
     "id": "tmpd",
@@ -144,6 +206,81 @@
       ],
       "word_count": 22
     },
-    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement."
+    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement.",
+    "displayed_in_core_reading": false
+  },
+  {
+    "id": "guided_distillation",
+    "title": "On Distillation of Guided Diffusion Models",
+    "venue": "CVPR 2023",
+    "url": "https://arxiv.org/abs/2210.03142",
+    "pdf": "https://openaccess.thecvf.com/content/CVPR2023/papers/Meng_On_Distillation_of_Guided_Diffusion_Models_CVPR_2023_paper.pdf",
+    "source_pdf_sha256": "11972b6ef9afc7bc816de76bb9f15202eda7ec52dd0c7c920b0af7dfd71b65a9",
+    "displayed_in_core_reading": true,
+    "figure": "Figure 7",
+    "figure_page": 6,
+    "figure_clip": [
+      49,
+      235,
+      548,
+      335
+    ],
+    "processing": "Rectangular PDF crops preserve original typography and table values. The short sentence uses exact line crops with a yellow reading highlight.",
+    "result_tables": [
+      {
+        "label": "Table 2",
+        "page": 6,
+        "clip": [
+          85,
+          512,
+          249,
+          558
+        ],
+        "asset": "assets/guided_distillation_table_2.png",
+        "render_scale": 6,
+        "asset_sha256": "bbf101eb6f8db438bee2fdf0742b4a9127bd07e114af56a3ef073d7b3472b764",
+        "processing": "Complete numeric table. Caption is provided as a linked HTML caption. No data edits."
+      }
+    ],
+    "original_excerpt": {
+      "page": 2,
+      "excerpt": "In the ﬁrst stage, we introduce a single student model to match the combined output of the two diffusion models of the teacher.",
+      "word_count": 23,
+      "asset": "assets/guided_distillation_original_passage.png",
+      "clip_rects": [
+        [
+          221.61463928222656,
+          558.2535400390625,
+          287.6098937988281,
+          570.2584838867188
+        ],
+        [
+          49.75299835205078,
+          570.2085571289062,
+          286.3589782714844,
+          582.2135009765625
+        ],
+        [
+          50.11199951171875,
+          582.16357421875,
+          243.96151733398438,
+          594.1685180664062
+        ]
+      ],
+      "highlight_rects": [
+        [
+          205.7436981201172,
+          570.2085571289062,
+          286.3589782714844,
+          582.2135009765625
+        ],
+        [
+          50.11199951171875,
+          582.16357421875,
+          186.06402587890625,
+          594.1685180664062
+        ]
+      ]
+    }
   }
 ]

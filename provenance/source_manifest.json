@@ -495,9 +495,11 @@
     {
       "path": "docs/paper_sources.json",
       "origin": "output/supervisor_brief_20261018/SELECTED_SOURCES.json",
-      "sha256": "d0e14a888003912fe4382097b5eaa7158d9f91372c60f236975b35d63921a60b",
+      "sha256": "beb1a36219776ec30e769c5c0e71385d559d4ba1d95b33c2b33e4f472b478d4a",
       "kind": "paper-provenance",
-      "byte_identical": true
+      "byte_identical": false,
+      "initial_import_sha256": "d0e14a888003912fe4382097b5eaa7158d9f91372c60f236975b35d63921a60b",
+      "revision": "Expanded literature reading and result-table provenance, 2026-10-18"
     },
     {
       "path": "LICENSE",
@@ -505,6 +507,69 @@
       "sha256": "9635232ea3492aff43b7f4d1006780044e382badfb20134334c0c6cb498acfcf",
       "kind": "license",
       "byte_identical": true
+    },
+    {
+      "path": "docs/assets/nvol_table_2.png",
+      "origin": "https://arxiv.org/pdf/2609.02582v1#page=5",
+      "sha256": "5f680a1bad77735a3f95fc270bc07093d433d178352cffbc8114593ce5b70c61",
+      "kind": "third-party-paper-crop",
+      "byte_identical": false,
+      "source_pdf_sha256": "313abf642f12af3a3668d173b5680c9aa85afc58b1ffa1fa43d62477385e4cb9",
+      "crop_metadata": "docs/paper_sources.json"
+    },
+    {
+      "path": "docs/assets/nvol_table_3.png",
+      "origin": "https://arxiv.org/pdf/2609.02582v1#page=7",
+      "sha256": "1dd681f63d80d8454e811b81439589b71cf1dbe5ee32747c9189db9cec2ccc96",
+      "kind": "third-party-paper-crop",
+      "byte_identical": false,
+      "source_pdf_sha256": "313abf642f12af3a3668d173b5680c9aa85afc58b1ffa1fa43d62477385e4cb9",
+      "crop_metadata": "docs/paper_sources.json"
+    },
+    {
+      "path": "docs/assets/brainhive_table_1.png",
+      "origin": "https://arxiv.org/pdf/2602.07495v1#page=7",
+      "sha256": "7b63b4f43fb56716f2594dc1f9afe50960921e97ef89c9f019e51bab0abd106f",
+      "kind": "third-party-paper-crop",
+      "byte_identical": false,
+      "source_pdf_sha256": "5e5e3c9ac168f7aa0a514eba3979f2a34ae0aebc7f946b5052072e156ab67f1e",
+      "crop_metadata": "docs/paper_sources.json"
+    },
+    {
+      "path": "docs/assets/brainhive_table_2.png",
+      "origin": "https://arxiv.org/pdf/2602.07495v1#page=8",
+      "sha256": "5d365b986e1dbd4b8d4d2fba615801c91c9d39003769329dc09db0405fe42993",
+      "kind": "third-party-paper-crop",
+      "byte_identical": false,
+      "source_pdf_sha256": "5e5e3c9ac168f7aa0a514eba3979f2a34ae0aebc7f946b5052072e156ab67f1e",
+      "crop_metadata": "docs/paper_sources.json"
+    },
+    {
+      "path": "docs/assets/guided_distillation_table_2.png",
+      "origin": "https://openaccess.thecvf.com/content/CVPR2023/papers/Meng_On_Distillation_of_Guided_Diffusion_Models_CVPR_2023_paper.pdf#page=6",
+      "sha256": "bbf101eb6f8db438bee2fdf0742b4a9127bd07e114af56a3ef073d7b3472b764",
+      "kind": "third-party-paper-crop",
+      "byte_identical": false,
+      "source_pdf_sha256": "11972b6ef9afc7bc816de76bb9f15202eda7ec52dd0c7c920b0af7dfd71b65a9",
+      "crop_metadata": "docs/paper_sources.json"
+    },
+    {
+      "path": "docs/assets/guided_distillation_figure.png",
+      "origin": "https://openaccess.thecvf.com/content/CVPR2023/papers/Meng_On_Distillation_of_Guided_Diffusion_Models_CVPR_2023_paper.pdf#page=6",
+      "sha256": "53ec1a9f993fe96707817dfc55f90924f96b83f369fd6a9886c802fc26364ce0",
+      "kind": "third-party-paper-crop",
+      "byte_identical": false,
+      "source_pdf_sha256": "11972b6ef9afc7bc816de76bb9f15202eda7ec52dd0c7c920b0af7dfd71b65a9",
+      "crop_metadata": "docs/paper_sources.json"
+    },
+    {
+      "path": "docs/assets/guided_distillation_original_passage.png",
+      "origin": "https://openaccess.thecvf.com/content/CVPR2023/papers/Meng_On_Distillation_of_Guided_Diffusion_Models_CVPR_2023_paper.pdf#page=2",
+      "sha256": "40b94eb78eba4b1be591ee629028c91aca5f7af24ce100f59515b046dc3805d3",
+      "kind": "third-party-paper-crop",
+      "byte_identical": false,
+      "source_pdf_sha256": "11972b6ef9afc7bc816de76bb9f15202eda7ec52dd0c7c920b0af7dfd71b65a9",
+      "crop_metadata": "docs/paper_sources.json"
     }
   ]
 }

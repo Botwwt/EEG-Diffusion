@@ -12,13 +12,14 @@ Original research scripts were curated from the local MCED research bundle under
 
 ## Literature screenshots
 
-`docs/assets/{nvol,brainhive,tmpd}_*` are excerpts of third-party papers, included with attribution for research discussion. **They are excluded from the repository's MIT code license.** They do not become our original artwork; further reuse must follow the respective rights holder's terms.
+`docs/assets/{nvol,brainhive,tmpd,guided_distillation}_*` are excerpts of third-party papers, included with attribution for research discussion. **They are excluded from the repository's MIT code license.** They do not become our original artwork; further reuse must follow the respective rights holder's terms.
 
 | Source | Version | Included material |
 |---|---|---|
-| [Wang et al., NVOL](https://arxiv.org/abs/2609.02582) | arXiv v1 | Fig. 1, PDF p.3; short contribution paragraph, p.2 |
-| [Zheng et al., BrainHIVE](https://proceedings.iclr.cc/paper_files/paper/2026/hash/c5506f154e5f2203a7dca2bee2faeced-Abstract-Conference.html) | Figure/excerpt from arXiv:2602.07495v1; ICLR 2026 proceedings linked | Fig. 1, PDF p.4; selected complete sentence, p.2 |
+| [Wang et al., NVOL](https://arxiv.org/abs/2609.02582) | arXiv v1 | Fig. 1, PDF p.3; short contribution paragraph, p.2; Tables II and III, pp.5 and 7 |
+| [Zheng et al., BrainHIVE](https://proceedings.iclr.cc/paper_files/paper/2026/hash/c5506f154e5f2203a7dca2bee2faeced-Abstract-Conference.html) | Figure/excerpt from arXiv:2602.07495v1; ICLR 2026 proceedings linked | Fig. 1, PDF p.4; selected complete sentence, p.2; Tables 1 and 2, pp.7 and 8 |
 | [Boys et al., TMPD](https://arxiv.org/abs/2310.06721) | arXiv v3 | Eq. (10), PDF p.5; short paragraph, p.5 |
+| [Meng et al., On Distillation of Guided Diffusion Models](https://arxiv.org/abs/2210.03142) | CVPR 2023 open-access proceedings | Fig. 7 and Table 2 (numeric table), PDF p.6; selected complete sentence, p.2 |
 
 The PDF hashes, crop coordinates and yellow-highlight coordinates are recorded in [`docs/paper_sources.json`](docs/paper_sources.json). Crops preserve the original typography; highlighting was added for discussion. No paper curves or results were redrawn as our data. Full PDFs are not redistributed.
 
