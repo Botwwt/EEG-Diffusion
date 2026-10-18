@@ -1,0 +1,31 @@
+{
+  "schema": "semantic-fiber-working-gaussian-v1",
+  "R": 4,
+  "rank": 16,
+  "KL_to_conditional_reference_nats_per_vector": 4.0,
+  "gaussian_diagonal_shrinkage": 0.05,
+  "generation_seeds": [2026101660, 2026101661, 2026101662],
+  "random_subspace_seed": 2026101663,
+  "training_partition_seed": 2026101664,
+  "bootstrap_seed": 2026101665,
+  "bootstrap_repetitions": 20000,
+  "calibration_concept_fraction": 0.2,
+  "primary_contrast": "selective_K4_minus_uniform_trace",
+  "planned_contrasts": [
+    "selective_K4_minus_uniform_trace", "selective_K4_minus_uniform_entropy",
+    "selective_K4_minus_uniform_K4", "selective_K4_minus_random_K4",
+    "selective_K4_minus_lowgain_K4", "selective_K4_minus_mean4_exact",
+    "selective_K4_minus_fulljoint_exact", "selective_K4_minus_mean_decision",
+    "selective_K4_minus_cfg2_DDIM50", "selective_K4_minus_naiveproduct_DDIM50",
+    "selective_K4_pairing"
+  ],
+  "methods": ["prior_exact", "mean_decision", "mean4_exact", "mean4_DDIM50",
+    "fulljoint_exact", "cfg2_DDIM50", "naiveproduct_DDIM50", "selective_K4",
+    "uniform_K4", "uniform_trace", "uniform_entropy", "random_K4", "lowgain_K4"],
+  "official_test_locked": true,
+  "prepared": "/root/autodl-tmp/precision_score_data_20261017_v1",
+  "old_joint_model": "/root/repeat_score_composition_generation_20261017_v1/training_joint_gaussian.npz",
+  "old_joint_model_sha256": "bd99dbbc03e5f36ae5c14a97ca4816f7e867cf16f80f6e695c0a71f75f284a78",
+  "out": "/root/semantic_fiber_generation_20261017_v1",
+  "scope": "TRAIN-fitted Gaussian mechanism test; not a trained neural diffusion or complete ATM reproduction. All200 internal queries, one vector per query per declared seed. Equal KL, trace and entropy controls. No original token-risk guarantee."
+}

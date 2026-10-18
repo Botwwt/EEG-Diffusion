@@ -1,0 +1,149 @@
+[
+  {
+    "id": "nvol",
+    "title": "EEG-based Visual Retrieval and Reconstruction: From Neurally Visible Optimal Layer to Hierarchical Diffusion Generation",
+    "venue": "arXiv 2026-09, v1",
+    "url": "https://arxiv.org/abs/2609.02582",
+    "pdf": "https://arxiv.org/pdf/2609.02582v1",
+    "source_pdf_sha256": "313abf642f12af3a3668d173b5680c9aa85afc58b1ffa1fa43d62477385e4cb9",
+    "figure": "Fig. 1",
+    "figure_page": 3,
+    "figure_clip": [
+      48,
+      51,
+      565,
+      265
+    ],
+    "original_excerpt": {
+      "id": "nvol",
+      "page": 2,
+      "excerpt": "We examined EEG–image alignment from shallow to deep layers and found that the best alignment depth varied across participants, but remained in intermediate layers.",
+      "key": "remained in intermediate layers",
+      "asset": "assets/nvol_original_passage.png",
+      "clip_rects": [
+        [
+          68.98423767089844,
+          322.5726318359375,
+          300.01690673828125,
+          332.5352478027344
+        ],
+        [
+          68.98600006103516,
+          334.5276184082031,
+          300.0186462402344,
+          344.490234375
+        ],
+        [
+          68.98600006103516,
+          346.48260498046875,
+          297.21917724609375,
+          356.4452209472656
+        ]
+      ],
+      "highlight_rects": [
+        [
+          165.85232543945312,
+          346.48260498046875,
+          294.728515625,
+          356.4452209472656
+        ]
+      ],
+      "word_count": 24
+    },
+    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement."
+  },
+  {
+    "id": "brainhive",
+    "title": "Learning Brain Representation with Hierarchical Visual Embeddings",
+    "venue": "ICLR 2026",
+    "url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/c5506f154e5f2203a7dca2bee2faeced-Abstract-Conference.html",
+    "pdf": "https://arxiv.org/pdf/2602.07495v1",
+    "source_pdf_sha256": "5e5e3c9ac168f7aa0a514eba3979f2a34ae0aebc7f946b5052072e156ab67f1e",
+    "figure": "Figure 1",
+    "figure_page": 4,
+    "figure_clip": [
+      108,
+      74,
+      506,
+      244
+    ],
+    "original_excerpt": {
+      "id": "brainhive",
+      "page": 2,
+      "excerpt": "In addition, we pretrain a Fusion Prior on large-scale visual data to provide a stable mapping from fused features to diffusion conditions.",
+      "key": "a stable mapping",
+      "asset": "assets/brainhive_original_passage.png",
+      "clip_rects": [
+        [
+          139.48182678222656,
+          315.402099609375,
+          504.0031433105469,
+          325.3647155761719
+        ],
+        [
+          108.0,
+          326.360107421875,
+          278.8685302734375,
+          336.3227233886719
+        ]
+      ],
+      "highlight_rects": [
+        [
+          437.0644836425781,
+          315.402099609375,
+          504.0031433105469,
+          325.3647155761719
+        ]
+      ],
+      "word_count": 22
+    },
+    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement."
+  },
+  {
+    "id": "tmpd",
+    "title": "Tweedie Moment Projected Diffusions For Inverse Problems",
+    "venue": "arXiv 2023/2024, v3",
+    "url": "https://arxiv.org/abs/2310.06721",
+    "pdf": "https://arxiv.org/pdf/2310.06721v3",
+    "source_pdf_sha256": "66d6508a68e4ffbcbd4863f299f9a60d0d5bd35129929b1a7f51c36de00caa72",
+    "figure": "Equation (10)",
+    "figure_page": 5,
+    "figure_clip": [
+      204,
+      333,
+      542,
+      378
+    ],
+    "original_excerpt": {
+      "id": "tmpd",
+      "page": 5,
+      "excerpt": "where m0|t is given in Proposition 1. In the next section, we demonstrate how to use this approximation to obtain approximate likelihoods.",
+      "key": "approximate likelihoods",
+      "rect": [
+        71,
+        255,
+        542,
+        280
+      ],
+      "asset": "assets/tmpd_original_passage.png",
+      "clip_rects": [
+        [
+          71.0,
+          255.0,
+          542.0,
+          280.0
+        ]
+      ],
+      "highlight_rects": [
+        [
+          103.00357818603516,
+          268.6038818359375,
+          206.6345672607422,
+          278.5664978027344
+        ]
+      ],
+      "word_count": 22
+    },
+    "processing": "Rectangular cropping only. Exact quoted lines retain original typography. Yellow PDF highlights added for discussion. No figure redrawing or data enhancement."
+  }
+]

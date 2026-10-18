@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-18",
+  "status": "exploratory development results",
+  "retrieval": {
+    "subject": "sub-01",
+    "repeats": 80,
+    "candidates": 200,
+    "training_images": 16540,
+    "rows": [
+      {
+        "split": "official_test200",
+        "role": "full_raw",
+        "method": "final_fixed",
+        "seed": 2026109501,
+        "top1": 0.255,
+        "top5": 0.55,
+        "mean_cosine": 0.16288633271079825
+      },
+      {
+        "split": "official_test200",
+        "role": "full_raw",
+        "method": "final_fixed",
+        "seed": 2026109502,
+        "top1": 0.255,
+        "top5": 0.555,
+        "mean_cosine": 0.16415692042405203
+      },
+      {
+        "split": "official_test200",
+        "role": "full_raw",
+        "method": "final_joint",
+        "seed": 2026109501,
+        "top1": 0.355,
+        "top5": 0.63,
+        "mean_cosine": 0.28947034736877103
+      },
+      {
+        "split": "official_test200",
+        "role": "full_raw",
+        "method": "final_joint",
+        "seed": 2026109502,
+        "top1": 0.335,
+        "top5": 0.66,
+        "mean_cosine": 0.29558659486918143
+      },
+      {
+        "split": "official_test200",
+        "role": "full_raw",
+        "method": "middle12_joint",
+        "seed": 2026109501,
+        "top1": 0.81,
+        "top5": 0.9550000000000001,
+        "mean_cosine": 0.5467173208252077
+      },
+      {
+        "split": "official_test200",
+        "role": "full_raw",
+        "method": "middle12_joint",
+        "seed": 2026109502,
+        "top1": 0.83,
+        "top5": 0.96,
+        "mean_cosine": 0.5467617335074985
+      }
+    ],
+    "source_file": "retrieval.json"
+  },
+  "image_pairing": {
+    "queries": 32,
+    "subjects": 1,
+    "training_seeds": 1,
+    "metric": "DINOv3 image 2AFC against 199 distractors",
+    "source_file": "image_pairing.json"
+  },
+  "v_parameterization": {
+    "stage": "actual images",
+    "concepts": 32,
+    "training_seeds": 2,
+    "new_images": 576,
+    "comparisons": [
+      {
+        "comparison": "v - epsilon",
+        "difference": 0.256048,
+        "ci95": [
+          0.155746,
+          0.353327
+        ]
+      },
+      {
+        "comparison": "v - norm-corrected regression",
+        "difference": 0.05998,
+        "ci95": [
+          -0.022681,
+          0.143145
+        ]
+      },
+      {
+        "comparison": "v - original EEG query",
+        "difference": 0.002016,
+        "ci95": [
+          -0.064516,
+          0.066028
+        ]
+      }
+    ],
+    "source": "docs/BRAIN_INNOVATION_DIRECTION_V1.md in the local research archive",
+    "source_sha256": "bb8ce511faf4e3a0d48e8710dd32774e3c529d2ae7b62146cb89edd36c2872a9",
+    "transcription": "Reported decimal precision; not recomputed from image features."
+  },
+  "r4_matching": {
+    "stage": "semantic vectors only",
+    "direct_encoder": 0.175,
+    "R1_prior": 0.0567,
+    "R4_prior": 0.1133,
+    "difference_pp": 5.67,
+    "ci95_pp": [
+      2.5,
+      9.17
+    ],
+    "source": "atm_diffusion/mced_research/SORT_ENDPOINT_REPORT.md",
+    "source_sha256": "f8b9435551d0c3e6d24f325401ccd03de578a0db7178648daf02269e0b768d2d",
+    "transcription": "Rounded values from the archived report; separate protocol from mean80."
+  },
+  "claim": "No stable image-generation advantage from an original diffusion mechanism has been established."
+}

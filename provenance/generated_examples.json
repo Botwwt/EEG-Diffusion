@@ -1,0 +1,135 @@
+{
+  "source": "verification/eeg_path_metadata_v9/eeg_reconstruction_visual_review_v1/generated_only_fixed_grid.png",
+  "source_sha256": "2ec533ba9b2fa040366174a19532e028154eeac3f613d96e7c7347b8ae125e69",
+  "fixed_query_order": [
+    99,
+    78,
+    6,
+    137,
+    24,
+    61,
+    10,
+    160
+  ],
+  "displayed_queries": [
+    99,
+    78,
+    6
+  ],
+  "selection": "First three of eight pre-fixed examples; no new performance-based selection.",
+  "omitted_columns": [
+    "reduced EEG",
+    "reduced plus shrinkage"
+  ],
+  "transformation": "Rectangular crop of archived montage; no enhancement, no synthetic substitution.",
+  "crops": [
+    {
+      "asset": "docs/assets/ours_0_eeg.png",
+      "box_xyxy": [
+        205,
+        115,
+        365,
+        275
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_0_mean.png",
+      "box_xyxy": [
+        721,
+        115,
+        881,
+        275
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_0_shuffled.png",
+      "box_xyxy": [
+        893,
+        115,
+        1053,
+        275
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_0_oracle.png",
+      "box_xyxy": [
+        1065,
+        115,
+        1225,
+        275
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_1_eeg.png",
+      "box_xyxy": [
+        205,
+        299,
+        365,
+        459
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_1_mean.png",
+      "box_xyxy": [
+        721,
+        299,
+        881,
+        459
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_1_shuffled.png",
+      "box_xyxy": [
+        893,
+        299,
+        1053,
+        459
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_1_oracle.png",
+      "box_xyxy": [
+        1065,
+        299,
+        1225,
+        459
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_2_eeg.png",
+      "box_xyxy": [
+        205,
+        483,
+        365,
+        643
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_2_mean.png",
+      "box_xyxy": [
+        721,
+        483,
+        881,
+        643
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_2_shuffled.png",
+      "box_xyxy": [
+        893,
+        483,
+        1053,
+        643
+      ]
+    },
+    {
+      "asset": "docs/assets/ours_2_oracle.png",
+      "box_xyxy": [
+        1065,
+        483,
+        1225,
+        643
+      ]
+    }
+  ]
+}

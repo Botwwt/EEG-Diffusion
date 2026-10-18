@@ -1,0 +1,242 @@
+{
+  "final": [
+    {
+      "arm": "native_full_target",
+      "oracle_reference": false,
+      "images": 32,
+      "DINO_cosine": 0.290467687882483,
+      "DINO_Top1": 0.03125,
+      "DINO_2AFC": 0.7759107942692935,
+      "PixCorr": 0.14439166676311288
+    },
+    {
+      "arm": "reduced_target",
+      "oracle_reference": false,
+      "images": 32,
+      "DINO_cosine": 0.2898824526928365,
+      "DINO_Top1": 0.125,
+      "DINO_2AFC": 0.7771670743823051,
+      "PixCorr": 0.08073076249274891
+    },
+    {
+      "arm": "reduced_target_shrunk",
+      "oracle_reference": false,
+      "images": 32,
+      "DINO_cosine": 0.24668231303803623,
+      "DINO_Top1": 0.0,
+      "DINO_2AFC": 0.6160489916655933,
+      "PixCorr": 0.07295728760072961
+    },
+    {
+      "arm": "constant_training_mean",
+      "oracle_reference": false,
+      "images": 32,
+      "DINO_cosine": 0.2278023298131302,
+      "DINO_Top1": 0.0,
+      "DINO_2AFC": 0.5353329071658663,
+      "PixCorr": 0.07228775385010522
+    },
+    {
+      "arm": "native_full_target_cyclic_shift",
+      "oracle_reference": false,
+      "images": 32,
+      "DINO_cosine": 0.19101371546275914,
+      "DINO_Top1": 0.0,
+      "DINO_2AFC": 0.42399497258884367,
+      "PixCorr": 0.07005151444172952
+    },
+    {
+      "arm": "oracle_true_image_reference",
+      "oracle_reference": true,
+      "images": 32,
+      "DINO_cosine": 0.7374252583831549,
+      "DINO_Top1": 1.0,
+      "DINO_2AFC": 1.0,
+      "PixCorr": 0.2880010850785766
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "arm": "native_full_target",
+      "control": "reduced_target",
+      "metrics": {
+        "DINO_cosine": {
+          "mean_difference": 0.0005852351896464825,
+          "paired_image_bootstrap95": [
+            -0.02597888376330957,
+            0.02632963953074067
+          ]
+        },
+        "DINO_Top1": {
+          "mean_difference": -0.09375,
+          "paired_image_bootstrap95": [
+            -0.21875,
+            0.03125
+          ]
+        },
+        "DINO_2AFC": {
+          "mean_difference": -0.0012562801130115986,
+          "paired_image_bootstrap95": [
+            -0.07726130215451121,
+            0.07506281282985583
+          ]
+        },
+        "PixCorr": {
+          "mean_difference": 0.06366090427036397,
+          "paired_image_bootstrap95": [
+            0.007758537962945412,
+            0.1275858259788946
+          ]
+        }
+      }
+    },
+    {
+      "arm": "native_full_target",
+      "control": "constant_training_mean",
+      "metrics": {
+        "DINO_cosine": {
+          "mean_difference": 0.0626653580693528,
+          "paired_image_bootstrap95": [
+            0.0361671477148775,
+            0.0884910754073644
+          ]
+        },
+        "DINO_Top1": {
+          "mean_difference": 0.03125,
+          "paired_image_bootstrap95": [
+            0.0,
+            0.09375
+          ]
+        },
+        "DINO_2AFC": {
+          "mean_difference": 0.2405778871034272,
+          "paired_image_bootstrap95": [
+            0.15546089542040137,
+            0.3233432820328737
+          ]
+        },
+        "PixCorr": {
+          "mean_difference": 0.07210391291300766,
+          "paired_image_bootstrap95": [
+            0.015252959908684716,
+            0.13395292636196243
+          ]
+        }
+      }
+    },
+    {
+      "arm": "native_full_target",
+      "control": "native_full_target_cyclic_shift",
+      "metrics": {
+        "DINO_cosine": {
+          "mean_difference": 0.09945397241972387,
+          "paired_image_bootstrap95": [
+            0.07277347629424184,
+            0.12875722915050572
+          ]
+        },
+        "DINO_Top1": {
+          "mean_difference": 0.03125,
+          "paired_image_bootstrap95": [
+            0.0,
+            0.09375
+          ]
+        },
+        "DINO_2AFC": {
+          "mean_difference": 0.3519158216804499,
+          "paired_image_bootstrap95": [
+            0.2569095381128136,
+            0.4513190855755965
+          ]
+        },
+        "PixCorr": {
+          "mean_difference": 0.07434015232138336,
+          "paired_image_bootstrap95": [
+            0.02821570674532268,
+            0.1219024054109468
+          ]
+        }
+      }
+    },
+    {
+      "arm": "reduced_target_shrunk",
+      "control": "reduced_target",
+      "metrics": {
+        "DINO_cosine": {
+          "mean_difference": -0.043200139654800296,
+          "paired_image_bootstrap95": [
+            -0.07686356275225989,
+            -0.009814211394405045
+          ]
+        },
+        "DINO_Top1": {
+          "mean_difference": -0.125,
+          "paired_image_bootstrap95": [
+            -0.25,
+            -0.03125
+          ]
+        },
+        "DINO_2AFC": {
+          "mean_difference": -0.1611180827167118,
+          "paired_image_bootstrap95": [
+            -0.2644472265175864,
+            -0.06014446768385824
+          ]
+        },
+        "PixCorr": {
+          "mean_difference": -0.007773474892019294,
+          "paired_image_bootstrap95": [
+            -0.0639703267992445,
+            0.05067275640612931
+          ]
+        }
+      }
+    }
+  ],
+  "image_indices": [
+    99,
+    78,
+    6,
+    137,
+    24,
+    61,
+    10,
+    160,
+    67,
+    199,
+    15,
+    25,
+    159,
+    141,
+    81,
+    39,
+    140,
+    3,
+    35,
+    72,
+    168,
+    198,
+    107,
+    69,
+    109,
+    193,
+    92,
+    197,
+    100,
+    153,
+    7,
+    116
+  ],
+  "one_target_subject": true,
+  "one_training_seed": true,
+  "exploratory_screen": true,
+  "official_test_previously_observed": true,
+  "oracle_reference_is_not_an_EEG_method": true,
+  "full_paper_reproduction": false,
+  "SOTA": false,
+  "source": {
+    "path": "verification/eeg_path_metadata_v9/eeg_sdxl_reconstruction_metrics_v1/results.json",
+    "sha256": "57ddb44921451f5651a3d1971a6c35e260fc5fa1e291a0615a1e4b59d698d6bb",
+    "operation": "Selected aggregate fields; no numeric changes."
+  }
+}

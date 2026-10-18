@@ -1,0 +1,13 @@
+experiment,arm,training_seed,metric,value,unit
+retrieval_mean80,final_fixed,2026109501,Top-1,0.255,proportion
+retrieval_mean80,final_fixed,2026109502,Top-1,0.255,proportion
+retrieval_mean80,final_joint,2026109501,Top-1,0.355,proportion
+retrieval_mean80,final_joint,2026109502,Top-1,0.335,proportion
+retrieval_mean80,middle12_joint,2026109501,Top-1,0.81,proportion
+retrieval_mean80,middle12_joint,2026109502,Top-1,0.83,proportion
+image_pairing_32,native_full_target,fixed single seed,DINOv3_2AFC,0.7759107942692935,proportion
+image_pairing_32,reduced_target,fixed single seed,DINOv3_2AFC,0.7771670743823051,proportion
+image_pairing_32,reduced_target_shrunk,fixed single seed,DINOv3_2AFC,0.6160489916655933,proportion
+image_pairing_32,constant_training_mean,fixed single seed,DINOv3_2AFC,0.5353329071658663,proportion
+image_pairing_32,native_full_target_cyclic_shift,fixed single seed,DINOv3_2AFC,0.42399497258884367,proportion
+image_pairing_32,oracle_true_image_reference,fixed single seed,DINOv3_2AFC,1.0,proportion

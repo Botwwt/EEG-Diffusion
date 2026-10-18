@@ -1,0 +1,524 @@
+{
+  "schema": 1,
+  "date": "2026-10-18",
+  "files": [
+    {
+      "path": "experiments/archive/visual/eeg_native_single_visual_reference_v1.py",
+      "origin": "verification/eeg_native_single_visual_reference_v1.py",
+      "sha256": "bb4b5863771837353a4b3e6e386aaa31e27a1df5b573a9d77e30f3100fe18a4b",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_brainhive_post_adapter_reference_v1.py",
+      "origin": "verification/eeg_brainhive_post_adapter_reference_v1.py",
+      "sha256": "01684840a019957615e0b6951c9d7391b892a68248dae0fcd8ec08aa59395a91",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_brainhive_condition_pullback_training_v1.py",
+      "origin": "verification/eeg_brainhive_condition_pullback_training_v1.py",
+      "sha256": "915eb8684ac72e1a7cb51719a35b9da544240b4a28668fec72da2b844b69f4bb",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_brainhive_condition_pullback_samples_v1.py",
+      "origin": "verification/eeg_brainhive_condition_pullback_samples_v1.py",
+      "sha256": "7006aaa25bde0acb29d316e770166a99fd0b7aac764a881be90c5ed27a06bec6",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_brainhive_condition_pullback_metrics_v1.py",
+      "origin": "verification/eeg_brainhive_condition_pullback_metrics_v1.py",
+      "sha256": "64c94b357c86f84b96aa8823e9a3093d5187d1de9de65244f1c2e3cd43105ef1",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_native_conditional_prior_training_v1.py",
+      "origin": "verification/eeg_native_conditional_prior_training_v1.py",
+      "sha256": "542fd8982da87686d12647f83987858ff6b65048fc6adab2fed440794d76c98e",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_native_conditional_prior_samples_v1.py",
+      "origin": "verification/eeg_native_conditional_prior_samples_v1.py",
+      "sha256": "699fdf143577732e48f7166f472a910930ba0594c3c7d9b529b4a0c19acbe3b6",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_native_conditional_prior_metrics_v1.py",
+      "origin": "verification/eeg_native_conditional_prior_metrics_v1.py",
+      "sha256": "f88e9d076efaf1c519ff6df1a6bc5b9633716b732e43e77e390c42b89cfc60d5",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_native_velocity_prior_training_v1.py",
+      "origin": "verification/eeg_native_velocity_prior_training_v1.py",
+      "sha256": "588fe0e9a269c9bf79fdd23ff41280c51a4a23fe2c135d3265184dfb67ae8618",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_native_velocity_prior_samples_v2.py",
+      "origin": "verification/eeg_native_velocity_prior_samples_v2.py",
+      "sha256": "452963e8f662c7114900c03a900285edaaaceabb0078ce0f8bd2c6639cf5a4c4",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_native_velocity_prior_metrics_v1.py",
+      "origin": "verification/eeg_native_velocity_prior_metrics_v1.py",
+      "sha256": "448bf749cbd319fc6f092bed76cdf9867bc89319c6b1a1bf815073f5590845fc",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_crossfit_point_priors_v1.py",
+      "origin": "verification/eeg_crossfit_point_priors_v1.py",
+      "sha256": "e1a16610cb4301aa021056cf5a032fe345985fa0e5e99d4359a1bdd3b968931a",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_crossfit_prior_samples_v2.py",
+      "origin": "verification/eeg_crossfit_prior_samples_v2.py",
+      "sha256": "33418b4e3ef96d437b95c4796f62c7da3053f004740e483be9da2df5e4c293cc",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_crossfit_prior_metrics_v2.py",
+      "origin": "verification/eeg_crossfit_prior_metrics_v2.py",
+      "sha256": "f63eff2d5d9c656a8aafec28e77d0de3d99304fbc5fa82a75cd8c631c86bf8b9",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_norm_stats_point_priors_v1.py",
+      "origin": "verification/eeg_norm_stats_point_priors_v1.py",
+      "sha256": "1ed0b7d0e9a89a2d1c3e28426ee8b43b31eb478f6e589a79bfeb4b89442487d8",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_norm_stats_prior_samples_v2.py",
+      "origin": "verification/eeg_norm_stats_prior_samples_v2.py",
+      "sha256": "b376ce0b1f0f3b62c4de86dd78815a57d05dc8ae6227377359faacccc26e878f",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_norm_stats_prior_metrics_v2.py",
+      "origin": "verification/eeg_norm_stats_prior_metrics_v2.py",
+      "sha256": "8ed41e288a57a5ada778e9963ce7e14aaeeb93c91cc0add9e34dce6712bd213d",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_norm_stats_content_samples_v2.py",
+      "origin": "verification/eeg_norm_stats_content_samples_v2.py",
+      "sha256": "d735202d0ce109897dd1b07898013134055cb0ca163e3c6ee855eb9b43862f1b",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_norm_stats_content_metrics_v2.py",
+      "origin": "verification/eeg_norm_stats_content_metrics_v2.py",
+      "sha256": "2b80b8471be789e2bf4908e50a5f74b13be1b76b38dcfca67be32af419a2e2bc",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_direct_evidence_samples_v1.py",
+      "origin": "verification/eeg_direct_evidence_samples_v1.py",
+      "sha256": "b6d5aae38c162afa9df82600dea031c07999fc875c666649a401306c536b0e2d",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_direct_evidence_samples_run_v1.py",
+      "origin": "verification/eeg_direct_evidence_samples_run_v1.py",
+      "sha256": "167f47a2d487c2d856785a4ca4565da9f8c7f90c18484a87c96e10a92610ab32",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/visual/eeg_direct_evidence_metrics_v1.py",
+      "origin": "verification/eeg_direct_evidence_metrics_v1.py",
+      "sha256": "1b50336abd9ae73c43fc11d905d7c05a34a140e4f598cfdf96e2c1ad02bb7211",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/gaussian_reference.py",
+      "origin": "atm_diffusion/mced_research/gaussian_reference.py",
+      "sha256": "c4ef8f1cfce7644ca12fba3f9d1eb6aa74c6de8213c77d811663b4f69ec4a41e",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/precision_score_math.py",
+      "origin": "atm_diffusion/mced_research/precision_score_math.py",
+      "sha256": "ff99038312d1f72222703bae4e66be1c3c341dd4569778be36d4018e85063291",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/semantic_fiber_math.py",
+      "origin": "atm_diffusion/mced_research/semantic_fiber_math.py",
+      "sha256": "3d406ff8fdc1b8058a0bb5a4044a2fea815fe2334c3f86ceebbd4f9cc7841a3e",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/sort_math.py",
+      "origin": "atm_diffusion/mced_research/sort_math.py",
+      "sha256": "108e975bbb5a688f8f3b3311766a89f95651d60130b637990c94ef98fd332f8f",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/validate_reference.py",
+      "origin": "atm_diffusion/mced_research/validate_reference.py",
+      "sha256": "db16fc61b6a1aab3a4e1c708c9b3343c8056185e4793fd4f836562abda245c16",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/run_precision_score.py",
+      "origin": "atm_diffusion/mced_research/run_precision_score.py",
+      "sha256": "617fdfb490af4779ee0df6ad29eb1fc7b276b7e407010c61d52f795aed49ed9c",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/prepare_precision_score.py",
+      "origin": "atm_diffusion/mced_research/prepare_precision_score.py",
+      "sha256": "79a8825c985939199ef45b1cd180e706296ae717b0c1366c161bb313e1f2e885",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/evaluate_precision_score.py",
+      "origin": "atm_diffusion/mced_research/evaluate_precision_score.py",
+      "sha256": "62d4bc1acabdcac2a1c00870356659a6810a14d5160ad66e3123dc28e37cceb1",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/calibrate_precision_gradient.py",
+      "origin": "atm_diffusion/mced_research/calibrate_precision_gradient.py",
+      "sha256": "0b6d7192a7b4236e24c793cf3a89cefffda90d967498a292d5f889a49dd383af",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/check_precision_score_operator.py",
+      "origin": "atm_diffusion/mced_research/check_precision_score_operator.py",
+      "sha256": "f0e42ec2624ea6012fda6b1d87e94f97413ddba0cc261cba5567b621aeccbeba",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/run_semantic_fiber.py",
+      "origin": "atm_diffusion/mced_research/run_semantic_fiber.py",
+      "sha256": "be10091a1a83e803c6b0327eff840e64ccf85fd283b3ccc38424d67500df42b9",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/audit_repeat_score_composition.py",
+      "origin": "atm_diffusion/mced_research/audit_repeat_score_composition.py",
+      "sha256": "84d0f959f47e5c196bf096bdcf3c606de71164d2d435d619850a009fc2881a31",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/decompose_guidance_mean_cov.py",
+      "origin": "atm_diffusion/mced_research/decompose_guidance_mean_cov.py",
+      "sha256": "e36b96e131c35a916fbf44dfcb865a778f72dde0f3dcbb354a244efbed4d513d",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/mean_margin_prediction.py",
+      "origin": "atm_diffusion/mced_research/mean_margin_prediction.py",
+      "sha256": "14a7144d5442ed96d9a803b93c5554588dd3b84c0d3d172a232b1e069d842835",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/residual_direction_transport.py",
+      "origin": "atm_diffusion/mced_research/residual_direction_transport.py",
+      "sha256": "24fd5b6d028cef8baeaff26c18f08cef8aa556282374092ced416fc535100157",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/r4_prior_match.py",
+      "origin": "atm_diffusion/mced_research/r4_prior_match.py",
+      "sha256": "97f7462d5947c18ccd9df071e8d9acc1633c7790c1cd8abbd18252debfd5ea5b",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/sort_endpoint.py",
+      "origin": "atm_diffusion/mced_research/sort_endpoint.py",
+      "sha256": "2bbbf04eba1669c1b68cdfdc4ddd7a18570b1f6267b3303ef18a2bc4045a23a8",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/diagnose_sort_vacuity.py",
+      "origin": "atm_diffusion/mced_research/diagnose_sort_vacuity.py",
+      "sha256": "45cf06ef445c59c11c0f4de20f08f3923a86d66332e82c18f7d0de9cb7b90fba",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/native_prior_trace.py",
+      "origin": "atm_diffusion/mced_research/native_prior_trace.py",
+      "sha256": "25ffeddbcb4ee462a7fbc64eed4d4128aed0a0a0eb00ee2a3d197019d4540072",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/native_prior_witness.py",
+      "origin": "atm_diffusion/mced_research/native_prior_witness.py",
+      "sha256": "084f9b0e7572c9d993f75e4ac340d9c0a89f67349ecaa0184a67b93326c05983",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/paper_main_runtime.py",
+      "origin": "atm_diffusion/mced_research/paper_main_runtime.py",
+      "sha256": "860f92417b68fc0f498a7c15192c86842c8ffb0c1c1b081a39e4b416342cd21b",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/train_paper_main.py",
+      "origin": "atm_diffusion/mced_research/train_paper_main.py",
+      "sha256": "38b34156da71f569da07356edf43702e474010603d087df60f68c15231a1b4a7",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/paper_development_data.py",
+      "origin": "atm_diffusion/mced_research/paper_development_data.py",
+      "sha256": "2e164751c4d0763de3e4d4bd92924ea4b536ae14aa64efb08bc952e629d2f5e0",
+      "kind": "executed-source",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/precision_score_pilot_v1.json",
+      "origin": "atm_diffusion/mced_research/precision_score_pilot_v1.json",
+      "sha256": "512f9220a5b7ed463d27117eb5345de42d7be2b7f50b552035d597f60ba4734b",
+      "kind": "historical-config",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/semantic_fiber_config_v1.json",
+      "origin": "atm_diffusion/mced_research/semantic_fiber_config_v1.json",
+      "sha256": "a172423da587d6aa55b5955d4a2f4a6e764ab0a6fa2b3eb862db5c13afdc47aa",
+      "kind": "historical-config",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/sort_endpoint_config_v1.json",
+      "origin": "atm_diffusion/mced_research/sort_endpoint_config_v1.json",
+      "sha256": "1b04100bace80ea1fed222f9a0930b3618a0b7d6d41cab175617cb1ff200ecf7",
+      "kind": "historical-config",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/semantic/r4_prior_match_sequence_v1.json",
+      "origin": "atm_diffusion/mced_research/r4_prior_match_sequence_v1.json",
+      "sha256": "022f6c5b93741040405f5bb759f12ad28fa2c0f173195cc6ba0af6e1bccd6bce",
+      "kind": "historical-config",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/support/run_fast_learning.py",
+      "origin": "avde_rime/run_fast_learning.py",
+      "sha256": "e7c99712a2fee2604e1756c64ffb7997cbdfcd367c596850f72da3d4c00dfb07",
+      "kind": "historical-support",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/support/native_statistics.py",
+      "origin": "avde_reproduction/native_statistics.py",
+      "sha256": "629180210fa32702319e9d6f0acfbb6911768a35ec35c1f7af434bf61be5aca4",
+      "kind": "historical-support",
+      "byte_identical": true
+    },
+    {
+      "path": "experiments/archive/support/native_metric_core.py",
+      "origin": "avde_reproduction/native_metric_core.py",
+      "sha256": "0e18ec7091cef2afd19cf824b05f7a46256fd404c5169701d9bbd6fe674494fd",
+      "kind": "historical-support",
+      "byte_identical": true
+    },
+    {
+      "path": "src/eeg_diffusion/gaussian_reference.py",
+      "origin": "atm_diffusion/mced_research/gaussian_reference.py",
+      "sha256": "c4ef8f1cfce7644ca12fba3f9d1eb6aa74c6de8213c77d811663b4f69ec4a41e",
+      "kind": "portable-original-module",
+      "byte_identical": true
+    },
+    {
+      "path": "src/eeg_diffusion/semantic_fiber_math.py",
+      "origin": "atm_diffusion/mced_research/semantic_fiber_math.py",
+      "sha256": "3d406ff8fdc1b8058a0bb5a4044a2fea815fe2334c3f86ceebbd4f9cc7841a3e",
+      "kind": "portable-original-module",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/nvol_figure.png",
+      "origin": "output/supervisor_brief_20261018/assets/nvol_figure.png",
+      "sha256": "c5959bdaa53ab864c93408958a0ec1cfa55a52f92fd71c6f46611c391daefc54",
+      "kind": "third-party-paper-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/nvol_original_passage.png",
+      "origin": "output/supervisor_brief_20261018/assets/nvol_original_passage.png",
+      "sha256": "572ee809c5e5cddfbadb682dcfe6c050654ed7ca42070c4f0eeaa8fa7f886f81",
+      "kind": "third-party-paper-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/brainhive_figure.png",
+      "origin": "output/supervisor_brief_20261018/assets/brainhive_figure.png",
+      "sha256": "2e5d28d30183b632b65e59f80d737632bf9116e44c6eefeffbe0d39a102cfb24",
+      "kind": "third-party-paper-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/brainhive_original_passage.png",
+      "origin": "output/supervisor_brief_20261018/assets/brainhive_original_passage.png",
+      "sha256": "bbbed0e1a328fc7e91953f75f83016f245a8ccce46e34d33d9c7c8a9c45478d9",
+      "kind": "third-party-paper-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/tmpd_figure.png",
+      "origin": "output/supervisor_brief_20261018/assets/tmpd_figure.png",
+      "sha256": "db33184c45407c29e288b1c235bdb1bd9489c877daaca40e5e761dea2445c179",
+      "kind": "third-party-paper-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/tmpd_original_passage.png",
+      "origin": "output/supervisor_brief_20261018/assets/tmpd_original_passage.png",
+      "sha256": "97ca5b8b1cfca9d36b91645a2252a3c494a7f218d216b8f2307e61c797b8f447",
+      "kind": "third-party-paper-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_0_eeg.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_0_eeg.png",
+      "sha256": "3fb255931c37a662a67a4788715ecda862b3663b31c2f50ee4198117472543a5",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_0_mean.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_0_mean.png",
+      "sha256": "14a86015c748e7709f688b1e4168790b58b4c53da4111a3cac991d38384be609",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_0_shuffled.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_0_shuffled.png",
+      "sha256": "87813ff8d7372ee6f51cf01ed9b5dad60527b0feab08602319669c1d0c4d8758",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_0_oracle.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_0_oracle.png",
+      "sha256": "d995fe51ac3978cf8d250cac195ed83695b7f78a33d5abd57df33f20347fa86a",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_1_eeg.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_1_eeg.png",
+      "sha256": "6281e49139704faa29fcbee2da29a4c13a9788a42f7a814b83c9796e02680374",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_1_mean.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_1_mean.png",
+      "sha256": "8f7aa0698cb5356310297c254cf8d6c3d7a8338a2e9aa073e47d94eeaaff9283",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_1_shuffled.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_1_shuffled.png",
+      "sha256": "38b92373e9612a9d2e7149601e0d1e4a9428d9a06e824134aaf3c863339d0a4e",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_1_oracle.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_1_oracle.png",
+      "sha256": "73da72b9328de1a148cf1acea4d4846836c84b72dff2f29f655399fba464621b",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_2_eeg.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_2_eeg.png",
+      "sha256": "87a7c0ec9aefd62154ae181e91db1a8be7be4c4a98c56065777cade156c296d2",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_2_mean.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_2_mean.png",
+      "sha256": "13ca01b8c1928c10ed360b92e15e67340eb100ebfd95eca8bc2bf88e7049aa92",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_2_shuffled.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_2_shuffled.png",
+      "sha256": "c280b094ece61ec1ffe579bd3293abd3569d33f46cb3f0cf8d959980be536685",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/assets/ours_2_oracle.png",
+      "origin": "output/supervisor_brief_20261018/assets/ours_2_oracle.png",
+      "sha256": "1190766e14560a3b04ecb854588c857bb98e47a93c94acb20f5f24dc7583dfa1",
+      "kind": "archived-generated-output-crop",
+      "byte_identical": true
+    },
+    {
+      "path": "docs/paper_sources.json",
+      "origin": "output/supervisor_brief_20261018/SELECTED_SOURCES.json",
+      "sha256": "d0e14a888003912fe4382097b5eaa7158d9f91372c60f236975b35d63921a60b",
+      "kind": "paper-provenance",
+      "byte_identical": true
+    },
+    {
+      "path": "LICENSE",
+      "origin": "LICENSE",
+      "sha256": "9635232ea3492aff43b7f4d1006780044e382badfb20134334c0c6cb498acfcf",
+      "kind": "license",
+      "byte_identical": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+* text=auto eol=lf
+/experiments/archive/** -text
+/src/eeg_diffusion/gaussian_reference.py -text
+/src/eeg_diffusion/semantic_fiber_math.py -text
+/docs/paper_sources.json -text
+/LICENSE -text
+*.png binary
+

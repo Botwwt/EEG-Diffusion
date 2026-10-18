@@ -1,0 +1,70 @@
+{
+  "schema": "logged-experiment-sequence-v1",
+  "official_test_locked": true,
+  "cwd": "/root/atm_diffusion_20261015",
+  "scope": "Native R4-condition-matched prior after failed SORT endpoint gate; one-variable engineering control",
+  "dependencies": [
+    "/root/atm_diffusion_20261015/mced_research/r4_prior_match.py",
+    "/root/atm_diffusion_20261015/mced_research/R4_PRIOR_MATCH_PREREG.md",
+    "/root/atm_diffusion_20261015/mced_research/sort_endpoint.py",
+    "/root/atm_diffusion_20261015/mced_research/sort_math.py",
+    "/root/atm_diffusion_20261015/mced_research/sort_endpoint_config_v1.json",
+    "/root/atm_diffusion_20261015/mced_research/native_prior_witness.py",
+    "/root/atm_diffusion_20261015/mced_research/paper_main_runtime.py"
+  ],
+  "watch_task_list": "/root/avde_clean_control_20261016_v2/watch_paths.json",
+  "watch_paths": [
+    "/root/autodl-tmp/r4_prior_match_20261017_v1/train/progress.json",
+    "/root/autodl-tmp/r4_prior_match_20261017_v1/generate/progress.json",
+    "/root/autodl-tmp/r4_prior_match_20261017_v1/evaluate/progress.json"
+  ],
+  "steps": [
+    {
+      "name": "ATM_R4_prior_train_GPU_v1",
+      "resource": "gpu",
+      "seeds": [
+        0
+      ],
+      "command": [
+        "/root/atm_paper_env_20261016_v1/bin/python",
+        "-u",
+        "/root/atm_diffusion_20261015/mced_research/r4_prior_match.py",
+        "--mode",
+        "train"
+      ]
+    },
+    {
+      "name": "ATM_R4_prior_generate_GPU_v1",
+      "resource": "gpu",
+      "seeds": [
+        0
+      ],
+      "command": [
+        "/root/atm_paper_env_20261016_v1/bin/python",
+        "-u",
+        "/root/atm_diffusion_20261015/mced_research/r4_prior_match.py",
+        "--mode",
+        "generate"
+      ]
+    },
+    {
+      "name": "ATM_R4_prior_evaluate_CPU_v1",
+      "resource": "cpu",
+      "seeds": [
+        0
+      ],
+      "command": [
+        "/root/atm_paper_env_20261016_v1/bin/python",
+        "-u",
+        "/root/atm_diffusion_20261015/mced_research/r4_prior_match.py",
+        "--mode",
+        "evaluate"
+      ]
+    }
+  ],
+  "generation_seeds_recorded_in_config": [
+    2026101710,
+    2026101711,
+    2026101712
+  ]
+}

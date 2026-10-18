@@ -1,0 +1,12 @@
+{
+  "retrieval": {
+    "path": "verification/eeg_path_metadata_v24/eeg_native_single_visual_reference_v1/results.json",
+    "sha256": "c6b2e9e672d8315823942dfccdceb1a0308b03abe0ec946e79631fee1811a2ba",
+    "operation": "Selected aggregate fields; no numeric changes."
+  },
+  "image_pairing": {
+    "path": "verification/eeg_path_metadata_v9/eeg_sdxl_reconstruction_metrics_v1/results.json",
+    "sha256": "57ddb44921451f5651a3d1971a6c35e260fc5fa1e291a0615a1e4b59d698d6bb",
+    "operation": "Selected aggregate fields; no numeric changes."
+  }
+}

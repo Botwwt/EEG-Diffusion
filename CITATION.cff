@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Cite the exact software release/commit and the upstream methods actually used. This repository is a research archive, not an accepted method paper."
+title: "EEG-Diffusion: Visual EEG-to-image reconstruction research archive"
+type: software
+authors:
+  - name: "EEG-Diffusion contributors"
+version: 0.1.0
+date-released: 2026-10-18
+url: "https://github.com/Botwwt/EEG-Diffusion"
+repository-code: "https://github.com/Botwwt/EEG-Diffusion"
+license: MIT
+keywords:
+  - EEG
+  - visual reconstruction
+  - diffusion models
+  - reproducibility
+

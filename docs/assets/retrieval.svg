@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 233" role="img" aria-label="EEG retrieval Top-1 (%)">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,sans-serif;font-size:13px;fill:#333} .muted{fill:#66706e;font-size:11px}</style>
+<line x1="154.0" y1="28" x2="154.0" y2="183" stroke="#e6e9e8"/>
+<text x="154.0" y="207" text-anchor="middle" class="muted">0%</text>
+<line x1="235.5" y1="28" x2="235.5" y2="183" stroke="#e6e9e8"/>
+<text x="235.5" y="207" text-anchor="middle" class="muted">25%</text>
+<line x1="317.0" y1="28" x2="317.0" y2="183" stroke="#e6e9e8"/>
+<text x="317.0" y="207" text-anchor="middle" class="muted">50%</text>
+<line x1="398.5" y1="28" x2="398.5" y2="183" stroke="#e6e9e8"/>
+<text x="398.5" y="207" text-anchor="middle" class="muted">75%</text>
+<line x1="480.0" y1="28" x2="480.0" y2="183" stroke="#e6e9e8"/>
+<text x="480.0" y="207" text-anchor="middle" class="muted">100%</text>
+<text x="142" y="62" text-anchor="end">Final, fixed</text>
+<line x1="154" y1="57" x2="237.13" y2="57" stroke="#c8d9d5" stroke-width="8"/>
+<circle cx="237.13" cy="52" r="4" fill="#287d75"/>
+<circle cx="237.13" cy="62" r="4" fill="#8a5e9a"/>
+<text x="248.13" y="61" style="font-size:12px">25.5% / 25.5%</text>
+<text x="142" y="119" text-anchor="end">Final + joint head</text>
+<line x1="154" y1="114" x2="266.47" y2="114" stroke="#c8d9d5" stroke-width="8"/>
+<circle cx="269.73" cy="109" r="4" fill="#287d75"/>
+<circle cx="263.21" cy="119" r="4" fill="#8a5e9a"/>
+<text x="277.47" y="118" style="font-size:12px">35.5% / 33.5%</text>
+<text x="142" y="176" text-anchor="end">Layer 12 + joint head</text>
+<line x1="154" y1="171" x2="421.32" y2="171" stroke="#c8d9d5" stroke-width="8"/>
+<circle cx="418.06" cy="166" r="4" fill="#287d75"/>
+<circle cx="424.58" cy="176" r="4" fill="#8a5e9a"/>
+<text x="432.32" y="175" style="font-size:12px">81.0% / 83.0%</text>
+<text x="154" y="228" class="muted">EEG retrieval Top-1 (%)</text></svg>

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eeg-diffusion-research"
+version = "0.1.0"
+description = "Visual EEG-to-image diffusion: numerical references and an auditable experiment archive"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+dependencies = ["numpy>=1.24,<3"]
+classifiers = ["Development Status :: 3 - Alpha", "Intended Audience :: Science/Research", "Programming Language :: Python :: 3"]
+
+[project.optional-dependencies]
+test = ["pytest>=7,<10"]
+math = ["torch>=2.2"]
+
+[project.urls]
+Repository = "https://github.com/Botwwt/EEG-Diffusion"
+Report = "https://botwwt.github.io/EEG-Diffusion/"
+
+[project.scripts]
+eeg-diffusion = "eeg_diffusion.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
