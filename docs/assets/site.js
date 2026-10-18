@@ -56,8 +56,6 @@ dialog.addEventListener("click", (event) => {
       event.clientY < rectangle.top || event.clientY > rectangle.bottom)) dialog.close();
 });
 
-document.getElementById("print-report").addEventListener("click", () => window.print());
-
 const links = [...document.querySelectorAll(".contents a")];
 const observer = new IntersectionObserver((entries) => {
   const visible = entries.filter((entry) => entry.isIntersecting);

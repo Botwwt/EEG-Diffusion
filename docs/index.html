@@ -6,15 +6,15 @@
   <meta name="description" content="视觉 EEG 条件图像重建：核心文献、支持实验与生成失败分析。">
   <meta name="theme-color" content="#973d32">
   <title>EEG-Diffusion | Visual EEG-to-image reconstruction</title>
-  <link rel="stylesheet" href="assets/site.css?v=20261018-reading">
-  <script src="assets/site.js" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=20261018-proposal">
+  <script src="assets/site.js?v=20261018-proposal" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#report">跳转至报告</a>
 <header class="masthead wrap">
   <a class="wordmark" href="https://github.com/Botwwt/EEG-Diffusion">EEG<span>—</span>DIFFUSION</a>
   <nav aria-label="主导航">
-    <a href="#literature">文献阅读</a><a href="#findings">实验结果</a><a href="#images">生成图版</a>
+    <a href="#literature">文献阅读</a><a href="#findings">实验结果</a><a href="#images">生成图版</a><a href="#proposal">研究方案</a>
     <a class="repository-link" href="https://github.com/Botwwt/EEG-Diffusion">GitHub <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
@@ -43,8 +43,7 @@
       <a href="#literature"><b>01</b> 核心文献</a>
       <a href="#findings"><b>02</b> 支持实验</a>
       <a href="#images"><b>03</b> 生成图版</a>
-      <a href="#lessons"><b>04</b> 机制复核</a>
-      <a href="#proposal"><b>05</b> 新实验方案</a>
+      <a href="#proposal"><b>04</b> 新实验方案</a>
     </aside>
 
     <div class="report-body">
@@ -59,16 +58,16 @@
           <article id="paper-nvol" class="paper-panel" role="tabpanel" aria-labelledby="tab-nvol">
             <div class="paper-bibliography"><span>Wang et al. · arXiv 2026 · v1</span><a href="https://arxiv.org/abs/2609.02582">Read paper ↗</a></div>
             <h3 lang="en">EEG-based Visual Retrieval and Reconstruction: From Neurally Visible Optimal Layer to Hierarchical Diffusion Generation</h3>
-            <p class="paper-task"><b>任务：</b>看图 EEG → 在 200 个未见概念中检索图片，或不依赖图库直接重建图片。数据为 THINGS-EEG：10 名被试，训练集 1,654 个概念 × 10 张图 × 4 次重复；测试集 200 个新概念，各 1 张图、80 次重复。检索分别评估被试内训练和留一被试泛化。</p>
+            <p class="paper-task"><b>任务：</b>作者让被试看自然图片，再用记录的 EEG 完成两件事：从 200 张候选中找到所看的图片，以及根据 EEG 生成图片。数据来自 THINGS-EEG，共 10 名被试；训练集有 16,540 张图，每张呈现 4 次，测试集有 200 个新概念，每张图呈现 80 次。检索既测试同一被试，也测试未参与训练的被试。</p>
             <figure class="paper-original"><img class="zoomable" tabindex="0" src="assets/nvol_figure.png" alt="NVOL original Figure 1, PDF page 3"><figcaption>Original Fig. 1 · PDF p.3</figcaption></figure>
             <div class="paper-analysis">
-              <h4>模型：先解码 EEG 可见的中间层，再转成生成条件</h4>
-              <p>EEG 端采用 ATM：时空卷积提取局部波形，Transformer 汇总全局信息，输出 1,024 维向量。图片端采用 CLIP ViT-H/14。作者逐层筛查后，取第 10、12、14 层的 token 均值，各自投影到 1,024 维，再以可学习权重融合。这些较易从 EEG 读取的中层特征称为 NVOL。</p>
+              <h4>为什么选择 CLIP 的中间层</h4>
+              <p>这篇论文先问了一个具体问题：CLIP 有很多层，哪一层的图片特征最容易从 EEG 预测出来？作者逐层比较后，发现中间层更合适。模型用 ATM 提取 EEG 特征，输出 1,024 维向量；图片端取 CLIP ViT-H/14 的第 10、12、14 层，对每层的图像 token 求平均，再投影到同一维度并学习融合权重。NVOL 指的就是这种较容易被 EEG 解码的视觉层。</p>
               <h4>训练与推理分三步</h4>
               <ol class="paper-steps">
-                <li><b>学习检索表征。</b>用配对 EEG 和训练图片做双向 InfoNCE，使正确配对在批内更接近。对齐实验使用 AdamW、学习率 3 × 10<sup>−4</sup>、batch 100、30 epochs。检索时用 CSLS 校正相似度，减少少数图片反复成为近邻的偏置；它改变的是候选排名。</li>
-                <li><b>训练语义扩散先验。</b>将 EEG 向量作为条件，用 DDPM 预测中间视觉向量。除噪声预测损失外，还约束干净向量的 MSE、余弦方向、批内成对几何及方差／协方差，抑制表征坍塌。</li>
-                <li><b>接入图像生成器。</b>生成路径用适配器将第 12 层表征转到末层 CLIP 条件；同时训练真实中层输入和先验生成输入，使两条路径保持一致。测试时依次运行 EEG → 先验 → 适配器 → IP-Adapter → 冻结 SDXL，不读取目标图片特征。</li>
+                <li><b>先学会匹配图片。</b>用 InfoNCE 对比损失，让同一刺激的 EEG 和图片特征靠近，让不同图片的特征分开。对齐训练使用 AdamW，学习率 3 × 10<sup>−4</sup>、batch 100，共 30 epochs。检索时再用 CSLS 调整相似度，减轻少数候选图片总被排在前面的现象。</li>
+                <li><b>再预测中间视觉特征。</b>把 EEG 特征交给一个 DDPM 扩散先验，在视觉向量空间逐步去噪，得到预测的中层特征。训练同时约束向量的数值、方向和样本之间的相似关系，并用方差与协方差正则避免输出过于集中。</li>
+                <li><b>最后接入 SDXL。</b>适配器把第 12 层特征转成 SDXL 能使用的末层 CLIP 条件。它既学习处理真实中层特征，也学习处理扩散先验预测的特征。测试时沿 EEG → 扩散先验 → 适配器 → IP-Adapter → SDXL 生成图片，SDXL 主干保持固定。</li>
               </ol>
             </div>
             <div class="passage-label">ORIGINAL READING NOTE · P.2</div>
@@ -79,72 +78,72 @@
                 <div class="paper-table-scroll" tabindex="0" role="region" aria-label="NVOL original retrieval results table"><img class="zoomable" tabindex="0" src="assets/nvol_table_2.png" alt="NVOL original Table II, PDF p.5: 200-way retrieval, individual subjects and mean, intra-subject and leave-one-subject-out"></div>
                 <figcaption><a href="https://arxiv.org/pdf/2609.02582v1#page=5">Original Table II · PDF p.5</a> · 200-way retrieval, Top-1 / Top-5 (%).</figcaption>
               </figure>
-              <p>读 Avg 列：被试内多层融合的 Top-1 为 <b>78.1%</b>，加入 CSLS 后为 <b>86.4%</b>；留一被试时，融合加 CSLS 为 <b>19.9%</b>。因此 86.4% 包含检索后处理的作用，不能全部解释为 EEG 编码器改善，更不能读作图片还原率。</p>
+              <p>Avg 列是 10 名被试的平均结果。多层融合在同一被试上的 Top-1 为 <b>78.1%</b>，加上 CSLS 后为 <b>86.4%</b>；换成未参与训练的被试，融合加 CSLS 为 <b>19.9%</b>。这张表说明中层特征和相似度校正都有帮助，同时也能看到跨被试仍然很难。这里衡量的是能否在候选中找到正确图片。</p>
               <figure class="paper-table paper-table-compact">
                 <div class="paper-table-scroll" tabindex="0" role="region" aria-label="NVOL original image reconstruction results table"><img class="zoomable" tabindex="0" src="assets/nvol_table_3.png" alt="NVOL original Table III, PDF p.7: subject-08 image reconstruction, single-stage and two-stage diffusion"></div>
                 <figcaption><a href="https://arxiv.org/pdf/2609.02582v1#page=7">Original Table III · PDF p.7</a> · Image reconstruction, subject-08.</figcaption>
               </figure>
-              <p>这张表只报告 <b>sub-08</b>。两阶段 TS-Diff 相对单阶段 SS-Diff，PixCorr 从 0.165 到 0.176，SSIM 从 0.326 到 0.366，CLIP 从 0.780 到 0.799；SwAV 距离越低越好，从 0.571 降到 0.552。它支持分阶段映射的价值，但不是所有指标都超过表内其他方法。</p>
-              <p class="paper-takeaway"><b>给我们的启发：</b>中层监督是较强的起点；后续应固定编码器，单独比较“中层 → 生成条件”的映射，再用实际图片验证。我们的第 12 层联合头实验与这一表征选择问题直接对应。</p>
+              <p>这张表改为评价实际生成图，使用 <b>sub-08</b>。对照同一系统的两个版本，两阶段 TS-Diff 的 PixCorr 从 0.165 提到 0.176，SSIM 从 0.326 提到 0.366，CLIP 从 0.780 提到 0.799；SwAV 距离从 0.571 降到 0.552。先预测中层、再转到生成条件，在这组实验里同时改善了像素、结构和语义指标；Inception 一项仍低于 NEED。</p>
+              <p class="paper-takeaway"><b>给我们的启发：</b>我们的第 12 层联合头也获得了较好的检索结果。接下来可以保留这套编码器，集中研究中层特征怎样进入生成器，并用生成图片检查它是否保住了对象和结构。</p>
             </div>
           </article>
           <article id="paper-brainhive" class="paper-panel" role="tabpanel" aria-labelledby="tab-brainhive">
             <div class="paper-bibliography"><span>Zheng et al. · ICLR 2026</span><a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/c5506f154e5f2203a7dca2bee2faeced-Abstract-Conference.html">Read paper ↗</a></div>
             <h3 lang="en">Learning Brain Representation with Hierarchical Visual Embeddings</h3>
-            <p class="paper-task"><b>任务：</b>从观看图片时的 EEG／MEG 做 200-way 图片检索与图像重建。EEG 使用 THINGS-EEG 的 10 名被试、16,540 张训练图片和 200 张测试图片；同一刺激的重复在被试内平均，测试为 80 次重复。另在 4 名被试的 THINGS-MEG 上评估。</p>
+            <p class="paper-task"><b>任务：</b>同样是根据看图时的脑信号检索、重建图片。作者同时研究 EEG 和 MEG；EEG 使用 THINGS-EEG 的 10 名被试、16,540 张训练图片及 200 张测试图片，测试时平均同一图片的 80 次重复。MEG 部分使用 THINGS-MEG 的 4 名被试。</p>
             <figure class="paper-original"><img class="zoomable" tabindex="0" src="assets/brainhive_figure.png" alt="BrainHIVE original Figure 1, arXiv v1 PDF page 4"><figcaption>Original Fig. 1 · arXiv v1, PDF p.4</figcaption></figure>
             <div class="paper-analysis">
-              <h4>模型：把语义特征与局部细节融合成一个视觉目标</h4>
-              <p>脑信号端是 MLP 投影模块 MBP：把通道 × 时间展开，经线性层、残差 MLP 和 LayerNorm 输出 1,024 维向量。视觉端的 HVF 把多个预训练编码器的特征投影、求和并经过残差 MLP。检索默认融合 CLIP RN50、ViT-B/32 和 SDXL VAE；VAE latent 展平后提供局部结构。生成时将 RN50 换成 ViT-H/14。</p>
-              <h4>关键训练顺序：先让视觉条件能生成，再对齐 EEG</h4>
+              <h4>一张图片的语义和细节，分别交给不同编码器</h4>
+              <p>BrainHIVE 希望同时保留图片是什么、长什么样这两类信息。CLIP 提供物体和场景语义，SDXL 的 VAE 表征补充颜色、纹理和布局。融合模块 HVF 把它们变成一个 1,024 维向量；脑信号端用 MLP 模块 MBP，把通道和时间数据映射到同一空间。检索组合是 CLIP RN50、ViT-B/32 加 VAE；生成组合把 RN50 换成 ViT-H/14。</p>
+              <h4>它怎样把脑信号接到生成器上</h4>
               <ol class="paper-steps">
-                <li><b>检索训练。</b>配对 EEG 与融合视觉向量做双向 InfoNCE，视觉骨干保持冻结，学习脑侧投影和融合模块。使用 17 个枕顶通道，25 epochs、global batch 1,024、AdamW 峰值学习率 5 × 10<sup>−4</sup>，配合余弦衰减。测试在融合空间按余弦相似度检索。</li>
-                <li><b>用图片预训练 Fusion Prior。</b>在约 130 万张 ImageNet-1k 图片上，训练 HVF、条件投影器和 IP-Adapter，冻结 SDXL-base UNet；以扩散噪声预测 MSE 优化，文本留空。分辨率 512 × 512，学习率 10<sup>−4</sup>，每 GPU batch 12，共 100k steps。这里的 prior 是视觉条件映射模块，不是另一个生成语义向量的 DDPM。</li>
-                <li><b>将脑信号接入已固定的生成空间。</b>冻结预训练 HVF、条件投影器、IP-Adapter 与 UNet，仅用配对数据训练脑侧 MBP，使 EEG 向量对齐固定视觉目标。推理时 EEG → MBP → 条件投影 → IP-Adapter；实验采用 SDXL-Turbo 四步生成。</li>
+                <li><b>检索部分，先学习共同的特征空间。</b>用对比损失把 EEG 和对应图片拉近，训练脑侧投影与视觉融合模块，预训练视觉骨干保持固定。输入是 17 个枕顶通道；训练 25 epochs，global batch 1,024，AdamW 峰值学习率 5 × 10<sup>−4</sup>，再逐渐降低学习率。检索按特征的余弦相似度排序。</li>
+                <li><b>重建部分，先让图片特征能驱动生成。</b>作者用约 130 万张 ImageNet-1k 图片训练 Fusion Prior，让融合特征经条件投影器和 IP-Adapter 进入固定的 SDXL-base。训练目标是预测扩散噪声，文本条件留空；分辨率 512 × 512，学习率 10<sup>−4</sup>，每 GPU batch 12，训练 100k steps。这一步建立了固定的视觉特征到生成器的映射。</li>
+                <li><b>再用 EEG 预测这套生成条件。</b>固定 Fusion Prior 和生成器，只训练脑侧 MBP，使 EEG 输出接近预训练的融合视觉特征。测试时把 EEG 输出交给同一套条件映射，实验用 SDXL-Turbo 四步生成图片。</li>
               </ol>
             </div>
             <div class="passage-label">ORIGINAL READING NOTE · P.2</div>
             <div class="passage-scroll" tabindex="0" role="region" aria-label="Original English reading excerpt"><img class="original-passage zoomable" tabindex="0" src="assets/brainhive_original_passage.png" alt="BrainHIVE original English sentence, page 2; key phrase highlighted in yellow"></div>
             <div class="paper-results">
-              <h4>结果：检索用一套融合，重建用另一套条件流程</h4>
+              <h4>结果怎样看</h4>
               <figure class="paper-table">
                 <div class="paper-table-scroll" tabindex="0" role="region" aria-label="BrainHIVE original retrieval results table"><img class="zoomable" tabindex="0" src="assets/brainhive_table_1.png" alt="BrainHIVE original Table 1, arXiv v1 PDF p.7: EEG and MEG 200-way retrieval, intra-subject and inter-subject"></div>
                 <figcaption><a href="https://arxiv.org/pdf/2602.07495v1#page=7">Original Table 1 · arXiv v1, PDF p.7</a> · Subject-averaged 200-way retrieval (%).</figcaption>
               </figure>
-              <p>先看 EEG 两组列：被试内 Top-1 为 <b>75.7%</b>，跨被试为 <b>20.0%</b>；同表 UBP 为 50.9% 和 12.4%。这些是多被试平均的检索结果，使用了重复平均与融合表征；不是图片生成的正确率。</p>
+              <p>先看 EEG 的结果：同一被试的平均 Top-1 为 <b>75.7%</b>，跨被试为 <b>20.0%</b>，同表 UBP 分别是 50.9% 和 12.4%。Top-1 表示正确图片是否排在 200 个候选的第一位；被试内与跨被试两组结果都使用了融合表征。</p>
               <figure class="paper-table">
                 <div class="paper-table-scroll" tabindex="0" role="region" aria-label="BrainHIVE original image reconstruction results table"><img class="zoomable" tabindex="0" src="assets/brainhive_table_2.png" alt="BrainHIVE original Table 2, arXiv v1 PDF p.8: EEG, MEG and EEG subject-8 image reconstruction metrics"></div>
                 <figcaption><a href="https://arxiv.org/pdf/2602.07495v1#page=8">Original Table 2 · arXiv v1, PDF p.8</a> · Image reconstruction; EEG, MEG and subject-8 are separate groups.</figcaption>
               </figure>
-              <p>EEG 的 Ours 行报告 PixCorr <b>0.195</b>、SSIM <b>0.336</b>、CLIP <b>0.808</b>；subj-8 单列为 0.227、0.361、0.826。PixCorr 看像素相关，SSIM 看结构，CLIP 等看特征一致性，SwAV 为距离、越低越好。多指标并非全面提高，例如 EEG 平均 SSIM 仍低于 C.C.(All) 的 0.347。</p>
-              <p class="paper-takeaway"><b>给我们的启发：</b>联合学习得到的检索空间需要有稳定的生成映射。可借鉴它的训练顺序：先检查视觉条件进入生成器后能否保留内容，再固定这条路径训练 EEG 对齐；将表征收益与接口收益分别比较。</p>
+              <p>实际图片看第二张表。EEG 的 Ours 行是多被试汇总：PixCorr <b>0.195</b>、SSIM <b>0.336</b>、CLIP <b>0.808</b>；subj-8 另列为 0.227、0.361、0.826。PixCorr 看像素相关，SSIM 看结构，CLIP 等指标看视觉特征是否匹配。整体上语义匹配有改善，结构指标仍有取舍，例如平均 SSIM 低于 C.C.(All) 的 0.347。</p>
+              <p class="paper-takeaway"><b>给我们的启发：</b>这篇最值得借鉴的是训练顺序：先用大量图片学好生成条件的映射，再让 EEG 接到这个固定空间里。这样能分别检查视觉特征是否够用，以及 EEG 是否准确预测了这些特征。</p>
             </div>
           </article>
           <article id="paper-distillation" class="paper-panel" role="tabpanel" aria-labelledby="tab-distillation">
             <div class="paper-bibliography"><span>Meng et al. · CVPR 2023</span><a href="https://arxiv.org/abs/2210.03142">Read paper ↗</a></div>
             <h3 lang="en">On Distillation of Guided Diffusion Models</h3>
-            <p class="paper-task"><b>任务：</b>把昂贵的 classifier-free guidance（CFG）教师蒸馏成少步生成模型。实验覆盖类别条件生成、文本生成、编辑与修复；这里重点读 Stable Diffusion 的文生图实验，理解如何直接监督去噪器的输出。</p>
+            <p class="paper-task"><b>任务：</b>让扩散模型用更少的计算生成图片。常规 classifier-free guidance（CFG）每一步要做两次去噪预测；这篇把教师的生成行为教给一个学生模型，再逐步减少采样步数。这里重点看它在 Stable Diffusion 文生图上的做法。</p>
             <figure class="paper-original"><img class="zoomable" tabindex="0" src="assets/guided_distillation_figure.png" alt="On Distillation of Guided Diffusion Models, original Figure 7, CVPR PDF p.6: distilled four-step samples versus native four-step and eight-step samples"><figcaption>Original Fig. 7 · CVPR PDF p.6</figcaption></figure>
             <div class="paper-analysis">
-              <h4>模型：学生直接学习教师的导引响应</h4>
-              <p>CFG 在每一步分别运行条件与无条件去噪器，再按导引强度 w 组合输出。论文使用相同类型的 UNet 学生，加入 w 的 Fourier embedding，让一次学生调用拟合这个组合后的预测；随后再压缩采样步数。监督对象是去噪输出，不是 CLIP 条件向量。</p>
+              <h4>学生究竟向教师学什么</h4>
+              <p>教师分别计算带文本条件和不带文本条件的预测，再用导引强度 w 加权组合。学生沿用 UNet 结构，把 w 也作为输入，直接学习组合后的去噪输出。这样，一次学生调用就能完成原先两次预测的作用。接下来，作者再训练学生用更少的步骤走完生成过程。</p>
               <h4>训练与推理分三步</h4>
               <ol class="paper-steps">
-                <li><b>蒸馏 CFG 输出。</b>给训练图片加噪，在同一带噪状态上计算教师的条件与无条件预测。学生以加权 MSE 拟合组合输出，并学习不同 w 下的响应。学生从教师条件模型初始化。</li>
-                <li><b>逐级减少采样步数。</b>让学生的一次更新拟合教师连续两次 DDIM 更新的终点；训练后将学生作为下一轮教师，反复将步数减半。文生图实验第一阶段训练 3,000 次更新，batch 512，w ∈ [2, 14]；后续每级 2,000 次更新，1／2／4 步版本延长到 20,000 次。</li>
-                <li><b>少步推理。</b>从随机噪声开始，输入文本与 w，运行蒸馏后的学生，再由 VAE 解码。像素扩散与 latent 扩散分别评估；latent 实验先将公开 epsilon 教师微调为 v 预测教师。</li>
+                <li><b>先学每一步该怎么去噪。</b>给训练图片加噪，在同一状态上计算教师的组合输出。学生从教师条件模型初始化，用加权均方误差（MSE）学习这个输出，并适应不同的导引强度。</li>
+                <li><b>再把两步合成一步。</b>让学生的一次更新到达教师连续两次 DDIM 更新的终点；训练好后继续把步数减半。文生图第一阶段训练 3,000 次更新，batch 512，w ∈ [2, 14]；后续每级训练 2,000 次，1／2／4 步模型延长到 20,000 次。</li>
+                <li><b>用学生生成图片。</b>测试时输入文本、导引强度和随机噪声，运行少步学生，最后由 VAE 解码。论文分别测试像素扩散和 latent 扩散；latent 实验先将公开的 epsilon 教师微调成 v 预测教师，再做蒸馏。</li>
               </ol>
             </div>
             <div class="passage-label">ORIGINAL READING NOTE · P.2</div>
             <div class="passage-scroll" tabindex="0" role="region" aria-label="Original English reading excerpt"><img class="original-passage zoomable" tabindex="0" src="assets/guided_distillation_original_passage.png" alt="Original English sentence on learning a single student to match the combined teacher output; yellow reading highlight, CVPR PDF p.2"></div>
             <div class="paper-results">
-              <h4>结果：少步质量改善，代价要按模型调用计算</h4>
+              <h4>少步生成的效果怎样</h4>
               <figure class="paper-table paper-table-narrow">
                 <div class="paper-table-scroll" tabindex="0" role="region" aria-label="Guided distillation original LAION results table"><img class="zoomable" tabindex="0" src="assets/guided_distillation_table_2.png" alt="Original Table 2: LAION 512x512 FID and CLIP at guidance w=8, comparing two, four and eight sampling steps"></div>
                 <figcaption><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Meng_On_Distillation_of_Guided_Diffusion_Models_CVPR_2023_paper.pdf#page=6">Original Table 2 · CVPR PDF p.6</a> · LAION 512 × 512, w = 8; FID ↓ / CLIP ↑.</figcaption>
               </figure>
-              <p>每格依次是 FID／CLIP。四步时，蒸馏模型为 <b>26.0 / 0.30</b>，DPM++ 为 34.1 / 0.29；八步时，DPM++ 为 25.6 / 0.32，优于蒸馏模型的 26.9 / 0.30。表中 DPM／DPM++ 仍需条件与无条件两条预测，不能把相同步数视作相同模型调用成本。</p>
-              <p class="paper-takeaway"><b>与新方案的直接联系：</b>这篇工作展示了如何把生成器输出作为蒸馏目标。我们的 A 方案研究在同一 EEG 采样状态上，学习真图条件与 EEG 条件的去噪响应差；保持现有采样步数，检验 EEG 能否预测有助于内容恢复的修正。</p>
+              <p>每格依次是 FID 和 CLIP：FID 越低，生成图与真实图的整体特征统计越接近；CLIP 越高，图片与文本越匹配。四步时，蒸馏模型为 <b>26.0 / 0.30</b>，优于 DPM++ 的 34.1 / 0.29；八步时，DPM++ 的 25.6 / 0.32 更好。这项方法在少步设置下更有价值。比较成本时还要计入 DPM／DPM++ 每步的两条预测。</p>
+              <p class="paper-takeaway"><b>与新方案的直接联系：</b>我们也希望直接学习生成器的去噪响应。具体做法是，在同一 EEG 采样状态上比较真图条件和 EEG 条件的输出，再让 EEG 预测两者之间的修正。关注点是内容能否更接近所见图片，现有生成步数保持不变。</p>
             </div>
           </article>
         </div>
@@ -189,44 +188,39 @@
         </figure>
       </section>
 
-      <section id="lessons" class="report-section">
-        <div class="section-kicker">04 / MECHANISM CHECKS</div>
-        <h2>修复了参照，还没有建立新机制优势</h2>
-        <p class="section-intro">标准 v 参数化修复了当前 epsilon 配置的严重退化，但相对强直接 EEG 查询的优势尚未确认。</p>
-        <figure class="research-figure compact-figure">
-          <div class="figure-topline"><span>FIGURE 2</span><div><a href="assets/figure-2.pdf">PDF</a><a href="assets/figure-2.svg">SVG</a></div></div>
-          <img src="assets/figure-2.svg" class="zoomable" tabindex="0" alt="图2，v参数化相对epsilon的DINO2AFC差为0.2560，95%区间0.1557至0.3533；相对范数修正回归与原EEG查询的区间均跨零。">
-          <figcaption><b>图 2｜同一图片实验中的配对比较。</b>32 个源概念、两个固定训练种子，共 576 张新图。点为均值差，误差线为归档的描述性 95% 区间；虚线表示零差。标准 v 是已有工具，不计作我们的新理论。</figcaption>
-        </figure>
-        <div class="table-scroll"><table class="evidence-table"><thead><tr><th>已测配置</th><th>实际观察</th><th>研究判断</th></tr></thead><tbody>
-          <tr><td>适配后教师监督</td><td>图像 Δ2AFC −0.0861</td><td>条件空间一致性没有自动转化为图像收益</td></tr>
-          <tr><td>直接图像证据梯度</td><td>0.5927；点回归 0.7198</td><td>内部兼容分数不足以代替独立图片评价</td></tr>
-          <tr><td>补回隐变量均值与尺度</td><td>扩展复核 Δ+0.0005，区间跨零</td><td>初始线索未在扩展样本中保持</td></tr>
-        </tbody></table></div>
-        <p class="source-line">三行来自不同实验，不作横向排名。<a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/docs/EXPERIMENTS.md">十项 idea 的结果、样本与限制</a></p>
-        <details><summary>另一个有效修正：R4 条件匹配（仅语义向量）</summary><p>另一套 R4 协议中，R1-trained prior 的 200-way R@1 为 5.67%，R4-trained prior 为 11.33%，直接编码为 17.50%。匹配增量 +5.67 pp [2.50, 9.17]，仍低于直接编码。该阶段没有新增图片，也不与 mean80 检索合并排名。</p></details>
-      </section>
-
-
-
-
-
       <section id="proposal" class="report-section proposal">
-        <div class="section-kicker">05 / PROPOSED EXPERIMENT</div>
+        <div class="section-kicker">04 / PROPOSED EXPERIMENT</div>
         <h2>用 EEG 预测生成器的去噪响应</h2>
-        <p>新方案是<strong>生成响应蒸馏（A）</strong>：让 EEG 学习图像生成器真正需要的去噪修正。固定现有 EEG 编码器与四步 SDXL-Turbo，把监督目标从匹配视觉向量转向匹配实际生成响应。</p>
-        <div class="proposal-equation" role="math" aria-label="Teacher response equals the image-conditioned denoiser output minus the EEG-conditioned output; the student adds a learned response to the base output.">
+        <p class="proposal-lead">我们想让 EEG 回答一个更接近生成过程的问题：在当前这一步，去噪器应该怎样调整，才能让图片更接近人看到的内容？</p>
+        <p>目前的流程先把 EEG 转成视觉特征，再把特征交给扩散模型。新的想法是<strong>生成响应蒸馏</strong>：利用训练图片提供的条件，计算生成器在同一采样状态下需要怎样改变输出，再训练一个响应预测器，从 EEG 中学习这项修正。现有 EEG 编码器、条件回归器和四步 SDXL-Turbo 保持固定。</p>
+
+        <h3>训练时，教师信号从哪里来</h3>
+        <ol class="paper-steps proposal-steps">
+          <li><b>准备两种条件。</b>同一训练样本有一份 EEG 和一张对应图片。基础系统把 EEG 转成条件 c，图片经冻结视觉编码器和原生接口得到条件 c<sup>I</sup>。同时保留 EEG 的时序表征 b，供响应预测器使用。</li>
+          <li><b>记录实际采样状态。</b>从随机噪声出发，用 EEG 条件运行基础生成器，保存各步的状态 x<sub>t</sub>。这样得到的监督直接对应基础系统实际经过的采样状态。</li>
+          <li><b>计算教师响应。</b>固定同一个 x<sub>t</sub> 和时间步 t，让同一个去噪器分别读取 c<sup>I</sup> 与 c。两次输出相减，得到该状态下由条件变化引起的去噪修正 r*<sub>t</sub>。计算沿用模型原生的 epsilon 或 v 等预测坐标。</li>
+          <li><b>让 EEG 学习修正。</b>响应预测器读取 x<sub>t</sub>、t、c 和 b，以加权 MSE 拟合教师响应。每步权重根据训练数据的响应尺度确定，输出从零初始化，并约束修正幅度。</li>
+        </ol>
+        <div class="proposal-equation" role="math" aria-label="The teacher response is the difference between image-conditioned and EEG-conditioned denoiser outputs at the same sampling state.">
           <span>r*<sub>t</sub> = D(x<sub>t</sub>, t, c<sup>I</sup>) − D(x<sub>t</sub>, t, c)</span>
-          <span>D<sub>A</sub> = D(x<sub>t</sub>, t, c) + a<sub>θ</sub>(x<sub>t</sub>, t, c, b)</span>
         </div>
-        <p><b>训练时，</b>在 EEG 自由采样经过的同一状态 x<sub>t</sub>，分别输入真图条件 c<sup>I</sup> 与 EEG 条件 c；两次去噪输出之差构成教师响应 r*<sub>t</sub>。响应预测器读取当前状态与 EEG 表征 b，以加权 MSE 学习这项修正。</p>
-        <p><b>推理时，</b>仅由 EEG 预测每一步的修正，并加入基础去噪输出。实验比较它与直接条件回归、常规适配训练的实际出图表现，重点检查对象内容是否更准确，以及画面质量和计算成本。</p>
-        <p class="source-line"><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/docs/RESEARCH_PLAN.md">方案简述</a> · 方法参照：<a href="https://arxiv.org/abs/2210.03142">Guided distillation</a>、<a href="https://arxiv.org/abs/2406.01781">DEFT</a></p>
+        <p>D 表示冻结去噪器的输出。r*<sub>t</sub> 描述同一状态下，更准确的视觉条件会怎样改变下一步更新；预测器 R<sub>θ</sub> 学习用 EEG 估计这个变化。</p>
+
+        <h3>测试时，怎样用它生成图片</h3>
+        <p>测试只输入 EEG 和随机噪声。每一步先得到基础去噪输出，再由 R<sub>θ</sub> 预测修正，两者相加后交给原采样器更新，连续运行四步并由 VAE 解码成图。训练图片只用于提供教师标签。</p>
+        <div class="proposal-equation" role="math" aria-label="At inference, the denoiser output is the base EEG-conditioned output plus the learned response correction.">
+          <span>D<sub>EEG</sub> = D(x<sub>t</sub>, t, c) + R<sub>θ</sub>(x<sub>t</sub>, t, c, b)</span>
+        </div>
+        <p>与先拟合一个视觉向量相比，这个目标直接对应当前生成器的行为。它希望把 EEG 中有用的信息落实到每一步更新，使对象、颜色或结构在采样过程中得到更合适的保留。</p>
+
+        <h3>实验怎样判断这条思路有没有用</h3>
+        <p>先比较真图条件与 EEG 条件的生成结果，检查教师能提供哪些内容上的改善。主实验采用 R4，也就是每张刺激的四次物理 EEG 重复；各方法使用相同编码器、生成器、查询和生成种子，对照直接条件回归与常规适配训练。</p>
+        <p>另外比较只读取基础条件 c 的预测器，以及保留正确 c、仅打乱时序表征 b 的版本，用来检查补充 EEG 是否确实有用。每个查询与种子生成一张图，主要看独立视觉评估中的对象匹配和内容一致性，同时记录结构、画面质量、耗时与模型调用次数。</p>
       </section>
     </div>
   </div>
 </main>
-<footer class="wrap site-footer"><div><a class="footer-mark" href="https://github.com/Botwwt/EEG-Diffusion">EEG—DIFFUSION</a><p>Visual evidence. Traceable experiments.</p></div><div><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/CITATION.cff">Cite this archive</a><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/THIRD_PARTY_NOTICES.md">Attribution</a><button id="print-report">Print / PDF</button><span>Research archive · v0.2</span></div></footer>
+
 <dialog id="image-dialog" class="image-dialog" aria-label="图片放大"><button id="close-image" aria-label="关闭图片">×</button><img id="large-image" alt=""><p id="large-caption"></p></dialog>
 </body>
 </html>

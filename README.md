@@ -18,7 +18,7 @@ The next experiment learns to predict the denoising correction associated with t
 $$
 r_t^*=D(x_t,t,c^I)-D(x_t,t,c),
 \qquad
-D_A=D(x_t,t,c)+a_\theta(x_t,t,c,b).
+D_{\mathrm{EEG}}=D(x_t,t,c)+R_\theta(x_t,t,c,b).
 $$
 
 Here, $c$ is the base EEG condition, $b$ is a temporal representation of the same EEG, and $c^I$ is the training image condition. The teacher supplies response targets during training; inference uses the EEG-conditioned response predictor.
