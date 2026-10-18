@@ -214,14 +214,13 @@
       <section id="proposal" class="report-section proposal">
         <div class="section-kicker">05 / PROPOSED EXPERIMENT</div>
         <h2>用 EEG 预测生成器的去噪响应</h2>
-        <p>新一轮优先测试<strong>生成响应蒸馏（方案 A）</strong>。冻结现有 EEG 编码器与四步 SDXL-Turbo，在正常 EEG 自由采样经过的状态上，训练一个零初始化小残差网络，预测更准确的视觉条件会怎样改变去噪输出。</p>
+        <p>新方案是<strong>生成响应蒸馏（A）</strong>：让 EEG 学习图像生成器真正需要的去噪修正。固定现有 EEG 编码器与四步 SDXL-Turbo，把监督目标从匹配视觉向量转向匹配实际生成响应。</p>
         <div class="proposal-equation" role="math" aria-label="Teacher response equals the image-conditioned denoiser output minus the EEG-conditioned output; the student adds a learned response to the base output.">
           <span>r*<sub>t</sub> = D(x<sub>t</sub>, t, c<sup>I</sup>) − D(x<sub>t</sub>, t, c)</span>
           <span>D<sub>A</sub> = D(x<sub>t</sub>, t, c) + a<sub>θ</sub>(x<sub>t</sub>, t, c, b)</span>
         </div>
-        <p>c 是基础 EEG 条件，b 是同一 EEG 的补充时序表征，c<sup>I</sup> 是训练图片的原生视觉条件。真图只用于计算训练教师标签；测试时由 EEG 分支预测修正。学生以加权 MSE 学习响应差，输出从零开始。</p>
-        <p><b>A1</b> 学习完整响应；<b>A2</b> 只学习在概念留出验证中、加入补充 EEG 后能降低预测误差的低秩响应方向。对照包含直接回归、普通适配器、只读 c 的同容量网络，以及保留正确 c、仅打乱新增 b 的版本。主评价为实际生成图像的内容一致性，并记录质量与计算成本。</p>
-        <p>后续两个独立候选：<b>B</b> 用条件密度比区分基础生成误差与新增 EEG 证据；<b>C</b> 用两个独立种子生成的最终图片特征训练条件分布。先分别检验，再决定是否组合。</p>
+        <p><b>训练时，</b>在 EEG 自由采样经过的同一状态 x<sub>t</sub>，分别输入真图条件 c<sup>I</sup> 与 EEG 条件 c；两次去噪输出之差构成教师响应 r*<sub>t</sub>。响应预测器读取当前状态与 EEG 表征 b，以加权 MSE 学习这项修正。</p>
+        <p><b>推理时，</b>仅由 EEG 预测每一步的修正，并加入基础去噪输出。实验比较它与直接条件回归、常规适配训练的实际出图表现，重点检查对象内容是否更准确，以及画面质量和计算成本。</p>
         <p class="source-line"><a href="https://github.com/Botwwt/EEG-Diffusion/blob/main/docs/RESEARCH_PLAN.md">方案简述</a> · 方法参照：<a href="https://arxiv.org/abs/2210.03142">Guided distillation</a>、<a href="https://arxiv.org/abs/2406.01781">DEFT</a></p>
       </section>
     </div>

@@ -13,7 +13,7 @@ Visual EEG-to-image reconstruction combines visual evidence decoded from brain a
 
 ## Research direction: denoising-response distillation
 
-The next experiment trains a small residual network to predict the denoising correction associated with the observed image. For a state along an EEG-conditioned sampling trajectory, the training teacher compares image and EEG conditions in the same frozen denoiser:
+The next experiment learns to predict the denoising correction associated with the observed image. For a state along an EEG-conditioned sampling trajectory, the training teacher compares image and EEG conditions in the same frozen denoiser:
 
 $$
 r_t^*=D(x_t,t,c^I)-D(x_t,t,c),
@@ -21,9 +21,9 @@ r_t^*=D(x_t,t,c^I)-D(x_t,t,c),
 D_A=D(x_t,t,c)+a_\theta(x_t,t,c,b).
 $$
 
-Here, $c$ is the base EEG condition, $b$ is an additional temporal representation of the same EEG, and $c^I$ is the training image condition. The teacher supplies response targets during training; inference uses the EEG-conditioned residual network.
+Here, $c$ is the base EEG condition, $b$ is a temporal representation of the same EEG, and $c^I$ is the training image condition. The teacher supplies response targets during training; inference uses the EEG-conditioned response predictor.
 
-**A1** learns the full response. **A2** selects low-rank directions whose response coefficients become more predictable from the additional EEG on held-out concepts. The EEG encoder and image generator remain fixed. See the [experiment design](docs/RESEARCH_PLAN.md).
+The EEG encoder and image generator remain fixed. Training matches the teacher response with a weighted mean-squared error; evaluation compares the generated images with direct condition regression and conventional adapter training. See the [experiment design](docs/RESEARCH_PLAN.md).
 
 ## Experimental setting
 
