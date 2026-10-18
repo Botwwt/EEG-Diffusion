@@ -73,6 +73,14 @@ h2 { margin: 10px 0 16px; font-size: 26px; line-height: 1.45; font-weight: 600; 
 .original-passage { width: 100%; max-height: 100px; object-fit: contain; object-position: left center; }
 .paper-connection { font-size: 13px; line-height: 1.9; margin: 23px 0 0; padding-left: 15px; border-left: 2px solid var(--red); max-width: 790px; color: #4c5961; }
 .paper-connection b { font-weight: 600; color: var(--ink); margin-right: 12px; }
+.paper-analysis { margin-top: 24px; max-width: 840px; }
+.paper-analysis h4 { font-size: 15px; font-weight: 600; margin: 0 0 12px; }
+.paper-analysis p { font-size: 13px; line-height: 1.95; color: #4c5961; margin: 10px 0; }
+.experiment-note { margin-top: 24px; }
+.experiment-note + .experiment-note { border-top: 1px solid var(--rule); padding-top: 23px; }
+.experiment-note h3 { font-size: 17px; line-height: 1.6; font-weight: 600; margin: 0 0 14px; }
+.experiment-note p { font-size: 14px; line-height: 1.95; margin: 12px 0; }
+.experiment-note p b { font-weight: 600; }
 .source-line { font-size: 10px; color: #637079; line-height: 1.9; margin: 17px 0 0; }
 .research-figure { padding: 16px 0 0; border-top: 1px solid var(--ink); }
 .figure-topline { display: flex; justify-content: space-between; gap: 20px; font-size: 8px; letter-spacing: 1px; margin-bottom: 8px; }

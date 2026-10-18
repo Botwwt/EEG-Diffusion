@@ -56,22 +56,6 @@ dialog.addEventListener("click", (event) => {
       event.clientY < rectangle.top || event.clientY > rectangle.bottom)) dialog.close();
 });
 
-document.getElementById("copy-code").addEventListener("click", async (event) => {
-  const button = event.currentTarget;
-  const text = document.getElementById("quickstart").textContent;
-  try {
-    await navigator.clipboard.writeText(text);
-    button.textContent = "已复制";
-    document.getElementById("copy-status").textContent = "运行命令已复制";
-  } catch {
-    const selection = window.getSelection();
-    const range = document.createRange();
-    range.selectNodeContents(document.getElementById("quickstart"));
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.getElementById("copy-status").textContent = "请复制已选中的命令";
-  }
-});
 document.getElementById("print-report").addEventListener("click", () => window.print());
 
 const links = [...document.querySelectorAll(".contents a")];
