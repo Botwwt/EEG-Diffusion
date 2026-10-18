@@ -74,4 +74,3 @@ eeg-diffusion reference-demo --out outputs/synthetic-reference.json
 ```
 
 CLI success returns exit code 0; invalid artifacts return 2 with a concise error. The demo uses synthetic data and should report mean `[0.4]`, covariance `[[0.5]]`, and `unique_trials: 2`.
-

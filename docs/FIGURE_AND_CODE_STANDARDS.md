@@ -20,4 +20,3 @@ Paper figures are attributed excerpts, not newly prepared publication artwork. T
 - Installation, expected demo output, environment, limitations, code availability, citation and licensing are documented. CI checks fresh Linux and Windows environments.
 
 The full historical GPU workflow still depends on external EEG, stimulus access, feature caches and weights. This release is not a complete reproduction capsule for all image results. No DOI, independent external replication, prospective validation or journal endorsement is asserted. Those steps require the relevant data, final study and an archival release.
-

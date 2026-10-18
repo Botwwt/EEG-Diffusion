@@ -76,7 +76,12 @@ def build_figures() -> None:
             )
             figure.savefig(target, metadata=metadata)
             if extension == "svg":
-                text = target.read_text(encoding="utf-8")
+                text = (
+                    "\n".join(
+                        line.rstrip() for line in target.read_text(encoding="utf-8").splitlines()
+                    )
+                    + "\n"
+                )
                 target.write_text(text, encoding="utf-8", newline="\n")
             exported.append(target)
         plt.close(figure)

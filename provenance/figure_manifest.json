@@ -20,13 +20,13 @@
   "builder": [
     {
       "path": "scripts/build_figures.py",
-      "sha256": "1adb1d63e2b4f413c956dbdb51b555148ae82314edea6b98af3c23fcf3bc7f15"
+      "sha256": "6ef622ecec042407a79404f1d0707742bbf21966f6024542a0d655862f2134c7"
     }
   ],
   "files": [
     {
       "path": "docs/assets/figure-1.svg",
-      "sha256": "72af2108dd433042ebe48c2d2ae8206f1e9912e6d98cd7379ebce64597bf719b"
+      "sha256": "2fc1d065525b85c2c15bf881d97c5981b14bb62fc3229a9fecf70cc48c3397c3"
     },
     {
       "path": "docs/assets/figure-1.pdf",
@@ -34,7 +34,7 @@
     },
     {
       "path": "docs/assets/figure-2.svg",
-      "sha256": "387c4a5a6f5d80444ee3cee856814ae2d532a74b890268b6c5bf5c6b08b8a1e1"
+      "sha256": "43a64799c16478d9e6132f8d760f4710309d2a10a045d62f302ff496ba72bbf5"
     },
     {
       "path": "docs/assets/figure-2.pdf",
