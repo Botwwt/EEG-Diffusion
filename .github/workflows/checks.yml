@@ -24,6 +24,7 @@ jobs:
       - run: python -m ruff format --check src scripts tests
       - run: python -m pytest -q
       - run: eeg-diffusion verify
+      - run: python scripts/verify_research_snapshot.py
       - run: python scripts/build_report.py --check
       - run: python scripts/build_figures.py --check
 
