@@ -1,3 +1,13 @@
+<!-- EEG_EXECUTION_CURRENT_V284 -->
+> **两条EEG端方向及完整评价链，2026-11-09T08:55:05.680577+00:00**：新匹配sub03 ordinary完整2481更新/39690暴露及Dfit820固定五强度校准1已闭合，旧ordinary不覆盖。六组固定各827更新/13230T，当前已完整训练且CPU检查通过：A_positive, A_pair, A_reverse；其余按同一有限单GPU链继续，以真实squeue状态区分RUNNING/PENDING。CPU5098809完整T训练诊断：A_pair同概念Top1 82.8949% vs普通77.6342%，+5.2608pp、净多696条，但原生fullT99.3802%，仅支持减轻训练内信息损失，不是留出或图像收益。本机stdlib独立核验238140值/18均值/18差值/全部翻转通过，CI未本机重放。
+> **工程已接续**：六评价权重1.518GB及五离线包经RAM传输，CPU5098561全11文件SHA/六模型/SSIM通过，训练环境未动。评分v276人工并列检查失败保留；v279恢复作者完整np.corrcoef运算顺序，CPU5098719源方向/并列/830图库矩阵/SSIM实际通过；最终图片审计与调度用v281，核心评分v279不变。图片调度v277改读封存stage回执，旧未分配CPU等待撤下，训练和图片数值源不改。全830条×14组11620图及DINO/论文七项/EffNet/全矩阵CPU复核已真实挂依赖链，尚无新图片收益；ObjectF1/CapSim和完整SEED仍缺。禁止重复重挂。详见reports/BRAINHIVE_TWO_EEG_CANDIDATES_EXECUTION_20261109_v280.md与audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261109_v284.json。正式D仍停止；第二项确认创新/CCFA/SOTA未建立。单1729/本研究单HPCGPU/旧关机实例和第二卡不动/不碰其他项目/本机无TorchNumPy。
+<!-- END_EEG_EXECUTION_CURRENT_V284 -->
+
+<!-- EEG_CANDIDATES_ACTUAL_V273 -->
+> **继续执行实际状态，2026-11-09 08:00 UTC**：新匹配sub03 ordinary已完成3遍2481更新/39690暴露，独立断点检查通过，GPU5098166按原Dfit820固定五强度选1，最终head SHA f6998db9…7024f99。两条EEG端假设及四控制共六组，GPU5098229真实首2更新各32暴露、CPU5098276独立模型/Adam/RNG/覆盖/冻结权重/折叠代数全部通过，首2更新计入各自固定827次，不能重训首段。正式GPU5098317已在647次断点正常闭合，5098457从同SHA接续；最新A_positive模型已完整827/13230，作业尚在末尾检查，其余五组各2次。原始ordinary保留，无新图片收益结论。
+> **完整图片依赖队列已挂上**：初始CPU5098446已正常完成并跟随实际训练尾部，当前5098458等待；六组终态后自动CPU重放全部830条Dcheck×7编码器，继而14组共11620张512/4步配对噪声图，单GPU、有限分段、逐图身份/噪声/像素复核。尚未进入实际出图，不把挂队写成出图通过。CPU5098470评价资产下载因计算节点DNS/外网不可达失败，源码与失败保留，权重尚未恢复/评分未排队；后续经本机RAM有界流转上传后Slurm核验，不落本机大文件。勿重复启动任何队列或修改已绑定数值源。单seed1729、一张HPC卡，旧关机实例/第二卡/CoLa/subagents不动；第二项确认创新和SOTA/CCFA仍未建立。详见audit/EEG_CANDIDATES_ACTIVE_HANDOFF_20261109_v273.json、configs/EEG_two_core_candidates_20261109_v266.json及configs/EEG_image_comparison_20261109_v271.json。
+<!-- END_EEG_CANDIDATES_ACTUAL_V273 -->
+
 <!-- MATCHING_ORDINARY_ACTUAL_V263 -->
 > **新匹配ordinary实际续训，2026-11-09 UTC**：13230条T原生VAE缓存GPU5097501完整闭合，CPU5097655全SHA/52块/两图CPU重放通过。新sub03 ordinary原结构/损失/半径/单1729，固定3遍2481更新/39690暴露；4更新64暴露的GPU5097673与CPU5097685独立断点检查闭合，峰值11.93GB。首段5097843已完成1303更新/20846暴露并通过独立CPU断点检查，第二段5097979已真实RUNNING并恢复同一断点；同一有限链最多5段，每段后检查，不能重复启动。CPU5097880捕获512更新，完整T匹配余弦0.105840→0.183543、同概念Top1 31.6478%→31.3152%，仅训练诊断不单指标STOP。尚无新图片/最终拟合校准结果，旧ordinary不动/第二创新CCFA/SOTA未建立。只用一张HPC卡，大资产留wwt/eeg，无本机TorchNumPy/旧关机实例/第二卡/subagents/CoLa。详见reports/BRAINHIVE_PKU_MATCHING_ORDINARY_PROGRESS_20261109_v263.md和audit/PKU_MATCHING_ORDINARY_ACTUAL_PROGRESS_20261109_v263.json。
 <!-- END_MATCHING_ORDINARY_ACTUAL_V263 -->

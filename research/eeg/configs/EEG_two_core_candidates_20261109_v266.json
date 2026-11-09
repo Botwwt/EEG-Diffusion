@@ -1,0 +1,63 @@
+{
+  "status": "REGISTERED_BEFORE_NEW_CANDIDATE_FIT_OR_DCHECK_IMAGES",
+  "subject": "sub-03",
+  "seed": 1729,
+  "GPU_concurrency": 1,
+  "T_images_and_queries": 13230,
+  "T_concepts": 1323,
+  "passes_per_case": 1,
+  "batch": 16,
+  "updates_per_case": 827,
+  "tail_batch": 14,
+  "fixed_final_checkpoint": true,
+  "cases_in_fixed_order": ["A_positive", "A_pair", "A_reverse", "B_residual", "B_raw", "B_shuffle"],
+  "A": {
+    "position": "Existing native EEG encoder weights, keep final LayerNorm affine fixed; no new inference module",
+    "trainable_parameters": 6450176,
+    "dropout": "Off during this deterministic generator fine-tuning phase; original25epoch parent training unchanged",
+    "learning_rate": 0.00001,
+    "positive_energy": "Per-query mean epsilon prediction squared error at same realT latent/noise/time",
+    "negative": "EEG from the next different stimulus of the SAME T concept; no test labels at inference",
+    "temperature": "Once on fixed256 T queries from64 concepts: max(RMS of native paired energy differences,1e-4); shared across all A arms",
+    "pair_objective": "Lpos + tau*softplus((Lpos-Lneg)/tau) +0.1 native token error",
+    "positive_control": "Same two forward/backward graphs, contrastive term multiplied by0",
+    "reverse_control": "Keep correct Lpos anchor; reverse ONLY the contrastive energy assignment",
+    "proved_invariance_scope": "An additive energy term independent of EEG cancels in Lpos-Lneg; no claim of removing every common feature or exact posterior likelihood"
+  },
+  "B": {
+    "position": "Native first input projection; freeze original17-electrode projection/residual MLP/output affine",
+    "extra_electrodes": 46,
+    "trainable_parameters": 11776000,
+    "learning_rate": 0.0001,
+    "statistics": "T EEG only: per-channel/time mean and shared spatial covariance pooled over T and time",
+    "B_solution": "B = C_NP*(C_PP+lambda I)^-1; lambda=1e-3*trace(C_PP)/17",
+    "residual": "r=(eN-muN)-B*(eP-muP)",
+    "projection": "h=Wold*eP+b_old+U*r; U starts exactly0",
+    "folding": "W_N=U, W_P=Wold-U*(B kron I250), b=b_old-U*vec(muN-B*muP)",
+    "residual_is_not": "Not proven independent EEG information, physiological noise or source localization",
+    "raw_control": "Same U and objective, B=0, use centered extra electrodes",
+    "shuffle_control": "During T fitting only, feed same-concept wrong stimulus residual with correct posterior EEG; normal evaluation uses each query own63-electrode EEG",
+    "objective": "Original positive epsilon MSE +0.1 native token error"
+  },
+  "common": {
+    "optimizer": "AdamW,weight_decay0.01,defaultbetas/eps,clip1",
+    "host": "Same exact frozen nativeA/P/IP/SDXL-Turbo",
+    "ordinary": "Preserve historical weights. Use only the newly matched sub03 ordinary as an explicitly frozen postprocessor interaction test, not a newly refitted ordinary for changed encoders.",
+    "inference": "Own queryEEG only; no targetimage, label, caption or gallery; native512x512,4steps,CFG0,IP1,oneimage/query",
+    "Dfit": "No encoder optimization or checkpoint selection; original fixed final ordinary calibration only",
+    "Dcheck": "All83 concepts/all830 queries of sub03 planned; parent,matchedordinary,eachcandidate with/without frozenordinary; report all image/encoder metrics, no single-metric stop",
+    "feature_diagnostics": "Read-only, never epoch selection",
+    "engineering_prefix": "First2 updates percase count toward827; actual GPU memory/gradient/input identity and CPU model/Adam/RNG/coverage checks before remaining fit",
+    "finite_execution": "PerGPUjob20minutes, safe stop around1000seconds, bounded queue and exact retained state; never interpret a safe prefix as completed fit",
+    "GPU_allocated_cap_bytes": 21474836480,
+    "persistent_candidate_output_cap_bytes": 4294967296,
+    "local_large_downloads": false
+  },
+  "novelty": {
+    "not_claimed": "Contrastive diffusion, ridge regression, Schur complement and linear folding are existing ideas; adaptation alone is not a publication contribution",
+    "required_evidence": "Correct-pair/extra-EEG mechanisms must beat matched controls and strong image baselines, explain metric tradeoffs and survive larger subject/protocol validation",
+    "CCFA_or_SOTA_established": false,
+    "all10_subjects_or_official_R80_completed_by_this_registration": false,
+    "third_independent_idea_claimed_for_combination": false
+  }
+}

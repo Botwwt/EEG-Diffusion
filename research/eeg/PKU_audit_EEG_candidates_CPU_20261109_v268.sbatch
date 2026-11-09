@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name=eeg_audit268
+#SBATCH --partition=C64M256G
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=15000M
+#SBATCH --time=00:10:00
+set -euo pipefail
+umask 077
+PROJECT=/dfs/share/maleiLab/wwt/eeg
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+cd "$PROJECT"
+for attempt in 1 2 3 4 5 6; do
+if sha256sum --check <<'SOURCE_SHA'
+976abd014d3ec797f9bd5d321469586b5643883496f41ecfd2a4c1b3aeaee713  /dfs/share/maleiLab/wwt/eeg/code/PKU_audit_EEG_candidates_CPU_20261109_v268.py
+SOURCE_SHA
+then break; fi
+test "$attempt" != 6
+sleep 2
+done
+"$PROJECT/envs/torch230_cu121_v235/bin/python" -B "$PROJECT/code/PKU_audit_EEG_candidates_CPU_20261109_v268.py" --all

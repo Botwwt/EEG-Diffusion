@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "bytes": 361209,
-      "source_sha256": "7dbc920ceb4261784f5d96659068b4d991d0effa60c6146b6d1541dcd834c43d",
-      "sha256": "38c7135ada5d1452776a6386ece01f289569904089e85f859a5f1d41b8806e51",
+      "bytes": 364557,
+      "source_sha256": "0581680ad0cdac36e805527229b80adb662ec2d82244442af57525f934f3b7ac",
+      "sha256": "5cad36954fb9e3a7b27380e2539ccebe657d45ae9306435e14092fd088fe0954",
       "access_metadata_redactions": 0
     },
     {
@@ -15361,14 +15361,486 @@
       "source_sha256": "231223db62bba0854a8bfd04389943555b8b79a0a573e90ad5ad00bedcbda948",
       "sha256": "231223db62bba0854a8bfd04389943555b8b79a0a573e90ad5ad00bedcbda948",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_EEG_scores_CPU_20261109_v276.py",
+      "source_path": "PKU_analyze_EEG_scores_CPU_20261109_v276.py",
+      "bytes": 8741,
+      "source_sha256": "88b2e6c625e9032bbb06ec4eff5703fde6c6e7edd44bb6e00a2e995318a1a7f2",
+      "sha256": "88b2e6c625e9032bbb06ec4eff5703fde6c6e7edd44bb6e00a2e995318a1a7f2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_EEG_scores_CPU_20261109_v276.sbatch",
+      "source_path": "PKU_analyze_EEG_scores_CPU_20261109_v276.sbatch",
+      "bytes": 1795,
+      "source_sha256": "753bf62356c3929053f94df23cb1b513e9f7e817711ce6f01c16f01b35b72f8b",
+      "sha256": "753bf62356c3929053f94df23cb1b513e9f7e817711ce6f01c16f01b35b72f8b",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_EEG_scores_CPU_20261109_v279.py",
+      "source_path": "PKU_analyze_EEG_scores_CPU_20261109_v279.py",
+      "bytes": 8741,
+      "source_sha256": "082691fc3f2727f2d930b06266595dd67ae51b4022af67c7df4055117581d04d",
+      "sha256": "082691fc3f2727f2d930b06266595dd67ae51b4022af67c7df4055117581d04d",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_EEG_scores_CPU_20261109_v279.sbatch",
+      "source_path": "PKU_analyze_EEG_scores_CPU_20261109_v279.sbatch",
+      "bytes": 1795,
+      "source_sha256": "e083443ac9d7acd0f1945a110dda88619aba0f1e3e3eabe3ff899e45b73d3cc9",
+      "sha256": "e083443ac9d7acd0f1945a110dda88619aba0f1e3e3eabe3ff899e45b73d3cc9",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_EEG_candidates_CPU_20261109_v268.py",
+      "source_path": "PKU_audit_EEG_candidates_CPU_20261109_v268.py",
+      "bytes": 7230,
+      "source_sha256": "976abd014d3ec797f9bd5d321469586b5643883496f41ecfd2a4c1b3aeaee713",
+      "sha256": "976abd014d3ec797f9bd5d321469586b5643883496f41ecfd2a4c1b3aeaee713",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_EEG_candidates_CPU_20261109_v268.sbatch",
+      "source_path": "PKU_audit_EEG_candidates_CPU_20261109_v268.sbatch",
+      "bytes": 715,
+      "source_sha256": "5e148f12017f6323d2bba8e440f7abfe9ef6828be1d71d2904b49c3f17348234",
+      "sha256": "5e148f12017f6323d2bba8e440f7abfe9ef6828be1d71d2904b49c3f17348234",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_calibrate_matching_ordinary_GPU_20261109_v264.py",
+      "source_path": "PKU_calibrate_matching_ordinary_GPU_20261109_v264.py",
+      "bytes": 7762,
+      "source_sha256": "f66f60a165975fd26d0857739b9a8d4cc55a662e4f1d6bff96c0144f225577d1",
+      "sha256": "f66f60a165975fd26d0857739b9a8d4cc55a662e4f1d6bff96c0144f225577d1",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_calibrate_matching_ordinary_GPU_20261109_v264.sbatch",
+      "source_path": "PKU_calibrate_matching_ordinary_GPU_20261109_v264.sbatch",
+      "bytes": 849,
+      "source_sha256": "9e5bcf5bdf81b1e35a54bc358eefe0d2415464ada9e63da9c1e811621f98f820",
+      "sha256": "9e5bcf5bdf81b1e35a54bc358eefe0d2415464ada9e63da9c1e811621f98f820",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_diagnose_complete_A_T_CPU_20261109_v283.py",
+      "source_path": "PKU_diagnose_complete_A_T_CPU_20261109_v283.py",
+      "bytes": 7746,
+      "source_sha256": "bd59d419c6657134c585aa7477745772d307391616fd5936e15200ddebe33ee2",
+      "sha256": "bd59d419c6657134c585aa7477745772d307391616fd5936e15200ddebe33ee2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_diagnose_complete_A_T_CPU_20261109_v283.sbatch",
+      "source_path": "PKU_diagnose_complete_A_T_CPU_20261109_v283.sbatch",
+      "bytes": 476,
+      "source_sha256": "f2c3c949427c2fa12dae4da3dbe4e58086b157ec516891aab9637a01877ec95a",
+      "sha256": "f2c3c949427c2fa12dae4da3dbe4e58086b157ec516891aab9637a01877ec95a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_images_CPU_20261109_v271.py",
+      "source_path": "PKU_dispatch_EEG_images_CPU_20261109_v271.py",
+      "bytes": 2870,
+      "source_sha256": "12e0ce367a848fc5358f583a5ed4c250a09ea178329be2ed33cb0816221e5f4b",
+      "sha256": "12e0ce367a848fc5358f583a5ed4c250a09ea178329be2ed33cb0816221e5f4b",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_images_CPU_20261109_v271.sbatch",
+      "source_path": "PKU_dispatch_EEG_images_CPU_20261109_v271.sbatch",
+      "bytes": 1896,
+      "source_sha256": "827f8024ca7698eca1c643ce0a88e8d50bcdd2718b345efe817528f64d314322",
+      "sha256": "827f8024ca7698eca1c643ce0a88e8d50bcdd2718b345efe817528f64d314322",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_images_CPU_20261109_v277.py",
+      "source_path": "PKU_dispatch_EEG_images_CPU_20261109_v277.py",
+      "bytes": 2934,
+      "source_sha256": "408361db3a00dbeb3c272ea9b9f2ea53ba763984da1ca606fd987d8e715403b2",
+      "sha256": "408361db3a00dbeb3c272ea9b9f2ea53ba763984da1ca606fd987d8e715403b2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_images_CPU_20261109_v277.sbatch",
+      "source_path": "PKU_dispatch_EEG_images_CPU_20261109_v277.sbatch",
+      "bytes": 602,
+      "source_sha256": "4e8e3dc5eff3b9ff0a37ccb0622b761bdb8f03a60751559e145ff14b3d4428b6",
+      "sha256": "4e8e3dc5eff3b9ff0a37ccb0622b761bdb8f03a60751559e145ff14b3d4428b6",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_scoring_CPU_20261109_v276.py",
+      "source_path": "PKU_dispatch_EEG_scoring_CPU_20261109_v276.py",
+      "bytes": 3730,
+      "source_sha256": "76a5e4abf96d4bb256bc255a9949b607904d82e3f98f88650d3642e1a54aa0ff",
+      "sha256": "76a5e4abf96d4bb256bc255a9949b607904d82e3f98f88650d3642e1a54aa0ff",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_scoring_CPU_20261109_v276.sbatch",
+      "source_path": "PKU_dispatch_EEG_scoring_CPU_20261109_v276.sbatch",
+      "bytes": 1807,
+      "source_sha256": "5ed1d2542ccfe3cbcaf8c672b3918569adb2448e0e697e83a1f6959a6ffc6241",
+      "sha256": "5ed1d2542ccfe3cbcaf8c672b3918569adb2448e0e697e83a1f6959a6ffc6241",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_scoring_CPU_20261109_v279.py",
+      "source_path": "PKU_dispatch_EEG_scoring_CPU_20261109_v279.py",
+      "bytes": 3730,
+      "source_sha256": "85d4365136b58a5b4d87679b3694cfcd4f788cffe6edae65c0a886e9e88aef1e",
+      "sha256": "85d4365136b58a5b4d87679b3694cfcd4f788cffe6edae65c0a886e9e88aef1e",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_scoring_CPU_20261109_v279.sbatch",
+      "source_path": "PKU_dispatch_EEG_scoring_CPU_20261109_v279.sbatch",
+      "bytes": 1807,
+      "source_sha256": "f6aad91a8f33b7fb5dd0729ece26b4525ec4129fa7460fe3f98659116749a5c7",
+      "sha256": "f6aad91a8f33b7fb5dd0729ece26b4525ec4129fa7460fe3f98659116749a5c7",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_scoring_CPU_20261109_v281.py",
+      "source_path": "PKU_dispatch_EEG_scoring_CPU_20261109_v281.py",
+      "bytes": 3730,
+      "source_sha256": "f200619e2bb221583f0bfe163959e952c693dbf4209baa1250329837f3324e2b",
+      "sha256": "f200619e2bb221583f0bfe163959e952c693dbf4209baa1250329837f3324e2b",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_EEG_scoring_CPU_20261109_v281.sbatch",
+      "source_path": "PKU_dispatch_EEG_scoring_CPU_20261109_v281.sbatch",
+      "bytes": 676,
+      "source_sha256": "519d449e0384c0c0bdd7c98549ce50b8c489ac83962fcd181a2c0457911803b7",
+      "sha256": "519d449e0384c0c0bdd7c98549ce50b8c489ac83962fcd181a2c0457911803b7",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_eeg_candidate_core_20261109_v266.py",
+      "source_path": "PKU_eeg_candidate_core_20261109_v266.py",
+      "bytes": 5114,
+      "source_sha256": "d1b490a05d002a7493560959e202c02ec646a3da1a5e699621e90f965f16550d",
+      "sha256": "d1b490a05d002a7493560959e202c02ec646a3da1a5e699621e90f965f16550d",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_EEG_evaluation_core_20261109_v276.py",
+      "source_path": "PKU_EEG_evaluation_core_20261109_v276.py",
+      "bytes": 6443,
+      "source_sha256": "747cf6a02cab742530504446cfa2914278f7bbfd003040b5f86376da7f907072",
+      "sha256": "747cf6a02cab742530504446cfa2914278f7bbfd003040b5f86376da7f907072",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_EEG_evaluation_core_20261109_v279.py",
+      "source_path": "PKU_EEG_evaluation_core_20261109_v279.py",
+      "bytes": 6753,
+      "source_sha256": "daae9219f929599edcd527315212c841d601afaa3a29b61a269055ee02d725d0",
+      "sha256": "daae9219f929599edcd527315212c841d601afaa3a29b61a269055ee02d725d0",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_generate_EEG_comparison_GPU_20261109_v271.py",
+      "source_path": "PKU_generate_EEG_comparison_GPU_20261109_v271.py",
+      "bytes": 10659,
+      "source_sha256": "83887037cbf651ddccadf0afe13ec18908ba3e0c115d1c96d93a9243d6daca04",
+      "sha256": "83887037cbf651ddccadf0afe13ec18908ba3e0c115d1c96d93a9243d6daca04",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_generate_EEG_comparison_GPU_20261109_v271.sbatch",
+      "source_path": "PKU_generate_EEG_comparison_GPU_20261109_v271.sbatch",
+      "bytes": 1887,
+      "source_sha256": "9db537945087f4dac127797383dde517679f7ef68239c4ac406d8bea723f935b",
+      "sha256": "9db537945087f4dac127797383dde517679f7ef68239c4ac406d8bea723f935b",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_EEG_image_conditions_CPU_20261109_v271.py",
+      "source_path": "PKU_prepare_EEG_image_conditions_CPU_20261109_v271.py",
+      "bytes": 7777,
+      "source_sha256": "5ecb79fb4fdcd0a46c6a1af9c839232cc62066143c6953ebf5dfa2e789a73228",
+      "sha256": "5ecb79fb4fdcd0a46c6a1af9c839232cc62066143c6953ebf5dfa2e789a73228",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_EEG_image_conditions_CPU_20261109_v271.sbatch",
+      "source_path": "PKU_prepare_EEG_image_conditions_CPU_20261109_v271.sbatch",
+      "bytes": 1891,
+      "source_sha256": "05ef8c385be6346895f70d80a11b2336475b47ef6ea01626d4f167fc5a02990a",
+      "sha256": "05ef8c385be6346895f70d80a11b2336475b47ef6ea01626d4f167fc5a02990a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_EEG_scoring_CPU_20261109_v276.py",
+      "source_path": "PKU_prepare_EEG_scoring_CPU_20261109_v276.py",
+      "bytes": 6051,
+      "source_sha256": "45248b50569c6538321581d866d86e6fdd866a2bf482ea83b86b88d69d066bcc",
+      "sha256": "45248b50569c6538321581d866d86e6fdd866a2bf482ea83b86b88d69d066bcc",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_EEG_scoring_CPU_20261109_v276.sbatch",
+      "source_path": "PKU_prepare_EEG_scoring_CPU_20261109_v276.sbatch",
+      "bytes": 1792,
+      "source_sha256": "2f69122d636a0895ff3b689c630e8d68cd799bce724b7aa4577217ab85806d50",
+      "sha256": "2f69122d636a0895ff3b689c630e8d68cd799bce724b7aa4577217ab85806d50",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_EEG_scoring_CPU_20261109_v279.py",
+      "source_path": "PKU_prepare_EEG_scoring_CPU_20261109_v279.py",
+      "bytes": 6051,
+      "source_sha256": "e3c3cd45f311154522c1ffc6e9bb9308b9a15384a09aed07e9d2a871378e5e91",
+      "sha256": "e3c3cd45f311154522c1ffc6e9bb9308b9a15384a09aed07e9d2a871378e5e91",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_EEG_scoring_CPU_20261109_v279.sbatch",
+      "source_path": "PKU_prepare_EEG_scoring_CPU_20261109_v279.sbatch",
+      "bytes": 1792,
+      "source_sha256": "bfce62d0f7f1641b92d8dda9205d6075c028eaad0141f697e2ea864b221af099",
+      "sha256": "bfce62d0f7f1641b92d8dda9205d6075c028eaad0141f697e2ea864b221af099",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_EEG_scoring_CPU_20261109_v281.py",
+      "source_path": "PKU_prepare_EEG_scoring_CPU_20261109_v281.py",
+      "bytes": 6243,
+      "source_sha256": "ab6a60674ecaf68b9fc958c7f2945de4e3cb64b05e5120001b09a45540b9925e",
+      "sha256": "ab6a60674ecaf68b9fc958c7f2945de4e3cb64b05e5120001b09a45540b9925e",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_EEG_scoring_CPU_20261109_v281.sbatch",
+      "source_path": "PKU_prepare_EEG_scoring_CPU_20261109_v281.sbatch",
+      "bytes": 660,
+      "source_sha256": "da1c36196e0b5af43ed1912e518f40cb9c136affb9756091e04677fa5770273a",
+      "sha256": "da1c36196e0b5af43ed1912e518f40cb9c136affb9756091e04677fa5770273a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_EEG_metric_core_CPU_20261109_v276.py",
+      "source_path": "PKU_probe_EEG_metric_core_CPU_20261109_v276.py",
+      "bytes": 2756,
+      "source_sha256": "7db656456e3a9e93e2c3b6906420c044383a9fed6814ed1d4582d15c4066f120",
+      "sha256": "7db656456e3a9e93e2c3b6906420c044383a9fed6814ed1d4582d15c4066f120",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_EEG_metric_core_CPU_20261109_v276.sbatch",
+      "source_path": "PKU_probe_EEG_metric_core_CPU_20261109_v276.sbatch",
+      "bytes": 1796,
+      "source_sha256": "53e2bb1df01311611a744c8bb2111d2a210a188c857bb0855fe37402fcd49724",
+      "sha256": "53e2bb1df01311611a744c8bb2111d2a210a188c857bb0855fe37402fcd49724",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_EEG_metric_core_CPU_20261109_v279.py",
+      "source_path": "PKU_probe_EEG_metric_core_CPU_20261109_v279.py",
+      "bytes": 3689,
+      "source_sha256": "d1b0ad82f6ff8afa2a87853fad89c38e843302f45aa9f859c6052a5682cb046a",
+      "sha256": "d1b0ad82f6ff8afa2a87853fad89c38e843302f45aa9f859c6052a5682cb046a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_EEG_metric_core_CPU_20261109_v279.sbatch",
+      "source_path": "PKU_probe_EEG_metric_core_CPU_20261109_v279.sbatch",
+      "bytes": 1796,
+      "source_sha256": "50541912bf90b52acb766d3a2e106143a4d8f9c697cffe9696d5db0c15eb9d6c",
+      "sha256": "50541912bf90b52acb766d3a2e106143a4d8f9c697cffe9696d5db0c15eb9d6c",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_profile_EEG_candidates_GPU_20261109_v267.sbatch",
+      "source_path": "PKU_profile_EEG_candidates_GPU_20261109_v267.sbatch",
+      "bytes": 1668,
+      "source_sha256": "e6cd63b1de2abfba9d34bd255fafa4fcd450244027e637f794c6aa2831de5062",
+      "sha256": "e6cd63b1de2abfba9d34bd255fafa4fcd450244027e637f794c6aa2831de5062",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_EEG_candidates_GPU_20261109_v269.py",
+      "source_path": "PKU_queue_EEG_candidates_GPU_20261109_v269.py",
+      "bytes": 4698,
+      "source_sha256": "0083fe238f75ac82ef6e87acfbe54ed322e7cf7181257c647533552ba976ead6",
+      "sha256": "0083fe238f75ac82ef6e87acfbe54ed322e7cf7181257c647533552ba976ead6",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_EEG_candidates_GPU_20261109_v269.sbatch",
+      "source_path": "PKU_queue_EEG_candidates_GPU_20261109_v269.sbatch",
+      "bytes": 1829,
+      "source_sha256": "7ef0681d630dc22113e31bdf2ce5eef0fb2b33d17f3ff04da14b11470cb51fa9",
+      "sha256": "7ef0681d630dc22113e31bdf2ce5eef0fb2b33d17f3ff04da14b11470cb51fa9",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_restore_metric_assets_CPU_20261109_v272.py",
+      "source_path": "PKU_restore_metric_assets_CPU_20261109_v272.py",
+      "bytes": 6468,
+      "source_sha256": "fed165ae1878a8f41d0b5bcd7ce40022aa1527f26f072b6af70e9001ea64b1ac",
+      "sha256": "fed165ae1878a8f41d0b5bcd7ce40022aa1527f26f072b6af70e9001ea64b1ac",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_restore_metric_assets_CPU_20261109_v272.sbatch",
+      "source_path": "PKU_restore_metric_assets_CPU_20261109_v272.sbatch",
+      "bytes": 471,
+      "source_sha256": "69b900d74d46b097a09b8e356c05751ffe944ceb75413d9917ae218aec4c2be3",
+      "sha256": "69b900d74d46b097a09b8e356c05751ffe944ceb75413d9917ae218aec4c2be3",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_EEG_images_GPU_20261109_v276.py",
+      "source_path": "PKU_score_EEG_images_GPU_20261109_v276.py",
+      "bytes": 8972,
+      "source_sha256": "30f6a86a099f4e8bfff000b70b191991a6d3ac5ac481169e3007efa88e310a40",
+      "sha256": "30f6a86a099f4e8bfff000b70b191991a6d3ac5ac481169e3007efa88e310a40",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_EEG_images_GPU_20261109_v276.sbatch",
+      "source_path": "PKU_score_EEG_images_GPU_20261109_v276.sbatch",
+      "bytes": 1798,
+      "source_sha256": "99028849612ddb04895a2b3010ae1f6b9484101f6cb0c128f7215424a999d57c",
+      "sha256": "99028849612ddb04895a2b3010ae1f6b9484101f6cb0c128f7215424a999d57c",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_EEG_images_GPU_20261109_v279.py",
+      "source_path": "PKU_score_EEG_images_GPU_20261109_v279.py",
+      "bytes": 9914,
+      "source_sha256": "8a92839a73f16921bdf24c63fc1a777d36850195101bd2b8ca92b216e7d3aa68",
+      "sha256": "8a92839a73f16921bdf24c63fc1a777d36850195101bd2b8ca92b216e7d3aa68",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_EEG_images_GPU_20261109_v279.sbatch",
+      "source_path": "PKU_score_EEG_images_GPU_20261109_v279.sbatch",
+      "bytes": 1798,
+      "source_sha256": "99a28a9e3943d73dc93ef7c03cf8e7c70bbcb812d9b932685f67cf27432cc229",
+      "sha256": "99a28a9e3943d73dc93ef7c03cf8e7c70bbcb812d9b932685f67cf27432cc229",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_train_eeg_candidates_GPU_20261109_v267.py",
+      "source_path": "PKU_train_eeg_candidates_GPU_20261109_v267.py",
+      "bytes": 13780,
+      "source_sha256": "bbf8c0bd346f2d004fdc6e38810fd8ce01a29988ae35c0a8b680d4f7934f54ea",
+      "sha256": "bbf8c0bd346f2d004fdc6e38810fd8ce01a29988ae35c0a8b680d4f7934f54ea",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_verify_offline_evaluation_CPU_20261109_v275.py",
+      "source_path": "PKU_verify_offline_evaluation_CPU_20261109_v275.py",
+      "bytes": 3683,
+      "source_sha256": "611e97d7fce761499879eb913ffbcd112b52cbc32f8ba9fac09b54af0a28b897",
+      "sha256": "611e97d7fce761499879eb913ffbcd112b52cbc32f8ba9fac09b54af0a28b897",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_verify_offline_evaluation_CPU_20261109_v275.sbatch",
+      "source_path": "PKU_verify_offline_evaluation_CPU_20261109_v275.sbatch",
+      "bytes": 862,
+      "source_sha256": "6db56ec5c9d30770fe1840c90b96da9e55575a9cb00c827a07b3f0700eac8f2f",
+      "sha256": "6db56ec5c9d30770fe1840c90b96da9e55575a9cb00c827a07b3f0700eac8f2f",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_two_core_candidates_20261109_v266.json",
+      "source_path": "configs/EEG_two_core_candidates_20261109_v266.json",
+      "bytes": 4401,
+      "source_sha256": "76c77ef2942c676c5e3f473ca6fca590f3888200951d671c31efc2f22c2d61b9",
+      "sha256": "76c77ef2942c676c5e3f473ca6fca590f3888200951d671c31efc2f22c2d61b9",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_candidates_image_comparison_DRAFT_20261109_v270.json",
+      "source_path": "configs/EEG_candidates_image_comparison_DRAFT_20261109_v270.json",
+      "bytes": 2668,
+      "source_sha256": "0b455820ee186d303f4b226b9255bf9870ffed9ed7a30efbee4320c181e00147",
+      "sha256": "0b455820ee186d303f4b226b9255bf9870ffed9ed7a30efbee4320c181e00147",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_image_comparison_20261109_v271.json",
+      "source_path": "configs/EEG_image_comparison_20261109_v271.json",
+      "bytes": 3550,
+      "source_sha256": "435c56d7e97cb56326554f17e35eb286724b3d0cc653f7cc3ce3468b4c8d87ce",
+      "sha256": "435c56d7e97cb56326554f17e35eb286724b3d0cc653f7cc3ce3468b4c8d87ce",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/metric_restoration_20261109_v272.json",
+      "source_path": "configs/metric_restoration_20261109_v272.json",
+      "bytes": 21188,
+      "source_sha256": "7e4c8a86f4d0db2b127caa5af9827bdb4611ebaa614c46953fa275c70fe211a6",
+      "sha256": "7e4c8a86f4d0db2b127caa5af9827bdb4611ebaa614c46953fa275c70fe211a6",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_scoring_policy_20261109_v276.json",
+      "source_path": "configs/EEG_scoring_policy_20261109_v276.json",
+      "bytes": 2620,
+      "source_sha256": "d38791e4bf0eb55c91760e1b344e8b6ad34b13ebd0f9d07b8132638dcb6eb024",
+      "sha256": "d38791e4bf0eb55c91760e1b344e8b6ad34b13ebd0f9d07b8132638dcb6eb024",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_scoring_policy_20261109_v279.json",
+      "source_path": "configs/EEG_scoring_policy_20261109_v279.json",
+      "bytes": 2748,
+      "source_sha256": "dc8f47073ca9dfbb9f9c53d196b5ae3787d5d571bfd662e74655c38635af15fd",
+      "sha256": "dc8f47073ca9dfbb9f9c53d196b5ae3787d5d571bfd662e74655c38635af15fd",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/BRAINHIVE_TWO_EEG_CANDIDATES_EXECUTION_20261109_v280.md",
+      "source_path": "reports/BRAINHIVE_TWO_EEG_CANDIDATES_EXECUTION_20261109_v280.md",
+      "bytes": 11651,
+      "source_sha256": "46ef8b01ba9bdf547f90c088927b2086689940d851350779f151bd14b52cec46",
+      "sha256": "46ef8b01ba9bdf547f90c088927b2086689940d851350779f151bd14b52cec46",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_CANDIDATES_ACTUAL_MILESTONE_20261109_v284.json",
+      "source_path": "audit/EEG_CANDIDATES_ACTUAL_MILESTONE_20261109_v284.json",
+      "bytes": 40889,
+      "source_sha256": "36e9d3d02791d1af5d6aea8f261162dc36bf7c6209f15dbccaed9187501c9bc2",
+      "sha256": "36e9d3d02791d1af5d6aea8f261162dc36bf7c6209f15dbccaed9187501c9bc2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/T_final_A_independent_statistics_v284.json",
+      "source_path": "audit/crossdisciplinary_20261028_v1/T_final_A_independent_statistics_v284.json",
+      "bytes": 4194,
+      "source_sha256": "906e018368fd5ac99102fb4751070e241ee1ab0846714a9d685194cf384d95ff",
+      "sha256": "906e018368fd5ac99102fb4751070e241ee1ab0846714a9d685194cf384d95ff",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/metric_algebra_repair_v279.json",
+      "source_path": "audit/crossdisciplinary_20261028_v1/metric_algebra_repair_v279.json",
+      "bytes": 2306,
+      "source_sha256": "1a96974157881065023aa29037b572f8f5e5d0717a150dea1fb0326a1d163d2f",
+      "sha256": "1a96974157881065023aa29037b572f8f5e5d0717a150dea1fb0326a1d163d2f",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 17177768,
+  "bytes": 17476054,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-09T06:36:08.369045+00:00"
+  "updated_UTC": "2026-11-09T08:55:04.725610+00:00"
 }

@@ -1,0 +1,1024 @@
+{
+  "status": "ACTUAL_TWO_EEG_CANDIDATES_TRAINING_AND_FULL_IMAGE_EVALUATION_CHAIN",
+  "UTC": "2026-11-09T08:55:04.725610+00:00",
+  "actual_observation": {
+    "receipt": "PKU_HPC_goal284_latest_before_record_20261109T085504251245Z.json",
+    "observation": {
+      "UTC": "2026-11-09T08:55:05.680577+00:00",
+      "squeue": "5098842|eeg_score_dispatch281|PENDING|0:00||(Dependency)\n5098841|eeg_dispatch277|PENDING|0:00||(Dependency)\n5098840|eeg_queue269|RUNNING|1:20|gpua800n10|gpua800n10\n5098837|cola_compare200|RUNNING|3:18|gpua800n05|gpua800n05\n",
+      "training_progress": {
+        "stage": 7,
+        "case": "B_residual",
+        "job_id": "5098840",
+        "status": "RUNNING_SAME_REGISTERED_CASE",
+        "starting_updates": 2,
+        "starting_checkpoint_sha256": "5ae4da0ad88e5afee16192246d39ddef2a278606063f5c1026b019c47c5a5d4e",
+        "UTC": "2026-11-09T08:53:46.117102+00:00"
+      },
+      "training_complete": null,
+      "cases": [
+        {
+          "case": "A_positive",
+          "checkpoint": {
+            "case": "A_positive",
+            "updates": 827,
+            "exposures": 13230,
+            "checkpoint_sha256": "3a81b2c97cf03d614d842a3bd265dda0dba4c968f3c55b9a779c9f43781f2f5a",
+            "job_id": "5098457"
+          },
+          "complete": {
+            "status": "COMPLETE_FIXED_FULL_T_CANDIDATE_FIT",
+            "case": "A_positive",
+            "updates": 827,
+            "exposures": 13230,
+            "expected_updates": 827,
+            "checkpoint_sha256": "3a81b2c97cf03d614d842a3bd265dda0dba4c968f3c55b9a779c9f43781f2f5a",
+            "seconds": 1163.909653411014,
+            "peak_GPU_allocated_bytes": 13290462208,
+            "new_images": 0,
+            "ordinary_changed": false
+          },
+          "full_CPU_proofs": [
+            {
+              "status": "PASS_CANDIDATE_MODEL_ADAM_RNG_COVERAGE_AND_FROZEN_COORDINATES",
+              "case": "A_positive",
+              "updates": 827,
+              "exposures": 13230,
+              "full_T_complete": true,
+              "checkpoint_sha256": "3a81b2c97cf03d614d842a3bd265dda0dba4c968f3c55b9a779c9f43781f2f5a",
+              "trainable_parameters": 6450176,
+              "folded_projection_CPU_FP64_max_abs": null,
+              "CUDA_trajectory_replay": false,
+              "new_updates": 0,
+              "new_images": 0
+            }
+          ]
+        },
+        {
+          "case": "A_pair",
+          "checkpoint": {
+            "case": "A_pair",
+            "updates": 827,
+            "exposures": 13230,
+            "checkpoint_sha256": "4a57d00835dd3f1b4db112497703521ca42c27bdeb46bd2a9d74a2abc13ce3af",
+            "job_id": "5098562"
+          },
+          "complete": {
+            "status": "COMPLETE_FIXED_FULL_T_CANDIDATE_FIT",
+            "case": "A_pair",
+            "updates": 827,
+            "exposures": 13230,
+            "expected_updates": 827,
+            "checkpoint_sha256": "4a57d00835dd3f1b4db112497703521ca42c27bdeb46bd2a9d74a2abc13ce3af",
+            "seconds": 1168.42858411232,
+            "peak_GPU_allocated_bytes": 13290245120,
+            "new_images": 0,
+            "ordinary_changed": false
+          },
+          "full_CPU_proofs": [
+            {
+              "status": "PASS_CANDIDATE_MODEL_ADAM_RNG_COVERAGE_AND_FROZEN_COORDINATES",
+              "case": "A_pair",
+              "updates": 827,
+              "exposures": 13230,
+              "full_T_complete": true,
+              "checkpoint_sha256": "4a57d00835dd3f1b4db112497703521ca42c27bdeb46bd2a9d74a2abc13ce3af",
+              "trainable_parameters": 6450176,
+              "folded_projection_CPU_FP64_max_abs": null,
+              "CUDA_trajectory_replay": false,
+              "new_updates": 0,
+              "new_images": 0
+            }
+          ]
+        },
+        {
+          "case": "A_reverse",
+          "checkpoint": {
+            "case": "A_reverse",
+            "updates": 827,
+            "exposures": 13230,
+            "checkpoint_sha256": "296378ee7895350af7cfd67e4e406f3bba548e241b5e38d1e85a1949c1c7e9f2",
+            "job_id": "5098783"
+          },
+          "complete": {
+            "status": "COMPLETE_FIXED_FULL_T_CANDIDATE_FIT",
+            "case": "A_reverse",
+            "updates": 827,
+            "exposures": 13230,
+            "expected_updates": 827,
+            "checkpoint_sha256": "296378ee7895350af7cfd67e4e406f3bba548e241b5e38d1e85a1949c1c7e9f2",
+            "seconds": 1158.1001568268985,
+            "peak_GPU_allocated_bytes": 13290462208,
+            "new_images": 0,
+            "ordinary_changed": false
+          },
+          "full_CPU_proofs": [
+            {
+              "status": "PASS_CANDIDATE_MODEL_ADAM_RNG_COVERAGE_AND_FROZEN_COORDINATES",
+              "case": "A_reverse",
+              "updates": 827,
+              "exposures": 13230,
+              "full_T_complete": true,
+              "checkpoint_sha256": "296378ee7895350af7cfd67e4e406f3bba548e241b5e38d1e85a1949c1c7e9f2",
+              "trainable_parameters": 6450176,
+              "folded_projection_CPU_FP64_max_abs": null,
+              "CUDA_trajectory_replay": false,
+              "new_updates": 0,
+              "new_images": 0
+            }
+          ]
+        },
+        {
+          "case": "B_residual",
+          "checkpoint": {
+            "case": "B_residual",
+            "updates": 2,
+            "exposures": 32,
+            "checkpoint_sha256": "5ae4da0ad88e5afee16192246d39ddef2a278606063f5c1026b019c47c5a5d4e",
+            "job_id": "5098229"
+          },
+          "complete": null,
+          "full_CPU_proofs": []
+        },
+        {
+          "case": "B_raw",
+          "checkpoint": {
+            "case": "B_raw",
+            "updates": 2,
+            "exposures": 32,
+            "checkpoint_sha256": "3858738ff83cc24c83920b1f9ac42a29add1892c7adfa0516bc28e50b56a3609",
+            "job_id": "5098229"
+          },
+          "complete": null,
+          "full_CPU_proofs": []
+        },
+        {
+          "case": "B_shuffle",
+          "checkpoint": {
+            "case": "B_shuffle",
+            "updates": 2,
+            "exposures": 32,
+            "checkpoint_sha256": "64de4928c7845ccd90150daf1bc615a87dd3a3d8cc6a7f5e6beff2abb5cd3117",
+            "job_id": "5098229"
+          },
+          "complete": null,
+          "full_CPU_proofs": []
+        }
+      ],
+      "runs/EEG_images_v271/dispatch_v277/progress.json": {
+        "hop": 2,
+        "job_id": "5098784",
+        "UTC": "2026-11-09T08:53:45.945163+00:00",
+        "status": "FOLLOWING_ACTUAL_REGISTERED_TRAINING_TAIL",
+        "training_job": "5098840",
+        "next_dispatch_job": "5098841"
+      },
+      "runs/EEG_images_v271/image_queue_submitted.json": null,
+      "runs/EEG_images_v271/conditions_completion.json": null,
+      "runs/EEG_images_v271/progress.json": null,
+      "runs/EEG_images_v271/completion.json": null,
+      "manifests/EEG_scoring_dispatch_job_v281.json": {
+        "status": "SCORING_DISPATCH_WITH_ORIGINAL_SOURCE_ALIGNED_AUDIT_SUBMITTED",
+        "job_id": "5098793",
+        "training_dependency": "5098783",
+        "retired_only_unallocated_CPU_dispatch": "5098785",
+        "original_source_metric_core_probe_job": "5098719",
+        "scoring_core_unchanged_v279": true,
+        "numerical_training_and_image_sources_unchanged": true,
+        "UTC": "2026-11-09T08:43:10.279835+00:00"
+      },
+      "runs/EEG_metric_core_v279/completion.json": {
+        "status": "PASS_SOURCE_DIRECTION_TIES_EXPLICIT_GALLERY_AND_SSIM_FIXTURES",
+        "job_id": "5098719",
+        "seconds": 26.335427278652787,
+        "checks": [
+          {
+            "fixture": "identity",
+            "primary_rank_max_abs": 0.0
+          },
+          {
+            "fixture": "deranged",
+            "primary_rank_max_abs": 1.9868214962137642e-08
+          },
+          {
+            "fixture": "mixed",
+            "primary_rank_max_abs": 6.622738357719982e-09
+          },
+          {
+            "fixture": "duplicates",
+            "primary_rank_max_abs": 0.0
+          },
+          {
+            "fixture": "random",
+            "primary_rank_max_abs": 2.6490953208835322e-08
+          },
+          {
+            "old_implementation_diagnosis": [
+              {
+                "fixture": "identity",
+                "old_two_afc": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "author_two_afc": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "mismatched_queries": 0
+              },
+              {
+                "fixture": "deranged",
+                "old_two_afc": [
+                  0.6666666666666666,
+                  0.0,
+                  0.0,
+                  0.2222222222222222,
+                  0.0,
+                  0.6666666666666666,
+                  0.3333333333333333,
+                  0.2222222222222222,
+                  0.0,
+                  0.0
+                ],
+                "author_two_afc": [
+                  0.0,
+                  0.7777777777777778,
+                  0.6666666666666666,
+                  0.6666666666666666,
+                  0.0,
+                  0.0,
+                  0.1111111111111111,
+                  0.1111111111111111,
+                  0.1111111111111111,
+                  0.1111111111111111
+                ],
+                "mismatched_queries": 9
+              },
+              {
+                "fixture": "mixed",
+                "old_two_afc": [
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888
+                ],
+                "author_two_afc": [
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888
+                ],
+                "mismatched_queries": 0
+              },
+              {
+                "fixture": "duplicates",
+                "old_two_afc": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.4444444444444444
+                ],
+                "author_two_afc": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "mismatched_queries": 1
+              }
+            ],
+            "no_epsilon_tie_rule_introduced": true
+          },
+          {
+            "fixture": "all830_real_gallery_numpy_Pearson",
+            "similarity_max_abs": 0.0,
+            "explicit_positive_indices": true
+          },
+          {
+            "fixture": "original_SSIM_analytic_constant",
+            "measured": 0.528390869647236,
+            "analytic": 0.5283908696472364
+          }
+        ],
+        "real_candidate_images_read": 0,
+        "GPU_initialized": false,
+        "source_sha256": "d1b0ad82f6ff8afa2a87853fad89c38e843302f45aa9f859c6052a5682cb046a"
+      },
+      "runs/EEG_scoring_dispatch_v281/progress.json": {
+        "hop": 1,
+        "job_id": "5098793",
+        "UTC": "2026-11-09T08:53:45.963068+00:00",
+        "status": "FOLLOWING_ACTUAL_TRAINING_OR_IMAGE_TAIL",
+        "phase": "training",
+        "dependency": "5098840",
+        "next_dispatch_job": "5098842"
+      },
+      "runs/EEG_scores_v279/readiness.json": null,
+      "runs/EEG_scores_v279/progress.json": null,
+      "runs/EEG_scores_v279/analysis_completion.json": null,
+      "runs/evaluation_environment_v275/completion.json": {
+        "status": "PASS_OFFLINE_EVALUATION_ENV_ALL6_MODELS_AND_SSIM",
+        "job_id": "5098561",
+        "seconds": 32.43784571439028,
+        "asset_completion_sha256": "b5e7d614081446094fbe8a29f33f3b40bcf4f5c25ad3d7e3857581cd993759fb",
+        "evaluation_runtime": "/dfs/share/maleiLab/wwt/eeg/package_cache/evaluation_runtime_v275",
+        "Torch": "2.3.0+cu121",
+        "torchvision": "0.18.0+cu121",
+        "NumPy": "1.24.3",
+        "scipy": "1.11.1",
+        "skimage": "0.24.0",
+        "SSIM_source_keyword": 0.8692777853859358,
+        "SSIM_explicit2D": 0.8692777853859358,
+        "separate_target_main_training_env_unchanged": true,
+        "files_SHA_verified": 11,
+        "GPU_used": false,
+        "SEED_caption_and_detector_still_missing": true,
+        "source_sha256": "611e97d7fce761499879eb913ffbcd112b52cbc32f8ba9fac09b54af0a28b897"
+      },
+      "runs/EEG_A_complete_T_diagnostic_v283/completion.json": {
+        "status": "COMPLETE_FIXED_FINAL_MODELS_ALL13230_T_GEOMETRY_AND_MATCHED_TRAIN_LOGS",
+        "job_id": "5098809",
+        "seconds": 16.527935955673456,
+        "queries": 13230,
+        "concepts": 1323,
+        "arms": [
+          "native_fullT",
+          "A_positive",
+          "A_pair"
+        ],
+        "means": {
+          "native_fullT": {
+            "correct_F_cosine": 0.34226016154983224,
+            "hardest_sameconcept_F_cosine": 0.21696880664636486,
+            "sameconcept_margin": 0.1252913549034674,
+            "sameconcept_Top1": 0.9938019652305367,
+            "sameconcept_2AFC": 0.9991013689962014,
+            "F_MSE": 1.3164398273155085
+          },
+          "A_positive": {
+            "correct_F_cosine": 0.37140652816892866,
+            "hardest_sameconcept_F_cosine": 0.34738574956244295,
+            "sameconcept_margin": 0.02402077860648573,
+            "sameconcept_Top1": 0.7763416477702192,
+            "sameconcept_2AFC": 0.9498446315763489,
+            "F_MSE": 1.260957160637987
+          },
+          "A_pair": {
+            "correct_F_cosine": 0.37509772085641324,
+            "hardest_sameconcept_F_cosine": 0.34242814763919616,
+            "sameconcept_margin": 0.032669573217217,
+            "sameconcept_Top1": 0.8289493575207861,
+            "sameconcept_2AFC": 0.9648274142207832,
+            "F_MSE": 1.2539064952506187
+          }
+        },
+        "comparisons": [
+          {
+            "comparison": "A_positive-native",
+            "metric": "correct_F_cosine",
+            "mean": 0.029146366619096427,
+            "concept95_low": 0.027422794876379865,
+            "concept95_high": 0.03084678897943746
+          },
+          {
+            "comparison": "A_positive-native",
+            "metric": "hardest_sameconcept_F_cosine",
+            "mean": 0.1304169429160781,
+            "concept95_low": 0.12835425127626202,
+            "concept95_high": 0.1325050539503319
+          },
+          {
+            "comparison": "A_positive-native",
+            "metric": "sameconcept_margin",
+            "mean": -0.10127057629698169,
+            "concept95_low": -0.10244692791616325,
+            "concept95_high": -0.10006789869807113
+          },
+          {
+            "comparison": "A_positive-native",
+            "metric": "sameconcept_Top1",
+            "mean": -0.21746031746031746,
+            "concept95_low": -0.22623393801965228,
+            "concept95_high": -0.20868669690098263
+          },
+          {
+            "comparison": "A_positive-native",
+            "metric": "sameconcept_2AFC",
+            "mean": -0.0492567374198525,
+            "concept95_low": -0.05154131780666435,
+            "concept95_high": -0.04699693236429629
+          },
+          {
+            "comparison": "A_positive-native",
+            "metric": "F_MSE",
+            "mean": -0.055482666677521456,
+            "concept95_low": -0.05896762605915326,
+            "concept95_high": -0.05200223988489741
+          },
+          {
+            "comparison": "A_pair-native",
+            "metric": "correct_F_cosine",
+            "mean": 0.03283755930658093,
+            "concept95_low": 0.031053694217082255,
+            "concept95_high": 0.03467002862964541
+          },
+          {
+            "comparison": "A_pair-native",
+            "metric": "hardest_sameconcept_F_cosine",
+            "mean": 0.12545934099283135,
+            "concept95_low": 0.12339465419884661,
+            "concept95_high": 0.12755039740745203
+          },
+          {
+            "comparison": "A_pair-native",
+            "metric": "sameconcept_margin",
+            "mean": -0.0926217816862504,
+            "concept95_low": -0.09375890511033035,
+            "concept95_high": -0.09148685600214339
+          },
+          {
+            "comparison": "A_pair-native",
+            "metric": "sameconcept_Top1",
+            "mean": -0.16485260770975058,
+            "concept95_low": -0.1731689342403628,
+            "concept95_high": -0.15676303854875287
+          },
+          {
+            "comparison": "A_pair-native",
+            "metric": "sameconcept_2AFC",
+            "mean": -0.0342739547754181,
+            "concept95_low": -0.03617241774090846,
+            "concept95_high": -0.0324263022244765
+          },
+          {
+            "comparison": "A_pair-native",
+            "metric": "F_MSE",
+            "mean": -0.06253333206488998,
+            "concept95_low": -0.06630110075202268,
+            "concept95_high": -0.05889729338642622
+          },
+          {
+            "comparison": "A_pair-A_positive",
+            "metric": "correct_F_cosine",
+            "mean": 0.0036911926874845123,
+            "concept95_low": 0.0034300391541402533,
+            "concept95_high": 0.003949277198933168
+          },
+          {
+            "comparison": "A_pair-A_positive",
+            "metric": "hardest_sameconcept_F_cosine",
+            "mean": -0.004957601923246766,
+            "concept95_low": -0.005268937411891963,
+            "concept95_high": -0.004654097645780778
+          },
+          {
+            "comparison": "A_pair-A_positive",
+            "metric": "sameconcept_margin",
+            "mean": 0.008648794610731278,
+            "concept95_low": 0.00845420914149527,
+            "concept95_high": 0.008832466613893303
+          },
+          {
+            "comparison": "A_pair-A_positive",
+            "metric": "sameconcept_Top1",
+            "mean": 0.052607709750566896,
+            "concept95_low": 0.047690854119425544,
+            "concept95_high": 0.05744708994708995
+          },
+          {
+            "comparison": "A_pair-A_positive",
+            "metric": "sameconcept_2AFC",
+            "mean": 0.0149827826444344,
+            "concept95_low": 0.013958175315360453,
+            "concept95_high": 0.015957419381900012
+          },
+          {
+            "comparison": "A_pair-A_positive",
+            "metric": "F_MSE",
+            "mean": -0.00705066538736852,
+            "concept95_low": -0.0075688577535731535,
+            "concept95_high": -0.006528868159945617
+          }
+        ],
+        "flips": {
+          "A_positive-native_fullT": {
+            "wrong_to_right": 30,
+            "right_to_wrong": 2907,
+            "net": -2877
+          },
+          "A_pair-native_fullT": {
+            "wrong_to_right": 30,
+            "right_to_wrong": 2211,
+            "net": -2181
+          },
+          "A_pair-A_positive": {
+            "wrong_to_right": 797,
+            "right_to_wrong": 101,
+            "net": 696
+          }
+        },
+        "model_proofs": [
+          {
+            "arm": "native_fullT",
+            "checkpoint_sha256": "8e8b1cea28a5cae88f3acc3f136c8a638109949499fdc852ea95a306e0ff9f2b",
+            "cache_sha256": "1cba06cd244d74ca57fd95cd34be86d95cb2fd7502755458bdee7e1848e643e6",
+            "fixed4_actual_CPU_forward_max_abs": 3.814697265625e-06,
+            "mean_energy_fraction": 0.00025656914696873184,
+            "training_exposure": "All T seen by warm-start encoder; current A arms also fine-tuned T, not OOF or validation"
+          },
+          {
+            "arm": "A_positive",
+            "checkpoint_sha256": "3a81b2c97cf03d614d842a3bd265dda0dba4c968f3c55b9a779c9f43781f2f5a",
+            "cache_sha256": "d7a1db9aa72027362c5e081332b1f73bddca023b18e4484cbada272fe8c4ca74",
+            "fixed4_actual_CPU_forward_max_abs": 1.9073486328125e-06,
+            "mean_energy_fraction": 0.8749676808314288,
+            "training_exposure": "All T seen by warm-start encoder; current A arms also fine-tuned T, not OOF or validation"
+          },
+          {
+            "arm": "A_pair",
+            "checkpoint_sha256": "4a57d00835dd3f1b4db112497703521ca42c27bdeb46bd2a9d74a2abc13ce3af",
+            "cache_sha256": "0e33f1746e2e50ec2d72c16bf4caffd9a3894b75bf972e394c25da5a8a7e3792",
+            "fixed4_actual_CPU_forward_max_abs": 2.0489096641540527e-06,
+            "mean_energy_fraction": 0.8227374099309795,
+            "training_exposure": "All T seen by warm-start encoder; current A arms also fine-tuned T, not OOF or validation"
+          }
+        ],
+        "weighted_training_logs": {
+          "A_positive": {
+            "positive_energy": 0.1668378164663697,
+            "negative_energy": 0.1675104956215111,
+            "token_error": 0.11947557065221999,
+            "contrastive": 0.0,
+            "grad_norm": 0.08375247903534254,
+            "mean_paired_energy_gap": 0.0006726791551414091
+          },
+          "A_pair": {
+            "positive_energy": 0.16813057407410148,
+            "negative_energy": 0.16895537362212226,
+            "token_error": 0.12067743468627007,
+            "contrastive": 0.005021736794591333,
+            "grad_norm": 0.1484938453688643,
+            "mean_paired_energy_gap": 0.0008247995480207826
+          }
+        },
+        "pairing_and_order_provenance_sha256": "d0c4b62a0336680c52859c62f59c82e3017c8d5bcdafdbb320a2542831d78fdf",
+        "values_sha256": "e622e3c0baf0c500b8c4b93ecb707dbfe4818a653c52f668d7fa361880ba6ee0",
+        "new_images": 0,
+        "new_optimizer_updates": 0,
+        "D_V_or_official_queries_used": false,
+        "no_effect_or_epoch_gate": true,
+        "independent_generalization": false,
+        "training_diagnostic_only": true,
+        "image_gain_or_SOTA_established": false,
+        "source_sha256": "bd59d419c6657134c585aa7477745772d307391616fd5936e15200ddebe33ee2"
+      },
+      "runs/EEG_A_complete_T_diagnostic_v283/failure.json": null,
+      "failures": [],
+      "T_diagnostic_sacct": "5098809|COMPLETED|0:0|00:00:17|a3n01c4\n5098809.batch|COMPLETED|0:0|00:00:17|a3n01c4\n5098809.extern|COMPLETED|0:0|00:00:17|a3n01c4\n"
+    }
+  },
+  "ordinary_final_and_calibration": {
+    "status": "COMPLETE_MATCHED_SUB03_ORDINARY_FIXED_FINAL_AND_DFIT_CALIBRATION",
+    "job_id": "5098166",
+    "host": "gpua800n02",
+    "seconds": 41.032020014943555,
+    "updates": 2481,
+    "seen_queries": 39690,
+    "calibration": {
+      "kind": "Dfit_only_global_strength_calibration",
+      "strengths": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "Dfit_token_errors": [
+        0.4174566864967346,
+        0.3461141586303711,
+        0.2918159067630768,
+        0.2509513795375824,
+        0.22021034359931946
+      ],
+      "selected_strength": 1.0,
+      "selected_without_V_or_test_images": true,
+      "Dfit_subject": "sub-03",
+      "Dfit_queries": 820,
+      "Dfit_concepts": 82,
+      "inside_norm_preserving_radius": true,
+      "tie_rule": "Smaller strength",
+      "no_Dcheck_forward": true
+    },
+    "full_parent_sha256": "8e8b1cea28a5cae88f3acc3f136c8a638109949499fdc852ea95a306e0ff9f2b",
+    "training_checkpoint_sha256": "bafaac446870db31923b4cdc763f33eeda824d013a164985b29f9f977afaaae1",
+    "checkpoint_sha256": "f6998db9a49d566547bfbca045d47d471c771d4d0c6880322fbd9067d7024f99",
+    "calibration_sha256": "6e48e96a8b6466b5fafcacbcb4f65a67e97a9d222c4217ddf19811b3f4c14064",
+    "all820_error_table_sha256": "6f8ad81fdf2856855cc278ea705cb486998b0a52f05e6d17bb987bbbeae914d0",
+    "source_sha256": "f66f60a165975fd26d0857739b9a8d4cc55a662e4f1d6bff96c0144f225577d1",
+    "new_optimizer_updates": 0,
+    "new_images": 0,
+    "old_ordinary_changed": false,
+    "image_gain_established": false,
+    "metric_assets_and_image_evaluation_still_required": true
+  },
+  "candidate_prefix_GPU_job": "5098229",
+  "candidate_prefix_CPU_job": "5098276",
+  "metric_environment_CPU_job": "5098561",
+  "metric_core_CPU_job": "5098719",
+  "T_full_diagnostic_CPU_job": "5098809",
+  "T_full_independent_statistics": {
+    "status": "PASS_STDLIB_ALL238140_VALUES_18MEANS_18DIFFERENCES_AND_ALL_FLIPS",
+    "UTC": "2026-11-09T08:52:40.267059+00:00",
+    "artifact_sha256": "e622e3c0baf0c500b8c4b93ecb707dbfe4818a653c52f668d7fa361880ba6ee0",
+    "artifact_bytes": 1290563,
+    "values": 238140,
+    "maximum_mean_discrepancy": 5.551115123125783e-17,
+    "means": {
+      "native_fullT": {
+        "correct_F_cosine": 0.34226016154983224,
+        "hardest_sameconcept_F_cosine": 0.21696880664636486,
+        "sameconcept_margin": 0.1252913549034674,
+        "sameconcept_Top1": 0.9938019652305367,
+        "sameconcept_2AFC": 0.9991013689962014,
+        "F_MSE": 1.3164398273155085
+      },
+      "A_positive": {
+        "correct_F_cosine": 0.3714065281689287,
+        "hardest_sameconcept_F_cosine": 0.34738574956244295,
+        "sameconcept_margin": 0.024020778606485722,
+        "sameconcept_Top1": 0.7763416477702192,
+        "sameconcept_2AFC": 0.9498446315763489,
+        "F_MSE": 1.260957160637987
+      },
+      "A_pair": {
+        "correct_F_cosine": 0.37509772085641324,
+        "hardest_sameconcept_F_cosine": 0.34242814763919616,
+        "sameconcept_margin": 0.032669573217217,
+        "sameconcept_Top1": 0.8289493575207861,
+        "sameconcept_2AFC": 0.9648274142207832,
+        "F_MSE": 1.2539064952506187
+      }
+    },
+    "comparisons": [
+      {
+        "comparison": "A_positive-native",
+        "metric": "correct_F_cosine",
+        "mean": 0.029146366619096423
+      },
+      {
+        "comparison": "A_positive-native",
+        "metric": "hardest_sameconcept_F_cosine",
+        "mean": 0.1304169429160781
+      },
+      {
+        "comparison": "A_positive-native",
+        "metric": "sameconcept_margin",
+        "mean": -0.10127057629698169
+      },
+      {
+        "comparison": "A_positive-native",
+        "metric": "sameconcept_Top1",
+        "mean": -0.21746031746031746
+      },
+      {
+        "comparison": "A_positive-native",
+        "metric": "sameconcept_2AFC",
+        "mean": -0.0492567374198525
+      },
+      {
+        "comparison": "A_positive-native",
+        "metric": "F_MSE",
+        "mean": -0.055482666677521456
+      },
+      {
+        "comparison": "A_pair-native",
+        "metric": "correct_F_cosine",
+        "mean": 0.032837559306580937
+      },
+      {
+        "comparison": "A_pair-native",
+        "metric": "hardest_sameconcept_F_cosine",
+        "mean": 0.12545934099283135
+      },
+      {
+        "comparison": "A_pair-native",
+        "metric": "sameconcept_margin",
+        "mean": -0.0926217816862504
+      },
+      {
+        "comparison": "A_pair-native",
+        "metric": "sameconcept_Top1",
+        "mean": -0.16485260770975058
+      },
+      {
+        "comparison": "A_pair-native",
+        "metric": "sameconcept_2AFC",
+        "mean": -0.0342739547754181
+      },
+      {
+        "comparison": "A_pair-native",
+        "metric": "F_MSE",
+        "mean": -0.06253333206488998
+      },
+      {
+        "comparison": "A_pair-A_positive",
+        "metric": "correct_F_cosine",
+        "mean": 0.0036911926874845123
+      },
+      {
+        "comparison": "A_pair-A_positive",
+        "metric": "hardest_sameconcept_F_cosine",
+        "mean": -0.004957601923246766
+      },
+      {
+        "comparison": "A_pair-A_positive",
+        "metric": "sameconcept_margin",
+        "mean": 0.00864879461073128
+      },
+      {
+        "comparison": "A_pair-A_positive",
+        "metric": "sameconcept_Top1",
+        "mean": 0.052607709750566896
+      },
+      {
+        "comparison": "A_pair-A_positive",
+        "metric": "sameconcept_2AFC",
+        "mean": 0.0149827826444344
+      },
+      {
+        "comparison": "A_pair-A_positive",
+        "metric": "F_MSE",
+        "mean": -0.00705066538736852
+      }
+    ],
+    "flips": {
+      "A_positive-native_fullT": {
+        "wrong_to_right": 30,
+        "right_to_wrong": 2907,
+        "net": -2877
+      },
+      "A_pair-native_fullT": {
+        "wrong_to_right": 30,
+        "right_to_wrong": 2211,
+        "net": -2181
+      },
+      "A_pair-A_positive": {
+        "wrong_to_right": 797,
+        "right_to_wrong": 101,
+        "net": 696
+      }
+    },
+    "margin_identity_checked_queries": 39690,
+    "bootstrap_CI_replayed": false,
+    "CPU_NN_forwards_replayed_locally": false,
+    "scope": "Full saved value identities, per-query margins, all means/differences/flips only; original CPU job checked4actualNNqueries permodel. T training diagnostic, not independent images/generalization."
+  },
+  "complete_cases_with_CPU_proof": [
+    "A_positive",
+    "A_pair",
+    "A_reverse"
+  ],
+  "image_queries": 830,
+  "image_arms": 14,
+  "image_count": 11620,
+  "image_generation_complete": false,
+  "SEED_caption_detector_still_missing": true,
+  "old_ordinary_unchanged": true,
+  "new_independent_method_image_gain": false,
+  "SOTA_or_CCFA_established": false,
+  "objective_complete": false,
+  "metric_failure_retained": {
+    "receipt": "PKU_HPC_goal280_repair_evidence_20261109T083808018612Z.json",
+    "observation": {
+      "UTC": "2026-11-09T08:38:09.569146+00:00",
+      "squeue": "5098720|eeg_score_dispatch276|PENDING|0:00||(Dependency)\n5098644|eeg_score_dispatch276|PENDING|0:00||(DependencyNeverSatisfied)\n5098624|eeg_dispatch277|PENDING|0:00||(Dependency)\n5098598|eeg_queue269|RUNNING|15:00|gpua800n07|gpua800n07\n",
+      "scoring_marker_v276": {
+        "status": "SOURCE_FIXTURE_CPU_AND_FULL_IMAGE_SCORING_DISPATCH_SUBMITTED",
+        "probe_job": "5098643",
+        "job_id": "5098644",
+        "training_dependency": "5098598",
+        "metric_source_cpu_probe_required": true,
+        "one_GPU_in_chain": true,
+        "real_images_scored_yet": false,
+        "queued_scope": "All830x14: DINO, paper7,EffNet; independent CPU fullrank replay and fixed panels. SEED remains incomplete.",
+        "UTC": "2026-11-09T08:29:17.117998+00:00"
+      },
+      "sacct_v276": "5098643|FAILED|1:0|00:00:28\n5098643.batch|FAILED|1:0|00:00:28\n5098643.extern|COMPLETED|0:0|00:00:28\n5098644|PENDING|0:0|00:00:00\n",
+      "probe_v276_out": "/dfs/share/maleiLab/wwt/eeg/code/PKU_EEG_evaluation_core_20261109_v276.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_prepare_EEG_scoring_CPU_20261109_v276.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_score_EEG_images_GPU_20261109_v276.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_analyze_EEG_scores_CPU_20261109_v276.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_probe_EEG_metric_core_CPU_20261109_v276.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_dispatch_EEG_scoring_CPU_20261109_v276.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/HIVE_original_utils_eval_v276.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/EEG_scoring_policy_v276.json: OK\n",
+      "probe_v276_err": "Traceback (most recent call last):\n  File \"/dfs/share/maleiLab/wwt/eeg/code/PKU_probe_EEG_metric_core_CPU_20261109_v276.py\", line 11, in <module>\n    actual=ranked(q,eye,list(range(10)),concepts,'paper');expected,den=scope['two_way_identification'](q.reshape(10,1,2,5),image,identity,lambda x:x,return_avg=False);error=float(np.max(np.abs(actual['two_afc'].numpy()-np.asarray(expected)/den)));assert error<1e-7\n                                                                                                                                                                                                                                                              ^^^^^^^^^^\nAssertionError\n",
+      "scoring_marker_v279": {
+        "status": "SOURCE_FIXTURE_CPU_AND_FULL_IMAGE_SCORING_DISPATCH_SUBMITTED",
+        "probe_job": "5098719",
+        "job_id": "5098720",
+        "training_dependency": "5098598",
+        "metric_source_cpu_probe_required": true,
+        "one_GPU_in_chain": true,
+        "real_images_scored_yet": false,
+        "queued_scope": "All830x14: DINO, paper7,EffNet; independent CPU fullrank replay and fixed panels. SEED remains incomplete.",
+        "UTC": "2026-11-09T08:36:15.940680+00:00"
+      },
+      "metric_proof_v279": {
+        "status": "PASS_SOURCE_DIRECTION_TIES_EXPLICIT_GALLERY_AND_SSIM_FIXTURES",
+        "job_id": "5098719",
+        "seconds": 26.335427278652787,
+        "checks": [
+          {
+            "fixture": "identity",
+            "primary_rank_max_abs": 0.0
+          },
+          {
+            "fixture": "deranged",
+            "primary_rank_max_abs": 1.9868214962137642e-08
+          },
+          {
+            "fixture": "mixed",
+            "primary_rank_max_abs": 6.622738357719982e-09
+          },
+          {
+            "fixture": "duplicates",
+            "primary_rank_max_abs": 0.0
+          },
+          {
+            "fixture": "random",
+            "primary_rank_max_abs": 2.6490953208835322e-08
+          },
+          {
+            "old_implementation_diagnosis": [
+              {
+                "fixture": "identity",
+                "old_two_afc": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "author_two_afc": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "mismatched_queries": 0
+              },
+              {
+                "fixture": "deranged",
+                "old_two_afc": [
+                  0.6666666666666666,
+                  0.0,
+                  0.0,
+                  0.2222222222222222,
+                  0.0,
+                  0.6666666666666666,
+                  0.3333333333333333,
+                  0.2222222222222222,
+                  0.0,
+                  0.0
+                ],
+                "author_two_afc": [
+                  0.0,
+                  0.7777777777777778,
+                  0.6666666666666666,
+                  0.6666666666666666,
+                  0.0,
+                  0.0,
+                  0.1111111111111111,
+                  0.1111111111111111,
+                  0.1111111111111111,
+                  0.1111111111111111
+                ],
+                "mismatched_queries": 9
+              },
+              {
+                "fixture": "mixed",
+                "old_two_afc": [
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888
+                ],
+                "author_two_afc": [
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888,
+                  0.8888888888888888
+                ],
+                "mismatched_queries": 0
+              },
+              {
+                "fixture": "duplicates",
+                "old_two_afc": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.4444444444444444
+                ],
+                "author_two_afc": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "mismatched_queries": 1
+              }
+            ],
+            "no_epsilon_tie_rule_introduced": true
+          },
+          {
+            "fixture": "all830_real_gallery_numpy_Pearson",
+            "similarity_max_abs": 0.0,
+            "explicit_positive_indices": true
+          },
+          {
+            "fixture": "original_SSIM_analytic_constant",
+            "measured": 0.528390869647236,
+            "analytic": 0.5283908696472364
+          }
+        ],
+        "real_candidate_images_read": 0,
+        "GPU_initialized": false,
+        "source_sha256": "d1b0ad82f6ff8afa2a87853fad89c38e843302f45aa9f859c6052a5682cb046a"
+      },
+      "sacct_v279": "5098719|COMPLETED|0:0|00:00:28\n5098719.batch|COMPLETED|0:0|00:00:28\n5098719.extern|COMPLETED|0:0|00:00:28\n5098720|PENDING|0:0|00:00:00\n",
+      "probe_v279_out": "/dfs/share/maleiLab/wwt/eeg/code/PKU_EEG_evaluation_core_20261109_v279.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_prepare_EEG_scoring_CPU_20261109_v279.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_score_EEG_images_GPU_20261109_v279.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_analyze_EEG_scores_CPU_20261109_v279.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_probe_EEG_metric_core_CPU_20261109_v279.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_dispatch_EEG_scoring_CPU_20261109_v279.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/HIVE_original_utils_eval_v279.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/EEG_scoring_policy_v279.json: OK\n{\"status\": \"PASS_SOURCE_DIRECTION_TIES_EXPLICIT_GALLERY_AND_SSIM_FIXTURES\", \"job_id\": \"5098719\", \"seconds\": 26.335427278652787, \"checks\": [{\"fixture\": \"identity\", \"primary_rank_max_abs\": 0.0}, {\"fixture\": \"deranged\", \"primary_rank_max_abs\": 1.9868214962137642e-08}, {\"fixture\": \"mixed\", \"primary_rank_max_abs\": 6.622738357719982e-09}, {\"fixture\": \"duplicates\", \"primary_rank_max_abs\": 0.0}, {\"fixture\": \"random\", \"primary_rank_max_abs\": 2.6490953208835322e-08}, {\"old_implementation_diagnosis\": [{\"fixture\": \"identity\", \"old_two_afc\": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], \"author_two_afc\": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], \"mismatched_queries\": 0}, {\"fixture\": \"deranged\", \"old_two_afc\": [0.6666666666666666, 0.0, 0.0, 0.2222222222222222, 0.0, 0.6666666666666666, 0.3333333333333333, 0.2222222222222222, 0.0, 0.0], \"author_two_afc\": [0.0, 0.7777777777777778, 0.6666666666666666, 0.6666666666666666, 0.0, 0.0, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111, 0.1111111111111111], \"mismatched_queries\": 9}, {\"fixture\": \"mixed\", \"old_two_afc\": [0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888], \"author_two_afc\": [0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888], \"mismatched_queries\": 0}, {\"fixture\": \"duplicates\", \"old_two_afc\": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.4444444444444444], \"author_two_afc\": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0], \"mismatched_queries\": 1}], \"no_epsilon_tie_rule_introduced\": true}, {\"fixture\": \"all830_real_gallery_numpy_Pearson\", \"similarity_max_abs\": 0.0, \"explicit_positive_indices\": true}, {\"fixture\": \"original_SSIM_analytic_constant\", \"measured\": 0.528390869647236, \"analytic\": 0.5283908696472364}], \"real_candidate_images_read\": 0, \"GPU_initialized\": false, \"source_sha256\": \"d1b0ad82f6ff8afa2a87853fad89c38e843302f45aa9f859c6052a5682cb046a\"}\n",
+      "probe_v279_err": "",
+      "retired_only_old_failed_probe_dependent_CPU_waiter": "5098644"
+    }
+  },
+  "scope": "Only one sub03 R4 seed1729 development study; T feature improvement over matchedcontrol is not heldout evidence."
+}

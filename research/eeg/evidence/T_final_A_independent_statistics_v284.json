@@ -1,0 +1,147 @@
+{
+  "status": "PASS_STDLIB_ALL238140_VALUES_18MEANS_18DIFFERENCES_AND_ALL_FLIPS",
+  "UTC": "2026-11-09T08:52:40.267059+00:00",
+  "artifact_sha256": "e622e3c0baf0c500b8c4b93ecb707dbfe4818a653c52f668d7fa361880ba6ee0",
+  "artifact_bytes": 1290563,
+  "values": 238140,
+  "maximum_mean_discrepancy": 5.551115123125783e-17,
+  "means": {
+    "native_fullT": {
+      "correct_F_cosine": 0.34226016154983224,
+      "hardest_sameconcept_F_cosine": 0.21696880664636486,
+      "sameconcept_margin": 0.1252913549034674,
+      "sameconcept_Top1": 0.9938019652305367,
+      "sameconcept_2AFC": 0.9991013689962014,
+      "F_MSE": 1.3164398273155085
+    },
+    "A_positive": {
+      "correct_F_cosine": 0.3714065281689287,
+      "hardest_sameconcept_F_cosine": 0.34738574956244295,
+      "sameconcept_margin": 0.024020778606485722,
+      "sameconcept_Top1": 0.7763416477702192,
+      "sameconcept_2AFC": 0.9498446315763489,
+      "F_MSE": 1.260957160637987
+    },
+    "A_pair": {
+      "correct_F_cosine": 0.37509772085641324,
+      "hardest_sameconcept_F_cosine": 0.34242814763919616,
+      "sameconcept_margin": 0.032669573217217,
+      "sameconcept_Top1": 0.8289493575207861,
+      "sameconcept_2AFC": 0.9648274142207832,
+      "F_MSE": 1.2539064952506187
+    }
+  },
+  "comparisons": [
+    {
+      "comparison": "A_positive-native",
+      "metric": "correct_F_cosine",
+      "mean": 0.029146366619096423
+    },
+    {
+      "comparison": "A_positive-native",
+      "metric": "hardest_sameconcept_F_cosine",
+      "mean": 0.1304169429160781
+    },
+    {
+      "comparison": "A_positive-native",
+      "metric": "sameconcept_margin",
+      "mean": -0.10127057629698169
+    },
+    {
+      "comparison": "A_positive-native",
+      "metric": "sameconcept_Top1",
+      "mean": -0.21746031746031746
+    },
+    {
+      "comparison": "A_positive-native",
+      "metric": "sameconcept_2AFC",
+      "mean": -0.0492567374198525
+    },
+    {
+      "comparison": "A_positive-native",
+      "metric": "F_MSE",
+      "mean": -0.055482666677521456
+    },
+    {
+      "comparison": "A_pair-native",
+      "metric": "correct_F_cosine",
+      "mean": 0.032837559306580937
+    },
+    {
+      "comparison": "A_pair-native",
+      "metric": "hardest_sameconcept_F_cosine",
+      "mean": 0.12545934099283135
+    },
+    {
+      "comparison": "A_pair-native",
+      "metric": "sameconcept_margin",
+      "mean": -0.0926217816862504
+    },
+    {
+      "comparison": "A_pair-native",
+      "metric": "sameconcept_Top1",
+      "mean": -0.16485260770975058
+    },
+    {
+      "comparison": "A_pair-native",
+      "metric": "sameconcept_2AFC",
+      "mean": -0.0342739547754181
+    },
+    {
+      "comparison": "A_pair-native",
+      "metric": "F_MSE",
+      "mean": -0.06253333206488998
+    },
+    {
+      "comparison": "A_pair-A_positive",
+      "metric": "correct_F_cosine",
+      "mean": 0.0036911926874845123
+    },
+    {
+      "comparison": "A_pair-A_positive",
+      "metric": "hardest_sameconcept_F_cosine",
+      "mean": -0.004957601923246766
+    },
+    {
+      "comparison": "A_pair-A_positive",
+      "metric": "sameconcept_margin",
+      "mean": 0.00864879461073128
+    },
+    {
+      "comparison": "A_pair-A_positive",
+      "metric": "sameconcept_Top1",
+      "mean": 0.052607709750566896
+    },
+    {
+      "comparison": "A_pair-A_positive",
+      "metric": "sameconcept_2AFC",
+      "mean": 0.0149827826444344
+    },
+    {
+      "comparison": "A_pair-A_positive",
+      "metric": "F_MSE",
+      "mean": -0.00705066538736852
+    }
+  ],
+  "flips": {
+    "A_positive-native_fullT": {
+      "wrong_to_right": 30,
+      "right_to_wrong": 2907,
+      "net": -2877
+    },
+    "A_pair-native_fullT": {
+      "wrong_to_right": 30,
+      "right_to_wrong": 2211,
+      "net": -2181
+    },
+    "A_pair-A_positive": {
+      "wrong_to_right": 797,
+      "right_to_wrong": 101,
+      "net": 696
+    }
+  },
+  "margin_identity_checked_queries": 39690,
+  "bootstrap_CI_replayed": false,
+  "CPU_NN_forwards_replayed_locally": false,
+  "scope": "Full saved value identities, per-query margins, all means/differences/flips only; original CPU job checked4actualNNqueries permodel. T training diagnostic, not independent images/generalization."
+}

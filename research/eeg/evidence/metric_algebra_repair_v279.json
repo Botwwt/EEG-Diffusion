@@ -1,0 +1,43 @@
+{
+  "status": "NEW_VERSION_PRESERVES_FAILED_V276_SOURCE_AND_RECORDS",
+  "reason": "Strict-rank artificial fixture mismatch. Restore exact original full NumPy corrcoef, no tolerance/tie-epsilon introduced, no real images or candidate fits rerun.",
+  "sources": [
+    {
+      "previous_source": "PKU_EEG_evaluation_core_20261109_v276.py",
+      "previous_sha256": "747cf6a02cab742530504446cfa2914278f7bbfd003040b5f86376da7f907072",
+      "new_source": "PKU_EEG_evaluation_core_20261109_v279.py",
+      "new_sha256": "daae9219f929599edcd527315212c841d601afaa3a29b61a269055ee02d725d0"
+    },
+    {
+      "previous_source": "PKU_prepare_EEG_scoring_CPU_20261109_v276.py",
+      "previous_sha256": "45248b50569c6538321581d866d86e6fdd866a2bf482ea83b86b88d69d066bcc",
+      "new_source": "PKU_prepare_EEG_scoring_CPU_20261109_v279.py",
+      "new_sha256": "e3c3cd45f311154522c1ffc6e9bb9308b9a15384a09aed07e9d2a871378e5e91"
+    },
+    {
+      "previous_source": "PKU_score_EEG_images_GPU_20261109_v276.py",
+      "previous_sha256": "30f6a86a099f4e8bfff000b70b191991a6d3ac5ac481169e3007efa88e310a40",
+      "new_source": "PKU_score_EEG_images_GPU_20261109_v279.py",
+      "new_sha256": "8a92839a73f16921bdf24c63fc1a777d36850195101bd2b8ca92b216e7d3aa68"
+    },
+    {
+      "previous_source": "PKU_analyze_EEG_scores_CPU_20261109_v276.py",
+      "previous_sha256": "88b2e6c625e9032bbb06ec4eff5703fde6c6e7edd44bb6e00a2e995318a1a7f2",
+      "new_source": "PKU_analyze_EEG_scores_CPU_20261109_v279.py",
+      "new_sha256": "082691fc3f2727f2d930b06266595dd67ae51b4022af67c7df4055117581d04d"
+    },
+    {
+      "previous_source": "PKU_probe_EEG_metric_core_CPU_20261109_v276.py",
+      "previous_sha256": "7db656456e3a9e93e2c3b6906420c044383a9fed6814ed1d4582d15c4066f120",
+      "new_source": "PKU_probe_EEG_metric_core_CPU_20261109_v279.py",
+      "new_sha256": "d1b0ad82f6ff8afa2a87853fad89c38e843302f45aa9f859c6052a5682cb046a"
+    },
+    {
+      "previous_source": "PKU_dispatch_EEG_scoring_CPU_20261109_v276.py",
+      "previous_sha256": "76a5e4abf96d4bb256bc255a9949b607904d82e3f98f88650d3642e1a54aa0ff",
+      "new_source": "PKU_dispatch_EEG_scoring_CPU_20261109_v279.py",
+      "new_sha256": "85d4365136b58a5b4d87679b3694cfcd4f788cffe6edae65c0a886e9e88aef1e"
+    }
+  ],
+  "CPU_probe_required_before_scoring": true
+}
