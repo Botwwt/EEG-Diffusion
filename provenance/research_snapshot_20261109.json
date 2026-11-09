@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "bytes": 366217,
-      "source_sha256": "b4f4a524870196b68c5ba24ee20c7f9574b6953910009858239a1a0202a70918",
-      "sha256": "dada61c77769f37b1245ddfda6c190345e74ab9c67057e10fff041ca0f9a4b0b",
+      "bytes": 367706,
+      "source_sha256": "77c0b9cef34b1ab52a93279e19598db3b6edcf22f5e3384e54d997602542a7a7",
+      "sha256": "78a59446a28ea8d6dab01344b92d14ccdca4484c8fd78dedc74cd11eabe7d52f",
       "access_metadata_redactions": 0
     },
     {
@@ -16177,14 +16177,294 @@
       "source_sha256": "987c7c95538c3f4d5e3f35098b598106025a88d95a6ceb9403573c03025893dc",
       "sha256": "987c7c95538c3f4d5e3f35098b598106025a88d95a6ceb9403573c03025893dc",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_downstream_scores_CPU_20261109_v303.py",
+      "source_path": "PKU_analyze_downstream_scores_CPU_20261109_v303.py",
+      "bytes": 9444,
+      "source_sha256": "684ac8854b05dcd133a638fe49fb2b8eb82d5d0ff722ba05cad3dacdd6465205",
+      "sha256": "684ac8854b05dcd133a638fe49fb2b8eb82d5d0ff722ba05cad3dacdd6465205",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_downstream_scores_CPU_20261109_v303.sbatch",
+      "source_path": "PKU_analyze_downstream_scores_CPU_20261109_v303.sbatch",
+      "bytes": 2498,
+      "source_sha256": "599680ebafe4b6b2b87495220bd4f5b73cea2131048afcc5a4edf58c964563e5",
+      "sha256": "599680ebafe4b6b2b87495220bd4f5b73cea2131048afcc5a4edf58c964563e5",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_anchor_CPU_20261109_v302.py",
+      "source_path": "PKU_audit_anchor_CPU_20261109_v302.py",
+      "bytes": 4766,
+      "source_sha256": "b73e4931157d061920b365a5440e8a0d28c22a10d6833148115cbbeb072cc8c3",
+      "sha256": "b73e4931157d061920b365a5440e8a0d28c22a10d6833148115cbbeb072cc8c3",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_downstream_CPU_20261109_v303.py",
+      "source_path": "PKU_audit_downstream_CPU_20261109_v303.py",
+      "bytes": 3396,
+      "source_sha256": "e4d0a48118e048993df24c497e430c61ca132470c281028d2ff1c06b275b2d06",
+      "sha256": "e4d0a48118e048993df24c497e430c61ca132470c281028d2ff1c06b275b2d06",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_downstream_scoring_CPU_20261109_v303.py",
+      "source_path": "PKU_dispatch_downstream_scoring_CPU_20261109_v303.py",
+      "bytes": 2578,
+      "source_sha256": "a33858c60b7dbcdae7a4ec20ba9050c9c44193d9b9bf7c67498e15a743ac83f2",
+      "sha256": "a33858c60b7dbcdae7a4ec20ba9050c9c44193d9b9bf7c67498e15a743ac83f2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_downstream_scoring_CPU_20261109_v303.sbatch",
+      "source_path": "PKU_dispatch_downstream_scoring_CPU_20261109_v303.sbatch",
+      "bytes": 2509,
+      "source_sha256": "bc242011b18a8323ccba3aedff6821bcef1623e99f6b309bb36115bde87d7d16",
+      "sha256": "bc242011b18a8323ccba3aedff6821bcef1623e99f6b309bb36115bde87d7d16",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_downstream_start_CPU_20261109_v303.py",
+      "source_path": "PKU_dispatch_downstream_start_CPU_20261109_v303.py",
+      "bytes": 3303,
+      "source_sha256": "e9fbda70a4758f75310aaf2f360557063036cbf3ccc16b23f2e8fb5f520e216c",
+      "sha256": "e9fbda70a4758f75310aaf2f360557063036cbf3ccc16b23f2e8fb5f520e216c",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_downstream_start_CPU_20261109_v303.sbatch",
+      "source_path": "PKU_dispatch_downstream_start_CPU_20261109_v303.sbatch",
+      "bytes": 2506,
+      "source_sha256": "c308a427e505a1a9f1e68c16326e0d641090c12c65ae50f549d101cce0b312e9",
+      "sha256": "c308a427e505a1a9f1e68c16326e0d641090c12c65ae50f549d101cce0b312e9",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_downstream_core_20261109_v303.py",
+      "source_path": "PKU_downstream_core_20261109_v303.py",
+      "bytes": 3876,
+      "source_sha256": "8d1316b17c05ef9411bae8d8ce3febb2cb6631ae20f3bc92ff051c54b573cd99",
+      "sha256": "8d1316b17c05ef9411bae8d8ce3febb2cb6631ae20f3bc92ff051c54b573cd99",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_generate_downstream_images_GPU_20261109_v303.py",
+      "source_path": "PKU_generate_downstream_images_GPU_20261109_v303.py",
+      "bytes": 11857,
+      "source_sha256": "379fa96e9b90cd2b19f584b149b1c9e98e7dc96039fd6c6babe41887a03d7d6b",
+      "sha256": "379fa96e9b90cd2b19f584b149b1c9e98e7dc96039fd6c6babe41887a03d7d6b",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_generate_downstream_images_GPU_20261109_v303.sbatch",
+      "source_path": "PKU_generate_downstream_images_GPU_20261109_v303.sbatch",
+      "bytes": 2665,
+      "source_sha256": "602794dfa031540273432d91698c51f84e34d5432486b6ca39b3c2b5936df4f6",
+      "sha256": "602794dfa031540273432d91698c51f84e34d5432486b6ca39b3c2b5936df4f6",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_guard_downstream_GPU_20261109_v304.py",
+      "source_path": "PKU_guard_downstream_GPU_20261109_v304.py",
+      "bytes": 1697,
+      "source_sha256": "2bf6b0fa7f875dcdef9637df5f638b00b6424d0b726b4a5456408018662fe6bf",
+      "sha256": "2bf6b0fa7f875dcdef9637df5f638b00b6424d0b726b4a5456408018662fe6bf",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_downstream_images_CPU_20261109_v303.py",
+      "source_path": "PKU_prepare_downstream_images_CPU_20261109_v303.py",
+      "bytes": 3863,
+      "source_sha256": "16587c5505c87b5160def99212c12b9ff7606fe3a4f410dcf5e0410b7c174c34",
+      "sha256": "16587c5505c87b5160def99212c12b9ff7606fe3a4f410dcf5e0410b7c174c34",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_downstream_images_CPU_20261109_v303.sbatch",
+      "source_path": "PKU_prepare_downstream_images_CPU_20261109_v303.sbatch",
+      "bytes": 2495,
+      "source_sha256": "16578747d800a4ab72d957e7e5054fe0c78112b92da13851f5d4c811f6327fac",
+      "sha256": "16578747d800a4ab72d957e7e5054fe0c78112b92da13851f5d4c811f6327fac",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_downstream_scoring_CPU_20261109_v303.py",
+      "source_path": "PKU_prepare_downstream_scoring_CPU_20261109_v303.py",
+      "bytes": 6341,
+      "source_sha256": "8dc1b76afb84c14e974455bcaa952d1b0ce932365e1650b4bcfede16932462a8",
+      "sha256": "8dc1b76afb84c14e974455bcaa952d1b0ce932365e1650b4bcfede16932462a8",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_downstream_scoring_CPU_20261109_v303.sbatch",
+      "source_path": "PKU_prepare_downstream_scoring_CPU_20261109_v303.sbatch",
+      "bytes": 2497,
+      "source_sha256": "c44c91de7a3be3c238bdb478c1551849f2643febf29386a0a72146864e812311",
+      "sha256": "c44c91de7a3be3c238bdb478c1551849f2643febf29386a0a72146864e812311",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_downstream_CPU_20261109_v303.py",
+      "source_path": "PKU_probe_downstream_CPU_20261109_v303.py",
+      "bytes": 2616,
+      "source_sha256": "c646df4216292526f7d018a3d537c56b1c161119fc095b09f82393818691f7c2",
+      "sha256": "c646df4216292526f7d018a3d537c56b1c161119fc095b09f82393818691f7c2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_downstream_CPU_20261109_v303.sbatch",
+      "source_path": "PKU_probe_downstream_CPU_20261109_v303.sbatch",
+      "bytes": 2487,
+      "source_sha256": "8f2004877422c48cabc6395be3087efa80f51d70419b952405d545069978b34a",
+      "sha256": "8f2004877422c48cabc6395be3087efa80f51d70419b952405d545069978b34a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_anchor_GPU_20261109_v302.py",
+      "source_path": "PKU_queue_anchor_GPU_20261109_v302.py",
+      "bytes": 4634,
+      "source_sha256": "43a404b67c04ebec302dfe730ffd4904ef6b33fbd742ada0200d563ab7855b27",
+      "sha256": "43a404b67c04ebec302dfe730ffd4904ef6b33fbd742ada0200d563ab7855b27",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_anchor_GPU_20261109_v302.sbatch",
+      "source_path": "PKU_queue_anchor_GPU_20261109_v302.sbatch",
+      "bytes": 525,
+      "source_sha256": "1136ea6809ad851e74d2a40acdfe18ed643a405ee1989c17357dfdaa49d9864f",
+      "sha256": "1136ea6809ad851e74d2a40acdfe18ed643a405ee1989c17357dfdaa49d9864f",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_downstream_GPU_20261109_v303.py",
+      "source_path": "PKU_queue_downstream_GPU_20261109_v303.py",
+      "bytes": 3678,
+      "source_sha256": "ad700b1a7b51a24b0e48a19a712ef251db23729fa67c892fe8597de72d842882",
+      "sha256": "ad700b1a7b51a24b0e48a19a712ef251db23729fa67c892fe8597de72d842882",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_downstream_GPU_20261109_v303.sbatch",
+      "source_path": "PKU_queue_downstream_GPU_20261109_v303.sbatch",
+      "bytes": 2675,
+      "source_sha256": "1417ebe07c317ceb34ca08a92b20376e4aa234433c564513b4a64dd0edf60ce3",
+      "sha256": "1417ebe07c317ceb34ca08a92b20376e4aa234433c564513b4a64dd0edf60ce3",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_recover_anchor_CPU_20261109_v302.sbatch",
+      "source_path": "PKU_recover_anchor_CPU_20261109_v302.sbatch",
+      "bytes": 548,
+      "source_sha256": "44e83d430c365f241c66e45fbebad00ab8ac062e3e9fdf9e619a69b121e9add7",
+      "sha256": "44e83d430c365f241c66e45fbebad00ab8ac062e3e9fdf9e619a69b121e9add7",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_downstream_images_GPU_20261109_v303.py",
+      "source_path": "PKU_score_downstream_images_GPU_20261109_v303.py",
+      "bytes": 9945,
+      "source_sha256": "c752465787a3bbb709d4bf3fcad5057b933dc76468c188249222f7a94fd18433",
+      "sha256": "c752465787a3bbb709d4bf3fcad5057b933dc76468c188249222f7a94fd18433",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_downstream_images_GPU_20261109_v303.sbatch",
+      "source_path": "PKU_score_downstream_images_GPU_20261109_v303.sbatch",
+      "bytes": 2677,
+      "source_sha256": "8f2f235949a5f75255a892e3ad8a07c003736baae0f7c9d3237d026c87d73431",
+      "sha256": "8f2f235949a5f75255a892e3ad8a07c003736baae0f7c9d3237d026c87d73431",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_start_anchor_CPU_20261109_v302.py",
+      "source_path": "PKU_start_anchor_CPU_20261109_v302.py",
+      "bytes": 1416,
+      "source_sha256": "abab36f07ede953c132bbb51daffb6cc0023fa7e79adf33dd3dc249a5e53c50d",
+      "sha256": "abab36f07ede953c132bbb51daffb6cc0023fa7e79adf33dd3dc249a5e53c50d",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_train_downstream_GPU_20261109_v303.py",
+      "source_path": "PKU_train_downstream_GPU_20261109_v303.py",
+      "bytes": 9691,
+      "source_sha256": "ef1933d13f52b4971ffec655c973f01ba15bed27f647dcde7cb7dfb64b8b3766",
+      "sha256": "ef1933d13f52b4971ffec655c973f01ba15bed27f647dcde7cb7dfb64b8b3766",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_downstream_image_policy_20261109_v303.json",
+      "source_path": "configs/EEG_downstream_image_policy_20261109_v303.json",
+      "bytes": 649,
+      "source_sha256": "fa479fbaf34e0f48e346ba30530f3138dc91247e6f477cd887055c19b95b9a35",
+      "sha256": "fa479fbaf34e0f48e346ba30530f3138dc91247e6f477cd887055c19b95b9a35",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_downstream_scoring_policy_20261109_v303.json",
+      "source_path": "configs/EEG_downstream_scoring_policy_20261109_v303.json",
+      "bytes": 2822,
+      "source_sha256": "51c5c5b453d40b91079eeda7916d2561ede41e17c5f287ec8875a9adda82b39e",
+      "sha256": "51c5c5b453d40b91079eeda7916d2561ede41e17c5f287ec8875a9adda82b39e",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_downstream_study_20261109_v303.json",
+      "source_path": "configs/EEG_downstream_study_20261109_v303.json",
+      "bytes": 2960,
+      "source_sha256": "6ad34654442984eff6042d72139d2ff2f8a5e312b2adf1709e7fdd51541c34f3",
+      "sha256": "6ad34654442984eff6042d72139d2ff2f8a5e312b2adf1709e7fdd51541c34f3",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/EEG_COMPLETE_ARCHITECTURE_AND_NOVELTY_20261109_v299.md",
+      "source_path": "reports/EEG_COMPLETE_ARCHITECTURE_AND_NOVELTY_20261109_v299.md",
+      "bytes": 17839,
+      "source_sha256": "78a2ab463b1b1d64a387ebd8631b46817d9de02b9c89472dc4b473c74305ac94",
+      "sha256": "268b3cb9ca4d41a0b820e65c516a1595193679ad2e0277bf8ad6cce8c87f75a5",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/EEG_DOWNSTREAM_TEACHER_IP_RESEARCH_DECISION_20261109_v300.md",
+      "source_path": "reports/EEG_DOWNSTREAM_TEACHER_IP_RESEARCH_DECISION_20261109_v300.md",
+      "bytes": 10376,
+      "source_sha256": "cb996c784bf8ca159c6503974184a4d64f5123981f7bff46652bf894e36e1fcb",
+      "sha256": "cb996c784bf8ca159c6503974184a4d64f5123981f7bff46652bf894e36e1fcb",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/EEG_DOWNSTREAM_OVERNIGHT_EXECUTION_20261109_v305.md",
+      "source_path": "reports/EEG_DOWNSTREAM_OVERNIGHT_EXECUTION_20261109_v305.md",
+      "bytes": 9726,
+      "source_sha256": "57658aef41959e9770f54f34a28ae2594cdd0c8378a1659e940c47b33ef6d275",
+      "sha256": "57658aef41959e9770f54f34a28ae2594cdd0c8378a1659e940c47b33ef6d275",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_ORIGINAL14_ALL830_RESULTS_20261109_v305.json",
+      "source_path": "audit/EEG_ORIGINAL14_ALL830_RESULTS_20261109_v305.json",
+      "bytes": 1099367,
+      "source_sha256": "06ade8dcfc6d4042da21d68b426312f0dc78e5a582b7310d22707e54b23c5a5f",
+      "sha256": "06ade8dcfc6d4042da21d68b426312f0dc78e5a582b7310d22707e54b23c5a5f",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_DOWNSTREAM_OVERNIGHT_ACTUAL_MILESTONE_20261109_v305.json",
+      "source_path": "audit/EEG_DOWNSTREAM_OVERNIGHT_ACTUAL_MILESTONE_20261109_v305.json",
+      "bytes": 9380,
+      "source_sha256": "1e1290ea233d08da188fe2e8f52a5d37b615a33cafd18994775fe3355f284a5c",
+      "sha256": "1e1290ea233d08da188fe2e8f52a5d37b615a33cafd18994775fe3355f284a5c",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 17672093,
+  "bytes": 18933884,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-09T09:42:43.028797+00:00"
+  "updated_UTC": "2026-11-09T13:59:05.656048+00:00"
 }

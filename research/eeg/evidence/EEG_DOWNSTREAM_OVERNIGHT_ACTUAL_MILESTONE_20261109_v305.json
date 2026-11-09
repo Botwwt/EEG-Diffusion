@@ -1,0 +1,172 @@
+{
+  "UTC": "2026-11-09T13:59:05.656048+00:00",
+  "status": "TWO_DOWNSTREAM_STUDIES_NINE_CASES_COMPLETE_LIFECYCLE_ACTUALLY_QUEUED",
+  "actual_observation": {
+    "receipt": "PKU_HPC_overnight_final305_20261109T135751370635Z.json",
+    "observation": {
+      "UTC": "2026-11-09T13:57:51.626269+00:00",
+      "squeue": "5102061|eeg_down_start303|PENDING|0:00||(Dependency)\n5101890|eeg_anchor_closure294|PENDING|0:00||(Dependency)\n5102191|cola_space222|RUNNING|0:09|a2n16c1|a2n16c1\n5101915|cola_sg206|PENDING|0:00||(Dependency)\n5101908|cola_finish218|RUNNING|11:45|gpua800n08|gpua800n08\n5101889|eeg_anchor_queue286|RUNNING|14:58|gpua800n08|gpua800n08\n",
+      "EEG_anchor_v286/queue/progress.json": {
+        "stage": 1,
+        "case": "C_positive",
+        "job_id": "5101889",
+        "status": "RUNNING_SAME_REGISTERED_CASE",
+        "starting_updates": 2,
+        "starting_checkpoint_sha256": "93da5670e15f6726abaf8ab56f989e2904a019d806b6569ff3e3c9718718e29b",
+        "UTC": "2026-11-09T13:42:53.585470+00:00"
+      },
+      "EEG_anchor_image_dispatch_v294/progress.json": {
+        "hop": 34,
+        "job_id": "5101882",
+        "UTC": "2026-11-09T13:42:53.210200+00:00",
+        "status": "FOLLOWING_ACTUAL_SERIAL_CHAIN_NO_EXTRA_GPU",
+        "phase": "new_first_training",
+        "dependency": "5101889",
+        "next_dispatch_job": "5101890"
+      },
+      "EEG_downstream_engineering_v303/completion.json": {
+        "status": "PASS_SOURCE_CONTRACT_REAL_NATIVE_P_OBJECTIVE_GRADIENTS_RNG_AND_STORAGE",
+        "job_id": "5102057",
+        "seconds": 0.42668166384100914,
+        "real_P_parameters": 8400896,
+        "CPU_RNG_bytes": 5056,
+        "real_GPU_prefix_still_required": true,
+        "new_training_updates": 0,
+        "new_images": 0,
+        "source_sha256": "c646df4216292526f7d018a3d537c56b1c161119fc095b09f82393818691f7c2"
+      },
+      "EEG_downstream_start_v303/progress.json": {
+        "hop": 1,
+        "job_id": "5102058",
+        "UTC": "2026-11-09T13:50:51.023528+00:00",
+        "status": "FOLLOWING_PREVIOUS_SERIAL_CHAIN_GPU_NOT_RESERVED",
+        "dependency": "5101890",
+        "next_dispatch_job": "5102061"
+      },
+      "EEG_anchor_RNG_audit_recovery_v302.json": {
+        "status": "CPU_AUDIT_FIX_ONLY_THREE_REAL_PREFIXES_RETAINED_NO_RETRAIN",
+        "recovery_CPU_job": "5101881",
+        "closure_dispatch_job": "5101882",
+        "retired_unallocated_jobs": [
+          "5101627",
+          "5101628"
+        ],
+        "original_failed_job": "5101626",
+        "numeric_training_sources_unchanged": true,
+        "first2_count_once": true,
+        "UTC": "2026-11-09T13:42:23.501039+00:00"
+      },
+      "EEG_anchor_RNG_audit_recovery_v302.json_sacct": "5101881|COMPLETED|0:0|00:00:29\n5101881.batch|COMPLETED|0:0|00:00:29\n5101881.extern|COMPLETED|0:0|00:00:29\n",
+      "eeg_anchor_recover302-5101881.err": "",
+      "EEG_downstream_actual_submission_v303.json": {
+        "status": "NINE_DOWNSTREAM_CASES_COMPLETE_LIFECYCLE_QUEUED_WITH_CPU_AND_REAL_GPU_PREFIX_GATES",
+        "CPU_engineering_job": "5102057",
+        "start_dispatch_job": "5102058",
+        "cases": 9,
+        "P_cases": 5,
+        "IP_cases": 4,
+        "updates_each": 827,
+        "training_query_exposures": 119070,
+        "new_images_planned": 7470,
+        "old14_and_C6_features_reused": true,
+        "single_GPU_serial": true,
+        "EEG_and_ordinary_frozen": true,
+        "new_GPU_training_started": false,
+        "UTC": "2026-11-09T13:50:41.128329+00:00"
+      },
+      "EEG_downstream_actual_submission_v303.json_sacct": "5102057|COMPLETED|0:0|00:00:09\n5102057.batch|COMPLETED|0:0|00:00:09\n5102057.extern|COMPLETED|0:0|00:00:09\n",
+      "eeg_down_probe303-5102057.err": ""
+    }
+  },
+  "CPU_probe": {
+    "status": "PASS_SOURCE_CONTRACT_REAL_NATIVE_P_OBJECTIVE_GRADIENTS_RNG_AND_STORAGE",
+    "job_id": "5102057",
+    "seconds": 0.42668166384100914,
+    "real_P_parameters": 8400896,
+    "CPU_RNG_bytes": 5056,
+    "real_GPU_prefix_still_required": true,
+    "new_training_updates": 0,
+    "new_images": 0,
+    "source_sha256": "c646df4216292526f7d018a3d537c56b1c161119fc095b09f82393818691f7c2"
+  },
+  "submission": {
+    "status": "NINE_DOWNSTREAM_CASES_COMPLETE_LIFECYCLE_QUEUED_WITH_CPU_AND_REAL_GPU_PREFIX_GATES",
+    "CPU_engineering_job": "5102057",
+    "start_dispatch_job": "5102058",
+    "cases": 9,
+    "P_cases": 5,
+    "IP_cases": 4,
+    "updates_each": 827,
+    "training_query_exposures": 119070,
+    "new_images_planned": 7470,
+    "old14_and_C6_features_reused": true,
+    "single_GPU_serial": true,
+    "EEG_and_ordinary_frozen": true,
+    "new_GPU_training_started": false,
+    "files": {
+      "EEG_downstream_policy_v303.json": "6ad34654442984eff6042d72139d2ff2f8a5e312b2adf1709e7fdd51541c34f3",
+      "EEG_downstream_image_policy_v303.json": "fa479fbaf34e0f48e346ba30530f3138dc91247e6f477cd887055c19b95b9a35",
+      "EEG_downstream_scoring_policy_v303.json": "51c5c5b453d40b91079eeda7916d2561ede41e17c5f287ec8875a9adda82b39e",
+      "PKU_generate_downstream_images_GPU_20261109_v303.py": "379fa96e9b90cd2b19f584b149b1c9e98e7dc96039fd6c6babe41887a03d7d6b",
+      "PKU_prepare_downstream_scoring_CPU_20261109_v303.py": "8dc1b76afb84c14e974455bcaa952d1b0ce932365e1650b4bcfede16932462a8",
+      "PKU_score_downstream_images_GPU_20261109_v303.py": "c752465787a3bbb709d4bf3fcad5057b933dc76468c188249222f7a94fd18433",
+      "PKU_analyze_downstream_scores_CPU_20261109_v303.py": "684ac8854b05dcd133a638fe49fb2b8eb82d5d0ff722ba05cad3dacdd6465205",
+      "PKU_dispatch_downstream_scoring_CPU_20261109_v303.py": "a33858c60b7dbcdae7a4ec20ba9050c9c44193d9b9bf7c67498e15a743ac83f2",
+      "PKU_downstream_core_20261109_v303.py": "8d1316b17c05ef9411bae8d8ce3febb2cb6631ae20f3bc92ff051c54b573cd99",
+      "PKU_train_downstream_GPU_20261109_v303.py": "ef1933d13f52b4971ffec655c973f01ba15bed27f647dcde7cb7dfb64b8b3766",
+      "PKU_audit_downstream_CPU_20261109_v303.py": "e4d0a48118e048993df24c497e430c61ca132470c281028d2ff1c06b275b2d06",
+      "PKU_queue_downstream_GPU_20261109_v303.py": "ad700b1a7b51a24b0e48a19a712ef251db23729fa67c892fe8597de72d842882",
+      "PKU_dispatch_downstream_start_CPU_20261109_v303.py": "e9fbda70a4758f75310aaf2f360557063036cbf3ccc16b23f2e8fb5f520e216c",
+      "PKU_prepare_downstream_images_CPU_20261109_v303.py": "16587c5505c87b5160def99212c12b9ff7606fe3a4f410dcf5e0410b7c174c34",
+      "PKU_probe_downstream_CPU_20261109_v303.py": "c646df4216292526f7d018a3d537c56b1c161119fc095b09f82393818691f7c2",
+      "EEG_downstream_pins_v303.json": "070aba77ac0dc7a835ba2da8277c2572e8a060f64fa5fcc59b55458ead6837e6",
+      "PKU_queue_downstream_GPU_20261109_v303.sbatch": "c563edfc6860629a45f34b0f924c4b0002cd362cbc52266bac54a30d8138ce76",
+      "PKU_generate_downstream_images_GPU_20261109_v303.sbatch": "882fe20b9faa7794bbec6270b6fa224a916cb4a195a719aaf6d95f05983fb12f",
+      "PKU_score_downstream_images_GPU_20261109_v303.sbatch": "bf71abcafe4a0587ab1c57e271234ec023ecb3e4a86fe792f1ca405ae0a1dc7b",
+      "PKU_prepare_downstream_images_CPU_20261109_v303.sbatch": "16578747d800a4ab72d957e7e5054fe0c78112b92da13851f5d4c811f6327fac",
+      "PKU_prepare_downstream_scoring_CPU_20261109_v303.sbatch": "c44c91de7a3be3c238bdb478c1551849f2643febf29386a0a72146864e812311",
+      "PKU_analyze_downstream_scores_CPU_20261109_v303.sbatch": "599680ebafe4b6b2b87495220bd4f5b73cea2131048afcc5a4edf58c964563e5",
+      "PKU_dispatch_downstream_start_CPU_20261109_v303.sbatch": "c308a427e505a1a9f1e68c16326e0d641090c12c65ae50f549d101cce0b312e9",
+      "PKU_dispatch_downstream_scoring_CPU_20261109_v303.sbatch": "bc242011b18a8323ccba3aedff6821bcef1623e99f6b309bb36115bde87d7d16",
+      "PKU_probe_downstream_CPU_20261109_v303.sbatch": "8f2004877422c48cabc6395be3087efa80f51d70419b952405d545069978b34a"
+    },
+    "UTC": "2026-11-09T13:50:41.128329+00:00"
+  },
+  "resource_wrapper": {
+    "status": "PRE_FIT_RESOURCE_AND_CUDA_RNG_WRAPPER_GUARD_ADDED",
+    "registered_numerical_sources_unchanged": true,
+    "new_GPU_jobs": 0,
+    "files": {
+      "PKU_guard_downstream_GPU_20261109_v304.py": "2bf6b0fa7f875dcdef9637df5f638b00b6424d0b726b4a5456408018662fe6bf",
+      "PKU_queue_downstream_GPU_20261109_v303.sbatch": "1417ebe07c317ceb34ca08a92b20376e4aa234433c564513b4a64dd0edf60ce3",
+      "PKU_generate_downstream_images_GPU_20261109_v303.sbatch": "602794dfa031540273432d91698c51f84e34d5432486b6ca39b3c2b5936df4f6",
+      "PKU_score_downstream_images_GPU_20261109_v303.sbatch": "8f2f235949a5f75255a892e3ad8a07c003736baae0f7c9d3237d026c87d73431"
+    }
+  },
+  "anchor_CPU_audit_recovery": {
+    "status": "CPU_AUDIT_FIX_ONLY_THREE_REAL_PREFIXES_RETAINED_NO_RETRAIN",
+    "recovery_CPU_job": "5101881",
+    "closure_dispatch_job": "5101882",
+    "retired_unallocated_jobs": [
+      "5101627",
+      "5101628"
+    ],
+    "original_failed_job": "5101626",
+    "numeric_training_sources_unchanged": true,
+    "first2_count_once": true,
+    "UTC": "2026-11-09T13:42:23.501039+00:00"
+  },
+  "new_GPU_training_started": false,
+  "new_GPU_prefix_still_required": true,
+  "original14_images_complete": 11620,
+  "original14_metrics_complete": 14,
+  "ordinary_DINO": 0.7721641693432355,
+  "parent_DINO": 0.7551913322772392,
+  "newcases": 9,
+  "updates_each": 827,
+  "new_images_planned": 7470,
+  "normal_EEG_only_inference": true,
+  "old_ordinary_untouched": true,
+  "second_confirmed_innovation": false,
+  "SOTA_or_CCFA": false
+}

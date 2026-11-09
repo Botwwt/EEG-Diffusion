@@ -1,0 +1,28 @@
+{
+  "status": "REGISTERED_BEFORE_IMAGES",
+  "arms": [
+    "P_positive",
+    "P_replay",
+    "P_pair",
+    "P_replay_pair",
+    "P_replay_reverse",
+    "IP_positive",
+    "IP_replay",
+    "IP_replay_pair",
+    "IP_replay_reverse"
+  ],
+  "queries": 830,
+  "images": 7470,
+  "source_condition": "samefrozenmatchedordinary",
+  "query_seed": "1729|sub-03|stimulus_id|R4|EEG_Dcheck830_v271",
+  "layout": "armmajor on disk, audited querymajor manifest for unchanged scoringcore",
+  "max_GPU_stages": 24,
+  "perstage_images": 512,
+  "seconds": 900,
+  "width": 512,
+  "height": 512,
+  "steps": 4,
+  "CFG": 0,
+  "IP_scale": 1,
+  "one_image_per_query": true
+}
