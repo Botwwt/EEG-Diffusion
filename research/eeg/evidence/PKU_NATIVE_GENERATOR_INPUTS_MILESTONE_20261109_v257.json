@@ -1,0 +1,140 @@
+{
+  "status": "PASS_NATIVE_GENERATOR_AND_IMAGE_SOURCE_ENGINEERING",
+  "UTC": "2026-11-09T05:56:48.655143+00:00",
+  "profile": {
+    "status": "PASS_REAL_NATIVE_GENERATOR_ZERO_HEAD_PIXELS_AND_INPUT_GRADIENT",
+    "job_id": "5097204",
+    "host": "gpua800n10",
+    "GPU": "NVIDIA A800-SXM4-80GB",
+    "GPU_count": 1,
+    "seconds": 114.65152853587642,
+    "peak_GPU_allocated_bytes": 8775395328,
+    "host_contract": {
+      "counts": {
+        "A": 8388608,
+        "P": 8400896,
+        "IP": 340787200,
+        "UNet": 2567463684,
+        "VAE": 83653863
+      },
+      "IP_layers": 70,
+      "author_classes_unchanged": true,
+      "frozen_weight_dtype": "FP16; VAE native force-upcast at decode",
+      "generator_revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "prior_revision": "135a284109e71f5cde3d3e6d5dee6268a3c7987a",
+      "dependency_versions": "Torch2.3.0cu121/diffusers0.36.0/transformers4.44.2",
+      "all_assets_full_CPU_SHA_job": "5096956"
+    },
+    "T_query_positions": [
+      0,
+      10
+    ],
+    "pixel_checks": [
+      {
+        "T_position": 0,
+        "array_row": 0,
+        "seed": 1729,
+        "native_pixel_SHA": "b37c6016ef7c4278673022daff4f0e7a53540c38eb509355ede7c3644086d48e",
+        "zero_pixel_SHA": "b37c6016ef7c4278673022daff4f0e7a53540c38eb509355ede7c3644086d48e",
+        "pixel_equal": true
+      },
+      {
+        "T_position": 10,
+        "array_row": 10,
+        "seed": 1739,
+        "native_pixel_SHA": "343826a625d0f50f3a9c1f1766a0cbe78c33ab75f4be752235269504cb723e33",
+        "zero_pixel_SHA": "343826a625d0f50f3a9c1f1766a0cbe78c33ab75f4be752235269504cb723e33",
+        "pixel_equal": true
+      }
+    ],
+    "UNet_calls": 17,
+    "direction_gradient_norm": 0.06939832121133804,
+    "gradient_state": "Synthetic latent/noise only for graph engineering; not image training input, fitted objective or efficacy",
+    "new_optimizer_updates": 0,
+    "engineering_images": 4,
+    "efficacy_images": 0,
+    "old_ordinary_changed": false,
+    "new_ordinary_fit": false,
+    "new_method_or_SOTA": false
+  },
+  "independent_local_pixel_check": "PASS_ALL4_PNG_DECODE_AND_INDEPENDENT_LOCAL_PIXEL_SHA",
+  "all4_local_PNG_verified": true,
+  "image_audit": {
+    "job_id": "5097488",
+    "kind": "training_images_audit_",
+    "sacct": "5097488|COMPLETED|0:0|00:00:06|a2n16c1\n5097488.batch|COMPLETED|0:0|00:00:06|a2n16c1\n5097488.extern|COMPLETED|0:0|00:00:06|a2n16c1\n",
+    "completion": {
+      "status": "PASS_PINNED_OSF_ZIP_AND_ALL16540_JPEG_MEMBER_IDENTITIES",
+      "job_id": "5097488",
+      "host": "a2n16c1",
+      "seconds": 6.367214065045118,
+      "archive": "/dfs/share/maleiLab/wwt/eeg/assets/things_images_v254/training_images.zip",
+      "archive_bytes": 655039265,
+      "archive_sha256": "dc9cc627141ba230641f729f84b80eb01f0a963d288c971eefcf76b4a7581f3a",
+      "JPEG_count": 16540,
+      "JPEG_bytes": 654497883,
+      "dimensions": {
+        "(500, 500)": 16540
+      },
+      "allowed_T_count": 13230,
+      "models_fitted": 0,
+      "latent_images_encoded": 0,
+      "official_test_images_read": 0,
+      "D_V_used_only_for_byte_identity_not_training": true
+    },
+    "error_tail": ""
+  },
+  "preprocessing_environment": {
+    "job_id": "5097322",
+    "kind": "torchvision_environment_",
+    "sacct": "5097322|COMPLETED|0:0|00:00:42|a2n16c1\n5097322.batch|COMPLETED|0:0|00:00:42|a2n16c1\n5097322.extern|COMPLETED|0:0|00:00:42|a2n16c1\n",
+    "completion": {
+      "status": "PASS_NATIVE_PREPROCESSING_ENVIRONMENT_RESTORED",
+      "job_id": "5097322",
+      "host": "a2n16c1",
+      "seconds": 40.90170722641051,
+      "torch": "2.3.0+cu121",
+      "torchvision": "0.18.0+cu121",
+      "pip_check": "No broken requirements found.\n",
+      "preprocessing": "Compose(\n    Resize(size=512, interpolation=bilinear, max_size=None, antialias=True)\n    CenterCrop(size=(512, 512))\n    ToTensor()\n    Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])\n)",
+      "new_training_or_images": 0
+    },
+    "error_tail": ""
+  },
+  "latent_cache_observation": {
+    "UTC": "2026-11-09T05:55:23.922394+00:00",
+    "queue": "5097501|eeg_T_latent256|RUNNING|0:52|gpua800n02\n",
+    "job_id": "5097501",
+    "sacct": "5097501|RUNNING|0:0|00:00:52|gpua800n02\n5097501.batch|RUNNING|0:0|00:00:52|gpua800n02\n5097501.extern|RUNNING|0:0|00:00:52|gpua800n02\n",
+    "registration.json": {
+      "shape": [
+        13230,
+        4,
+        64,
+        64
+      ],
+      "dtype": "float32",
+      "batch": 4,
+      "chunk": 256,
+      "source_sha256": "8885402965f156cad4453850c599d7c745379bff00d006a1378323a82f52d60a",
+      "image_audit_sha256": "6afb4a73c8960ff281dda95b47faf8493b61746ed76d329021b610219548e528",
+      "VAE_config_sha256": "85a181424a5fd0cc292e44e467be66a5263976eee1baf36d208133f9d49d4269",
+      "original_FP16_VAE_state_sha256": "30ac11a60affd385d5ac9848638d7299e019148cb98e908ca688f86675e54d31",
+      "VAE_parameters": 83653863,
+      "VAE_scaling_factor": 0.13025,
+      "preprocessing": "Native Resize512 BILINEAR, CenterCrop512, RGB ToTensor Normalize0.5",
+      "torch": "2.3.0+cu121",
+      "torchvision": "0.18.0+cu121",
+      "VAE_compute": "FP32 widened from exact FP16 source, TF32 disabled, mode not posterior sample",
+      "old_latent_bank_bitwise_identity_claimed": false,
+      "permissions": "Only T images receive VAE forward; no D/V/official-test forward, no parameter fit"
+    },
+    "out_tail": "/dfs/share/maleiLab/wwt/eeg/code/PKU_build_native_T_latents_GPU_20261109_v256.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/native_T_latents_policy_v256.json: OK\n",
+    "err_tail": ""
+  },
+  "new_ordinary_fit": false,
+  "new_method_efficacy": false,
+  "old_ordinary_changed": false,
+  "local_large_assets_downloaded": 0,
+  "overall_research_goal_complete": false
+}

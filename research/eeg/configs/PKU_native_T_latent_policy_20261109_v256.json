@@ -1,0 +1,28 @@
+{
+  "purpose": "Rebuild correct all13230 T image/VAE inputs before matching ordinary",
+  "parameters_fitted": 0,
+  "T_count": 13230,
+  "subject_independent_image_cache": true,
+  "source_scope": "T only forwards; D/V byte identity audit is separate",
+  "latent_shape": [
+    13230,
+    4,
+    64,
+    64
+  ],
+  "latent_dtype": "float32",
+  "batch": 4,
+  "VAE": "Exact original FP16 Turbo weights widened to FP32",
+  "preprocess": "Author Resize512 BILINEAR CenterCrop512 ToTensor Normalize0.5",
+  "posterior": "mode, scaled by native0.13025",
+  "seed": 1729,
+  "original_bank_bitwise_identity_NOT_claimed": true,
+  "GPU_count": 1,
+  "partition": "GPUA800",
+  "Slurm_minutes": 20,
+  "stop_after_complete_chunk_if_seconds_exceed": 1000,
+  "peak_GPU_cap": 21474836480,
+  "output_cap": 2147483648,
+  "finite_prefix_resumable": true,
+  "new_method_image_effect_or_SOTA": false
+}

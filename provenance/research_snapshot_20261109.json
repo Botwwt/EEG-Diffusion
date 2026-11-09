@@ -15075,11 +15075,10 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "bytes": 355020,
-      "source_sha256": "4d5321201034829f124b16c64858eca389f17f07551e9035fada30fe7530d10d",
-      "sha256": "0bc59cb8538fd8645107390e525c069c348c27207d8d53df83273e95637a903f",
-      "access_metadata_redactions": 0,
-      "public_newlines_normalized_to_LF": true
+      "bytes": 360126,
+      "source_sha256": "5941cc70fba0d72d3ab97e127c6eb3091f8a75ddf3c156a1cf7a035aad0c9ee7",
+      "sha256": "3b8a3021d16f72fb8a525427679f3c717c342f0f0478eb664069bd4ebdc90f0d",
+      "access_metadata_redactions": 0
     },
     {
       "path": "research/eeg/BRAINHIVE_NEXT_RESEARCH_PROTOCOL_20261021.md",
@@ -15146,13 +15145,110 @@
       "source_sha256": "42c770304b6b7b0f34defd9f309005071d877df892f22f6285e6cfe01ed0ad79",
       "sha256": "42c770304b6b7b0f34defd9f309005071d877df892f22f6285e6cfe01ed0ad79",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_training_images_CPU_20261109_v254.py",
+      "source_path": "PKU_audit_training_images_CPU_20261109_v254.py",
+      "bytes": 2581,
+      "source_sha256": "654bbee01362f19c925e955c82985c157d83f8e401b5c26f8ce7c0fce49b1296",
+      "sha256": "654bbee01362f19c925e955c82985c157d83f8e401b5c26f8ce7c0fce49b1296",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_training_images_CPU_20261109_v254.sbatch",
+      "source_path": "PKU_audit_training_images_CPU_20261109_v254.sbatch",
+      "bytes": 644,
+      "source_sha256": "b36de6b17254988a693ab03c4dcfe466afbd2160dc2dac0794b3d71ed4bb66c1",
+      "sha256": "b36de6b17254988a693ab03c4dcfe466afbd2160dc2dac0794b3d71ed4bb66c1",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_build_native_T_latents_GPU_20261109_v256.py",
+      "source_path": "PKU_build_native_T_latents_GPU_20261109_v256.py",
+      "bytes": 7249,
+      "source_sha256": "8885402965f156cad4453850c599d7c745379bff00d006a1378323a82f52d60a",
+      "sha256": "8885402965f156cad4453850c599d7c745379bff00d006a1378323a82f52d60a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_build_native_T_latents_GPU_20261109_v256.sbatch",
+      "source_path": "PKU_build_native_T_latents_GPU_20261109_v256.sbatch",
+      "bytes": 1105,
+      "source_sha256": "abb6ad07fedcc3feb09ddc9e4e216a95992acec2bd0ef83201aa4af3fe7b5b7d",
+      "sha256": "abb6ad07fedcc3feb09ddc9e4e216a95992acec2bd0ef83201aa4af3fe7b5b7d",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_install_torchvision_CPU_20261109_v255.py",
+      "source_path": "PKU_install_torchvision_CPU_20261109_v255.py",
+      "bytes": 1957,
+      "source_sha256": "90906fd9c7d6ae39c884ce3336453cae09b24dc6eb01e5ea791edcaaf384a102",
+      "sha256": "90906fd9c7d6ae39c884ce3336453cae09b24dc6eb01e5ea791edcaaf384a102",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_install_torchvision_CPU_20261109_v255.sbatch",
+      "source_path": "PKU_install_torchvision_CPU_20261109_v255.sbatch",
+      "bytes": 749,
+      "source_sha256": "07f431399ed76fbadd584d3cb81a549de1ede1ce785050bff71d1da6f2abe357",
+      "sha256": "07f431399ed76fbadd584d3cb81a549de1ede1ce785050bff71d1da6f2abe357",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_native_generator_20261109_v253.py",
+      "source_path": "PKU_native_generator_20261109_v253.py",
+      "bytes": 5385,
+      "source_sha256": "93315b41af26f1191925079ecceddbdf7712371bd348b4b4edf2a780557b5270",
+      "sha256": "93315b41af26f1191925079ecceddbdf7712371bd348b4b4edf2a780557b5270",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_profile_native_generator_GPU_20261109_v253.py",
+      "source_path": "PKU_profile_native_generator_GPU_20261109_v253.py",
+      "bytes": 5626,
+      "source_sha256": "dafd5c88effbec62f8f9c9832753bfe37b04bcfd49a3cc99a435b551e4ebf2be",
+      "sha256": "dafd5c88effbec62f8f9c9832753bfe37b04bcfd49a3cc99a435b551e4ebf2be",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_profile_native_generator_GPU_20261109_v253.sbatch",
+      "source_path": "PKU_profile_native_generator_GPU_20261109_v253.sbatch",
+      "bytes": 1795,
+      "source_sha256": "0fe6e89091a444b01d0cf1b3a95b1d3570943b8b09fe4ed9059c96b82d88d196",
+      "sha256": "0fe6e89091a444b01d0cf1b3a95b1d3570943b8b09fe4ed9059c96b82d88d196",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/PKU_native_T_latent_policy_20261109_v256.json",
+      "source_path": "configs/PKU_native_T_latent_policy_20261109_v256.json",
+      "bytes": 873,
+      "source_sha256": "7710845c6c8226f9fb5b8c07d89e31688c385419b294198d885ff43d2b6f8de3",
+      "sha256": "7710845c6c8226f9fb5b8c07d89e31688c385419b294198d885ff43d2b6f8de3",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/PKU_NATIVE_GENERATOR_INPUTS_MILESTONE_20261109_v257.json",
+      "source_path": "audit/PKU_NATIVE_GENERATOR_INPUTS_MILESTONE_20261109_v257.json",
+      "bytes": 5758,
+      "source_sha256": "b86ceb2081725ed03d66308a2c917791409d48d651569b67492f6a35dc2ab6b1",
+      "sha256": "b86ceb2081725ed03d66308a2c917791409d48d651569b67492f6a35dc2ab6b1",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/BRAINHIVE_PKU_GENERATOR_INPUTS_RESULTS_20261109_v257.md",
+      "source_path": "reports/BRAINHIVE_PKU_GENERATOR_INPUTS_RESULTS_20261109_v257.md",
+      "bytes": 3265,
+      "source_sha256": "428c4db26cb7990d22fcbf350d7867bb4ba4b223a5e9553863c50fe5955ae109",
+      "sha256": "428c4db26cb7990d22fcbf350d7867bb4ba4b223a5e9553863c50fe5955ae109",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 17061292,
+  "bytes": 17103385,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
-  "public_text_line_endings": "LF; original source hash retained separately"
+  "public_text_line_endings": "LF; original source hash retained separately",
+  "updated_UTC": "2026-11-09T05:56:48.655143+00:00"
 }
