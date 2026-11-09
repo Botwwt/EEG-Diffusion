@@ -65,6 +65,13 @@ C真实首两步已经完成。原CPU审计误拒绝有效16字节CUDA随机状�
 
 [完整执行、全部对照与限制](../research/eeg/reports/EEG_DOWNSTREAM_OVERNIGHT_EXECUTION_20261109_v305.md) · [完整架构公式](../research/eeg/reports/EEG_COMPLETE_ARCHITECTURE_AND_NOVELTY_20261109_v299.md)
 
+### 论文主张与创新复核
+
+当前P/IP九组定位为适配强基线和机制对照。主候选收拢到EEG可恢复视觉内容与下游生成保持的共同设计：先在隔离概念中验证视觉方向的可预测性，再检查实际生成图是否保留这些证据，比较同秩PCA、仅预测性、仅生成敏感性和普通P/IP适配。该候选延续11月3日草案，尚未完成新数值验证或新颖性证明；SAMGA、Structured Visual Target Learning、RPA、DCR等近邻必须区分。已排队数值实验不变。
+
+[完整论文主张与近邻区别](../research/eeg/reports/EEG_PAPER_MAIN_CLAIM_AND_NOVELTY_REVIEW_20261109_v306.md)
+
+
 ## 3. GPU 适配：实现候选，尚无完整加速结论
 
 640 个间隔对完整 HIVE 的显式 FP64 Jacobian 仅矩阵就约 30.77 GiB。无矩阵乘法 J(Jᵀλ) 能避免存储完整 J，但其实际总显存、求解迭代数和端到端收益仍需测量。

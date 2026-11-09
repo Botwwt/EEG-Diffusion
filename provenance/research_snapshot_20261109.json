@@ -16465,9 +16465,25 @@
       "source_sha256": "070aba77ac0dc7a835ba2da8277c2572e8a060f64fa5fcc59b55458ead6837e6",
       "sha256": "070aba77ac0dc7a835ba2da8277c2572e8a060f64fa5fcc59b55458ead6837e6",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/EEG_PAPER_MAIN_CLAIM_AND_NOVELTY_REVIEW_20261109_v306.md",
+      "source_path": "reports/EEG_PAPER_MAIN_CLAIM_AND_NOVELTY_REVIEW_20261109_v306.md",
+      "bytes": 8759,
+      "source_sha256": "223857c58328d07cadbf908d4ca02be59dda4509e3ae65dd61ffebd6744312e5",
+      "sha256": "223857c58328d07cadbf908d4ca02be59dda4509e3ae65dd61ffebd6744312e5",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_PAPER_NOVELTY_DECISION_20261109_v306.json",
+      "source_path": "audit/EEG_PAPER_NOVELTY_DECISION_20261109_v306.json",
+      "bytes": 498,
+      "source_sha256": "66ba6680449f80df0c4586c356b5a8bc5dbc1af264f986958fd78926a1cf57ac",
+      "sha256": "21215f2bd66efbdd206ef22a6a494d4c16974f8bcab4ace43835158cb55e1eeb",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 18935776,
+  "bytes": 18945033,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
