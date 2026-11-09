@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "bytes": 360126,
-      "source_sha256": "5941cc70fba0d72d3ab97e127c6eb3091f8a75ddf3c156a1cf7a035aad0c9ee7",
-      "sha256": "3b8a3021d16f72fb8a525427679f3c717c342f0f0478eb664069bd4ebdc90f0d",
+      "bytes": 361209,
+      "source_sha256": "38c7135ada5d1452776a6386ece01f289569904089e85f859a5f1d41b8806e51",
+      "sha256": "38c7135ada5d1452776a6386ece01f289569904089e85f859a5f1d41b8806e51",
       "access_metadata_redactions": 0
     },
     {
@@ -15241,14 +15241,134 @@
       "source_sha256": "428c4db26cb7990d22fcbf350d7867bb4ba4b223a5e9553863c50fe5955ae109",
       "sha256": "428c4db26cb7990d22fcbf350d7867bb4ba4b223a5e9553863c50fe5955ae109",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_native_T_latents_CPU_20261109_v258.py",
+      "source_path": "PKU_audit_native_T_latents_CPU_20261109_v258.py",
+      "bytes": 5376,
+      "source_sha256": "f0cc11c780279ff80ef7eeaa86b85264bf1c97796a2c8506ea3e02c6469ef342",
+      "sha256": "f0cc11c780279ff80ef7eeaa86b85264bf1c97796a2c8506ea3e02c6469ef342",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_native_T_latents_CPU_20261109_v258.sbatch",
+      "source_path": "PKU_audit_native_T_latents_CPU_20261109_v258.sbatch",
+      "bytes": 823,
+      "source_sha256": "7a0010371bf67f9dc7417e80a6cd575e217698c9cb25a79b67923b76af42f49f",
+      "sha256": "7a0010371bf67f9dc7417e80a6cd575e217698c9cb25a79b67923b76af42f49f",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_train_matching_ordinary_GPU_20261109_v259.py",
+      "source_path": "PKU_train_matching_ordinary_GPU_20261109_v259.py",
+      "bytes": 11380,
+      "source_sha256": "130752ed3fb98cb586bd62ebc52fb0b4b402a989a1e798627f820cea87ff92f0",
+      "sha256": "130752ed3fb98cb586bd62ebc52fb0b4b402a989a1e798627f820cea87ff92f0",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_train_matching_ordinary_prefix_GPU_20261109_v259.sbatch",
+      "source_path": "PKU_train_matching_ordinary_prefix_GPU_20261109_v259.sbatch",
+      "bytes": 1405,
+      "source_sha256": "51e0e38ac3f2bda4e6254285a1d07926e90f2f9430bc1f8ca4fe32ccab04e7f3",
+      "sha256": "51e0e38ac3f2bda4e6254285a1d07926e90f2f9430bc1f8ca4fe32ccab04e7f3",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_matching_ordinary_CPU_20261109_v260.py",
+      "source_path": "PKU_audit_matching_ordinary_CPU_20261109_v260.py",
+      "bytes": 5023,
+      "source_sha256": "accff394db479def6f11cec48ee272cc4a0d22c104756a45884232f8de284b89",
+      "sha256": "accff394db479def6f11cec48ee272cc4a0d22c104756a45884232f8de284b89",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_matching_ordinary_CPU_20261109_v260.sbatch",
+      "source_path": "PKU_audit_matching_ordinary_CPU_20261109_v260.sbatch",
+      "bytes": 712,
+      "source_sha256": "baea17ee628855d53f960aa4c9865fdcb30705528e898ea8edcb217591e0b6e8",
+      "sha256": "baea17ee628855d53f960aa4c9865fdcb30705528e898ea8edcb217591e0b6e8",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_continue_matching_ordinary_GPU_20261109_v261.py",
+      "source_path": "PKU_continue_matching_ordinary_GPU_20261109_v261.py",
+      "bytes": 4499,
+      "source_sha256": "5912bd869eed46787c8bb254339ba78b1a2d799572140a44e3dd41eb89d5672a",
+      "sha256": "5912bd869eed46787c8bb254339ba78b1a2d799572140a44e3dd41eb89d5672a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_continue_matching_ordinary_GPU_20261109_v261.sbatch",
+      "source_path": "PKU_continue_matching_ordinary_GPU_20261109_v261.sbatch",
+      "bytes": 1698,
+      "source_sha256": "8644250cee58362eb5e8b2ebcd272324f86af12fe749c451589235e335c90564",
+      "sha256": "8644250cee58362eb5e8b2ebcd272324f86af12fe749c451589235e335c90564",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_matching_ordinary_T_CPU_20261109_v262.py",
+      "source_path": "PKU_probe_matching_ordinary_T_CPU_20261109_v262.py",
+      "bytes": 6439,
+      "source_sha256": "37d90704d72d23e06dbf4f1d56feb595fefa234a7b70b7f07f92bb02e1e36a23",
+      "sha256": "37d90704d72d23e06dbf4f1d56feb595fefa234a7b70b7f07f92bb02e1e36a23",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_matching_ordinary_T_CPU_20261109_v262.sbatch",
+      "source_path": "PKU_probe_matching_ordinary_T_CPU_20261109_v262.sbatch",
+      "bytes": 720,
+      "source_sha256": "da26ecd3a114863c0fe2cf66ee24335e842ffa6ee29826fd3aad6ccf0bfc140d",
+      "sha256": "da26ecd3a114863c0fe2cf66ee24335e842ffa6ee29826fd3aad6ccf0bfc140d",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/PKU_matching_ordinary_sub03_policy_20261109_v259.json",
+      "source_path": "configs/PKU_matching_ordinary_sub03_policy_20261109_v259.json",
+      "bytes": 2219,
+      "source_sha256": "879fb228d81d74b44f249cfa2c6e37e13ecad00962a4a2b77dd6ee2864a20c73",
+      "sha256": "879fb228d81d74b44f249cfa2c6e37e13ecad00962a4a2b77dd6ee2864a20c73",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/PKU_matching_ordinary_chain_policy_20261109_v261.json",
+      "source_path": "configs/PKU_matching_ordinary_chain_policy_20261109_v261.json",
+      "bytes": 506,
+      "source_sha256": "38fd46db40d05d2bf1331eb47c1000fc8bb4bb50acadf8b7eeb3c67859bf6081",
+      "sha256": "38fd46db40d05d2bf1331eb47c1000fc8bb4bb50acadf8b7eeb3c67859bf6081",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/PKU_matching_ordinary_provenance_wording_erratum_20261109_v261.json",
+      "source_path": "configs/PKU_matching_ordinary_provenance_wording_erratum_20261109_v261.json",
+      "bytes": 1039,
+      "source_sha256": "e671a4d8cf8bf7882ddd2e66b60c6eb033524b5a44dd7f3ce6cf1b733157c2e4",
+      "sha256": "e671a4d8cf8bf7882ddd2e66b60c6eb033524b5a44dd7f3ce6cf1b733157c2e4",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/BRAINHIVE_PKU_MATCHING_ORDINARY_PROGRESS_20261109_v263.md",
+      "source_path": "reports/BRAINHIVE_PKU_MATCHING_ORDINARY_PROGRESS_20261109_v263.md",
+      "bytes": 6634,
+      "source_sha256": "60354ee8da94f1008a606cdb35ed52af39fb8b39ff8d033888bbb973b3893645",
+      "sha256": "60354ee8da94f1008a606cdb35ed52af39fb8b39ff8d033888bbb973b3893645",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/PKU_MATCHING_ORDINARY_ACTUAL_PROGRESS_20261109_v263.json",
+      "source_path": "audit/PKU_MATCHING_ORDINARY_ACTUAL_PROGRESS_20261109_v263.json",
+      "bytes": 24827,
+      "source_sha256": "231223db62bba0854a8bfd04389943555b8b79a0a573e90ad5ad00bedcbda948",
+      "sha256": "231223db62bba0854a8bfd04389943555b8b79a0a573e90ad5ad00bedcbda948",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 17103385,
+  "bytes": 17177768,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-09T05:56:48.655143+00:00"
+  "updated_UTC": "2026-11-09T06:36:08.369045+00:00"
 }

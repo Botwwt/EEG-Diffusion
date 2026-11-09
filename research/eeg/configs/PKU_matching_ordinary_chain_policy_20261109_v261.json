@@ -1,0 +1,13 @@
+{
+  "max_tranches": 5,
+  "Slurm_minutes_each": 20,
+  "each_worker_stop_seconds": 1000,
+  "same_training_source_sha256": "130752ed3fb98cb586bd62ebc52fb0b4b402a989a1e798627f820cea87ff92f0",
+  "expected_total_updates": 2481,
+  "initial_updates_counted_once": 4,
+  "CPU_checkpoint_audit_each_tranche": true,
+  "one_GPU_concurrency_by_afterok_dependency": true,
+  "no_metric_based_stop_or_checkpoint_selection": true,
+  "finite_safe_prefix_not_equated_with_completion": true,
+  "old_ordinary_unchanged": true
+}

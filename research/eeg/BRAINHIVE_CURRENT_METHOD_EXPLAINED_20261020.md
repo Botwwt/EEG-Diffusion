@@ -1,3 +1,7 @@
+<!-- MATCHING_ORDINARY_ACTUAL_V263 -->
+> **新匹配ordinary实际续训，2026-11-09 UTC**：13230条T原生VAE缓存GPU5097501完整闭合，CPU5097655全SHA/52块/两图CPU重放通过。新sub03 ordinary原结构/损失/半径/单1729，固定3遍2481更新/39690暴露；4更新64暴露的GPU5097673与CPU5097685独立断点检查闭合，峰值11.93GB。首段5097843已完成1303更新/20846暴露并通过独立CPU断点检查，第二段5097979已真实RUNNING并恢复同一断点；同一有限链最多5段，每段后检查，不能重复启动。CPU5097880捕获512更新，完整T匹配余弦0.105840→0.183543、同概念Top1 31.6478%→31.3152%，仅训练诊断不单指标STOP。尚无新图片/最终拟合校准结果，旧ordinary不动/第二创新CCFA/SOTA未建立。只用一张HPC卡，大资产留wwt/eeg，无本机TorchNumPy/旧关机实例/第二卡/subagents/CoLa。详见reports/BRAINHIVE_PKU_MATCHING_ORDINARY_PROGRESS_20261109_v263.md和audit/PKU_MATCHING_ORDINARY_ACTUAL_PROGRESS_20261109_v263.json。
+<!-- END_MATCHING_ORDINARY_ACTUAL_V263 -->
+
 <!-- NATIVE_GENERATOR_INPUTS_V257 -->
 > **原生生成器与图像输入工程已验证，2026-11-09 UTC**：GPU5097204完成真实sub03 T折外条件的原生/零ordinary四张工程图，两对逐像素一致；合成latent梯度检查通过，更新0/效能图0。CPU5097322恢复原生预处理，CPU5097488完整ZIP与16540JPEG身份SHA通过。GPU5097501正在共享存储构建13230条T的原生VAE模式缓存，尚无全量终态/新ordinary拟合，不宣称新方法收益。旧ordinary保留，第二创新/CCFA/SOTA未建立。清理与GitHub任务已完成，后续大型资产全部留在wwt/eeg；仅单HPCGPU，不启旧关机实例或第二卡，本机不导入Torch/NumPy。详见reports/BRAINHIVE_PKU_GENERATOR_INPUTS_RESULTS_20261109_v257.md和audit/PKU_NATIVE_GENERATOR_INPUTS_MILESTONE_20261109_v257.json。
 <!-- END_NATIVE_GENERATOR_INPUTS_V257 -->

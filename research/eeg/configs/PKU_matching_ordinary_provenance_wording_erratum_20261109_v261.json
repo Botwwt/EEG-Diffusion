@@ -1,0 +1,13 @@
+{
+  "status": "WORDING_CORRECTION_NO_NUMERICAL_SOURCE_OR_RECIPE_CHANGE",
+  "sealed_training_source_sha256": "130752ed3fb98cb586bd62ebc52fb0b4b402a989a1e798627f820cea87ff92f0",
+  "field": "input_provenance.json:no_D_V_or_official_test_reads",
+  "original_value": true,
+  "precise_interpretation": "No D/V/official-test images or conditions are passed into training model forwards, losses, checkpoint selection or calibration during this fit.",
+  "physical_container_access": "The pre-existing deterministic_F_all16540.pt training-feature container is loaded in CPU memory and then indexed by the fixed13230 T array rows. This loads container bytes for D/V feature rows as well; the original field must not be interpreted as zero byte access to those rows.",
+  "official_test_features_in_this_container": false,
+  "training_target_flow": "fullF[split.image_rows.T].clone().cuda() only",
+  "image_latent_scope": "13230 allowedT raw images only, independently audited",
+  "checkpoint_or_loss_changed": false,
+  "old_ordinary_changed": false
+}

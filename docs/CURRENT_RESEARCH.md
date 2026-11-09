@@ -59,9 +59,9 @@ $$\min_\delta \tfrac12\|\delta-p\|^2\quad\text{s.t.}\quad J\delta\ge -s.$$
 
 已从固定公开版本恢复原生视觉教师输入和 F 权重，在新集群训练 sub-03 的 full/oof0/oof1 三个 BrainMLP。每个 25 轮，共 675 更新；真实 T 折外条件 13,230 条及 full-D 条件 1,650 条已导出，14,880 条独立 CPU 前向复核通过。
 
-这是原生基线重建，不是新方法效果。旧 ordinary 保持独立；新父模型必须另训匹配 ordinary。原生生成权重已恢复并完成全文件 SHA 校验。GPU5097204 的四张原生/零修正工程图、逐像素回退与合成 latent 梯度检查通过；CPU5097488 复核全部16540训练JPEG的来源。GPU5097501 已启动13230条 T 的原生 VAE mode 缓存，当前仅有 RUNNING 观察，尚无全量缓存或新 ordinary 拟合结果。大资产全部位于 wwt/eeg，不下载到 D 盘。这些是工程验证，尚无这批新编码器的生成图片增益。
+这是原生基线重建。全部13230条T原生VAE缓存及独立CPU全量核验已完成。新父模型的匹配ordinary已开始真实拟合，固定3遍/2481更新；首分段5097843已完成1303更新/20846暴露并通过独立断点检查；第二分段5097979已从该断点恢复，继续固定2481次总预算。旧ordinary不覆盖。第512更新的全T诊断显示匹配余弦0.10584→0.18354，同概念Top1 31.65%→31.32%；这些是训练内特征读数，尚无新的图片增益，不作为停止或挑epoch依据。每段训练后检查断点，保持完整固定预算。
 
-[生成接口与输入验证](../research/eeg/reports/BRAINHIVE_PKU_GENERATOR_INPUTS_RESULTS_20261109_v257.md) · [原生重建结果](../research/eeg/reports/BRAINHIVE_PKU_NATIVE_REBUILD_RESULTS_20261109_v242.md) · [当前历史总记录](../research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md)
+[匹配训练与完整T诊断](../research/eeg/reports/BRAINHIVE_PKU_MATCHING_ORDINARY_PROGRESS_20261109_v263.md) · [生成接口与输入验证](../research/eeg/reports/BRAINHIVE_PKU_GENERATOR_INPUTS_RESULTS_20261109_v257.md) · [原生重建结果](../research/eeg/reports/BRAINHIVE_PKU_NATIVE_REBUILD_RESULTS_20261109_v242.md) · [当前历史总记录](../research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md)
 
 ## 5. 本仓库保存什么
 

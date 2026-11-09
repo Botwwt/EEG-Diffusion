@@ -1,0 +1,476 @@
+{
+  "UTC": "2026-11-09T06:36:08.369045+00:00",
+  "latent_complete": {
+    "UTC": "2026-11-09T06:08:51.984364+00:00",
+    "queue": "",
+    "job_id": "5097501",
+    "sacct": "5097501|COMPLETED|0:0|00:13:14|gpua800n02\n5097501.batch|COMPLETED|0:0|00:13:14|gpua800n02\n5097501.extern|COMPLETED|0:0|00:13:14|gpua800n02\n",
+    "registration.json": {
+      "shape": [
+        13230,
+        4,
+        64,
+        64
+      ],
+      "dtype": "float32",
+      "batch": 4,
+      "chunk": 256,
+      "source_sha256": "8885402965f156cad4453850c599d7c745379bff00d006a1378323a82f52d60a",
+      "image_audit_sha256": "6afb4a73c8960ff281dda95b47faf8493b61746ed76d329021b610219548e528",
+      "VAE_config_sha256": "85a181424a5fd0cc292e44e467be66a5263976eee1baf36d208133f9d49d4269",
+      "original_FP16_VAE_state_sha256": "30ac11a60affd385d5ac9848638d7299e019148cb98e908ca688f86675e54d31",
+      "VAE_parameters": 83653863,
+      "VAE_scaling_factor": 0.13025,
+      "preprocessing": "Native Resize512 BILINEAR, CenterCrop512, RGB ToTensor Normalize0.5",
+      "torch": "2.3.0+cu121",
+      "torchvision": "0.18.0+cu121",
+      "VAE_compute": "FP32 widened from exact FP16 source, TF32 disabled, mode not posterior sample",
+      "old_latent_bank_bitwise_identity_claimed": false,
+      "permissions": "Only T images receive VAE forward; no D/V/official-test forward, no parameter fit"
+    },
+    "progress.json": {
+      "completed": 13230,
+      "cumulative_seconds": 790.228444277076,
+      "attempts": [
+        {
+          "job_id": "5097501",
+          "start_row": 0
+        }
+      ],
+      "expected": 13230,
+      "peak_GPU_bytes": 1029299712,
+      "last_job_id": "5097501"
+    },
+    "completion.json": {
+      "status": "COMPLETE_ALL13230_NATIVE_T_VAE_MODE_LATENTS",
+      "job_id": "5097501",
+      "path": "/dfs/share/maleiLab/wwt/eeg/data/native_T_latents_v256/native_VAE_T_modes.npy",
+      "sha256": "b1198b3e07361e3b941f87e3b60146b1cc7957293e813db69f7b59cfa8469a2d",
+      "bytes": 867041408,
+      "shape": [
+        13230,
+        4,
+        64,
+        64
+      ],
+      "dtype": "float32",
+      "registration_sha256": "bf3e9ade0215a61df321093b507ed18dbb45e3ad3a2e620c1017ddfa34f8f401",
+      "attempts": [
+        {
+          "job_id": "5097501",
+          "start_row": 0
+        }
+      ],
+      "cumulative_seconds": 790.228444277076,
+      "seconds_this_attempt": 792.7982519210782,
+      "peak_GPU_bytes": 1029299712,
+      "old_bank_bitwise_identity_claimed": false,
+      "models_fitted": 0,
+      "source_image_supervision_scope": "T only",
+      "new_images_generated": 0
+    },
+    "out_tail": "\": \"5097501\"}\n{\"completed\": 10240, \"cumulative_seconds\": 624.301979794167, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 10496, \"cumulative_seconds\": 638.4835888880771, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 10752, \"cumulative_seconds\": 652.6496366241481, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 11008, \"cumulative_seconds\": 666.8054573282134, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 11264, \"cumulative_seconds\": 680.9915125751868, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 11520, \"cumulative_seconds\": 695.2363674819935, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 11776, \"cumulative_seconds\": 709.4376658631954, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 12032, \"cumulative_seconds\": 723.6448190461379, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 12288, \"cumulative_seconds\": 737.8625621641986, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 12544, \"cumulative_seconds\": 752.0759618761949, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 12800, \"cumulative_seconds\": 766.3127803571988, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 13056, \"cumulative_seconds\": 780.5238019451499, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"completed\": 13230, \"cumulative_seconds\": 790.228444277076, \"expected\": 13230, \"peak_GPU_bytes\": 1029299712, \"last_job_id\": \"5097501\"}\n{\"status\": \"COMPLETE_ALL13230_NATIVE_T_VAE_MODE_LATENTS\", \"job_id\": \"5097501\", \"path\": \"/dfs/share/maleiLab/wwt/eeg/data/native_T_latents_v256/native_VAE_T_modes.npy\", \"sha256\": \"b1198b3e07361e3b941f87e3b60146b1cc7957293e813db69f7b59cfa8469a2d\", \"bytes\": 867041408, \"shape\": [13230, 4, 64, 64], \"dtype\": \"float32\", \"registration_sha256\": \"bf3e9ade0215a61df321093b507ed18dbb45e3ad3a2e620c1017ddfa34f8f401\", \"attempts\": [{\"job_id\": \"5097501\", \"start_row\": 0}], \"cumulative_seconds\": 790.228444277076, \"seconds_this_attempt\": 792.7982519210782, \"peak_GPU_bytes\": 1029299712, \"old_bank_bitwise_identity_claimed\": false, \"models_fitted\": 0, \"source_image_supervision_scope\": \"T only\", \"new_images_generated\": 0}\n",
+    "err_tail": "/dfs/share/maleiLab/wwt/eeg/envs/torch230_cu121_v235/lib/python3.11/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)\n  return F.conv2d(input, weight, bias, self.stride,\n"
+  },
+  "latent_independent_audit": {
+    "job_id": "5097655",
+    "sacct": "5097655|COMPLETED|0:0|00:00:47|a3n01c3\n5097655.batch|COMPLETED|0:0|00:00:47|a3n01c3\n5097655.extern|COMPLETED|0:0|00:00:47|a3n01c3\n",
+    "completion.json": {
+      "status": "PASS_ALL13230_NATIVE_LATENTS_SHA_COVERAGE_AND_TWO_CPU_REPLAYS",
+      "job_id": "5097655",
+      "host": "a3n01c3",
+      "seconds": 45.61168624088168,
+      "bank_sha256": "b1198b3e07361e3b941f87e3b60146b1cc7957293e813db69f7b59cfa8469a2d",
+      "bank_bytes": 867041408,
+      "shape": [
+        13230,
+        4,
+        64,
+        64
+      ],
+      "dtype": "float32",
+      "all_rows": 13230,
+      "all_chunks": 52,
+      "finite_min": -4.311643600463867,
+      "finite_max": 4.370723724365234,
+      "registration_sha256": "bf3e9ade0215a61df321093b507ed18dbb45e3ad3a2e620c1017ddfa34f8f401",
+      "source_completion_sha256": "9b6df0462218c40ff275edbcbd173017dd7560df967c757c0b323504618ca938",
+      "replay": [
+        {
+          "T_position": 0,
+          "array_row": 0,
+          "image_sha256": "17cb9c00bf2d838882a3f08da90b10b37af0e43975345176976c495cec7a7593",
+          "max_abs_CPU_GPU": 0.0006291866302490234,
+          "mean_abs_CPU_GPU": 1.635585931580863e-06,
+          "atol": 0.0005,
+          "rtol": 0.0005
+        },
+        {
+          "T_position": 13229,
+          "array_row": 16539,
+          "image_sha256": "4f812ab8f4147147618d957d85a464a0a41f76c73de83c7c139e183997f56260",
+          "max_abs_CPU_GPU": 0.00023496150970458984,
+          "mean_abs_CPU_GPU": 1.178644652100047e-06,
+          "atol": 0.0005,
+          "rtol": 0.0005
+        }
+      ],
+      "new_optimizer_updates": 0,
+      "new_images_generated": 0,
+      "image_scope": "Only T, no D/V/official test image forward",
+      "old_latent_bank_bitwise_identity_claimed": false,
+      "science_or_SOTA_claim": false
+    },
+    "out_tail": "/dfs/share/maleiLab/wwt/eeg/code/PKU_audit_native_T_latents_CPU_20261109_v258.py: OK\n{\"status\": \"PASS_ALL13230_NATIVE_LATENTS_SHA_COVERAGE_AND_TWO_CPU_REPLAYS\", \"job_id\": \"5097655\", \"host\": \"a3n01c3\", \"seconds\": 45.61168624088168, \"bank_sha256\": \"b1198b3e07361e3b941f87e3b60146b1cc7957293e813db69f7b59cfa8469a2d\", \"bank_bytes\": 867041408, \"shape\": [13230, 4, 64, 64], \"dtype\": \"float32\", \"all_rows\": 13230, \"all_chunks\": 52, \"finite_min\": -4.311643600463867, \"finite_max\": 4.370723724365234, \"registration_sha256\": \"bf3e9ade0215a61df321093b507ed18dbb45e3ad3a2e620c1017ddfa34f8f401\", \"source_completion_sha256\": \"9b6df0462218c40ff275edbcbd173017dd7560df967c757c0b323504618ca938\", \"replay\": [{\"T_position\": 0, \"array_row\": 0, \"image_sha256\": \"17cb9c00bf2d838882a3f08da90b10b37af0e43975345176976c495cec7a7593\", \"max_abs_CPU_GPU\": 0.0006291866302490234, \"mean_abs_CPU_GPU\": 1.635585931580863e-06, \"atol\": 0.0005, \"rtol\": 0.0005}, {\"T_position\": 13229, \"array_row\": 16539, \"image_sha256\": \"4f812ab8f4147147618d957d85a464a0a41f76c73de83c7c139e183997f56260\", \"max_abs_CPU_GPU\": 0.00023496150970458984, \"mean_abs_CPU_GPU\": 1.178644652100047e-06, \"atol\": 0.0005, \"rtol\": 0.0005}], \"new_optimizer_updates\": 0, \"new_images_generated\": 0, \"image_scope\": \"Only T, no D/V/official test image forward\", \"old_latent_bank_bitwise_identity_claimed\": false, \"science_or_SOTA_claim\": false}\n",
+    "err_tail": "/dfs/share/maleiLab/wwt/eeg/envs/torch230_cu121_v235/lib/python3.11/site-packages/torch/amp/autocast_mode.py:250: UserWarning: User provided device_type of 'cuda', but CUDA is not available. Disabling\n  warnings.warn(\n"
+  },
+  "prefix4_independent_audit": {
+    "jobs": [
+      {
+        "job_id": "5097685",
+        "kind": "prefix4",
+        "sacct": "5097685|COMPLETED|0:0|00:00:13|a3n01c1\n5097685.batch|COMPLETED|0:0|00:00:13|a3n01c1\n5097685.extern|COMPLETED|0:0|00:00:13|a3n01c1\n",
+        "completion.json": {
+          "status": "PASS_COMMITTED_MATCHING_ORDINARY_MODEL_ADAM_RNG_AND_EXACT_COVERAGE",
+          "job_id": "5097685",
+          "host": "a3n01c1",
+          "seconds": 11.685332842171192,
+          "checkpoint_sha256": "1ab7257c8ac48e1291d621bde545df096126ee2ce172fd7326948bf099b1db1a",
+          "updates": 4,
+          "exposures": 64,
+          "expected_updates": 2481,
+          "expected_exposures": 39690,
+          "parameters": 525568,
+          "coverage_exact": true,
+          "all_committed_losses_reconciled": true,
+          "parameter_max_changes": {
+            "trunk.0.weight": 0.0002499343827366829,
+            "trunk.0.bias": 0.00024986639618873596,
+            "direction.weight": 0.00040086638182401657,
+            "direction.bias": 0.00040082979830913246
+          },
+          "RNG_state_structure_pass": true,
+          "CUDA_training_replay_performed": false,
+          "full_training_complete": false,
+          "new_images": 0,
+          "new_optimizer_updates": 0,
+          "immutable_old_ordinary_changed": false,
+          "trained_prefix_is_not_efficacy": true
+        },
+        "error_tail": ""
+      }
+    ]
+  },
+  "T512_geometry": {
+    "job_id": "5097880",
+    "sacct": "5097880|COMPLETED|0:0|00:00:22|a2n17c3\n5097880.batch|COMPLETED|0:0|00:00:22|a2n17c3\n5097880.extern|COMPLETED|0:0|00:00:22|a2n17c3\n",
+    "completion.json": {
+      "status": "COMPLETE_ALL13230_MATCHED_ORDINARY_T_GEOMETRY_READONLY_DIAGNOSTIC",
+      "job_id": "5097880",
+      "host": "a2n17c3",
+      "seconds": 21.51316398009658,
+      "captured_training_updates": 512,
+      "captured_exposures": 8192,
+      "ever_exposed_T": 8192,
+      "checkpoint_sha256": "158fa7e6028716222dee4a39b2a9d3af9d44cf5c848a4e8731293785c99ace3e",
+      "results": {
+        "native": {
+          "allT": {
+            "queries": 13230,
+            "own_cosine": 0.10583975878159292,
+            "within_margin": -0.02003450508983561,
+            "global_margin": -0.12483700830321894,
+            "within_top1": 0.3164777021919879,
+            "global_top1": 0.005291005291005291,
+            "strict_within_top1": 0.3164777021919879,
+            "strict_global_top1": 0.005291005291005291
+          },
+          "raw_condition_mean_energy_fraction": 0.00037312053456592235,
+          "exposed_T": {
+            "queries": 8192,
+            "own_cosine": 0.10528089517918483,
+            "within_margin": -0.019961666519358483,
+            "global_margin": -0.12520085594637576,
+            "within_top1": 0.31640625,
+            "global_top1": 0.0042724609375,
+            "strict_within_top1": 0.31640625,
+            "strict_global_top1": 0.0042724609375
+          },
+          "not_yet_exposed_T": {
+            "queries": 5038,
+            "own_cosine": 0.10674849451619538,
+            "within_margin": -0.02015294367049233,
+            "global_margin": -0.12424537672466773,
+            "within_top1": 0.3165938864628821,
+            "global_top1": 0.0069472012703453755,
+            "strict_within_top1": 0.3165938864628821,
+            "strict_global_top1": 0.0069472012703453755
+          }
+        },
+        "ordinary": {
+          "allT": {
+            "queries": 13230,
+            "own_cosine": 0.1835429622271055,
+            "within_margin": -0.019953649095903636,
+            "global_margin": -0.12228267332478118,
+            "within_top1": 0.3131519274376417,
+            "global_top1": 0.004761904761904762,
+            "strict_within_top1": 0.3131519274376417,
+            "strict_global_top1": 0.004761904761904762
+          },
+          "raw_condition_mean_energy_fraction": 0.048758147437466016,
+          "exposed_T": {
+            "queries": 8192,
+            "own_cosine": 0.18309019677045363,
+            "within_margin": -0.019923029809092354,
+            "global_margin": -0.12269933041225398,
+            "within_top1": 0.31396484375,
+            "global_top1": 0.0040283203125,
+            "strict_within_top1": 0.31396484375,
+            "strict_global_top1": 0.0040283203125
+          },
+          "not_yet_exposed_T": {
+            "queries": 5038,
+            "own_cosine": 0.1842791779120782,
+            "within_margin": -0.020003437344724193,
+            "global_margin": -0.12160517136754083,
+            "within_top1": 0.31183009130607386,
+            "global_top1": 0.0059547439460103215,
+            "strict_within_top1": 0.31183009130607386,
+            "strict_global_top1": 0.0059547439460103215
+          }
+        }
+      },
+      "paired_difference": {
+        "own_cosine": {
+          "mean": 0.0777032034455126,
+          "minimum": 0.03900595861267452,
+          "maximum": 0.10796053462220015,
+          "worse_queries": 0,
+          "better_queries": 13230
+        },
+        "within_margin": {
+          "mean": 8.085599393197538e-05,
+          "minimum": -0.03524314325335509,
+          "maximum": 0.03191260419080379,
+          "worse_queries": 6580,
+          "better_queries": 6650
+        },
+        "global_margin": {
+          "mean": 0.002554334978437738,
+          "minimum": -0.033369206177543353,
+          "maximum": 0.045451959866359276,
+          "worse_queries": 5229,
+          "better_queries": 8001
+        },
+        "within_top1": {
+          "mean": -0.003325774754346183,
+          "minimum": -1.0,
+          "maximum": 1.0,
+          "worse_queries": 324,
+          "better_queries": 280
+        },
+        "global_top1": {
+          "mean": -0.0005291005291005291,
+          "minimum": -1.0,
+          "maximum": 1.0,
+          "worse_queries": 18,
+          "better_queries": 11
+        }
+      },
+      "metric_table_sha256": "17277588fb951d29a81b0f72502f8a4b7f0191025db15cbb3999963c383c94ef",
+      "FP64_full13230_gallery": true,
+      "interpretation": "Upstream EEG conditions are OOF; ordinary trains on T. This is a training diagnostic, not independent confirmation, image gain or a rule for epoch selection.",
+      "no_training_or_control_changes": true,
+      "new_updates": 0,
+      "new_images": 0,
+      "D_V_or_official_test_forward": false
+    },
+    "err_tail": ""
+  },
+  "latest_chain": {
+    "UTC": "2026-11-09T06:33:19.011221+00:00",
+    "queue": "5097843|eeg_O_chain261|RUNNING|12:40|gpua800n02\n",
+    "chain_initial_job_id": "5097843",
+    "tranches": [],
+    "chain_progress.json": {
+      "tranche": 1,
+      "job_id": "5097843",
+      "status": "RUNNING_SAME_COMMITTED_FIT",
+      "starting_updates": 4,
+      "starting_checkpoint_sha256": "1ab7257c8ac48e1291d621bde545df096126ee2ce172fd7326948bf099b1db1a",
+      "UTC": "2026-11-09T06:20:39.912870+00:00"
+    },
+    "progress.json": {
+      "status": "RUNNING",
+      "expected_updates": 2481,
+      "expected_exposures": 39690,
+      "update": 896,
+      "pass_number": 2,
+      "offset": 1088,
+      "n": 16,
+      "seen": 14334,
+      "loss": 0.19021177291870117,
+      "epsilon_loss": 0.168746680021286,
+      "token_loss": 0.214650958776474,
+      "gradient_norm": 0.002538693603128195,
+      "direction_weight_gradient_norm": 0.0021902837324887514,
+      "correction_RMS": 0.23115433752536774,
+      "seconds": 802.055572806159,
+      "peak_GPU_allocated_bytes": 11932961792
+    },
+    "checkpoint_receipt.json": {
+      "updates": 896,
+      "cursor": 14334,
+      "seen": 14334,
+      "checkpoint_sha256": "2b0d9df3fdc5602362c05f62745452ae0b297ff134c6bdbca3b3de9597736cef",
+      "checkpoint_bytes": 6462146,
+      "seconds": 802.080071369186,
+      "job_id": "5097843"
+    },
+    "sacct": "5097843|RUNNING|0:0|00:12:40|gpua800n02\n5097843.batch|RUNNING|0:0|00:12:40|gpua800n02\n5097843.extern|RUNNING|0:0|00:12:40|gpua800n02\n",
+    "failures": [],
+    "latest_attempt_event_5097843": {
+      "update": 953,
+      "pass_number": 2,
+      "offset": 2000,
+      "n": 16,
+      "seen": 15246,
+      "loss": 0.25425782799720764,
+      "epsilon_loss": 0.2323807179927826,
+      "token_loss": 0.21877118945121765,
+      "gradient_norm": 0.002334733260795474,
+      "direction_weight_gradient_norm": 0.0022008384112268686,
+      "correction_RMS": 0.23357121646404266,
+      "seconds": 841.4118670681491,
+      "peak_GPU_allocated_bytes": 11932961792
+    },
+    "error_5097843_tail": "\rLoading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]\rLoading pipeline components...:  14%|\u2588\u258d        | 1/7 [00:00<00:00,  7.11it/s]\rLoading pipeline components...:  43%|\u2588\u2588\u2588\u2588\u258e     | 3/7 [00:00<00:00,  4.36it/s]\rLoading pipeline components...:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 4/7 [00:00<00:00,  5.19it/s]\rLoading pipeline components...:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 5/7 [00:00<00:00,  5.79it/s]\rLoading pipeline components...:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 6/7 [00:01<00:00,  3.99it/s]\rLoading pipeline components...: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 7/7 [00:01<00:00,  5.01it/s]\n"
+  },
+  "ordinary_new_fit_started": true,
+  "new_ordinary_full_training_complete": false,
+  "new_images": 0,
+  "second_confirmed_method": false,
+  "goal_status": "active",
+  "goal_complete": false,
+  "actual_first_transition": {
+    "UTC": "2026-11-09T06:40:21.049500+00:00",
+    "queue": "5097979|eeg_O_chain261|RUNNING|2:46|gpua800n07\n",
+    "chain_initial_job_id": "5097843",
+    "tranches": [
+      {
+        "tranche": 1,
+        "job_id": "5097843",
+        "status": "NEXT_TRANCHE_SUBMITTED_AFTER_VERIFIED_PREFIX",
+        "starting_updates": 4,
+        "starting_checkpoint_sha256": "1ab7257c8ac48e1291d621bde545df096126ee2ce172fd7326948bf099b1db1a",
+        "UTC": "2026-11-09T06:20:39.912870+00:00",
+        "updates": 1303,
+        "exposures": 20846,
+        "checkpoint_sha256": "c502c177e43b3995873bf8187c49fae931dd42f7a88ca85f82c1b20985d7555a",
+        "CPU_audit_sha256": "dcda639090f9aa748a539c6b8719b4300747099c59ea57fc094ea228e3fe2cf3",
+        "seconds": 1015.6115155881271,
+        "next_job_id": "5097979",
+        "next_tranche": 2,
+        "no_effect_threshold_or_hyperparameter_change": true,
+        "new_images": 0,
+        "independent_checkpoint_audit": {
+          "status": "PASS_COMMITTED_MATCHING_ORDINARY_MODEL_ADAM_RNG_AND_EXACT_COVERAGE",
+          "job_id": "5097843",
+          "host": "gpua800n02",
+          "seconds": 13.814142406918108,
+          "checkpoint_sha256": "c502c177e43b3995873bf8187c49fae931dd42f7a88ca85f82c1b20985d7555a",
+          "updates": 1303,
+          "exposures": 20846,
+          "expected_updates": 2481,
+          "expected_exposures": 39690,
+          "parameters": 525568,
+          "coverage_exact": true,
+          "all_committed_losses_reconciled": true,
+          "parameter_max_changes": {
+            "trunk.0.weight": 0.04316156357526779,
+            "trunk.0.bias": 0.055096883326768875,
+            "direction.weight": 0.06351329386234283,
+            "direction.bias": 0.033025458455085754
+          },
+          "RNG_state_structure_pass": true,
+          "CUDA_training_replay_performed": false,
+          "full_training_complete": false,
+          "new_images": 0,
+          "new_optimizer_updates": 0,
+          "immutable_old_ordinary_changed": false,
+          "trained_prefix_is_not_efficacy": true
+        }
+      }
+    ],
+    "chain_progress.json": {
+      "tranche": 2,
+      "job_id": "5097979",
+      "status": "RUNNING_SAME_COMMITTED_FIT",
+      "starting_updates": 1303,
+      "starting_checkpoint_sha256": "c502c177e43b3995873bf8187c49fae931dd42f7a88ca85f82c1b20985d7555a",
+      "UTC": "2026-11-09T06:37:35.971651+00:00"
+    },
+    "progress.json": {
+      "status": "RUNNING",
+      "expected_updates": 2481,
+      "expected_exposures": 39690,
+      "update": 1408,
+      "pass_number": 2,
+      "offset": 9280,
+      "n": 16,
+      "seen": 22526,
+      "loss": 0.1536886990070343,
+      "epsilon_loss": 0.13240987062454224,
+      "token_loss": 0.21278825402259827,
+      "gradient_norm": 0.002592261414974928,
+      "direction_weight_gradient_norm": 0.0024816442746669054,
+      "correction_RMS": 0.23651699721813202,
+      "seconds": 1219.200405671727,
+      "peak_GPU_allocated_bytes": 11932306432
+    },
+    "checkpoint_receipt.json": {
+      "updates": 1408,
+      "cursor": 22526,
+      "seen": 22526,
+      "checkpoint_sha256": "405e6f9c4aee9a55ffd717cc614cad05eabf970f3bea9ae1559d08e37ae607aa",
+      "checkpoint_bytes": 6526018,
+      "seconds": 1219.2400917313062,
+      "job_id": "5097979"
+    },
+    "sacct": "5097843|COMPLETED|0:0|00:16:56|gpua800n02\n5097843.batch|COMPLETED|0:0|00:16:56|gpua800n02\n5097843.extern|COMPLETED|0:0|00:16:56|gpua800n02\n5097979|RUNNING|0:0|00:02:46|gpua800n07\n5097979.batch|RUNNING|0:0|00:02:46|gpua800n07\n5097979.extern|RUNNING|0:0|00:02:46|gpua800n07\n",
+    "failures": [],
+    "latest_attempt_event_5097843": {
+      "update": 1303,
+      "pass_number": 2,
+      "offset": 7600,
+      "n": 16,
+      "seen": 20846,
+      "loss": 0.14230744540691376,
+      "epsilon_loss": 0.1196301132440567,
+      "token_loss": 0.22677327692508698,
+      "gradient_norm": 0.002833319129422307,
+      "direction_weight_gradient_norm": 0.0027539061848074198,
+      "correction_RMS": 0.239534392952919,
+      "seconds": 1082.975457541179,
+      "peak_GPU_allocated_bytes": 11932961792
+    },
+    "error_5097843_tail": "\rLoading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]\rLoading pipeline components...:  14%|\u2588\u258d        | 1/7 [00:00<00:00,  7.11it/s]\rLoading pipeline components...:  43%|\u2588\u2588\u2588\u2588\u258e     | 3/7 [00:00<00:00,  4.36it/s]\rLoading pipeline components...:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 4/7 [00:00<00:00,  5.19it/s]\rLoading pipeline components...:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 5/7 [00:00<00:00,  5.79it/s]\rLoading pipeline components...:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 6/7 [00:01<00:00,  3.99it/s]\rLoading pipeline components...: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 7/7 [00:01<00:00,  5.01it/s]\n",
+    "latest_attempt_event_5097979": {
+      "update": 1448,
+      "pass_number": 2,
+      "offset": 9920,
+      "n": 16,
+      "seen": 23166,
+      "loss": 0.2853650748729706,
+      "epsilon_loss": 0.26206669211387634,
+      "token_loss": 0.23298387229442596,
+      "gradient_norm": 0.002014694269746542,
+      "direction_weight_gradient_norm": 0.0019227442098781466,
+      "correction_RMS": 0.23704667389392853,
+      "seconds": 1247.029851033818,
+      "peak_GPU_allocated_bytes": 11932306432
+    },
+    "error_5097979_tail": "\rLoading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]\rLoading pipeline components...:  29%|\u2588\u2588\u258a       | 2/7 [00:00<00:00, 13.57it/s]\rLoading pipeline components...:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 4/7 [00:00<00:00,  5.81it/s]\rLoading pipeline components...:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 5/7 [00:00<00:00,  6.50it/s]\rLoading pipeline components...:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 6/7 [00:01<00:00,  4.35it/s]\rLoading pipeline components...: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 7/7 [00:01<00:00,  5.83it/s]\n"
+  }
+}
