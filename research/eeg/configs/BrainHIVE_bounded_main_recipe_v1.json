@@ -1,0 +1,89 @@
+{
+  "version": "One_BrainHIVE_bounded_direction_and_calibrated_risk_v1",
+  "training_seed": 1729,
+  "fixed_arm_order": [
+    "risk",
+    "ordinary",
+    "parent"
+  ],
+  "new_main_candidate_configurations": 1,
+  "inherited_candidate_cap": 12,
+  "inherited_structural_revision_cap": 2,
+  "candidate_cap_not_reset": true,
+  "subjects": 10,
+  "unique_T_images": 13230,
+  "unique_OOF_training_queries": 132300,
+  "passes": 3,
+  "total_training_query_exposures_per_trainable_arm": 396900,
+  "expected_updates_per_trainable_arm": 24807,
+  "batch_size": 16,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.01,
+  "optimizer": "AdamW default betas/eps, constant LR",
+  "gradient_clip": 1.0,
+  "maximum_standardized_direction_radius": 0.25,
+  "trainable_parameters": {
+    "ordinary": 525568,
+    "risk": 525825
+  },
+  "host": "Exact frozen BrainHIVE full-T parent + native pretrained A/P/IP + pinned SDXL-Turbo",
+  "image_objective": "Actual frozen native Turbo epsilon MSE over uniform training timesteps0..999",
+  "auxiliary_objective": "0.1 token angular error; risk arm additionally0.1 prediction risk MSE",
+  "condition_drop_probability": 0.0,
+  "new_external_training_images": 0,
+  "additional_raw_EEG_features": 0,
+  "ordinary_global_strength_calibration": "Only Dfit token error, fixed grid[0,.25,.5,.75,1], choose smaller strength on ties",
+  "risk_calibration": "Only Dfit, nonnegative affine slope/intercept fitted to already-audited base token angular error; clip[0,2], gate=1-risk/2",
+  "Dcheck_policy": "Single post-training diagnostic of risk calibration; no checkpoint, model or strength revision",
+  "normal_inference_inputs": "EEG-derived raw condition and the host output affine only; no query target, class, caption or gallery",
+  "checkpoint_selection": "Fixed final3 passes, no V or official benchmark score selection",
+  "generator": {
+    "resolution": 512,
+    "steps": 4,
+    "CFG": 0,
+    "IP_scale": 1,
+    "images_per_query": 1
+  },
+  "run_names": {
+    "parent": "protected_R4_parent_bounded_v1",
+    "ordinary": "protected_R4_ordinary_bounded_v1",
+    "risk": "protected_R4_risk_bounded_v1"
+  },
+  "formal_V_queries_per_arm": 16600,
+  "protected_metrics_unchanged": true,
+  "storage_lifecycle_receipt": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/BrainHIVE_bounded_three_main_lifecycle_reservation_v1.json",
+  "storage_receipt_sha256": "acde618f05d04903a845160d0643b650cec366b5d573efd99416a5028548ab42",
+  "input_contract_sha256": "bb6e38350282af7b37ece04689adcec7a5f87dccf68de5968058433faece0597",
+  "latent_receipt": "/root/brainhive_reproduction_20261020_v1/audit/component_T_latent_bank_v2.json",
+  "source_sha256": {
+    "brainhive_native_models_v1.py": "638d4b34116668d5c65058a918bdcaac481c099d084953f7085abeed997ad3c5",
+    "brainhive_bounded_component_v1.py": "2b93c0644bde268ae876f0e2b722106852b25910fedc1cffc97820e96cadf5d7",
+    "brainhive_component_generator_v1.py": "0565c65fe86ba7fed61b75807fdfb5066b6d2270cab1ddaffef7933cccfc1fa1",
+    "brainhive_component_data_v1.py": "0db2cddcc8ddddc1da1e752be04dfe95b60f219bdd99548c5944e39e42ba71c9",
+    "brainhive_lifecycle_storage_v1.py": "88b5983ce40b2e996698382835aff22dd538c5ecfd84247b4c824bfd34fca083",
+    "train_BrainHIVE_bounded_component_v1.py": "15a4422162caf89c0a0778502e6a7913aa0873acd9d54ebc5a19f7e520d3fa34",
+    "generate_BrainHIVE_bounded_V_v1.py": "dd2d38f3e3546f71811e90724cc4aa24820aabb405cf99e4ac7b93759d6d533b"
+  },
+  "queue_source_sha256": "9cc5cd0884f4a9a24a9d8d2e4d972cc92ecdb2f8e578b15db7de7f8e412f3793",
+  "comparison_source_sha256": "fcf5a44afa65f1936a5fab35e8a10b937c3c6187dab3ef5b39bfa4c04e40f98f",
+  "training_job_seconds": 43200,
+  "maximum_exact_resume_attempts_per_arm": 1,
+  "total_training_seconds_cap_per_arm": 50400,
+  "actual_training_seconds_linear_estimate": {
+    "ordinary": 27593.296707118865,
+    "risk": 27634.75984283723
+  },
+  "expected_main_phase_GPU_hours_range": [
+    30,
+    36
+  ],
+  "generation_job_seconds": 14400,
+  "evaluator_job_seconds": 14400,
+  "no_new_hyperparameter_search": true,
+  "one_training_seed": true,
+  "independent_H": false,
+  "risk_mechanism_not_confirmed_by_main_three_arm_result": true,
+  "quality_noninferiority_not_assumed": true,
+  "positive_signal_requires": "DINO >=+0.01 and lower pairedCI>0 against both references, SEED same direction and lowerCI>0, ObjectF1 nonnegative; still provisional until registered mechanism/quality controls",
+  "KAN_and_stage_routing": "Deferred; no second parent architecture in this phase"
+}

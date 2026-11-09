@@ -1,0 +1,16 @@
+{
+  "status": "LOCKED_T_ONLY_COST_PROBE_AFTER_BOTH_FULL_V_REFERENCES",
+  "source_sha256": {
+    "profile_native_projector_cost.py": "6486bafd27651c19e5ef643c480bf85cf8df3247ecc36da41626cdccc52272c0",
+    "queue_projector_cost_probe.py": "d76b98ec5d8a705de199cb8d42e006bccb5cae520c6fa9c649ac84f47a3d47f5"
+  },
+  "maximum_GPU_seconds": 180,
+  "formal_training": false,
+  "training_updates_scratch_only_per_hardware_batch": 6,
+  "hardware_batches": [
+    4,
+    16
+  ],
+  "image_metric_or_method_selection": false,
+  "active_generation_source_changed": false
+}

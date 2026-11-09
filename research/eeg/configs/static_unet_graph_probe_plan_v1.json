@@ -1,0 +1,27 @@
+{
+  "status": "LOCKED_BEFORE_ONE_T_ONLY_RUNTIME_PROBE",
+  "source_sha256": {
+    "static_unet_cuda_graph.py": "f532451638f9557167afeced4ff03d0dc0eb2d66cbefb53a0c8ccf893d3da157",
+    "profile_static_unet_graph.py": "51fd25088f56f83bbaa7cae99fc4d30f67e76f24882114b284f55a75f617c072",
+    "run_static_unet_graph_in_slot.py": "fbc457d5d444044709f6b1bc5a343e9afad2e950fdf280d8fb926735e3e16eb1"
+  },
+  "queries": "first4 distinct T concepts in array order, sub01, registered seed1729 streams",
+  "one_configuration": true,
+  "training_updates": 0,
+  "UNet": "same pretrained weights, BF16,512,20Euler,CFG5,IP1,batch4",
+  "conditions": "privileged true native image features; T-only timing/oracle diagnostic",
+  "runtime": "manual PyTorch CUDA Graph, no torch.compile, no dependency installation",
+  "repetitions_per_backend": 2,
+  "backends": [
+    "original_eager",
+    "CUDA_graph"
+  ],
+  "first_repetition": "setup/warmup measured separately",
+  "second_repetition": "steady runtime; no seed or image selection",
+  "private_child_wall_cap_seconds": 120,
+  "REG_resumption_watchdog_seconds": 145,
+  "formal_generation_runtime_changed": false,
+  "full_query_equivalence_proven": false,
+  "extra_compute_accounting": "entire bounded pause charged once inside REG wrapper; capture and warmup counts reported",
+  "failure_action": "preserve log, resume verified REG worker; no automatic alternative/runtime grid"
+}

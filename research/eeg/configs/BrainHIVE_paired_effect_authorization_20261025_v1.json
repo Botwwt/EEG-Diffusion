@@ -1,0 +1,22 @@
+{
+  "status": "USER_EXPLICITLY_AUTHORIZED_ONE_ADDITIONAL_MAIN_AND_FIXED_CONTROLS",
+  "source": "本会话本轮额度问题的用户明确回复",
+  "user_instruction_verbatim": "扩到13，推进这一项及固定对照",
+  "candidate_limit": 13,
+  "previous_candidate_limit": 12,
+  "main_candidate_ordinal": 13,
+  "new_main": "D",
+  "fixed_controls": ["O", "A", "U"],
+  "structural_revision_ordinal": 2,
+  "structural_revision_limit": 2,
+  "lineage": "response_rank_v1 -> functional_alignment_v2 -> paired_effect_v1",
+  "old_candidates_or_failures_erased": false,
+  "old_noise_UNKNOWN_gate_changed": false,
+  "new_hypothesis": "在同parent-Q和双EEG监督下，仅保留绝对响应MSE分解中的差分项，检验公共误差项是否阻碍配对区分与实际图片收益。",
+  "single_training_seed": 1729,
+  "all10_subjects_full_T_and_full_V": true,
+  "existing_single_GPU_only": true,
+  "resource_purchase_authorized": false,
+  "further_main_candidate_or_third_structural_revision_authorized": false,
+  "old_resource_time_authority_preserved": "configs/resource_authorization_20261020_v3.json"
+}

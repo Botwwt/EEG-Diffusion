@@ -1,0 +1,43 @@
+{
+  "version": "native_oof_stage_resource_policy_v1",
+  "status": "LOCKED_BEFORE_COMPLETE_REFERENCE_SELECTION_AND_OOF_START",
+  "UTC": "2026-10-19T00:00:42Z",
+  "total_GPU_hour_cap": 40,
+  "seed": 1729,
+  "maximum_budget_decisions": 2,
+  "role_training_max_seconds": 1800,
+  "GPU_wrapper_margin_seconds": 60,
+  "cache_sampling_multiplier": 1.2,
+  "cache_IO_margin_seconds": 180,
+  "point_cache_CPU_max_seconds": 900,
+  "validation_CPU_max_seconds": 1800,
+  "controls_runtime_multiplier": 1.1,
+  "final_evaluation_reserve_seconds": 18000,
+  "global_failure_margin_seconds": 900,
+  "minimum_free_bytes_before_stage": 9663676416,
+  "minimum_free_bytes_before_cache": 6442450944,
+  "role_epoch_targets": {
+    "encoder_max100": true,
+    "encoder_patience": 20,
+    "prior_epochs": 400
+  },
+  "role_clock_rationale": "Each1800s role cap is about1.7 times the empirical half-data encoder+v-prior training estimate from the complete10subject logs; numerical100/400epoch targets and full row coverage are unchanged. Cap hits remain incomplete/resumable, never a trained negative result.",
+  "budget_reassessment_rule": "Only once more after additional full EEG controls actually complete; preserve first decision, no repeated score-driven budget search.",
+  "source_sha256": {
+    "prepare_native_oof_stage.py": "cb52df0e0d20c566e04e6b1882bc979fa6cdf020a4148f9cb219c4c8dddf4015",
+    "run_native_oof_stage.py": "c4624b412a811a2a29e0ed533badbd68ac8d03fc5a720a1f2f78cfea3e2933ba",
+    "train_native_oof.py": "5508ccde3c1fa85ac1d55419cc46bf5b055d2877baac3db771653cc342422ab5",
+    "train_full_reference.py": "e6baef2b1510b1e6beaebf4563134f8dee4d7fb7dd7c5477ccdb74b9e35f413e",
+    "build_native_oof_cache.py": "1dece96cee687e6557b7e236123e548b90197509d827a46733054668864c1a94",
+    "native_error_channel.py": "de0cec43cefe20c70517a10a7467c3d451e0daf5029a1a39341fa59abeaa1e71",
+    "error_channel_validation_metrics.py": "33b5207eebd37ee6b43d97c4852c73c58e879ce82bb03c4c37440227f32d2a3d",
+    "validate_native_error_channel.py": "40a0fc4ba52fe5efe9580f083497d4bc0c699d58aa8d28419b5b8e7ef89d79c4",
+    "paired_analysis.py": "ecff5cb88a0695102614ea8094a362d758e1ae2e032aafb29f5fc452d213f935",
+    "locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "run_gpu_job.py": "cfac7ab3448b73a5b9db8ab3e594829c8c7bb7c71876685ccf12f3d647683f7a",
+    "select_reference_for_controls.py": "b3ea3826a0d05791e65d462a367eb992a88da0a2c2792fd8b0956cb9168c1b61",
+    "refresh_status.py": "8b3de8a9627b27cfdfa46ed3e8d70e5a307cd8da112b6de59ec71879efb340e0"
+  },
+  "S4_adapter_training_authorized": false,
+  "final_test_unlock_authorized": false
+}

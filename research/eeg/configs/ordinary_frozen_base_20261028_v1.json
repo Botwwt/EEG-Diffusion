@@ -1,0 +1,30 @@
+{
+  "schema": "BrainHIVE_ordinary_frozen_base_20261028_v1",
+  "status": "USER_DIRECTED_ORDINARY_IMMUTABLE_BASE_FOR_SEPARABLE_ARCHITECTURE_RESEARCH",
+  "user_instruction_verbatim": "那就用ordinary作为创新点不就得了？然后这一部分就不动了，你再想想其他方面怎么进一步改进这个架构，让他和ordinary互相独立存在",
+  "checkpoint": {
+    "path": "/root/brainhive_reproduction_20261020_v1/components/bounded_v1/ordinary/component_final.pt",
+    "sha256": "a66869e5676ccea27f326f4f0b86cd446526b42460734905990758e49e11cc03"
+  },
+  "source": {
+    "path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/brainhive_bounded_component_v1.py",
+    "sha256": "2b93c0644bde268ae876f0e2b722106852b25910fedc1cffc97820e96cadf5d7"
+  },
+  "selected_strength": 1.0,
+  "radius_rho_before_strength": 0.25,
+  "new_training_authorized_for_this_component": false,
+  "recalibration_or_strength_scan_authorized": false,
+  "change_ordinary_loss_or_weights": false,
+  "preserve_original_native_off_path": true,
+  "independence_meaning": "New mechanisms must be separately switchable and usable with both native and frozen ordinary conditions. Statistical additivity is not assumed.",
+  "evaluation": "native/ordinary crossed with original/new mechanism; retain same queries and base random seeds; report interaction and inference cost.",
+  "ordinary_is_candidate_contribution_not_automatically_novel": true,
+  "full16600_development_evidence": {
+    "parent_DINO2AFC": 0.768191,
+    "ordinary_DINO2AFC": 0.778066,
+    "parent_SEED": 0.130608,
+    "ordinary_SEED": 0.136787,
+    "predefined_practical_gate_passed": false,
+    "independent_confirmation": false
+  }
+}

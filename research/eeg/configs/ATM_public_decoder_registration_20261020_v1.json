@@ -1,0 +1,192 @@
+{
+  "scope": "ALL2000_PUBLISHED_FEATURE_DECODER_REPRODUCTION_ONLY",
+  "seed": 1729,
+  "query_count": 2000,
+  "UTC": "2026-10-20T04:24:08Z",
+  "output_root": "/root/atm_author_decoder_20261020_v1",
+  "subjects": {
+    "sub-01": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-01_test.pt",
+      "features_sha256": "64d6eff4f2bac98464e4f1f570817c53f0ff8f6ff6f533c4b10c6ffce4c1c0aa",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-01/diffusion_prior.pt",
+      "prior_sha256": "d98f587a7b16eb08478ba93b62db18f6bdd0b397dd9b7045809515597daf598b"
+    },
+    "sub-02": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-02_test.pt",
+      "features_sha256": "fa07bb080ff8324ab95f2679a5381ea584b59896612f1a04d1d6b376b130470f",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-02/diffusion_prior.pt",
+      "prior_sha256": "f5dc9da5c7f089b99f41274220c44ae11e010f3f59dda9345902c6a7e461ace7"
+    },
+    "sub-03": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-03_test.pt",
+      "features_sha256": "b2d1ba91a2c8d4a630e1700bb84dfd5f3d6ee260541d43a64a3de5e89e26a1ab",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-03/diffusion_prior.pt",
+      "prior_sha256": "27c0454e8fbef5d28302d28a5a02f47dd00995a3897b52e355ff2cac5329aeae"
+    },
+    "sub-04": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-04_test.pt",
+      "features_sha256": "1878b71916e0ff2cec8639198e005f1646f90fcf5c0f86cf488dd472e2f715df",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-04/diffusion_prior.pt",
+      "prior_sha256": "8cbe7a8f4a429fe27ad4b8c51ee95e1a148b9f9f9fa747b628f4114912fc69c5"
+    },
+    "sub-05": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-05_test.pt",
+      "features_sha256": "f2cf2de016ed2ed6f960e4aa3bf0ed0c3c190656a85571a9a6f6b2357d6fcc72",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-05/diffusion_prior.pt",
+      "prior_sha256": "387ece3aff2589d63c481a9dfe1d98c5114b5017e973052260ebda248b79da57"
+    },
+    "sub-06": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-06_test.pt",
+      "features_sha256": "82f08912363f8fb5a96dcbb4f65869d0f6b7cc1d4ad0c61a2ef8c246758283b1",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-06/diffusion_prior.pt",
+      "prior_sha256": "014227e08355beec9d7c79fb9c907c5a2fbd922ad3212d878a1b168314872252"
+    },
+    "sub-07": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-07_test.pt",
+      "features_sha256": "855f2757e76dfc4a7d7f31884c86adea104bd274da9ad95e2b0268618bb672d2",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-07/diffusion_prior.pt",
+      "prior_sha256": "bfcdab98bc072e0378a94189f4b7361c677392a2674d9a7e07ae8a60f091741f"
+    },
+    "sub-08": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-08_test.pt",
+      "features_sha256": "968512fc0584bfe630e12ffe7987382a95d32a3d36a5c70e297d27dc08da112c",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-08/diffusion_prior.pt",
+      "prior_sha256": "0c257a5638297079ea6ea3b148098ae7e477a25d9ead9ab1c4244830d1c2aaca"
+    },
+    "sub-09": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-09_test.pt",
+      "features_sha256": "e12e620572fba4dbebea21e7946e4b3f0fdc23b72ba1ea46c245cb85ad19b244",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-09/diffusion_prior.pt",
+      "prior_sha256": "c75b9eedd0b3cb13daa796770ad0149dba223b7789e35d44b2ed9efd74e1d937"
+    },
+    "sub-10": {
+      "features": "/root/atm_author_pretrained_20261020_v2/emb_eeg/ATM_S_eeg_features_sub-10_test.pt",
+      "features_sha256": "6544764addaae8b05b8aa2367bd8d3f3f45bc622ccc0da1eec01698dfdf5c57d",
+      "prior": "/root/atm_author_pretrained_20261020_v2/fintune_ckpts/sub-10/diffusion_prior.pt",
+      "prior_sha256": "8a5aec18e0312de9e168264cc633646efd7d94fcd526c147f46f8aa5fa111bc0"
+    }
+  },
+  "author_source_root": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/reproduction_sources/ATM_main_49cb3a20",
+  "author_source_commit": "49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d",
+  "inference_manifest": "/root/atm_author_decoder_20261020_v1/inference_inputs.jsonl",
+  "target_mapping": "/root/atm_author_decoder_20261020_v1/target_mapping.jsonl",
+  "gallery_manifest": "/root/atm_author_decoder_20261020_v1/gallery/manifest.jsonl",
+  "generator_asset_root": "/dev/shm/eeg_diffusion_next_20261018_v1",
+  "generator_assets": [
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/adapter.safetensors",
+      "sha256": "ebf05d918348aec7abb02a5e9ecef77e0aaea6914a5c4ea13f50d45eb1681831",
+      "repo": "h94/IP-Adapter",
+      "revision": "018e402774aeeddd60609b4ecdb7e298259dc729"
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_turbo_fp16.safetensors",
+      "sha256": "e869ac7d6942cb327d68d5ed83a40447aadf20e0c3358d98b2cc9e270db0da26",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304"
+    }
+  ],
+  "python_paths": [
+    "/root/autodl-tmp/atm_cpu_addons_20261016_v2/packages",
+    "/root/autodl-tmp/atm_generation_cpu_addons_20261016_v1/packages",
+    "/root/mced_representation_runtime_v1/lib/python3.12/site-packages"
+  ],
+  "source_sha256": {
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/generate_ATM_published_decoder_v1.py": "7471a43624af3a0240b28f80b21ac28567e0bcf02d965cbca6e6330c142c3102",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit_ATM_published_decoder_v1.py": "fc54a47200a4da52f5f5e7d695209f8de9a71e2758b5d5239fe25729a7f14dab",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/run_ATM_published_decoder_v1.py": "ac603f929d6503a7861d2450253144c01455657bb1a6178d9b82d591caf1af7f",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/extract_image_features.py": "3b24d22c4ac62f23efa8d4cf80bef148b0d075775ba54c6be46699d3bccd32ef",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/score_full_manifest.py": "be75163c2c22c7d97c24401abbb01d176e4f61c28b0cb0b101259881e81fc0cf",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/score_low_level.py": "9d7c4a4e0304490b7934dbdaa32271556572227507ba166ab5a9bbda01fe8b7f",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/image_evaluation.py": "e14172655a156040b625694bad1ffbd441ad0b648c876e9a6b150d03e8d27f37",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/semantic_evaluator.py": "a57e9624102f0856634866c507e272166cf96ad344c3ad0d628bb20cded3e8eb",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/run_gpu_job.py": "cfac7ab3448b73a5b9db8ab3e594829c8c7bb7c71876685ccf12f3d647683f7a",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/prepare_ATM_published_decoder_v1.py": "c9f0b7caf35dd256f4cd1cbf0ca96ff4fe1d77d8b22bfe43b03e20e84107182c",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/reproduction_sources/ATM_main_49cb3a20/Generation/diffusion_prior.py": "821765335dc965ecc7511add10c9262bc379a11504b6e9ae039fcbee01d5950c",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/reproduction_sources/ATM_main_49cb3a20/Generation/custom_pipeline.py": "e6ac53287260b023555ee97bc7912701ac8b33a94e90f1050c0ab5333ae5a004",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/model_index.json": "c3c2f99e3e94b5940bb072f7cf66858ab05d115dc5899b3cb36a7781e91769e0",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/LICENSE.md": "d6f6b1a4dce5c852bd6d7d9482d002baf0ccdb71e662250b73be9eec8764ee8d",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/vae/config.json": "85a181424a5fd0cc292e44e467be66a5263976eee1baf36d208133f9d49d4269",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/unet/config.json": "6ae877bd8daca6088f44c6251e07d7e252da53ace0d5895a0c6cbcbd5c132cb4",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/vocab.json": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/tokenizer_config.json": "516314ccab66918d7cb647480ac27abd3520d14e1e5825aac99f50c851c16071",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/special_tokens_map.json": "f118ab3a983206e4f32583448de6bd6aae4ee21869135cef1f5848a753cdaab6",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/merges.txt": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/vocab.json": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/tokenizer_config.json": "7eb36a76a02551ce8583dbee08d062e672997a5fe1db82ebc642d88c7e79cc96",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/special_tokens_map.json": "6a757fc443f84ad1def3b893aac3858178f2a1513e3cf97b35ff131b5d88edd5",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/merges.txt": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/text_encoder_2/config.json": "d798a4e0dea19feb3e4f17d311e02507055ce3ee81d015a43123517433f2a7ef",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/text_encoder/config.json": "f73737aca344421ae12c5302aad65570218d4911872ac2e656d685a23bee270a",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/scheduler/scheduler_config.json": "13847eb34084bc56e9f8b10f84d2c650cf8cb00016b2530429af0b894d4e1aa2",
+    "/root/atm_author_decoder_20261020_v1/inference_inputs.jsonl": "f059648c9178c92efc577f27a01c7a2969bee20696666d137496055ea9fafdf2",
+    "/root/atm_author_decoder_20261020_v1/target_mapping.jsonl": "085b467475c5af8dcaeba0f6516981953703ef7b769922d3bf382fd3a9b89149",
+    "/root/atm_author_decoder_20261020_v1/gallery/manifest.jsonl": "7bcc7f948471c2c55c99bc44fd552247368f77a2d6e1f10aeac8f5e28dd7dcd3"
+  },
+  "inference_source_sha256": {
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/generate_ATM_published_decoder_v1.py": "7471a43624af3a0240b28f80b21ac28567e0bcf02d965cbca6e6330c142c3102",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit_ATM_published_decoder_v1.py": "fc54a47200a4da52f5f5e7d695209f8de9a71e2758b5d5239fe25729a7f14dab",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/run_ATM_published_decoder_v1.py": "ac603f929d6503a7861d2450253144c01455657bb1a6178d9b82d591caf1af7f",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/extract_image_features.py": "3b24d22c4ac62f23efa8d4cf80bef148b0d075775ba54c6be46699d3bccd32ef",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/score_full_manifest.py": "be75163c2c22c7d97c24401abbb01d176e4f61c28b0cb0b101259881e81fc0cf",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/score_low_level.py": "9d7c4a4e0304490b7934dbdaa32271556572227507ba166ab5a9bbda01fe8b7f",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/image_evaluation.py": "e14172655a156040b625694bad1ffbd441ad0b648c876e9a6b150d03e8d27f37",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/semantic_evaluator.py": "a57e9624102f0856634866c507e272166cf96ad344c3ad0d628bb20cded3e8eb",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/run_gpu_job.py": "cfac7ab3448b73a5b9db8ab3e594829c8c7bb7c71876685ccf12f3d647683f7a",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/prepare_ATM_published_decoder_v1.py": "c9f0b7caf35dd256f4cd1cbf0ca96ff4fe1d77d8b22bfe43b03e20e84107182c",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/reproduction_sources/ATM_main_49cb3a20/Generation/diffusion_prior.py": "821765335dc965ecc7511add10c9262bc379a11504b6e9ae039fcbee01d5950c",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/reproduction_sources/ATM_main_49cb3a20/Generation/custom_pipeline.py": "e6ac53287260b023555ee97bc7912701ac8b33a94e90f1050c0ab5333ae5a004",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/model_index.json": "c3c2f99e3e94b5940bb072f7cf66858ab05d115dc5899b3cb36a7781e91769e0",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/LICENSE.md": "d6f6b1a4dce5c852bd6d7d9482d002baf0ccdb71e662250b73be9eec8764ee8d",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/vae/config.json": "85a181424a5fd0cc292e44e467be66a5263976eee1baf36d208133f9d49d4269",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/unet/config.json": "6ae877bd8daca6088f44c6251e07d7e252da53ace0d5895a0c6cbcbd5c132cb4",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/vocab.json": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/tokenizer_config.json": "516314ccab66918d7cb647480ac27abd3520d14e1e5825aac99f50c851c16071",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/special_tokens_map.json": "f118ab3a983206e4f32583448de6bd6aae4ee21869135cef1f5848a753cdaab6",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/merges.txt": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/vocab.json": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/tokenizer_config.json": "7eb36a76a02551ce8583dbee08d062e672997a5fe1db82ebc642d88c7e79cc96",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/special_tokens_map.json": "6a757fc443f84ad1def3b893aac3858178f2a1513e3cf97b35ff131b5d88edd5",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/merges.txt": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/text_encoder_2/config.json": "d798a4e0dea19feb3e4f17d311e02507055ce3ee81d015a43123517433f2a7ef",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/text_encoder/config.json": "f73737aca344421ae12c5302aad65570218d4911872ac2e656d685a23bee270a",
+    "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/scheduler/scheduler_config.json": "13847eb34084bc56e9f8b10f84d2c650cf8cb00016b2530429af0b894d4e1aa2",
+    "/root/atm_author_decoder_20261020_v1/inference_inputs.jsonl": "f059648c9178c92efc577f27a01c7a2969bee20696666d137496055ea9fafdf2"
+  },
+  "phase_caps_seconds": {
+    "generate": 2400,
+    "gallery_features": 300,
+    "features": 1500,
+    "join": 180,
+    "score": 300,
+    "lowlevel": 180,
+    "verify": 180,
+    "report": 120
+  },
+  "reserve_seconds": 900,
+  "required_prior_closure": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/idea_Frozen_RealPaired_Conditional_full_score_closure_v1.json",
+  "required_prior_closure_status": "PASSED_ALL16600_COMPLETED_SCORE_IDENTITY_AND_PAIRED_ARITHMETIC",
+  "generation": {
+    "prior_steps": 50,
+    "prior_CFG": 5,
+    "prior_clip_sample": true,
+    "Turbo_steps": 4,
+    "CFG": 0,
+    "IP_scale": 1,
+    "resolution": 512,
+    "format": "PNG"
+  },
+  "authority": "User requested author reproduction first; master prompt section4.3 line183 permits full exposed benchmark reporting, section4.4 requires separate R80 track.",
+  "creates_final_test_unlock": false,
+  "unblocks_legacy_S1_prior_gate": false,
+  "author_EEG_encoder_weights_available": false,
+  "independent_EEG_feature_identity_replayed": false,
+  "independent_H": false,
+  "component_training_authorized_by_this_registration": false,
+  "author_pretraining_seed": "UNKNOWN; no new training in this replication",
+  "fixed_published_method_no_checkpoint_or_seed_selection": true,
+  "local_large_files_allowed": false,
+  "total_GPU_hour_cap": 40
+}

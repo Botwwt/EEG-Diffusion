@@ -1,0 +1,124 @@
+{
+  "status": "PREVIOUS_DRAFT_SUPERSEDED_BY_ACTUAL_ADMITTED_FULL_LIFECYCLE",
+  "research_question": "Can paired semantic effects of actual generated images support coadaptation of native EEG encoder and native P beyond frozen ordinary?",
+  "single_training_seed": 1729,
+  "allowed_GPU": "OLD only",
+  "NEW_reserved": true,
+  "original_ordinary_immutable": true,
+  "source_engineering": "audit/HIVE_paired_semantic_coadaptation_profile_complete_20261030_v1/actual/completion.json",
+  "direction_chosen_after_exposed_R80": true,
+  "independent_H": false,
+  "architecture": {
+    "trainable": [
+      "BrainMLP except real final LN affine",
+      "native P"
+    ],
+    "frozen": [
+      "original ordinary",
+      "A",
+      "native IP",
+      "UNet",
+      "VAE",
+      "CLIP"
+    ],
+    "new_inference_parameters": 0,
+    "trainable_parameters": 14851072,
+    "inference_UNet_NFE": 4
+  },
+  "objective": {
+    "formula": "L_abs + tau*softplus(-<g_i-g_j,v_i-v_j>/tau)",
+    "absolute": "1-(<g_i,v_i>+<g_j,v_j>)/2",
+    "g": "normalized frozen CLIP of actual full4step decoded images",
+    "v": "normalized frozen CLIP of correct real T training images",
+    "temperature": 0.07,
+    "pair_noise": "same noise within each two-EEG pair, fixed across training arms; not assumed to cancel nonlinear noise exactly"
+  },
+  "fixed_arms": [
+    "joint_correct",
+    "EEG_only_correct",
+    "P_only_correct",
+    "joint_swapped_targets",
+    "joint_absolute_only"
+  ],
+  "primary_arm": "joint_correct",
+  "controls_not_promoted_to_winners": true,
+  "proposed_fit_scope": {
+    "subject": "sub-01",
+    "physical_EEG": "mean4",
+    "concepts": 1323,
+    "stimuli": 13230,
+    "disjoint_sameconcept_pairs": 6615,
+    "full_passes": 1,
+    "proposed_pair_updates_per_arm": 6615,
+    "all5_pair_updates": 33075,
+    "all5_primary_EEG_exposures": 66150,
+    "checkpoint": "fixed final, no epoch/alpha scan"
+  },
+  "compute_note": "Actual all5 batch2 engineering and native image preflight passed; first real128-update prefix independently audited. Short actualsteps2.1-2.4s; complete fit/time/effects still pending.",
+  "inference_references": "Verify full400 old conditions before reuse; if direct encoder FP32 batching differs from old cache, generate matched original BrainMLP+ordinary reference with same new inference code and report both identities.",
+  "planned_screen": {
+    "stages": [
+      80,
+      400
+    ],
+    "gallery": "same fixed D09 Dcheck400",
+    "at80": "Only clear harm versus matched original ordinary stops all arms; otherwise expand every arm. No intermediate240 effect reads.",
+    "at400": "Primary must beat matched ordinary by DINO>=.01 with descriptive CI lower>0 and no mean sameconceptTop1 loss. Report main-minus-Eonly/Ponly/wrong/absolute; mechanism requires incremental support, no control promotion."
+  },
+  "CLIP_critic_shared_with_author_CLIP_metric": true,
+  "independent_image_metrics_required": [
+    "DINO",
+    "EffNet",
+    "ObjectF1"
+  ],
+  "boundaries": [
+    "Existing EEG and old ordinary used all T; no full-chain OOF claim",
+    "Sameconcept pair labels only during allowed training, never normal inference",
+    "Full4step differentiable reward is existing DRaFT principle; pairwise logistic/common random numbers also classical",
+    "No new originality, causal or SOTA claim from engineering"
+  ],
+  "actual_protocol": {
+    "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_semantic_lifecycle_code_20261030_v1/study.json",
+    "bytes": 43536,
+    "sha256": "e83c3d0a19751bbdc72c3d93ea4484057294a469137c9dc6925d1e289f0a8c7e"
+  },
+  "actual_controller": {
+    "status": "ACTUAL_FULL_T_PAIRED_SEMANTIC_EEG_P_STUDY_CONTROLLER_LAUNCHED",
+    "UTC": "2026-10-30T15:33:23.505001+00:00",
+    "controller_PID": 364356,
+    "start_ticks": 99329292,
+    "protocol": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_semantic_lifecycle_code_20261030_v1/study.json",
+      "bytes": 43536,
+      "sha256": "e83c3d0a19751bbdc72c3d93ea4484057294a469137c9dc6925d1e289f0a8c7e"
+    },
+    "image_execution": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_semantic_lifecycle_code_20261030_v1/image_execution.json",
+      "bytes": 31744,
+      "sha256": "108b5e719f52eff74ee329e1438170e2483bfcdab526fe4fab5da8308c26f141"
+    },
+    "admission": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_semantic_lifecycle_code_20261030_v1/actual_admission.json",
+      "bytes": 2179,
+      "sha256": "5cd870b9e1169f1889e9c3d877272ffbd81f6e2cf03bf833317335f77a3c75fc"
+    },
+    "source_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_semantic_lifecycle_code_20261030_v1",
+    "output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_semantic_full_study_20261030_v1",
+    "NEW_contacted": false
+  },
+  "historical_draft_unfinished_list": [
+    "Formal fit executor and exact checkpoint/RNG/coverage resume",
+    "All5 actual matched compute profile including projected batching cost",
+    "New EEG and P independent condition/token audits",
+    "Matched baseline and5arm generation/noise/pixel provenance",
+    "Independent final image scoring and stage policy",
+    "Complete resource reservation/review and lifecycle registration"
+  ],
+  "still_unfinished": [
+    "all5 complete T fits",
+    "all400 changed EEG/P independent forward audit",
+    "matched seven-method images and independent evaluation",
+    "complete multisubject/all-metric evaluation after support"
+  ],
+  "historical_compute_note": "Actual engineering has2pairs only and includes native reference replays; do not treat 4.53-5.22s/pair as steady full-training timing. A batched forward/backward actual profile and full lifecycle resource review remain required."
+}

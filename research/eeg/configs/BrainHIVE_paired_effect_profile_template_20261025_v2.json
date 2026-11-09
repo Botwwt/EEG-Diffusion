@@ -1,0 +1,137 @@
+{
+  "schema": "BrainHIVE_paired_effect_study_20261025_v1",
+  "arms": [
+    "O",
+    "A",
+    "D",
+    "U"
+  ],
+  "method": {
+    "seed": 1729,
+    "primary_queries": 132300,
+    "passes": 3,
+    "updates": 24807,
+    "batch_size": 16,
+    "hidden": 256,
+    "radius": 0.25,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "clip_norm": 1.0,
+    "epsilon": 1e-06,
+    "image_weight": 1.0,
+    "token_weight": 0.1,
+    "auxiliary_weight": 0.1,
+    "contrast_component_weight": 0.25,
+    "symmetric_absolute_control": true,
+    "shared_pair_graphs_in_all_arms": true,
+    "same_subject_same_OOF_role_different_concept": true,
+    "parent_Q": true,
+    "Q_positions": 16,
+    "IP_layers": 70,
+    "training_precision": "FP32 head outside BF16 autocast over unchanged FP16 UNet_A_P_IP",
+    "training_times": "uniform DDPM integer0..999",
+    "last_checkpoint": true,
+    "strength_policy": "Dfit_only_global_strength_calibration",
+    "shared_correct_pair_normalizer_and_joint_valid_mask": true
+  },
+  "core_sources": {
+    "brainhive_paired_effect_integration_20261025_v1.py": "db76bbd4f8fa19f14548235a4182b3772197faa91dd420be2ee31b0b9cc4e141",
+    "brainhive_paired_study_contract_20261025_v1.py": "42abe8ac119ee017c0c86a54fbbd351edc03f46afef66b610d7ecc6b47207368",
+    "train_BrainHIVE_paired_effect_20261025_v1.py": "c5b6e3ac31e0700b7c1c02cd901241aff355a3cdf75636135f6f0dd92b090a7a",
+    "brainhive_bounded_component_v1.py": "2b93c0644bde268ae876f0e2b722106852b25910fedc1cffc97820e96cadf5d7",
+    "brainhive_native_models_v1.py": "638d4b34116668d5c65058a918bdcaac481c099d084953f7085abeed997ad3c5",
+    "brainhive_component_data_v1.py": "0db2cddcc8ddddc1da1e752be04dfe95b60f219bdd99548c5944e39e42ba71c9",
+    "brainhive_component_generator_v1.py": "0565c65fe86ba7fed61b75807fdfb5066b6d2270cab1ddaffef7933cccfc1fa1",
+    "brainhive_response_rank_v1.py": "0a9e251b93721fb99f1fc8d23760a1e7cd9d0cb7c05223b2a8f8e5496962bd49",
+    "train_BrainHIVE_bounded_component_v1.py": "15a4422162caf89c0a0778502e6a7913aa0873acd9d54ebc5a19f7e520d3fa34",
+    "run_BrainHIVE_frozen_function_low_memory_20261025_v3.py": "8003780e8b7142bfced47fd9b006fd94792d43dd7c1c14e0e41c58397f279092"
+  },
+  "pipeline_sources": {
+    "generate_BrainHIVE_paired_effect_20261025_v1.py": "502f880832e084a4983e6b9ae34a0c76d39681e441fc9df2b86d46c6999e5fff",
+    "evaluate_BrainHIVE_paired_effect_CPU_20261025_v1.py": "9f5c97dfb15ec0cb29b8f1bad6852f77a29a61bf767589e5ef70fc2528ca6b33",
+    "queue_BrainHIVE_paired_effect_20261025_v1.py": "957792be8888f29199d6de596a183bce03fff752ba3745cc8e014e78ebef9b40",
+    "check_BrainHIVE_paired_integration_CPU_20261025_v1.py": "df64a7db959df7e87159fdb8e5a353ea40167613958bb43c5eaf34d30176b8ad",
+    "check_BrainHIVE_paired_pipeline_CPU_20261025_v1.py": "5b55c40b6b1f670b702b7098d03fe3bb566667929353126cd9d30651c84f0181",
+    "extract_image_features.py": "3b24d22c4ac62f23efa8d4cf80bef148b0d075775ba54c6be46699d3bccd32ef",
+    "image_evaluation.py": "e14172655a156040b625694bad1ffbd441ad0b648c876e9a6b150d03e8d27f37",
+    "semantic_evaluator.py": "a57e9624102f0856634866c507e272166cf96ad344c3ad0d628bb20cded3e8eb",
+    "locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "score_full_manifest.py": "be75163c2c22c7d97c24401abbb01d176e4f61c28b0cb0b101259881e81fc0cf",
+    "score_low_level.py": "9d7c4a4e0304490b7934dbdaa32271556572227507ba166ab5a9bbda01fe8b7f",
+    "compare_BrainHIVE_functional_V_CPU_v2.py": "677adac8a67bedc796122dc82d39e4b3124c3cc7f80c7841ba8ad6d3ab78c71d",
+    "audit_BrainHIVE_spatial_image_integrity_CPU_v1.py": "dce7846742391a5b33ce5a0b1755e14ef24711e024381ce0ea07bb9ef89fa570",
+    "generate_BrainHIVE_functional_alignment_V_v2.py": "03d89fda08aff0f8ff1821ab8c5a90a96122eca528544c4d6ae36971ec52bceb",
+    "brainhive_functional_training_contract_v2.py": "f8b3f621a195b1f63da2ddf4497de43b5f19a716d75610580b05b9e4639cab8c",
+    "run_gpu_job_v2.py": "a6e4b652cd58134a1b9c260b084392955b06ed506ae63bbcdc9c75b55e8c8114",
+    "queue_BrainHIVE_decisive_T_analysis_20261025_v2.py": "a7e0d0a763cac9c3f696b70cfc92cf71e81a3d41232a350fbceaf05827d33a2d"
+  },
+  "output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/paired_effect_20261025_v1",
+  "maximum_training_seconds_per_job": 86400,
+  "maximum_cumulative_training_seconds_per_arm": 172800,
+  "maximum_generation_seconds_per_job": 86400,
+  "maximum_cumulative_generation_seconds_per_arm": 172800,
+  "maximum_CPU_extra_bytes": 10737418240,
+  "maximum_GPU_bytes": 21474836480,
+  "minimum_training_CPU_headroom_bytes": 25769803776,
+  "arm_disk_budget_bytes": 25769803776,
+  "disk_buffer_bytes": 8589934592,
+  "automatic_method_search": false,
+  "profile_job_name": "BrainHIVE_paired_effect_v1_real_engineering_20261025_v2",
+  "training_job_names": {
+    "O": [
+      "BrainHIVE_paired_effect_v1_O_full_T_20261025",
+      "BrainHIVE_paired_effect_v1_O_full_T_exact_resume_20261025"
+    ],
+    "A": [
+      "BrainHIVE_paired_effect_v1_A_full_T_20261025",
+      "BrainHIVE_paired_effect_v1_A_full_T_exact_resume_20261025"
+    ],
+    "D": [
+      "BrainHIVE_paired_effect_v1_D_full_T_20261025",
+      "BrainHIVE_paired_effect_v1_D_full_T_exact_resume_20261025"
+    ],
+    "U": [
+      "BrainHIVE_paired_effect_v1_U_full_T_20261025",
+      "BrainHIVE_paired_effect_v1_U_full_T_exact_resume_20261025"
+    ]
+  },
+  "generation_job_names": {
+    "O": {
+      "T32": [
+        "BrainHIVE_paired_effect_v1_O_postfit_T32_20261025"
+      ],
+      "V": [
+        "BrainHIVE_paired_effect_v1_O_full_V_20261025",
+        "BrainHIVE_paired_effect_v1_O_full_V_exact_resume_20261025"
+      ]
+    },
+    "A": {
+      "T32": [
+        "BrainHIVE_paired_effect_v1_A_postfit_T32_20261025"
+      ],
+      "V": [
+        "BrainHIVE_paired_effect_v1_A_full_V_20261025",
+        "BrainHIVE_paired_effect_v1_A_full_V_exact_resume_20261025"
+      ]
+    },
+    "D": {
+      "T32": [
+        "BrainHIVE_paired_effect_v1_D_postfit_T32_20261025"
+      ],
+      "V": [
+        "BrainHIVE_paired_effect_v1_D_full_V_20261025",
+        "BrainHIVE_paired_effect_v1_D_full_V_exact_resume_20261025"
+      ]
+    },
+    "U": {
+      "T32": [
+        "BrainHIVE_paired_effect_v1_U_postfit_T32_20261025"
+      ],
+      "V": [
+        "BrainHIVE_paired_effect_v1_U_full_V_20261025",
+        "BrainHIVE_paired_effect_v1_U_full_V_exact_resume_20261025"
+      ]
+    }
+  },
+  "profile_output": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/paired_effect_20261025_v1/profile_v2"
+}

@@ -1,0 +1,43 @@
+{
+  "status": "ACTUAL_REGISTERED_AND_RUNNING_FULL_FOUR_ARM_SINGLE_SEED_LIFECYCLE",
+  "snapshot_UTC": "2026-10-30T12:42:59.518218+00:00",
+  "study": {
+    "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_common_continuation_code_20261030_v1/study.json",
+    "bytes": 35308,
+    "sha256": "582c6ea393ced9abf6915d3412ea4c56d35a602c237a005c6d90e2fd8c8d4924"
+  },
+  "image_execution": {
+    "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_common_continuation_code_20261030_v1/image_execution.json",
+    "bytes": 26518,
+    "sha256": "c9e3c3eb7cdcf9527d15272e978709452a61fcad9d37f58ea7d2ced943b5abd4"
+  },
+  "CPU_admission": {
+    "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_common_continuation_code_20261030_v1/actual_CPU_admission_review.json",
+    "bytes": 2364,
+    "sha256": "82af7ac3708be5a7bc54fd5c85134f994859a0f6b4d8642723afb151adad154a"
+  },
+  "actual_launch": {
+    "path": "audit/HIVE_common_continuation_latest_actual_20261030_v1/code/actual_launch.json",
+    "bytes": 1215,
+    "sha256": "70603b7382dce48efbe3bddcdedb6158b4285a8edebff64ee717122e36a491be"
+  },
+  "local_registration_review": {
+    "path": "audit/HIVE_common_continuation_registration_20261030_v1_actual/independent_local_registration_review.json",
+    "bytes": 849,
+    "sha256": "d0eaf2a7213b76866b9ea7572f6f79f3f25544c31b1834734aad85f4923b8441"
+  },
+  "latest_observation": {
+    "path": "audit/HIVE_common_continuation_latest_actual_20261030_v1/actual_observation.json",
+    "bytes": 10405,
+    "sha256": "261c39e9ebd23f778e70de73afc191431fd1b1dbf5200da047c69566c13d3dd2"
+  },
+  "original_ordinary_immutable": true,
+  "training_seed": 1729,
+  "NEW_allowed": false,
+  "no_new_image_effect_claim": true,
+  "report": {
+    "path": "reports/BRAINHIVE_ORDINARY_COMMON_DESCENT_FULL_LIFECYCLE_20261030_v1.md",
+    "bytes": 8015,
+    "sha256": "6848bf0dd109778f9ab9ca158dc322ebd4db83e389f9c5ef659f68347f310f88"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "BrainHIVE_user_authorized_parallel_research_20261028_v1",
+  "source": "Explicit user messages in the current conversation on 2026-10-28",
+  "user_instruction_research": "仔细思考 发散思维啊 你可以上网搜索多领域期刊比较好权威的idea看看能不能借鉴融合改进，ordinary 已经是我们第一个idea了，也可以继续改进他，同步着",
+  "user_instruction_additional_compute": "这张卡也给你用！",
+  "user_instruction_iteration": "你一直迭代 每次方向都要思考创新变化大一点 根据上一个运行的日志进一步改善 仔细思考！然后如果有好效果就继续改进那个方法，要不然在brainhive那个基础（就是他最基础的架构）上改，要不然你能找到更合适的idea方向",
+  "existing_ordinary_baseline_bytes_immutable": true,
+  "new_ordinary_versions_permitted": true,
+  "new_ordinary_versions_must_use_separate_sources_checkpoints_and_outputs": true,
+  "supersedes_historical_no_new_ordinary_variant_constraint": true,
+  "authorized_hosts": [
+    {"host": "CLOUD_LOGIN_HOST", "port": 23526, "device": 0, "role": "Existing generator and ordinary research", "GPU_UUID": "GPU-0a99d971-a46c-6e81-f157-c33243c6d57a"},
+    {"host": "CLOUD_LOGIN_HOST", "port": 15107, "device": 0, "role": "Additional user-provided EEG architecture research", "GPU_UUID": "GPU-62a1aee8-4740-dc59-93f4-d50644db650d"}
+  ],
+  "purchase_or_provider_account_changes_authorized": false,
+  "credentials_saved_in_research_files": false,
+  "per_host_exclusive_GPU_lock_and_finite_jobs_required": true,
+  "maximum_GPU_memory_bytes_per_job": 21474836480,
+  "maximum_extra_CPU_memory_bytes_per_job": 10737418240,
+  "new_host_asset_copy_requires_source_SHA_and_destination_SHA_verification": true,
+  "existing_results_images_and_failed_attempts_preserved": true,
+  "formal_old_D_training_resumed": false,
+  "official_test_unlock_or_retrospective_threshold_changes": false,
+  "successful_candidates_require_actual_images_and_matched_controls": true,
+  "novelty_or_SOTA_established_by_authorization": false
+}

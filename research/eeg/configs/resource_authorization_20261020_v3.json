@@ -1,0 +1,20 @@
+{
+  "version": "user_unlimited_total_time_existing_single_GPU_v3",
+  "source": "Explicit user message in this conversation, 2026-10-20",
+  "user_instruction_verbatim": "不用总上限 无限时间",
+  "total_GPU_job_hours_cap": null,
+  "occupied_time_deadline_epoch": null,
+  "supersedes_for_new_jobs": ["previous 40 GPU-hour total cap", "configs/compute_time_bounds.json occupied-time deadline"],
+  "existing_single_GPU_only": true,
+  "purchase_or_resource_expansion_authorized": false,
+  "provider_renewal_or_account_changes_authorized": false,
+  "large_local_C_D_artifacts_allowed": false,
+  "historical_compute_ledger_preserved": true,
+  "finite_registered_training_and_sampling_required": true,
+  "per_job_timeout_checkpointing_and_single_GPU_lock_required": true,
+  "training_seed": 1729,
+  "images_per_query": 1,
+  "candidate_limit_unchanged": 12,
+  "structural_revisions_per_hypothesis_unchanged": 2,
+  "current_scope": "First reproduce Brain-HIVE H14+B32+VAE, then add the EEG conditioning component and perform matched actual-image evaluation. KAN remains a later controlled ablation."
+}

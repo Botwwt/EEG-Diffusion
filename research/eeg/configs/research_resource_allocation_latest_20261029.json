@@ -1,0 +1,741 @@
+{
+  "status": "USER_NEW_GPU_RELEASED_FUTURE_OLD_ONLY",
+  "instruction_date": "2026-10-29",
+  "user_instruction": "第二张卡给我空闲，以后你就用旧卡迭代就行",
+  "allowed_research_GPU_hosts": [
+    "old"
+  ],
+  "old": {
+    "host": "CLOUD_LOGIN_HOST",
+    "port": 23526,
+    "GPU_UUID": "GPU-0a99d971-a46c-6e81-f157-c33243c6d57a"
+  },
+  "new": {
+    "host": "CLOUD_LOGIN_HOST",
+    "port": 15107,
+    "GPU_UUID": "GPU-62a1aee8-4740-dc59-93f4-d50644db650d",
+    "GPU_research_use_allowed": false,
+    "read_only_retrieval_of_existing_results_allowed": true
+  },
+  "NEW_release_receipt": "audit/crossdisciplinary_20261028_v1/proxy3_new_user_release_NEW_GPU_old_only_v1_20261029T143149522756Z.json",
+  "remote_NEW_guard_marker": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/NEW_GPU_WITHDRAWN_BY_USER_20261029_v1.json",
+  "do_not_resume_historical_two_host_queues": true,
+  "original_ordinary_baseline_immutable": true,
+  "original_formal_HIVE_D_still_stopped": true,
+  "active_research_goal_continues_on_OLD": true,
+  "previous_NEW_read_only_observation": {
+    "UTC": "2026-10-29T14:50:49.573016+00:00",
+    "receipt": "audit/crossdisciplinary_20261028_v1/NEW_GPU_user_process_identity_recheck_20261029_v2.json",
+    "research_GPU_work_started": false,
+    "withdrawal_guard_present": true,
+    "other_project_GPU_process": {
+      "pid": 79540,
+      "cwd": "/root/curvature_interaction_20261029",
+      "script": "run_suite.py"
+    },
+    "other_project_untouched": true,
+    "interpretation": "EEG research has released NEW. Another project is using it; do not stop it or describe global GPU as idle."
+  },
+  "latest_NEW_read_only_observation": {
+    "UTC": "2026-10-29T16:25:59.284519+00:00",
+    "receipt": "audit/crossdisciplinary_20261028_v1/proxy3_new_NEW_research_withdrawal_readonly_v3_20261029T162558497837Z.json",
+    "research_GPU_work_started": false,
+    "withdrawal_guard_present": true,
+    "wrapper_rejects_future_NEW_jobs": true,
+    "live_EEG_research_processes": [],
+    "GPU_compute_processes": [],
+    "other_projects_untouched": true,
+    "interpretation": "NEW has no GPU compute processes at this observation and remains reserved for the user. All further EEG GPU research is restricted to OLD."
+  },
+  "research_priority": "configs/research_priority_single_seed_latest_20261030.json",
+  "latest_user_instruction": "先不要训多seed 单seed效果好 把实验做完整 idea清晰作为第一目标",
+  "multiple_training_seed_research_allowed": false,
+  "single_seed_effect_experimental_completeness_and_idea_clarity_first": true,
+  "latest_execution_observation": {
+    "status": "ACTIVE_FULL1654_TWO_F_FITS_AUDITED_FIXED4000_R80_IMAGE_LIFECYCLE_RUNNING",
+    "observation": {
+      "path": "audit/HIVE_full1654_F_lifecycle_preparation_20261101_v2/actual_observation_v9.json",
+      "bytes": 31066,
+      "sha256": "4507f595d529a4fe9e530e4444635b308131fb34bf0ab74699d215452b9355f7"
+    },
+    "controller": {
+      "PID": 476654,
+      "present": true,
+      "exact_live": true,
+      "state": "S",
+      "parent": 1,
+      "start_ticks": 112533823,
+      "command": "/root/miniconda3/bin/python -B /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/queue_HIVE_full1654_F_lifecycle_CPU_20261101_v1.py --study /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json "
+    },
+    "active": {
+      "PID": 477642,
+      "present": true,
+      "exact_live": true,
+      "state": "S",
+      "parent": 476654,
+      "start_ticks": 112618543,
+      "command": "/root/miniconda3/bin/python -B /root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/run_gpu_job_v2.py --name HIVE_full1654_F_20261101_v2_images_bounded_F_0200 --max-seconds 900 -- /root/miniconda3/bin/python -B /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/run_HIVE_full1654_F_R80_GPU_20261101_v1.py --study /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json --arm bounded_F --mode generate --lo 200 "
+    },
+    "worker": {
+      "PID": 477643,
+      "present": true,
+      "exact_live": true,
+      "state": "R",
+      "parent": 477642,
+      "start_ticks": 112618550,
+      "command": "/root/miniconda3/bin/python -B /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/run_HIVE_full1654_F_R80_GPU_20261101_v1.py --study /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json --arm bounded_F --mode generate --lo 200 "
+    },
+    "research_images_saved": 200,
+    "new_effect_scores_read": false
+  },
+  "latest_handoff": "audit/GOAL_active_execution_handoff_20261101_v9.json",
+  "latest_authoritative_handoff": "audit/GOAL_active_execution_handoff_20261101_v9.json",
+  "snapshot_UTC": "2026-11-01T04:28:20.668513+00:00",
+  "finite_overnight_queue": {
+    "main": {
+      "status": "ACTUAL_FINITE_NOORDINARY_FACTORIAL_WAITER_LAUNCHED",
+      "UTC": "2026-10-31T08:21:25.395105+00:00",
+      "PID": 413043,
+      "start_ticks": 105377481,
+      "protocol": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_noordinary_factorial_code_20261031_v1/study.json",
+        "bytes": 50132,
+        "sha256": "713efb0676122cfbf6eeeef83e683f5c000ee767c97e3aa6990386ec8a6dfef4"
+      },
+      "image_execution": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_noordinary_factorial_code_20261031_v1/image_execution.json",
+        "bytes": 35454,
+        "sha256": "82f679e644ae662deef7ae4d2f80282f812633c0d670a508621a84b80f7072be"
+      },
+      "source_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_noordinary_factorial_code_20261031_v1",
+      "output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_noordinary_factorial_study_20261031_v1",
+      "waits_for_exact_original_three": true,
+      "currently_new_GPU_jobs": 0,
+      "NEW_contacted": false
+    },
+    "secondary": {
+      "status": "ACTUAL_CONDITIONAL_ALL8_SECONDARY_WAITER_LAUNCHED",
+      "UTC": "2026-10-31T08:23:35.545622+00:00",
+      "controller_PID": 413172,
+      "start_ticks": 105390496,
+      "protocol": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_noordinary_factorial_SEED_code_20261031_v1/protocol.json",
+        "bytes": 404628,
+        "sha256": "37413d9ec3cd734341648df8bd4486c2f1eda122bf6a2558c8be89f8d4eea328"
+      },
+      "source_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_noordinary_factorial_SEED_code_20261031_v1",
+      "output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_noordinary_factorial_SEED_20261031_v1",
+      "waiting_for": {
+        "PID": 413043,
+        "start_ticks": 105377481
+      },
+      "CPU_checks": {
+        "status": "PASS_ALL8_SECONDARY_CPU_CHECKS",
+        "checks": [
+          "all8_methods_and_42_fixed_comparisons",
+          "independent_all6_metric_concept_bootstrap_replay",
+          "secondary_cannot_rescue_failed_standalone_DINO_gate",
+          "uncertain_SEED_holds",
+          "negative_ObjectF1_mean_holds",
+          "public_both_empty_proxy_F1_convention_preserved"
+        ],
+        "no_new_metrics_or_GPU": true
+      },
+      "resource_review": {
+        "free_bytes": 172326834176,
+        "original_roots": [
+          {
+            "root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_semantic_full_study_20261030_v1",
+            "logical_bytes": 42151316605,
+            "remaining_cap": 60927898499
+          },
+          {
+            "root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_semantic_SEED_followon_20261030_v1",
+            "logical_bytes": 226,
+            "remaining_cap": 2147483422
+          },
+          {
+            "root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_paired_EEG_input_intervention_20261030_v1",
+            "logical_bytes": 176,
+            "remaining_cap": 2147483472
+          }
+        ],
+        "all_remaining_caps": 99582603571,
+        "additional_SEED_cap": 2147483648,
+        "legacy_floor": 53687091200,
+        "buffer": 8589934592,
+        "required_bytes": 165080854835,
+        "margin": 7245979341,
+        "not_physical_reservation": true
+      },
+      "new_GPU_jobs": 0,
+      "NEW_contacted": false
+    },
+    "actual_observation_UTC": "2026-10-31T08:24:40.160860+00:00",
+    "automatic_unbounded_goal_resumed": false,
+    "OLD_only": true,
+    "NEW_reserved": true,
+    "seed": 1729
+  },
+  "goal_status": "active",
+  "goal_explicitly_reactivated": true,
+  "latest_original_paired_result": {
+    "action": "STOP_INSTANCE",
+    "stage": 80,
+    "DINO_joint": 0.5758771929824562,
+    "DINO_ordinary": 0.8580513784461152,
+    "new_method_confirmed": false
+  },
+  "latest_active_noO_observation": "audit/HIVE_noordinary_factorial_queue_20261031_v1/actual_current_after_original_STOP_20261101_v1.json",
+  "latest_noO_verified_observation": {
+    "UTC": "2026-11-01T02:33:42.659956+00:00",
+    "receipt": {
+      "path": "audit/crossdisciplinary_20261028_v1/RAMroutes_old_goal_noO_live_image_prefix_metadata_20261101_v1_20261101T023334168793Z.json",
+      "bytes": 80944,
+      "sha256": "eda6acfdc90484a1321cb45a44b149d159168052a916ad5237600086f7bd51cf"
+    },
+    "all_main_and_secondary_controllers_exited": true,
+    "scientific_readout": {
+      "path": "audit/HIVE_noordinary_factorial_complete_20261101_v1/scientific_readout.json",
+      "bytes": 9367,
+      "sha256": "d3c611e1cd915434d70fa62181b2d58d558cfd34fb040047034b007ffb25cadf"
+    }
+  },
+  "previous_execution_observation_before_v3": {
+    "UTC": "2026-10-30T06:12:48.840448+00:00",
+    "controller": {
+      "PID": 341418,
+      "expected_start_ticks": 95930145,
+      "actual_start_ticks": 95930145,
+      "state": "S",
+      "exact_live": true
+    },
+    "child": {
+      "PID": 341709,
+      "expected_start_ticks": 95957326,
+      "actual_start_ticks": 95957326,
+      "state": "S",
+      "exact_live": true
+    },
+    "GPU_compute": "341710, /root/miniconda3/bin/python, 9534 MiB\n",
+    "phase": "ALL2000_NORMAL_EEG_IMAGES_BEFORE_ANY_NEW_EFFECT_READ",
+    "research_images_written": 254,
+    "failure": null,
+    "evidence": {
+      "path": "audit/HIVE_Euclidean_F_postfit_registration_20261030_v2/latest_progress_observation.json",
+      "bytes": 124874,
+      "sha256": "92726aa6cea8094627e33873f5607f2d58d6d24f9efecb7a088c5f43c8c7e6b9"
+    }
+  },
+  "current_full1654_stage": {
+    "status": "COMPLETE_REAL20FOLDS_AND165400_RAW_BANK",
+    "protocol": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_exposed_OOF_assets_code_20261101_v2/protocol.json",
+      "bytes": 19271,
+      "sha256": "827ad46527d853ddcfdae235e6e43f1afe14e422d07226d1097f4244e15128a2"
+    },
+    "input_bank": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_exposed_OOF_assets_20261101_v2/input_bank_completion.json",
+      "bytes": 29023,
+      "sha256": "416ee633e0fe570922497485043fcd482b62b716008761f8929a48538e8656f4"
+    },
+    "subjects": 10,
+    "concepts": 1654,
+    "images": 16540,
+    "physical_repeats": "R4",
+    "actual_new_native_models": 20,
+    "epochs_per_model": 25,
+    "updates_per_model": 225,
+    "total_updates": 4500,
+    "total_EEG_exposures": 4135000,
+    "held_OOF_queries": 165400,
+    "independent_all8270_CPU_FP64_forward_checks_per_fold": true,
+    "independent_all25_epoch_Adam_counter_moment_shuffle_checks_per_fold": true,
+    "maximum_manual_CPU_GPU_absolute_error": 7.92883671979494e-06,
+    "not_all_gradient_transitions_replayed": true,
+    "local_receiving_and_scope": {
+      "path": "audit/HIVE_exposed_OOF_asset_complete_20261101_v1/local_independent_scope_and_receiving.json",
+      "bytes": 66818,
+      "sha256": "7ddc178dff342e23720774f129488a1dd61d595fed6508e7ab84769e1a9d19ca"
+    },
+    "terminal_observation": {
+      "path": "audit/HIVE_exposed_OOF_asset_complete_20261101_v1/terminal_observation.json",
+      "bytes": 67211,
+      "sha256": "85a00e8969d55d12c7233a304930437196605d1463cde44e2639b3e12e45f2b9"
+    },
+    "stage_controller_completion": {
+      "path": "audit/HIVE_exposed_OOF_asset_complete_20261101_v1/actual/recovery1_controller_completion.json",
+      "bytes": 40813,
+      "sha256": "c3bb8424bb02d79ccdf0fccd59b9f92b10f37522801299bb14c66f556651fa4d"
+    },
+    "original_failure_preserved": true,
+    "owned_cache_reviews": 18,
+    "no_files_deleted": true,
+    "original24GiB_memory_floor_unchanged": true,
+    "original_wall_deadline_unchanged": true
+  },
+  "current_full1654_component_study": {
+    "study": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json",
+      "bytes": 19785,
+      "sha256": "29a090398e590c90ecd2a56a7f1d1d3bfcf02cb36cabcaf2239eaff36f7326ca"
+    },
+    "launch": {
+      "status": "ACTUAL_FULL1654_TWO_F_HEADS_AND_ALL4000_R80_IMAGES_FINITE_QUEUE_LAUNCHED",
+      "UTC": "2026-11-01T04:14:08.819312+00:00",
+      "controller_PID": 476654,
+      "start_ticks": 112533823,
+      "study": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json",
+        "bytes": 19785,
+        "sha256": "29a090398e590c90ecd2a56a7f1d1d3bfcf02cb36cabcaf2239eaff36f7326ca"
+      },
+      "CPU_review": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/actual_registration_CPU_review.json",
+        "bytes": 9423,
+        "sha256": "b59e4ce0ec9c3f34744a96956b8aa97f6f631a85a8cab5661e11ae8bdb48f275"
+      },
+      "resources": {
+        "effective_CPU_headroom_bytes": 29218525184,
+        "minimum_phase_headroom_bytes": 25769803776,
+        "used_output_bytes": 0,
+        "free_bytes": 95112859648,
+        "required_remaining_bytes": 75161927680,
+        "not_physical_reservation": true
+      },
+      "command": [
+        "/root/miniconda3/bin/python",
+        "-B",
+        "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/queue_HIVE_full1654_F_lifecycle_CPU_20261101_v1.py",
+        "--study",
+        "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json"
+      ],
+      "NEW_contacted": false,
+      "new_images_not_yet_complete": true
+    },
+    "controller": {
+      "PID": 476654,
+      "present": true,
+      "exact_live": true,
+      "state": "S",
+      "parent": 1,
+      "start_ticks": 112533823,
+      "command": "/root/miniconda3/bin/python -B /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/queue_HIVE_full1654_F_lifecycle_CPU_20261101_v1.py --study /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json "
+    },
+    "active": {
+      "PID": 477642,
+      "present": true,
+      "exact_live": true,
+      "state": "S",
+      "parent": 476654,
+      "start_ticks": 112618543,
+      "command": "/root/miniconda3/bin/python -B /root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/run_gpu_job_v2.py --name HIVE_full1654_F_20261101_v2_images_bounded_F_0200 --max-seconds 900 -- /root/miniconda3/bin/python -B /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/run_HIVE_full1654_F_R80_GPU_20261101_v1.py --study /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json --arm bounded_F --mode generate --lo 200 "
+    },
+    "worker": {
+      "PID": 477643,
+      "present": true,
+      "exact_live": true,
+      "state": "R",
+      "parent": 477642,
+      "start_ticks": 112618550,
+      "command": "/root/miniconda3/bin/python -B /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/run_HIVE_full1654_F_R80_GPU_20261101_v1.py --study /root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json --arm bounded_F --mode generate --lo 200 "
+    },
+    "phase": "images_bounded_F_0200",
+    "state": {
+      "progress.json": {
+        "PID": 476654,
+        "phase": "images_bounded_F_0200",
+        "active_PID": 477642,
+        "active_start_ticks": 112618543,
+        "GPU": true,
+        "job_name": "HIVE_full1654_F_20261101_v2_images_bounded_F_0200",
+        "completed_tasks": 7,
+        "UTC": "2026-11-01T04:28:16.114077+00:00"
+      }
+    },
+    "components": {
+      "bounded_F": {
+        "final_component": {
+          "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_20261101_v2/bounded_F/component_final.pt",
+          "bytes": 2104528,
+          "sha256": "4fc8d0be3f9c3414d49c672a629b42b121b694ab43180c64194d671211fbc228"
+        },
+        "updates": 31014,
+        "exposures": 496200,
+        "fit_seconds": 224.7860915279016,
+        "fit_CPU_audit": {
+          "status": "PASS_FULL1654_F_HEAD_STATE_AND_ALL165400_FORWARD_AUDIT",
+          "study": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json",
+            "bytes": 19785,
+            "sha256": "29a090398e590c90ecd2a56a7f1d1d3bfcf02cb36cabcaf2239eaff36f7326ca"
+          },
+          "arm": "bounded_F",
+          "component": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_20261101_v2/bounded_F/component_final.pt",
+            "bytes": 2104528,
+            "sha256": "4fc8d0be3f9c3414d49c672a629b42b121b694ab43180c64194d671211fbc228"
+          },
+          "updates": 31014,
+          "exposures": 496200,
+          "checkpoints": [
+            {
+              "updates": 128,
+              "exposures": 2048,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 8192,
+              "exposures": 131072,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 10338,
+              "exposures": 165400,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 16384,
+              "exposures": 262136,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 20676,
+              "exposures": 330800,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 24576,
+              "exposures": 393200,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 31014,
+              "exposures": 496200,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            }
+          ],
+          "all165400_CPU64_forwards_verified": true,
+          "maximum_absolute_error": 9.654743515774555e-07,
+          "relative_L2_error": 6.325221215337242e-08,
+          "guard": {
+            "atol": 1e-05,
+            "rtol": 5e-06
+          },
+          "all20_own_affines_and_raw_OOF_bank_required": true,
+          "not_all31014_gradient_transitions_replayed": true,
+          "no_R80_payloads_opened": true,
+          "CUDA_initialized": false,
+          "seconds": 11.833713376894593
+        },
+        "native_profile": {
+          "status": "PASS_FULL1654_FINAL_HEAD_ALL2000_CONDITIONS_AND10_NATIVE_REPLAYS",
+          "arm": "bounded_F",
+          "study": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json",
+            "bytes": 19785,
+            "sha256": "29a090398e590c90ecd2a56a7f1d1d3bfcf02cb36cabcaf2239eaff36f7326ca"
+          },
+          "component": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_20261101_v2/bounded_F/component_final.pt",
+            "bytes": 2104528,
+            "sha256": "4fc8d0be3f9c3414d49c672a629b42b121b694ab43180c64194d671211fbc228"
+          },
+          "certified_conditions": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_20261101_v2/bounded_F/native_profile/certified_singleton_conditions.npy",
+            "bytes": 8192128,
+            "sha256": "10be6b7684621c1639e96249f073f5aa7dd46c99b79ed5ace2af15005c514397"
+          },
+          "CPU64_singleton_max_absolute_error": 7.527773453475106e-07,
+          "guard": {
+            "atol": 1e-05,
+            "rtol": 5e-06
+          },
+          "native_replays": 10,
+          "changed_engineering_images": 10,
+          "loader": {
+            "status": "ALL_FOUR_NATIVE_COMPONENTS_EXACT_CONVERTED_TENSOR_LOAD_VERIFIED",
+            "components": [
+              {
+                "component": "CLIPTextModel",
+                "tensor_count": 196,
+                "elements": 123060480,
+                "expected_converted_state_sha256": "be069dc1588b2c124f6205ed5ef89add974eda321ea31b6b223b1d6d4bf94746",
+                "actual_loaded_state_sha256": "be069dc1588b2c124f6205ed5ef89add974eda321ea31b6b223b1d6d4bf94746",
+                "all_tensors_exact": true,
+                "before": {
+                  "VmHWM_bytes": 3777777664,
+                  "VmRSS_bytes": 2427179008
+                },
+                "after": {
+                  "VmHWM_bytes": 3777777664,
+                  "VmRSS_bytes": 2677657600
+                }
+              },
+              {
+                "component": "CLIPTextModelWithProjection",
+                "tensor_count": 517,
+                "elements": 694659840,
+                "expected_converted_state_sha256": "86291ec579fe8e93cbc4f6fa0877bfd5f40637bd3062fb06a94729c507b4b429",
+                "actual_loaded_state_sha256": "86291ec579fe8e93cbc4f6fa0877bfd5f40637bd3062fb06a94729c507b4b429",
+                "all_tensors_exact": true,
+                "before": {
+                  "VmHWM_bytes": 3777777664,
+                  "VmRSS_bytes": 3309559808
+                },
+                "after": {
+                  "VmHWM_bytes": 4393291776,
+                  "VmRSS_bytes": 4393291776
+                }
+              },
+              {
+                "component": "UNet2DConditionModel",
+                "tensor_count": 1680,
+                "elements": 2567463684,
+                "expected_converted_state_sha256": "9087728e5c31062d7291bc15f731ac2fdf9a1b5c790e1d79311a8fff07251faf",
+                "actual_loaded_state_sha256": "9087728e5c31062d7291bc15f731ac2fdf9a1b5c790e1d79311a8fff07251faf",
+                "all_tensors_exact": true,
+                "before": {
+                  "VmHWM_bytes": 4433756160,
+                  "VmRSS_bytes": 4433756160
+                },
+                "after": {
+                  "VmHWM_bytes": 9591934976,
+                  "VmRSS_bytes": 9591934976
+                }
+              },
+              {
+                "component": "AutoencoderKL",
+                "tensor_count": 248,
+                "elements": 83653863,
+                "expected_converted_state_sha256": "8b97979896ac77a892358fc94d629453cff2e000acd081b5fd002c4baa04b668",
+                "actual_loaded_state_sha256": "8b97979896ac77a892358fc94d629453cff2e000acd081b5fd002c4baa04b668",
+                "all_tensors_exact": true,
+                "before": {
+                  "VmHWM_bytes": 9591959552,
+                  "VmRSS_bytes": 9591959552
+                },
+                "after": {
+                  "VmHWM_bytes": 9758867456,
+                  "VmRSS_bytes": 9758867456
+                }
+              }
+            ],
+            "loading_uses_existing_official_conversion": true,
+            "frozen_FP16_weights_changed": false,
+            "metadata_only_observer": true
+          },
+          "seconds": 148.949697162956,
+          "peak_GPU_bytes": 8757398528,
+          "extra_CPU_bytes": 9377685504
+        },
+        "generated_query_records": 200,
+        "completed_200_image_segments": 1
+      },
+      "Euclidean_F": {
+        "final_component": {
+          "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_20261101_v2/Euclidean_F/component_final.pt",
+          "bytes": 2104528,
+          "sha256": "4e61c0cd2b0cadd792c688093a6706461411f109737a350fbe6af5796de5423f"
+        },
+        "updates": 31014,
+        "exposures": 496200,
+        "fit_seconds": 104.51186588709243,
+        "fit_CPU_audit": {
+          "status": "PASS_FULL1654_F_HEAD_STATE_AND_ALL165400_FORWARD_AUDIT",
+          "study": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json",
+            "bytes": 19785,
+            "sha256": "29a090398e590c90ecd2a56a7f1d1d3bfcf02cb36cabcaf2239eaff36f7326ca"
+          },
+          "arm": "Euclidean_F",
+          "component": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_20261101_v2/Euclidean_F/component_final.pt",
+            "bytes": 2104528,
+            "sha256": "4e61c0cd2b0cadd792c688093a6706461411f109737a350fbe6af5796de5423f"
+          },
+          "updates": 31014,
+          "exposures": 496200,
+          "checkpoints": [
+            {
+              "updates": 128,
+              "exposures": 2048,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 8192,
+              "exposures": 131072,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 10338,
+              "exposures": 165400,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 16384,
+              "exposures": 262136,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 20676,
+              "exposures": 330800,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 24576,
+              "exposures": 393200,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            },
+            {
+              "updates": 31014,
+              "exposures": 496200,
+              "all4_Adam_counters_moments_and_coverage_verified": true
+            }
+          ],
+          "all165400_CPU64_forwards_verified": true,
+          "maximum_absolute_error": 2.2999352367492065e-05,
+          "relative_L2_error": 7.635780323984204e-08,
+          "guard": {
+            "atol": 1e-05,
+            "rtol": 5e-06
+          },
+          "all20_own_affines_and_raw_OOF_bank_required": true,
+          "not_all31014_gradient_transitions_replayed": true,
+          "no_R80_payloads_opened": true,
+          "CUDA_initialized": false,
+          "seconds": 10.291749987052754
+        },
+        "native_profile": {
+          "status": "PASS_FULL1654_FINAL_HEAD_ALL2000_CONDITIONS_AND10_NATIVE_REPLAYS",
+          "arm": "Euclidean_F",
+          "study": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json",
+            "bytes": 19785,
+            "sha256": "29a090398e590c90ecd2a56a7f1d1d3bfcf02cb36cabcaf2239eaff36f7326ca"
+          },
+          "component": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_20261101_v2/Euclidean_F/component_final.pt",
+            "bytes": 2104528,
+            "sha256": "4e61c0cd2b0cadd792c688093a6706461411f109737a350fbe6af5796de5423f"
+          },
+          "certified_conditions": {
+            "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_20261101_v2/Euclidean_F/native_profile/certified_singleton_conditions.npy",
+            "bytes": 8192128,
+            "sha256": "7e2955afe0ce4c68211229e7b0483fa1130619d824ac03c417bc5a19e7abf240"
+          },
+          "CPU64_singleton_max_absolute_error": 1.795040881802379e-05,
+          "guard": {
+            "atol": 1e-05,
+            "rtol": 5e-06
+          },
+          "native_replays": 10,
+          "changed_engineering_images": 10,
+          "loader": {
+            "status": "ALL_FOUR_NATIVE_COMPONENTS_EXACT_CONVERTED_TENSOR_LOAD_VERIFIED",
+            "components": [
+              {
+                "component": "CLIPTextModel",
+                "tensor_count": 196,
+                "elements": 123060480,
+                "expected_converted_state_sha256": "be069dc1588b2c124f6205ed5ef89add974eda321ea31b6b223b1d6d4bf94746",
+                "actual_loaded_state_sha256": "be069dc1588b2c124f6205ed5ef89add974eda321ea31b6b223b1d6d4bf94746",
+                "all_tensors_exact": true,
+                "before": {
+                  "VmHWM_bytes": 3691962368,
+                  "VmRSS_bytes": 2341928960
+                },
+                "after": {
+                  "VmHWM_bytes": 3691962368,
+                  "VmRSS_bytes": 2592112640
+                }
+              },
+              {
+                "component": "CLIPTextModelWithProjection",
+                "tensor_count": 517,
+                "elements": 694659840,
+                "expected_converted_state_sha256": "86291ec579fe8e93cbc4f6fa0877bfd5f40637bd3062fb06a94729c507b4b429",
+                "actual_loaded_state_sha256": "86291ec579fe8e93cbc4f6fa0877bfd5f40637bd3062fb06a94729c507b4b429",
+                "all_tensors_exact": true,
+                "before": {
+                  "VmHWM_bytes": 3691962368,
+                  "VmRSS_bytes": 3224399872
+                },
+                "after": {
+                  "VmHWM_bytes": 4307922944,
+                  "VmRSS_bytes": 4307922944
+                }
+              },
+              {
+                "component": "UNet2DConditionModel",
+                "tensor_count": 1680,
+                "elements": 2567463684,
+                "expected_converted_state_sha256": "9087728e5c31062d7291bc15f731ac2fdf9a1b5c790e1d79311a8fff07251faf",
+                "actual_loaded_state_sha256": "9087728e5c31062d7291bc15f731ac2fdf9a1b5c790e1d79311a8fff07251faf",
+                "all_tensors_exact": true,
+                "before": {
+                  "VmHWM_bytes": 4348583936,
+                  "VmRSS_bytes": 4348583936
+                },
+                "after": {
+                  "VmHWM_bytes": 9506750464,
+                  "VmRSS_bytes": 9506750464
+                }
+              },
+              {
+                "component": "AutoencoderKL",
+                "tensor_count": 248,
+                "elements": 83653863,
+                "expected_converted_state_sha256": "8b97979896ac77a892358fc94d629453cff2e000acd081b5fd002c4baa04b668",
+                "actual_loaded_state_sha256": "8b97979896ac77a892358fc94d629453cff2e000acd081b5fd002c4baa04b668",
+                "all_tensors_exact": true,
+                "before": {
+                  "VmHWM_bytes": 9506775040,
+                  "VmRSS_bytes": 9506775040
+                },
+                "after": {
+                  "VmHWM_bytes": 9673527296,
+                  "VmRSS_bytes": 9673527296
+                }
+              }
+            ],
+            "loading_uses_existing_official_conversion": true,
+            "frozen_FP16_weights_changed": false,
+            "metadata_only_observer": true
+          },
+          "seconds": 148.40022529801354,
+          "peak_GPU_bytes": 8754646016,
+          "extra_CPU_bytes": 9292460032
+        },
+        "generated_query_records": 0,
+        "completed_200_image_segments": 0
+      }
+    },
+    "research_images_saved_at_observation": 200,
+    "planned_research_images": 4000,
+    "actual_source_and_registration": "audit/HIVE_full1654_F_lifecycle_preparation_20261101_v2/actual",
+    "local12CPUchecks": "audit/HIVE_full1654_F_lifecycle_preparation_20261101_v2/actual_local_CPU_checks.json",
+    "actual_observation": {
+      "path": "audit/HIVE_full1654_F_lifecycle_preparation_20261101_v2/actual_observation_v9.json",
+      "bytes": 31066,
+      "sha256": "4507f595d529a4fe9e530e4444635b308131fb34bf0ab74699d215452b9355f7"
+    },
+    "raw_receipt": {
+      "path": "audit/crossdisciplinary_20261028_v1/RAMroutes_old_full1654_F_v2_actual_image_queue_progress_20261101_v1_20261101T042811369549Z.json",
+      "bytes": 24752,
+      "sha256": "4c3c91d4d91cc79ea1c72677d48567540643ed49834059f49182495ad6425325"
+    },
+    "source_files_frozen": true,
+    "all4000_before_effect_scores": true,
+    "new_effect_scores_read": false,
+    "original_ordinary_epsilon_token_full1654_branch_not_yet_fitted": true,
+    "first_zero_update_runtime_failure_preserved": "audit/HIVE_full1654_F_lifecycle_preparation_20261101_v1/actual/first_actual_observation.json",
+    "v2_fix": "Only perform CPU-only input verification before CUDA initialization; original v1 has no arm folder/model/update. Same math/data/seed/updates/strength/numerical guard; new job names and directories.",
+    "ordinary_unchanged": true,
+    "OLD_only": true,
+    "NEW_contacted": false,
+    "independent_H": false,
+    "SOTA": false,
+    "CCF_A": false
+  }
+}

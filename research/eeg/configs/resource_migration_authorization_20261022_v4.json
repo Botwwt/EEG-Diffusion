@@ -1,0 +1,21 @@
+{
+  "schema": "BrainHIVE_user_provided_resource_migration_20261022_v4",
+  "user_instruction_without_credentials": "不用清理了。我扩容了300GB，换成这张卡。",
+  "cleanup_cancelled": true,
+  "existing_experimental_artifacts_to_be_retained": true,
+  "user_provided_replacement_SSH": {
+    "host": "CLOUD_LOGIN_HOST",
+    "port": 23526,
+    "username": "root"
+  },
+  "credentials_stored_in_this_record": false,
+  "user_provided_storage_expansion_GB": 300,
+  "use_replacement_existing_single_GPU": true,
+  "new_agent_purchases_authorized": false,
+  "further_automatic_storage_expansion_authorized": false,
+  "training_seed": 1729,
+  "seed_or_data_or_model_selection_change_authorized": false,
+  "old_finite_job_and_exclusive_GPU_wrapper_policy_retained": true,
+  "old_authorization_immutable": "configs/resource_authorization_20261020_v3.json",
+  "formal_training_admission_implied_by_this_record": false
+}

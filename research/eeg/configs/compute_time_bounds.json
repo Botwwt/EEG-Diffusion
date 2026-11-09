@@ -1,0 +1,9 @@
+{
+  "user_confirmed_total_hours": 40,
+  "registered_goal_start_epoch": 1792344411,
+  "registered_goal_start_utc": "2026-10-18T17:26:51Z",
+  "historical_compute_hours_precharged": 1.4351579818408937,
+  "conservative_occupied_time_deadline_epoch": 1792483244.4312654,
+  "deadline_utc": "2026-10-20T08:00:44.431265+00:00",
+  "rationale": "Enforce both summed GPU-job wall time and this conservative elapsed occupied-time bound, including current idle/data/audit periods. This is not a claim of verified provider billing. No purchases or renewal."
+}

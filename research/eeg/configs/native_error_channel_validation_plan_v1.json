@@ -1,0 +1,58 @@
+{
+  "version": "native_error_channel_full_Dcheck_v1",
+  "status": "LOCKED_BEFORE_SCIENTIFIC_OOF_OR_DCHECK_RESULTS",
+  "registered_utc": "2026-10-18T23:13:59Z",
+  "seed": 1729,
+  "repeat_protocol": "R4",
+  "subjects": 10,
+  "T_OOF_queries": 132300,
+  "Dfit_queries": 8200,
+  "Dcheck_queries": 8300,
+  "fit_concepts": 82,
+  "check_concepts": 83,
+  "pca_components": 32,
+  "neighbors": 32,
+  "shrinkage": 0.1,
+  "simulation_draws": 16,
+  "bootstrap_draws": 1000,
+  "classifier": {
+    "architectures": [
+      "linear",
+      "mlp64"
+    ],
+    "seed": 1729,
+    "epochs": 40,
+    "batch_size": 512,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01
+  },
+  "classifier_initialization": {
+    "linear": "zero_weights_and_bias",
+    "mlp64": "torch_default_seed1729"
+  },
+  "classifier_features": "CI_PCA32 + full_CE1024 + elementwise_CI_PCA32_times_CE_PCA32 + 4norm/cosine_scalars + subject_onehot10; Dfit-only standardization",
+  "energy_score": "E norm(sim-real) minus half E norm(sim1-sim2), independent16 draws, all ordered off-diagonal pairs, no squared norm",
+  "gate": "For BOTH raw native and frozen-projector energy, Conditional-minus-Iso and Conditional-minus-Moment crossed subject/concept95percent CI upper must be below zero. A pass is CPU-promising ONLY; full denoiser response and complete matched budget remain mandatory before S4.",
+  "null_interpretation": "Failure rejects this fixed CPU validation criterion, not every conditional error model. Classifier chance does not prove matched distributions or small KL.",
+  "semantic_distance_groups": "Quartiles of nearest distinct-T-concept image-PCA distance, cutpoints fitted on Dfit only",
+  "precision": "CPU FP32 projector; original weights; diagnostic not bit-exact deployed BF16 UNet response",
+  "source_sha256": {
+    "native_error_channel.py": "de0cec43cefe20c70517a10a7467c3d451e0daf5029a1a39341fa59abeaa1e71",
+    "error_channel_validation_metrics.py": "33b5207eebd37ee6b43d97c4852c73c58e879ce82bb03c4c37440227f32d2a3d",
+    "validate_native_error_channel.py": "40a0fc4ba52fe5efe9580f083497d4bc0c699d58aa8d28419b5b8e7ef89d79c4",
+    "build_native_oof_cache.py": "1dece96cee687e6557b7e236123e548b90197509d827a46733054668864c1a94",
+    "locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "paired_analysis.py": "ecff5cb88a0695102614ea8094a362d758e1ae2e032aafb29f5fc452d213f935"
+  },
+  "image_manifest_sha256": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+  "query_manifest_sha256": "d8a01893d3ff1a5fbfca771a0720fbbd83d2dd5a7a8f26b36cd2328f3d6d8fd5",
+  "native_projector_asset_sha256": "ebf05d918348aec7abb02a5e9ecef77e0aaea6914a5c4ea13f50d45eb1681831",
+  "image_metrics_unchanged": true,
+  "formal_images_generated_by_this_runner": 0,
+  "full_frozen_UNet_response_included": false,
+  "R1_R80_error_models_fitted": false,
+  "actual_EEG_error_channel_fitted_at_registration": false,
+  "read_Dcheck_results_at_registration": false,
+  "software_checks_sha256": "89a8c9ac6d4b01063ebaec86b59c906c18ed5076e9b932610b16f08154655c63",
+  "initial_positive_control_failure_receipt_sha256": "09e18da66b215ac0103e261976c01e43c8c4132a24db18af15be3881a1dc8df0"
+}

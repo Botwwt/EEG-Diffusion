@@ -1,0 +1,33 @@
+{
+  "version": "idea_interface_fixed_original_runtime_v1",
+  "recipe_sha256": "08bff8e653ae4efca4141cdc4e4a753a1f00dea1978e0faf5e98c7e6be8cb26b",
+  "resolution": 512,
+  "steps": 20,
+  "CFG": 5.0,
+  "IP_scale": 1.0,
+  "generation_batch": 4,
+  "caption_batch": 16,
+  "detection_batch": 4,
+  "feature_extractor": "extract_image_features.py",
+  "full_training_config_sha256": "a1ba1062f6e31fb776ce1c8968457ff23ecaff29efb16463065aab39dc1f0189",
+  "native_cache_config_path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/idea_first_native_cache_v1.json",
+  "native_cache_config_sha256": "693ed594e4d327f534e27d29ed5881c95e1e97d22b34afdf0da272504371f025",
+  "query_manifest_sha256": "d8a01893d3ff1a5fbfca771a0720fbbd83d2dd5a7a8f26b36cd2328f3d6d8fd5",
+  "source_sha256": {
+    "generate_idea_interface_images_v1.py": "16ccfbbf7b5456f26d501400ed4c5b239e994726a12f6a7a378feb6b74043a49",
+    "generate_reference_images.py": "866385edf114b333d3d1e989c48fe0ba1a55a0407f8968d56e9827a899902caa",
+    "profile_standard_generator.py": "b97eb88379e5162b6f4340788eec9b71dc39aa2dde5df150754da5b98c054748",
+    "extract_image_features.py": "3b24d22c4ac62f23efa8d4cf80bef148b0d075775ba54c6be46699d3bccd32ef",
+    "score_full_manifest.py": "be75163c2c22c7d97c24401abbb01d176e4f61c28b0cb0b101259881e81fc0cf",
+    "semantic_evaluator.py": "a57e9624102f0856634866c507e272166cf96ad344c3ad0d628bb20cded3e8eb",
+    "image_evaluation.py": "e14172655a156040b625694bad1ffbd441ad0b648c876e9a6b150d03e8d27f37",
+    "locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "audit_idea_image_pairing_v1.py": "1ce748c957229ba4c9dc6f2380fb89bb80deefae338ea8ad1438bd3a30ee9f24",
+    "score_low_level.py": "9d7c4a4e0304490b7934dbdaa32271556572227507ba166ab5a9bbda01fe8b7f",
+    "paired_analysis.py": "ecff5cb88a0695102614ea8094a362d758e1ae2e032aafb29f5fc452d213f935",
+    "write_idea_interface_report_v1.py": "6f6cdc00c5c35ace7002cc7a71eee1c2f67a3883b28725d63135abb24631f4c5"
+  },
+  "batch_profile_sha256": "557bdddb8ae5205a4a7e71a1ae2e470e3f98fda1342f689deab04a267942b4cf",
+  "runtime_upgraded": false,
+  "reason": "Larger batches slower or OOM in one prospectively fixed T probe"
+}

@@ -1,0 +1,109 @@
+{
+  "status": "MATRIX_FREE_PROTOTYPE_AST_ONLY_SERVER_CHECKS_NOT_STARTED",
+  "version": 233,
+  "sources": [
+    {
+      "path": "eeg_margin_matrix_free_20261106_v233.py",
+      "bytes": 5021,
+      "sha256": "5639d14dd38232dd7b81bbcd0a247c0244e53743071bbac913e2e71c80923210"
+    },
+    {
+      "path": "check_eeg_margin_matrix_free_CPU_20261106_v233.py",
+      "bytes": 4587,
+      "sha256": "08f773fa912bcf6203b40a85cedbb87f484ec1001f0447e6f58e72b4584187b3"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\check_matrix_free_OLD_CPU_20261106_v233.py",
+      "bytes": 1556,
+      "sha256": "77493352659f17d687e4f55efdca72cc6b1be3357439bb53502d1ba832eec7dd"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\check_matrix_free_real_encoders_OLD_CPU_20261106_v233.py",
+      "bytes": 6202,
+      "sha256": "475f52c9c3c9bbb34136a857f18b91bc36d3758c4b06ed1aa0c1b3b0e0e7a53f"
+    }
+  ],
+  "implemented": [
+    "immutable parameter/input functional encoder snapshot",
+    "Jv forward AD",
+    "JT_w reverse AD",
+    "JJT_w composition",
+    "local closest-step recovery"
+  ],
+  "tests_prepared": [
+    "CPU FP64/FP32 synthetic reference/adjoint/Gram checks",
+    "CPU tiny feasible localQP comparison",
+    "real ATMS/HIVE CPU operator support audit"
+  ],
+  "test_execution": "NONE: all six OLD SSH helper invocations ended before SSH banner/remote script start; bounded retry complete",
+  "network_failure_receipts": [
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_20261107T063024159583Z.json",
+      "bytes": 655,
+      "sha256": "3241cafe7bc1ba1e6adf3fc8fb77de5189dc2572e45db5cec62b397ac264730f"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_bounded_0_20261107T063400754747Z.json",
+      "bytes": 654,
+      "sha256": "5bfe8e759720a6df7aae93423df78573b1da449ced1ee19ec5b983766ac755e9"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_bounded_1_20261107T063448853219Z.json",
+      "bytes": 654,
+      "sha256": "efc8fa52561ef1abd334ef5974e5a159ff9d890e7d275eedadf9153826a10d90"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_bounded_2_20261107T063536906644Z.json",
+      "bytes": 655,
+      "sha256": "7602631cf0431e9caf442ef76d98424ae7cbcd2de5421629c2c51cba1dd35679"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_bounded_3_20261107T063626199825Z.json",
+      "bytes": 655,
+      "sha256": "326d55ee2291fc49e93cb520cea59d94bea8d134955f6055385c435cf9340c3c"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_retry_20261107T063123763697Z.json",
+      "bytes": 655,
+      "sha256": "1f9d964a2b8f8117e801fccaf2495bba57b403b735bcfde1bcc7dc9b03be2f3c"
+    }
+  ],
+  "confirmed_GPU_acceleration_or_saved_memory": false,
+  "confirmed_training_trajectory_equivalence": false,
+  "source_or_checkpoint_of_live_experiment_modified": false,
+  "new_remote_writes": 0,
+  "new_GPU_jobs": 0,
+  "new_images": 0,
+  "v232_GPU_queue_observation": {
+    "owner": {
+      "PID": 832244,
+      "state": "S",
+      "start_ticks": 163079691,
+      "live": true
+    },
+    "progress": {
+      "phase": "WAIT_ORIGINAL_FULL_STUDY_AND_TERMINAL_REVIEW",
+      "UTC": "2026-11-07T00:38:59.617800+00:00",
+      "GPU_jobs_started": 0
+    },
+    "completion": null,
+    "failure": null,
+    "queue_failure": null,
+    "log_tail": "",
+    "worker_log_tail": null
+  },
+  "v232_policy_untouched": true,
+  "next": [
+    "restore OLD connectivity and execute saved synthetic CPU checks",
+    "if passed execute two real encoder CPU support checks",
+    "preserve original fullstudy and its four-way GPU queue",
+    "admit any matrix-free GPU/whole-QP timing separately only after numerical checks"
+  ],
+  "known_limitations": [
+    "forward AD operator coverage untested",
+    "FP32 VJP/JVP changes reduction order relative to explicitFP64J",
+    "row scaling/conditioning and KKT need full-QP validation",
+    "local QP is not nonlinear finite feasibility",
+    "classic method is not new by itself"
+  ]
+}

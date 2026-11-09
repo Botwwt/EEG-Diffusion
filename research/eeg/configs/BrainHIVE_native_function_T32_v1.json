@@ -1,0 +1,55 @@
+{
+  "diagnostic": "native_function_T32_v1",
+  "subject": "sub-01",
+  "queries": 32,
+  "seed": 1729,
+  "batch_size": 4,
+  "output_directory": "/root/brainhive_reproduction_20261020_v1/audit/native_function_T32_v1",
+  "oracle_inference_inputs": "/root/brainhive_reproduction_20261020_v1/images/oracle_Tdiag32_v1/inference_inputs.json",
+  "latent_receipt": "/root/brainhive_reproduction_20261020_v1/audit/component_T_latent_bank_v2.json",
+  "source_sha256": {
+    "diagnose_BrainHIVE_native_function_T32_v1.py": "13c7002716a6ba4f446f6e303806ae1722f18ad5858f155eff36dd21db681960",
+    "brainhive_native_models_v1.py": "638d4b34116668d5c65058a918bdcaac481c099d084953f7085abeed997ad3c5",
+    "brainhive_component_data_v1.py": "0db2cddcc8ddddc1da1e752be04dfe95b60f219bdd99548c5944e39e42ba71c9",
+    "brainhive_component_generator_v1.py": "0565c65fe86ba7fed61b75807fdfb5066b6d2270cab1ddaffef7933cccfc1fa1",
+    "brainhive_response_rank_v1.py": "0a9e251b93721fb99f1fc8d23760a1e7cd9d0cb7c05223b2a8f8e5496962bd49",
+    "train_BrainHIVE_response_rank_v1.py": "c9ec549178484947c91e34319b5200b8b2eb0bfb77965044517a84c527284147",
+    "train_BrainHIVE_bounded_component_v1.py": "15a4422162caf89c0a0778502e6a7913aa0873acd9d54ebc5a19f7e520d3fa34"
+  },
+  "input_sha256": {
+    "/root/brainhive_reproduction_20261020_v1/images/oracle_Tdiag32_v1/inference_inputs.json": "1105c202b67eba4415b6ffce74cf8eb007bc773666d08703b4ff508e5c83708e",
+    "/root/brainhive_reproduction_20261020_v1/audit/component_T_latent_bank_v2.json": "a6fb379d25fe3738c47c036fa591c0603f952ba9e119763c487151462a4dae6f",
+    "/root/brainhive_reproduction_20261020_v1/data/component_input_contract_v1.json": "bb6e38350282af7b37ece04689adcec7a5f87dccf68de5968058433faece0597",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/split_manifest.json": "1969d664555d08399e77a2d76c011f19eadbda1ce251f9c72d72c94de3910ad2",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/image_manifest.csv": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+    "/root/brainhive_reproduction_20261020_v1/audit/native_asset_verification.json": "b4537c93e4488646dbe8e45d0bcfe923039718a994cc56ffd8e681aed35d1fea"
+  },
+  "queue_source_sha256": {
+    "queue_BrainHIVE_native_function_T32_v1.py": "766f0bddd431f79d39b8b88cd379c06b4e38b7e648b6cff741522ee80b8f8be1",
+    "run_gpu_job_v2.py": "a6e4b652cd58134a1b9c260b084392955b06ed506ae63bbcdc9c75b55e8c8114"
+  },
+  "diagnostic_job_seconds": 1200,
+  "maximum_queue_wait_seconds": 259200,
+  "component_training_enabled": false,
+  "KAN_enabled": false,
+  "optimizer_created": false,
+  "generated_images": 0,
+  "new_component_candidate_configurations": 0,
+  "existing_main_recipe_sha256": "55d92772f3e76240799cf69df12f590229a408c7b7a48050b9a0c7ec01f31db3",
+  "previous_two_candidate_registration_preserved": true,
+  "registration_utc": "2026-10-21T06:37:23Z",
+  "purpose": "Locate native stimulus-specific functional response differences before deciding on a trainable modification.",
+  "Q_reference": "One missing-zero-raw-condition pass for all arms at fixed query/t/noise.",
+  "functional_scope": "DDPM-noised real T latents at native four scheduler time indices, not a sampled generation trajectory.",
+  "arms": [
+    "raw_OOF_EEG",
+    "permuted_different_concept_OOF_EEG",
+    "correct_F",
+    "wrong_different_concept_F",
+    "missing_zero_raw_condition"
+  ],
+  "image_gain_claimed": false,
+  "native_bottleneck_claimed": false,
+  "no_protected_D_V_test_tensors_or_scores": true,
+  "follow_up": "Review saved measurements; no automatic component training or extra diagnostic search."
+}

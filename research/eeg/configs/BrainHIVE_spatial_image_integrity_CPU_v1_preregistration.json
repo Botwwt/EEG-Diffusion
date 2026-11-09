@@ -1,0 +1,71 @@
+{
+  "schema": "BrainHIVE_spatial_image_integrity_CPU_v1_preregistration",
+  "registered_utc": "2026-10-21T17:43:24Z",
+  "status": "FIXED_SUPPLEMENTARY_ENGINEERING_DEFINITIONS_BEFORE_FIRST_ACTUAL_SCAN",
+  "purpose": "Correct the interpretation gap of a global RGB standard deviation as a blank-image proxy; audit saved images without changing primary or semantic metrics.",
+  "original_implementation_evidence": {
+    "image_evaluation.py": "quality_statistics: normalized RGB array std across both spatial axes and channels; blank_proxy is std < .01.",
+    "score_low_level.py": "generated_pixel_std uses normalized RGB array std across both spatial axes and channels.",
+    "counterexample": "An image spatially constant in each RGB channel can have nonzero global standard deviation when channel means differ, including a uniform purple image."
+  },
+  "data_policy": {
+    "first_actual_arm": "Previously completed protected R4 risk images only",
+    "formal_expected_queries": 16600,
+    "formal_expected_subjects": 10,
+    "source": "Resolve the existing full manifest from recorded evaluation inputs; verify the original joined manifest SHA before scanning.",
+    "target_images_read": false,
+    "EEG_or_model_tensors_read": false,
+    "semantic_scores_read": false,
+    "new_images_generated": false,
+    "failed_queries_remain_in_denominator": true,
+    "later_arms": "Apply these same definitions to all complete matched arms; no method-specific changes."
+  },
+  "pixel_contract": {
+    "resolution": [512, 512],
+    "mode": "RGB",
+    "resize_or_colour_conversion_for_measurement": false,
+    "range": "uint8 RGB decoded from the original saved image; normalized statistics divide by 255.",
+    "file_SHA": "Verify against generated_sha256 in the immutable manifest.",
+    "pixel_SHA": "SHA256 of contiguous decoded uint8 RGB bytes, independent of file encoding."
+  },
+  "fixed_flags": {
+    "exact_spatial_constant": "max over channels of spatial (max-min) equals 0 uint8 levels.",
+    "near_spatial_constant": "max over channels of spatial population standard deviation in [0,1] is <= 1/255.",
+    "legacy_global_blank_proxy": "Global population standard deviation over H,W,RGB in [0,1] is < .01; reported for comparison only.",
+    "missing_corrupt_hash_or_dimension_failure": "Report each failed query and preserve it in the expected denominator."
+  },
+  "fixed_continuous_diagnostics": [
+    "Per-channel spatial mean, range and population standard deviation",
+    "Fraction of pixels with all RGB channels <= 1; fraction with all RGB channels >= 254",
+    "Mean absolute horizontal and vertical adjacent pixel differences, normalized to [0,1]",
+    "Mean absolute four-neighbour Laplacian on valid interior pixels, normalized by 255",
+    "Legacy global RGB population standard deviation"
+  ],
+  "engineering_interpretation": {
+    "complete_technical_coverage": "All expected queries resolve to matching, decodable, 512x512 RGB images; all failure counts are zero.",
+    "constant_outputs": "Report exact and near-constant flags and decoded-pixel duplicate groups separately. A flag requires diagnosis and must not be silently removed or regenerated.",
+    "no_learned_or_posthoc_threshold": true,
+    "cannot_identify_purple_noise_from_these_statistics": true,
+    "cannot_certify_naturalness_or_perceptual_noninferiority": true,
+    "quality_noninferiority_margin": null,
+    "human_ratings_collected": false,
+    "primary_DINO_SEED_ObjectF1_unchanged": true,
+    "existing_content_rankings_not_invalidated": true,
+    "old_blank_proxy_claim_is_limited_until_spatial_audit": true
+  },
+  "execution_budget": {
+    "CPU_only": true,
+    "maximum_seconds": 900,
+    "maximum_output_bytes": 16777216,
+    "model_threads": 1,
+    "new_output_directory_required": true,
+    "automatic_retry_or_resampling": false,
+    "source_SHA_must_be_recorded_before_actual_scan": true
+  },
+  "scientific_limits": [
+    "A constant-colour counterexample establishes a flaw in the old proxy interpretation, not that actual risk images have that flaw.",
+    "Near-constant images and high-frequency statistics are engineering flags, not validated judgements of object correctness or visual quality.",
+    "No thresholds, model configuration, seed, checkpoint or data split will be selected from this supplementary audit.",
+    "This audit does not admit the functional candidate, replace its full training or establish comparable SOTA."
+  ]
+}

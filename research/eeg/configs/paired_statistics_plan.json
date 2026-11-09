@@ -1,0 +1,18 @@
+{
+  "status": "LOCKED_BEFORE_FULL_V_IMAGE_METRICS",
+  "training_seed": 1729,
+  "bootstrap_seed": 1729,
+  "bootstrap_draws": 1000,
+  "pair_key": "query_id with identical target/image seed/initial noise and frozen encoder/generator",
+  "bootstrap": "Crossed subject and concept resampling with the SAME draws for both paired methods; all images within a sampled concept retained",
+  "point_estimate": "Equal subjects and equal concepts; the complete balanced V and benchmark partitions also give the ordinary per-query mean",
+  "primary_metric": "DINO2AFC",
+  "independent_semantics": ["SEED", "ObjectF1", "CapSim", "EffNet"],
+  "practical_DINO_gain": 0.01,
+  "nominal_interval": 0.95,
+  "development_intervals": "Descriptive after model selection; not an independent confirmation or training-seed uncertainty interval",
+  "quality_noninferiority_margin": null,
+  "quality_limit": "Blank/pixel proxies and complete inspection material do not establish quality noninferiority; no invented human ratings",
+  "no_SOTA_from_internal_threshold": true,
+  "official_benchmark_is_independent_H": false
+}

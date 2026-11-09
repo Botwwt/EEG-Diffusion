@@ -1,0 +1,14 @@
+{
+  "protocol_version": "eeg_full10_concept_protocol_v1",
+  "training_seed": 1729,
+  "number_of_training_seeds": 1,
+  "registered_before_new_formal_training_or_image_evaluation": true,
+  "image_generation_seed": "query_manifest_R4.csv:generation_seed; stable SHA256 rule already frozen in split_manifest.json",
+  "prior_generation_seed": "int(first16hex(SHA256(str(image_generation_seed) + '|prior')),16) modulo (2**63-1)",
+  "image_and_prior_generators": "Separate torch.Generator instances. The image generator starts from its own initial state for every matched method, regardless of whether a prior is used.",
+  "prior_condition_interventions": "Correct, cyclically permuted, and missing EEG are passed through the same frozen encoder/prior chain with the target query's same prior seed. Do not merely permute prior samples with different random seeds.",
+  "image_condition_interventions": "All interventions keep the target query's image noise, sampler, CFG and number of evaluations unchanged.",
+  "training_noise": "Each training phase is initialized once with the registered seed; independent losses requiring two draws consume one continuous stream without resetting it between draws.",
+  "OOF_conditions": "Exactly one registered prior sample per OOF query. Residuals include EEG decoding and prior sampling error; they are not labelled pure physiological noise.",
+  "seed_selection": "No alternative training seed, best-of-N, target-guided image choice or post-result seed replacement. A failed output is reported under its original query seed."
+}

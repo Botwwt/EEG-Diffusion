@@ -1,0 +1,247 @@
+{
+  "UTC": "2026-10-21T23:33:18.257692+00:00",
+  "status": "POSTHOC_AUDIT_FIXED_METHOD_NO_MODEL_REVISION",
+  "subjects": [
+    "sub-01",
+    "sub-02",
+    "sub-03",
+    "sub-04",
+    "sub-05",
+    "sub-06",
+    "sub-07",
+    "sub-08",
+    "sub-09",
+    "sub-10"
+  ],
+  "geometry_inputs": [
+    {
+      "subject": "sub-01",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-01_Dfit.pt",
+      "sha256": "1c6b4b32bd407d1bf5fbbca32bd1c1fb37810a14b78f4296f1232343a462e1ea",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-01",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-01_Dcheck.pt",
+      "sha256": "76814c93736c0a28d3b3358a1c2edc334a3a3215f96ac0c78b605a576f44db73",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-02",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-02_Dfit.pt",
+      "sha256": "c69a8e3ab9e0acbd9590c1fab8db9a3fe380165df15dae58fde254d5683fa21e",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-02",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-02_Dcheck.pt",
+      "sha256": "8257978590408169309c6385eab0cfc8798515d95a81472337fb516394f4c9f9",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-03",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-03_Dfit.pt",
+      "sha256": "f85ad3c6bdf302a2609f16c99f7bc68906af43792a5c46a9cb3a4e7013ce1646",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-03",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-03_Dcheck.pt",
+      "sha256": "e6dfe01ebda8a851df706b43197e00e50914a293a5652d46e0b7209f04682dca",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-04",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-04_Dfit.pt",
+      "sha256": "26b3211f4382b1487651612a15a89c105c558b854184563734325a41e25b9dac",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-04",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-04_Dcheck.pt",
+      "sha256": "660b65e8736ceb54b6770d471b91571be7aa87ca2452fa137a2db199e159325a",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-05",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-05_Dfit.pt",
+      "sha256": "2b04e55663ee89af2c836894bbfe43b6ca1cdd88a12f0ca2b6ca309592136ec6",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-05",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-05_Dcheck.pt",
+      "sha256": "ef75df315ec33e9acb4b6f2f705cda7af7f9e142fe7ec40733c43f49f00726c7",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-06",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-06_Dfit.pt",
+      "sha256": "ef89d7f0ef8ba6474f105d7a16a3112b85f96a487c970242f56c55e29b4323fd",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-06",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-06_Dcheck.pt",
+      "sha256": "35283f684935079e6e4c1c1a7259eaf9a6999fe619dde2e8e6021492bae40786",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-07",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-07_Dfit.pt",
+      "sha256": "b0ca6037f6a82b876169d9d56f3c428899ad3b1f20bfc22e19adff04b2ba6e3b",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-07",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-07_Dcheck.pt",
+      "sha256": "e04422a4c7a6823a0517cd89b846ec5c10869cce8e3bad08a5fc758a7dbfb8d8",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-08",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-08_Dfit.pt",
+      "sha256": "cf5aaac79cce0fa43d449f93f3176875142cf11cf28cdb5296fa5020e13080f1",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-08",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-08_Dcheck.pt",
+      "sha256": "e9bda9a3f9b928f29aceb73aa25892a916b29956302ef692c73f8d24db502066",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-09",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-09_Dfit.pt",
+      "sha256": "40891073640b719e4aad4721f4bc9f6746f1112efa050385ed9790348c6dc785",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-09",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-09_Dcheck.pt",
+      "sha256": "ef5f6fabcda5aab25388b5bab1a73f6f662c3653217309a45e2a4f9e2818ab7f",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    },
+    {
+      "subject": "sub-10",
+      "split": "Dfit",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-10_Dfit.pt",
+      "sha256": "2f6f77d887cb519d0c15f1cad29c50d6e7a564c50969de23e54c218e329b1690",
+      "array_rows_sha256": "af45efe6204fcf8a9ad924fca184ae62e6e7701ab868253cd7b21e4e7aa4772e",
+      "count": 820,
+      "bytes": 43294
+    },
+    {
+      "subject": "sub-10",
+      "split": "Dcheck",
+      "path": "/root/brainhive_reproduction_20261020_v1/data/condition_geometry_v1/sub-10_Dcheck.pt",
+      "sha256": "e17f6c9a35a7278661291935ba253261062006b540e456f536651693a0660a1a",
+      "array_rows_sha256": "4775743415aad159c5e8c2a73563bb21c3706241653f0f17f815f88c897b215e",
+      "count": 830,
+      "bytes": 44028
+    }
+  ],
+  "calibration_input": {
+    "path": "/root/brainhive_reproduction_20261020_v1/components/bounded_v1/risk/calibration.json",
+    "sha256": "592aaf30f79382bae4c722cb37a4d685a24e7178436861115fc30dcf50e9deff"
+  },
+  "geometry_summary_input": {
+    "path": "/root/brainhive_reproduction_20261020_v1/audit/condition_geometry_CPU_v1.json",
+    "sha256": "06e77facfb20101bd05be99a89b2897b466f6e2c2004e29eb95252bfd2112f42"
+  },
+  "input_contract": {
+    "path": "/root/brainhive_reproduction_20261020_v1/data/component_input_contract_v1.json",
+    "sha256": "bb6e38350282af7b37ece04689adcec7a5f87dccf68de5968058433faece0597"
+  },
+  "split_manifest": {
+    "path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/split_manifest.json",
+    "sha256": "1969d664555d08399e77a2d76c011f19eadbda1ce251f9c72d72c94de3910ad2"
+  },
+  "image_manifest": {
+    "path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/image_manifest.csv",
+    "sha256": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145"
+  },
+  "output_path": "/root/brainhive_reproduction_20261020_v1/audit/risk_subject_constant_CPU_actual_v1.json",
+  "known_aggregate_moment_preview": {
+    "Dcheck_subject_Dfit_constant_MSE_approx": 0.0029173181,
+    "Dcheck_head_MSE_saved": 0.0012861051363870502
+  },
+  "posthoc_not_preregistered_before_all_results": true,
+  "new_model_or_condition_prediction_evaluation": false,
+  "limits": {
+    "max_seconds": 120,
+    "max_output_bytes": 1048576,
+    "threads": 1
+  },
+  "schema": "BrainHIVE_risk_subject_constant_CPU_v1_registration",
+  "source_sha256": {
+    "audit_BrainHIVE_risk_subject_constant_CPU_v1.py": "44becaab3a41392f3ebe0d4bc2c322872982394600fa491d363e059d28dbc964",
+    "check_BrainHIVE_risk_subject_constant_CPU_v1.py": "70d08cb9deb74edef13e0b160665e4908f1619edd0b9d4f04756271adeda6d01"
+  },
+  "input_binding_receipt": {
+    "path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/BrainHIVE_risk_subject_constant_input_binding_actual_20261021_v1.json",
+    "sha256": "cd34e2e54987ff2d29b7e2d3348b6220cfb0fdced6541723c716077b77e4b850"
+  },
+  "method_fixed_for_exact_vector_confirmation": {
+    "risk": "Historical FP32 y=1-token_cosine, then float64 sums.",
+    "baseline": "Dfit mean per subject, evaluated without refit on its Dcheck vectors.",
+    "head": "Use the existing frozen calibrated-head aggregate MSE; no prediction replay.",
+    "statistics": "Point MSE comparison only. No paired CI from head aggregate or within-subject correlations.",
+    "not_pre_result": "Aggregate-moment approximation was calculated before registration; this is a posthoc confound audit, not independent confirmation.",
+    "no_model_change": "This audit never changes head, gate, strength, slope, checkpoint or candidate based on Dcheck."
+  }
+}

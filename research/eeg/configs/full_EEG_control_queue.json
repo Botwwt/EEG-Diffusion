@@ -1,0 +1,24 @@
+{
+  "status": "LOCKED_FINITE_FULL_V_EEG_CONTROL_QUEUE_BEFORE_COMPLETE_REFERENCE_METRICS",
+  "source_sha256": {
+    "select_reference_for_controls.py": "b3ea3826a0d05791e65d462a367eb992a88da0a2c2792fd8b0956cb9168c1b61",
+    "queue_full_EEG_controls.py": "9ead1d767a872854d3b222e291bb074b2e2ff2c30a0cfa93546e229a88fa0ae9",
+    "score_low_level.py": "9d7c4a4e0304490b7934dbdaa32271556572227507ba166ab5a9bbda01fe8b7f",
+    "paired_analysis.py": "ecff5cb88a0695102614ea8094a362d758e1ae2e032aafb29f5fc452d213f935",
+    "build_offline_gallery.py": "f046276975824e02c0b592199ebd27fa31babe895097f72166f71c5a96ca1523",
+    "configs/reference_control_selection_rule.json": "5642df211c620f10f5377422b08c498ac4321052630117bf28c99cba462dde97",
+    "configs/paired_statistics_plan.json": "028a67fb746d171efad15e163cf4016d0846c843db87ea87ee54ef8e3619e788"
+  },
+  "complete_queries_per_arm": 16600,
+  "subjects": 10,
+  "training_seed": 1729,
+  "controls": [
+    "permuted",
+    "missing"
+  ],
+  "final_benchmark_started": false,
+  "new_training_authorized_by_queue": false,
+  "resource_purchase": false,
+  "required_final_reserve_GPU_hours": 5.0,
+  "required_OOF_reserve_GPU_hours": 1.5
+}

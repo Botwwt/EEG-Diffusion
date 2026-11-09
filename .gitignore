@@ -24,3 +24,19 @@ outputs/
 htmlcov/
 .ruff_cache/
 
+
+# Keep large runtime/transfer artifacts outside Git
+*.zip
+*.tar
+*.tar.gz
+*.whl
+*.onnx
+*.bin
+*.pending
+*.partial
+*.log
+*.out
+*.err
+node_modules/
+package_cache/
+backups/

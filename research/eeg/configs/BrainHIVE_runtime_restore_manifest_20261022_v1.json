@@ -1,0 +1,181 @@
+{
+  "schema": "BrainHIVE_existing_public_runtime_restoration_v1",
+  "status": "PREPARED_NOT_EXECUTED_SERVER_UNREACHABLE",
+  "assets": [
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/LICENSE.md",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "LICENSE.md",
+      "sha256": "d6f6b1a4dce5c852bd6d7d9482d002baf0ccdb71e662250b73be9eec8764ee8d",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/model_index.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "model_index.json",
+      "sha256": "c3c2f99e3e94b5940bb072f7cf66858ab05d115dc5899b3cb36a7781e91769e0",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/scheduler/scheduler_config.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "scheduler/scheduler_config.json",
+      "sha256": "13847eb34084bc56e9f8b10f84d2c650cf8cb00016b2530429af0b894d4e1aa2",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/text_encoder/config.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "text_encoder/config.json",
+      "sha256": "f73737aca344421ae12c5302aad65570218d4911872ac2e656d685a23bee270a",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/text_encoder_2/config.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "text_encoder_2/config.json",
+      "sha256": "d798a4e0dea19feb3e4f17d311e02507055ce3ee81d015a43123517433f2a7ef",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/merges.txt",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "tokenizer/merges.txt",
+      "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/special_tokens_map.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "tokenizer/special_tokens_map.json",
+      "sha256": "6a757fc443f84ad1def3b893aac3858178f2a1513e3cf97b35ff131b5d88edd5",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/tokenizer_config.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "tokenizer/tokenizer_config.json",
+      "sha256": "7eb36a76a02551ce8583dbee08d062e672997a5fe1db82ebc642d88c7e79cc96",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer/vocab.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "tokenizer/vocab.json",
+      "sha256": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/merges.txt",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "tokenizer_2/merges.txt",
+      "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/special_tokens_map.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "tokenizer_2/special_tokens_map.json",
+      "sha256": "f118ab3a983206e4f32583448de6bd6aae4ee21869135cef1f5848a753cdaab6",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/tokenizer_config.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "tokenizer_2/tokenizer_config.json",
+      "sha256": "516314ccab66918d7cb647480ac27abd3520d14e1e5825aac99f50c851c16071",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/tokenizer_2/vocab.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "tokenizer_2/vocab.json",
+      "sha256": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/unet/config.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "unet/config.json",
+      "sha256": "6ae877bd8daca6088f44c6251e07d7e252da53ace0d5895a0c6cbcbd5c132cb4",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_config/vae/config.json",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "vae/config.json",
+      "sha256": "85a181424a5fd0cc292e44e467be66a5263976eee1baf36d208133f9d49d4269",
+      "maximum_bytes": 8388608
+    },
+    {
+      "path": "/dev/shm/eeg_diffusion_next_20261018_v1/sdxl_turbo_fp16.safetensors",
+      "repo": "stabilityai/sdxl-turbo",
+      "revision": "71153311d3dbb46851df1931d3ca6e939de83304",
+      "source_path": "sd_xl_turbo_1.0_fp16.safetensors",
+      "sha256": "e869ac7d6942cb327d68d5ed83a40447aadf20e0c3358d98b2cc9e270db0da26",
+      "bytes": 6938081905
+    },
+    {
+      "path": "/root/brainhive_reproduction_20261020_v1/assets/prior_H14/proj/diffusion_pytorch_model.safetensors",
+      "repo": "fakekungfu/Fusion-Prior-H14_B32_VAE",
+      "revision": "135a284109e71f5cde3d3e6d5dee6268a3c7987a",
+      "source_path": "proj/diffusion_pytorch_model.safetensors",
+      "sha256": "8ef44b68e2692abf01e4e6e7717a316b9260369a32ea7b958d5dfe35bb8661b2",
+      "bytes": 33603920,
+      "destination_policy": "EXISTING_SYMLINK_TARGET_MUST_BE_UNDER_DEV_SHM"
+    },
+    {
+      "path": "/root/brainhive_reproduction_20261020_v1/assets/prior_H14/fusion_encoder/diffusion_pytorch_model.safetensors",
+      "repo": "fakekungfu/Fusion-Prior-H14_B32_VAE",
+      "revision": "135a284109e71f5cde3d3e6d5dee6268a3c7987a",
+      "source_path": "fusion_encoder/diffusion_pytorch_model.safetensors",
+      "sha256": "b345fca423c5fe43178999ae38255bc2297011ce85c1ed664f5d54a9843e6e96",
+      "bytes": 77616504,
+      "destination_policy": "EXISTING_SYMLINK_TARGET_MUST_BE_UNDER_DEV_SHM"
+    },
+    {
+      "path": "/root/brainhive_reproduction_20261020_v1/assets/prior_H14/attn_adapter/diffusion_pytorch_model.safetensors",
+      "repo": "fakekungfu/Fusion-Prior-H14_B32_VAE",
+      "revision": "135a284109e71f5cde3d3e6d5dee6268a3c7987a",
+      "source_path": "attn_adapter/diffusion_pytorch_model.safetensors",
+      "sha256": "75a023a59cd2ea6f0488e090cea765f6dfda4042cf038be234c286160849c968",
+      "bytes": 1363164152,
+      "destination_policy": "EXISTING_SYMLINK_TARGET_MUST_BE_UNDER_DEV_SHM"
+    }
+  ],
+  "public_payload_bytes_excluding_small_configs": 8412466481,
+  "maximum_small_config_bytes": 125829120,
+  "input_recipe_sha256": "2175ab67060868cf24062468fa38afd352fad7aa3f0c8fbf819cb85d8e4a5fdd",
+  "remaining_private_latent": {
+    "path": "/dev/shm/BrainHIVE_private_derived_cache_20261020_v2/component_T_latents_v2/native_VAE_T_modes.npy",
+    "sha256": "eda12be7eeba9308437f9d58e5809f198dcc0a730fea8d63b2cd7158f88d0039",
+    "shape": [
+      13230,
+      4,
+      64,
+      64
+    ],
+    "dtype": "float32",
+    "policy": "REBUILD_ONLY_FROM_ALLOWED_T_AFTER_PUBLIC_RUNTIME_RESTORATION_USING_BOUNDED_GPU_JOB_AND_VERIFY_ORIGINAL_EXACT_SHA",
+    "historical_receipt_must_not_be_overwritten": true
+  },
+  "changes_scientific_sources": false,
+  "formal_training_admitted": false,
+  "downloads_private_EEG": false,
+  "local_large_files": false
+}

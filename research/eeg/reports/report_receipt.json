@@ -1,0 +1,18 @@
+{
+  "status": "EVIDENCE_ONLY_PROGRESS_REPORT_WRITTEN",
+  "UTC": "2026-10-19T03:37:40Z",
+  "current_complete_image_methods": 1,
+  "partial_image_partitions_scored": false,
+  "current_rows": 2,
+  "required_mechanism_arms_not_run": 5,
+  "historical_rows": 10,
+  "per_subject_rows": 10,
+  "paired_comparisons": [],
+  "report": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/reports/current_comparison.md",
+  "snapshot": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/reports/snapshots/20261019T033740Z",
+  "report_sha256": "c3df127b059219f12913570c0123131375d5246981045eeaad31a68637fbbb28",
+  "source_sha256": "ec907f8193b7677e37f752e884311d35f03ec6759060d1d7da83b06bbcc3fa2f",
+  "scientific_goal_complete": false,
+  "SOTA_established": false,
+  "independent_confirmation": false
+}

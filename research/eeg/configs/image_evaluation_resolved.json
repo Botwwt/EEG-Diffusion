@@ -1,0 +1,22 @@
+{
+  "status": "LOCKED_BEFORE_FULL_V_GENERATION",
+  "source_sha256": {
+    "generate_reference_images.py": "8f955c684f45536b53dc45b72a02d3af99d4d98353a4ce25b229459560e3ac50",
+    "profile_standard_generator.py": "a3f5bc296db2968a27574710a273bc7b7efd7575106a6186de085e2a3707d1ed",
+    "semantic_evaluator.py": "a57e9624102f0856634866c507e272166cf96ad344c3ad0d628bb20cded3e8eb",
+    "image_evaluation.py": "e14172655a156040b625694bad1ffbd441ad0b648c876e9a6b150d03e8d27f37",
+    "extract_image_features.py": "3b24d22c4ac62f23efa8d4cf80bef148b0d075775ba54c6be46699d3bccd32ef",
+    "locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "score_full_manifest.py": "be75163c2c22c7d97c24401abbb01d176e4f61c28b0cb0b101259881e81fc0cf"
+  },
+  "query_manifest_sha256": "d8a01893d3ff1a5fbfca771a0720fbbd83d2dd5a7a8f26b36cd2328f3d6d8fd5",
+  "resolution": 512,
+  "steps": 20,
+  "CFG": 5.0,
+  "JPEG_quality": 90,
+  "subsampling": 0,
+  "all_subjects": 10,
+  "full_V_queries": 16600,
+  "prior_config_sha256": "62726d0584b5f5ecf8b5f389b1d0b48d991fb441968811315e4cdf15d951e0fc",
+  "repair": "Correct 65-character manually transcribed DINO guard to exact64-character legacy verified SHA; weights and metric definitions unchanged; before any formal V image"
+}

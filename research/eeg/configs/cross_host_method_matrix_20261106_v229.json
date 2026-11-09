@@ -1,0 +1,83 @@
+{
+  "status": "USER_DIRECTED_RESEARCH_ROUTE_NOT_GPU_ADMISSION",
+  "UTC": "2026-11-07T00:00:10.075440+00:00",
+  "user_intent": "Develop the same ordinary and second method across ATM and another EEG reconstruction host, including their combination.",
+  "primary_hosts": [
+    "Brain-HIVE fusion prior + native IP/Turbo",
+    "ATM semantic diffusion prior + h94 IP/Turbo"
+  ],
+  "current_prototype_host": "ATMS + direct h94 IP/Turbo; distinct from the full author ATM reconstruction pipeline.",
+  "common_parts": {
+    "ordinary": "A bounded condition-direction correction in each host native coordinates, fitted using that host frozen generation path.",
+    "second_method": "A candidate EEG-encoder training rule that preserves stimulus discrimination while improving downstream generator compatibility; current constrained response repair remains unconfirmed.",
+    "weights": "Fit host-specific parameters and normalization statistics; same algorithm does not imply sharing one checkpoint across incompatible feature spaces."
+  },
+  "matrix_per_host": [
+    {
+      "cell": "base",
+      "encoder": "fixed common parent",
+      "ordinary": "off"
+    },
+    {
+      "cell": "ordinary",
+      "encoder": "same fixed parent",
+      "ordinary": "fixed fitted ordinary"
+    },
+    {
+      "cell": "new_method",
+      "encoder": "new-method encoder from the same parent",
+      "ordinary": "off"
+    },
+    {
+      "cell": "ordinary_plus_new_method",
+      "encoder": "same fitted encoder as new_method",
+      "ordinary": "same fixed ordinary as ordinary"
+    }
+  ],
+  "composition_rule": "First test the same two fitted components independently and composed without extra tuning. Jointly retrained combinations, if later needed, are separate studies and cannot replace this four-cell result.",
+  "comparisons": [
+    "ordinary-base",
+    "new_method-base",
+    "ordinary_plus_new_method-ordinary",
+    "ordinary_plus_new_method-new_method"
+  ],
+  "interaction": "(ordinary_plus_new_method-ordinary)-(new_method-base); architectural separation is not evidence of additive gains.",
+  "parent_compatibility": "Bind all four cells to exact parent/checkpoint/data identities. Historical ordinary trained for another parent cannot silently fill a matched cell. Preserve old ordinary; any newly matched head is separately saved.",
+  "host_adaptation_needed": [
+    "native visual target and working coordinates",
+    "native condition/response path, including any frozen prior",
+    "host-specific encoder parameter selector, without ATMS name/count assumptions",
+    "actual gallery/query ordering and layer/time counts",
+    "native baseline sampler and inference information/cost"
+  ],
+  "known_host_specific_assumptions_in_current_prototype": [
+    "proj_eeg parameter names",
+    "31 connected tensors / 545930 parameters",
+    "CLIP-H target",
+    "1323 concepts / 13230 examples / ten images per concept",
+    "70 IP layers / four time points"
+  ],
+  "evidence": {
+    "HIVE_ordinary": "reports/BRAINHIVE_FULL1654_ORIGINAL_ORDINARY_R80_RESULTS_20261101_v1.md; ten subjects R80 2000, native DINO gain supported; extra semantic gain over F-only/mean direction unconfirmed.",
+    "ATM_semantic_prior_ordinary": "reports/ATM_NATIVE_ORDINARY_FULL400_RESULTS_20261103_v1.md; sub01 R4 400, SSIM gain supported, semantic advantage unconfirmed.",
+    "current_second_method": "audit/GOAL_active_execution_handoff_20261106_v227.json; epoch6 training evidence only, full matched images pending.",
+    "baseline_code_scope": "audit/crossdisciplinary_20261028_v1/baseline_author_source_scope_v228/audit.json; current ATMS source byte-identical to pinned author develop, not identical to old main."
+  },
+  "execution_order": [
+    "Complete ongoing sealed ATMS prototype and response-only control, all final images/metrics.",
+    "Use results to repair the common method definition and confirm efficacy against strong matched controls.",
+    "Bind compatible parents and host interfaces, then admit the same four-cell matrix on both primary hosts after finite resource checks."
+  ],
+  "scientific_permissions": "Same allowed data/inference inputs, final checkpoints and within-host query/noise identity. Report different host costs; retain stronger encoder/continued-training/effective-update controls where relevant. Exposed benchmark remains exposed.",
+  "constraints": [
+    "OLD card only",
+    "NEW card reserved",
+    "single seed1729 first",
+    "old ordinary and strongNCE immutable",
+    "no scientific source changes to current running experiment",
+    "no untrained matrix cell reported as complete"
+  ],
+  "new_GPU_jobs_started": 0,
+  "cross_host_generality_confirmed": false,
+  "new_method_confirmed": false
+}

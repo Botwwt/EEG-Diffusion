@@ -1,0 +1,46 @@
+{
+  "status": "DRAFT_DESIGN_RECORDED_NOT_IMPLEMENTED_OR_GPU_ADMITTED",
+  "UTC": "2026-11-07T00:06:55.303072+00:00",
+  "motivation": "Complete epoch6 has25 accepted of498 attempts; response-only comparator performs a parameter update at each attempt. A benefit could reflect fewer/smaller effective updates or batch selection rather than margin protection.",
+  "existing_study": "Original v204 two-arm10epoch/finalimages/allmetrics continues unchanged.",
+  "control_name": "response_only_schedule_and_total_step_norm_matched",
+  "source_schedule": "Only immutable final constrained-arm T training events1..830, original source/schedule/Qbank/model SHA, never heldout scores. Partial prefix is not a final schedule.",
+  "initial_state": "Exact same CN encoder, frozen NN proj_eeg/logit_scale/buffers, same trainable31 tensors, eval mode, AdamW settings and fixed data order as the constrained arm.",
+  "attempt_rule": [
+    "Visit the same full830 T batch schedule and native response units; retain exposure and diagnostic accounting.",
+    "On source-rejected indices leave parameters and optimizer state unchanged.",
+    "On source-accepted indices compute this control own response-only AdamW proposal without margin QP/restoration.",
+    "Match the total proposed parameter-step norm, including its weight-decay contribution, to source event actual_parameter_step_norm; preserve this control own persistent optimizer state.",
+    "Report actual FP32 step-norm error; the numerical matching tolerance and bounded rounding procedure require a separate real profile before recipe sealing. Do not assume exact equality from rescaling a mathematical vector."
+  ],
+  "matched_quantities": [
+    "accepted update count",
+    "selected training batch/unit schedule",
+    "logged total parameter-step norm targets"
+  ],
+  "not_matched_or_not_inferred": [
+    "per-query loss trajectory",
+    "Adam moment values between different models",
+    "QP wall-clock cost",
+    "independent random schedule",
+    "causal effect of protection in all possible settings"
+  ],
+  "interpretation": "This is a T-trajectory-dependent mechanism control, not a deployable new method or a randomized experiment. It helps distinguish direction/constraint effects from effective update quantity and selection; it cannot establish novelty alone.",
+  "fixed_evaluation_scope": "If admitted, final control on same sub01 R4 all400 and R80 all200, all23 image and26 encoder metrics, same query noise/single image/native4 UNet; reuse immutable existing reference images/features. No multiseed now.",
+  "comparisons": [
+    "constrained minus matched control",
+    "matched control minus CN",
+    "matched control minus existing full response-only",
+    "retain all original comparisons and metric tradeoffs"
+  ],
+  "before_execution": [
+    "complete current study and interpret all metrics",
+    "validate persistent state/skip semantics/FP32 norm matching on real T",
+    "register source/parent/seed/final checkpoint and full CPU/image verification",
+    "separate finite output/resource admission without changing existing promises or using reserved NEW card"
+  ],
+  "priority": "First complete the current evidence chain; develop one common method for HIVE and ATM under the v229 matched four-cell route. Do not create unrelated host-specific ideas or claim matched-attempt count equals matched effective updates.",
+  "new_GPU_jobs_started": 0,
+  "scientific_sources_changed": false,
+  "new_method_effect_proven": false
+}

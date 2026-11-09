@@ -1,0 +1,61 @@
+{
+  "status": "REGISTERED_SEQUENCE_EXECUTION_PREREQUISITES_UNMET",
+  "purpose": "Author-code EEG-to-image reproduction before an independently controlled portable component",
+  "supersedes_research_priority_only": true,
+  "retain_existing_protocol_metrics_history_and_resource_limits": true,
+  "train_seed": 1729,
+  "formal_training": "Every row of the locked allowed training manifest, all 10 available subjects",
+  "formal_evaluation": "Every query of the corresponding locked partition, one fixed image per query",
+  "current_mechanism_track": {"T_queries": 132300, "V_queries": 16600, "R": "four physical repeats averaged"},
+  "public_decoder_track": {"queries": 2000, "label": "published-feature decoder reproduction only", "independent_H": false},
+  "current_resource_gate": "Original 40-hour authorization and the unchanged registered conservative occupied-time deadline both apply",
+  "new_GPU_work_authorized_now": false,
+  "first_parent": {
+    "name": "ATM semantic branch",
+    "paper": "NeurIPS 2024",
+    "repository": "https://github.com/ncclab-sustech/EEG_Image_decode",
+    "source_commit": "49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d",
+    "chain": "matched author EEG embedding -> author DiffusionPriorUNet -> raw native CLIP H -> IP-Adapter -> SDXL Turbo",
+    "published_matching_assets": "20 verified prior/feature files, 10 subjects",
+    "decoder_entrypoint": "reproduce.py --stage author-decoder",
+    "registered_whole_lifecycle_seconds_including_reserve": 6105,
+    "actual_decoder_images_completed": 0,
+    "full_end_to_end_EEG_reproduction_completed": false,
+    "prohibition": "Do not attach public priors to an incompatible local EEG encoder merely because both have 1024 dimensions"
+  },
+  "sequence": [
+    {"id": "S0", "action": "Audit source, inputs, metrics, pairing and storage; preserve all completed negatives", "gate": "Actual files and source-specific contracts recorded"},
+    {"id": "S1a", "action": "Run the matched author-feature ATM decoder", "gate": "All 2000 actual images, identity audit, original and protected common metrics, cost, resource gate; report restricted scope"},
+    {"id": "S1b", "action": "Reproduce the complete author EEG-to-image parent on the full allowed partition", "gate": "All trainable parent modules, input R/window, training coverage, native oracle and source differences audited; all available subjects and full images"},
+    {"id": "S2", "action": "Test correct, deranged and missing EEG; real-image native conditions are diagnostic only", "gate": "Useful pairing-dependent image content, a working native generator interface, complete formal controls"},
+    {"id": "S3", "action": "Freeze the reproduced parent and train an ordinary residual adapter and a calibrated-gate candidate", "gate": "Complete-parent out-of-fold conditions and separate calibration checks; matched capacity, data, updates and sampling"},
+    {"id": "S4", "action": "Add stage-dependent routing only after the simpler component has credible evidence", "gate": "Stage-only and quality-only ablations; fixed best global strength, ordinary adapter and shuffled-risk controls"},
+    {"id": "S5", "action": "Reproduce another compatible parent, then test the same mechanism with per-parent native contracts and weights", "gate": "Report exactly the encoder and generator families actually tested; independent confirmation and comparable SOTA remain separate requirements"}
+  ],
+  "component_design_status": "HYPOTHESIS_ONLY_NOT_TRAINED",
+  "component_constraints": [
+    "Keep the parent encoder, prior, native projector and generator frozen initially",
+    "A zero-initialized bounded residual must recover the parent exactly when disabled",
+    "Use real concept-out-of-fold deployment-chain conditions; do not reuse failed q-v2 synthetic conditions",
+    "A fold must exclude the relevant concept from every supervised parent module, including a learned prior",
+    "Predictive error risk is not physiological signal quality or SNR",
+    "Use raw EEG beyond the parent's condition only after a conditional-information check and c-only/shuffled-extra-EEG controls",
+    "Stage coordinates and attention hooks must follow each actual scheduler and model; Turbo steps do not define a standard DDPM score",
+    "Per-backend implementations and learned weights may differ; no claim of universal interchangeable embeddings",
+    "No extra generated candidates, best-of-N, test-image conditions or extra denoiser evaluations in the matched inference comparison"
+  ],
+  "decision": {
+    "practical_DINO_delta": 0.01,
+    "reference": "strongest eligible matched frozen parent and ordinary residual adapter",
+    "semantic_requirement": "ObjectF1 and the protected semantic combination support the same improvement",
+    "quality_requirement": "Prespecified quality noninferiority evidence, not a nonsignificant difference",
+    "failed_gate": "Record completed_negative or inconclusive and stop expansion of that hypothesis",
+    "candidate_limit": "Inherit the existing campaign count and 12-candidate cap; do not reset by renaming",
+    "independent_H": "Not established by the exposed 200-stimulus public benchmark"
+  },
+  "other_parents": [
+    {"name": "D2-FOSA", "status": "Official main and supplement PDFs retained; executable official source package not located", "selection": "pending code and native-generation contract"},
+    {"name": "DreamDiffusion", "status": "Source-inspected different generator family; original EEG dataset and default image-root path need explicit reconciliation", "selection": "THINGS migration would be an adaptation, not exact original-data reproduction"},
+    {"name": "ENIGMA", "status": "Official source and class CPU preflight retained; full environment, raw-trial protocol and image reproduction incomplete", "selection": "Same Turbo/IP family does not establish cross-generator generality"}
+  ]
+}

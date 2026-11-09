@@ -1,0 +1,48 @@
+{
+  "version": "two_fixed_requested_ideas_v1",
+  "user_request": "Replace BrainMLP by KAN; select two checked promising hypotheses actually adapted to HIVE",
+  "registration_utc": "2026-10-21T04:04:25Z",
+  "fixed_order": [
+    "brainkan_full_v1",
+    "response_rank_v1"
+  ],
+  "template_paths": [
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_BrainKAN_two_ideas_template_v1.json",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_response_rank_two_ideas_template_v1.json"
+  ],
+  "template_sha256": {
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_BrainKAN_two_ideas_template_v1.json": "3024101444b4e9ab075f2889143ea44af4d0df2ee84e7363670220b89197c72f",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_response_rank_two_ideas_template_v1.json": "206001d6d7476ea2316befd6bb96ba0a8575cc60fe6da73ed2eeef274dcabd4b"
+  },
+  "maximum_wait_seconds": 259200,
+  "source_sha256": {
+    "brainhive_native_models_v1.py": "638d4b34116668d5c65058a918bdcaac481c099d084953f7085abeed997ad3c5",
+    "brainhive_bounded_component_v1.py": "2b93c0644bde268ae876f0e2b722106852b25910fedc1cffc97820e96cadf5d7",
+    "brainhive_component_data_v1.py": "0db2cddcc8ddddc1da1e752be04dfe95b60f219bdd99548c5944e39e42ba71c9",
+    "brainhive_component_generator_v1.py": "0565c65fe86ba7fed61b75807fdfb5066b6d2270cab1ddaffef7933cccfc1fa1",
+    "brainhive_lifecycle_storage_v1.py": "88b5983ce40b2e996698382835aff22dd538c5ecfd84247b4c824bfd34fca083",
+    "train_BrainHIVE_bounded_component_v1.py": "15a4422162caf89c0a0778502e6a7913aa0873acd9d54ebc5a19f7e520d3fa34",
+    "brainhive_brainkan_v1.py": "4209f1dfd7e26239d8fbe01515ec38e3ae3dc3646a4d8cce3da6c5bc8b0e64c9",
+    "train_BrainHIVE_BrainKAN_v1.py": "ac9c52d92c1d3f1117e3964fe80c7cd5c4bac98edd42c6e09739c188ed4bf6b9",
+    "brainhive_response_rank_v1.py": "0a9e251b93721fb99f1fc8d23760a1e7cd9d0cb7c05223b2a8f8e5496962bd49",
+    "train_BrainHIVE_response_rank_v1.py": "c9ec549178484947c91e34319b5200b8b2eb0bfb77965044517a84c527284147",
+    "brainhive_two_ideas_storage_v1.py": "10c3551cfc832f147f43d73faa3d0b0a9540b7a180012275003add0b40b29574",
+    "generate_BrainHIVE_two_ideas_V_v1.py": "2a957d01dd979d52073200ad7b4ce028e832a57035864997c8b356607fed7960",
+    "audit_BrainHIVE_two_ideas_image_arm_CPU_v1.py": "45c5f25c851b85b85eab62801f1026c3a7d0a6dd7404a147d1d8d2800d8a57a9",
+    "compare_BrainHIVE_two_ideas_CPU_v1.py": "420b86e0fe2f8048077a928b1bacc1e76d6244c4ff2386fbded39bca9f810d18",
+    "extract_image_features.py": "3b24d22c4ac62f23efa8d4cf80bef148b0d075775ba54c6be46699d3bccd32ef",
+    "score_full_manifest.py": "be75163c2c22c7d97c24401abbb01d176e4f61c28b0cb0b101259881e81fc0cf",
+    "score_low_level.py": "9d7c4a4e0304490b7934dbdaa32271556572227507ba166ab5a9bbda01fe8b7f",
+    "locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "semantic_evaluator.py": "a57e9624102f0856634866c507e272166cf96ad344c3ad0d628bb20cded3e8eb",
+    "run_gpu_job_v2.py": "a6e4b652cd58134a1b9c260b084392955b06ed506ae63bbcdc9c75b55e8c8114",
+    "queue_BrainHIVE_two_ideas_v1.py": "ad49fd7c40f7f060e6ac844bc63c25417a576a735b6d54b90dd26dd0f8b0cc9a"
+  },
+  "existing_main_queue_not_modified": true,
+  "exactly_two_new_candidate_configurations": true,
+  "storage_admission_complete": false,
+  "formal_new_training_started": false,
+  "historical_count_not_reconstructed_as_zero": true,
+  "no_automatic_further_search": true,
+  "contingent_mechanism_control_images_not_funded_by_this_main_comparison": true
+}

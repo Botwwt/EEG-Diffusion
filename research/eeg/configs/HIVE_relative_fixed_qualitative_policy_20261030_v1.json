@@ -1,0 +1,40 @@
+{
+  "status": "FIXED_BEFORE_ANY_NEW_IMAGE_EFFECT_READ",
+  "UTC": "2026-10-30T10:45:16.838239+00:00",
+  "last_observed_zero_images": {
+    "path": "audit/HIVE_relative_continuation_registration_20261030_v2_final_turn_actual/actual_observation.json",
+    "bytes": 44600,
+    "sha256": "7a70eaaccfb9ee78536b1580d227f1cce92097cd6ab643632fa5aa4f1c93e615"
+  },
+  "positions": {
+    "80": [
+      0,
+      19,
+      39,
+      40,
+      59,
+      79
+    ],
+    "400": [
+      0,
+      79,
+      159,
+      239,
+      319,
+      399
+    ]
+  },
+  "columns": [
+    "target",
+    "parent",
+    "ordinary",
+    "starting_F",
+    "conditional_same",
+    "conditional_different",
+    "conditional_same_mismatched_teacher",
+    "continued_F_cosine"
+  ],
+  "all_selected_positions_reported": true,
+  "not_accuracy_estimate": true,
+  "no_metric_or_beauty_selection": true
+}

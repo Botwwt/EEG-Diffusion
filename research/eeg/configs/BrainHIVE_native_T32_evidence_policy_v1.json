@@ -1,0 +1,85 @@
+{
+  "schema": "BrainHIVE_native_T32_evidence_policy_v1",
+  "version": 1,
+  "status": "PRE_RESULT_DESCRIPTIVE_READER_POLICY_ONLY_NOT_ADMISSION",
+  "created_utc": "2026-10-22T01:54:32.152871+00:00",
+  "execution_mode": "ACTUAL_COMPLETED_DIAGNOSTIC_READER_ONLY",
+  "reader_source_sha256": "0215e165309cd6517ef2ae2dc866755945a7ccd8ab7bdc5e165427a14812d232",
+  "repository_root": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1",
+  "main_state": "/root/brainhive_reproduction_20261020_v1/audit/main_storage_continuation_20261021_v1.json",
+  "diagnostic_queue_state": "/root/brainhive_reproduction_20261020_v1/audit/native_function_T32_queue_v2.json",
+  "diagnostic_job_state": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/BrainHIVE_native_function_T32_v2_job.json",
+  "diagnostic_output_directory": "/root/brainhive_reproduction_20261020_v1/audit/native_function_T32_v2",
+  "diagnostic_registration": {
+    "path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_native_function_T32_v2.json",
+    "sha256": "654662b4ae45f2e983eda58b07e6b2019c6beed90bf9153ea6bf7583c658ee1b"
+  },
+  "fixed_queries_metadata": {
+    "path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_functional_postfit_T32_queries_DRAFT_v1.json",
+    "sha256": "5019b618f570d9454be0744ffeb5985a939227a77835f7f990c4f755b45a29e5"
+  },
+  "registered_metadata_input_sha256": {
+    "/root/brainhive_reproduction_20261020_v1/images/oracle_Tdiag32_v1/inference_inputs.json": "1105c202b67eba4415b6ffce74cf8eb007bc773666d08703b4ff508e5c83708e",
+    "/root/brainhive_reproduction_20261020_v1/audit/component_T_latent_bank_v2.json": "a6fb379d25fe3738c47c036fa591c0603f952ba9e119763c487151462a4dae6f",
+    "/root/brainhive_reproduction_20261020_v1/data/component_input_contract_v1.json": "bb6e38350282af7b37ece04689adcec7a5f87dccf68de5968058433faece0597",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/split_manifest.json": "1969d664555d08399e77a2d76c011f19eadbda1ce251f9c72d72c94de3910ad2",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/image_manifest.csv": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+    "/root/brainhive_reproduction_20261020_v1/audit/native_asset_verification.json": "b4537c93e4488646dbe8e45d0bcfe923039718a994cc56ffd8e681aed35d1fea"
+  },
+  "split_manifest_path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/split_manifest.json",
+  "image_manifest_path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/image_manifest.csv",
+  "condition_contract_path": "/root/brainhive_reproduction_20261020_v1/data/component_input_contract_v1.json",
+  "expected": {
+    "queries": 32,
+    "timesteps": 4,
+    "rows": 128,
+    "native_IP_layers": 70,
+    "full_UNet_calls": 160,
+    "full_UNet_samples": 640,
+    "conditional_forwards_per_query_time": 5
+  },
+  "rules": {
+    "aggregation": "Equal mean of all four registered native times within each query, then equal mean of all32 queries. No selected times/layers/queries.",
+    "direction_boundary": 0,
+    "support": "All four EEG paired contrasts and correct-versus-wrong-F full-UNet epsilon contrast strictly positive; no near-zero teacher entries.",
+    "not_supported": "All four EEG paired contrasts strictly negative while correct-versus-wrong-F epsilon contrast strictly positive; no near-zero teacher entries.",
+    "otherwise": "UNKNOWN; includes conflicts, exact ties, non-supportive teacher epsilon comparison, or any near-zero teacher entry.",
+    "four_EEG_contrasts": [
+      "EEG_J_minus_permuted_EEG_J",
+      "EEG_J_minus_missing_J",
+      "permuted_d_positive_minus_EEG_d_positive",
+      "missing_d_positive_minus_EEG_d_positive"
+    ],
+    "teacher_contrast": "wrong_F_epsilon_MSE_minus_correct_F",
+    "teacher_epsilon": 1e-06,
+    "numerical_consistency_only": {
+      "relative_tolerance": 0.0001,
+      "absolute_tolerance": 3e-05,
+      "source": "Existing diagnostic numerical consistency checks at lines176-178; never an effect-size threshold."
+    },
+    "no_p_values_or_effect_size_cutoffs": true,
+    "teacher_self_J_or_zero_positive_MSE_not_utility_evidence": true,
+    "practical_and_statistical_importance": "UNKNOWN_NOT_PREREGISTERED",
+    "automatic_admission": false
+  },
+  "automatic_admission": false,
+  "contract_review_issued": false,
+  "queue_registered": false,
+  "actual_diagnostic_values_read_at_registration": false,
+  "actual_V_or_test_scores_read_at_registration": false,
+  "actual_T32_reader_executed": false,
+  "guard_order": [
+    "Successful complete main terminal plus dead PID; otherwise no diagnostic result read.",
+    "Successful diagnostic queue and wrapper terminals plus dead actual PIDs; otherwise no raw/summary read.",
+    "All six diagnostic artifacts must exist; missing results refuse before result payload reads.",
+    "Fresh source/metadata SHA, actual full32 identities/OOF/negative mapping, artifact closure and numerical checks.",
+    "All32 equal four-time means and fixed descriptive direction policy; no review/admission booleans.",
+    "Recheck terminal file hashes and PID liveness; preserve earlier outputs."
+  ],
+  "known_scope_limits": [
+    "No practical effect size or inferential significance is registered; positive directions do not establish a useful-sized effect.",
+    "No image benefit or reconstruction performance is measured; no teacher self-J or self-MSE utility claim.",
+    "Missing-reference Q, old negative bijection and DDPM-real-latent probes differ from v2 parent-Q training and actual Euler sampling.",
+    "Any near-zero teacher item leaves exact masked-v2 correspondence unknown because joint query-by-layer data were not saved."
+  ]
+}

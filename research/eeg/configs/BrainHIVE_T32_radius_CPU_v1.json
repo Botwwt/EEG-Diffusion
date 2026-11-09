@@ -1,0 +1,36 @@
+{
+  "diagnostic": "T32_radius_CPU_v1",
+  "subject": "sub-01",
+  "queries": 32,
+  "maximum_seconds": 180,
+  "minimum_cgroup_headroom_bytes": 3221225472,
+  "output_path": "/root/brainhive_reproduction_20261020_v1/audit/T32_radius_CPU_v1.json",
+  "oracle_inference_inputs": "/root/brainhive_reproduction_20261020_v1/images/oracle_Tdiag32_v1/inference_inputs.json",
+  "input_contract": "/root/brainhive_reproduction_20261020_v1/data/component_input_contract_v1.json",
+  "risk_checkpoint": "/root/brainhive_reproduction_20261020_v1/components/bounded_v1/risk/component_final.pt",
+  "risk_completion": "/root/brainhive_reproduction_20261020_v1/components/bounded_v1/risk/completion.json",
+  "main_recipe": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_bounded_main_recipe_v1.json",
+  "asset_verification": "/root/brainhive_reproduction_20261020_v1/audit/native_asset_verification.json",
+  "source_sha256": {
+    "diagnose_BrainHIVE_T32_radius_CPU_v1.py": "0d6c9ba18c00edc63889de4a202de5f941435f8ba0763a19a80099988385ec04",
+    "brainhive_native_models_v1.py": "638d4b34116668d5c65058a918bdcaac481c099d084953f7085abeed997ad3c5",
+    "brainhive_bounded_component_v1.py": "2b93c0644bde268ae876f0e2b722106852b25910fedc1cffc97820e96cadf5d7",
+    "reproduction_sources/BrainHIVE_f06db69f/main/models_adapter.py": "b6d6322b7970af91a748dafbe779a8e77a1db489446cd6d607e506c36308760f",
+    "reproduction_sources/BrainHIVE_f06db69f/main/layers.py": "560b038708652fac9baa98a1f8f642812eacb7bbb172a56e2c8199ebbdc5b559",
+    "reproduction_sources/BrainHIVE_f06db69f/_fetch_receipt.json": "e53b1da7d72b636a6be7f3048c1f22a414f7708f463c9d00b4e15ba090a03d4f"
+  },
+  "reviewed_by": "root source review; frozen32 training queries only",
+  "GPU_training_launched": false,
+  "input_sha256": {
+    "/root/brainhive_reproduction_20261020_v1/images/oracle_Tdiag32_v1/inference_inputs.json": "1105c202b67eba4415b6ffce74cf8eb007bc773666d08703b4ff508e5c83708e",
+    "/root/brainhive_reproduction_20261020_v1/data/component_input_contract_v1.json": "bb6e38350282af7b37ece04689adcec7a5f87dccf68de5968058433faece0597",
+    "/root/brainhive_reproduction_20261020_v1/components/bounded_v1/risk/completion.json": "9d9c64156bbb773d808eaf59bd90eed418edcb97a27b4c0650690053ea61c53f",
+    "/root/brainhive_reproduction_20261020_v1/components/bounded_v1/risk/component_final.pt": "94dbaf576f7e0a4d095c16e1118a14c12b0990629d578ac15f92b9d907dc544e",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_bounded_main_recipe_v1.json": "55d92772f3e76240799cf69df12f590229a408c7b7a48050b9a0c7ec01f31db3",
+    "/root/brainhive_reproduction_20261020_v1/audit/native_asset_verification.json": "b4537c93e4488646dbe8e45d0bcfe923039718a994cc56ffd8e681aed35d1fea",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/split_manifest.json": "1969d664555d08399e77a2d76c011f19eadbda1ce251f9c72d72c94de3910ad2",
+    "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/image_manifest.csv": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+    "/root/brainhive_reproduction_20261020_v1/assets/prior_H14/fusion_encoder/config.json": "4f72dcc0d21583817047b5987a5589213abecbb706a8c261431e298650a422b3",
+    "/root/brainhive_reproduction_20261020_v1/assets/prior_H14/proj/config.json": "fd0191a5a9483bc5dd80a134e580e245a89683d35046e76a2ccdba4696ca3f90"
+  }
+}

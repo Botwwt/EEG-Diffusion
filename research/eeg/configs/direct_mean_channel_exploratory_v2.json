@@ -1,0 +1,51 @@
+{
+  "version": "direct_mean_channel_exploratory_v2",
+  "status": "FIXED_BEFORE_V2_FIT_AFTER_EXPOSED_V1_DCHECK_DIAGNOSIS",
+  "seed": 1729,
+  "CPU_only": true,
+  "threads": 2,
+  "max_seconds": 1200,
+  "maximum_attempts": 1,
+  "hyperparameter_search": false,
+  "relative_ridge": 0.01,
+  "relative_ridge_rule": "lambda=.01*trace(centered_T_covariance)/1024; intercept unpenalized; no D selection",
+  "draws": 16,
+  "subjects": 10,
+  "T_queries": 132300,
+  "Dfit_queries": 8200,
+  "Dcheck_queries": 8300,
+  "mean_crossfit": "Two existing deterministic concept folds inside T; save full and both heldout-mean maps per subject; no EEG encoder retraining",
+  "calibration": "Dfit full-teacher residual bias and trace of CE-minus-predicted-mean, versus centered T crossfit residuals",
+  "neighbors": "Reuse original verified32distinct-concept T neighbor positions and original first16 draw streams; no extra CI identity term",
+  "output": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/error_validation/idea_direct_mean_residual_exploratory_v2",
+  "v1_completed_validation": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/error_validation/idea_first_ATMS_patience50_v1",
+  "minimum_free_bytes_before_start": 2147483648,
+  "storage_reservations": {
+    "minimum_free": 1073741824,
+    "ongoing_Frozen_lifecycle": 805306368,
+    "CPU_models_and_metadata": 268435456
+  },
+  "engineering_checks": {
+    "Top1_absolute_gap_max": 0.03,
+    "Top5_absolute_gap_max": 0.05,
+    "norm_ratio_absolute_error_max": 0.1,
+    "confusion_JS": "strictly lower than v1 in all10subjects",
+    "controlled_MLP_AUC": "strictly lower than v1 same capacity and Dfit fitting",
+    "native_and_projected_energy": "v2-minus-Moment paired95percent upper below0 in both spaces"
+  },
+  "gate_limits": "Development engineering tolerances only; no distributional equality, image improvement, or independent confirmation claim",
+  "Dcheck_already_exposed": true,
+  "may_launch_GPU_training": false,
+  "formal_images_generated_by_runner": 0,
+  "scientific_goal_complete": false,
+  "source_sha256": {
+    "direct_mean_error_channel_v2.py": "3528494b01874fe1efea03f7a6d64ce19d4b7666177f3455c02e768655f280d0",
+    "diagnose_direct_mean_channel_v2.py": "b37f12e838ede7ced2e10a121995a78c4acbed2dae403f280744a76f25ee3cc5",
+    "check_direct_mean_channel_v2.py": "b13c5c092f1413f1fd82b8d20b4010981d04cb82f92b622535af4dda7e74ad6b",
+    "validate_idea_first_error_channel_v1.py": "1479d4f01e9fefa1b88c88750ec0b93cfee7e3b9af59f366e60db2121b3ae0cb",
+    "native_error_channel.py": "de0cec43cefe20c70517a10a7467c3d451e0daf5029a1a39341fa59abeaa1e71",
+    "error_channel_validation_metrics.py": "33b5207eebd37ee6b43d97c4852c73c58e879ce82bb03c4c37440227f32d2a3d",
+    "locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "paired_analysis.py": "ecff5cb88a0695102614ea8094a362d758e1ae2e032aafb29f5fc452d213f935"
+  }
+}

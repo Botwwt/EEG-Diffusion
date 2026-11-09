@@ -1,0 +1,28 @@
+{
+  "status": "LOCKED_BEFORE_EITHER_COMPLETE_V_IMAGE_RESULT",
+  "scope": "Select one frozen reference for the two complete V EEG interventions; not a success/SOTA declaration or final-test unlock",
+  "eligible_references": ["REF_REG", "REF_PRIOR_V"],
+  "required_queries_per_reference": 16600,
+  "required_subjects": 10,
+  "repeat_protocol": "R4",
+  "primary_rank_metric": "Full-V equal-subject mean DINO2AFC",
+  "default_control_reference": "REF_REG",
+  "select_REF_PRIOR_V_only_if": [
+    "Both complete paired manifests, saved images and all DINO/SEED evaluators pass their integrity checks",
+    "REF_PRIOR_V mean DINO2AFC is strictly higher than REF_REG",
+    "REF_PRIOR_V mean SEED is at least REF_REG",
+    "REF_PRIOR_V mean ObjectF1 is at least REF_REG",
+    "REF_PRIOR_V blank-proxy count is no greater than REF_REG"
+  ],
+  "otherwise": "Use REF_REG for full permuted/missing EEG controls; preserve and report any DINO-versus-semantics disagreement",
+  "ties": "REF_REG, because it omits the sampled prior and has lower total inference cost",
+  "separate_practical_improvement_threshold": "DINO2AFC >=+0.01 with semantics in the same direction; this is not required to index the strongest eligible internal reference and is not a SOTA definition",
+  "quality_noninferiority_established_by_this_rule": false,
+  "human_quality_ratings_performed": false,
+  "same_target_query_random_stream_for_EEG_controls": true,
+  "permuted_control": "Existing frozen within-subject/R concept derangement; rerun the full encoder/prior chain using target query noise",
+  "missing_control": "Existing all-zero63x250 EEG through the actual frozen encoder; out-of-distribution diagnostic",
+  "benchmark_scope_previously_reserved": "Both references correct R4, selected-reference permuted/missing R4, selected-reference correct R1 and R80: at most12000 images",
+  "cross_R_limit": "The already-frozen seed includes R and the backbone is trained on mean4; R1/R80 are separate cross-R generalization tracks, not a controlled same-noise repeat-count causal comparison or R-matched trained SOTA reproduction",
+  "final_test_unlock_created": false
+}

@@ -1,0 +1,47 @@
+{
+  "status": "DRAFT_COMPLETE_FIT_CALIBRATION_IMAGE_EXECUTORS_NOT_BOUND_NOT_ADMITTED",
+  "UTC": "2026-10-30T12:07:48.338962+00:00",
+  "training_seed": 1729,
+  "OLD_only": true,
+  "NEW_allowed": false,
+  "original_ordinary_immutable": true,
+  "engineering_protocol": {
+    "path": "audit/HIVE_common_descent_profile_terminal_20261030_v2/code/protocol.json",
+    "bytes": 4739,
+    "sha256": "d5026ffeecf533fc06b6f3b2c637ca844dacd81bf1dce27ce7a2333f2240b970"
+  },
+  "engineering": {
+    "path": "audit/HIVE_common_descent_profile_terminal_20261030_v2/actual/completion.json",
+    "bytes": 84435,
+    "sha256": "4a425a98c83d482738d9157ca88eb6cadb05af52f4a5dcad37b7c1a8d4002349"
+  },
+  "CPU_feasibility": {
+    "path": "audit/HIVE_AP_relative_feasibility_T80_complete_20261030_v2/completion.json",
+    "bytes": 6578,
+    "sha256": "af76d70fc541768e400064492dd097141e7f2c261c9e837a5a0e828990034736"
+  },
+  "arms": [
+    "joint_same",
+    "relative_only",
+    "AP_only",
+    "joint_mismatched_teacher"
+  ],
+  "primary": "joint_same",
+  "initial": "immutable ordinary copied, single head525568; no stacked head",
+  "data": "all132300 trueOOF T, three extra passes/24807 steps/396900 primary exposures per arm, not fullchainOOF",
+  "both_gradients_computed_for_all_controls": true,
+  "optimizer": "normalized SGD, no Adam or momentum; fixed parameter step 1e-4 times ORIGINAL parameter norm for all arms; all same orders",
+  "objectives": "sameconcept10 relative .1CE/kappa AND .1 actual frozenAP token angle error to trueT image; mismatch ONLY cycles relative teacher, AP always trueT",
+  "calibration": "Separate new protocol: parameter interpolation thetaO+fraction*(thetaFinal-thetaO), fraction0/.25/.5/.75/1 by Dfit AP error, smaller ties. Radius ALWAYS.25; fraction0 ORIGINAL ordinary, NOT native. No hidden output/radius interpolation.",
+  "image_rule": "All4 fixed80 -> unless primary-O clearharm DINO<=-.02 and CIhi<0 all4 expand400. At400 require main vs O/Ronly/APonly/mismatch DINO>=.01 CIlo>0, targetcos>0, sameconceptTop1>=0. All controls reported, no winner selection.",
+  "image_cost": "same400 exposedDcheckgallery/samequeryseed512x512/4UNetCFG0IP1/onequeryimage; cachedstrongrefs reused; max1600 new images/2GiB",
+  "complete_fit_state_image_executors_NOT_implemented": true,
+  "full_lifecycle_admission": false,
+  "prior_art": "Classical multiobjective descent/MGDA/PCGrad are not originality claims",
+  "exposed_development": true,
+  "no_independent_H": true,
+  "no_SOTA_or_CCF_A_claim": true,
+  "fit_scientific_updates_this_turn": 0,
+  "research_images_this_turn": 0,
+  "formal_1654_stage_admitted": false
+}

@@ -1,0 +1,20 @@
+{
+  "status": "LOCKED_BEFORE_COMPLETE_REFERENCE_METRICS",
+  "policy": "configs/native_oof_stage_resource_policy_v1.json",
+  "source_sha256": {
+    "queue_native_oof_stage.py": "3eea05ca65d4cf46c25b76475cce698da53e5d8d412b787bb8c3d2152242b235",
+    "configs/native_oof_stage_resource_policy_v1.json": "794540094e9053d7fc70a49e29602a946f2bde3e98d4e09ffee68bb77dc2583b"
+  },
+  "preparation_attempts": 1,
+  "automatic_retry": false,
+  "training_authorization": "Only the existing actual complete-scope preparer and driver may authorize the two full OOF roles and scientific cache/CPU validation.",
+  "S4_or_final_authorized": false,
+  "controls_authorized_by_this_queue": false,
+  "query_subsampling": false,
+  "waiting_poll_seconds": 30,
+  "stop_file": "STOP_OOF_STAGE_QUEUE",
+  "running_driver_stop_file": "STOP_S3_NATIVE_OOF",
+  "maximum_total_GPU_hours": 40,
+  "seed": 1729,
+  "all_subjects": 10
+}

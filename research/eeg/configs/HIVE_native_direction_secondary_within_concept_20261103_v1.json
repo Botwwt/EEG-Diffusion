@@ -1,0 +1,77 @@
+{
+  "status": "REGISTERED_SECONDARY_WITHIN_CONCEPT_RANKING_READOUT_BEFORE_NEW_IMAGES_PRIMARY_UNCHANGED",
+  "UTC": "2026-11-03T16:24:13.900586+00:00",
+  "host": "old",
+  "image_protocol": {
+    "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_native_EEG_direction_full_20261103_v1/postfit_code_20261103_v4/protocol.json",
+    "bytes": 14483,
+    "sha256": "4f53fcaf1b2f4d078ef325de6ffd8d265fa5a1ee6584ba30f2342a6781e7c257"
+  },
+  "control_protocol": {
+    "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_native_EEG_direction_full_20261103_v1/priority_code_20261103_v2/protocol.json",
+    "bytes": 3502,
+    "sha256": "b20e65a1939dbd8f7152f26bd34454999ac90364519370c0243f970f00ef2449"
+  },
+  "owner": {
+    "PID": 614284,
+    "start_ticks": 133499295
+  },
+  "data_scope": {
+    "subject": "sub-01",
+    "physical_repeats": 4,
+    "queries": 400,
+    "gallery": 400,
+    "concepts": 40,
+    "candidates_same_concept_excluding_target": 9,
+    "candidates_other_concepts": 390
+  },
+  "baseline": {
+    "checkpoint_SHA256": "a66869e5676ccea27f326f4f0b86cd446526b42460734905990758e49e11cc03",
+    "strength": 1,
+    "radius": 0.25,
+    "frozen_known_ordinary_within2afc_rounded": 0.656389,
+    "rounded_reference": "reports/HIVE_FUNCTIONAL_MEAN_CALIBRATION_RESULTS_20261103_v1.md"
+  },
+  "identity": "G=(9*W+390*B)/399, exact also with half-credit ties; no new theorem. DeltaG uses same weights. B isbetweenconcept2AFC.",
+  "motivation": "Purewithin improvement canincrease global2AFC byatmost9/399*(1-Wbaseline), about.00775 onknownbaseline, belowold+.01. This does not rescuepriorfailedinstances orreplaceoverallcompetitivegoal.",
+  "minimum_within_2afc_gain": 0.05,
+  "semantic_noninferiority_margin": 0.01,
+  "baseline_contrasts": [
+    "directional_minus_old_ordinary",
+    "directional_minus_reencoded_ordinary"
+  ],
+  "matched_training_controls": [
+    "directional_minus_positive_only",
+    "directional_minus_wrong_EEG"
+  ],
+  "conditions": {
+    "baseline_within_mean_at_least": 0.05,
+    "baseline_within_descriptive95_lower_strictly_above": 0,
+    "matched_control_within_descriptive95_lower_strictly_above": 0,
+    "baseline_within_top1_mean_at_least": 0,
+    "baseline_global2afc_descriptive95_lower_at_least": -0.01
+  },
+  "rationale": "5pointwithin ranking gain avoidsvanishing effects;1pointglobal margin matches existing practical1point scale. Both fixed before new candidateimageeffects, notofficialbenchmark-equivalence orperceptual-noninferiority.",
+  "bootstrap": {
+    "unit": "concept",
+    "replicates": 1000,
+    "seed": 1729,
+    "same_draws_for_all_contrasts": true,
+    "descriptive_exposed_development_only": true,
+    "no_familywise_or_training_seed_error_guarantee": true
+  },
+  "signal_label": "SECONDARY_WITHIN_CONCEPT_RANKING_SIGNAL_REQUIRES_FOLLOWUP",
+  "unconfirmed_label": "NO_CONFIRMED_SECONDARY_WITHIN_CONCEPT_RANKING_SIGNAL",
+  "only_complete400": true,
+  "at80": "NOT_ASSESSED_COMPLETE400_REQUIRED; nooverridejoint-harmearlystop",
+  "no_change_to_primary_decision_thresholds_or_claims": true,
+  "no_automatic_GPU_expansion_or_training_from_secondary": true,
+  "no_change_to_current11_pinned_programs_or_sampling": true,
+  "all8_metrics_and6_original_contrasts_retained": true,
+  "required_followup": "Newsubject/concept image evaluation and within-model sameconcept inferenceEEGdonor controls before stimulus-evidence claim. WrongEEGarm here is a retrainedauxiliary-pairing control, not inference-donor.",
+  "secondary_does_not_establish_second_method_SOTA_or_CCFA": true,
+  "OLD_only": true,
+  "NEW_reserved": true,
+  "ordinary_immutable": true,
+  "single_seed1729": true
+}

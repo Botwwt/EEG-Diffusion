@@ -1,0 +1,165 @@
+{
+  "status": "PROGRESS_TRUE_FULL_T_TARGETS_RECOVERED_AND_ROW_VERIFIED",
+  "observed_UTC": "2026-11-09T03:30:35.353934+00:00",
+  "evidence": "audit\\crossdisciplinary_20261028_v1\\PKU_HPC_full_T_readyenv238_20261109T033033962423Z.json",
+  "previous_handoff": "audit/PKU_HPC_RECOVERY_HANDOFF_20261108_v237.json",
+  "full_T_completion": {
+    "status": "COMPLETE_FULL_T_TARGET_AND_LABRAM_OOF_RECOVERY_AUDIT",
+    "job_id": "5096092",
+    "hostname": "a2n16c1",
+    "seconds": 3.432827550917864,
+    "files_SHA_verified": 10,
+    "rows": 13230,
+    "concepts": 1323,
+    "all_row_identity_joins_pass": true,
+    "arrays": {
+      "T_gallery_F.npy": {
+        "shape": [
+          13230,
+          1024
+        ],
+        "dtype": "float32",
+        "norm_mean": 32.00751495361328,
+        "norm_min": 31.965003967285156,
+        "norm_max": 32.048038482666016
+      },
+      "T_raw_CLIP_H.npy": {
+        "shape": [
+          13230,
+          1024
+        ],
+        "dtype": "float32",
+        "norm_mean": 22.18975257873535,
+        "norm_min": 18.20949935913086,
+        "norm_max": 26.682214736938477
+      },
+      "LaBraM_T_OOF_c.npy": {
+        "shape": [
+          13230,
+          1024
+        ],
+        "dtype": "float32",
+        "norm_mean": 3.2474892139434814,
+        "norm_min": 2.3811092376708984,
+        "norm_max": 3.75508975982666
+      }
+    },
+    "F_is_original_HIVE_fusion_target": true,
+    "CLIP_is_separate_visual_target": true,
+    "OOF_condition_host": "LaBraM",
+    "OOF_condition_subject": "sub-01",
+    "raw_EEG_recovered_subject": "sub-03",
+    "OOF_c_is_NOT_HIVE_BrainMLP_or_ATMS": true,
+    "parents_or_stochastic_teacher_training_inputs_restored": false,
+    "new_updates": 0,
+    "new_images": 0,
+    "new_efficacy": false
+  },
+  "files": [
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\HIVE_T400_semantic_confusion_complete_20261103_v1\\T_gallery_F.npy",
+      "relative_path": "data/full_T_recovery_20261108_v238/T_gallery_F.npy",
+      "bytes": 54190208,
+      "sha256": "363e8e74514ca8d1bcbfb29afc2023ed4a5c3a6c4f49bf8b1134e7ae7a090336",
+      "role": "HIVE_true_F_T13230",
+      "historical_expected_sha256": "363e8e74514ca8d1bcbfb29afc2023ed4a5c3a6c4f49bf8b1134e7ae7a090336"
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\HIVE_T400_semantic_confusion_complete_20261103_v1\\driver.py",
+      "relative_path": "data/full_T_recovery_20261108_v238/F_export_driver_original.py",
+      "bytes": 12972,
+      "sha256": "a88e3132d3cbecd04854a185b063594352d4ee9a88bd7f16b38f20788bfd84f3",
+      "role": "F_exact_export_source",
+      "historical_expected_sha256": null
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\HIVE_T400_semantic_confusion_complete_20261103_v1\\source_terminal_manifest.json",
+      "relative_path": "data/full_T_recovery_20261108_v238/F_export_manifest_original.json",
+      "bytes": 24764,
+      "sha256": "3592b23528e1e1a320d9412e1e5064909bd8f8dd486794f6d7ca27944d8587b6",
+      "role": "F_historical_SHA_receipt",
+      "historical_expected_sha256": null
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\VAR_EEG_nested_target_readout_complete_20261103_v1\\inputs\\T_raw_CLIP_H.npy",
+      "relative_path": "data/full_T_recovery_20261108_v238/T_raw_CLIP_H.npy",
+      "bytes": 54190208,
+      "sha256": "19f1491ce8284a81aed5f97a0c4b45824f657bc14974e8c34e29792dd21788f9",
+      "role": "true_CLIP_H_T13230",
+      "historical_expected_sha256": null
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\VAR_EEG_nested_target_readout_complete_20261103_v1\\inputs\\T_OOF_c.npy",
+      "relative_path": "data/full_T_recovery_20261108_v238/LaBraM_T_OOF_c.npy",
+      "bytes": 54190208,
+      "sha256": "eddd8df75a72eafeb92b961b9182981b9b284c7d04cd4b577225c991ee2952aa",
+      "role": "LaBraM_sub01_OOF_NOT_HIVE_NOT_ATM",
+      "historical_expected_sha256": null
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\VAR_EEG_nested_target_readout_complete_20261103_v1\\inputs\\T_identities.json",
+      "relative_path": "data/full_T_recovery_20261108_v238/T_identities.json",
+      "bytes": 7102688,
+      "sha256": "9361b3c58e2a2bd942d83597e95331dced003b6944f1fec82c6e7c2c26c02405",
+      "role": "sub01_row_identity_not_sub03_conditions",
+      "historical_expected_sha256": null
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\VAR_EEG_nested_target_readout_complete_20261103_v1\\inputs\\oof0_normalization.json",
+      "relative_path": "data/full_T_recovery_20261108_v238/labram_oof0_normalization.json",
+      "bytes": 139368,
+      "sha256": "d8b714673dac04b01269a81877b5dd221d9372eb8e43233bb07bed9e75682cc4",
+      "role": "LaBraM_role0_only",
+      "historical_expected_sha256": null
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\VAR_EEG_nested_target_readout_complete_20261103_v1\\inputs\\oof1_normalization.json",
+      "relative_path": "data/full_T_recovery_20261108_v238/labram_oof1_normalization.json",
+      "bytes": 139787,
+      "sha256": "1a05ea0d02f415a85fa71032f91500be2384677ec97c75c878c927d7a9adffb3",
+      "role": "LaBraM_role1_only",
+      "historical_expected_sha256": null
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\EEG_memory_export_GPU_20261029_v1.py",
+      "relative_path": "data/full_T_recovery_20261108_v238/LaBraM_export_source_original.py",
+      "bytes": 10272,
+      "sha256": "25ca7a91e001c4b50012ac6d6ce6c60829e1692129425ee3044dcea390d95cff",
+      "role": "exact_source_proving_LaBraM_host",
+      "historical_expected_sha256": null
+    },
+    {
+      "local_path": "D:\\\u6269\u6563\u6a21\u578b\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\image_manifest.csv",
+      "relative_path": "data/full_T_recovery_20261108_v238/image_manifest.csv",
+      "bytes": 5360147,
+      "sha256": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+      "role": "complete_image_row_identity",
+      "historical_expected_sha256": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145"
+    }
+  ],
+  "documents": [
+    {
+      "path": "AGENTS.md",
+      "historical_tail_exact": true,
+      "after_sha256": "564ba0bf84d6441e5ca4648c845224296ae30448a62f97a6bc47a4fd34172941"
+    },
+    {
+      "path": "STATUS.md",
+      "historical_tail_exact": true,
+      "after_sha256": "8ca67d057fe97bc1e74c87b2080a111871ec4fde950bbb448a149b4dc3b06ede"
+    },
+    {
+      "path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
+      "historical_tail_exact": true,
+      "after_sha256": "deeb84d2e827c11446786a38013fac16975b7394a9344dc256cc6395bb0fedea"
+    }
+  ],
+  "project": "/dfs/share/maleiLab/wwt/eeg",
+  "goal_status": "active",
+  "goal_achieved": false,
+  "active_GPU_jobs": 0,
+  "live_local_watchers": 0,
+  "new_training_updates": 0,
+  "new_images": 0,
+  "next": "Use recovered true native fullT targets and sub03 raw EEG to rebuild correctly matched hosts from genuine native sources; restore missing public host weights/stochastic-teacher inputs, or register a clearly separate matched cached-target variant. Then real-architecture GPU operator/support check and single-seed matched training. Never replace a strong baseline by collapsed legacy witness or mix LaBraM c with HIVE/ATM ordinary."
+}

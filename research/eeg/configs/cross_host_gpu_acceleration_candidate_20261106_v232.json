@@ -1,0 +1,227 @@
+{
+  "status": "THIRD_CONTRIBUTION_CANDIDATE_NOT_ESTABLISHED",
+  "version": 232,
+  "current_scope": "Shared exact-math encoder margin pullback and frozen per-generation condition cache prototypes",
+  "CPU_scope": {
+    "status": "PASS_CPU_SYNTHETIC_DERIVATIVES_AND_CACHE_CONTRACT_ONLY",
+    "device": "cpu",
+    "tests": [
+      {
+        "case": "chain_rule_J",
+        "dtype": "torch.float64",
+        "dimension": 7,
+        "chunk": 1,
+        "ties": false,
+        "max_abs_error": 4.440892098500626e-16
+      },
+      {
+        "case": "chain_rule_J",
+        "dtype": "torch.float64",
+        "dimension": 9,
+        "chunk": 4,
+        "ties": false,
+        "max_abs_error": 2.7755575615628914e-16
+      },
+      {
+        "case": "chain_rule_J",
+        "dtype": "torch.float64",
+        "dimension": 7,
+        "chunk": 4,
+        "ties": true,
+        "max_abs_error": 2.220446049250313e-16
+      },
+      {
+        "case": "chain_rule_J",
+        "dtype": "torch.float32",
+        "dimension": 7,
+        "chunk": 1,
+        "ties": false,
+        "max_abs_error": 3.5762786865234375e-07
+      },
+      {
+        "case": "chain_rule_J",
+        "dtype": "torch.float32",
+        "dimension": 9,
+        "chunk": 4,
+        "ties": false,
+        "max_abs_error": 1.1920928955078125e-07
+      },
+      {
+        "case": "chain_rule_J",
+        "dtype": "torch.float32",
+        "dimension": 7,
+        "chunk": 4,
+        "ties": true,
+        "max_abs_error": 1.1920928955078125e-07
+      },
+      {
+        "case": "cache_invalidation_restore_and_grad_bypass",
+        "layout": "HIVE-layout"
+      },
+      {
+        "case": "cache_invalidation_restore_and_grad_bypass",
+        "layout": "ATM-layout"
+      }
+    ],
+    "actual_host_or_GPU_benchmark": false,
+    "new_training_updates": 0,
+    "new_images": 0
+  },
+  "CPU_proof": {
+    "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal231_gpu_adaptation_CPU_20261107T002556364554Z.json",
+    "bytes": 3102,
+    "sha256": "34f29df4a6469ea57bd70a0defa23e481ea04ebee9690775c18c0a1a56126550"
+  },
+  "GPU_scope": "Queued eight real T EEG queries, full13230 native gallery, two existing encoder checkpoints; no full training or full UNet speed proof",
+  "queue": {
+    "UTC": "2026-11-07T00:41:06.926952+00:00",
+    "queue_owner": {
+      "PID": 832244,
+      "state": "S",
+      "start_ticks": 163079691,
+      "live": true
+    },
+    "progress": {
+      "phase": "WAIT_ORIGINAL_FULL_STUDY_AND_TERMINAL_REVIEW",
+      "UTC": "2026-11-07T00:38:59.617800+00:00",
+      "GPU_jobs_started": 0
+    },
+    "queue_failure": null,
+    "profile_failure": null,
+    "profile_completion": null,
+    "policy": {
+      "status": "ENGINEERING_MICROBENCHMARK_AFTER_ORIGINAL_FULL_COMPLETION_ONLY",
+      "host": "old",
+      "repo": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1",
+      "original_policy": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/ATM_continuous_margin_training_20261106_v203/continuation_v204/policy.json",
+      "original_policy_sha256": "a1bf6936063fc7242c6450eda3f7b47730c90954fa3302ba381dd6672110e192",
+      "maximum_output_bytes": 1048576,
+      "wrapper_reserve_bytes": 65536,
+      "sources": {
+        "runtime": {
+          "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/GPU_cross_host_acceleration_20261106_v232/eeg_cross_host_gpu_runtime_20261106_v231.py",
+          "bytes": 8665,
+          "sha256": "9929b6782175c41202eeea8ed724a72a804a8fe0f291bd4a525260eafa8df411"
+        },
+        "checks": {
+          "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/GPU_cross_host_acceleration_20261106_v232/check_eeg_cross_host_gpu_runtime_CPU_20261106_v231.py",
+          "bytes": 4573,
+          "sha256": "8749ece52d075d1a5d806b7deb82a763f688d0bcfef914f21a2dcbda88d98a6c"
+        },
+        "profile": {
+          "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/GPU_cross_host_acceleration_20261106_v232/profile_eeg_cross_host_gpu_20261106_v232.py",
+          "bytes": 9396,
+          "sha256": "02f2eafe1e35d06815a21bd8ea5c3aac6adcb73145888e60087fa57bc63fbf44"
+        },
+        "queue": {
+          "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/GPU_cross_host_acceleration_20261106_v232/queue_eeg_cross_host_gpu_profile_CPU_20261106_v231.py",
+          "bytes": 4088,
+          "sha256": "e979b8fd83205016afc79a9196cf4bed3b4b42313d08c6fe074be5360c43bad5"
+        }
+      },
+      "job_name": "EEG_cross_host_GPU_microbenchmark_20261106_v232",
+      "absolute_wait_deadline_epoch": 1794141507.3397086,
+      "maximum_GPU_seconds": 850,
+      "existing_resource_promises_50GiB_floor_8GiB_buffer_unchanged": true,
+      "no_training_updates": true,
+      "no_images": true,
+      "no_new_card": true,
+      "full_UNet_cache_or_full640_row_training_benchmark": false
+    },
+    "controller_log_tail": "",
+    "source_pins": {
+      "eeg_cross_host_gpu_runtime_20261106_v231.py": "9929b6782175c41202eeea8ed724a72a804a8fe0f291bd4a525260eafa8df411",
+      "check_eeg_cross_host_gpu_runtime_CPU_20261106_v231.py": "8749ece52d075d1a5d806b7deb82a763f688d0bcfef914f21a2dcbda88d98a6c",
+      "profile_eeg_cross_host_gpu_20261106_v232.py": "02f2eafe1e35d06815a21bd8ea5c3aac6adcb73145888e60087fa57bc63fbf44",
+      "queue_eeg_cross_host_gpu_profile_CPU_20261106_v231.py": "e979b8fd83205016afc79a9196cf4bed3b4b42313d08c6fe074be5360c43bad5"
+    },
+    "no_writes": true,
+    "no_GPU_launch": true,
+    "NEW_contacted": false,
+    "sources": {
+      "runtime": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/GPU_cross_host_acceleration_20261106_v232/eeg_cross_host_gpu_runtime_20261106_v231.py",
+        "bytes": 8665,
+        "sha256": "9929b6782175c41202eeea8ed724a72a804a8fe0f291bd4a525260eafa8df411"
+      },
+      "checks": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/GPU_cross_host_acceleration_20261106_v232/check_eeg_cross_host_gpu_runtime_CPU_20261106_v231.py",
+        "bytes": 4573,
+        "sha256": "8749ece52d075d1a5d806b7deb82a763f688d0bcfef914f21a2dcbda88d98a6c"
+      },
+      "profile": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/GPU_cross_host_acceleration_20261106_v232/profile_eeg_cross_host_gpu_20261106_v232.py",
+        "bytes": 9396,
+        "sha256": "02f2eafe1e35d06815a21bd8ea5c3aac6adcb73145888e60087fa57bc63fbf44"
+      },
+      "queue": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/GPU_cross_host_acceleration_20261106_v232/queue_eeg_cross_host_gpu_profile_CPU_20261106_v231.py",
+        "bytes": 4088,
+        "sha256": "e979b8fd83205016afc79a9196cf4bed3b4b42313d08c6fe074be5360c43bad5"
+      }
+    },
+    "new_GPU_jobs": 0,
+    "reserved_bytes": 1114112
+  },
+  "queue_proof": {
+    "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal232_four_way_queue_actual_20261107T004105966648Z.json",
+    "bytes": 3536,
+    "sha256": "0ff10653237c8bb60c42b64abed8152c673cb0e0a12a9e13ae252743bddefa19"
+  },
+  "benchmark_modes": [
+    "original_serial_full_margin_graph",
+    "generic_batched_VJP8_full_margin_graph",
+    "analytic_cut_serial_VJP1",
+    "analytic_cut_batched_VJP8"
+  ],
+  "memory_bytes_explicit640row_FP64": {
+    "ATM_active_545930": 2795161600,
+    "HIVE_all_6452224": 33035386880
+  },
+  "current_runtime_still_allocates_full_J": true,
+  "matrix_free_followup": {
+    "implemented": false,
+    "formula": "(J J^T) lambda = J (J^T lambda)",
+    "novel_by_itself": false,
+    "requires": [
+      "actual operator support",
+      "KKT and finite feasibility",
+      "full-step time and peak memory",
+      "same accepted trajectory or separately registered numerical differences"
+    ]
+  },
+  "inference_cache": {
+    "implemented": true,
+    "CPU_layout_checks_pass": true,
+    "actual_full_UNet_GPU_validation": false,
+    "changed_steps_or_samples": 0,
+    "requires": [
+      "pixel replay",
+      "condition/noise/checkpoint identity",
+      "per-query invalidation",
+      "end-to-end cold/warm latency",
+      "batch1 latency and throughput",
+      "cache-only Amdahl share"
+    ]
+  },
+  "contribution_gate": [
+    "same host weights/data/noise/sampling budget",
+    "compare native SDPA and generic VJP/compile baselines",
+    "report total training time including QP, loading, rejection and checkpoints",
+    "report encoder, ATM prior, UNet, VAE and IO fractions separately",
+    "consistent speed-memory-quality evidence on both complete pipelines",
+    "identify method novelty beyond known memoization and batching"
+  ],
+  "same_algorithm_separately_fitted_hosts": true,
+  "ordinary_or_original_fit_modified": false,
+  "NEW_contacted": false,
+  "new_training_updates": 0,
+  "new_images": 0,
+  "previous_waiter_v231": "Retired by exact PID/start_ticks before any GPU job; sources retained; future reservation transferred once to v232",
+  "prior_launch_receipt_issue": "v231/v232 launchers waited5s/30s for progress and asserted before initialization completed; subsequent independent observations proved each waiter live. Not GPU/scientific failures. Neither launcher may be rerun.",
+  "primary_sources": [
+    "https://docs.pytorch.org/docs/2.3/generated/torch.autograd.grad.html",
+    "https://docs.pytorch.org/tutorials/intermediate/jacobians_hessians.html",
+    "https://huggingface.co/docs/diffusers/optimization/cache"
+  ]
+}

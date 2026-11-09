@@ -1,0 +1,19 @@
+{
+  "seed": 1729,
+  "condition_chain": "REF_REG",
+  "output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/runs/idea_first_ATMS_patience50_v1",
+  "split_sha256": "1969d664555d08399e77a2d76c011f19eadbda1ce251f9c72d72c94de3910ad2",
+  "visual_features_path": "/root/autodl-tmp/mced_research_bundle/studies/eeg_clip_visual_feature_cache_v2/train_image_embeds.pt",
+  "visual_features_sha256": "9fad7215e04dad0e03d5d95304109974d00b8ed43599a9bbd4eac5f52e0e15eb",
+  "cache_builder_sha256": "ee65757a178ae26662c6b0e8c1025a072596376d1c6e66699e355a8e0bc5f3e1",
+  "oof_training_config_path": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/idea_first_ATMS_training_v1.json",
+  "oof_training_config_sha256": "a1ba1062f6e31fb776ce1c8968457ff23ecaff29efb16463065aab39dc1f0189",
+  "reference_selection_sha256": "1ce4a5615fa54d57557eee65eab9c150bd721da0ce55af73b257dadad6f2c5be",
+  "budget_gate_sha256": "9469a04eb71503a98eefc7c6f3f025e8d1c6748cdfab12027c0428171d90b4db",
+  "inference_batch": 4,
+  "coordinate_space": "raw_pooled_CLIP_H_1024_before_native_IP_projection",
+  "condition_cache_output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/conditions/idea_first_ATMS_patience50_v1",
+  "full_reference_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/runs/idea_first_ATMS_patience50_v1/full",
+  "condition_cache_max_seconds": 900,
+  "minimum_free_bytes_before_cache": 6442450944
+}

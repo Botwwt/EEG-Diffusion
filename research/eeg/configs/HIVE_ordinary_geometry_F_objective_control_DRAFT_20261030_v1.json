@@ -1,0 +1,279 @@
+{
+  "status": "HISTORICAL_DRAFT_ACTUAL_FIT_COMPLETED_ORIGINAL_NUMERIC_FAILURE_RETAINED_POSTFIT_AMENDED_EVALUATION_RUNNING",
+  "purpose": "Test the complete geometry block at a fixed inexpensive objective after actual fullR80 evidence; not a second new invention",
+  "motivation_actual_result": "audit/HIVE_loss_controls_R80_single_seed_complete_20261030_v1/independent_local_statistics.json",
+  "motivation": "BoundedF-only exceeds native inDINO/SEED with positive descriptive intervals; ordinary-minus-F semantic intervals crosszero, while PixCorr/SSIM favorordinary. No equivalence or generator-useless claim follows.",
+  "training_seed": 1729,
+  "multiple_training_seeds_allowed": false,
+  "component": "brainhive_ordinary_geometry_control_20261030_v1.py",
+  "component_CPU_proof": "audit/HIVE_geometry_control_component_CPU_20261030_v1/completion.json",
+  "same_geometry_module_is_not_an_objective_specific_training_proof": true,
+  "bounded_reference": {
+    "role": "existingF_only",
+    "component_SHA256": "7ac2e67689ac5be310c842439ee1815022b30dfc6c95c8fa6738f9aa502e4fa1",
+    "strength": 1,
+    "full_R80_results": "audit/HIVE_loss_controls_R80_single_seed_complete_20261030_v1"
+  },
+  "immutable_original_ordinary_SHA256": "a66869e5676ccea27f326f4f0b86cd446526b42460734905990758e49e11cc03",
+  "new_initialization": "Freshsame525568parameterMLP/seed1729/zerooutput; neverreuseatrainedordinaryorboundedFcheckpointunderthenewformula",
+  "new_formula": "u=(c-beta)/gamma; c_prime=c+gamma*(0.25*alpha)*M_theta(u)",
+  "removed_as_one_block": [
+    "centering",
+    "tangentprojection",
+    "boundedstepdenominator",
+    "normrestoration"
+  ],
+  "objective": "0.1*mean(1-cosine_similarity(c_prime,F_target))",
+  "unique_real_OOF_T_queries": 132300,
+  "subjects": 10,
+  "passes": 3,
+  "query_exposures": 396900,
+  "updates": 24807,
+  "batch_size": 16,
+  "last_batch_per_pass": 12,
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "gradient_clip": 1
+  },
+  "same_original1729_query_orders": true,
+  "all_parents_F_A_P_IP_UNet_frozen": true,
+  "training_UNet_calls": 0,
+  "calibration": "OldDfit-onlyfivealpha{0,.25,.5,.75,1}byfrozenAPtokenerror;tietakesmaller;fixedfinalhead;notestbasedselection",
+  "alpha_during_training": 1,
+  "alpha_in_control_is_residual_scale_not_an_angle_or_norm_guarantee": true,
+  "proposed_evaluation": {
+    "new_method_images": 2000,
+    "cached_reference_methods": [
+      "parent",
+      "ordinary",
+      "bounded_F_only"
+    ],
+    "reuse_reference_images": 6000,
+    "subjects": 10,
+    "R80_candidates": 200,
+    "native_steps": 4,
+    "resolution": 512,
+    "CFG": 0,
+    "IP_scale": 1,
+    "single_image_per_query": true,
+    "same_original_query_seeds_and_ancestral_noise": true,
+    "all16_metrics_and_full_denominators": true,
+    "all_new_images_before_effect_readout": true,
+    "contrasts": [
+      "bounded_F_only_minus_Euclidean_F",
+      "Euclidean_F_minus_parent",
+      "ordinary_minus_Euclidean_F"
+    ],
+    "R80_already_exposed_and_used_for_research_direction_selection": true,
+    "independent_confirmation": false,
+    "within_concept_stimulus_increment_identifiable": false
+  },
+  "attribution_limits": [
+    "TestswholegeometryatfixedFobjective;doesnotisolatesuboperations",
+    "Doesnotestablishgeometrymechanismoforiginalepsilonplustokenarm",
+    "Dfit-selectedstrengthmaydiffer;reportitwithouttestrecalibration",
+    "PositiveimageeffectdoesnotestablishgenericgeometricPEFTnovelty"
+  ],
+  "original_generator_objective_geometry_DRAFT_preserved": "configs/HIVE_ordinary_geometry_control_DRAFT_20261030_v1.json",
+  "proposed_limits_not_actual_admission": {
+    "GPU_bytes": 21474836480,
+    "extra_CPU_bytes": 10737418240,
+    "per_GPU_job_seconds": 900,
+    "output_bytes": 8589934592,
+    "initial_persistent_disk_reserve_bytes": 12884901888
+  },
+  "remaining_before_launch": [
+    "implement_and_review_separateFprofile_fit_Dfit_and_independent_fullT_state_forward_audit",
+    "implement_and_review_unbounded_geometry_R80_profile_generation_CPUartifact_and_allmetric_comparison_lifecycle",
+    "pin_all_sources_inputs_runtime_and_baselines_and_verify_actual_resources",
+    "actualGPUengineeringidentity_gradient_frozen_AP_and_native_inference_pixel_checks",
+    "transparentfinitefit_and_complete_evaluation_admission"
+  ],
+  "GPU_jobs_started": 0,
+  "scientific_updates": 0,
+  "new_images": 0,
+  "second_GPU_allowed": false,
+  "SOTA_or_CCF_A_established": false,
+  "implementation_sources": [
+    "fit_HIVE_Euclidean_F_GPU_20261030_v1.py",
+    "audit_HIVE_Euclidean_F_fit_CPU_20261030_v1.py",
+    "profile_HIVE_Euclidean_F_R80_GPU_20261030_v1.py",
+    "generate_HIVE_Euclidean_F_R80_GPU_20261030_v1.py",
+    "audit_HIVE_Euclidean_F_R80_CPU_20261030_v1.py",
+    "score_HIVE_Euclidean_F_R80_author_GPU_20261030_v1.py",
+    "compare_HIVE_Euclidean_F_R80_CPU_20261030_v1.py",
+    "queue_HIVE_Euclidean_F_full_CPU_20261030_v1.py"
+  ],
+  "implementation_local_review": "audit/HIVE_Euclidean_F_implementation_20261030_v1/local_source_review.json",
+  "stage_gates": [
+    "Bindsource/input/baselines/runtime/actualOLDresources",
+    "ActualFgradientengineering/20affines/frozenAP/temporaryweightsdiscardedBEFOREfreshfit",
+    "Fresh1729full132300threepasses24807/fixedfinal/Dfitonlyfivealpha",
+    "Independentfull132300CPUstate/forwardaudit",
+    "Actualnative/zero/disabled/trainedgeneratorpixelsBEFOREresearchimages",
+    "All2000researchimages/artifact/all16metrics/threefixedcontrasts"
+  ],
+  "F_training_does_not_use_UNet_and_does_not_require_G_training_gradient_claim": true,
+  "postfit_generator_profile_is_mandatory_before_research_images": true,
+  "implementation_is_not_actual_GPU_profile": true,
+  "draft_zero_counts_are_historical": true,
+  "actual_execution": {
+    "study": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_whole_geometry_code_20261030_v2/study.json",
+      "bytes": 42682,
+      "sha256": "63c85d6cae2a2569da7ad9cb927476f68d12e916a9143cf90d811bd9f1f30deb"
+    },
+    "source_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_whole_geometry_code_20261030_v2",
+    "output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_whole_geometry_20261030_v1",
+    "controller_PID": 339942,
+    "start_ticks": 95733519,
+    "exact_live": false,
+    "local_evidence": "audit/HIVE_Euclidean_F_registration_20261030_v1",
+    "files_SHA_verified": 27,
+    "fit_completion": {
+      "status": "COMPLETE_ALL10_TRUE_OOF_THREE_PASSES_EUCLIDEAN_F_FIXED_FINAL",
+      "UTC": "2026-10-30T05:35:56.116177+00:00",
+      "protocol": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_whole_geometry_code_20261030_v2/study.json",
+        "bytes": 42682,
+        "sha256": "63c85d6cae2a2569da7ad9cb927476f68d12e916a9143cf90d811bd9f1f30deb"
+      },
+      "component": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_whole_geometry_20261030_v1/fit/component_final.pt",
+        "bytes": 2104936,
+        "sha256": "309240f57341faf667673351e744893356a0ebbc5d1b5a5ca8f7297eca51feeb"
+      },
+      "calibration": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_whole_geometry_20261030_v1/fit/calibration.json",
+        "bytes": 347,
+        "sha256": "6e088c0a7f33611b430f12ec09e6f26035f25a9afa1f3f9e255dcb9b804c0c35"
+      },
+      "checkpoint": {
+        "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_whole_geometry_20261030_v1/fit/resume.pt",
+        "bytes": 6715403,
+        "sha256": "920af6905707109b094c0c02064a725911ed424a54fe29c6982141ad91f36415"
+      },
+      "parameters": 525568,
+      "seed": 1729,
+      "updates": 24807,
+      "query_exposures": 396900,
+      "orders_sha256": [
+        "6c62a89108d4d9dd20580bb01c9785a9127b90122e91d3464ccbd9f1b50f5b9f",
+        "5e742752419050aecf641384f99faab7f3270d9e6b664f25310940f7eee2e5e6",
+        "f703c20e149f23f19d2b08bed625a428c6a3bef7c8403c4c01b20940ae3e4363"
+      ],
+      "initial_head_sha256": "916e63e775b234929d287e74aee58d60bbd00a426bdd4b0c5692a53a857ca9da",
+      "frozen_AP_unchanged": true,
+      "original_baselines_unchanged": true,
+      "UNet_training_calls": 0,
+      "training_seconds": 93.26302197005134,
+      "seconds": 101.31657273997553,
+      "peak_GPU_allocated": 835349504,
+      "extra_CPU_peak": 1813458944,
+      "research_images": 0,
+      "fixed_final_not_selected_by_test": true
+    },
+    "selected_strength": 1.0,
+    "original_guard_failure": {
+      "status": "ORIGINAL_STRICT_CPU_FORWARD_GUARD_REPEATED_FAILED_AND_RETAINED",
+      "UTC": "2026-10-30T05:39:31.794816+00:00",
+      "maximum_absolute": 6.740292654683344e-05,
+      "scaled_max": 2.599740198213802e-06,
+      "relative_L2": 2.0212046321048538e-07,
+      "original_limits": {
+        "scaled_absolute": 2e-06,
+        "relative_L2": 1e-05
+      },
+      "standardized_norm_ratio_quantiles": [
+        3.735787916379698,
+        13.124782909999853,
+        24.979773005799306
+      ],
+      "full_queries": 132300,
+      "original_guard_passed": false,
+      "scientific_updates": 0,
+      "new_GPU_calls": 0,
+      "new_research_images": 0
+    },
+    "layerwise_diagnostic": {
+      "status": "COMPLETE_LAYERWISE_CPU_DIAGNOSTIC_ORIGINAL_FULL64_GUARD_STILL_FAILED",
+      "UTC": "2026-10-30T05:42:09.145536+00:00",
+      "queries": 132300,
+      "layers": {
+        "affine_unstandardization": {
+          "max_absolute": 4.701678051333147e-07,
+          "max_abs_plus_relative": 9.352522458147887e-08
+        },
+        "linear1_using_actual_FP32_inputs": {
+          "max_absolute": 2.6730182696610427e-05,
+          "max_abs_plus_relative": 7.315884710085362e-06
+        },
+        "GELU_using_actual_FP32_inputs": {
+          "max_absolute": 1.2823692072672088e-06,
+          "max_abs_plus_relative": 1.1465538492252529e-06
+        },
+        "linear2_using_actual_FP32_inputs": {
+          "max_absolute": 0.0002758583042918872,
+          "max_abs_plus_relative": 6.991385681936514e-06
+        },
+        "residual_formula_using_actual_FP32_MLP_output": {
+          "max_absolute": 7.535838449257426e-06,
+          "max_abs_plus_relative": 2.241134141286351e-07
+        }
+      },
+      "actual_FP32_raw_residual_formula_bit_exact": true,
+      "residual_formula_relative_L2": 3.5687452927025024e-08,
+      "strict_whole_head_FP64_guard_passed": false,
+      "replacement_formal_admission_issued": false,
+      "full_generator_profile_verified": false,
+      "new_GPU_calls": 0,
+      "new_training_updates": 0,
+      "research_images": 0,
+      "seconds": 12.262091084034182
+    },
+    "native_generator_profile_executed": false,
+    "research_images": 0,
+    "effect_scores_read": false,
+    "new_training_seed": false,
+    "scientific_negative": false
+  },
+  "postfit_actual": {
+    "study": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_postfit_code_20261030_v2/study.json",
+      "bytes": 55969,
+      "sha256": "1666057014b0bda5c5e8b5ea3b750c1a5448765126e516fc7a450ba118904d29"
+    },
+    "controller_PID": 341418,
+    "start_ticks": 95930145,
+    "source_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_postfit_code_20261030_v2",
+    "output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_Euclidean_F_postfit_evaluation_20261030_v2",
+    "source_files": 12,
+    "registration_files_SHA_verified": 23,
+    "CPU_replay_and_state": {
+      "path": "audit/HIVE_Euclidean_F_postfit_registration_20261030_v2/numeric/independent_CPU_replay_and_state.json",
+      "bytes": 3019,
+      "sha256": "3e4f7bb4397dfca4210b4e538587c895128f9ca7c9fa0087143658b78bfa16a3"
+    },
+    "local_R80_and_pixel_review": {
+      "path": "audit/HIVE_Euclidean_F_postfit_registration_20261030_v2/independent_local_trace_and_profile_review.json",
+      "bytes": 1118,
+      "sha256": "31743992a216272951b8f46ae95442af266fdb32fbc8e91512987b9000124870"
+    },
+    "native_profile_status": "PASS_ALL10_EUCLIDEAN_F_NATIVE_PIXELS_AND_CAPTURED_FP32_CERTIFICATE_AMENDED_v2",
+    "native_profile_seconds": 67.02459714806173,
+    "engineering_images": 40,
+    "research_images_written": 254,
+    "new_training_updates": 0,
+    "original_fullT_FP64_guard_passed": false,
+    "old_thresholds_or_weights_changed": false,
+    "numeric_protocol_amended_after_failure": true,
+    "all_new_effect_values_unread": true
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "version": 233,
+  "last_fresh_observation": {
+    "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_existing_science_and_GPU_queue_20261107T062654001645Z.json",
+    "bytes": 2412,
+    "sha256": "e2b557a9c5404e45dc2181df9d4b7adba744adfd71ee4c279e3fa63db36fb9e6"
+  },
+  "original_owner": {
+    "PID": 780584,
+    "state": "S",
+    "start_ticks": 156317640,
+    "live": true
+  },
+  "actual_fit": {
+    "margin_constrained": {
+      "attempts": 722,
+      "accepted": 25,
+      "epochs": 8,
+      "pointer": {
+        "slot": 0,
+        "attempts": 722,
+        "accepted": 25,
+        "exposures": 115120,
+        "policy": {
+          "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/ATM_continuous_margin_training_20261106_v203/code/policy.json",
+          "bytes": 31520,
+          "sha256": "8115c42cc6ad655a21d738a574cb65d8f577f70a79741e7230a64acf8927c7ab"
+        },
+        "checkpoint": {
+          "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/ATM_continuous_margin_training_20261106_v203/fit/margin_constrained/state_slot0.pt",
+          "bytes": 6593206,
+          "sha256": "416ea1e09295e698c9fb07aca03b42f21c1e2d5b2b50b40095a90c1df31d507e"
+        }
+      },
+      "completion": null
+    },
+    "response_only": {
+      "attempts": 0,
+      "accepted": 0,
+      "epochs": 0,
+      "pointer": null,
+      "completion": null
+    }
+  },
+  "GPU_queue": {
+    "owner": {
+      "PID": 832244,
+      "state": "S",
+      "start_ticks": 163079691,
+      "live": true
+    },
+    "progress": {
+      "phase": "WAIT_ORIGINAL_FULL_STUDY_AND_TERMINAL_REVIEW",
+      "UTC": "2026-11-07T00:38:59.617800+00:00",
+      "GPU_jobs_started": 0
+    },
+    "completion": null,
+    "failure": null,
+    "queue_failure": null,
+    "log_tail": "",
+    "worker_log_tail": null
+  },
+  "epoch8_proof": {
+    "path": "audit\\crossdisciplinary_20261028_v1\\independent_v210_RAMroutes_old_goal233_epoch8_readout_20261107T062745098308Z.json",
+    "bytes": 14643,
+    "sha256": "3d921b986c77b360543b563ed2e459938eef007274568276946ff75041bf2a6d"
+  },
+  "epoch6_vs8": {
+    "path": "audit\\crossdisciplinary_20261028_v1\\epoch6_vs_epoch8_actual_20261106_v233.json",
+    "bytes": 1852,
+    "sha256": "47f02482243fc7e7e6c3ff045a3ef27e7d4405a4c31d50a8ad86f634738b50b2"
+  },
+  "matrix_free": {
+    "path": "configs\\matrix_free_cross_host_acceleration_DRAFT_20261106_v233.json",
+    "bytes": 4226,
+    "sha256": "670fcd0910a90cc8dff037cf319df481eac86411263820c039dc854d3b53284a"
+  },
+  "source_checks": "AST_ONLY_NOT_SERVER_EXECUTED",
+  "network_checks": [
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_20261107T063024159583Z.json",
+      "bytes": 655,
+      "sha256": "3241cafe7bc1ba1e6adf3fc8fb77de5189dc2572e45db5cec62b397ac264730f"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_bounded_0_20261107T063400754747Z.json",
+      "bytes": 654,
+      "sha256": "5bfe8e759720a6df7aae93423df78573b1da449ced1ee19ec5b983766ac755e9"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_bounded_1_20261107T063448853219Z.json",
+      "bytes": 654,
+      "sha256": "efc8fa52561ef1abd334ef5974e5a159ff9d890e7d275eedadf9153826a10d90"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_bounded_2_20261107T063536906644Z.json",
+      "bytes": 655,
+      "sha256": "7602631cf0431e9caf442ef76d98424ae7cbcd2de5421629c2c51cba1dd35679"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_bounded_3_20261107T063626199825Z.json",
+      "bytes": 655,
+      "sha256": "326d55ee2291fc49e93cb520cea59d94bea8d134955f6055385c435cf9340c3c"
+    },
+    {
+      "path": "audit\\crossdisciplinary_20261028_v1\\RAMroutes_old_goal233_matrix_free_CPU_retry_20261107T063123763697Z.json",
+      "bytes": 655,
+      "sha256": "1f9d964a2b8f8117e801fccaf2495bba57b403b735bcfde1bcc7dc9b03be2f3c"
+    }
+  ],
+  "report_section": 59,
+  "GPU_report_section": 7,
+  "original_scientific_sources_unchanged": true,
+  "original_GPU_queue_unchanged": true,
+  "main_method_historical_tail_byteexact": true,
+  "new_GPU_jobs": 0,
+  "NEW_contacted": false
+}

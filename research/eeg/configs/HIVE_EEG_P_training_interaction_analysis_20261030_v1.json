@@ -1,0 +1,107 @@
+{
+  "status": "SUPPLEMENTARY_TERMINAL_ANALYSIS_REGISTERED_BEFORE_NEW_IMAGE_OUTCOMES",
+  "UTC": "2026-10-30T18:17:29.154465+00:00",
+  "study_sha256": "e83c3d0a19751bbdc72c3d93ea4484057294a469137c9dc6925d1e289f0a8c7e",
+  "timing": "Registered after actual first2816 T-log feature inspection and while the first of five fits is active; before any current candidate image outcomes. Not the original efficacy preregistration.",
+  "method_order": [
+    "ordinary",
+    "EEG_only_correct",
+    "P_only_correct",
+    "joint_correct"
+  ],
+  "metric_keys": [
+    "target_cosine",
+    "DINO2AFC",
+    "gallery_top1",
+    "within_concept10_top1",
+    "within_concept10_two_afc"
+  ],
+  "coefficients": {
+    "EEG_minus_ordinary": [
+      -1,
+      1,
+      0,
+      0
+    ],
+    "P_minus_ordinary": [
+      -1,
+      0,
+      1,
+      0
+    ],
+    "joint_minus_ordinary": [
+      -1,
+      0,
+      0,
+      1
+    ],
+    "joint_minus_EEG": [
+      0,
+      -1,
+      0,
+      1
+    ],
+    "joint_minus_P": [
+      0,
+      0,
+      -1,
+      1
+    ],
+    "training_policy_interaction": [
+      1,
+      -1,
+      -1,
+      1
+    ]
+  },
+  "stage": "Only original terminal80 or400, after exact upstream exit, all original independent audits and received archive",
+  "bootstrap": {
+    "unit": "whole concept, ten stimuli together",
+    "draws": 1000,
+    "seed": 1729,
+    "shared_draws_across_all_four_methods": true,
+    "descriptive_only": true
+  },
+  "numerical_zero": 1e-12,
+  "primary_practical_gate_not_modified": true,
+  "secondary_SEED_and_EEG_input_gates_not_modified": true,
+  "no_new_eligibility_or_reselection_rule": true,
+  "interpretation": [
+    "Training-policy interaction of independently fitted models, not checkpoint grafting or biological causality.",
+    "Additive score-scale interaction is not invariant to nonlinear metric transforms.",
+    "A joint model can exceed each single update and show diminishing additive returns.",
+    "Positive interaction can coexist with a harmful joint method; never rescue the original STOP.",
+    "Original main-vs-ordinary practical and all4-control requirements remain decisive."
+  ],
+  "original_ordinary_immutable": true,
+  "single_training_seed": 1729,
+  "OLD_only": true,
+  "NEW_reserved": true,
+  "new_models": 0,
+  "new_images": 0,
+  "new_GPU_jobs": 0,
+  "new_remote_waiters": 0,
+  "actual_terminal_analysis_NOT_executed": true,
+  "pinned_local_sources": [
+    {
+      "path": "D:\\扩散模型\\research\\eeg_sota_autoresearch_20261018_v1\\analyze_HIVE_EEG_P_training_interaction_CPU_20261030_v1.py",
+      "bytes": 8811,
+      "sha256": "6178dde4d24d4652855ff796fb097ad7c9e8d5dccb582fb2f964881e7fded1a4"
+    },
+    {
+      "path": "D:\\扩散模型\\research\\eeg_sota_autoresearch_20261018_v1\\check_HIVE_EEG_P_training_interaction_CPU_20261030_v1.py",
+      "bytes": 9644,
+      "sha256": "09d7607173528cbfbc8cceeb9fbbb56b5e07483ba67b47074d9749228e7ce196"
+    },
+    {
+      "path": "D:\\扩散模型\\research\\eeg_sota_autoresearch_20261018_v1\\audit_HIVE_paired_semantic_terminal_local_20261030_v1.py",
+      "bytes": 13877,
+      "sha256": "184f6a6fb3126a2ca5614a56366c3ba097ef6e954b3e52d6bd2bc8cbbda6084b"
+    }
+  ],
+  "actual_CPU_checks": {
+    "path": "D:\\扩散模型\\research\\eeg_sota_autoresearch_20261018_v1\\audit\\HIVE_EEG_P_training_interaction_preparation_20261030_v1\\actual_CPU_checks.json",
+    "bytes": 1649,
+    "sha256": "a06ccce201b01d32c8f33688ca0082ddbb9dad354e22ce0fac2a592f21d4067d"
+  }
+}

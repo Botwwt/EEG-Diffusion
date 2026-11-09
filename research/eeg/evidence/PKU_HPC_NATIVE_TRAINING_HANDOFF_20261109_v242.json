@@ -1,0 +1,247 @@
+{
+  "status": "PROGRESS_NATIVE_STOCHASTIC_TEACHER_THREE_ROLE_FITS_AND_ALL_QUERY_AUDIT_COMPLETE",
+  "goal_status": "active",
+  "goal_achieved": false,
+  "project": "/dfs/share/maleiLab/wwt/eeg",
+  "native": {
+    "status": "COMPLETE_NATIVE_SUB03_THREE_ROLE_STOCHASTIC_TEACHER_REBUILD",
+    "identity": {
+      "job_id": "5096542",
+      "host": "gpua800n03",
+      "GPU": "NVIDIA A800-SXM4-80GB",
+      "GPU_count": 1,
+      "CUDA_VISIBLE_DEVICES": "0",
+      "torch": "2.3.0+cu121",
+      "policy_sha256": "14ebb1d729db4bbe4dcf88390c7c7ac44c924836920aff46a3a5f1ec100559cb"
+    },
+    "roles": [
+      {
+        "role": "full",
+        "updates": 325,
+        "training_queries": 13230,
+        "exposures": 330750,
+        "model_sha256": "8e8b1cea28a5cae88f3acc3f136c8a638109949499fdc852ea95a306e0ff9f2b"
+      },
+      {
+        "role": "oof0",
+        "updates": 175,
+        "training_queries": 6610,
+        "exposures": 165250,
+        "model_sha256": "01e8b7616884d2d7a87bdef4e2d628d28390a805f60d5ab66246d022abd98099"
+      },
+      {
+        "role": "oof1",
+        "updates": 175,
+        "training_queries": 6620,
+        "exposures": 165500,
+        "model_sha256": "5ce3660fa509240e9e5d1bd696f92e62a274c3dec67b4691dbe404229fe2925e"
+      }
+    ],
+    "total_updates": 675,
+    "total_exposures": 661500,
+    "seconds": 43.33845783397555,
+    "peak_GPU_bytes": 1225394176,
+    "readout": {
+      "T_true_OOF": {
+        "queries": 13230,
+        "matched_cosine": 0.10583975911140442,
+        "global_Top1": 0.005291005130857229,
+        "within_concept_Top1": 0.3164777159690857
+      },
+      "D_full_fixed_final": {
+        "queries": 1650,
+        "matched_cosine": 0.12018205970525742,
+        "global_Top1": 0.043030302971601486,
+        "within_concept_Top1": 0.3672727346420288
+      },
+      "interpretation": "Encoder baseline diagnostics only, not image efficacy; one subject, source-stochastic teacher, no V/R80 accessed"
+    },
+    "new_images": 0,
+    "new_ordinary_fit": 0,
+    "old_ordinary_changed": false,
+    "exact_old_checkpoint_resumed": false,
+    "new_method_gain_or_SOTA": false
+  },
+  "independent_audit": {
+    "status": "PASS_INDEPENDENT_ALL14880_CPU_FORWARD_OOF_AND_FULL_SCORE_AUDIT",
+    "job_id": "5096674",
+    "host": "a2n16c3",
+    "seconds": 20.701456701382995,
+    "roles": [
+      {
+        "role": "full",
+        "model_SHA": "8e8b1cea28a5cae88f3acc3f136c8a638109949499fdc852ea95a306e0ff9f2b",
+        "train": 13230,
+        "held": 0,
+        "updates": 325,
+        "CPU_replay_rows": 1650,
+        "max_abs_CPU_GPU_error": 1.0728836059570312e-05
+      },
+      {
+        "role": "oof0",
+        "model_SHA": "01e8b7616884d2d7a87bdef4e2d628d28390a805f60d5ab66246d022abd98099",
+        "train": 6610,
+        "held": 6620,
+        "updates": 175,
+        "CPU_replay_rows": 6620,
+        "max_abs_CPU_GPU_error": 1.4096498489379883e-05
+      },
+      {
+        "role": "oof1",
+        "model_SHA": "5ce3660fa509240e9e5d1bd696f92e62a274c3dec67b4691dbe404229fe2925e",
+        "train": 6620,
+        "held": 6610,
+        "updates": 175,
+        "CPU_replay_rows": 6610,
+        "max_abs_CPU_GPU_error": 1.0848045349121094e-05
+      }
+    ],
+    "CPU_forward_queries": 14880,
+    "max_abs_CPU_GPU_error": 1.4096498489379883e-05,
+    "optimizer_updates_verified": 675,
+    "exposures_verified": 661500,
+    "OOF_all13230_rows_exactly_once": true,
+    "concept_exclusion_all_roles": true,
+    "scores": {
+      "T_true_OOF": {
+        "queries": 13230,
+        "global_correct": 70,
+        "within_correct": 4187,
+        "matched_cosine": 0.10583975878159292,
+        "FP64_full_gallery_recomputed": true
+      },
+      "D_full_fixed_final": {
+        "queries": 1650,
+        "global_correct": 71,
+        "within_correct": 606,
+        "matched_cosine": 0.12018205643220356,
+        "FP64_full_gallery_recomputed": true
+      }
+    },
+    "backup_files": [
+      {
+        "path": "runs/HIVE_native_sub03_5096542/full/brain_final.pt",
+        "bytes": 25811921,
+        "sha256": "8e8b1cea28a5cae88f3acc3f136c8a638109949499fdc852ea95a306e0ff9f2b"
+      },
+      {
+        "path": "runs/HIVE_native_sub03_5096542/full/final_training_state.pt",
+        "bytes": 77447081,
+        "sha256": "6aa81d864f31a4dde796e070c0f2b571e386a281ac7a6d607139068de0934b4e"
+      },
+      {
+        "path": "runs/HIVE_native_sub03_5096542/oof0/brain_final.pt",
+        "bytes": 25811921,
+        "sha256": "01e8b7616884d2d7a87bdef4e2d628d28390a805f60d5ab66246d022abd98099"
+      },
+      {
+        "path": "runs/HIVE_native_sub03_5096542/oof0/final_training_state.pt",
+        "bytes": 77447081,
+        "sha256": "0d98f78db8d6f37c3caf18ff04fb3ff129efedce0a1503dcd729a27b0a3a7431"
+      },
+      {
+        "path": "runs/HIVE_native_sub03_5096542/oof1/brain_final.pt",
+        "bytes": 25811921,
+        "sha256": "5ce3660fa509240e9e5d1bd696f92e62a274c3dec67b4691dbe404229fe2925e"
+      },
+      {
+        "path": "runs/HIVE_native_sub03_5096542/oof1/final_training_state.pt",
+        "bytes": 77447081,
+        "sha256": "38a304dc64f1745691106f6b5216ebe25c3dd3e7a20ee6aab928e8ae064b32ce"
+      }
+    ],
+    "new_updates": 0,
+    "new_images": 0
+  },
+  "backup": {
+    "status": "COMPLETE_SIX_IMMUTABLE_WWT_MODEL_STATE_COPIES_SHA256_PASS",
+    "job_id": "5096773",
+    "host": "a2n16c3",
+    "files": [
+      {
+        "source": "runs/HIVE_native_sub03_5096542/full/brain_final.pt",
+        "backup": "backups/HIVE_native_sub03_5096542/full/brain_final.pt",
+        "bytes": 25811921,
+        "sha256": "8e8b1cea28a5cae88f3acc3f136c8a638109949499fdc852ea95a306e0ff9f2b",
+        "different_inode": true
+      },
+      {
+        "source": "runs/HIVE_native_sub03_5096542/full/final_training_state.pt",
+        "backup": "backups/HIVE_native_sub03_5096542/full/final_training_state.pt",
+        "bytes": 77447081,
+        "sha256": "6aa81d864f31a4dde796e070c0f2b571e386a281ac7a6d607139068de0934b4e",
+        "different_inode": true
+      },
+      {
+        "source": "runs/HIVE_native_sub03_5096542/oof0/brain_final.pt",
+        "backup": "backups/HIVE_native_sub03_5096542/oof0/brain_final.pt",
+        "bytes": 25811921,
+        "sha256": "01e8b7616884d2d7a87bdef4e2d628d28390a805f60d5ab66246d022abd98099",
+        "different_inode": true
+      },
+      {
+        "source": "runs/HIVE_native_sub03_5096542/oof0/final_training_state.pt",
+        "backup": "backups/HIVE_native_sub03_5096542/oof0/final_training_state.pt",
+        "bytes": 77447081,
+        "sha256": "0d98f78db8d6f37c3caf18ff04fb3ff129efedce0a1503dcd729a27b0a3a7431",
+        "different_inode": true
+      },
+      {
+        "source": "runs/HIVE_native_sub03_5096542/oof1/brain_final.pt",
+        "backup": "backups/HIVE_native_sub03_5096542/oof1/brain_final.pt",
+        "bytes": 25811921,
+        "sha256": "5ce3660fa509240e9e5d1bd696f92e62a274c3dec67b4691dbe404229fe2925e",
+        "different_inode": true
+      },
+      {
+        "source": "runs/HIVE_native_sub03_5096542/oof1/final_training_state.pt",
+        "backup": "backups/HIVE_native_sub03_5096542/oof1/final_training_state.pt",
+        "bytes": 77447081,
+        "sha256": "38a304dc64f1745691106f6b5216ebe25c3dd3e7a20ee6aab928e8ae064b32ce",
+        "different_inode": true
+      }
+    ],
+    "total_bytes": 309777006,
+    "seconds": 2.640194432809949,
+    "same_storage_system": true,
+    "offsite_backup": false,
+    "local_D_backup_declined_due_to_disk_floor": true,
+    "new_updates": 0,
+    "new_images": 0
+  },
+  "evidence": {
+    "native": "PKU_HPC_native_training_status240_20261109T035219571010Z.json",
+    "audit": "PKU_HPC_native_audit_status241_20261109T040005505333Z.json",
+    "backup": "PKU_HPC_native_backup242_20261109T040438226933Z.json"
+  },
+  "documents": [
+    {
+      "path": "AGENTS.md",
+      "historical_tail_exact": true,
+      "sha256": "b7b1b5cdea5834d217f73974525629f97bcdeb40024030887cfe25ce2bf71f83"
+    },
+    {
+      "path": "STATUS.md",
+      "historical_tail_exact": true,
+      "sha256": "7f1ac6a444c87e4d5e076492825d9cd7872c8d00a88a026154ca1c52e96306be"
+    },
+    {
+      "path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
+      "historical_tail_exact": true,
+      "sha256": "4d5321201034829f124b16c64858eca389f17f07551e9035fada30fe7530d10d"
+    }
+  ],
+  "old_ordinary_changed": false,
+  "new_models": 3,
+  "new_updates": 675,
+  "new_query_exposures": 661500,
+  "new_images": 0,
+  "new_ordinary_fit": 0,
+  "live_GPU_jobs": 0,
+  "live_local_watchers": 0,
+  "CPU_teacher_inputs": "data/native_training_v239/train_visual_embeddings.pt; original stochastic frozen F available",
+  "native_root": "runs/HIVE_native_sub03_5096542",
+  "F_teacher_restoration_complete": true,
+  "next": "Restore actual native P/IP/Turbo and T/D image/VAE inputs from local or pinned public sources; use this genuine sub03 baseline/OOF data, separately fit matching ordinary before candidate and combination. Preserve old ordinary; no weak/cached-teacher surrogate or old checkpoint identity claim. Next operator scale640 and ATM/end-to-end support still unproved. Do not wait for old powered-off instance.",
+  "local_disk_constraint": "Dfree227819520, 2GiB backup floor failed before transfer. No new large local assets; WWT copies same filesystem, not offsite."
+}

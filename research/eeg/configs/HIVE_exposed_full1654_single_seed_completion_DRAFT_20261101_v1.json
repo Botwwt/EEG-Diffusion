@@ -1,0 +1,135 @@
+{
+  "status": "DRAFT_NOT_COMPONENT_TRAINING_OR_BENCHMARK_ADMISSION",
+  "purpose": "Complete the positive first-method program at the full official training scope with matched controls; not a second innovation",
+  "host": "old",
+  "NEW_reserved": true,
+  "training_seed": 1729,
+  "multiple_training_seeds_allowed": false,
+  "original_ordinary_checkpoint_immutable": true,
+  "original_ordinary_SHA256": "a66869e5676ccea27f326f4f0b86cd446526b42460734905990758e49e11cc03",
+  "official200_previously_exposed": true,
+  "official_results_used_for_previous_direction_selection": true,
+  "independent_H": false,
+  "legacy_false_exposure_gate_must_not_be_changed_or_faked": true,
+  "former_T_Dfit_Dcheck_V_are_now_training": true,
+  "data": {
+    "concepts": 1654,
+    "stimulus_images": 16540,
+    "subjects": 10,
+    "physical_EEG_repeat_protocol": "R4",
+    "OOF_models": 20,
+    "true_native_raw_OOF_queries": 165400,
+    "required_actual_consumer": "brainhive_exposed_fullfit_component_inputs_CPU_20261101_v1.py",
+    "actual_consumer_review_required": true,
+    "transient_profile_models_or_old132300_bank_allowed": false
+  },
+  "component_training": {
+    "new_names_and_weights_required": true,
+    "parameters_per_head": 525568,
+    "fresh_zero_output_initialization": true,
+    "passes": 3,
+    "batch_size": 16,
+    "last_batch_each_pass": 8,
+    "updates_per_head": 31014,
+    "query_exposures_per_head": 496200,
+    "optimizer": "Original AdamW lr1e-4, weight_decay0.01, betas0.9/0.999, eps1e-8, gradient clip1",
+    "checkpoint_choice": "Fixed last update, no intermediate image-based epoch selection",
+    "host_EEG_and_F_A_P_IP_UNet_frozen": true,
+    "proposed_fixed_roles": {
+      "ordinary_full1654": "Original bounded geometry; epsilon MSE +0.1 native AP token cosine loss; needs actual full16540 VAE bank and full host profile",
+      "bounded_F_full1654": "Same bounded head;0.1 raw native F cosine loss; no training UNet calls",
+      "Euclidean_F_full1654": "Same head capacity and F objective; remove the whole geometry block as in the completed development control; not a new method"
+    },
+    "shared_scope_and_order_required_for_controls": true,
+    "F_controls_do_not_match_ordinary_UNet_training_compute": true
+  },
+  "calibration": {
+    "proposed_global_strength": 1,
+    "reason": "Fixed from already disclosed development evidence before new full-scope fitting; no new official200 selection",
+    "rho_for_bounded_heads": 0.25,
+    "Euclidean_strength_is_residual_scale_not_angle_guarantee": true,
+    "old_Dfit_no_longer_independent_or_available_for_postfit_selection": true,
+    "test_based_recalibration_or_best_of_N": false,
+    "final_method_and_calibration_source_review_still_required": true
+  },
+  "evaluation_proposal": {
+    "subjects": 10,
+    "physical_EEG_repeat_protocol": "R80",
+    "official_stimuli": 200,
+    "queries_per_method": 2000,
+    "native_parent": "Audit and reuse published full1654 parents with their actual affines; never call them OOF models",
+    "resolution": 512,
+    "native_UNet_steps": 4,
+    "CFG": 0,
+    "IP_scale": 1,
+    "images_per_query": 1,
+    "same_query_noise_and_ancestral_streams": true,
+    "report_all16_locked_metrics_with_full_denominators": true,
+    "fixed_contrasts": [
+      "ordinary_full1654 minus full1654_native_parent",
+      "bounded_F_full1654 minus full1654_native_parent",
+      "Euclidean_F_full1654 minus full1654_native_parent",
+      "bounded_F_full1654 minus Euclidean_F_full1654",
+      "ordinary_full1654 minus bounded_F_full1654"
+    ],
+    "all_preregistered_arms_reported_no_control_winner_rescue": true,
+    "author_paper_and_same_cost_external_baselines_still_required_for_SOTA": true
+  },
+  "remaining_before_any_component_fit": [
+    "Complete20 real folds,20 CPU audits,165400 bank and independent actual consumer",
+    "Bind actual full16540 train-image identities and native VAE-mode bank for ordinary; preserve old T bank",
+    "Implement and source-review new fullscope trainers and exact state/coverage audits",
+    "Actual finite GPU profiles, original numerical guards, source/data/exposure review and whole lifecycle storage/headroom accounting",
+    "Implement full2000 generation, exact identity/noise/pixel provenance and all16-metric lifecycle for the new checkpoints and fixed strengths",
+    "Issue separate truthful method/calibration/resource execution review; this DRAFT grants no execution"
+  ],
+  "new_component_training_admitted": false,
+  "new_benchmark_started": false,
+  "CCF_A_or_SOTA_established": false,
+  "actual_two_F_head_substage": {
+    "study": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_F_lifecycle_code_20261101_v2/study.json",
+      "bytes": 19785,
+      "sha256": "29a090398e590c90ecd2a56a7f1d1d3bfcf02cb36cabcaf2239eaff36f7326ca"
+    },
+    "handoff": "audit/GOAL_active_execution_handoff_20261101_v12.json",
+    "scope": "Only bounded_F and Euclidean_F; originalordinaryepsilon+token fullscope remains DRAFT",
+    "both_actual_fits_complete": true,
+    "all4000_images_and_metrics_pending": true
+  },
+  "actual_full16540_latent_input_substage": {
+    "status": "CPU_WAITING_FOR_EXACT_CURRENT_F_LIFECYCLE_TO_COMPLETE_AND_EXIT",
+    "protocol": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_exposed_full16540_latent_code_20261101_v1/protocol.json",
+      "bytes": 172902,
+      "sha256": "e6bd7abbd12825f0e9195b37fe0eaafae3a53cec1e68634e8a67789bc88683d5"
+    },
+    "PID": 479571,
+    "start_ticks": 112812372,
+    "actual_delivery_review": {
+      "path": "audit/HIVE_exposed_full16540_latent_preparation_20261101_v1/actual_delivery_review.json",
+      "bytes": 4928,
+      "sha256": "8973e10fabcab4702fcf0d22e3ac7cd33ad2c28c09c297fa14f4f8e37dd5686c"
+    },
+    "actual_native_VAE_profile_passed": false,
+    "actual_full16540_bank_complete": false,
+    "ordinary_epsilon_token_component_training_admitted": false
+  },
+  "actual_original_objective_engineering_substage": {
+    "status": "SEALED_CPU_WAITING_FOR_FULL_NATIVE_LATENT_STAGE_TO_COMPLETE",
+    "protocol": {
+      "path": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/multiscale_EEG_20261028_v1/HIVE_full1654_original_ordinary_profile_code_20261101_v1/protocol.json",
+      "bytes": 7973,
+      "sha256": "2f34f91875f206cd58c4642cb3f1495868aa359744ff0bdfb9baa2f6fe2e81bc"
+    },
+    "PID": 480609,
+    "start_ticks": 112911132,
+    "actual_GPU_profile_passed": false,
+    "formal_full31014_fit_or_R80_lifecycle_admitted": false,
+    "actual_delivery_review": {
+      "path": "audit/HIVE_full1654_original_ordinary_profile_preparation_20261101_v1/actual_delivery_review.json",
+      "bytes": 4668,
+      "sha256": "f4204ddef9f20c7101279c4cfa10dd74bd270a6a719363f0398e4b399f05851d"
+    }
+  }
+}

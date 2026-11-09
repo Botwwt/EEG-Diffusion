@@ -1,0 +1,663 @@
+{
+  "version": "BrainHIVE_functional_alignment_v2_preregistration_DRAFT",
+  "status": "DRAFT_NOT_ADMITTED_NOT_EXECUTABLE",
+  "automatic_launch_enabled": false,
+  "formal_training_authorized_by_this_file": false,
+  "new_training_started": false,
+  "GPU_jobs_launched": 0,
+  "registration_promoted": false,
+  "purpose": "One defect-specific functional-alignment candidate on reproduced native BrainHIVE, with fixed ordinary/positive-only/shuffled-rank controls. No demonstrated native bottleneck, novelty, capacity shortage, universal adaptation or image gain is claimed.",
+  "lineage": {
+    "untrained_registered_predecessor": "response_rank_v1",
+    "historical_negative_neighbors": [
+      "legacy_A1_response_MSE",
+      "legacy_A2_projected_response"
+    ],
+    "positive_anchor_is_substantive_revision": true,
+    "old_registration_not_deleted": true,
+    "candidate_cap": 12,
+    "structural_revision_cap": 2,
+    "conservative_commitments_before": 11,
+    "after_one_PN_promotion": 12,
+    "further_new_main_slots": 0,
+    "no_reset_or_qv3": true,
+    "candidate_accounting": {
+      "path": "research/eeg_sota_autoresearch_20261018_v1/audit/BrainHIVE_candidate_accounting_reconciliation_CPU_20261021_v1.json",
+      "sha256": "92deb6afb2ae89288641c350d2f76f5f485c175c383943173e52c5302a589a38"
+    },
+    "arm_classification_authority": "Master31 excludes fixed required baselines and preregistered ablations. Parent adopts O baseline/P,S fixed mechanism ablations before any new fit or image, PN one main candidate. Strict sensitivity treating P/S as independent main objectives gives14>12; disclose openly.",
+    "cannot_promote_ablation_posthoc_to_erase_failed_PN": true
+  },
+  "scientific_hypothesis": "Token alignment or rank-only response discrimination may leave absolute correct native-IP response error unconstrained. At the same head and inference interface, adding a correct-positive response anchor and different-concept ranking may better preserve EEG-derived stimulus distinctions. This remains unconfirmed until fixed diagnostics and matched full actual-image comparisons.",
+  "frozen_host": {
+    "repository": "https://github.com/ssshamiii/Brain-HIVE",
+    "commit": "f06db69fcc4a029439e369c5c3dba6099e57560e",
+    "native_encoder": "Reviewed BrainMLP,6452224parameters,17x250->1024; existing protected full and genuine concept-OOF roles.",
+    "condition_chain": "raw final LayerNorm c1024 -> bounded correction in standardized final-LN coordinates -> fixed pretrained A -> P4x2048 -> fixed native IP K/V -> SDXL-Turbo UNet",
+    "frozen": [
+      "BrainMLP",
+      "A",
+      "P",
+      "native_IP_KV",
+      "UNet",
+      "VAE",
+      "visual_teacher"
+    ],
+    "no_ATM_substitution": true,
+    "no_new_encoder_training": true,
+    "new_raw_EEG_features": false,
+    "new_external_images": 0,
+    "no_native_processor_replacement": true
+  },
+  "shared_trainable_head": {
+    "class_name": "brainhive_bounded_component_v1.BoundedConditionAdapter",
+    "dimension": 1024,
+    "hidden": 256,
+    "predict_risk": false,
+    "parameters": 525568,
+    "zero_initialized_direction_output": true,
+    "maximum_standardized_direction_radius": 0.25,
+    "gate_mode": "fixed",
+    "training_radius": 0.25,
+    "geometry": "Unchanged ordinary norm-preserving standardized correction/de-standardization.",
+    "inference_strength_policy": "Each O/P/PN/S independently performs exactly one original Dfit-only global calibration with identical fixed grid[0,.25,.5,.75,1]; smaller strength on ties. No additional grid, Dcheck/V/test tuning or reuse of old ordinary alpha.",
+    "effective_inference_radius": "0.25 * that arm's fixed Dfit selected_strength.",
+    "selected_strength_diagnostic": "Report chosen strengths and actual correction RMS/norm; strength0 is a valid negative/inactive result, never silently overridden."
+  },
+  "data": {
+    "seed": 1729,
+    "subjects": 10,
+    "unique_T_images": 13230,
+    "real_OOF_queries_per_pass": 132300,
+    "passes": 3,
+    "total_query_exposures": 396900,
+    "batch_size": 16,
+    "updates": 24807,
+    "formal_V_queries_per_arm": 16600,
+    "fixed_real_gallery_images": 1660,
+    "repeat_protocol": "Protected R4 development. Published2000query R80 benchmark and exposed V are kept separate.",
+    "images_per_query": 1,
+    "input_contract": {
+      "path": "/root/brainhive_reproduction_20261020_v1/data/component_input_contract_v1.json",
+      "sha256": "bb6e38350282af7b37ece04689adcec7a5f87dccf68de5968058433faece0597"
+    },
+    "latent_receipt": {
+      "path": "/root/brainhive_reproduction_20261020_v1/audit/component_T_latent_bank_v2.json",
+      "sha256": "a6fb379d25fe3738c47c036fa591c0603f952ba9e119763c487151462a4dae6f"
+    },
+    "teacher_and_negative_fitting_access": "Full protected T only. No D/V/test target used for functional fitting or negative construction. Dfit targets are permitted only by the one shared original scalar-calibration rule. Normal inference EEG only.",
+    "negative_seed": 1729,
+    "negative_mapping": "Fixed full-T image-position bijection, verified different concept. S uses two independent rankteacher mappings, each different from query concept and with nondegenerate teacher-pair separation. Preserve correct-positive teacher and its normalization/mask.",
+    "negative_mapping_receipt": {
+      "path": "/root/brainhive_reproduction_20261020_v1/audit/functional_v2_T_mapping_CPU_actual_20261021_v1.json",
+      "sha256": "ba822485e609a80d5bf0707acf625eb3ff19023d7a6fdffff3c42e74efa7ddac",
+      "actual_cached_condition_tensor_row_order_must_still_be_checked": true
+    }
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "gradient_clip": 1,
+    "epsilon_weight": 1,
+    "token_angular_weight": 0.1,
+    "functional_weight": 0.1,
+    "condition_drop_probability": 0.0,
+    "timestep_distribution": "Uniform integer0..999; same registered training query/noise/timestep stream and exposure across O/P/PN/S.",
+    "checkpoint_selection": "One fixed final update24807. Exact resumes preserve optimizer and RNG/query position. No V/test checkpoint selection.",
+    "epsilon_objective": "Same native DDPM noised-real-T-latent epsilonMSE. This is not old A generated-trajectory response distillation.",
+    "token_angular": "Same frozen A/P angular objective as ordinary.",
+    "gradient_target": "Only bounded correction-head parameters. Teacher/Q/host detached and frozen.",
+    "new_training_entry": "train_BrainHIVE_functional_alignment_v2.py",
+    "actual_engineering_profile_receipt": null,
+    "executable_recipe": null,
+    "per_job_timeout_seconds": 86400,
+    "timeout_required_from_actual_profile": false,
+    "total_GPU_hour_cap": null,
+    "purchase_or_resource_expansion": false,
+    "one_existing_GPU_lock_required": true,
+    "training_contract_helper": "brainhive_functional_training_contract_v2.py",
+    "trainer_is_existing_draft_source_not_GPU_profiled": true,
+    "profile_mode": "--profile-only: fixed2x16Tengineering updates; no checkpoint/images. Recipe/source/storage admission required by actual helper.",
+    "new_trainer_stable_SHA_pending_CPU_review": false,
+    "maximum_cumulative_training_seconds_per_arm": 172800,
+    "fixed_timeout_ceiling_validated_by_actual_profile": false,
+    "actual_profile_validation_required_before_formal_fit": true,
+    "timeout_validation_status": "PENDING_REAL_GPU_PROFILE; fixed86400s job/172800s cumulative ceilings are not measured or validated facts."
+  },
+  "fixed_parent_Q_policy": {
+    "reference": "Frozen native uncorrected EEG-parent condition at the same query/noisy real T latent/timestep/noise, captured under no_grad. Q is detached and shared by O/P/PN/S student and all teacher responses.",
+    "training_UNet_forward_count_per_query_per_arm": 2,
+    "forwards": [
+      "One frozen parent no_grad Q-reference forward.",
+      "One student corrected-condition forward for epsilon objective and student functional response."
+    ],
+    "O_computation": "O also executes the same parent-Q reference forward, even though O has no functional term, to preserve training-forward cost match.",
+    "Q_does_not_change_with_student_head": true,
+    "no_correct_visual_teacher_UNet_forward": true,
+    "no_extra_UNet_per_teacher_pair": true,
+    "actual_two_forward_integration_profile_required": true,
+    "original_old_ordinary_not_the_compute_matched_primary_baseline": true
+  },
+  "functional_loss": {
+    "implementation": "brainhive_functional_alignment_v2.NativeIPFunctionalAlignmentCapture",
+    "expected_native_layers": 70,
+    "maximum_query_positions_per_layer": 16,
+    "epsilon": 1e-06,
+    "positive_teacher": "Correct frozen T F(image) through unchanged A/P and learned IP K/V.",
+    "negative_teacher": "Fixed different-concept T F(image) through same chain.",
+    "S0": "stopgrad(mean((correct_positive_response-correct_negative_response)^2)), per query/layer.",
+    "correct_positive_mask": "S0>1e-6, detached.",
+    "Lpos": "Mean_valid0[mean((student-correct_positive)^2)/(S0+1e-6)], then fixed native-layer aggregation.",
+    "Sr": "Detached response separation of rankteacherpair. PN uses correct pair; S uses two independent shuffled rankteachers.",
+    "rank_mask": "Sr>1e-6, detached, independent of correct-positive mask.",
+    "Lrank": "Mean_validr[softplus((mean((student-rankpositive)^2)-mean((student-ranknegative)^2))/(Sr+1e-6))].",
+    "inner_weights": "Lpos+Lrank with fixed1:1.",
+    "outer_loss": "epsilon_MSE + .1*token_angular + .1*Lfunc",
+    "degenerate_policy": "Masked entries exact zero loss/gradient; fully degenerate term returns graph-connected0, but engineering profile refuses all-degenerate/nonfinite/negligible-functional-gradient operation. Never treat zero masked loss as learning success.",
+    "no_teacher_or_Q_gradients": true,
+    "student_KV_and_correction_head_gradients_required": true
+  },
+  "arms": [
+    {
+      "arm": "O",
+      "role": "required ordinary training-compute-matched baseline",
+      "Lfunc": "0",
+      "candidate_charge": 0,
+      "fixed_parent_Q_forward": true
+    },
+    {
+      "arm": "P",
+      "role": "preregistered positive-only mechanism ablation of PN",
+      "Lfunc": "Lpos",
+      "candidate_charge_under_master31": 0,
+      "only_change_from_PN": "Remove ranking term. Same positive loss, scale/mask, head, data and two-UNet cost.",
+      "not_a_posthoc_new_main_innovation": true
+    },
+    {
+      "arm": "PN",
+      "role": "one proposed main candidate",
+      "Lfunc": "Lpos+Lrank using correct positive/negative rankteacherpair",
+      "additional_main_candidate_charge": 1
+    },
+    {
+      "arm": "S",
+      "role": "preregistered shuffled-rankpair mechanism ablation of PN",
+      "Lfunc": "Unchanged correct Lpos/S0/mask + Lrank using independent shuffledrankteacherpair.",
+      "candidate_charge_under_master31": 0,
+      "only_change_from_PN": "Only rankteacher pair is shuffled; correct-positive target, normalization/mask and weight remain identical.",
+      "not_a_posthoc_new_main_innovation": true
+    }
+  ],
+  "matched_references": {
+    "primary": "New O using fixed parent Q and same two UNet training forwards.",
+    "preserved_context": [
+      "protected_R4_parent_bounded_v1",
+      "protected_R4_ordinary_bounded_v1",
+      "protected_R4_risk_bounded_v1"
+    ],
+    "required_alignment": [
+      "same132300realOOFqueries",
+      "same3passes/24807updates",
+      "same525568head",
+      "samefrozenhost",
+      "same2trainingUNetforwards",
+      "same512/4NFE/CFG0/IP1",
+      "sameinformationpermissions",
+      "sameR4Vquery/stimulus/targetjoins",
+      "sameimageSeedandinitialnoise",
+      "samefixedgallerymetrics"
+    ],
+    "old_reference_reuse": "Old parent/ordinary/risk outputs remain historical context and must complete closure, but original one-forward ordinary does not substitute the new causal compute-matched O. Reuse parent only after identity/protocol closure; no duplicate output path reuse.",
+    "cost_limit": "Functional teacher IP computations differ between arms, especially S; report real training time/VRAM rather than claim exact FLOPs equality.",
+    "no_best_seed": true
+  },
+  "generator": {
+    "accurate_version": "stabilityai/sdxl-turbo through pinned reviewed BrainHIVE native chain",
+    "resolution": 512,
+    "steps": 4,
+    "CFG": 0,
+    "IP_scale": 1,
+    "sampler": "EulerAncestral trailing",
+    "images_per_query": 1,
+    "training_extra_parent_forward_does_not_change_inference_NFE": true
+  },
+  "prerequisites": [
+    {
+      "id": "candidate_accounting",
+      "status": "LOCAL_RECONCILED_PARENT_ADOPTED_PRE_RESULT_CLASSIFICATION",
+      "evidence": "audit/BrainHIVE_candidate_accounting_reconciliation_CPU_20261021_v1.json",
+      "gate": "Preserve11existing conservative commitments; PN consumes12th. O/P/S fixed roles before new results, all costs count; no further main expansion."
+    },
+    {
+      "id": "original_three_arm_closure",
+      "status": "PENDING",
+      "existing_state": "/root/brainhive_reproduction_20261020_v1/audit/main_storage_continuation_20261021_v1.json",
+      "gate": "Finish all16600 risk/ordinary/parent images, perquery evaluation, pairing and frozen full comparison. Ordinary images/pairing now complete; its evaluator remains active and parent pending. No gain from one arm alone."
+    },
+    {
+      "id": "existing_T32_native_function_diagnostic",
+      "status": "PENDING",
+      "recipe": "configs/BrainHIVE_native_function_T32_v2.json",
+      "queue_state": "/root/brainhive_reproduction_20261020_v1/audit/native_function_T32_queue_v2.json",
+      "gate": "Finish existing32Tquery/four-native-t fixed missing-reference-Q diagnostic and review separation/native conditional distinctions. No new adaptive diagnostic sweep. It is not sampled-trajectory distillation or formal efficacy.",
+      "descriptive_evidence_policy": "configs/BrainHIVE_native_T32_evidence_policy_v1.json",
+      "descriptive_evidence_policy_sha256": "ff6b8daf710fb3e089082ebc259129601cc0a0cc73319463a073cecdc932c587",
+      "descriptive_readout_is_not_automatic_profile_or_formal_admission": true
+    },
+    {
+      "id": "CPU_loss_and_native_contract",
+      "status": "FUNCTIONAL_ALIGNMENT_V2_CPU_CONTRACTS_PASSED_NO_FIT",
+      "evidence": "audit/BrainHIVE_functional_alignment_CPU_contract_v2_P_PN_S_masked.json",
+      "limit": "Synthetic/native-class checks read no actual weights/EEG/images and do not validate the complete new fixedparentQ twoforward trainer."
+    },
+    {
+      "id": "actual_frozen_native_GPU_engineering_profile",
+      "status": "PENDING",
+      "receipt": null,
+      "gate": "Fixed real T and actual native weights,70layers,batch16. Check finite outputs, parentQ sharing/detach, masks/separation, functional-only nonzero headgradient, frozenhost/no teachergrad, P/PN/S positive invariant, twoUNetforward counts, zero/disabled pixel replay, throughput and peak memory for all four arms. No weight/radius/timestep search."
+    },
+    {
+      "id": "full_lifecycle_storage_and_memory",
+      "status": "PENDING_NOT_FUNDED",
+      "receipt": null,
+      "sha256": null,
+      "gate": "Fresh physical-filesystem forecast must fund all old remaining commitments plus four new checkpoints,66400 fullVimages,features,perquery evaluation/reports and margin. Verify free RAM/cgroup for real profile and jobs. No guessed paths, repeated freed-byte credit or RAM as durable history/images."
+    },
+    {
+      "id": "finite_executable_recipe_and_sources",
+      "status": "PENDING",
+      "gate": "Pin actual trainer/generator/auditor/data/nativechain, recipecore and storageadmission receipts; finite perjob timeouts from profile; own singleGPU lock; no launch from this DRAFT. New paths/receipts must be created and verified, not inferred as existing.",
+      "additional_entries_CPU_implemented_and_source_bound": true,
+      "actual_GPU_runtime_profile_and_promoted_recipes_ready": false,
+      "actual_CPU_evaluation_and_comparison_entries_bound": true
+    },
+    {
+      "id": "quality_and_information_lock",
+      "status": "REQUIRED_BEFORE_PROMOTION",
+      "gate": "Register feasible artifact/quality criterion before new results. V/test do not choose weights/radius/architecture/checkpoints, no bestseed, no test significance reruns, no invented humanratings.",
+      "supplementary_engineering_screen": {
+        "status": "ALL16600_RISK_IMAGES_SPATIALLY_AUDITED_AND_EXACT_CONTINUATION_INDEPENDENTLY_VERIFIED",
+        "pid": null,
+        "output_directory": "/root/brainhive_reproduction_20261020_v1/audit/spatial_image_integrity_risk_CPU_v1_finish_once_v1",
+        "progress": {
+          "manifest_denominator": 16600,
+          "hash_verified_decoded": 16600,
+          "decoded_512_RGB": 16600,
+          "per_query_rows_written": 16600,
+          "unknown": 0,
+          "failures": 0,
+          "exact_spatial_constant": 0,
+          "near_spatial_constant": 0,
+          "decoded_pixel_duplicate_count": 0,
+          "utc": "2026-10-21T18:16:49.306613+00:00"
+        },
+        "registered_definitions": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_spatial_image_integrity_CPU_v1_preregistration.json",
+        "registered_definitions_sha256": "7e80343cd2655f8a93523f5e0c710c940e5f41806b05f1b29884091f985b0c5f",
+        "running_receipt": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/BrainHIVE_spatial_integrity_audit_running_20261021_v1.json",
+        "running_receipt_sha256": "0331b708539174194ef0c8e269e34bc59c1566b99764047ff396970c4031f517",
+        "actual_full_image_spatial_conclusion_available": true,
+        "quality_noninferiority_established": false,
+        "primary_semantic_metrics_changed": false,
+        "finite_job_seconds": 900,
+        "completed_processes": [
+          215509,
+          216027
+        ],
+        "full_closure_receipt": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/BrainHIVE_spatial_integrity_risk_full_closure_actual_20261021_v1.json",
+        "full_closure_receipt_sha256": "57653a17034cbbb7b5009eae858ec9b8541af45dc92646728b1580e5ce13df54",
+        "summary_sha256": "e29fec44e7ae66d12ab1671ac63dc063530016ff984918a6ff1a5a9c3503ffc5",
+        "per_query_table_sha256": "9440dbdd0331e5703d40d8bbf38a959cb0bf2ea902033a5dba0fee0b7a4bc742",
+        "cached_completed_rows_preserved_exactly": 14743,
+        "only_previously_unprocessed_images_inspected": 1857,
+        "purple_noise_rate_identified": false,
+        "maximum_segments": 2,
+        "total_CPU_seconds": 1014.3373393304646
+      },
+      "perceptual_noninferiority_still_unconfirmed": true,
+      "new_full_V_artifact_entry_CPU_validated": true,
+      "artifact_flags_are_not_perceptual_noninferiority": true
+    },
+    {
+      "id": "T_only_actual_generation_pixel_replay",
+      "status": "SOURCE_AND_SERVER_CPU_BOUND_CPU_WAIT_QUEUE_RUNNING_ACTUAL_PIXELS_PENDING",
+      "gate": "Before formal admission, independently verify native parent vs zero/disabled correction on fixed T EEG, same seed/4NFE/512 and actual IP/VAE/save path; no V/test input. CPU contracts and two-update training profiles do not replace this GPU generation check.",
+      "engineering_queue": {
+        "status": "WAITING_CPU_ONLY_FOR_ORIGINAL_MAIN_AND_T32",
+        "pid": 214774,
+        "static_registration": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/configs/BrainHIVE_functional_T_pixel_replay_v2_wait_registration.json",
+        "static_registration_sha256": "8e62657ed27b58ff6c6488a8a391ec461c479d21fe7589513cb4e9f41c39d860",
+        "state_path": "/root/brainhive_reproduction_20261020_v1/audit/functional_T_pixel_replay_v2_wait_state.json",
+        "actual_running_receipt": "/root/atm_diffusion_20261015/research/eeg_sota_autoresearch_20261018_v1/audit/BrainHIVE_functional_T_pixel_wait_running_actual_20261021_v2.json",
+        "actual_running_receipt_sha256": "3f53b527c96328242d964e0c35e3023df7c822abde7394c3b3f87b5da2f0383f",
+        "actual_pixel_replay_complete": false,
+        "actual_images_generated": 0,
+        "new_formal_fitting_enabled": false,
+        "maximum_probe_seconds": 1200,
+        "maximum_probe_bytes": 16777216,
+        "minimum_CPU_headroom_bytes": 8589934592,
+        "fixed_input": {
+          "subject": "sub-01",
+          "query_id": "sub-01/moose_05s.jpg/R4",
+          "array_row": 9024,
+          "cache_row": 3724,
+          "parent_role": "oof1",
+          "image_seed": 5533825044790129053,
+          "static_input_identity_bound": true,
+          "actual_GPU_used": false
+        }
+      },
+      "source_sha256": {
+        "diagnose_BrainHIVE_functional_T_pixel_replay_v2.py": "35cfe33bd028e90ab99f296c7442ec1c84d55b6c0cb511a8b14f3f1a1c9907f4",
+        "check_BrainHIVE_functional_T_pixel_replay_CPU_v2.py": "523afdefa0f8ceab7472d6b3b231aa6e400861e87ebebd35cc0b9ac936f8b99e",
+        "queue_BrainHIVE_functional_T_pixel_replay_v2.py": "377372cdb8a2abfe62e1ef78721fd39ee8293c1b7fe5a9c1d6f24c51efb75ef3",
+        "check_BrainHIVE_functional_T_pixel_wait_CPU_v2.py": "ca0455fe6424c2cf77483034e74b9c88b088635ae053eab9a8f742360fbf20ce"
+      },
+      "separate_from_formal_candidate_admission": true,
+      "requires_positive_functional_result_or_full_four_arm_storage": false
+    }
+  ],
+  "resource_estimate": {
+    "existing_risk_training_seconds": 27923.24372542277,
+    "existing_risk_training_hours": 7.7565,
+    "ordinary_previous_approx_seconds_per_update": 1.1,
+    "new_two_UNet_functional_throughput_unknown": true,
+    "sensitivity": [
+      {
+        "assumed_seconds_per_update": 1.1,
+        "measured_for_new_matrix": false,
+        "training_hours_per_arm": 7.579917,
+        "generation_hours_per_arm": 2,
+        "evaluation_hours_per_arm": 2.3,
+        "total_hours_per_arm": 11.879917,
+        "four_arm_total_hours": 47.519667
+      },
+      {
+        "assumed_seconds_per_update": 2.8,
+        "measured_for_new_matrix": false,
+        "training_hours_per_arm": 19.294333,
+        "generation_hours_per_arm": 2,
+        "evaluation_hours_per_arm": 2.3,
+        "total_hours_per_arm": 23.594333,
+        "four_arm_total_hours": 94.377333
+      }
+    ],
+    "engineering_profile_and_CPU_report_time_not_in_linear_estimate": true,
+    "S_extra_teacher_IP_work_requires_own_profile": true,
+    "four_new_arm_image_count": 66400,
+    "prior_template_conservative_bytes_per_image": 330000,
+    "four_arm_image_bytes_only": 23240000000,
+    "prior_template_feature_bytes_per_arm": 220000000,
+    "prior_template_metadata_bytes_per_arm": 150000000,
+    "prior_template_training_artifact_bytes_per_arm": 64000000,
+    "four_arm_subtotal_before_safety_margin": 26118177280,
+    "old_remaining_commitments_must_be_added": true,
+    "funded_actual_free_bytes": null,
+    "fresh_admission_receipt": null,
+    "no_claim_current_storage_is_sufficient": true,
+    "actual_encoding_feature_sizes_must_be_profiled": true,
+    "four_arm_subtotal_before_postfit_T32_engineering_reserve": 25849741824,
+    "postfit_T32_total_images": 128,
+    "postfit_T32_all_four_arms_output_cap_bytes": 268435456,
+    "postfit_T32_budget_is_reserved_cap_not_measured_footprint": true,
+    "full_V_artifact_audit_fixed_cap_bytes_per_arm": 16777216,
+    "full_V_artifact_audit_cap_charged_within_existing_metadata_allowance": true,
+    "planned_feature_bytes_per_arm": 320000000,
+    "planned_metadata_bytes_per_arm": 268435456,
+    "observed_complete_same_query_risk_feature_logical_bytes": 275011242,
+    "prior_template_feature_budget_is_below_observed_complete_risk": true,
+    "actual_evaluator_file_stat_receipt": "audit/BrainHIVE_functional_evaluation_storage_file_stat_actual_20261021_v1.json",
+    "actual_evaluator_file_stat_receipt_sha256": "40439c0f72dfc495d87fc93203d37f0022302c9ad0783ac66552ac6f1a691e53",
+    "four_arm_subtotal_before_feature_metadata_rebudget": 23916435456,
+    "current_subtotal_is_unfunded_planning_not_admission": true,
+    "planned_metadata_budget_sufficiency_for_real_new_arms_verified": false,
+    "prior_template_four_arm_subtotal_before_postfit_T32_engineering_reserve": 23648000000,
+    "four_arm_subtotal_before_allocated_image_rebudget": 24790177280,
+    "prior_template_four_arm_image_bytes_only": 21912000000,
+    "planned_allocated_bytes_per_future_image": 350000,
+    "actual_completed_image_file_stat_receipt": "audit/BrainHIVE_completed_image_storage_file_stat_actual_20261021_v1.json",
+    "actual_completed_image_file_stat_receipt_sha256": "00fe95b927cf74626b1f450d01ff585f6a9a96c5722fc77f567d10386d057342",
+    "observed_allocated_image_bytes_per_arm": {
+      "risk": 5557514240,
+      "ordinary": 5507158016
+    },
+    "observed_allocated_mean_bytes_per_image": {
+      "risk": 334790.01445783133,
+      "ordinary": 331756.5069879518
+    },
+    "image_budget_scope": "350000 is a planning mean allocation allowance, not a worst-case bound for each individual image; new-arm output size, outer safety margin and complete lifecycle funding remain unverified.",
+    "prior_template_330000_below_both_observed_allocated_means": true,
+    "fixed_storage_helper_330000_is_lower_bound_not_equality": true,
+    "storage_helper_source_sha256": "f8b3f621a195b1f63da2ddf4497de43b5f19a716d75610580b05b9e4639cab8c"
+  },
+  "evaluation_and_decision": {
+    "existing_plan": "configs/paired_statistics_plan.json",
+    "primary": "Locked fixed-real-gallery DINO2AFC; independentSEED/ObjectF1; complete16600 query identity joins; shared crossedsubject/concept bootstrap1000draws(seed1729).",
+    "practical_DINO_increment": 0.01,
+    "provisional_PN_signal": "PN versus newO DINOdelta>=.01 with descriptivepairedlowerCI>0, SEEDdelta>0 withlowerCI>0, ObjectF1delta>=0. Report P and S contrasts with same locked paired procedure. No adaptive winner selection.",
+    "mechanism_interpretation": "To credit ranking specifically, PN must show incremental benefit over P and meaningful contrast to S. If P helps but PN does not, retain that fixed ablation observation; do not erase PN failure or rename P as unlimited new exploration.",
+    "quality_noninferiority_margin": null,
+    "quality_limit": "Engineering artifact rules govern usable records only and cannot prove perceptual quality noninferiority. Margin remains null/unregistered; no such claim is authorized. Whole-V semantic/evaluation denominators and existing positive-signal rules remain unchanged; SOTA is not established by this DRAFT.",
+    "independent_H_available": false,
+    "cross_architecture_generalization_tested": false,
+    "no_final_test_unlock": true,
+    "negative_or_null_valid": true,
+    "actual_evaluation_provenance_entry": "run_BrainHIVE_functional_evaluation_CPU_v1.py",
+    "fixed_four_arm_comparison_entry": "compare_BrainHIVE_functional_V_CPU_v2.py",
+    "entries_are_CPU_verified_not_actual_efficacy": true
+  },
+  "source_sha256": {
+    "brainhive_functional_alignment_v2.py": "62a8e9b4ce48c9535c4257a71d0e9d5e3653beecfa50fed78ccbcca976b30ae3",
+    "check_BrainHIVE_functional_alignment_CPU_v2.py": "e162f229d02c455959e5834abea483bc297fe24f44e744d1f4bd767bdf103afe",
+    "brainhive_response_rank_v1.py": "0a9e251b93721fb99f1fc8d23760a1e7cd9d0cb7c05223b2a8f8e5496962bd49",
+    "brainhive_bounded_component_v1.py": "2b93c0644bde268ae876f0e2b722106852b25910fedc1cffc97820e96cadf5d7",
+    "check_BrainHIVE_response_rank_CPU_v1.py": "b4e3c8d32d58ce02acdaddb3c3fe07c7ac686a3aeece9169ab670b19790c1fc6",
+    "brainhive_native_models_v1.py": "638d4b34116668d5c65058a918bdcaac481c099d084953f7085abeed997ad3c5",
+    "brainhive_component_generator_v1.py": "0565c65fe86ba7fed61b75807fdfb5066b6d2270cab1ddaffef7933cccfc1fa1",
+    "brainhive_component_data_v1.py": "0db2cddcc8ddddc1da1e752be04dfe95b60f219bdd99548c5944e39e42ba71c9",
+    "check_BrainHIVE_functional_parentQ_CPU_v2.py": "6622596e661c9a71b9c0ba670fc903f33f9648029eb990a0e24dd86d37c5e637",
+    "brainhive_functional_training_contract_v2.py": "f8b3f621a195b1f63da2ddf4497de43b5f19a716d75610580b05b9e4639cab8c",
+    "train_BrainHIVE_functional_alignment_v2.py": "9a8d2672d31a5a54e9fdc7c714228a575cf20789e6a8fb13c5f1f582d8323b6f",
+    "check_BrainHIVE_functional_training_contract_CPU_v2.py": "5a8b18f278113f2be7848cc267bd616bee284df2d417ebc72836868b848e5699",
+    "generate_BrainHIVE_functional_alignment_V_v2.py": "03d89fda08aff0f8ff1821ab8c5a90a96122eca528544c4d6ae36971ec52bceb",
+    "check_BrainHIVE_functional_generation_CPU_v2.py": "11227457bb0132f7fa97888a4d6c6c418b41967e7c931bda947b87dbc54743f0"
+  },
+  "new_trainer_source_sha256": "9a8d2672d31a5a54e9fdc7c714228a575cf20789e6a8fb13c5f1f582d8323b6f",
+  "storage_admission_receipt": null,
+  "storage_admission_sha256": null,
+  "allowed_private_roots": [],
+  "image_segments": [],
+  "incomplete_fields_are_intentional_DRAFT_execution_blockers": true,
+  "created_utc": "2026-10-21T16:37:12.185451+00:00",
+  "existing_main_recipe_sha256": "55d92772f3e76240799cf69df12f590229a408c7b7a48050b9a0c7ec01f31db3",
+  "CPU_contract_sha256": "79cbba7cc86a2ce5d3b7867f40771d262ebaf089de273772d7e640411d6d8ad8",
+  "CPU_contracts_actual_server": [
+    {
+      "path": "/root/brainhive_reproduction_20261020_v1/audit/functional_alignment_CPU_contract_server_v2.json",
+      "sha256": "a3916fa8e8514fe123ecf3e2298faba239d17522ae3d0d99b8983eed9587b9e5"
+    },
+    {
+      "path": "/root/brainhive_reproduction_20261020_v1/audit/functional_parentQ_CPU_contract_server_v2.json",
+      "sha256": "96197dc3ad925659be246937e202332e168f540b3c4374ed888a893d61174ffd"
+    },
+    {
+      "path": "/root/brainhive_reproduction_20261020_v1/audit/functional_training_contract_server_v2.json",
+      "sha256": "b88b7068758d8309e83db0dedc0891ae351549278809e57e74a0e400566fc2bd"
+    },
+    {
+      "path": "/root/brainhive_reproduction_20261020_v1/audit/functional_generation_contract_server_v2_metadata_precision.json",
+      "sha256": "a89453e2f402d29fed61ddde1a2ed97320b8c0cbaf269a92873b65634fefe451"
+    }
+  ],
+  "runtime_and_full_lifecycle_ready": false,
+  "updated_utc": "2026-10-22T04:15:18.088972+00:00",
+  "cancelled_subset_performance_pilot": {
+    "status": "CANCELLED_BEFORE_ANY_PN_FIT_OR_PN_IMAGE_PERFORMANCE_RESULT",
+    "prior_project_split_salt": "functional_pilot_v1",
+    "new_split_or_subset_trainer_created": false,
+    "reason": "Use full formal T training without an extra subset-performance selection stage; retain finite engineering profiles and post-fit T-only artifact checks. Existing CPU engineering evidence is not erased.",
+    "former_optional_engineering_block": {
+      "engineering_only": true,
+      "must_be_fixed_before_execution": true,
+      "receipt": null,
+      "cannot_replace_fullT_training_or_fullV_evaluation": true,
+      "cannot_select_hyperparameters_or_seed": true
+    }
+  },
+  "postfit_T32_engineering_images": {
+    "status": "ENTRY_AND_FIXED_METADATA_CPU_VALIDATED_NOT_GPU_VALIDATED_NOT_ADMITTED",
+    "required_after_each_complete_formal_fit_before_full_V": true,
+    "not_required_to_have_postfit_images_before_first_fit": true,
+    "entry_and_complete_registration_must_be_implemented_and_pinned_before_formal_admission": true,
+    "arms": [
+      "O",
+      "P",
+      "PN",
+      "S"
+    ],
+    "queries_per_arm": 32,
+    "total_additional_images": 128,
+    "image_per_query": 1,
+    "UNet_NFE_per_image": 4,
+    "resolution": 512,
+    "CFG": 0,
+    "IP_scale": 1,
+    "input_policy": "Same fixed sub-01 32 T stimuli as native_function_T32_v2, real OOF EEG conditions and their own affine; no visual teacher inputs at generation. Not an independent performance split.",
+    "existing_input_registration": "configs/BrainHIVE_native_function_T32_v2.json",
+    "existing_input_registration_sha256": "654662b4ae45f2e983eda58b07e6b2019c6beed90bf9153ea6bf7583c658ee1b",
+    "existing_oracle_input_identity_sha256": "1105c202b67eba4415b6ffce74cf8eb007bc773666d08703b4ff508e5c83708e",
+    "seed_policy": "Pinned brainhive_functional_training_contract_v2.query_identity with the fixed split_manifest.version; same per-query stream across all four arms, no best-of-N. Complete 32 identities/seeds/cache-row bindings must be saved before formal admission.",
+    "fixed_checkpoint": "Final full-T update24807; existing Dfit-only strength choice applied unchanged. No engineering-image selection of checkpoints or strengths.",
+    "new_entry": "generate_BrainHIVE_functional_postfit_T32_v1.py",
+    "new_entry_sha256": "3f7060ea6fd3e95dc905657648f9159d8972a73bf5d62e00a261f3be56a4d63f",
+    "complete_query_registration": "configs/BrainHIVE_functional_postfit_T32_queries_DRAFT_v1.json",
+    "complete_query_registration_sha256": "5019b618f570d9454be0744ffeb5985a939227a77835f7f990c4f755b45a29e5",
+    "actual_images_completed": 0,
+    "maximum_seconds_per_arm": 1200,
+    "timeout_validated_by_actual_profile": false,
+    "maximum_total_output_bytes_per_arm": 67108864,
+    "numeric_and_identity_rules": [
+      "All32 registered query identities and source rows accounted for; no omitted cases.",
+      "Finite corrected conditions/IP tokens/model outputs; native four UNet evaluations and one VAE decode per image.",
+      "All saved images decode as512x512 RGB and file/pixel hashes match audit records."
+    ],
+    "spatial_diagnostic_policy": "Record exact spatial constants, near constants under previously registered max-channel-population-std<=1/255 definition, and decoded-pixel duplicates. Retain every case and report flags; no semantic or quality score used to choose a model, seed or V subset.",
+    "failure_policy": "Mechanical or numerical failures stop the affected job with complete failure/prefix evidence; do not silently mark complete or resample. Mere object mistakes or diagnostic flags do not select heads, cause extra fitting or reduce the required full-V denominator.",
+    "full_V_spatial_audit_entry": "audit_BrainHIVE_functional_full_V_artifacts_CPU_v1.py",
+    "full_V_spatial_audit_source_sha256": "b627f22219800f00ef45718b2fd58db0ffe9005350ebfcb5e7d9f792f192d71d",
+    "full_V_artifact_denominator_per_arm": 16600,
+    "perceptual_quality_noninferiority_claimed": false,
+    "cannot_replace_fullT_training_or_fullV_evaluation": true,
+    "admission_note": "Actual profile/helper pass is insufficient; the new T32 entry/identity registration, full-V artifact audit, finite limits and all storage commitments must be resolved in the promoted recipe before formal fitting.",
+    "query_registration_evidence_scope": "Local metadata and seed verification; cache-row/source mapping transcribed from saved actual CPU receipts. No new remote payload hash, tensor/image-manifest CSV row read, runtime or admission.",
+    "query_registration_CPU_receipt": "audit/BrainHIVE_functional_postfit_T32_queries_CPU_v1.json",
+    "query_registration_CPU_receipt_sha256": "7a0c1ee131959e31a19eb6f9ad195817de1399fb480e76caca8a39993c49346d",
+    "new_entry_CPU_checker": "check_BrainHIVE_functional_postfit_T32_CPU_v1.py",
+    "new_entry_CPU_checker_sha256": "2b9376af45223d67e639f8733a951af2234db588036fcae099a585e009202566",
+    "new_entry_CPU_receipt": "audit/BrainHIVE_functional_postfit_T32_CPU_contract_v1.json",
+    "new_entry_CPU_receipt_sha256": "aeac10369e9edbd2d434524dab3428e3838ed3543a8545a3955e0522bb31e91f",
+    "full_V_spatial_audit_CPU_checker": "check_BrainHIVE_functional_full_V_artifacts_CPU_v1.py",
+    "full_V_spatial_audit_CPU_checker_sha256": "14e745ccdce1fb265f4fca6cafcc2ca76c3a6c94c8679902b55263c9754944a9",
+    "full_V_spatial_audit_CPU_receipt": "audit/BrainHIVE_functional_full_V_artifacts_CPU_contract_v1_final.json",
+    "full_V_spatial_audit_CPU_receipt_sha256": "6aa2498f4648f413f3f99f298dfbd4606a8564c7ac0c44b5559d9c31be533748",
+    "actual_native_GPU_generation_validated": false,
+    "promoted_postfit_runtime_recipe_created": false,
+    "reviewed_postfit_runtime_admission_created": false,
+    "runtime_order_and_source_contract": "Independent reviewed per-current-arm postfit wrapper; four real formal recipes/profiles/full-V storage, only own final update24807/Dfit artifacts. Never mutate the trained recipe core or require future heads. Own OOF affine and fixed32 EEG, no target conditioning; true GPU hooks/pixels/time unverified.",
+    "full_V_artifact_audit_budget": {
+      "maximum_seconds": 1800,
+      "maximum_output_bytes": 16777216,
+      "charged_within_existing_per_arm_metadata_budget": true,
+      "output_policy": "Fresh child of sealed own-arm metadata_root; full cap must fit remaining metadata allowance. All16600 denominator including failures/unknown. No automatic retry or semantic-quality claim.",
+      "measured_full_V_runtime": false,
+      "synthetic_16600_row_gzip_output_forecast_bytes": 9953600,
+      "forecast_is_not_real_V_measurement_or_guarantee": true
+    }
+  },
+  "execution_order_revision": {
+    "UTC": "2026-10-22T01:22:20.075973+00:00",
+    "previous_DRAFT_sha256": "b197c6f15ea3c6b4f1b69ff2089dfc8c5d60d6f9817befb26359ad3de8298843",
+    "reason": "Resolve project-only subset pilot versus optional-engineering wording before PN fitting; preserve complete formal training and all V controls.",
+    "ordered_stages": [
+      "Lock engineering rules, real entries, complete fixed identities and frozen-diagnostic admission interpretation.",
+      "Finish original main, frozen native T32 and existing zero/disabled one-query pixel replay.",
+      "Run all four finite actual GPU engineering profiles and fund full old+new lifecycle.",
+      "For each arm train full132300 real OOF queries for3passes24807updates, fix final head, calibrate only on existing Dfit.",
+      "Generate/audit fixed32 postfit T-only engineering images per arm; no performance selection.",
+      "Generate/evaluate complete16600 V images per arm and interpret full comparison once."
+    ],
+    "source_guard_scope": "Existing pinned helper checks a subset of engineering/profile/storage conditions. It does not enforce all document-only quality, pixel replay or postfit T32 requirements; no new automatic launch exists.",
+    "new_candidates": 0,
+    "new_fits": 0,
+    "new_GPU_jobs": 0,
+    "method_topology_objectives_and_primary_decision_unchanged": true
+  },
+  "native_T32_evidence_readout": {
+    "policy": "configs/BrainHIVE_native_T32_evidence_policy_v1.json",
+    "policy_sha256": "ff6b8daf710fb3e089082ebc259129601cc0a0cc73319463a073cecdc932c587",
+    "reader": "read_BrainHIVE_native_T32_evidence_CPU_v1.py",
+    "reader_sha256": "0215e165309cd6517ef2ae2dc866755945a7ccd8ab7bdc5e165427a14812d232",
+    "CPU_checker": "check_BrainHIVE_native_T32_evidence_CPU_v1.py",
+    "CPU_checker_sha256": "cfba53ebf12e8ef2e6b09e76067f8f277e143819c62c92618c6784b9c0c909e3",
+    "CPU_receipt": "audit/BrainHIVE_native_T32_evidence_synthetic_CPU_contract_20261021_v1.json",
+    "CPU_receipt_sha256": "087b16a875a91930884c58794ddb27df1db1ff9de393f9aa2f7ba92e7cf4e9f0",
+    "aggregation": "All4 times equally within query, then all32 queries equally; natural0 direction only; no time/layer/query selection, p-value or practical-effect threshold.",
+    "scope": "Missing-reference-Q DDPM-real-T-latent probe; teacher self-J is an algebraic identity, not utility. Different Q/negative mapping from v2. Any near-zero without joint data means masked-v2 correspondence UNKNOWN.",
+    "automatic_admission": false,
+    "contract_consumable_review_issued": false,
+    "actual_diagnostic_values_read": false,
+    "actual_reader_executed_on_completed_diagnostic": false
+  },
+  "additional_engineering_source_sha256": {
+    "generate_BrainHIVE_functional_postfit_T32_v1.py": "3f7060ea6fd3e95dc905657648f9159d8972a73bf5d62e00a261f3be56a4d63f",
+    "check_BrainHIVE_functional_postfit_T32_CPU_v1.py": "2b9376af45223d67e639f8733a951af2234db588036fcae099a585e009202566",
+    "audit_BrainHIVE_functional_full_V_artifacts_CPU_v1.py": "b627f22219800f00ef45718b2fd58db0ffe9005350ebfcb5e7d9f792f192d71d",
+    "check_BrainHIVE_functional_full_V_artifacts_CPU_v1.py": "14e745ccdce1fb265f4fca6cafcc2ca76c3a6c94c8679902b55263c9754944a9",
+    "read_BrainHIVE_native_T32_evidence_CPU_v1.py": "0215e165309cd6517ef2ae2dc866755945a7ccd8ab7bdc5e165427a14812d232",
+    "check_BrainHIVE_native_T32_evidence_CPU_v1.py": "cfba53ebf12e8ef2e6b09e76067f8f277e143819c62c92618c6784b9c0c909e3",
+    "run_BrainHIVE_functional_evaluation_CPU_v1.py": "634600bc657e34d8c462a87708ba487444ad802a89d89580c83fe7cb86a3c341",
+    "check_BrainHIVE_functional_evaluation_CPU_v1.py": "bd1deb25916af434ebeacec820a8159a32a5b6732e82ec22ae0f5ed77b9f10ec",
+    "compare_BrainHIVE_functional_V_CPU_v2.py": "677adac8a67bedc796122dc82d39e4b3124c3cc7f80c7841ba8ad6d3ab78c71d",
+    "check_BrainHIVE_functional_V_comparison_CPU_v2.py": "f15a68f66313e31c7a565ea2930a5c8703f10ac2bea5c1f94c1c2951ffd4908e"
+  },
+  "evaluation_and_comparison_CPU_entries": {
+    "status": "IMPLEMENTED_CPU_SYNTHETIC_AND_READONLY_REVIEW_ONLY_NO_ACTUAL_NEW_V",
+    "evaluation_entry": "run_BrainHIVE_functional_evaluation_CPU_v1.py",
+    "comparison_entry": "compare_BrainHIVE_functional_V_CPU_v2.py",
+    "source_sha256": {
+      "run_BrainHIVE_functional_evaluation_CPU_v1.py": "634600bc657e34d8c462a87708ba487444ad802a89d89580c83fe7cb86a3c341",
+      "check_BrainHIVE_functional_evaluation_CPU_v1.py": "bd1deb25916af434ebeacec820a8159a32a5b6732e82ec22ae0f5ed77b9f10ec",
+      "compare_BrainHIVE_functional_V_CPU_v2.py": "677adac8a67bedc796122dc82d39e4b3124c3cc7f80c7841ba8ad6d3ab78c71d",
+      "check_BrainHIVE_functional_V_comparison_CPU_v2.py": "f15a68f66313e31c7a565ea2930a5c8703f10ac2bea5c1f94c1c2951ffd4908e"
+    },
+    "local_CPU_receipt_sha256": {
+      "audit/BrainHIVE_functional_evaluation_CPU_contract_v1.json": "4cfc6ca385adcdd204138acc4f8af2fa75fe6efc4b188591e39f74db3eab7334",
+      "audit/BrainHIVE_functional_V_comparison_CPU_contract_v2.json": "9a5fcef0d4c382e9cdbbd03f3966ee0009eefbe9392354e9688b0c357fe91d54"
+    },
+    "local_CPU_checks": 28,
+    "server_CPU_verified": true,
+    "actual_full_V_evaluation_or_comparison_completed": false,
+    "actual_V_values_read": false,
+    "actual_GPU_used": false,
+    "automatic_launch_enabled": false,
+    "evaluation_limits": {
+      "maximum_seconds": 14400,
+      "maximum_output_bytes": 67108864,
+      "minimum_CPU_headroom_bytes": 2147483648
+    },
+    "comparison_limits": {
+      "maximum_seconds": 1800,
+      "maximum_output_bytes": 67108864,
+      "minimum_CPU_headroom_bytes": 2147483648
+    },
+    "comparison_forecast_bytes": 51118826,
+    "all_outputs_charged_within_existing_own_metadata_budget": true,
+    "comparison_output_charged_to_PN_metadata": true,
+    "comparison_before_all_four_actual_evaluation_closures_forbidden": true,
+    "formal_lifecycle_plan_and_runtime_resources_still_pending": true,
+    "science_and_primary_decision_changed": false,
+    "server_CPU_receipt": "audit/BrainHIVE_functional_evaluation_comparison_server_CPU_actual_20261021_v1.json",
+    "server_CPU_receipt_sha256": "a72df4af27d15798fb78ffe99704e224bf8bcade973f88f97cd0ba27b19aad36",
+    "server_CPU_checks": 28
+  }
+}

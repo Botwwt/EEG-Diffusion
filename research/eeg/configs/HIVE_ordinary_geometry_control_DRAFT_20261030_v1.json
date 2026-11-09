@@ -1,0 +1,63 @@
+{
+  "status": "DRAFT_COMPONENT_IMPLEMENTED_CPU_VERIFIED_NOT_GENERATOR_PROFILED_FITTED_OR_ADMITTED",
+  "purpose": "First-method geometry attribution, not a second innovative method",
+  "depends_on_review_of_complete_current_single_seed_R80_loss_controls": true,
+  "training_seed": 1729,
+  "new_training_seeds_allowed": false,
+  "baseline": "immutable originalordinary a66869e5...9e11cc03 strength1/radius0.25",
+  "ordinary_question": "Does the whole constrained correction geometry improve paired images over an ordinary Euclidean residual with the same actual-host coordinates and generator objective?",
+  "Euclidean_control": "u=(c-beta)/gamma; u_prime=u+rho*M_theta(u); c_prime=c+gamma*rho*M_theta(u)",
+  "rho": 0.25,
+  "preserved": [
+    "actualownEEGoutputaffine",
+    "same525568parameterMLP",
+    "zerooutputinitialization",
+    "residualrhoinitialscale",
+    "frozenEEGandA/P/IP/UNet",
+    "sameepsilonplus0.1tokenobjective",
+    "sameT132300realOOFqueries",
+    "sameoriginal1729queryorders",
+    "same3passes24807updates",
+    "fixedfinalcheckpoint",
+    "oldDfitpermissions",
+    "samequerynoise/nativefoursteps/singleimage"
+  ],
+  "removed_as_one_block": [
+    "directioncentering",
+    "tangentprojection",
+    "boundedstepdenominator",
+    "normrestoration"
+  ],
+  "attribution_limit": "Tests the whole geometry block; does not separately identify each suboperation or prove equal capacity/equal gradients.",
+  "not_permitted": [
+    "reuseoldtrainedordinaryweightsundernewformulaandcallitmatchedretraining",
+    "newseedsearch",
+    "testbasedrecalibration",
+    "unregisteredpartialfitcalledfullT",
+    "claimgeometrygainfromnormproofalone"
+  ],
+  "remaining_before_any_launch": [
+    "reviewcurrentfullR80losscontrolresults",
+    "implementseparatefullTtraining_calibration_generation_evaluation_lifecyclewithunchangedordinarybaseline",
+    "actualGPUidentity_gradient_frozenhost_resourceprofile",
+    "transparentdata/resource/sourceadmissionandcompleteevaluationbudget"
+  ],
+  "GPU_jobs_started": 0,
+  "model_updates": 0,
+  "new_images": 0,
+  "second_GPU_allowed": false,
+  "novelty_established": false,
+  "status_history": [
+    "DRAFT_FORMULA_ONLY_NOT_IMPLEMENTED_PROFILED_FITTED_OR_ADMITTED"
+  ],
+  "component_source": {
+    "path": "brainhive_ordinary_geometry_control_20261030_v1.py",
+    "bytes": 1935,
+    "sha256": "d0532f80bd2f5e4ac95d986cfc1112c54075c965bfda2d7b9a86c0c3f01756b8"
+  },
+  "actual_CPU_proof": "audit/HIVE_geometry_control_component_CPU_20261030_v1/completion.json",
+  "CPU_component_verified": true,
+  "real_zero_head_queries": 2000,
+  "actual_generator_profile_verified": false,
+  "full_training_and_evaluation_pipeline_implemented": false
+}

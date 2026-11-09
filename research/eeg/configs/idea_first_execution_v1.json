@@ -1,0 +1,79 @@
+{
+  "version": "idea_first_execution_v1",
+  "registered_utc": "2026-10-19T03:07:25.363853+00:00",
+  "total_GPU_hour_cap": 40,
+  "training_seed": 1729,
+  "subjects": 10,
+  "primary_priority": "Validate EEG-error adaptation idea before further system reproduction or full reference expansion",
+  "user_override": "2026-10-18: strict alignment for a claimed strong baseline; prioritize idea validation",
+  "fixed_condition_chain": "REF_REG",
+  "reference_choice_basis": "Prospectively fix official direct ATMS branch, not performance selection on partial V or a cheap substitute for the older selected-chain rule",
+  "old_reference_selection_rule_retained_and_deferred": true,
+  "source_sha256": {
+    "train_idea_first_atms_v1.py": "7d8dd71496f3c853a44f1b86d447b12cf1be90b620b1e62cdf8e56ec9fa62ba6",
+    "run_idea_first_prerequisites_v1.py": "fc6035ba08f74a138a41f70481eed5f42821df98de82fc3b00ac18dcae44fadc",
+    "build_idea_first_oof_cache_v1.py": "ee65757a178ae26662c6b0e8c1025a072596376d1c6e66699e355a8e0bc5f3e1",
+    "validate_idea_first_error_channel_v1.py": "1479d4f01e9fefa1b88c88750ec0b93cfee7e3b9af59f366e60db2121b3ae0cb",
+    "train_full_reference.py": "e6baef2b1510b1e6beaebf4563134f8dee4d7fb7dd7c5477ccdb74b9e35f413e",
+    "run_native_oof_stage.py": "c4624b412a811a2a29e0ed533badbd68ac8d03fc5a720a1f2f78cfea3e2933ba",
+    "run_gpu_job.py": "cfac7ab3448b73a5b9db8ab3e594829c8c7bb7c71876685ccf12f3d647683f7a",
+    "profile_native_projector_cost.py": "6486bafd27651c19e5ef643c480bf85cf8df3247ecc36da41626cdccc52272c0",
+    "generate_reference_images.py": "866385edf114b333d3d1e989c48fe0ba1a55a0407f8968d56e9827a899902caa",
+    "profile_standard_generator.py": "b97eb88379e5162b6f4340788eec9b71dc39aa2dde5df150754da5b98c054748",
+    "semantic_evaluator.py": "a57e9624102f0856634866c507e272166cf96ad344c3ad0d628bb20cded3e8eb",
+    "image_evaluation.py": "e14172655a156040b625694bad1ffbd441ad0b648c876e9a6b150d03e8d27f37",
+    "extract_image_features.py": "3b24d22c4ac62f23efa8d4cf80bef148b0d075775ba54c6be46699d3bccd32ef",
+    "locked_metrics.py": "c882fe6a2158cf04b320d22280e289c7e53945a989f60a2c08d27662272d4393",
+    "score_full_manifest.py": "be75163c2c22c7d97c24401abbb01d176e4f61c28b0cb0b101259881e81fc0cf",
+    "native_error_channel.py": "de0cec43cefe20c70517a10a7467c3d451e0daf5029a1a39341fa59abeaa1e71",
+    "error_channel_validation_metrics.py": "33b5207eebd37ee6b43d97c4852c73c58e879ce82bb03c4c37440227f32d2a3d",
+    "paired_analysis.py": "ecff5cb88a0695102614ea8094a362d758e1ae2e032aafb29f5fc452d213f935",
+    "configs/idea_first_error_validation_plan_v1.json": "01b9b11c5b8f329b150574e54d987cf2046d7dd47c03def059b872b865aedec1",
+    "configs/full_reference_resolved.json": "bffb6624f1524da82c33cc63b199a74c324a328fbc3df22a941354b1317974e0",
+    "configs/split_manifest.json": "1969d664555d08399e77a2d76c011f19eadbda1ce251f9c72d72c94de3910ad2"
+  },
+  "official_source_sha256": {
+    "Generation/benchmark.sh": "4e397de020e793948ce14aeec413467538eff468fbecb7209ebfe5ccfb0415f8",
+    "models/atms.py": "e2eb588dfb8d64ff2400594afd0ef7f639833ef29174a36ba736804cdf2fd863",
+    "encoder_utils.py": "c7a644e6333415a0d394a98d87e0f9811dfe82b9d48dd129664e665aabec1cbd"
+  },
+  "current_evaluator_worker": 95161,
+  "role_max_seconds": {
+    "full": 3600,
+    "oof0": 2700,
+    "oof1": 2700
+  },
+  "training_output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/runs/idea_first_ATMS_patience50_v1",
+  "cache_output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/conditions/idea_first_ATMS_patience50_v1",
+  "validation_output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/error_validation/idea_first_ATMS_patience50_v1",
+  "alignment_and_limits": {
+    "official_ATMS_class": "Exact official ATMS() default 3200413 parameters; strict checkpoint loading",
+    "encoder_training": "Official 100-epoch phase cap, batch64, AdamW lr3e-4 wd.01, training generation loss alpha.90, validation alpha.99; patience50 aligned to official benchmark.sh",
+    "data": "All10 subjects, genuineR4,63channels250timepoints; same registered T gradient and V selection; concept-OOF teachers exclude heldout T and allD",
+    "mandatory_project_protocol_differences": [
+      "Existing sole seed1729 replaces official42",
+      "Registered concept-disjoint T/D/V replaces official random10percent validation; no D/test fitting",
+      "Keep final incomplete batch for full sample coverage",
+      "Mechanism track uses fixed standard SDXL512/20Euler CFG5 IP1; official benchmark uses SDXL-Turbo4steps",
+      "Exactly one generated image/query, official entrypoint three rounds",
+      "Direct-encoder branch only; no claim to reproduce all ATM reconstruction pipelines or published scores"
+    ],
+    "old_patience20_results": "Preserved under old run IDs; not reused as patience50 encoder images or labelled an exact official baseline",
+    "capacity_expansion": false
+  },
+  "image_study_followup": {
+    "required": [
+      "Actual full frozen-UNet condition response comparison",
+      "Actual measured training cost and complete matched image-study budget",
+      "Clean/Iso/Moment/Conditional/Real-Paired identical data,capacity,updates,sampling",
+      "Actual EEG inference image generation and per-query evaluation",
+      "Correct versus permuted EEG paired image evidence"
+    ],
+    "CPU_only_result_is_image_success": false,
+    "formal_full_V_scope_unchanged": 16600,
+    "formal_full_V_may_be_replaced_with_subset": false,
+    "diagnostic_scope_must_be_prospectively_named_and_never_labelled_formal": true,
+    "final_test_unlocked": false,
+    "adapter_training_automatically_authorized_by_this_prerequisite_plan": false
+  }
+}

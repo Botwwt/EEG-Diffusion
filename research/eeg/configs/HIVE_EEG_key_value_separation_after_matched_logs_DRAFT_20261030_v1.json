@@ -1,0 +1,71 @@
+{
+  "status": "DERIVED_CANDIDATE_ONLY_NOT_IMPLEMENTED_PROFILED_OR_ADMITTED",
+  "reason": "The matched evolving-state T prefix does not support assuming joint E/P updates are better than EEG-only. It does not establish why or select a control winner. Finish the unchanged five-arm image study first.",
+  "evidence": [
+    "audit/HIVE_matched_joint_EEG_training_prefix_20261030_v1/actual_training_prefix_summary.json",
+    "audit/HIVE_matched_joint_EEG_training_prefix_20261030_v1/independent_local_numeric_audit.json",
+    "audit/HIVE_shared_token_value_capacity_20261030_v1/architecture_direction_after_shared_token_v4.json"
+  ],
+  "hypothesis_not_established_fact": "Updating the common condition simultaneously changes value content and key-dependent weighting. A separate EEG value input could permit content learning with fixed condition keys; whether this helps must be tested in the full nonlinear generator.",
+  "first_order_identity_at_fixed_query": {
+    "definitions": "For one head/query: s=Z W_K q/sqrt(d), p=softmax(s), V=Z W_V, o=p^T V.",
+    "differential": "do = p^T dZ W_V + (diag(p)-p p^T)[dZ W_K q/sqrt(d)] transposed times V.",
+    "interpretation": "Two paths exist. Their existence does not show gradient conflict, key drift, or causal harm in the current E/P study.",
+    "fixed_query_limit": "In a full trajectory q changes with the latent; fixed keys do NOT fix attention maps or preserve baseline spatial layout."
+  },
+  "candidate_forward": {
+    "frozen_anchor": "Z0(e)=P0(A(O(E0(e))))",
+    "trainable_value_tokens": "Ztheta(e)=Ptheta(A(O(Etheta(e))))",
+    "per_layer_keys": "K_l(e)=Z0(e) W_K_l",
+    "per_layer_values": "V_l(e)=Ztheta(e) W_V_l",
+    "attention": "softmax(Q_l K_l(e)^T/sqrt(d_l)) V_l(e)",
+    "residual_view": "DeltaZ(e)=Ztheta(e)-Z0(e); DeltaV_l=DeltaZ W_V_l",
+    "mean_and_contrast": "DeltaZ=1 mean_token(DeltaZ)+[I-11^T/4]DeltaZ; allow both, no hard mean lock supported by the previous oracle.",
+    "initialization": "Etheta=E0 and Ptheta=P0 with identical dtype/affines/eval behavior, then verify actual native zero-difference pixel replay. Algebra alone is not GPU parity evidence.",
+    "ordinary": "The same original O is frozen in both branches; do not retrain, overwrite or recalibrate it.",
+    "normal_inference_inputs": "The query EEG and fixed query RNG only. No query image, label, teacher tokens, or answer gallery.",
+    "not_equivalent": "Freezing W_K while changing shared Z does not freeze K. A true separate input is required; the previously audited key stack has no supported nonzero common numerical kernel."
+  },
+  "cost_to_profile_not_measured": {
+    "extra_stored_parameters_for_separate_E_and_P_copy": 14853120,
+    "trainable_parameters": 14851072,
+    "two_E_O_A_P_front_end_evaluations": true,
+    "UNet_steps_per_query": 4,
+    "same_UNet_steps_not_equal_total_training_compute": true,
+    "GPU_memory_runtime_and_complete_storage_admission_required": true
+  },
+  "learning_and_claim_limits": [
+    "This is a conditioning-architecture candidate, not a sampler change or a claimed new mathematical theorem.",
+    "The previous per-stimulus true-image oracle proves only selected fixed-QK response capacity; one EEG predictor across new stimuli has NOT been learned or verified.",
+    "Do not use the current training prefix to tune epochs, learning rates, clip thresholds, loss weights, or strengths, or to replace the original primary arm.",
+    "If later implemented, require actual generated-image improvement over frozen ordinary and a matched common-input policy, plus correct versus same-concept wrong EEG controls. A c-only input control would test whether raw EEG outside the frozen condition is used.",
+    "The current five fits all include O. Standalone or independent additive-method claims require a separately trained matched no-O cell; inference-only O bypass is not that cell.",
+    "No extension from four historical layers/eight T stimuli to all70 layers, EEG physiology, heldout quality, SOTA or CCF A acceptance."
+  ],
+  "primary_prior_art_review": [
+    {
+      "paper": "Perfusion: Key-Locked Rank One Editing for Text-to-Image Personalization",
+      "url": "https://arxiv.org/html/2305.01644v2",
+      "sections": "Introduction and section4, actual HTML inspected",
+      "existing_principle": "Separate K/where and V/what pathways; key-locking with learned value content already exists.",
+      "boundary": "The source is text-to-image personalization, not evidence that EEG condition keys are the cause of our current training differences."
+    },
+    {
+      "paper": "ConceptSplit (ICCV2025)",
+      "url": "https://arxiv.org/html/2510.04668v1",
+      "sections": "3.1,3.2 and4.2, actual HTML inspected; CVF direct fetch403 retained as access limitation",
+      "existing_principle": "Token-wise value adaptation and fixed keys; embedding changes can alter actual keys even with frozen projections.",
+      "boundary": "Generic value-only adaptation is NOT our novelty. It remains a borrowed structural control, needing an EEG-specific mechanism and reproducible actual reconstruction increment."
+    }
+  ],
+  "next_execution_decision": "Do not append another fit to the live queue. Complete the sealed current five fits, state audits, original80->400 image gates and applicable conditional validators. Then decide from full positive or negative evidence whether this candidate merits a separately registered real engineering profile and experiment.",
+  "new_GPU_jobs": 0,
+  "new_neural_updates": 0,
+  "confirmed_novelty": false,
+  "SOTA": false,
+  "later_fixed_Q_tangent_check": {
+    "evidence": "audit/HIVE_attention_path_tangent_diagnostic_20261030_v1",
+    "priority": "DEPRIORITIZE_FIXED_KEY_VALUE_SPLIT_AS_A_CONFLICT_REMEDY; NOT_FALSIFIED_FOR_OTHER_OBJECTIVES",
+    "reason": "All16 per-stimulus/arm common-token key/value gradient dots positive under the fixed-Q response-MSE diagnostic. Not an actual E/P/end-image gradient check, nor a general impossibility proof."
+  }
+}

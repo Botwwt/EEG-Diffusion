@@ -1,0 +1,211 @@
+{
+  "status": "DRAFT_RELEASED_SYNCLR_BASELINE_INTERFACE_NOT_IMPLEMENTED_OR_ADMITTED",
+  "UTC": "2026-10-30T21:53:37.156893+00:00",
+  "purpose": "Reproduce an author-recommended released native HIVE prior under a comparable EEG and reconstruction protocol before claiming state of the art. This is a strong-baseline task, not a new innovation.",
+  "author_repository": {
+    "commit": "f06db69fcc4a029439e369c5c3dba6099e57560e",
+    "actual_tree": "5e102b596c10695d6b67bd0229d807698fa26b1e",
+    "same_as_current_pinned_source_commit": true
+  },
+  "prior": {
+    "repository": "fakekungfu/Fusion-Prior-SynCLR_B32_VAE",
+    "revision": "e949706d5c344f38f80bc3492b438226205ce474",
+    "weight_files": [
+      {
+        "rfilename": "attn_adapter/diffusion_pytorch_model.safetensors",
+        "blobId": "203d3c386db07d9f0f87d6f770d71ee4a2b133f8",
+        "size": 1363164152,
+        "lfs": {
+          "sha256": "f915b5cc17f9ff2f43c6805c6f436ef137c91fa6da836e205794c524f32cc9eb",
+          "size": 1363164152,
+          "pointerSize": 135
+        }
+      },
+      {
+        "rfilename": "fusion_encoder/diffusion_pytorch_model.safetensors",
+        "blobId": "712ece0a64602a575ff8e939e06689645acdc8ac",
+        "size": 76567896,
+        "lfs": {
+          "sha256": "9b8a6f94a9ff3e2ed079867c44647e0fb64ba6dc4339d3fe35241ab56bc9cd02",
+          "size": 76567896,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "proj/diffusion_pytorch_model.safetensors",
+        "blobId": "77abd4f6ee2901247a9c14a9a60bd935bdc1ce39",
+        "size": 33603920,
+        "lfs": {
+          "sha256": "00e152e30c19a1b19f591697fd5a17ac9b31dbd966f29dd1a50d83235c1e2a9d",
+          "size": 33603920,
+          "pointerSize": 133
+        }
+      }
+    ],
+    "config_files": {
+      "fusion_encoder": {
+        "name": "SynCLR_B32_VAE_fusion_encoder_config",
+        "requested_url": "https://huggingface.co/fakekungfu/Fusion-Prior-SynCLR_B32_VAE/resolve/e949706d5c344f38f80bc3492b438226205ce474/fusion_encoder/config.json",
+        "UTC": "2026-10-30T21:46:19.423058+00:00",
+        "status": "FETCHED_JSON",
+        "HTTP_status": 200,
+        "final_url": "https://huggingface.co/api/resolve-cache/models/fakekungfu/Fusion-Prior-SynCLR_B32_VAE/e949706d5c344f38f80bc3492b438226205ce474/fusion_encoder%2Fconfig.json?%2Ffakekungfu%2FFusion-Prior-SynCLR_B32_VAE%2Fresolve%2Fe949706d5c344f38f80bc3492b438226205ce474%2Ffusion_encoder%2Fconfig.json=&etag=%220add1544315eedfd501549edc9a836ccd03293b9%22",
+        "bytes": 257,
+        "sha256": "951341ca424a6c8235e9108ae610224cc602a07ba2e3c722dad5c5aa8f2b100c",
+        "local_path": "audit/HIVE_released_prior_metadata_20261030_v1/SynCLR_B32_VAE_fusion_encoder_config.json",
+        "seconds": 0.9219999999986612
+      },
+      "proj": {
+        "name": "SynCLR_B32_VAE_proj_config",
+        "requested_url": "https://huggingface.co/fakekungfu/Fusion-Prior-SynCLR_B32_VAE/resolve/e949706d5c344f38f80bc3492b438226205ce474/proj/config.json",
+        "UTC": "2026-10-30T21:46:19.488642+00:00",
+        "status": "FETCHED_JSON",
+        "HTTP_status": 200,
+        "final_url": "https://huggingface.co/api/resolve-cache/models/fakekungfu/Fusion-Prior-SynCLR_B32_VAE/e949706d5c344f38f80bc3492b438226205ce474/proj%2Fconfig.json?%2Ffakekungfu%2FFusion-Prior-SynCLR_B32_VAE%2Fresolve%2Fe949706d5c344f38f80bc3492b438226205ce474%2Fproj%2Fconfig.json=&etag=%22096a1235bf4a0b57396e670c1bd4f2e523f3246e%22",
+        "bytes": 151,
+        "sha256": "fd0191a5a9483bc5dd80a134e580e245a89683d35046e76a2ccdba4696ca3f90",
+        "local_path": "audit/HIVE_released_prior_metadata_20261030_v1/SynCLR_B32_VAE_proj_config.json",
+        "seconds": 0.9059999999954016
+      },
+      "attn_adapter": {
+        "name": "SynCLR_B32_VAE_attn_adapter_config",
+        "requested_url": "https://huggingface.co/fakekungfu/Fusion-Prior-SynCLR_B32_VAE/resolve/e949706d5c344f38f80bc3492b438226205ce474/attn_adapter/config.json",
+        "UTC": "2026-10-30T21:46:19.982368+00:00",
+        "status": "FETCHED_JSON",
+        "HTTP_status": 200,
+        "final_url": "https://huggingface.co/api/resolve-cache/models/fakekungfu/Fusion-Prior-SynCLR_B32_VAE/e949706d5c344f38f80bc3492b438226205ce474/attn_adapter%2Fconfig.json?%2Ffakekungfu%2FFusion-Prior-SynCLR_B32_VAE%2Fresolve%2Fe949706d5c344f38f80bc3492b438226205ce474%2Fattn_adapter%2Fconfig.json=&etag=%228d9f9f30acea03760db03baeb3644aa5ff620d11%22",
+        "bytes": 9928,
+        "sha256": "826690d58e42cbe68718ad81fecc0c3be7d234718406a45f6af068d19e51bf38",
+        "local_path": "audit/HIVE_released_prior_metadata_20261030_v1/SynCLR_B32_VAE_attn_adapter_config.json",
+        "seconds": 0.9380000000019209
+      }
+    }
+  },
+  "visual_features": {
+    "repo_type": "dataset",
+    "repository": "fakekungfu/Brain-HIVE_Visual_Embeddings",
+    "revision": "4efe61ddfde96eea962c391ec01736d42d9b60ef",
+    "SynCLR_EEG_files": [
+      {
+        "rfilename": "things-eeg/things_test_synclr_vit_b_16-part-00000-of-00001.parquet",
+        "blobId": "f0756391108a6501b00afd73713a74b02a826698",
+        "size": 120148,
+        "lfs": {
+          "sha256": "3e04b700038a35a1a5ec798974372702d553f0bd80c608d4de76437c3bcee62d",
+          "size": 120148,
+          "pointerSize": 131
+        }
+      },
+      {
+        "rfilename": "things-eeg/things_test_synclr_vit_b_16-part-00001-of-00001.parquet",
+        "blobId": "4ce808628382b98f5b6af1c83ee023798415f290",
+        "size": 120343,
+        "lfs": {
+          "sha256": "bb9515f8351603c13819da3cb8e4e18d894845a1f3ef3b0164cea7f705656d78",
+          "size": 120343,
+          "pointerSize": 131
+        }
+      },
+      {
+        "rfilename": "things-eeg/things_train_synclr_vit_b_16-part-00000-of-00001.parquet",
+        "blobId": "4f6800e187e2098e1ba31bde76f8728875029f7a",
+        "size": 9917159,
+        "lfs": {
+          "sha256": "d64b2a79e4d3996560d9e41c2132815a5c27772dd3fe73bae9c35d588dd46d16",
+          "size": 9917159,
+          "pointerSize": 132
+        }
+      },
+      {
+        "rfilename": "things-eeg/things_train_synclr_vit_b_16-part-00001-of-00001.parquet",
+        "blobId": "d0e195f17a9624a07e8149c1248764e0c015bc17",
+        "size": 9911859,
+        "lfs": {
+          "sha256": "6eb0bcb67415df1eef13b531c0a90703235ebc64a164ee6e75d9a57d259a525c",
+          "size": 9911859,
+          "pointerSize": 132
+        }
+      }
+    ],
+    "B32_and_VAE": "Existing exact published features may be reused only after identity/SHA and actual tensor schema checks; no new feature payload read in this audit."
+  },
+  "new_declared_payload_bytes": 1493405477,
+  "named_current_OLD_asset_readiness": {
+    "root": "/root/brainhive_reproduction_20261020_v1/assets",
+    "checked_paths": 7,
+    "exact_ready_count": 0,
+    "missing_named_count": 7,
+    "other_caches_not_searched": true,
+    "no_download_performed": true
+  },
+  "desired_native_EEG_protocol": {
+    "training_seed": 1729,
+    "subjects": 10,
+    "input_electrodes": "Same fixed corrected17 posterior channels,17x250",
+    "training_EEG": "Physical mean4",
+    "evaluation_EEG": "Physical mean80",
+    "training_images": 16540,
+    "training_concepts": 1654,
+    "native_EEG_epochs": 25,
+    "logical_batch": 1024,
+    "expected_updates_per_subject": 425,
+    "expected_total_EEG_updates": 4250,
+    "train_from_scratch_in_new_prior_coordinates": true,
+    "source_dropout_preserved": true,
+    "frozen_visual_teacher": "SynCLR/B32/VAE new F; retain original live stochastic-dropout teacher behavior during native EEG fit. A deterministic cached target is not automatically equivalent."
+  },
+  "desired_reconstruction_protocol": {
+    "subjects": 10,
+    "official_queries": 2000,
+    "unique_target_images": 200,
+    "one_image_per_query": true,
+    "resolution": 512,
+    "UNet_steps": 4,
+    "CFG": 0,
+    "IP_scale": 1,
+    "same_old_query_noise_rule": true,
+    "all16_locked_metrics_and_identity_pixel_audit": true,
+    "actual_performance_not_known": true,
+    "author_default_or_paper_reproduction_differences_must_be_reported": true
+  },
+  "ordinary_transfer_boundary": {
+    "original_H14_ordinary_checkpoint_immutable": true,
+    "original_ordinary_SHA256": "a66869e5676ccea27f326f4f0b86cd446526b42460734905990758e49e11cc03",
+    "direct_weight_transfer_not_established": true,
+    "later_equivalent_ordinary_if_needed": "Requires new genuine SynCLR-coordinate concept-OOF EEG conditions, actual per-role affine and separately fitted correction head with a complete loss/data/seed/strength/image protocol. Same1024 output is insufficient. No new ordinary fit is admitted here."
+  },
+  "prerequisites_before_any_GPU": [
+    "Complete current immutable five-arm study and both registered conditional validation queues according to their original gates.",
+    "Retrieve/verify public assets in a new isolated root, keep H14 assets/checkpoints/images unchanged; remeasure real disk commitments before download or fitting.",
+    "Implement explicit prior-root/config binding and source-pinned native load/gradient/pixel/resource profiles on OLD only; no broad default author script execution.",
+    "Reuse raw R4/R80 EEG arrays and identity metadata only after source SHA checks; do not reuse H14 predictions as SynCLR predictions.",
+    "Lock an explicit exposed-benchmark protocol and source/resource/data review; legacy official_result_access_used_for_lock=False must not be fabricated.",
+    "Build the complete generation/all16metric/independent comparison lifecycle before starting a native fit."
+  ],
+  "source_default_corrections_to_keep_explicit": [
+    "Author train_clip_intra defaults SynCLR and3seeds2025-2027; replace through an isolated explicit single1729 protocol, not an unchanged-source claim.",
+    "Author build_reconstruction defaults H14; bind every F/A/P/IP/input/EEG source to SynCLR together.",
+    "Existing corrected17 electrode list must not restore the historical duplicatedOz generation-script entry.",
+    "Public rootweights are selected fixed artifacts; matching checkpoint folder names does not prove original training step counts."
+  ],
+  "strong_H14_B32_two_input_paper_row": {
+    "exact_separately_trained_prior_not_located_in_inspected_author_repos": true,
+    "inspected_F_configs": 9,
+    "all_include_VAE": true,
+    "not_a_global_absence_claim": true,
+    "zeroing_VAE_not_an_equivalent_baseline": true
+  },
+  "claims": {
+    "author_recommendation_not_our_measured_advantage": true,
+    "reported_numerical_table_not_our_paired_result": true,
+    "new_architecture_or_method": false,
+    "cross_generator_generalization": false,
+    "independent_H": false,
+    "official_results_already_exposed": true,
+    "SOTA": false
+  },
+  "GPU_jobs_started": 0,
+  "neural_updates": 0,
+  "new_research_images": 0,
+  "active_five_arm_sources_or_gates_changed": false
+}

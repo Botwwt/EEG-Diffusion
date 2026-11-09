@@ -1,0 +1,37 @@
+{
+  "version": "idea_image_preparation_queue_v1",
+  "one_shot": true,
+  "source_sha256": {
+    "queue_idea_image_preparation_v1.py": "1ab51092eafef1d897017ba510f1d43c59f913b41f98f11eec208009ff9f26bb",
+    "run_gpu_job.py": "cfac7ab3448b73a5b9db8ab3e594829c8c7bb7c71876685ccf12f3d647683f7a",
+    "run_native_oof_stage.py": "c4624b412a811a2a29e0ed533badbd68ac8d03fc5a720a1f2f78cfea3e2933ba",
+    "profile_idea_first_batches_v1.py": "363d5afeaefb072d4c5d14e3b0bfe3267127f3f21f1aafd0fc20afd2da114c26",
+    "build_idea_training_latents_v1.py": "268e59a2985ae64ba903b3dff1ff48c16f817ec39d7bafcba04322af9b65b408",
+    "diagnose_idea_first_unet_response_v1.py": "534e130cb30d675d124be88b3fd649a97448420c567247e23028bbcce84a7738",
+    "configs/idea_first_batch_cost_probe_v1.json": "49c538e4f216496d41be66c07308eec03a59a9e810baf26b6b6c6871a8c5dc2a",
+    "configs/idea_interface_training_recipe_v1.json": "08bff8e653ae4efca4141cdc4e4a753a1f00dea1978e0faf5e98c7e6be8cb26b",
+    "configs/idea_first_unet_response_plan_v1.json": "4115979b2897151d41e8c15ff2f447c7d1eea93f700ade31a75220a6d018fa0d",
+    "profile_standard_generator.py": "b97eb88379e5162b6f4340788eec9b71dc39aa2dde5df150754da5b98c054748",
+    "semantic_evaluator.py": "a57e9624102f0856634866c507e272166cf96ad344c3ad0d628bb20cded3e8eb",
+    "image_evaluation.py": "e14172655a156040b625694bad1ffbd441ad0b648c876e9a6b150d03e8d27f37",
+    "native_error_channel.py": "de0cec43cefe20c70517a10a7467c3d451e0daf5029a1a39341fa59abeaa1e71",
+    "error_channel_validation_metrics.py": "33b5207eebd37ee6b43d97c4852c73c58e879ce82bb03c4c37440227f32d2a3d",
+    "paired_analysis.py": "ecff5cb88a0695102614ea8094a362d758e1ae2e032aafb29f5fc452d213f935",
+    "train_idea_interface_v1.py": "81a4724bc34666bdbff53e804a978ad26a49ef0ae4176edc1e74c7e69cf75c9f",
+    "generate_idea_interface_images_v1.py": "16ccfbbf7b5456f26d501400ed4c5b239e994726a12f6a7a378feb6b74043a49",
+    "configs/idea_first_ATMS_training_v1.json": "a1ba1062f6e31fb776ce1c8968457ff23ecaff29efb16463065aab39dc1f0189"
+  },
+  "validation_output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/error_validation/idea_first_ATMS_patience50_v1",
+  "UNet_response_output_root": "/root/autodl-tmp/eeg_sota_autoresearch_20261018_v1/error_validation/idea_first_full_UNet_response_v1",
+  "fixed_phase_caps_seconds": {
+    "batch_cost": 360,
+    "T_latents": 900,
+    "full_UNet_response": 5400
+  },
+  "total_GPU_hour_cap": 40,
+  "adapter_training_authorized": false,
+  "formal_V_images_authorized": false,
+  "final_test_unlock_authorized": false,
+  "prerequisite_controller": 98789,
+  "actual_numerical_Dcheck_results_seen_at_registration": false
+}
