@@ -1,0 +1,28 @@
+{
+  "status": "COMPLETE_VERIFIED_ARCHIVE_AND_SOURCE_PUBLICATION",
+  "date": "2026-11-09T05:13:17.003954+00:00",
+  "source_snapshot_commit": "6a43460d62b9681924a41b64a38d916652b468a6",
+  "code_repository": "https://github.com/Botwwt/EEG-Diffusion",
+  "large_files_archived_and_local_removed": 41,
+  "archived_bytes": 22474327110,
+  "threshold_bytes": 52428800,
+  "extra_distinct_inode_duplicate_bytes_consolidated": 1178599790,
+  "total_consolidated_duplicate_paths": 329,
+  "earlier_484962723_logical_duplicate_bytes_not_counted_as_verified_physical_savings": true,
+  "before_disk_free_observed": 223531008,
+  "after_disk_free_observed": 23574249472,
+  "archive_location": "wwt/eeg/backups/local_D_large_v245",
+  "archive_is_not_a_GitHub_weight_release": true,
+  "all41_full_remote_SHA_and_local_SHA_before_removal": true,
+  "all41_recovery_pointers_audited": true,
+  "all200_hardlink_groups_file_ID_and_SHA_audited": true,
+  "local_raw_weights_or_EEG_published": false,
+  "restore_check": {
+    "actual_small_file_download_bytes": 11852,
+    "full_SHA_pass": true,
+    "overwrite_and_space_floor_refusals_pass": true,
+    "multigigabyte_download_replay": false
+  },
+  "no_scientific_method_or_result_changed": true,
+  "overall_CCFA_goal_complete": false
+}

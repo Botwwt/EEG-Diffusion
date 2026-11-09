@@ -13,7 +13,7 @@ Start with [the current method and evidence](docs/CURRENT_RESEARCH.md). The repo
 
 The full ten-subject R80 comparison supports ordinary over native Brain-HIVE (DINO2AFC 0.872769 → 0.891198; SSIM 0.328023 → 0.353494). Additional semantic benefit over stronger F-only/mean-direction controls remains unconfirmed. A second independent method, end-to-end acceleration and SOTA are not established. New HPC encoder fits are baseline reconstruction, not new image gains.
 
-Model weights, private EEG, large feature arrays and machine credentials are excluded from Git. The October proposal below is historical; consult the dated current-state page before interpreting it as an active or completed experiment.
+Model weights, private EEG, large feature arrays and machine credentials are excluded from Git. See the [verified storage and recovery record](docs/STORAGE.md). The October proposal below is historical; consult the dated current-state page before interpreting it as an active or completed experiment.
 
 ## Overview
 

@@ -13,6 +13,7 @@ dependencies = ["numpy>=1.24,<3"]
 classifiers = ["Development Status :: 3 - Alpha", "Intended Audience :: Science/Research", "Programming Language :: Python :: 3"]
 
 [project.optional-dependencies]
+archive = ["paramiko>=3.4,<5"]
 test = ["pytest>=7,<10"]
 dev = ["pytest>=7,<10", "ruff>=0.12,<1", "pytest-cov>=6,<8"]
 report = ["matplotlib>=3.10,<3.11"]
