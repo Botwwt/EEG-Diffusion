@@ -16457,9 +16457,17 @@
       "source_sha256": "1e1290ea233d08da188fe2e8f52a5d37b615a33cafd18994775fe3355f284a5c",
       "sha256": "1e1290ea233d08da188fe2e8f52a5d37b615a33cafd18994775fe3355f284a5c",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/EEG_downstream_pins_v303.json",
+      "source_path": "EEG_downstream_pins_v303.json",
+      "bytes": 1892,
+      "source_sha256": "070aba77ac0dc7a835ba2da8277c2572e8a060f64fa5fcc59b55458ead6837e6",
+      "sha256": "070aba77ac0dc7a835ba2da8277c2572e8a060f64fa5fcc59b55458ead6837e6",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 18933884,
+  "bytes": 18935776,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
