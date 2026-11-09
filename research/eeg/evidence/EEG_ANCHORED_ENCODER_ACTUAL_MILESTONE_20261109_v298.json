@@ -1,0 +1,530 @@
+{
+  "UTC": "2026-11-09T09:42:43.028797+00:00",
+  "status": "ANCHORED_EEG_ENCODER_REGISTERED_CPU_VALIDATED_COMPLETE_DEPENDENCY_STUDY_QUEUED",
+  "current_observation": {
+    "receipt": "PKU_HPC_final298_authoritative_state_20261109T094102314263Z.json",
+    "observation": {
+      "UTC": "2026-11-09T09:41:03.962727+00:00",
+      "squeue": "5099280|eeg_anchor_closure294|PENDING|0:00||(Dependency)\n5099279|eeg_anchor_dispatch293|PENDING|0:00||(Dependency)\n5099278|eeg_score_dispatch292|PENDING|0:00||(Dependency)\n5099250|cola_analysis211|RUNNING|5:18|a2n16c1|a2n16c1\n5099002|cola_sg206|PENDING|0:00||(Dependency)\n5098837|cola_compare200|RUNNING|49:16|gpua800n05|gpua800n05\n5099277|eeg_images271|RUNNING|2:26|gpua800n02|gpua800n02\n",
+      "runs/EEG_candidates_v267/queue/completion.json": {
+        "stage": 9,
+        "case": "B_shuffle",
+        "job_id": "5098961",
+        "status": "COMPLETE_ALL6_FIXED_T_CASES_MODELS_AND_AUDITS_IMAGES_PENDING",
+        "starting_updates": 2,
+        "starting_checkpoint_sha256": "64de4928c7845ccd90150daf1bc615a87dd3a3d8cc6a7f5e6beff2abb5cd3117",
+        "UTC": "2026-11-09T09:16:40.654529+00:00",
+        "updates": 827,
+        "exposures": 13230,
+        "checkpoint_sha256": "33b3f0554ff4e93651446b1b2ec16ca47b7abe5502d95fbfe82558bfe798c8e2",
+        "audit_sha256": "de503a04c0b1fb8e81286bab07667754b5e72f24e421159deb8bd645917d4de8",
+        "case_complete": true,
+        "seconds": 697.5655862051062,
+        "total_updates": 4962,
+        "total_query_exposures": 79380,
+        "new_images": 0
+      },
+      "runs/EEG_images_v271/conditions_completion.json": {
+        "status": "PASS_ALL7_ENCODERS_830_OWN_EEG_FORWARDS_AND_14_FIXED_CONDITIONS",
+        "job_id": "5099101",
+        "seconds": 12.603862283751369,
+        "checks": [
+          {
+            "case": "parent",
+            "all830_forward_max_abs": 8.285045623779297e-06,
+            "model_sha256": "8e8b1cea28a5cae88f3acc3f136c8a638109949499fdc852ea95a306e0ff9f2b"
+          },
+          {
+            "case": "A_positive",
+            "all830_forward_max_abs": 3.0547380447387695e-06,
+            "model_sha256": "3a81b2c97cf03d614d842a3bd265dda0dba4c968f3c55b9a779c9f43781f2f5a",
+            "export_sha256": "d7a1db9aa72027362c5e081332b1f73bddca023b18e4484cbada272fe8c4ca74"
+          },
+          {
+            "case": "A_pair",
+            "all830_forward_max_abs": 4.410743713378906e-06,
+            "model_sha256": "4a57d00835dd3f1b4db112497703521ca42c27bdeb46bd2a9d74a2abc13ce3af",
+            "export_sha256": "0e33f1746e2e50ec2d72c16bf4caffd9a3894b75bf972e394c25da5a8a7e3792"
+          },
+          {
+            "case": "A_reverse",
+            "all830_forward_max_abs": 3.4570693969726562e-06,
+            "model_sha256": "296378ee7895350af7cfd67e4e406f3bba548e241b5e38d1e85a1949c1c7e9f2",
+            "export_sha256": "343b2e62a0a0fa746883cf0d3f6eab6e0c6e67d28ad7e3e96aa1a406ff9534b0"
+          },
+          {
+            "case": "B_residual",
+            "all830_forward_max_abs": 9.298324584960938e-06,
+            "model_sha256": "1cdff46c508f1766e76b5f1b9a15464a19faad049de3c4ee5c82a02e11d30374",
+            "export_sha256": "f6a4d655f560c4df8335125eee7f7b846ea84c25c8207e5106953bab3a278f4c"
+          },
+          {
+            "case": "B_raw",
+            "all830_forward_max_abs": 8.106231689453125e-06,
+            "model_sha256": "50b099e570f5285181d21acf2fe7e60b55e596dd2ae008efbdc2752c631c8ba0",
+            "export_sha256": "66b6803f737ab6a8cd7992c42f3f56417d3254b513064acfe4f4a3e8d7be05c3"
+          },
+          {
+            "case": "B_shuffle",
+            "all830_forward_max_abs": 1.1444091796875e-05,
+            "model_sha256": "33b3f0554ff4e93651446b1b2ec16ca47b7abe5502d95fbfe82558bfe798c8e2",
+            "export_sha256": "fcecfe9477fc30f3d282686a118d87a9d08ea0f72554da87fc468f6dff1459b7"
+          }
+        ],
+        "queries": 830,
+        "arms": [
+          "parent",
+          "matched_ordinary",
+          "A_positive",
+          "A_positive_plus_frozen_ordinary",
+          "A_pair",
+          "A_pair_plus_frozen_ordinary",
+          "A_reverse",
+          "A_reverse_plus_frozen_ordinary",
+          "B_residual",
+          "B_residual_plus_frozen_ordinary",
+          "B_raw",
+          "B_raw_plus_frozen_ordinary",
+          "B_shuffle",
+          "B_shuffle_plus_frozen_ordinary"
+        ],
+        "conditions": 11620,
+        "condition_bank_sha256": "9f586179c1f48ecf46458d8f3d6e4385adb650af7c9008700726af8aafde4373",
+        "policy_sha256": "435c56d7e97cb56326554f17e35eb286724b3d0cc653f7cc3ce3468b4c8d87ce",
+        "identity_manifest_sha256": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+        "split_sha256": "1969d664555d08399e77a2d76c011f19eadbda1ce251f9c72d72c94de3910ad2",
+        "no_optimizer_updates": true,
+        "no_target_image_read": true,
+        "composition": "Explicit frozen postprocessor interaction, not a separately refitted ordinary or guaranteed additive effect",
+        "new_images": 0,
+        "source_sha256": "5ecb79fb4fdcd0a46c6a1af9c839232cc62066143c6953ebf5dfa2e789a73228"
+      },
+      "runs/EEG_images_v271/progress.json": {
+        "stage": 1,
+        "job_id": "5099277",
+        "images": 112,
+        "expected_images": 11620,
+        "completed_queries": 8,
+        "seconds": 134.82349737500772,
+        "peak_GPU_allocated_bytes": 8775658496
+      },
+      "runs/EEG_images_v271/original_pipeline_noise_parity.json": {
+        "original_native_pipeline_pixel_equal": true,
+        "original_native_pipeline_final_rng_equal": true,
+        "extra_engineering_UNet_calls": 4
+      },
+      "runs/EEG_images_v271/device_recovery_v290.json": {
+        "status": "EXACT_OLD_NEW_SOURCE_GUARD_PATHS_FIXED_SAME_NUMERICAL_PYTHON_REQUEUED",
+        "job_id": "5099277",
+        "score_dispatch_job": "5099278",
+        "anchor_dispatch_job": "5099279",
+        "closure_dispatch_job": "5099280",
+        "previous_failed_preimport_GPU_job": "5099186",
+        "previous_device_failure_job": "5099103",
+        "original_images_before_fix": 0,
+        "numerical_python_sources_unchanged": true,
+        "models_and_conditions_unchanged": true,
+        "retired_unallocated_CPU_waiters": [
+          "5099231",
+          "5099230",
+          "5099229"
+        ],
+        "wrappers": {
+          "PKU_generate_EEG_comparison_GPU_20261109_v290.sbatch": {
+            "before_sha256": "93b638ed0aba3f022354a00d1c34fffab35982ce0d288fd1ec7967c776aaf5bc",
+            "sha256": "18427ae2d07eee1c2944841691a51814243a33213d0fb42a7945a12e2d09ee54",
+            "old_source_path_preserved": "PKU_generate_EEG_comparison_GPU_20261109_v271.py",
+            "new_numerical_source_sha256": "28144937c08a66aa81cb6765caf25fa8df3d6f98223e8303c0fc68a56f11dca1"
+          },
+          "PKU_generate_anchor_images_GPU_20261109_v291.sbatch": {
+            "before_sha256": "bf9c83f4d358e4ac5ea918ed6dcfd319657ce03d7a50dfde46cc774e52a814e3",
+            "sha256": "6c88c00e95dcc7194c55a2306b4b8c6e28d8cb76c0fd43d5816b3c7900d9eb10",
+            "old_source_path_preserved": "PKU_generate_anchor_images_GPU_20261109_v288.py",
+            "new_numerical_source_sha256": "e634327ccfd78592e12221fa9300333a286d77dcefe60b81fc753a52ce90f096"
+          }
+        },
+        "UTC": "2026-11-09T09:37:22.159345+00:00"
+      },
+      "runs/EEG_scoring_dispatch_v292/progress.json": null,
+      "runs/EEG_scores_v279/progress.json": null,
+      "runs/EEG_scores_v279/analysis_completion.json": null,
+      "runs/EEG_anchor_dispatch_v293/progress.json": null,
+      "runs/EEG_anchor_dispatch_v293/submitted.json": null,
+      "runs/EEG_anchor_image_dispatch_v294/progress.json": null,
+      "runs/EEG_anchor_engineering_v286/completion.json": {
+        "status": "PASS_REAL_EEG_NATIVE_IDENTITY_GRADIENT_AND_GLOBAL_CAP_ALGEBRA",
+        "job_id": "5099014",
+        "seconds": 15.996224587783217,
+        "raw_EEG_queries": 32,
+        "FP32_bitexact_native": true,
+        "firstlayer_gradient_norm": 0.19118231534957886,
+        "rho": 0.25,
+        "eta": 0.24436652739140902,
+        "angle_cap_radians": 0.24497866312686414,
+        "checks": [
+          {
+            "candidate_perturbation_scale": 0.0,
+            "min_cosine": 0.9999997019767761,
+            "max_unit_chord": 0.0,
+            "max_norm_error": 0.0,
+            "independent_FP64_coordinate_max_abs": 4.692658288618645e-07,
+            "unit_mean_norm": 0.06067947298288345,
+            "native_plus_eta": 0.30504600037429247
+          },
+          {
+            "candidate_perturbation_scale": 0.01,
+            "min_cosine": 0.9999963045120239,
+            "max_unit_chord": 0.002692418172955513,
+            "max_norm_error": 3.814697265625e-06,
+            "independent_FP64_coordinate_max_abs": 8.88646392027681e-07,
+            "unit_mean_norm": 0.06068183854222298,
+            "native_plus_eta": 0.30504600037429247
+          },
+          {
+            "candidate_perturbation_scale": 1.0,
+            "min_cosine": 0.9836286306381226,
+            "max_unit_chord": 0.18094976246356964,
+            "max_norm_error": 5.7220458984375e-06,
+            "independent_FP64_coordinate_max_abs": 7.855931900557778e-07,
+            "unit_mean_norm": 0.06086547300219536,
+            "native_plus_eta": 0.30504600037429247
+          },
+          {
+            "candidate_perturbation_scale": 100.0,
+            "min_cosine": 0.9701449275016785,
+            "max_unit_chord": 0.24435646831989288,
+            "max_norm_error": 5.7220458984375e-06,
+            "independent_FP64_coordinate_max_abs": 9.158990459390282e-07,
+            "unit_mean_norm": 0.06094081699848175,
+            "native_plus_eta": 0.30504600037429247
+          },
+          {
+            "candidate_perturbation_scale": 1000000.0,
+            "min_cosine": 0.9701423645019531,
+            "max_unit_chord": 0.2443665713071823,
+            "max_norm_error": 5.7220458984375e-06,
+            "independent_FP64_coordinate_max_abs": 9.635681164077425e-07,
+            "unit_mean_norm": 0.060940831899642944,
+            "native_plus_eta": 0.30504600037429247
+          }
+        ],
+        "new_optimizer_updates": 0,
+        "new_images": 0,
+        "source_sha256": "57e91d5a0df8caeffc81c963236ca478e788cbd8173e432d59f02b013ebcdd81",
+        "native_model_parameters": 6452224,
+        "trainable_parameters": 6450176,
+        "no_image_quality_or_novelty_claim": true
+      },
+      "runs/EEG_anchor_kernel_access_v297/completion.json": {
+        "status": "PASS_REAL_NATIVE_NULL_DIRECTION_AND_ANCHORED_ENCODER_FUNCTION_CLASS_ACCESS",
+        "job_id": "5099289",
+        "seconds": 4.859059505164623,
+        "EEG_shape": [
+          17,
+          250
+        ],
+        "actual_W_shape": [
+          1024,
+          4250
+        ],
+        "nullspace_dimension_lower_bound": 3226,
+        "native_projection_null_residual_norm": 7.016701529141499e-16,
+        "native_condition_pair_max_abs": 3.1086244689504383e-15,
+        "constructed_anchored_condition_pair_L2": 1.0271366834640503,
+        "temporary_parameter_construction_fully_restored": true,
+        "reference_native_null_check_precision": "FP64",
+        "anchored_coordinate_execution_precision": "ProductionFP32",
+        "original_failed_fixture_preserved": "v295 compared FP64 reference bytes to intentionallyFP32 production output",
+        "new_optimizer_updates": 0,
+        "new_images": 0,
+        "interpretation": "A deterministic post-c head sees equal native c for this algebraic perturbation. The raw-input anchored encoder can represent different outputs while keeping the same cap. Constructed direction is not evidence of physiological signal, naturally occurring EEG differences, learned use or image gains.",
+        "source_sha256": "9b21329538f5d48b489ddd34765b67215bd29dc0d16c27519de2bc803ee5d21a"
+      },
+      "runs/EEG_anchor_kernel_access_v297/failure.json": null,
+      "manifests/EEG_image_wrapper_guard_fix_v296.json": {
+        "status": "EXACT_OLD_NEW_SOURCE_GUARD_PATHS_FIXED_SAME_NUMERICAL_PYTHON_REQUEUED",
+        "job_id": "5099277",
+        "score_dispatch_job": "5099278",
+        "anchor_dispatch_job": "5099279",
+        "closure_dispatch_job": "5099280",
+        "previous_failed_preimport_GPU_job": "5099186",
+        "previous_device_failure_job": "5099103",
+        "original_images_before_fix": 0,
+        "numerical_python_sources_unchanged": true,
+        "models_and_conditions_unchanged": true,
+        "retired_unallocated_CPU_waiters": [
+          "5099231",
+          "5099230",
+          "5099229"
+        ],
+        "wrappers": {
+          "PKU_generate_EEG_comparison_GPU_20261109_v290.sbatch": {
+            "before_sha256": "93b638ed0aba3f022354a00d1c34fffab35982ce0d288fd1ec7967c776aaf5bc",
+            "sha256": "18427ae2d07eee1c2944841691a51814243a33213d0fb42a7945a12e2d09ee54",
+            "old_source_path_preserved": "PKU_generate_EEG_comparison_GPU_20261109_v271.py",
+            "new_numerical_source_sha256": "28144937c08a66aa81cb6765caf25fa8df3d6f98223e8303c0fc68a56f11dca1"
+          },
+          "PKU_generate_anchor_images_GPU_20261109_v291.sbatch": {
+            "before_sha256": "bf9c83f4d358e4ac5ea918ed6dcfd319657ce03d7a50dfde46cc774e52a814e3",
+            "sha256": "6c88c00e95dcc7194c55a2306b4b8c6e28d8cb76c0fd43d5816b3c7900d9eb10",
+            "old_source_path_preserved": "PKU_generate_anchor_images_GPU_20261109_v288.py",
+            "new_numerical_source_sha256": "e634327ccfd78592e12221fa9300333a286d77dcefe60b81fc753a52ce90f096"
+          }
+        },
+        "UTC": "2026-11-09T09:37:22.159345+00:00"
+      },
+      "manifests/EEG_recovered_dispatchers_v294.json": {
+        "status": "ORIGINAL_SCORING_NEW_ANCHOR_TRAINING_AND_CLOSURE_RECONNECTED_AFTER_DEVICE_RECOVERY",
+        "jobs": [
+          {
+            "name": "PKU_dispatch_EEG_scoring_CPU_20261109_v292.sbatch",
+            "job_id": "5099229",
+            "dependency": "5099186"
+          },
+          {
+            "name": "PKU_dispatch_anchor_CPU_20261109_v293.sbatch",
+            "job_id": "5099230",
+            "dependency": "5099186"
+          },
+          {
+            "name": "PKU_dispatch_anchor_images_CPU_20261109_v294.sbatch",
+            "job_id": "5099231",
+            "dependency": "5099230"
+          }
+        ],
+        "recovery_GPU_job": "5099186",
+        "only_known_terminal_zero_image_failure_acknowledged": true,
+        "all_other_failures_stop": true,
+        "ordinary_models_and_training_unchanged": true,
+        "UTC": "2026-11-09T09:34:23.261550+00:00"
+      },
+      "image_records_saved": 133,
+      "unresolved_scientific_failures": [],
+      "current_image_sacct": "5099277|RUNNING|0:0|00:02:27|gpua800n02\n5099277.batch|RUNNING|0:0|00:02:27|gpua800n02\n5099277.extern|RUNNING|0:0|00:02:27|gpua800n02\n",
+      "current_image_out": "/dfs/share/maleiLab/wwt/eeg/code/PKU_prepare_EEG_image_conditions_CPU_20261109_v271.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_generate_EEG_comparison_GPU_20261109_v271.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_dispatch_EEG_images_CPU_20261109_v271.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/EEG_image_comparison_v271.json: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_native_generator_20261109_v253.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_HIVE_native_classes_20261109_v239.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_eeg_candidate_core_20261109_v266.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_ordinary_component_source_v253.py: OK\n/dfs/share/maleiLab/wwt/eeg/code/PKU_generate_EEG_comparison_GPU_20261109_v290.py: OK\n",
+      "current_image_err": "\rLoading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]\rLoading pipeline components...:  14%|\u2588\u258d        | 1/7 [00:00<00:00,  8.94it/s]\rLoading pipeline components...:  43%|\u2588\u2588\u2588\u2588\u258e     | 3/7 [00:00<00:00,  6.15it/s]\rLoading pipeline components...:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 4/7 [00:00<00:00,  6.90it/s]\rLoading pipeline components...:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 5/7 [00:00<00:00,  7.29it/s]\rLoading pipeline components...:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 6/7 [00:01<00:00,  4.53it/s]\rLoading pipeline components...: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 7/7 [00:01<00:00,  6.01it/s]\n/dfs/share/maleiLab/wwt/eeg/envs/torch230_cu121_v235/lib/python3.11/site-packages/diffusers/pipelines/stable_diffusion_xl/pipeline_stable_diffusion_xl.py:748: FutureWarning: `upcast_vae` is deprecated and will be removed in version 1.0.0. `upcast_vae` is deprecated. Please use `pipe.vae.to(torch.float32)`. For more details, please refer to: https://github.com/huggingface/diffusers/pull/12619#issue-3606633695.\n  deprecate(\n",
+      "kernel_sacct": "5099289|COMPLETED|0:0|00:00:06|a3n01c4\n5099289.batch|COMPLETED|0:0|00:00:06|a3n01c4\n5099289.extern|COMPLETED|0:0|00:00:06|a3n01c4\n"
+    }
+  },
+  "original6_fits_complete": true,
+  "new_C_cases": [
+    "C_positive",
+    "C_pair",
+    "C_reverse"
+  ],
+  "new_C_fixed_updates_each": 827,
+  "new_C_training_started": false,
+  "new_C_CPU_proof": {
+    "status": "PASS_REAL_EEG_NATIVE_IDENTITY_GRADIENT_AND_GLOBAL_CAP_ALGEBRA",
+    "job_id": "5099014",
+    "seconds": 15.996224587783217,
+    "raw_EEG_queries": 32,
+    "FP32_bitexact_native": true,
+    "firstlayer_gradient_norm": 0.19118231534957886,
+    "rho": 0.25,
+    "eta": 0.24436652739140902,
+    "angle_cap_radians": 0.24497866312686414,
+    "checks": [
+      {
+        "candidate_perturbation_scale": 0.0,
+        "min_cosine": 0.9999997019767761,
+        "max_unit_chord": 0.0,
+        "max_norm_error": 0.0,
+        "independent_FP64_coordinate_max_abs": 4.692658288618645e-07,
+        "unit_mean_norm": 0.06067947298288345,
+        "native_plus_eta": 0.30504600037429247
+      },
+      {
+        "candidate_perturbation_scale": 0.01,
+        "min_cosine": 0.9999963045120239,
+        "max_unit_chord": 0.002692418172955513,
+        "max_norm_error": 3.814697265625e-06,
+        "independent_FP64_coordinate_max_abs": 8.88646392027681e-07,
+        "unit_mean_norm": 0.06068183854222298,
+        "native_plus_eta": 0.30504600037429247
+      },
+      {
+        "candidate_perturbation_scale": 1.0,
+        "min_cosine": 0.9836286306381226,
+        "max_unit_chord": 0.18094976246356964,
+        "max_norm_error": 5.7220458984375e-06,
+        "independent_FP64_coordinate_max_abs": 7.855931900557778e-07,
+        "unit_mean_norm": 0.06086547300219536,
+        "native_plus_eta": 0.30504600037429247
+      },
+      {
+        "candidate_perturbation_scale": 100.0,
+        "min_cosine": 0.9701449275016785,
+        "max_unit_chord": 0.24435646831989288,
+        "max_norm_error": 5.7220458984375e-06,
+        "independent_FP64_coordinate_max_abs": 9.158990459390282e-07,
+        "unit_mean_norm": 0.06094081699848175,
+        "native_plus_eta": 0.30504600037429247
+      },
+      {
+        "candidate_perturbation_scale": 1000000.0,
+        "min_cosine": 0.9701423645019531,
+        "max_unit_chord": 0.2443665713071823,
+        "max_norm_error": 5.7220458984375e-06,
+        "independent_FP64_coordinate_max_abs": 9.635681164077425e-07,
+        "unit_mean_norm": 0.060940831899642944,
+        "native_plus_eta": 0.30504600037429247
+      }
+    ],
+    "new_optimizer_updates": 0,
+    "new_images": 0,
+    "source_sha256": "57e91d5a0df8caeffc81c963236ca478e788cbd8173e432d59f02b013ebcdd81",
+    "native_model_parameters": 6452224,
+    "trainable_parameters": 6450176,
+    "no_image_quality_or_novelty_claim": true
+  },
+  "new_C_architecture_kernel_proof": {
+    "status": "PASS_REAL_NATIVE_NULL_DIRECTION_AND_ANCHORED_ENCODER_FUNCTION_CLASS_ACCESS",
+    "job_id": "5099289",
+    "seconds": 4.859059505164623,
+    "EEG_shape": [
+      17,
+      250
+    ],
+    "actual_W_shape": [
+      1024,
+      4250
+    ],
+    "nullspace_dimension_lower_bound": 3226,
+    "native_projection_null_residual_norm": 7.016701529141499e-16,
+    "native_condition_pair_max_abs": 3.1086244689504383e-15,
+    "constructed_anchored_condition_pair_L2": 1.0271366834640503,
+    "temporary_parameter_construction_fully_restored": true,
+    "reference_native_null_check_precision": "FP64",
+    "anchored_coordinate_execution_precision": "ProductionFP32",
+    "original_failed_fixture_preserved": "v295 compared FP64 reference bytes to intentionallyFP32 production output",
+    "new_optimizer_updates": 0,
+    "new_images": 0,
+    "interpretation": "A deterministic post-c head sees equal native c for this algebraic perturbation. The raw-input anchored encoder can represent different outputs while keeping the same cap. Constructed direction is not evidence of physiological signal, naturally occurring EEG differences, learned use or image gains.",
+    "source_sha256": "9b21329538f5d48b489ddd34765b67215bd29dc0d16c27519de2bc803ee5d21a"
+  },
+  "original_image_device_recovery": {
+    "receipt": "PKU_HPC_image290_device_recovery_20261109T093300608697Z.json",
+    "observation": {
+      "status": "IMAGE_DEVICE_ONLY_RECOVERY_SUBMITTED_EXISTING_MODELS_AND_BANK",
+      "job_id": "5099186",
+      "original_failure_job": "5099103",
+      "original_failure_preserved": true,
+      "original_records": 0,
+      "models_retrained": false,
+      "condition_bank_unchanged": true,
+      "retired_unallocated_CPU_waiters": [
+        {
+          "job_id": "5099138",
+          "name": "eeg_anchor_closure289",
+          "unallocated": true
+        },
+        {
+          "job_id": "5099105",
+          "name": "eeg_anchor_dispatch287",
+          "unallocated": true
+        },
+        {
+          "job_id": "5099104",
+          "name": "eeg_score_dispatch281",
+          "unallocated": true
+        }
+      ],
+      "provenance": [
+        {
+          "old_source": "PKU_generate_EEG_comparison_GPU_20261109_v271.py",
+          "old_sha256": "83887037cbf651ddccadf0afe13ec18908ba3e0c115d1c96d93a9243d6daca04",
+          "new_source": "PKU_generate_EEG_comparison_GPU_20261109_v290.py",
+          "new_sha256": "28144937c08a66aa81cb6765caf25fa8df3d6f98223e8303c0fc68a56f11dca1",
+          "only_change": "Retain originalGPUtextencoders and assert actualCUDApipeline executiondevice; continuation source name updated"
+        },
+        {
+          "old_source": "PKU_generate_anchor_images_GPU_20261109_v288.py",
+          "old_sha256": "d65a5c669aa420ee3c617acc5bd7620bc964b435f0cd82aa35eddf6e582ed4b4",
+          "new_source": "PKU_generate_anchor_images_GPU_20261109_v291.py",
+          "new_sha256": "e634327ccfd78592e12221fa9300333a286d77dcefe60b81fc753a52ce90f096",
+          "only_change": "Retain originalGPUtextencoders and assert actualCUDApipeline executiondevice; continuation source name updated"
+        }
+      ],
+      "UTC": "2026-11-09T09:33:02.353399+00:00"
+    }
+  },
+  "wrapper_guard_recovery": {
+    "receipt": "PKU_HPC_recovery296_exact_sources_20261109T093720455905Z.json",
+    "observation": {
+      "status": "EXACT_OLD_NEW_SOURCE_GUARD_PATHS_FIXED_SAME_NUMERICAL_PYTHON_REQUEUED",
+      "job_id": "5099277",
+      "score_dispatch_job": "5099278",
+      "anchor_dispatch_job": "5099279",
+      "closure_dispatch_job": "5099280",
+      "previous_failed_preimport_GPU_job": "5099186",
+      "previous_device_failure_job": "5099103",
+      "original_images_before_fix": 0,
+      "numerical_python_sources_unchanged": true,
+      "models_and_conditions_unchanged": true,
+      "retired_unallocated_CPU_waiters": [
+        "5099231",
+        "5099230",
+        "5099229"
+      ],
+      "wrappers": {
+        "PKU_generate_EEG_comparison_GPU_20261109_v290.sbatch": {
+          "before_sha256": "93b638ed0aba3f022354a00d1c34fffab35982ce0d288fd1ec7967c776aaf5bc",
+          "sha256": "18427ae2d07eee1c2944841691a51814243a33213d0fb42a7945a12e2d09ee54",
+          "old_source_path_preserved": "PKU_generate_EEG_comparison_GPU_20261109_v271.py",
+          "new_numerical_source_sha256": "28144937c08a66aa81cb6765caf25fa8df3d6f98223e8303c0fc68a56f11dca1"
+        },
+        "PKU_generate_anchor_images_GPU_20261109_v291.sbatch": {
+          "before_sha256": "bf9c83f4d358e4ac5ea918ed6dcfd319657ce03d7a50dfde46cc774e52a814e3",
+          "sha256": "6c88c00e95dcc7194c55a2306b4b8c6e28d8cb76c0fd43d5816b3c7900d9eb10",
+          "old_source_path_preserved": "PKU_generate_anchor_images_GPU_20261109_v288.py",
+          "new_numerical_source_sha256": "e634327ccfd78592e12221fa9300333a286d77dcefe60b81fc753a52ce90f096"
+        }
+      },
+      "UTC": "2026-11-09T09:37:22.159345+00:00"
+    }
+  },
+  "recovered_dispatchers": {
+    "receipt": "PKU_HPC_dispatch294_reconnected_20261109T093421451434Z.json",
+    "observation": {
+      "status": "ORIGINAL_SCORING_NEW_ANCHOR_TRAINING_AND_CLOSURE_RECONNECTED_AFTER_DEVICE_RECOVERY",
+      "jobs": [
+        {
+          "name": "PKU_dispatch_EEG_scoring_CPU_20261109_v292.sbatch",
+          "job_id": "5099229",
+          "dependency": "5099186"
+        },
+        {
+          "name": "PKU_dispatch_anchor_CPU_20261109_v293.sbatch",
+          "job_id": "5099230",
+          "dependency": "5099186"
+        },
+        {
+          "name": "PKU_dispatch_anchor_images_CPU_20261109_v294.sbatch",
+          "job_id": "5099231",
+          "dependency": "5099230"
+        }
+      ],
+      "recovery_GPU_job": "5099186",
+      "only_known_terminal_zero_image_failure_acknowledged": true,
+      "all_other_failures_stop": true,
+      "ordinary_models_and_training_unchanged": true,
+      "UTC": "2026-11-09T09:34:23.261550+00:00"
+    }
+  },
+  "prior_failed_CPU_kernel_fixture": {
+    "status": "FAILED_PRESERVED",
+    "error": "AssertionError()",
+    "traceback": "Traceback (most recent call last):\n  File \"/dfs/share/maleiLab/wwt/eeg/code/PKU_anchor_kernel_access_CPU_20261109_v295.py\", line 17, in <module>\n    before=m(x);assert torch.equal(before,native0)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+  },
+  "original_images_expected": 11620,
+  "original_images_saved_at_observation": 133,
+  "new_C_images_expected": 4980,
+  "new_C_image_arms": 6,
+  "total_comparison_arms": 20,
+  "new_C_training_or_image_efficacy": false,
+  "old_ordinary_unchanged": true,
+  "SEED_assets_still_missing": true,
+  "SOTA_or_CCFA": false,
+  "claim": "Mechanistic rawEEGencoder extension of ordinary principles. Known trustregion/projection mathematics, no second independent contribution established."
+}
