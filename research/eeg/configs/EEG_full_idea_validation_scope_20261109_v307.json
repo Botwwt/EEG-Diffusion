@@ -1,0 +1,54 @@
+{
+  "status": "USER_REQUIRED_FUTURE_STUDY_STANDARD_NOT_A_NEW_FIT_LAUNCH",
+  "seed": 1729,
+  "current_studies_scientific_sources_unchanged": true,
+  "allowed_purpose": [
+    "A distinct, literature-checked mechanism addressing a demonstrated important failure",
+    "A strong baseline required to explain an apparent gain",
+    "A complete diagnostic whose possible outcomes change the next decision"
+  ],
+  "not_sufficient_for_novelty": ["parameter location", "more parameters", "new acronym", "generic replay", "generic contrastive loss", "long GPU time"],
+  "primary_candidate": "Cross-concept EEG-predictable visual evidence and its preservation in actual generated images",
+  "candidate_algorithm_sealed_or_implemented": false,
+  "candidate_novelty_confirmed": false,
+  "current_complete_development_scope": {"subjects": ["sub-03"], "repeat": "physical R4", "T_queries": 13230, "T_concepts": 1323, "Dcheck_queries": 830, "Dcheck_concepts": 83, "gallery": 830},
+  "current_C_and_downstream_passes": 1,
+  "complete_T_coverage_is_not_convergence": true,
+  "one_pass_failure_does_not_reject_method_family": true,
+  "future_method_development_target": {"subjects": 10, "T_queries": 132300, "V_queries": 16600, "repeat": "physical R4"},
+  "official_comparison_target": {"subjects": 10, "fit_concepts": 1654, "fit_images": 16540, "test_stimuli": 200, "queries": 2000, "repeat": "physical R80", "generated_images_per_query": 1},
+  "full_cross_reconstruction_validation": {
+    "host_count_at_least": 2,
+    "initial_host": "Audited native Brain-HIVE Fusion/A/P/IP/Turbo",
+    "second_host": "An audited complete ATM reconstruction pipeline; official source and original prior/generator must be identified before admission",
+    "second_host_currently_restored_on_HPC": false,
+    "do_not_use_weak_selfbuilt_direct_branch_as_official_ATM": true,
+    "encoder_transfer_and_generator_transfer_are_separate_claims": true,
+    "refit_per_host": ["visual coordinates", "predictor", "ordinary if used", "injection mapping"],
+    "same_shape_does_not_mean_same_representation": true
+  },
+  "training_admission_requirements": [
+    "Explicit model-appropriate complete budget and learning-rate schedule",
+    "T-only concept-isolated validation with upstream and downstream permissions checked together",
+    "Training sufficiency assessed separately from row coverage",
+    "Equal data and comparable compute opportunity for strong controls",
+    "No Dcheck/V/official-result checkpoint selection",
+    "Finite training, complete generation, complete metrics and storage budget together"
+  ],
+  "main_controls": ["native", "matching ordinary", "plain P/IP adaptation", "same-rank PCA", "same-spectrum random subspace", "full-F prediction", "c-only prediction", "same-concept mismatched EEG", "prediction-only selection", "generator-response-only selection", "joint selection", "ordinary off/on x mechanism off/on"],
+  "evaluation_requirements": [
+    "Every eligible manifest query and every fixed arm, including failures",
+    "Independent image evaluators and same-concept exact-stimulus discrimination",
+    "Color/structure and semantic tradeoffs reported together",
+    "Per-subject and subject-equal summaries",
+    "Fixed primary contrast; exploratory multiplicity disclosed",
+    "UNet calls, latency, memory, parameter and exposure accounting",
+    "Actual image re-encoding, not input-condition identity as evidence preservation"
+  ],
+  "current_missing_assets": ["Other nine subjects' raw arrays", "New ten-subject R80 inputs", "Complete second reconstruction host", "Full generated-image-to-native-F encoding path", "ObjectF1 and CapSim weights for SEED"],
+  "one_bad_metric_automatic_stop": false,
+  "unexposed_confirmation_set_available": false,
+  "SOTA_established": false,
+  "CCFA_established": false,
+  "report": "reports/EEG_PAPER_QUALIFICATION_AND_FULL_SCOPE_20261109_v307.md"
+}

@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "bytes": 367706,
-      "source_sha256": "77c0b9cef34b1ab52a93279e19598db3b6edcf22f5e3384e54d997602542a7a7",
-      "sha256": "78a59446a28ea8d6dab01344b92d14ccdca4484c8fd78dedc74cd11eabe7d52f",
+      "bytes": 369341,
+      "source_sha256": "8af68fc327c19425bce2d4a94d83a3159b61a5ba6079cadbd56bc5afe31b37a1",
+      "sha256": "1ace88dcc80be6282ab06f466b4797812bd03bda5b5a743206e39bec394ac58c",
       "access_metadata_redactions": 0
     },
     {
@@ -16481,14 +16481,78 @@
       "source_sha256": "66ba6680449f80df0c4586c356b5a8bc5dbc1af264f986958fd78926a1cf57ac",
       "sha256": "21215f2bd66efbdd206ef22a6a494d4c16974f8bcab4ace43835158cb55e1eeb",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_condition_image_diagnosis_CPU_20261109_v307.py",
+      "source_path": "PKU_condition_image_diagnosis_CPU_20261109_v307.py",
+      "bytes": 10784,
+      "source_sha256": "baf84e5b668043fc53315280fd78c1bc3892807de9699389e93572903eb5069a",
+      "sha256": "baf84e5b668043fc53315280fd78c1bc3892807de9699389e93572903eb5069a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_condition_image_diagnosis_CPU_20261109_v307.sbatch",
+      "source_path": "PKU_condition_image_diagnosis_CPU_20261109_v307.sbatch",
+      "bytes": 759,
+      "source_sha256": "1e9f6f440d26ba84947194bf8982cd1f3b07634a8b820186a08e25ee8a132be3",
+      "sha256": "1e9f6f440d26ba84947194bf8982cd1f3b07634a8b820186a08e25ee8a132be3",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_condition_image_diagnosis_CPU_20261109_v308.py",
+      "source_path": "PKU_condition_image_diagnosis_CPU_20261109_v308.py",
+      "bytes": 10790,
+      "source_sha256": "f81ac644873704f1753d8d567668d14428a766291cf4a8cb92d892e3079a1339",
+      "sha256": "f81ac644873704f1753d8d567668d14428a766291cf4a8cb92d892e3079a1339",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_condition_image_diagnosis_CPU_20261109_v308.sbatch",
+      "source_path": "PKU_condition_image_diagnosis_CPU_20261109_v308.sbatch",
+      "bytes": 759,
+      "source_sha256": "e4f8db9588ea7a866146b1658b011fbba17569d7c8046eb9fca125481f568bf7",
+      "sha256": "e4f8db9588ea7a866146b1658b011fbba17569d7c8046eb9fca125481f568bf7",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/EEG_PAPER_QUALIFICATION_AND_FULL_SCOPE_20261109_v307.md",
+      "source_path": "reports/EEG_PAPER_QUALIFICATION_AND_FULL_SCOPE_20261109_v307.md",
+      "bytes": 12992,
+      "source_sha256": "958afd87efe53433a7a99f284364522f8575144e6c1ff080fb53d7de4f56f9cd",
+      "sha256": "5e807b5953df487956f9d6cc871c4ce89d6c848b10f14fec644f2448bf74f8f5",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_full_idea_validation_scope_20261109_v307.json",
+      "source_path": "configs/EEG_full_idea_validation_scope_20261109_v307.json",
+      "bytes": 3886,
+      "source_sha256": "b39233ca7975d03dfe25d87c5d8b7f047b0b4e39b9c3d93781b88a65b0a0d227",
+      "sha256": "b39233ca7975d03dfe25d87c5d8b7f047b0b4e39b9c3d93781b88a65b0a0d227",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_CONDITION_IMAGE_ALL830_DIAGNOSIS_20261109_v308.json",
+      "source_path": "audit/EEG_CONDITION_IMAGE_ALL830_DIAGNOSIS_20261109_v308.json",
+      "bytes": 72086,
+      "source_sha256": "6e495094f25da30b3f9ab423f1b59cca935b7748ce2923f81e8e21d428137ac2",
+      "sha256": "6e495094f25da30b3f9ab423f1b59cca935b7748ce2923f81e8e21d428137ac2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_C_ANCHORED_ALL830_RESULTS_20261109_v308.json",
+      "source_path": "audit/EEG_C_ANCHORED_ALL830_RESULTS_20261109_v308.json",
+      "bytes": 797619,
+      "source_sha256": "ab0e7d07ae62174fb7ac397e408dc9b2d0af43a4dc07fb8c3def7e2e929cbe8f",
+      "sha256": "ab0e7d07ae62174fb7ac397e408dc9b2d0af43a4dc07fb8c3def7e2e929cbe8f",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 18945033,
+  "bytes": 19856343,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-09T13:59:05.656048+00:00"
+  "updated_UTC": "2026-11-09T16:26:28.171139+00:00"
 }

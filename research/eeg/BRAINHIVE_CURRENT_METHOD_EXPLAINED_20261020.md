@@ -1,3 +1,9 @@
+<!-- EEG_FULL_SCOPE_AND_DIAGNOSIS_V308 -->
+> **用户新标准与全量诊断，2026-11-09 08:25 America/Los_Angeles**：后续研究须有重要独特机制，或能区分下一步的完整分析；不能用任意模块/大参数/长训练代替论文创新。见reports/EEG_PAPER_QUALIFICATION_AND_FULL_SCOPE_20261109_v307.md及configs/EEG_full_idea_validation_scope_20261109_v307.json。完整T一遍≠收敛；sub03R4完整830≠十被试R80或跨架构确认。新候选配方仍未封存，不能声称已启动。
+> **C真实闭合**：三组各827更新/13230暴露、六组4980图及20组共同14读数CPU5104522完成。C_pair DINO0.773282 vs ordinary0.772164，差+0.001118、区间[-0.007242,+0.010443]；胜C_positive但未胜reverse，第二创新未确认。单1729/曝光开发集/SEED缺ObjectF1与CapSim；无SOTA/CCFA。
+> **新增只读诊断已完成**：CPU5104557完整20×830条件与图片、九组完整827步日志；本机stdlib16600行/38比较复算PASS。A_positive F余弦+0.170987却DINO-0.186312；C_pair余弦+0.059546、DINO+0.018090，同概念内二者增量相关-0.00661。整体F余弦不是图片收益判据，相关性不是因果/信息量。v307首轮5104536误写SSIM字段失败保留，v308只恢复真实SSIM425及新输出目录，训练图片不动。已有P/IP原串行链继续，勿重复提交；最新作业见audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261109_v308.json。旧ordinary/CoLa/第二卡不动，仅本研究一张HPCGPU。其他九被试/R80/第二完整宿主/原生生成图F重编码尚待恢复，不能补填成功。
+<!-- END_EEG_FULL_SCOPE_AND_DIAGNOSIS_V308 -->
+
 <!-- EEG_DOWNSTREAM_OVERNIGHT_CURRENT_V305 -->
 > **完整原14组结果与下游整夜队列，2026-11-09T13:57:51.626269+00:00**：11620张图片/14项读数/全图库CPU重排已闭合。sub03R4 Dcheck830中ordinary/原生DINO为0.772164/0.755191，差+0.016973、描述区间[+0.000409,+0.032275]；A_pair0.588413胜A_positive0.568880，但仍弱于原生，A/B普遍SSIM升而语义下降。全部组保留，非新R80或SOTA。新研究固定E+ordinary，直接训练原生P五组与IP四组；每组827更新/13230T/单1729，合计7443更新/119070暴露，随后7470新图，与旧20组共29组比较。CPU5102057真实P/目标梯度/契约/空间检查PASS；GPU训练尚未开始，启动等待5102061跟随C闭合，不重复提交。
 > **C真实接续**：首三组各2更新已完成；5101626因审计误拒绝16byteCUDA RNG失败。v302仅修CPU审计，5101881已复核全部前缀，训练数值源/模型/优化器/RNG/顺序未变，5101889正接续C_positive；首2步计入827。旧未分配等待5101627/5101628退役，当前实际next以封存stage/squeue为准。下游GPU包装v304另加真实RNG保存恢复回放及32/6/2GiB输出cap，原数值源未改。仅本研究单GPU，CoLa/第二卡不动；全部失败保留。SEED仍缺ObjectF1/CapSim，第二创新/CCFA/SOTA未确认。详见reports/EEG_DOWNSTREAM_OVERNIGHT_EXECUTION_20261109_v305.md及audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261109_v305.json。
