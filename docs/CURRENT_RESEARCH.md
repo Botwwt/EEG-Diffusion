@@ -1,3 +1,6 @@
+> **2026-11-10 04:50 America/Los_Angeles：P/IP完整图片结果与下一项实际实现。** 九组训练、7470新图、29组全830×14指标已闭合。九组DINO均低于ordinary、SSIM均升；回放/正确配对减轻退化但没有胜强基线。固定联合P DINO0.754428 vs ordinary0.772164；SSIM0.398201 vs0.329790。冻结两个既有P的共同/逐EEG函数干预已通过全T均值、两图像素和CPU复核，单GPU正在出3320新图，随后全量评价；这是机制诊断而非新成功方法。
+> [完整结果、日志分析、公式及下一步队列](../research/eeg/reports/EEG_DOWNSTREAM_FULL_RESULTS_AND_FUNCTIONAL_NEXT_STEP_20261110_v315.md)
+
 > **2026-11-09 17:52 America/Los_Angeles：架构定位的完整T实验已完成。** 两项数值诊断及独立全预测回放共502740行/3016440单元通过。原始EEG线性读出未胜原生c；真实图像F仍保留强H14/VAE身份，RBF读出反而较弱。当前不以“骨架选错/融合抹掉身份”作为新论文主张。已有P/IP单GPU完整图片研究继续，没有新增图片收益或自动组件搜索。
 > [设计、全部关键结果、限制和路线决定](../research/eeg/reports/EEG_ARCHITECTURE_DECISIVE_STUDIES_20261109_v312.md)
 

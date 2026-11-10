@@ -1,0 +1,156 @@
+{
+  "UTC": "2026-11-10T12:50:31.205552+00:00",
+  "submission": {
+    "status": "FULL_T_STATISTICS_PARITIES_CPU_AUDIT_3320_IMAGES_AND_ALL14METRICS_CHAIN_QUEUED",
+    "UTC": "2026-11-10T12:47:18.765708+00:00",
+    "files": {
+      "PKU_prepare_P_intervention_GPU_20261110_v316.py": "383fc24306f735ca8f76fcd1302cd90f428d8c3d20fea896004ac89b97f7bdc9",
+      "PKU_audit_P_intervention_CPU_20261110_v316.py": "ae3127e7434622d7b243b603e680eed31bf04b15cb3bb23363a5134ee88a3b7b",
+      "PKU_generate_P_intervention_GPU_20261110_v316.py": "31d55a73e8ff47c77f01faadc96db9dab6bfffd96a98ad5b186f64ba9cbacd75",
+      "PKU_prepare_P_intervention_scoring_CPU_20261110_v316.py": "46477aefd1cf35ef5c289ba58ba6a515844703e705501fa8aa12dbf16b346e8e",
+      "PKU_score_P_intervention_GPU_20261110_v316.py": "6a546e6465250c6c905f46dcc32e9b4e7e692b521051b8595a8809bcb89e097d",
+      "PKU_dispatch_P_intervention_CPU_20261110_v316.py": "514dea774d979ed1dc487824aca04b01455df8410b9e62f2cb56a8ce398b8026",
+      "PKU_analyze_P_intervention_CPU_20261110_v316.py": "aa14778f890de55e58fd13923a06414d6f23f7361e5132dd3e3c5e0955891468",
+      "EEG_P_intervention_policy_v316.json": "603f1e38adf035d2609145d9ac7931518654af3afb451d3621f5f9371486c27a",
+      "EEG_P_intervention_scoring_policy_v316.json": "7b912614b6c23ad1525b18da77fd888f0bb626f9b9a1c5bcac6391463a14edca",
+      "PKU_prepare_P_intervention_GPU_20261110_v316.sbatch": "3ebbaf4b2b2960f1c120b0944b6e5c88397f8262bbf133c45cf2fad0df3fce14",
+      "PKU_audit_P_intervention_CPU_20261110_v316.sbatch": "7c6e0e3871f55fcbeb322756fd628187d52a7c33832fb3930861fbd562d8107d",
+      "PKU_generate_P_intervention_GPU_20261110_v316.sbatch": "1bd9f0a51cc077aa7efe5f070bba223c3c0c35c5d3fe1cc0d2e095b1ff674759",
+      "PKU_prepare_P_intervention_scoring_CPU_20261110_v316.sbatch": "d3241f0d053810d54577f675cd2157704398d1f65a1b753039b41052cff1833a",
+      "PKU_score_P_intervention_GPU_20261110_v316.sbatch": "035aab7479da66a1841eb9fa7342c11726997e53b176b187f9ea9a22c7702820",
+      "PKU_dispatch_P_intervention_CPU_20261110_v316.sbatch": "b93b9082d6b3d8071db834d6c1d0f0dcde10af9dad43592d1a120e5d60548a46",
+      "PKU_analyze_P_intervention_CPU_20261110_v316.sbatch": "7a7e1b48ee9e57e6fb38753fe5bc04baa9df47fdbe5a5bcb7add354f606c232c"
+    },
+    "jobs": {
+      "GPU_T_statistics_and_parities": "5118137",
+      "CPU_all_T_tokens_and_all_D_interventions": "5118138",
+      "GPU_images_first_segment": "5118139",
+      "CPU_follow_actual_image_chain": "5118140"
+    },
+    "new_images": 3320,
+    "new_training_updates": 0,
+    "ordinary_changed": false,
+    "other_projects_changed": false
+  },
+  "preparation": {
+    "status": "PASS_FROZEN_T13230_DECOMPOSITION_AND_TWO_ORIGINAL_IMAGE_PARITIES",
+    "job_id": "5118137",
+    "seconds": 96.61738258972764,
+    "T_queries": 13230,
+    "D_queries": 830,
+    "new_arms": 4,
+    "models": [
+      {
+        "case": "P_positive",
+        "path": "/dfs/share/maleiLab/wwt/eeg/runs/EEG_downstream_v303/P_positive/target_final.pt",
+        "sha256": "62b4a1f07c5cb603122893d6451c3091b226b8c1722e8f02b1916c7cb0df7cc8"
+      },
+      {
+        "case": "P_replay_pair",
+        "path": "/dfs/share/maleiLab/wwt/eeg/runs/EEG_downstream_v303/P_replay_pair/target_final.pt",
+        "sha256": "905372419de414791bce69d7eb1818ac6a9f505600aeb549a515246da7c26bf6"
+      }
+    ],
+    "source": {
+      "OOF_sha256": "f40434179073db8dbf31714a91c1e659eaba9ec4a46c3a23bb3423e86c4c979d",
+      "ordinary_sha256": "f6998db9a49d566547bfbca045d47d471c771d4d0c6880322fbd9067d7024f99",
+      "F_sha256": "b6c1d412492a3277ffe821f43f33ffeeb31bd064fc8f5630d0508d5fe6dd46a8",
+      "head_inference_strength": 1.0,
+      "upstream_OOF": true,
+      "whole_head_not_OOF": true
+    },
+    "checks": [
+      {
+        "case": "P_positive",
+        "reconstruction_FP32_max_abs": 1.1920928955078125e-07,
+        "delta_mean_squared": 0.024712838232517242,
+        "mean_is_T_only": true,
+        "common_rounding_max_abs": 0.0010995864868164062,
+        "specific_rounding_max_abs": 0.001735687255859375,
+        "token_norm_base": 18.648984909057617,
+        "token_norm_full": 19.356130599975586,
+        "token_norm_common": 20.793704986572266,
+        "token_norm_specific": 17.03462791442871
+      },
+      {
+        "case": "P_replay_pair",
+        "reconstruction_FP32_max_abs": 1.1920928955078125e-07,
+        "delta_mean_squared": 0.0105711305513978,
+        "mean_is_T_only": true,
+        "common_rounding_max_abs": 0.0016989707946777344,
+        "specific_rounding_max_abs": 0.0014667510986328125,
+        "token_norm_base": 18.648984909057617,
+        "token_norm_full": 19.02104377746582,
+        "token_norm_common": 19.928804397583008,
+        "token_norm_specific": 17.68863868713379
+      }
+    ],
+    "parities": [
+      {
+        "case": "P_positive",
+        "query": 0,
+        "old_pixel_exact": true,
+        "old_final_RNG_exact": true,
+        "UNet_NFE": 4
+      },
+      {
+        "case": "P_replay_pair",
+        "query": 0,
+        "old_pixel_exact": true,
+        "old_final_RNG_exact": true,
+        "UNet_NFE": 4
+      }
+    ],
+    "token_bank_sha256": "1cd33a3248a87e8717fef2a1da8a47b610233900ad6648e3b8a91dd44c44d819",
+    "T_tokens_sha256": "63dcf124ab45c4ad66fe0fb4f095dcc58059e2b56abfb9dbbe75fd0b61aa9c71",
+    "policy_sha256": "603f1e38adf035d2609145d9ac7931518654af3afb451d3621f5f9371486c27a",
+    "source_sha256": "383fc24306f735ca8f76fcd1302cd90f428d8c3d20fea896004ac89b97f7bdc9",
+    "new_training_updates": 0,
+    "new_research_images": 0,
+    "peak_GPU_allocated_bytes": 8883065856
+  },
+  "CPU_audit": {
+    "status": "PASS_ALL_T_MEANS_AND_ALL830_FOUR_TOKEN_INTERVENTIONS",
+    "job_id": "5118138",
+    "seconds": 17.82239757478237,
+    "checks": [
+      {
+        "case": "P_positive",
+        "all_T_tokens_replayed": 108380160,
+        "all_D_tokens_replayed": 13598720,
+        "FP64_mean_then_FP32_exact": true,
+        "FP16_interventions_exact": true
+      },
+      {
+        "case": "P_replay_pair",
+        "all_T_tokens_replayed": 108380160,
+        "all_D_tokens_replayed": 13598720,
+        "FP64_mean_then_FP32_exact": true,
+        "FP16_interventions_exact": true
+      }
+    ],
+    "old_parities": [
+      {
+        "case": "P_positive",
+        "query": 0,
+        "old_pixel_exact": true,
+        "old_final_RNG_exact": true,
+        "UNet_NFE": 4
+      },
+      {
+        "case": "P_replay_pair",
+        "query": 0,
+        "old_pixel_exact": true,
+        "old_final_RNG_exact": true,
+        "UNet_NFE": 4
+      }
+    ],
+    "token_bank_sha256": "1cd33a3248a87e8717fef2a1da8a47b610233900ad6648e3b8a91dd44c44d819",
+    "condition_bank_sha256": "1cd33a3248a87e8717fef2a1da8a47b610233900ad6648e3b8a91dd44c44d819",
+    "policy_sha256": "603f1e38adf035d2609145d9ac7931518654af3afb451d3621f5f9371486c27a",
+    "source_sha256": "ae3127e7434622d7b243b603e680eed31bf04b15cb3bb23363a5134ee88a3b7b",
+    "new_images": 0
+  },
+  "squeue": "5118140|eeg_P_follow316|PENDING|0:00||(Dependency)\n5118139|eeg_P_images316|RUNNING|1:15|gpua800n05|gpua800n05\n",
+  "new_image_effect_available": false
+}
