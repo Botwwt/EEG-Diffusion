@@ -1,0 +1,78 @@
+{
+  "status": "REGISTERED_NINE_DOWNSTREAM_ARMS",
+  "subject": "sub-03",
+  "EEG": "R4",
+  "queries": 830,
+  "concepts": 83,
+  "images": 4150,
+  "arms": 5,
+  "seed": 1729,
+  "metrics_in_fixed_order": [
+    "DINO",
+    "Alex2",
+    "Alex5",
+    "Inception",
+    "CLIP",
+    "EffNet",
+    "SwAV",
+    "low"
+  ],
+  "original_paper7": [
+    "PixCorr425",
+    "SSIM425",
+    "AlexNet2_2AFC",
+    "AlexNet5_2AFC",
+    "Inception2AFC",
+    "CLIP_L14_2AFC",
+    "SwAVDistance"
+  ],
+  "additional": [
+    "DINO2AFC",
+    "DINOTop1",
+    "DINOTop5",
+    "DINOCosine",
+    "DINOSameConceptTop1",
+    "DINOSameConcept2AFC",
+    "EffNetDistance"
+  ],
+  "original_metric_source_commit": "f06db69fcc4a029439e369c5c3dba6099e57560e",
+  "original_metric_source_sha256": "ea59145cd6027c027185c57bd43a17f622bc6ec5eded585c847f671e972c6f5a",
+  "original_source_math": "Original PixCorr/SSIM AST bodies; repaired full NumPy correlation operation order after failed artificial tie fixture v276. Frozen deepfeatures batched; all830 predicted features then exact author np.corrcoef(real,predicted), strict inequality, full similarity matrices retained for independent CPU ranks.",
+  "DINO": "Exact historical weight SHA; layer11 CLS+meanpatch normalized; realCPU/generatedCUDA bilinearAA256; original FP32 cosine gallery, half ties; pinned restored official source, not historical source bitexact claim.",
+  "paper": "Original PIL Resize512/CenterCrop512, then GPU author Tensor resize and normalization; CLIP is L14 Pearson2AFC, not cosine mean.",
+  "batching": "Frozen models eval, batches16; numerical batch/implementation differences must be disclosed, no claim author repeated-image aggregate reproduced.",
+  "query_failures": "Keep full denominator; fail/preserve rather than regenerate, substitute targets or remove queries.",
+  "SEED_status": "CapSim and ObjectF1 models not restored; no fullSEED score fabricated. This queue closes DINO, original7 and EffNet only.",
+  "paired_comparisons": [
+    "Each arm minus ordinary and old v303 jointP",
+    "Relative minus absolute for each anchor condition",
+    "Mean anchor minus free for each preservation objective",
+    "Mean anchor relative minus random anchor relative",
+    "2x2 interaction"
+  ],
+  "descriptive_uncertainty": "1000 fixedseed1729 bootstrap of83conceptmeans, one subject. No trainingseed robustness, independentH or multiplicity-adjusted confirmation.",
+  "visual_panels_fixed_queries": [
+    [
+      0,
+      1,
+      270,
+      271
+    ],
+    [
+      550,
+      551,
+      820,
+      821
+    ]
+  ],
+  "image_effect_selection": false,
+  "max_GPU_stages": 32,
+  "GPU_seconds_per_stage": 1200,
+  "per_stage_safe_arm_boundary_seconds": 700,
+  "CPU_dispatch_max_hops": 65,
+  "output_cap_bytes": 2147483648,
+  "no_single_metric_stop": true,
+  "no_automatic_new_fit_or_SOTA_claim": true,
+  "reference_arms_reused": 3,
+  "comparison_total_arms": 8
+}

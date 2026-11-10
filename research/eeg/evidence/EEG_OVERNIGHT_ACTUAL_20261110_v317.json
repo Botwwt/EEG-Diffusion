@@ -1,0 +1,75 @@
+{
+  "UTC": "2026-11-10T13:12:16.861437+00:00",
+  "submission": {
+    "status": "FIVE_CASE_TRAIN_ALL4150_IMAGES_ALL14METRICS_REGISTERED_CPU_PREFLIGHT_AND_SINGLE_GPU_WAIT_SUBMITTED",
+    "UTC": "2026-11-10T13:11:50.835852+00:00",
+    "files": {
+      "PKU_conditional_preservation_core_20261110_v317.py": "1484b09d1a0091282ec1f14263ed38cf3fbb5ff32af3e04247b182fe0b6ed420",
+      "PKU_train_preservation_GPU_20261110_v317.py": "1440886db510b30a587e610b7320697a126e1f709c4961634549dcde9aba457f",
+      "PKU_audit_preservation_CPU_20261110_v317.py": "23dc0d8f617e7c62562cf7df818df424f560a612ddb791e366e1b279db7ba0b3",
+      "PKU_queue_preservation_GPU_20261110_v317.py": "0fae20f5b1f6685ba5b7279f8d5eccce89fae13efd5a990edc69766aa4285a15",
+      "PKU_prepare_preservation_images_CPU_20261110_v317.py": "43cda0a03a33bca28515608c9a08295d1a6270d8adbd706f9d8741fbf980e127",
+      "PKU_generate_preservation_images_GPU_20261110_v317.py": "6262f0af7e050ac9b12f32068b059ab6ba9988ed5b5a7516fb54ead2e6957066",
+      "PKU_prepare_preservation_scoring_CPU_20261110_v317.py": "0902ce7e71c4049c693bceb8a863824e79ccd3ea3971a4255c81f457d2166b67",
+      "PKU_score_preservation_images_GPU_20261110_v317.py": "a3c9825730788320eb4c824bb28be2887a315cf3a8798ec64f67455ac2faf1e2",
+      "PKU_dispatch_preservation_scoring_CPU_20261110_v317.py": "24f8be43c73355d79f102bfede08c46a6b97a0a2fc43b2a0800918c5584671d1",
+      "PKU_analyze_preservation_scores_CPU_20261110_v317.py": "7d1cd6432a950489e4862db698d9fef373ad70e06f3d2c67f1d44e996b33991d",
+      "PKU_probe_preservation_CPU_20261110_v317.py": "3178d3b5973f48964bc270303f1b78e25a8307de39d9fd3f93954d52a9dfa176",
+      "PKU_start_preservation_CPU_20261110_v317.py": "6443a92dd84564d3a420852d05fc15883c3e7091874d864c1c4e511ff025ce6b",
+      "EEG_preservation_policy_v317.json": "e6189dab0ea176e9b457450b7c60be9724f889ce0d8b78c1a063ca575aca3eb7",
+      "EEG_preservation_image_policy_v317.json": "659c36d5b55994f97474efcac83c2b3fd88fec735b524685370cbba87057312b",
+      "EEG_preservation_scoring_policy_v317.json": "845f67dae4956ff482e6cd287fc1a686f6fd025e3c1b52c6aee47e78d2bb8504",
+      "EEG_preservation_pins_v317.json": "cfb8c1edf5d973eecbdb50c11f47bc04458aa370e3e899f2200d289ba6073094",
+      "PKU_queue_preservation_GPU_20261110_v317.sbatch": "22618d993f646cf6fab9e364f9de6cce96230b19bcac6cac3dc3e8fbfc59c872",
+      "PKU_prepare_preservation_images_CPU_20261110_v317.sbatch": "6e45988857deca2407edeb564ebd47db842d6e39c1c2c6794f87fe6521bc7c46",
+      "PKU_generate_preservation_images_GPU_20261110_v317.sbatch": "b3cc4215dc3bd15d02af158615a5588eb9ec6fab37ff9e8d3693afe6d1c5cb9b",
+      "PKU_prepare_preservation_scoring_CPU_20261110_v317.sbatch": "c3945bd702261e6a1d6cebd5a5e6527eabadbecd745537297bd805e60350ecfd",
+      "PKU_score_preservation_images_GPU_20261110_v317.sbatch": "4cbc729254ac2873a0555b0904822f909eb582550f94e3fd092285594f121826",
+      "PKU_dispatch_preservation_scoring_CPU_20261110_v317.sbatch": "6ccdb7abc3959c3077383f8922e066ee763502cd8a5a85fd7230d8a871f164db",
+      "PKU_analyze_preservation_scores_CPU_20261110_v317.sbatch": "d7ceb477128083f8a8e98ff46879ce95cce800691924499b56c08f98ff1b0a7a",
+      "PKU_probe_preservation_CPU_20261110_v317.sbatch": "33c30b6cc9a4a5f2cb0404cb84da2b064ea4751efabd2d30a080b7263fc6d6a8",
+      "PKU_start_preservation_CPU_20261110_v317.sbatch": "fc35f5f8aa9cf227518b2c873d178c84429d97d8d7cdd8bf192b1ef3a6a73ef0"
+    },
+    "jobs": {
+      "CPU_engineering": "5118360",
+      "CPU_follow_existing_v316_closure": "5118361"
+    },
+    "cases": 5,
+    "new_images": 4150,
+    "updates": 4135,
+    "seed": 1729,
+    "other_projects_changed": false
+  },
+  "CPU_engineering": {
+    "status": "PASS_NATIVE_P_WEIGHT_SHAPE_GRADIENT_AND_PROJECTION_ALGEBRA",
+    "CPU_job": "5118360",
+    "seconds": 0.6899143680930138,
+    "fixture": {
+      "FP64_constraint_and_idempotence": true,
+      "Frobenius_projection_fixture": true,
+      "absolute_common_plus_difference_identity": true
+    },
+    "cases": [
+      "P_abs_free",
+      "P_rel_free",
+      "P_abs_mean",
+      "P_rel_mean",
+      "P_rel_random"
+    ],
+    "trainable_parameters": 8388608,
+    "heldout_inputs_read": false,
+    "source_sha256": "3178d3b5973f48964bc270303f1b78e25a8307de39d9fd3f93954d52a9dfa176",
+    "real_GPU_prefix_pending": true
+  },
+  "actual_wait": {
+    "hop": 1,
+    "job_id": "5118361",
+    "UTC": "2026-11-10T13:12:03.889070+00:00",
+    "status": "WAITING_ON_ACTUAL_V316_FULL_IMAGE_AND_SCORE_CHAIN",
+    "dependency": "5118280:5118282",
+    "next_job_id": "5118362"
+  },
+  "squeue": "5118362|eeg_pres_wait317|PENDING|0:00||(Dependency)\n5118282|eeg_P_follow316|PENDING|0:00||(Dependency)\n5118280|eeg_P_images316|RUNNING|5:54|gpua800n05|gpua800n05\n",
+  "new_GPU_training_started": false,
+  "full_lifecycle_registered": true
+}

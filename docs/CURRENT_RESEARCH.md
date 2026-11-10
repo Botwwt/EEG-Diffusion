@@ -1,3 +1,6 @@
+> **2026-11-10 05:12 America/Los_Angeles：约12小时的单GPU串行实验链已提交。** 当前v316先完成；随后五组固定完整T训练（4135更新）及4150张全830图片、14指标评价。比较实际EEG域绝对/差异响应保护，与原生P真实均值/随机方向约束，不增推理模块。CPU工程已过，新的GPU训练尚在依赖等待；不把已有工具声称为原创或预设好效果。
+> [完整公式、五组对照、文献边界和时间估算](../research/eeg/reports/EEG_OVERNIGHT_TWELVE_HOUR_CAMPAIGN_20261110_v317.md)
+
 > **2026-11-10 04:50 America/Los_Angeles：P/IP完整图片结果与下一项实际实现。** 九组训练、7470新图、29组全830×14指标已闭合。九组DINO均低于ordinary、SSIM均升；回放/正确配对减轻退化但没有胜强基线。固定联合P DINO0.754428 vs ordinary0.772164；SSIM0.398201 vs0.329790。冻结两个既有P的共同/逐EEG函数干预已通过全T均值、两图像素和CPU复核，单GPU正在出3320新图，随后全量评价；这是机制诊断而非新成功方法。
 > [完整结果、日志分析、公式及下一步队列](../research/eeg/reports/EEG_DOWNSTREAM_FULL_RESULTS_AND_FUNCTIONAL_NEXT_STEP_20261110_v315.md)
 

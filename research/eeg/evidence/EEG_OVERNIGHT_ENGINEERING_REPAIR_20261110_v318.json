@@ -1,0 +1,50 @@
+{
+  "UTC": "2026-11-10T13:21:07.142361+00:00",
+  "engineering_repair": {
+    "status": "BEFORE_FIRST_GPU_TRAINING_RESTORE_COUNTER_CHECK_FIXED_NO_NUMERICAL_CHANGE",
+    "UTC": "2026-11-10T13:19:19.326718+00:00",
+    "new_sources": {
+      "PKU_train_preservation_GPU_20261110_v318.py": "87db67e82ac80879c0e74136e5aba654146acdf9a41fa00e1160400bfedab18e",
+      "PKU_queue_preservation_GPU_20261110_v318.py": "49032f546997fe91628d1cff426bc18ac6be793a137a7612c9612b6c81ad3e36",
+      "PKU_queue_preservation_GPU_20261110_v318.sbatch": "40c7e2aecdf44357fc7a77cc164f0d8095326c2411695ba3fa94a94293a55936"
+    },
+    "old_numeric_training_source_unchanged": true,
+    "old_queue_source_unchanged": true,
+    "old_launcher_preserved": "/dfs/share/maleiLab/wwt/eeg/code/PKU_queue_preservation_GPU_20261110_v317.sbatch.before_restore_counter_v318",
+    "active_entry_launcher_sha256": "40c7e2aecdf44357fc7a77cc164f0d8095326c2411695ba3fa94a94293a55936",
+    "new_training_updates": 0,
+    "data_loss_seed_order_budget_unchanged": true
+  },
+  "regression": {
+    "status": "PASS_REAL_NATIVE_SIZE_LINEAR_FROZEN_VALUE_RESTORE_COUNTER_AND_MUTATION_DETECTION",
+    "CPU_job": "5118451",
+    "seconds": 2.6196678802371025,
+    "bias_counter_before_restore": 1,
+    "bias_counter_after_restore": 2,
+    "restored_values_bitexact": true,
+    "training_step_freeze_guard_pass": true,
+    "postbaseline_mutation_detected": true,
+    "only_counter_baseline_line_added": true,
+    "new_GPU_jobs": 0,
+    "new_scientific_updates": 0
+  },
+  "actual_wait": {
+    "hop": 3,
+    "job_id": "5118370",
+    "UTC": "2026-11-10T13:21:14.708580+00:00",
+    "status": "WAITING_ON_ACTUAL_V316_FULL_IMAGE_AND_SCORE_CHAIN",
+    "dependency": "5118437:5118438",
+    "next_job_id": "5118439"
+  },
+  "squeue": "5118439|eeg_pres_wait317|PENDING|0:00||(Dependency)\n5118438|eeg_P_follow316|PENDING|0:00||(Dependency)\n5118437|eeg_P_images316|RUNNING|2:50|gpua800n05|gpua800n05\n",
+  "old_study_image_progress": {
+    "stage": 6,
+    "job_id": "5118437",
+    "images": 2744,
+    "expected_images": 3320,
+    "completed_query_images": 2744,
+    "seconds": 162.25468567106873,
+    "peak_GPU_allocated_bytes": 8775658496
+  },
+  "new_five_case_GPU_training_started": false
+}

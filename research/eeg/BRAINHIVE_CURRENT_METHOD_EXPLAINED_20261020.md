@@ -1,3 +1,8 @@
+<!-- EEG_TWELVE_HOUR_SERIAL_CAMPAIGN_V317 -->
+> **2026-11-10 05:12 America/Los_Angeles：约12小时单GPU队列已实际挂上。** 基于九组P/IP的SSIM升/语义降，以及视觉域回放未保住EEG条件，新增五组完整匹配P训练：绝对EEG响应保护/刺激差保护×自由/真实均值约束，另有同维随机方向约束控制。仅训原生proj.weight8388608参数，bias/LN共同冻结，不加推理模块；各全T13230/827更新/单1729，总4135更新及4150张完整830图片，随后全部14指标/八组比较及交互。时间预计10–13小时含v316剩余，调度另计，不凑时长。CPU5118360真实12秒Slurm/0.690秒程序通过原生P梯度和投影数学，GPU两步前缀尚待真实执行；原等待5118361完成后实际5118362依赖当前v316尾部，必须等v316图/评分/分析全闭合才启动，不能重挂或两卡并跑。
+> 经典关系蒸馏、仿射约束与语义保护已有近邻，不按公式声称原创；约束均值输入不等于保护LN后平均或图片质量，全部T实际漂移另测。旧ordinary不动，一遍T不代表收敛。完整设计和文献见reports/EEG_OVERNIGHT_TWELVE_HOUR_CAMPAIGN_20261110_v317.md、协议configs/EEG_overnight_conditional_preservation_20261110_v317.json及audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261110_v317.json。此时v316仍实际单GPU出图，不能把等待写成新五组已训练成功。
+<!-- END_EEG_TWELVE_HOUR_SERIAL_CAMPAIGN_V317 -->
+
 <!-- EEG_DOWNSTREAM_COMPLETE_AND_NEXT_FUNCTIONAL_INTERVENTION_V316 -->
 > **2026-11-10 04:50 America/Los_Angeles**：九组P/IP训练、7470新图及29组完整830×14指标已闭合；本机标准库24070行/434比较/7443训练事件复核通过，FP32归约差单列、16个近零符号歧义保留。九组DINO均低于ordinary0.772164，SSIM均更高。固定联合P为0.754428/SSIM0.398201，相对ordinary DINO−0.017737区间负、SSIM+0.068411区间正；回放与正确配对减轻退化，但非第二成功方法，SEED仍缺。两张固定面板已查看，部分分支模糊，不能把SSIM直接写成质量提高。
 > **用户要求的下一步已实际运行**：冻结P positive及原登记joint P，完整T13230估计训练导致的共同函数改动，并构造共同/逐EEG互补干预，各完整830共3320新图；旧四参考复用。GPU5118137真实96.617秒/两个旧像素及RNG逐位回放通过；CPU5118138完整T均值和全部830×4 token复核17.822秒；GPU5118139正在出图，5118140跟随后自动全量评分/八组14指标与非线性交互。新增训练0/参数0，属于定位架构问题的经典干预，不冒称新颖算法；不再盲目追加loss/学习率扫描。本研究单GPU，ordinary/第二卡/CoLa/旧关机实例不动。详见reports/EEG_DOWNSTREAM_FULL_RESULTS_AND_FUNCTIONAL_NEXT_STEP_20261110_v315.md和audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261110_v316.json。

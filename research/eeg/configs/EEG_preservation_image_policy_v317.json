@@ -1,0 +1,26 @@
+{
+  "status": "REGISTERED_BEFORE_IMAGES",
+  "arms": [
+    "P_abs_free",
+    "P_rel_free",
+    "P_abs_mean",
+    "P_rel_mean",
+    "P_rel_random"
+  ],
+  "queries": 830,
+  "images": 4150,
+  "source_condition": "samefrozenmatchedordinary",
+  "query_seed": "1729|sub-03|stimulus_id|R4|EEG_Dcheck830_v271",
+  "layout": "armmajor on disk, audited querymajor manifest for unchanged scoringcore",
+  "max_GPU_stages": 16,
+  "perstage_images": 512,
+  "seconds": 900,
+  "width": 512,
+  "height": 512,
+  "steps": 4,
+  "CFG": 0,
+  "IP_scale": 1,
+  "one_image_per_query": true,
+  "new_images": 4150,
+  "training_models": "Five v317 full827 models; exact native P interface, fixed bias/LN for all five arms"
+}
