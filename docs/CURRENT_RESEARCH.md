@@ -1,3 +1,6 @@
+> **2026-11-09 17:52 America/Los_Angeles：架构定位的完整T实验已完成。** 两项数值诊断及独立全预测回放共502740行/3016440单元通过。原始EEG线性读出未胜原生c；真实图像F仍保留强H14/VAE身份，RBF读出反而较弱。当前不以“骨架选错/融合抹掉身份”作为新论文主张。已有P/IP单GPU完整图片研究继续，没有新增图片收益或自动组件搜索。
+> [设计、全部关键结果、限制和路线决定](../research/eeg/reports/EEG_ARCHITECTURE_DECISIVE_STUDIES_20261109_v312.md)
+
 > **2026-11-09 17:16 America/Los_Angeles：创新充分性审视与完整T新诊断。** ordinary有完整R80相对原生收益，但未确认对F-only/训练公共方向的额外主语义增量；第一有效模块不能直接等同充分主创新。新增全13230/六折可逆坐标诊断无可靠ridge增量；普通头MSE下降但刺激Top1从23.02%降至19.52%。冻结七干预进一步显示径向调整可降MSE却不改变排名。它们是完整诊断结果，不是第二成功方法。原P/IP单GPU链仍在IP_replay，未出新效能图。
 > [全部积极线索、ordinary对照与新诊断](../research/eeg/reports/EEG_LATEST_IDEAS_AND_ORDINARY_ASSESSMENT_20261109_v311.md)
 

@@ -1,0 +1,32 @@
+{
+  "status": "COMPLETE_BOTH_FULL_T_DIAGNOSTICS_WITH_INDEPENDENT_ALL_ROW_REPLAY",
+  "CPU_job": "5106172",
+  "seconds": 46.509795194491744,
+  "audits": {
+    "compression": {
+      "status": "PASS_ALL_STORED_PREDICTIONS_AND_ALL_METRIC_ROWS",
+      "rows": 264600,
+      "metric_cells": 1587600,
+      "maximum_absolute_cell_error": 2.6645352591003757e-15,
+      "strict_Top1_mismatches": 0,
+      "means_maximum_error": 1.3877787807814457e-17,
+      "source_completion_SHA256": "740976826584965708243b0555dd2678c529a29f8e144fd9a1062f21749ac076",
+      "privileged_F_input": false
+    },
+    "fusion": {
+      "status": "PASS_ALL_STORED_PREDICTIONS_AND_ALL_METRIC_ROWS",
+      "rows": 238140,
+      "metric_cells": 1428840,
+      "maximum_absolute_cell_error": 2.55351295663786e-15,
+      "strict_Top1_mismatches": 0,
+      "means_maximum_error": 1.3877787807814457e-17,
+      "source_completion_SHA256": "50af054fb7bd5807f9d1a17542ded5c1e760f10b0bc52cc65fb412035cfc8420",
+      "privileged_F_input": true
+    }
+  },
+  "interpretation": "Evaluate native compression using raw17 versus c and their matched within-concept controls. Evaluate fusion using original-view recovery from privileged nonlinear F versus F+EEG and matched EEG controls. Read all geometry and identity metrics together; kernel-family limitations remain. These experiments can justify the location of an architectural change, not establish a new method or a SOTA claim.",
+  "new_models_submitted_automatically": 0,
+  "new_GPU_jobs": 0,
+  "new_images": 0,
+  "novelty_established": false
+}

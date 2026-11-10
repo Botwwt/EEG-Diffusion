@@ -1,3 +1,7 @@
+<!-- EEG_ARCHITECTURE_DECISIVE_FULL_T_V312 -->
+> **2026-11-09 17:52 America/Los_Angeles：两项完整T架构定位已闭合。** CPU5106128/5106129全13230刺激/1323概念/六次原生来源内概念隔离，原始17电极EEG未胜原生c；c+EEG仅B32 MSE下降、身份增量区间跨零，其余目标身份下降。正确c相对同概念错配在B32/H14/VAE/F的Top1增加8.7377/1.0355/7.1731/5.8277个百分点、区间均正，说明已有条件保留真实配对证据。特权真实图像F的线性读出H14/VAE身份98.5639%/99.9924%，RBF更弱，不能据弱联合对照宣称融合信息修复。CPU5106172复核全部502740行/3016440单元，max2.67e-15/Top1错0；程序197.546/226.573/46.510秒。不是新图片收益、EEG信息定理或第二成功方法；不以这些线性/核结果否定所有强编码器。GPU5106094同一P/IP链仍IP_replay，本轮新增GPU任务0，旧ordinary和其他项目不动。详见reports/EEG_ARCHITECTURE_DECISIVE_STUDIES_20261109_v312.md和audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261109_v312.json。
+<!-- END_EEG_ARCHITECTURE_DECISIVE_FULL_T_V312 -->
+
 <!-- EEG_NOVELTY_AND_FULL_T_DIAGNOSTICS_V311 -->
 > **2026-11-09 17:16 America/Los_Angeles**：普通修正ordinary有完整十被试R80收益（DINO0.872769→0.891198），但相对受限F-only/训练公共方向的额外主语义增量未确认；第一有效模块不等于已充分确认的主创新，不能省略这些强对照。C_pair0.773282 vs匹配O0.772164区间跨零；ATM当前分支绕过prior有+0.070019的完整400结构线索，但属强基线。P/IP同一单GPU链继续IP_replay，尚无新图片收益。
 > **新增完整T诊断已真实闭合**：CPU5105996（59.208秒）全13230/1323概念/六次来源内概念隔离验证：可逆坐标Top1 23.0915% vs ridge23.0159%，区间跨零、MSE更差，不升格为新成功方法；普通头MSE0.727247→0.720065而Top1跌至19.5163%。CPU5106019冻结模型七干预/全13230（9.706秒），径向更新MSE0.700803但排名逐条不变；共享更新未解释完整头收益。所有原分数复算max1.11e-15/Top1错0。不是图片增益或因果瓶颈证明。无新GPU/研究图片/科学源改动/自动重训；不继续随机加Flow。详见reports/EEG_LATEST_IDEAS_AND_ORDINARY_ASSESSMENT_20261109_v311.md及audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261109_v311.json。单1729/ordinary不覆盖/第二卡和CoLa不动/无本机TorchNumPy；第二独立创新/SOTA/CCFA仍未建立。

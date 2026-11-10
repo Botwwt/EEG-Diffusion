@@ -1,0 +1,38 @@
+{
+  "version": 312,
+  "purpose": "Two complete route-deciding diagnostics, not two claimed novel reconstruction methods",
+  "seed": 1729,
+  "subject": "sub-03",
+  "repeat": "physical R4",
+  "queries": 13230,
+  "concepts": 1323,
+  "outer_folds_per_source_encoder_role": 3,
+  "ridge_grid": [0.001, 0.01, 0.1, 1.0, 10.0],
+  "inner_validation_concepts_fraction": 0.25,
+  "sources": ["original raw17 EEG", "genuine native OOF c", "native fused visual F", "three original visual teacher inputs"],
+  "compression": {
+    "cases": ["c", "raw17", "c_raw17", "c_wrong", "raw17_wrong"],
+    "targets": "All three original visual input modalities and original fused F, reported separately",
+    "question": "Does the original 4250-to-1024 nonlinear EEG bottleneck discard linearly decodable held-concept stimulus evidence?",
+    "limits": "Predictor class/capacity differs. Positive regression or retrieval differences do not establish extra mutual information, an optimal encoder, or image improvement."
+  },
+  "fusion": {
+    "cases": ["F_linear", "F_RBF", "F_RBF_c", "F_RBF_raw17", "F_RBF_c_wrong", "F_RBF_raw17_wrong"],
+    "targets": "All three original visual input modalities",
+    "question": "Do EEG measurements add held-concept stimulus evidence about individual visual views beyond a nonlinear readout of native fused F?",
+    "limits": "True query F is a privileged diagnostic input, forbidden in deployed EEG reconstruction. This is predictive conditional increment under fixed kernels, not proof that native fusion irreversibly destroys information."
+  },
+  "kernel": "Train-only coordinate standardization; dimension-normalized linear EEG kernels. RBF visual kernel uses train-only median nonzero pair distance from at most 512 deterministic train rows. Equal-weight kernel sums, no fitted mixture weights.",
+  "wrong_control": "Within-concept cyclic permutation of training EEG only, preserving visual inputs and all evaluation EEG; lambda inherited from matched correct-EEG case",
+  "normalization_and_selection": "Inner normalization and lambda use inner fit concepts only. Refit normalization and kernel on outer fit concepts only. No outer-test, D, V, R80 or image metric tuning.",
+  "metrics": ["original-view MSE", "outer-train-variance normalized MSE", "correct cosine", "same-concept hard-negative margin", "strict same-concept ten-image Top1", "same-concept 2AFC with half credit for ties"],
+  "full_scope": "Every one of the 13230 T stimuli evaluated exactly once in its native source encoder role; all ten same-concept targets, all modalities, all fixed cases. No claim of full-gallery benchmark evaluation or optimizer convergence.",
+  "budget": {"CPU_jobs": 2, "CPU_per_job": 4, "memory_MiB_per_job": 15000, "minutes_per_job": 20, "numeric_seconds_per_job": 1100, "outputs_GiB_per_job": 2},
+  "GPU_jobs_added": 0,
+  "existing_nine_case_GPU_chain_unchanged": true,
+  "ordinary_immutable": true,
+  "local_Torch_NumPy": false,
+  "other_projects_untouched": true,
+  "novelty_established": false,
+  "automatic_architecture_variant_search": false
+}
