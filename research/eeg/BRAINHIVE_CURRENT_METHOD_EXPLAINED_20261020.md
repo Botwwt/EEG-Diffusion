@@ -1,3 +1,8 @@
+<!-- EEG_NOVELTY_AND_FULL_T_DIAGNOSTICS_V311 -->
+> **2026-11-09 17:16 America/Los_Angeles**：普通修正ordinary有完整十被试R80收益（DINO0.872769→0.891198），但相对受限F-only/训练公共方向的额外主语义增量未确认；第一有效模块不等于已充分确认的主创新，不能省略这些强对照。C_pair0.773282 vs匹配O0.772164区间跨零；ATM当前分支绕过prior有+0.070019的完整400结构线索，但属强基线。P/IP同一单GPU链继续IP_replay，尚无新图片收益。
+> **新增完整T诊断已真实闭合**：CPU5105996（59.208秒）全13230/1323概念/六次来源内概念隔离验证：可逆坐标Top1 23.0915% vs ridge23.0159%，区间跨零、MSE更差，不升格为新成功方法；普通头MSE0.727247→0.720065而Top1跌至19.5163%。CPU5106019冻结模型七干预/全13230（9.706秒），径向更新MSE0.700803但排名逐条不变；共享更新未解释完整头收益。所有原分数复算max1.11e-15/Top1错0。不是图片增益或因果瓶颈证明。无新GPU/研究图片/科学源改动/自动重训；不继续随机加Flow。详见reports/EEG_LATEST_IDEAS_AND_ORDINARY_ASSESSMENT_20261109_v311.md及audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261109_v311.json。单1729/ordinary不覆盖/第二卡和CoLa不动/无本机TorchNumPy；第二独立创新/SOTA/CCFA仍未建立。
+<!-- END_EEG_NOVELTY_AND_FULL_T_DIAGNOSTICS_V311 -->
+
 <!-- EEG_FULL_SCOPE_AND_DIAGNOSIS_V308 -->
 > **用户新标准与全量诊断，2026-11-09 08:25 America/Los_Angeles**：后续研究须有重要独特机制，或能区分下一步的完整分析；不能用任意模块/大参数/长训练代替论文创新。见reports/EEG_PAPER_QUALIFICATION_AND_FULL_SCOPE_20261109_v307.md及configs/EEG_full_idea_validation_scope_20261109_v307.json。完整T一遍≠收敛；sub03R4完整830≠十被试R80或跨架构确认。新候选配方仍未封存，不能声称已启动。
 > **C真实闭合**：三组各827更新/13230暴露、六组4980图及20组共同14读数CPU5104522完成。C_pair DINO0.773282 vs ordinary0.772164，差+0.001118、区间[-0.007242,+0.010443]；胜C_positive但未胜reverse，第二创新未确认。单1729/曝光开发集/SEED缺ObjectF1与CapSim；无SOTA/CCFA。

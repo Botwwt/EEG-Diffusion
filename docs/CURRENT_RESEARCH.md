@@ -1,3 +1,6 @@
+> **2026-11-09 17:16 America/Los_Angeles：创新充分性审视与完整T新诊断。** ordinary有完整R80相对原生收益，但未确认对F-only/训练公共方向的额外主语义增量；第一有效模块不能直接等同充分主创新。新增全13230/六折可逆坐标诊断无可靠ridge增量；普通头MSE下降但刺激Top1从23.02%降至19.52%。冻结七干预进一步显示径向调整可降MSE却不改变排名。它们是完整诊断结果，不是第二成功方法。原P/IP单GPU链仍在IP_replay，未出新效能图。
+> [全部积极线索、ordinary对照与新诊断](../research/eeg/reports/EEG_LATEST_IDEAS_AND_ORDINARY_ASSESSMENT_20261109_v311.md)
+
 > **2026-11-09 08:25 America/Los_Angeles：完整判断标准更新。** C三组/4980图及20组全部830条共同评价完成；C_pair DINO0.773282，ordinary0.772164，差区间跨零，尚无第二确认方法。新增完整条件—图片诊断CPU5104557及本机16600行复算完成：A的整体F余弦大升仍语义下降，C限制漂移后恢复语义；不据相关性宣称唯一因果。现有九组P/IP继续原单GPU串行链，不重复开训。完整一遍T不等于收敛、单sub03R4不等于跨架构或十被试R80。后续须有独特机制或可区分下一步的完整分析；论文候选仍待实现和验证。
 > [完整方案、最新结果和近邻边界](../research/eeg/reports/EEG_PAPER_QUALIFICATION_AND_FULL_SCOPE_20261109_v307.md) · [完整C结果](../research/eeg/evidence/EEG_C_ANCHORED_ALL830_RESULTS_20261109_v308.json)
 

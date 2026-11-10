@@ -1,0 +1,233 @@
+{
+  "status": "COMPLETE_ALL13230_SIX_CONCEPT_ISOLATED_FITS_FOUR_READOUT_CONTROLS_NO_IMAGES",
+  "job_id": "5105996",
+  "seconds": 59.20764420367777,
+  "queries": 13230,
+  "concepts": 1323,
+  "subjects": 1,
+  "repeat": "R4",
+  "source_EEG_encoder_frozen": true,
+  "cases": [
+    "identity_ridge",
+    "orthogonal_equivalent",
+    "conjugate_chart",
+    "generic_output_head"
+  ],
+  "means": {
+    "identity_ridge": {
+      "original_F_MSE": 0.7272470289460774,
+      "original_F_cosine": 0.5592886062688598,
+      "same_concept_margin": -0.02514530648971336,
+      "same_concept_strict_Top1": 0.23015873015873015
+    },
+    "orthogonal_equivalent": {
+      "original_F_MSE": 0.7272470289460774,
+      "original_F_cosine": 0.5592886062688598,
+      "same_concept_margin": -0.02514530648971336,
+      "same_concept_strict_Top1": 0.23015873015873015
+    },
+    "conjugate_chart": {
+      "original_F_MSE": 0.7292771856411996,
+      "original_F_cosine": 0.5580634851047855,
+      "same_concept_margin": -0.02504712897655279,
+      "same_concept_strict_Top1": 0.2309145880574452
+    },
+    "generic_output_head": {
+      "original_F_MSE": 0.7200646469557207,
+      "original_F_cosine": 0.557140068518122,
+      "same_concept_margin": -0.02782919382852477,
+      "same_concept_strict_Top1": 0.19516250944822375
+    }
+  },
+  "comparisons": [
+    {
+      "left": "conjugate_chart",
+      "right": "identity_ridge",
+      "metric": "original_F_MSE",
+      "mean": 0.0020301566951222943,
+      "concept95": [
+        0.0019295043696501005,
+        0.0021311225251569874
+      ]
+    },
+    {
+      "left": "conjugate_chart",
+      "right": "identity_ridge",
+      "metric": "original_F_cosine",
+      "mean": -0.0012251211640741375,
+      "concept95": [
+        -0.0012921553454195388,
+        -0.0011574402180397963
+      ]
+    },
+    {
+      "left": "conjugate_chart",
+      "right": "identity_ridge",
+      "metric": "same_concept_margin",
+      "mean": 9.817751316057417e-05,
+      "concept95": [
+        3.417910162625563e-05,
+        0.00016651317771038444
+      ]
+    },
+    {
+      "left": "conjugate_chart",
+      "right": "identity_ridge",
+      "metric": "same_concept_strict_Top1",
+      "mean": 0.0007558578987150416,
+      "concept95": [
+        -0.0018915343915343916,
+        0.0033257747543461833
+      ]
+    },
+    {
+      "left": "conjugate_chart",
+      "right": "generic_output_head",
+      "metric": "original_F_MSE",
+      "mean": 0.009212538685478914,
+      "concept95": [
+        0.008291239106515233,
+        0.010115919797090396
+      ]
+    },
+    {
+      "left": "conjugate_chart",
+      "right": "generic_output_head",
+      "metric": "original_F_cosine",
+      "mean": 0.0009234165866636103,
+      "concept95": [
+        0.00030658290215007503,
+        0.0015149569757680426
+      ]
+    },
+    {
+      "left": "conjugate_chart",
+      "right": "generic_output_head",
+      "metric": "same_concept_margin",
+      "mean": 0.002782064851971991,
+      "concept95": [
+        0.0023509967087490713,
+        0.003184543131288868
+      ]
+    },
+    {
+      "left": "conjugate_chart",
+      "right": "generic_output_head",
+      "metric": "same_concept_strict_Top1",
+      "mean": 0.035752078609221465,
+      "concept95": [
+        0.028794406651549507,
+        0.04270786092214664
+      ]
+    },
+    {
+      "left": "generic_output_head",
+      "right": "identity_ridge",
+      "metric": "original_F_MSE",
+      "mean": -0.00718238199035662,
+      "concept95": [
+        -0.008100517945706232,
+        -0.006268213281030173
+      ]
+    },
+    {
+      "left": "generic_output_head",
+      "right": "identity_ridge",
+      "metric": "original_F_cosine",
+      "mean": -0.0021485377507377474,
+      "concept95": [
+        -0.0027492243057500336,
+        -0.0015270083001200632
+      ]
+    },
+    {
+      "left": "generic_output_head",
+      "right": "identity_ridge",
+      "metric": "same_concept_margin",
+      "mean": -0.002683887338811417,
+      "concept95": [
+        -0.003085624379383333,
+        -0.00223977507791025
+      ]
+    },
+    {
+      "left": "generic_output_head",
+      "right": "identity_ridge",
+      "metric": "same_concept_strict_Top1",
+      "mean": -0.034996220710506426,
+      "concept95": [
+        -0.04195011337868481,
+        -0.028042328042328042
+      ]
+    },
+    {
+      "left": "orthogonal_equivalent",
+      "right": "identity_ridge",
+      "metric": "original_F_MSE",
+      "mean": 0.0,
+      "concept95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "left": "orthogonal_equivalent",
+      "right": "identity_ridge",
+      "metric": "original_F_cosine",
+      "mean": 0.0,
+      "concept95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "left": "orthogonal_equivalent",
+      "right": "identity_ridge",
+      "metric": "same_concept_margin",
+      "mean": 0.0,
+      "concept95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "left": "orthogonal_equivalent",
+      "right": "identity_ridge",
+      "metric": "same_concept_strict_Top1",
+      "mean": 0.0,
+      "concept95": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "algebra": {
+    "inverse_max_abs": 2.220446049250313e-16,
+    "squared_norm_error": 1.7763568394002505e-15,
+    "Jacobian_determinant": 0.9999999999999998
+  },
+  "fits": 6,
+  "added_parameters": {
+    "conjugate": 197888,
+    "generic_head": 197728
+  },
+  "independent_unexposed_H": false,
+  "claims": {
+    "image_improvement": false,
+    "method_family_rejected": false,
+    "novelty_established": false,
+    "CCFA": false
+  },
+  "interpretation": "A fixed-budget diagnostic of learnable visual coordinates against a generic nonlinear head. Meta updates use outer-fit concepts only. Complete row coverage does not establish optimizer convergence. Original F scores are not image quality or evidence of extra EEG information. Exact conjugacy preserves visual teacher function algebraically, not all empirical feature distributions.",
+  "input_sha256": {
+    "OOF": "f40434179073db8dbf31714a91c1e659eaba9ec4a46c3a23bb3423e86c4c979d",
+    "F": "b6c1d412492a3277ffe821f43f33ffeeb31bd064fc8f5630d0508d5fe6dd46a8",
+    "split": "1969d664555d08399e77a2d76c011f19eadbda1ce251f9c72d72c94de3910ad2",
+    "policy": "6d4adb6c4d505023444e323d0fb85cd6c7c8ba53ee49f793fd828789b333c11b",
+    "core": "661416c042dd24ebeb31444f49fdd90e9e297d382450d19edaf99f1a7570abe4"
+  },
+  "table_sha256": "818ee0fcf60fa06d7abddee8eab5f6f72291fe4c295567b4899e10a7a626a19c",
+  "source_sha256": "6cb10f7cfb6221783de6f47e293c058bdfddff2ba573790c90f59b73a7a7f83e",
+  "new_GPU_jobs": 0,
+  "new_images": 0
+}

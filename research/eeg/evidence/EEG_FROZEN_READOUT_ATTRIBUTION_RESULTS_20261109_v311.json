@@ -1,0 +1,519 @@
+{
+  "status": "COMPLETE_FROZEN_ALL13230_SEVEN_COUNTERFACTUALS_NO_NEW_FIT_OR_IMAGES",
+  "job_id": "5106019",
+  "seconds": 9.706002032384276,
+  "queries": 13230,
+  "concepts": 1323,
+  "subjects": 1,
+  "cases": [
+    "ridge",
+    "full_head",
+    "fit_mean_update_only",
+    "individual_update_only",
+    "radial_update_only",
+    "tangent_update_only",
+    "sameconcept_shuffled_update"
+  ],
+  "means": {
+    "ridge": {
+      "F_MSE": 0.7272470289460774,
+      "F_cosine": 0.5592886062688598,
+      "sameconcept_margin": -0.02514530648971336,
+      "sameconcept_Top1": 0.23015873015873015,
+      "norm_error_MSE": 0.05966020522409934,
+      "angle_error_MSE": 0.6675868237219765
+    },
+    "full_head": {
+      "F_MSE": 0.7200646469557207,
+      "F_cosine": 0.557140068518122,
+      "sameconcept_margin": -0.02782919382852478,
+      "sameconcept_Top1": 0.19516250944822375,
+      "norm_error_MSE": 0.07346033543275605,
+      "angle_error_MSE": 0.6466043115229632
+    },
+    "fit_mean_update_only": {
+      "F_MSE": 0.728242145084229,
+      "F_cosine": 0.5586901543589269,
+      "sameconcept_margin": -0.025117178206498322,
+      "sameconcept_Top1": 0.23053665910808768,
+      "norm_error_MSE": 0.059559278162256445,
+      "angle_error_MSE": 0.6686828669219717
+    },
+    "individual_update_only": {
+      "F_MSE": 0.7190850654244304,
+      "F_cosine": 0.5577607804693377,
+      "sameconcept_margin": -0.02786260895864574,
+      "sameconcept_Top1": 0.19561602418745275,
+      "norm_error_MSE": 0.07357171675988577,
+      "angle_error_MSE": 0.6455133486645438
+    },
+    "radial_update_only": {
+      "F_MSE": 0.7008031730192501,
+      "F_cosine": 0.5592886062688595,
+      "sameconcept_margin": -0.025145306489713342,
+      "sameconcept_Top1": 0.23015873015873015,
+      "norm_error_MSE": 0.10756270374870781,
+      "angle_error_MSE": 0.5932404692705414
+    },
+    "tangent_update_only": {
+      "F_MSE": 0.7465085028825479,
+      "F_cosine": 0.5615128277370831,
+      "sameconcept_margin": -0.02688415937270125,
+      "sameconcept_Top1": 0.2021164021164021,
+      "norm_error_MSE": 0.03761853787482286,
+      "angle_error_MSE": 0.7088899650077242
+    },
+    "sameconcept_shuffled_update": {
+      "F_MSE": 0.8269487663316809,
+      "F_cosine": 0.5115101417311348,
+      "sameconcept_margin": -0.030020911609916493,
+      "sameconcept_Top1": 0.21670445956160242,
+      "norm_error_MSE": 0.03861590174749865,
+      "angle_error_MSE": 0.7883328645841812
+    }
+  },
+  "comparisons": [
+    {
+      "case": "full_head",
+      "reference": "ridge",
+      "metric": "F_MSE",
+      "mean": -0.00718238199035662,
+      "concept95": [
+        -0.008100517945706232,
+        -0.006268213281030173
+      ]
+    },
+    {
+      "case": "full_head",
+      "reference": "ridge",
+      "metric": "F_cosine",
+      "mean": -0.0021485377507377474,
+      "concept95": [
+        -0.0027492243057500336,
+        -0.0015270083001200632
+      ]
+    },
+    {
+      "case": "full_head",
+      "reference": "ridge",
+      "metric": "sameconcept_margin",
+      "mean": -0.0026838873388114214,
+      "concept95": [
+        -0.0030856243793833385,
+        -0.002239775077910258
+      ]
+    },
+    {
+      "case": "full_head",
+      "reference": "ridge",
+      "metric": "sameconcept_Top1",
+      "mean": -0.034996220710506426,
+      "concept95": [
+        -0.04195011337868481,
+        -0.028042328042328042
+      ]
+    },
+    {
+      "case": "full_head",
+      "reference": "ridge",
+      "metric": "norm_error_MSE",
+      "mean": 0.013800130208656705,
+      "concept95": [
+        0.013619789822311539,
+        0.013983572728170614
+      ]
+    },
+    {
+      "case": "full_head",
+      "reference": "ridge",
+      "metric": "angle_error_MSE",
+      "mean": -0.020982512199013245,
+      "concept95": [
+        -0.021936114541475652,
+        -0.020067839901949002
+      ]
+    },
+    {
+      "case": "fit_mean_update_only",
+      "reference": "ridge",
+      "metric": "F_MSE",
+      "mean": 0.0009951161381516651,
+      "concept95": [
+        0.0008547740943807265,
+        0.001129298780536748
+      ]
+    },
+    {
+      "case": "fit_mean_update_only",
+      "reference": "ridge",
+      "metric": "F_cosine",
+      "mean": -0.0005984519099328263,
+      "concept95": [
+        -0.0006908014426774014,
+        -0.0005076605319170683
+      ]
+    },
+    {
+      "case": "fit_mean_update_only",
+      "reference": "ridge",
+      "metric": "sameconcept_margin",
+      "mean": 2.8128283215033357e-05,
+      "concept95": [
+        -8.39037552239167e-06,
+        6.31419850074643e-05
+      ]
+    },
+    {
+      "case": "fit_mean_update_only",
+      "reference": "ridge",
+      "metric": "sameconcept_Top1",
+      "mean": 0.0003779289493575208,
+      "concept95": [
+        -0.0016628873771730912,
+        0.0022694633408919113
+      ]
+    },
+    {
+      "case": "fit_mean_update_only",
+      "reference": "ridge",
+      "metric": "norm_error_MSE",
+      "mean": -0.00010092706184290846,
+      "concept95": [
+        -0.00014299359049044173,
+        -5.217236689537218e-05
+      ]
+    },
+    {
+      "case": "fit_mean_update_only",
+      "reference": "ridge",
+      "metric": "angle_error_MSE",
+      "mean": 0.001096043199995129,
+      "concept95": [
+        0.0009504092959731394,
+        0.001242560040189632
+      ]
+    },
+    {
+      "case": "individual_update_only",
+      "reference": "ridge",
+      "metric": "F_MSE",
+      "mean": -0.008161963521646793,
+      "concept95": [
+        -0.009073860743878963,
+        -0.007301464216913536
+      ]
+    },
+    {
+      "case": "individual_update_only",
+      "reference": "ridge",
+      "metric": "F_cosine",
+      "mean": -0.001527825799522054,
+      "concept95": [
+        -0.0021176632398582926,
+        -0.0009067600425140677
+      ]
+    },
+    {
+      "case": "individual_update_only",
+      "reference": "ridge",
+      "metric": "sameconcept_margin",
+      "mean": -0.0027173024689323834,
+      "concept95": [
+        -0.0031179222928860283,
+        -0.002284976672589156
+      ]
+    },
+    {
+      "case": "individual_update_only",
+      "reference": "ridge",
+      "metric": "sameconcept_Top1",
+      "mean": -0.0345427059712774,
+      "concept95": [
+        -0.04142290249433107,
+        -0.027362055933484508
+      ]
+    },
+    {
+      "case": "individual_update_only",
+      "reference": "ridge",
+      "metric": "norm_error_MSE",
+      "mean": 0.013911511535786417,
+      "concept95": [
+        0.013736242660419937,
+        0.01408535750137319
+      ]
+    },
+    {
+      "case": "individual_update_only",
+      "reference": "ridge",
+      "metric": "angle_error_MSE",
+      "mean": -0.022073475057432658,
+      "concept95": [
+        -0.02301116780084589,
+        -0.02117608256940551
+      ]
+    },
+    {
+      "case": "radial_update_only",
+      "reference": "ridge",
+      "metric": "F_MSE",
+      "mean": -0.026443855926827183,
+      "concept95": [
+        -0.026699015874981333,
+        -0.02619817879487736
+      ]
+    },
+    {
+      "case": "radial_update_only",
+      "reference": "ridge",
+      "metric": "F_cosine",
+      "mean": -2.495316458710608e-16,
+      "concept95": [
+        -2.5158394306274553e-16,
+        -2.4735263388215884e-16
+      ]
+    },
+    {
+      "case": "radial_update_only",
+      "reference": "ridge",
+      "metric": "sameconcept_margin",
+      "mean": 1.1098034392039074e-17,
+      "concept95": [
+        9.368188596584286e-18,
+        1.2848125184069132e-17
+      ]
+    },
+    {
+      "case": "radial_update_only",
+      "reference": "ridge",
+      "metric": "sameconcept_Top1",
+      "mean": 0.0,
+      "concept95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "case": "radial_update_only",
+      "reference": "ridge",
+      "metric": "norm_error_MSE",
+      "mean": 0.04790249852460845,
+      "concept95": [
+        0.047674428797017186,
+        0.04815410976636446
+      ]
+    },
+    {
+      "case": "radial_update_only",
+      "reference": "ridge",
+      "metric": "angle_error_MSE",
+      "mean": -0.07434635445143516,
+      "concept95": [
+        -0.07479041652479741,
+        -0.07395327743283317
+      ]
+    },
+    {
+      "case": "tangent_update_only",
+      "reference": "ridge",
+      "metric": "F_MSE",
+      "mean": 0.01926147393647064,
+      "concept95": [
+        0.01840394337727938,
+        0.02010636357067312
+      ]
+    },
+    {
+      "case": "tangent_update_only",
+      "reference": "ridge",
+      "metric": "F_cosine",
+      "mean": 0.002224221468223411,
+      "concept95": [
+        0.0016902624926941274,
+        0.0027820094617529915
+      ]
+    },
+    {
+      "case": "tangent_update_only",
+      "reference": "ridge",
+      "metric": "sameconcept_margin",
+      "mean": -0.0017388528829878963,
+      "concept95": [
+        -0.0021096625774426644,
+        -0.0013481080038721532
+      ]
+    },
+    {
+      "case": "tangent_update_only",
+      "reference": "ridge",
+      "metric": "sameconcept_Top1",
+      "mean": -0.028042328042328042,
+      "concept95": [
+        -0.034467120181405894,
+        -0.021464474678760396
+      ]
+    },
+    {
+      "case": "tangent_update_only",
+      "reference": "ridge",
+      "metric": "norm_error_MSE",
+      "mean": -0.02204166734927649,
+      "concept95": [
+        -0.02213564363476465,
+        -0.02195360025057322
+      ]
+    },
+    {
+      "case": "tangent_update_only",
+      "reference": "ridge",
+      "metric": "angle_error_MSE",
+      "mean": 0.04130314128574761,
+      "concept95": [
+        0.04041515889361466,
+        0.042164800426603664
+      ]
+    },
+    {
+      "case": "sameconcept_shuffled_update",
+      "reference": "ridge",
+      "metric": "F_MSE",
+      "mean": 0.09970173738560381,
+      "concept95": [
+        0.09866579817645334,
+        0.10062480337684947
+      ]
+    },
+    {
+      "case": "sameconcept_shuffled_update",
+      "reference": "ridge",
+      "metric": "F_cosine",
+      "mean": -0.04777846453772502,
+      "concept95": [
+        -0.048388423627266815,
+        -0.047124571337679756
+      ]
+    },
+    {
+      "case": "sameconcept_shuffled_update",
+      "reference": "ridge",
+      "metric": "sameconcept_margin",
+      "mean": -0.004875605120203136,
+      "concept95": [
+        -0.005270535365210544,
+        -0.004466370004717796
+      ]
+    },
+    {
+      "case": "sameconcept_shuffled_update",
+      "reference": "ridge",
+      "metric": "sameconcept_Top1",
+      "mean": -0.01345427059712774,
+      "concept95": [
+        -0.019351851851851853,
+        -0.00755668934240363
+      ]
+    },
+    {
+      "case": "sameconcept_shuffled_update",
+      "reference": "ridge",
+      "metric": "norm_error_MSE",
+      "mean": -0.021044303476600707,
+      "concept95": [
+        -0.021246384331186818,
+        -0.02083362732705787
+      ]
+    },
+    {
+      "case": "sameconcept_shuffled_update",
+      "reference": "ridge",
+      "metric": "angle_error_MSE",
+      "mean": 0.12074604086220464,
+      "concept95": [
+        0.11967060180848035,
+        0.12169969375798594
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "role": 0,
+      "fold": 0,
+      "queries": 2210,
+      "mean_update_norm": 1.0689232811843854,
+      "mean_delta_norm": 9.416280725944647,
+      "max_MSE_decomposition_error": 2.3314683517128287e-15,
+      "max_previous_score_replay_error": 8.881784197001252e-16,
+      "previous_Top1_mismatches": 0,
+      "all_radial_scales_positive": true,
+      "model_sha256": "5a35965b6584d75d8800c884aa26d7bee565c1ec6a8001f91b7f774addf473ef"
+    },
+    {
+      "role": 0,
+      "fold": 1,
+      "queries": 2210,
+      "mean_update_norm": 0.9981826040552377,
+      "mean_delta_norm": 9.462278503548028,
+      "max_MSE_decomposition_error": 2.4424906541753444e-15,
+      "max_previous_score_replay_error": 8.881784197001252e-16,
+      "previous_Top1_mismatches": 0,
+      "all_radial_scales_positive": true,
+      "model_sha256": "69370c15be12bcc26b0192fa9adaecc9707d059ed5a6aff7c49cc869452bf06e"
+    },
+    {
+      "role": 0,
+      "fold": 2,
+      "queries": 2200,
+      "mean_update_norm": 1.0066279733112242,
+      "mean_delta_norm": 9.443952763212994,
+      "max_MSE_decomposition_error": 2.55351295663786e-15,
+      "max_previous_score_replay_error": 1.1102230246251565e-15,
+      "previous_Top1_mismatches": 0,
+      "all_radial_scales_positive": true,
+      "model_sha256": "fb96ab0372e6ddec332115453a2069919df614dd5f2ae067263caac98d6cb5ca"
+    },
+    {
+      "role": 1,
+      "fold": 0,
+      "queries": 2210,
+      "mean_update_norm": 1.0482325885368051,
+      "mean_delta_norm": 9.416626479420179,
+      "max_MSE_decomposition_error": 2.4424906541753444e-15,
+      "max_previous_score_replay_error": 9.992007221626409e-16,
+      "previous_Top1_mismatches": 0,
+      "all_radial_scales_positive": true,
+      "model_sha256": "b677f26fb526adf6b4ba166aee8340619594251e500220958738b60d1925082e"
+    },
+    {
+      "role": 1,
+      "fold": 1,
+      "queries": 2200,
+      "mean_update_norm": 0.9590344013115442,
+      "mean_delta_norm": 9.359089710287167,
+      "max_MSE_decomposition_error": 2.6645352591003757e-15,
+      "max_previous_score_replay_error": 9.992007221626409e-16,
+      "previous_Top1_mismatches": 0,
+      "all_radial_scales_positive": true,
+      "model_sha256": "0fa3b3fc1546dcb6bcbada250c9b4f603076f5780981ca1019e3ac470d1132d8"
+    },
+    {
+      "role": 1,
+      "fold": 2,
+      "queries": 2200,
+      "mean_update_norm": 1.0114503244553819,
+      "mean_delta_norm": 9.427099857304365,
+      "max_MSE_decomposition_error": 2.55351295663786e-15,
+      "max_previous_score_replay_error": 8.881784197001252e-16,
+      "previous_Top1_mismatches": 0,
+      "all_radial_scales_positive": true,
+      "model_sha256": "90a9d1b0dab05862055fb48dc1973dee4564a9dcac3a5105bdb916647d59fcee"
+    }
+  ],
+  "source_completion_sha256": "68c6eeb7807307a44ea14406bcf8db53e24cb7322c92b3ceb9b2faf9f0cb28af",
+  "table_sha256": "0c8d8a967313fff985febba0ac282ba6333cd0119bb33c8ee8f88fea599be6ce",
+  "source_sha256": "58458f9bc27897ffbfbde98611f7d146bca5be11cd339dbc77e6192007d0a994",
+  "new_training_updates": 0,
+  "new_images": 0,
+  "interpretation": "Frozen feature-level interventions can attribute current readout score changes, not image-level causal benefits. Fit-derived common update uses no heldout answers. Sameconcept shuffled update is a diagnostic using known concepts, not a deployable inference method. Norm-angle MSE identity is classical, not novelty.",
+  "confirmed_second_method": false,
+  "SOTA": false
+}
