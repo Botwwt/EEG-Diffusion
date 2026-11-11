@@ -1,3 +1,9 @@
+<!-- EEG_VISITATION_CURRENT_V320 -->
+> **2026-11-10 17:58 America/Los_Angeles：完整新结果与下一轮已挂单GPU。** P_abs_free相对ordinary的SSIM+0.039040区间正，DINO−0.002788区间跨零；相对旧joint P的DINO+0.014949区间正，是恢复线索，尚未确认第二个语义胜出方法。五组训练与4150图片、前轮3320图均已闭合，完整逐query与日志复核通过。
+> 新方向检验保护所用的真实EEG采样状态：native轨迹、匹配时间/sigma的forward状态、同概念错配轨迹三组各完整T827更新；另有冻结同参数更新范数控制，合计3320新图、9组14读数。CPU修正版5123621通过，GPU5123622实际运行轨迹前缀；拟合尚未开始。单seed1729，不加推理模块，无SOTA/CCFA保证。
+> [结果、完整公式、控制、来源与执行边界](../research/eeg/reports/EEG_PRESERVATION_RESULTS_AND_SAMPLING_VISITATION_20261110_v320.md)
+<!-- END_EEG_VISITATION_CURRENT_V320 -->
+
 > **2026-11-10 05:12 America/Los_Angeles：约12小时的单GPU串行实验链已提交。** 当前v316先完成；随后五组固定完整T训练（4135更新）及4150张全830图片、14指标评价。比较实际EEG域绝对/差异响应保护，与原生P真实均值/随机方向约束，不增推理模块。CPU工程已过，新的GPU训练尚在依赖等待；不把已有工具声称为原创或预设好效果。
 > [完整公式、五组对照、文献边界和时间估算](../research/eeg/reports/EEG_OVERNIGHT_TWELVE_HOUR_CAMPAIGN_20261110_v317.md)
 

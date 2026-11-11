@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "source_sha256": "580c2571f7bb76592197b21ab4f2c3dc586b1153205aadf32bbd897fd35b61de",
-      "bytes": 374825,
-      "sha256": "a9583f2dad4e8bcbe12ebc7fec18f312c56ec38efd7748026cc7a2392651c16b",
+      "source_sha256": "7a29e8b52a7095295beda62e30a5314ce207474eed3657ba0bb9e06c60e5be7f",
+      "bytes": 376521,
+      "sha256": "aab5f08244aeed0e9c2d0fc300a227d2f4600a0794c3b23312e547e06463c861",
       "access_metadata_redactions": 0
     },
     {
@@ -17121,14 +17121,262 @@
       "bytes": 2959,
       "sha256": "22618d993f646cf6fab9e364f9de6cce96230b19bcac6cac3dc3e8fbfc59c872",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_visitation_policy_v320.json",
+      "source_path": "EEG_visitation_policy_v320.json",
+      "source_sha256": "823648916fc3efe39788c4652616e110612d19931b78474a25c2e35b770137ff",
+      "bytes": 2600,
+      "sha256": "823648916fc3efe39788c4652616e110612d19931b78474a25c2e35b770137ff",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_conditional_visitation_core_20261110_v320.py",
+      "source_path": "PKU_conditional_visitation_core_20261110_v320.py",
+      "source_sha256": "e69b1fd75a43820adc9501ec0b9ec3a15c08dfce146eada7a8f643f4b9b97dd1",
+      "bytes": 408,
+      "sha256": "e69b1fd75a43820adc9501ec0b9ec3a15c08dfce146eada7a8f643f4b9b97dd1",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_visitation_CPU_20261110_v320.py",
+      "source_path": "PKU_probe_visitation_CPU_20261110_v320.py",
+      "source_sha256": "06271275b8e1c77de67f6e5d6c5be258e1813d92752e50610886624f60bb8c7f",
+      "bytes": 2304,
+      "sha256": "06271275b8e1c77de67f6e5d6c5be258e1813d92752e50610886624f60bb8c7f",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_build_visitation_bank_GPU_20261110_v320.py",
+      "source_path": "PKU_build_visitation_bank_GPU_20261110_v320.py",
+      "source_sha256": "813443c05fca36064f361e878aa3769dfac70fb4c65d24ed398266d6d7c312f0",
+      "bytes": 5081,
+      "sha256": "813443c05fca36064f361e878aa3769dfac70fb4c65d24ed398266d6d7c312f0",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_visitation_bank_CPU_20261110_v320.py",
+      "source_path": "PKU_audit_visitation_bank_CPU_20261110_v320.py",
+      "source_sha256": "32cc4c3f6a88d92ce7814d111d7b9a4cc574da7292e04f12fe2f5219c0a34e64",
+      "bytes": 1256,
+      "sha256": "32cc4c3f6a88d92ce7814d111d7b9a4cc574da7292e04f12fe2f5219c0a34e64",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_train_visitation_GPU_20261110_v320.py",
+      "source_path": "PKU_train_visitation_GPU_20261110_v320.py",
+      "source_sha256": "a45ed5d81f8fc0342b9d146f4c006716250a7174ccdca7927c9e2ff12f50f9a1",
+      "bytes": 14216,
+      "sha256": "a45ed5d81f8fc0342b9d146f4c006716250a7174ccdca7927c9e2ff12f50f9a1",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_visitation_CPU_20261110_v320.py",
+      "source_path": "PKU_audit_visitation_CPU_20261110_v320.py",
+      "source_sha256": "d45cde39fd321c89d5b9fd177b286a6b72e606fdfaf894c33266b9e6374fe8ad",
+      "bytes": 4126,
+      "sha256": "d45cde39fd321c89d5b9fd177b286a6b72e606fdfaf894c33266b9e6374fe8ad",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_visitation_GPU_20261110_v320.py",
+      "source_path": "PKU_queue_visitation_GPU_20261110_v320.py",
+      "source_sha256": "c368c226d91cdc952f1df2053a086870640035458026ffb6cf2971ba74c665f8",
+      "bytes": 4092,
+      "sha256": "c368c226d91cdc952f1df2053a086870640035458026ffb6cf2971ba74c665f8",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_visitation_images_CPU_20261110_v320.py",
+      "source_path": "PKU_prepare_visitation_images_CPU_20261110_v320.py",
+      "source_sha256": "6ba0ebb37f9d5c90da22511e73d833b92d7795177d925bab2a076c6ac8ad3496",
+      "bytes": 3975,
+      "sha256": "6ba0ebb37f9d5c90da22511e73d833b92d7795177d925bab2a076c6ac8ad3496",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_generate_visitation_images_GPU_20261110_v320.py",
+      "source_path": "PKU_generate_visitation_images_GPU_20261110_v320.py",
+      "source_sha256": "55c435233745206998461d6b89be6cf5241ee010192684f2669dc8984f00b64f",
+      "bytes": 11857,
+      "sha256": "55c435233745206998461d6b89be6cf5241ee010192684f2669dc8984f00b64f",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_visitation_scoring_CPU_20261110_v320.py",
+      "source_path": "PKU_prepare_visitation_scoring_CPU_20261110_v320.py",
+      "source_sha256": "60a1732b45c387b996cca12ad54a00e1ee3dc66a8c824d71b44bad29e68c7a62",
+      "bytes": 6341,
+      "sha256": "60a1732b45c387b996cca12ad54a00e1ee3dc66a8c824d71b44bad29e68c7a62",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_visitation_images_GPU_20261110_v320.py",
+      "source_path": "PKU_score_visitation_images_GPU_20261110_v320.py",
+      "source_sha256": "b5530f351f3ae3ac91501736d1bc4c994318bebe3a5b5451dd86b3e2c41a4057",
+      "bytes": 9945,
+      "sha256": "b5530f351f3ae3ac91501736d1bc4c994318bebe3a5b5451dd86b3e2c41a4057",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_visitation_scoring_CPU_20261110_v320.py",
+      "source_path": "PKU_dispatch_visitation_scoring_CPU_20261110_v320.py",
+      "source_sha256": "38613dcdd2392d48e924c1919397040b6c9b15ccae00336f8d8e96050944b43a",
+      "bytes": 2570,
+      "sha256": "38613dcdd2392d48e924c1919397040b6c9b15ccae00336f8d8e96050944b43a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_visitation_scores_CPU_20261110_v320.py",
+      "source_path": "PKU_analyze_visitation_scores_CPU_20261110_v320.py",
+      "source_sha256": "6887b6f40871737c6801b588b799bdab977c6482e5db8fd70244e944ffd52763",
+      "bytes": 5918,
+      "sha256": "6887b6f40871737c6801b588b799bdab977c6482e5db8fd70244e944ffd52763",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_visitation_image_policy_v320.json",
+      "source_path": "EEG_visitation_image_policy_v320.json",
+      "source_sha256": "974aa03bcba5c6a633e911b7e7308bcdf9e9f9d9b71e47ce9b456b4bb178ecbf",
+      "bytes": 724,
+      "sha256": "974aa03bcba5c6a633e911b7e7308bcdf9e9f9d9b71e47ce9b456b4bb178ecbf",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_visitation_scoring_policy_v320.json",
+      "source_path": "EEG_visitation_scoring_policy_v320.json",
+      "source_sha256": "7474742b6f9c1cde02487edc4aa6181c0c5d62ddb752dcd85f673883dbb80288",
+      "bytes": 2924,
+      "sha256": "7474742b6f9c1cde02487edc4aa6181c0c5d62ddb752dcd85f673883dbb80288",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/EEG_visitation_pins_v320.json",
+      "source_path": "EEG_visitation_pins_v320.json",
+      "source_sha256": "fd9bea8975c9675d96b43a77702f747c81a8bb9e54c9281c8cceaf2e578cad97",
+      "bytes": 1900,
+      "sha256": "fd9bea8975c9675d96b43a77702f747c81a8bb9e54c9281c8cceaf2e578cad97",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_visitation_CPU_20261110_v320.sbatch",
+      "source_path": "PKU_probe_visitation_CPU_20261110_v320.sbatch",
+      "source_sha256": "aafb1fcbd3fa7113fbb17125d8471108883b89a5f51f9d773d6483485285fbdb",
+      "bytes": 3036,
+      "sha256": "aafb1fcbd3fa7113fbb17125d8471108883b89a5f51f9d773d6483485285fbdb",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_visitation_GPU_20261110_v320.sbatch",
+      "source_path": "PKU_queue_visitation_GPU_20261110_v320.sbatch",
+      "source_sha256": "58df68c10e8b658fc69cccb615164c2d6ea3ea4cc19e26f6d1f1d6be72ef6352",
+      "bytes": 3090,
+      "sha256": "58df68c10e8b658fc69cccb615164c2d6ea3ea4cc19e26f6d1f1d6be72ef6352",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_visitation_images_CPU_20261110_v320.sbatch",
+      "source_path": "PKU_prepare_visitation_images_CPU_20261110_v320.sbatch",
+      "source_sha256": "063d6f581b07b1db833c50bc9ef14b393d1bdd26206bc022318118dfb6bc87e8",
+      "bytes": 3047,
+      "sha256": "063d6f581b07b1db833c50bc9ef14b393d1bdd26206bc022318118dfb6bc87e8",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_generate_visitation_images_GPU_20261110_v320.sbatch",
+      "source_path": "PKU_generate_visitation_images_GPU_20261110_v320.sbatch",
+      "source_sha256": "3d71a82953928b8c218feddd40848194184a4c7b7d980b245d27c31e7e505615",
+      "bytes": 3078,
+      "sha256": "3d71a82953928b8c218feddd40848194184a4c7b7d980b245d27c31e7e505615",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_visitation_scoring_CPU_20261110_v320.sbatch",
+      "source_path": "PKU_prepare_visitation_scoring_CPU_20261110_v320.sbatch",
+      "source_sha256": "28829c0fb253b0b7f884cd7823d20d4e561587a91816f8fc049614422d5abcd6",
+      "bytes": 3048,
+      "sha256": "28829c0fb253b0b7f884cd7823d20d4e561587a91816f8fc049614422d5abcd6",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_visitation_images_GPU_20261110_v320.sbatch",
+      "source_path": "PKU_score_visitation_images_GPU_20261110_v320.sbatch",
+      "source_sha256": "f970c2ace86afe8cf5beb207b4b2da0a410501cff8f4d2e5441bc5a941163a62",
+      "bytes": 3086,
+      "sha256": "f970c2ace86afe8cf5beb207b4b2da0a410501cff8f4d2e5441bc5a941163a62",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_visitation_scoring_CPU_20261110_v320.sbatch",
+      "source_path": "PKU_dispatch_visitation_scoring_CPU_20261110_v320.sbatch",
+      "source_sha256": "8f0860f104a7c496b6cbb08d9f79e83c2b72f6aa7fe81f29e1694ab50edf77a4",
+      "bytes": 3060,
+      "sha256": "8f0860f104a7c496b6cbb08d9f79e83c2b72f6aa7fe81f29e1694ab50edf77a4",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_visitation_scores_CPU_20261110_v320.sbatch",
+      "source_path": "PKU_analyze_visitation_scores_CPU_20261110_v320.sbatch",
+      "source_sha256": "670463c2028a1fba35eca32409d4848d38340944691cc29344fc31ce4394bff6",
+      "bytes": 3047,
+      "sha256": "670463c2028a1fba35eca32409d4848d38340944691cc29344fc31ce4394bff6",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_visitation_CPU_20261110_v321.py",
+      "source_path": "PKU_probe_visitation_CPU_20261110_v321.py",
+      "source_sha256": "e7c9e4eb31b35f74b2230ca742e23987899fa532f241989b9738b74a81e783e2",
+      "bytes": 2354,
+      "sha256": "e7c9e4eb31b35f74b2230ca742e23987899fa532f241989b9738b74a81e783e2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_visitation_CPU_20261110_v321.sbatch",
+      "source_path": "PKU_probe_visitation_CPU_20261110_v321.sbatch",
+      "source_sha256": "766aa50b850f3928b4d4d6fa01281b14138a7c048f4656757de6c732cf395e22",
+      "bytes": 3177,
+      "sha256": "766aa50b850f3928b4d4d6fa01281b14138a7c048f4656757de6c732cf395e22",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/EEG_PRESERVATION_RESULTS_AND_SAMPLING_VISITATION_20261110_v320.md",
+      "source_path": "reports/EEG_PRESERVATION_RESULTS_AND_SAMPLING_VISITATION_20261110_v320.md",
+      "source_sha256": "b7f583d095cb199043fdf8c41de4f24cc90043b2bcc3c94947e82766ec2e5b03",
+      "bytes": 10454,
+      "sha256": "8637f2c5f2f42f2e6b23cf446c49a0f023c5e270cd70672da3810e64588bd0a4",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_PRESERVATION_AND_FUNCTION_INTERVENTION_RESULTS_20261110_v319.json",
+      "source_path": "audit/EEG_PRESERVATION_AND_FUNCTION_INTERVENTION_RESULTS_20261110_v319.json",
+      "source_sha256": "0b7994c614491f705078193011c9ba80f86d373fdef7644f37f9942979a35148",
+      "bytes": 1330344,
+      "sha256": "0b7994c614491f705078193011c9ba80f86d373fdef7644f37f9942979a35148",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_VISITATION_ACTUAL_SUBMISSION_20261110_v320.json",
+      "source_path": "audit/EEG_VISITATION_ACTUAL_SUBMISSION_20261110_v320.json",
+      "source_sha256": "77fffd9bfbf1ec5a87ec01f4de9fb8ce9516b58822bdbeb180219d013a594790",
+      "bytes": 6269,
+      "sha256": "77fffd9bfbf1ec5a87ec01f4de9fb8ce9516b58822bdbeb180219d013a594790",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_ACTIVE_EXECUTION_HANDOFF_20261110_v320.json",
+      "source_path": "audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261110_v320.json",
+      "source_sha256": "78399cc5d672107d5efd3cb5f2169830c1607b6fb306f1bdbcdf371bfe73c184",
+      "bytes": 8772,
+      "sha256": "78399cc5d672107d5efd3cb5f2169830c1607b6fb306f1bdbcdf371bfe73c184",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 21635869,
+  "bytes": 23103664,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-10T13:21:07.142361+00:00"
+  "updated_UTC": "2026-11-11T02:02:09.498480+00:00"
 }

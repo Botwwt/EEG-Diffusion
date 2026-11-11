@@ -1,3 +1,8 @@
+<!-- EEG_PRESERVATION_CLOSED_AND_VISITATION_V320 -->
+> **2026-11-10 17:58 America/Los_Angeles：有结构收益与语义恢复线索，未确认第二独立成功方法。** v316/v317共7470新图和两套完整830×8×14读数已闭合，13280逐query/406对比/4135训练事件标准库复核通过。P_abs_free DINO0.769377 vs ordinary0.772164，差−0.002788区间跨零；SSIM0.368831 vs0.329790，差+0.039040区间正；同概念22.53% vs21.20%区间跨零。相对旧joint P的DINO+0.014949/同概念+0.025301均区间正，支持修复退步，不等于语义非劣或SOTA。均值约束token改变量平方小190倍，但参数更新范数反而更大，不能混同。
+> **新单GPU链已实际挂上：** 全13230刺激×4真实原生采样状态及匹配forward域，三组native/forward/同概念错配轨迹功能保护，各827更新，共2481新更新；另冻结同参数更新范数控制alpha1.3083768、新更新0。随后全部4×830=3320新图，五旧参考复用、9组14读数。仅训原生P权重，不增推理模块，单1729，一遍T不称收敛。原CPU5123609的额外alpha<1断言失败保留，旧未启动5123610撤下；v321只修工程断言/空目录，新CPU5123621通过、GPU5123622真实运行轨迹前缀。不得重挂或覆盖原失败，后续以实际next_job为准。DAgger/LwF/完整采样反传均有先例，本轮是待验证的EEG状态域机制，不冒称原创或CCFA。权威reports/EEG_PRESERVATION_RESULTS_AND_SAMPLING_VISITATION_20261110_v320.md及audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261110_v320.json。旧ordinary/第二卡/CoLa/关机实例不动，本机无TorchNumPy。
+<!-- END_EEG_PRESERVATION_CLOSED_AND_VISITATION_V320 -->
+
 <!-- EEG_TWELVE_HOUR_SERIAL_CAMPAIGN_V317 -->
 > **2026-11-10 05:12 America/Los_Angeles：约12小时单GPU队列已实际挂上。** 基于九组P/IP的SSIM升/语义降，以及视觉域回放未保住EEG条件，新增五组完整匹配P训练：绝对EEG响应保护/刺激差保护×自由/真实均值约束，另有同维随机方向约束控制。仅训原生proj.weight8388608参数，bias/LN共同冻结，不加推理模块；各全T13230/827更新/单1729，总4135更新及4150张完整830图片，随后全部14指标/八组比较及交互。时间预计10–13小时含v316剩余，调度另计，不凑时长。CPU5118360真实12秒Slurm/0.690秒程序通过原生P梯度和投影数学，GPU两步前缀尚待真实执行；原等待5118361完成后实际5118362依赖当前v316尾部，必须等v316图/评分/分析全闭合才启动，不能重挂或两卡并跑。
 > 经典关系蒸馏、仿射约束与语义保护已有近邻，不按公式声称原创；约束均值输入不等于保护LN后平均或图片质量，全部T实际漂移另测。旧ordinary不动，一遍T不代表收敛。完整设计和文献见reports/EEG_OVERNIGHT_TWELVE_HOUR_CAMPAIGN_20261110_v317.md、协议configs/EEG_overnight_conditional_preservation_20261110_v317.json及audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261110_v317.json。此时v316仍实际单GPU出图，不能把等待写成新五组已训练成功。

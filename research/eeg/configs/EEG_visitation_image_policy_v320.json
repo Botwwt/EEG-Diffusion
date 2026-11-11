@@ -1,0 +1,26 @@
+{
+  "status": "REGISTERED_BEFORE_IMAGES",
+  "arms": [
+    "P_visit_native",
+    "P_visit_forward",
+    "P_visit_mismatch",
+    "P_norm_control"
+  ],
+  "queries": 830,
+  "images": 3320,
+  "source_condition": "samefrozenmatchedordinary",
+  "query_seed": "1729|sub-03|stimulus_id|R4|EEG_Dcheck830_v271",
+  "layout": "armmajor on disk, audited querymajor manifest for unchanged scoringcore",
+  "max_GPU_stages": 16,
+  "perstage_images": 512,
+  "seconds": 900,
+  "width": 512,
+  "height": 512,
+  "steps": 4,
+  "CFG": 0,
+  "IP_scale": 1,
+  "one_image_per_query": true,
+  "new_images": 3320,
+  "training_models": "Three new full827 P fits and one frozen update-norm control; common bias/LN freezing",
+  "trainable_new_models": 3
+}

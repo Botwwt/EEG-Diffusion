@@ -1,0 +1,59 @@
+{
+  "status": "REGISTERED_FIXED_T_POLICY_STATE_PRESERVATION_WITH_MATCHED_CONTROLS",
+  "subject": "sub-03",
+  "repeat": "physical_R4",
+  "seed": 1729,
+  "cases": [
+    "P_visit_native",
+    "P_visit_forward",
+    "P_visit_mismatch"
+  ],
+  "image_arms": [
+    "P_visit_native",
+    "P_visit_forward",
+    "P_visit_mismatch",
+    "P_norm_control"
+  ],
+  "T": 13230,
+  "T_concepts": 1323,
+  "updates_per_fit": 827,
+  "total_new_updates": 2481,
+  "new_images": 3320,
+  "frozen_control": "Original v317 P_abs_free update scaled to the FP64 Frobenius norm of v317 P_abs_mean; zero new training",
+  "fitted_change": "Only existing P.proj.weight; bias/LN, EEG, ordinary, A, IP and UNet remain frozen",
+  "fit_loss": "Same positive epsilon +0.1 token +visual replay +paired energy softplus, plus absolute EEG-response preservation on a registered replay state",
+  "replay_cases": {
+    "P_visit_native": "Own EEG baseline sampled state",
+    "P_visit_forward": "Real T latent forward noising at identical native timestep/sigma",
+    "P_visit_mismatch": "Same-concept other EEG baseline sampled state, queried at the own-query time index"
+  },
+  "visitation": "All13230 frozen original-P+matchedordinary EEG trajectories, each4 native Euler-ancestral steps, latents only. No VAE decode or training in bank construction.",
+  "preservation_time": "For T row index i, use step i mod4. Full bank retains all4; fitting exposes each query once and one assigned replay time, not all4 times per query.",
+  "constraints": {
+    "single_GPU": true,
+    "no_other_projects": true,
+    "no_test_training": true,
+    "only_T_bank": true,
+    "no_seed_search": true,
+    "no_extra_inference_UNet": true
+  },
+  "limits": {
+    "bank_GPU_stages": 40,
+    "all_GPU_stages": 90,
+    "train_seconds_per_stage": 950,
+    "bank_queries_per_stage": 512,
+    "GPU_allocated_bytes": 21474836480,
+    "train_outputs_bytes": 8589934592,
+    "bank_outputs_bytes": 5368709120,
+    "image_outputs_bytes": 4294967296,
+    "feature_outputs_bytes": 2147483648,
+    "minimum_disk_free": 107374182400
+  },
+  "hypothesis": "Preservation under real EEG sampling visitation may retain deployed semantic response better than a teacher-noised surrogate; this is a falsifiable domain-placement hypothesis, not an established novel algorithm.",
+  "scope": "One subject, one training seed, one pass, exposed development830; no convergence, cross-host, independent confirmation or SOTA assertion",
+  "prior_art": [
+    "https://proceedings.mlr.press/v15/ross11a.html",
+    "https://arxiv.org/abs/1606.09282",
+    "https://arxiv.org/abs/2309.17400"
+  ]
+}

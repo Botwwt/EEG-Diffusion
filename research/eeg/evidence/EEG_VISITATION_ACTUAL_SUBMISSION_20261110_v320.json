@@ -1,0 +1,114 @@
+{
+  "UTC": "2026-11-11T01:58:35.641706+00:00",
+  "submission": {
+    "status": "SUBMITTED_FULL_T_BANK_THREE_MATCHED_FITS_ONE_NORM_CONTROL_ALL3320_IMAGES_ALL14METRICS_SINGLE_GPU",
+    "UTC": "2026-11-11T01:55:29.000145+00:00",
+    "files": {
+      "EEG_visitation_policy_v320.json": "823648916fc3efe39788c4652616e110612d19931b78474a25c2e35b770137ff",
+      "PKU_conditional_visitation_core_20261110_v320.py": "e69b1fd75a43820adc9501ec0b9ec3a15c08dfce146eada7a8f643f4b9b97dd1",
+      "PKU_probe_visitation_CPU_20261110_v320.py": "06271275b8e1c77de67f6e5d6c5be258e1813d92752e50610886624f60bb8c7f",
+      "PKU_build_visitation_bank_GPU_20261110_v320.py": "813443c05fca36064f361e878aa3769dfac70fb4c65d24ed398266d6d7c312f0",
+      "PKU_audit_visitation_bank_CPU_20261110_v320.py": "32cc4c3f6a88d92ce7814d111d7b9a4cc574da7292e04f12fe2f5219c0a34e64",
+      "PKU_train_visitation_GPU_20261110_v320.py": "a45ed5d81f8fc0342b9d146f4c006716250a7174ccdca7927c9e2ff12f50f9a1",
+      "PKU_audit_visitation_CPU_20261110_v320.py": "d45cde39fd321c89d5b9fd177b286a6b72e606fdfaf894c33266b9e6374fe8ad",
+      "PKU_queue_visitation_GPU_20261110_v320.py": "c368c226d91cdc952f1df2053a086870640035458026ffb6cf2971ba74c665f8",
+      "PKU_prepare_visitation_images_CPU_20261110_v320.py": "6ba0ebb37f9d5c90da22511e73d833b92d7795177d925bab2a076c6ac8ad3496",
+      "PKU_generate_visitation_images_GPU_20261110_v320.py": "55c435233745206998461d6b89be6cf5241ee010192684f2669dc8984f00b64f",
+      "PKU_prepare_visitation_scoring_CPU_20261110_v320.py": "60a1732b45c387b996cca12ad54a00e1ee3dc66a8c824d71b44bad29e68c7a62",
+      "PKU_score_visitation_images_GPU_20261110_v320.py": "b5530f351f3ae3ac91501736d1bc4c994318bebe3a5b5451dd86b3e2c41a4057",
+      "PKU_dispatch_visitation_scoring_CPU_20261110_v320.py": "38613dcdd2392d48e924c1919397040b6c9b15ccae00336f8d8e96050944b43a",
+      "PKU_analyze_visitation_scores_CPU_20261110_v320.py": "6887b6f40871737c6801b588b799bdab977c6482e5db8fd70244e944ffd52763",
+      "EEG_visitation_image_policy_v320.json": "974aa03bcba5c6a633e911b7e7308bcdf9e9f9d9b71e47ce9b456b4bb178ecbf",
+      "EEG_visitation_scoring_policy_v320.json": "7474742b6f9c1cde02487edc4aa6181c0c5d62ddb752dcd85f673883dbb80288",
+      "EEG_visitation_pins_v320.json": "fd9bea8975c9675d96b43a77702f747c81a8bb9e54c9281c8cceaf2e578cad97",
+      "PKU_probe_visitation_CPU_20261110_v320.sbatch": "aafb1fcbd3fa7113fbb17125d8471108883b89a5f51f9d773d6483485285fbdb",
+      "PKU_queue_visitation_GPU_20261110_v320.sbatch": "58df68c10e8b658fc69cccb615164c2d6ea3ea4cc19e26f6d1f1d6be72ef6352",
+      "PKU_prepare_visitation_images_CPU_20261110_v320.sbatch": "063d6f581b07b1db833c50bc9ef14b393d1bdd26206bc022318118dfb6bc87e8",
+      "PKU_generate_visitation_images_GPU_20261110_v320.sbatch": "3d71a82953928b8c218feddd40848194184a4c7b7d980b245d27c31e7e505615",
+      "PKU_prepare_visitation_scoring_CPU_20261110_v320.sbatch": "28829c0fb253b0b7f884cd7823d20d4e561587a91816f8fc049614422d5abcd6",
+      "PKU_score_visitation_images_GPU_20261110_v320.sbatch": "f970c2ace86afe8cf5beb207b4b2da0a410501cff8f4d2e5441bc5a941163a62",
+      "PKU_dispatch_visitation_scoring_CPU_20261110_v320.sbatch": "8f0860f104a7c496b6cbb08d9f79e83c2b72f6aa7fe81f29e1694ab50edf77a4",
+      "PKU_analyze_visitation_scores_CPU_20261110_v320.sbatch": "670463c2028a1fba35eca32409d4848d38340944691cc29344fc31ce4394bff6"
+    },
+    "jobs": {
+      "CPU_engineering": "5123609",
+      "GPU_native_trajectory_prefix_then_all_T_bank_and_three_fits": "5123610"
+    },
+    "new_fits": 3,
+    "new_updates": 2481,
+    "frozen_controls": 1,
+    "new_images": 3320,
+    "seed": 1729,
+    "other_projects_changed": false
+  },
+  "engineering_repair": {
+    "status": "ENGINEERING_ASSERTION_REPAIR_NO_NUMERICAL_FORMULA_CHANGE",
+    "UTC": "2026-11-11T01:57:54.523611+00:00",
+    "original_CPU_failure": "5123609",
+    "original_unstarted_GPU_cancelled": "5123610",
+    "CPU_engineering": "5123621",
+    "GPU_first_bank": "5123622",
+    "files": {
+      "PKU_probe_visitation_CPU_20261110_v321.py": "e7c9e4eb31b35f74b2230ca742e23987899fa532f241989b9738b74a81e783e2",
+      "PKU_probe_visitation_CPU_20261110_v321.sbatch": "766aa50b850f3928b4d4d6fa01281b14138a7c048f4656757de6c732cf395e22"
+    },
+    "alpha_formula_unchanged": true,
+    "original_sources_preserved": true,
+    "reason": "A mean-direction constraint can have a larger weight norm but smaller token-function change. The registered norm-matching formula never imposed alpha<1.",
+    "new_updates": 0,
+    "new_images": 0
+  },
+  "CPU_engineering": {
+    "status": "PASS_VISITATION_ALGEBRA_AND_FROZEN_CONTROL",
+    "fixture": {
+      "FP64_constraint_and_idempotence": true,
+      "Frobenius_projection_fixture": true,
+      "absolute_common_plus_difference_identity": true
+    },
+    "norm_control": {
+      "status": "PASS_FROZEN_UPDATE_NORM_CONTROL",
+      "alpha": 1.3083768318714726,
+      "target_update_norm": 2.7223871017108627,
+      "actual_update_norm": 2.7223870999736937,
+      "relative_rounding_error": 6.381051242954072e-10,
+      "source_updates": 827,
+      "new_updates": 0,
+      "target_sha256": "d1984524ae0c32bfcf6dbe5b031670c01662892400308da10c80bc5caf76ec50"
+    },
+    "seconds": 0.6482934206724167,
+    "job_id": "5123621",
+    "heldout_effects_used_for_alpha": false
+  },
+  "squeue": "5123622|eeg_visit_queue320|RUNNING|0:08|gpua800n02|gpua800n02\n",
+  "GPU_training_not_started": true,
+  "full_lifecycle_registered": true,
+  "latest_UTC": "2026-11-11T02:02:09.498480+00:00",
+  "latest_squeue": "5123632|eeg_visit_queue320|RUNNING|0:41|gpua800n02|gpua800n02\n",
+  "bank_prefix": {
+    "queries": 2,
+    "total": 13230,
+    "states": 8,
+    "job_id": "5123622",
+    "seconds": 91.51131525496021,
+    "peak_GPU_allocated_bytes": 8151017472
+  },
+  "trajectory_parity": {
+    "all4_native_UNet_inputs_exact": true,
+    "terminal_latent_exact": true,
+    "ancestral_RNG_exact": true,
+    "extra_engineering_UNet_calls": 4
+  },
+  "queue_progress": {
+    "stage": 1,
+    "phase": "bank",
+    "case": "P_visit_native",
+    "job_id": "5123622",
+    "updates": 0,
+    "CPU_proof": true,
+    "UTC": "2026-11-11T02:00:36.738452+00:00",
+    "status": "SAFE_PREFIX_NEXT_SUBMITTED",
+    "next_job_id": "5123632",
+    "next_phase": "bank",
+    "next_case": "P_visit_native"
+  }
+}
