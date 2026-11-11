@@ -116,3 +116,23 @@ $$L_O=\|\epsilon_\phi(z_t,t,P(A(O_\psi(c))))-\epsilon\|_2^2+0.1\,[1-\cos(P(A(O_\
 主要来源：[ATM作者论文](https://arxiv.org/abs/2403.07721)、[锁定ATMS作者源码](https://github.com/ncclab-sustech/EEG_Image_decode/blob/efb6b1d5d7dd14bea44ee5a952b72a951fa6da54/models/atms.py)、[TimeSformer的联合/分离时空注意力](https://proceedings.mlr.press/v139/bertasius21a.html)、[GradCache](https://aclanthology.org/2021.repl4nlp-1.31/)。大规模EEG预训练也值得比较，但[受控EEG基础模型评测](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f0f39b7686634fc81ca0112566b2c05f-Abstract-Conference.html)提示不能把更大预训练模型直接等同于本任务更好；本轮先完成输入、数据权限和生成成本匹配的骨干证据。
 
 追加运行核验（2026-11-11 08:20 America/Los_Angeles）：ATM63的full模型也已完整25轮/325更新并通过CPU断点核验，累计四个角色模型/1000个编码器更新完成；实际尾部GPU5135707接oof0，CPU5135708跟随同一链。此时处于正常Slurm Priority等待，不能误写为失败或连续占用GPU。五个ordinary及8300新图尚未开始，无新骨干图片效果结论。
+
+
+## 8. 按用户新要求收紧：每组必须能决定下一步
+
+在任何新骨干图片生成前，另行保存了[判断规则](../configs/EEG_backbone_interpretation_before_images_20261111_v326.json)，没有改变正在运行的训练。
+
+1. **Joint63−Separated63**用于检验同参数的交互连接差异。若刺激区分和最终图片均支持增益，再定位EEG的哪种时空交互起作用。这不是已经因果证明“延迟压缩”，后者还需要专门的匹配干预。
+2. **Joint63−Joint17**帮助判断额外电极支持的作用；若只在这项有增益，就不能把成果归给新注意力。它仍混有位置参数和计算差异。
+3. **各自ordinary−base以及交互项**用于判断适配是否依赖骨干，而不是把两个模块同时换掉后只报组合分数。交互为
+
+$$\Delta_{int}=\bigl[S(E_{Joint}+O_{Joint})-S(E_{Joint})\bigr]-\bigl[S(E_{MLP}+O_{MLP})-S(E_{MLP})\bigr].$$
+
+4. **完整表征→完整图片的对照**用于区分EEG视觉证据没有提高、证据提高却未被生成器转成语义收益，以及仅低层指标提高三种情况。训练内、上游OOF、校准集、已曝光开发集分开解释，不能互相顶替。
+5. **重新拟合的MLP与原parent/ordinary**用于检查训练协议差异。若新MLP退步，先检查协议，再讨论其他骨干的优劣；如果只有现成ATM胜出，它首先是更强基线，不算我们原创。
+
+这些实验能产生有依据的后续假设，不能预先保证产生正结果。五组是一个有机制对照的研究矩阵，不是五个可发表创新；不会为凑任务数量追加随机模块。全部最终图片和指标仍按原协议做完，不用单个指标提前中止或选epoch。
+
+公式中的平方误差均按实际实现对batch及相应特征/latent维度取mean；不把均方误差改写成未归一化平方和。
+
+最新运行核验（2026-11-11 08:29 America/Los_Angeles）：MLP17和ATM63的六个full/OOF模型都完成25轮，共1350编码器更新；Joint63的真实CUDA首步及CPU断点核验通过，后续GPU5135737运行到第19轮/240更新，CPU5135738等待同链后续。没有新骨干图片或ordinary效果读数，不能据训练loss差异直接宣判哪种骨干有效。

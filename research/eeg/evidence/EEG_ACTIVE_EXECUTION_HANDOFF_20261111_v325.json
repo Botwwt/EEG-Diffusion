@@ -1,8 +1,8 @@
 {
   "status": "PREVIOUS_VISITATION_FULLY_COMPLETE_FIVE_BACKBONES_OWN_ORDINARY_LONG_SINGLE_GPU_CHAIN_ACTIVE",
-  "UTC": "2026-11-11T16:20:20.149726+00:00",
+  "UTC": "2026-11-11T16:29:59.261529+00:00",
   "report": "reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
-  "source_receipt": "PKU_HPC_final325_20261111T162020617324Z.json",
+  "source_receipt": "PKU_HPC_joint326_20261111T162959653603Z.json",
   "previous_complete_results": "audit/EEG_VISITATION_RESULTS_20261111_v324.json",
   "scientific_source_version": "v322 unchanged",
   "engineering_dependency_versions": [
@@ -168,29 +168,29 @@
     "per_query_server_cap_bytes": 50331648,
     "no_new_refit_or_calibration": true
   },
-  "latest_squeue": "5135708|eeg_repr_follow325|PENDING|0:00||(Dependency)\n5135707|eeg_bb_queue322|PENDING|0:00||(Priority)\n",
+  "latest_squeue": "5135738|eeg_repr_follow325|PENDING|0:00||(Dependency)\n5135737|eeg_bb_queue322|RUNNING|1:17|gpua800n06|gpua800n06\n",
   "queue_progress": {
-    "stage": 8,
+    "stage": 13,
     "phase": "encoder",
-    "case": "ATM63",
+    "case": "Joint63",
     "role": "full",
-    "job_id": "5135694",
-    "updates": 325,
+    "job_id": "5135735",
+    "updates": 1,
     "CPU_proof": true,
-    "UTC": "2026-11-11T16:20:02.175951+00:00",
+    "UTC": "2026-11-11T16:28:29.722520+00:00",
     "status": "SAFE_PREFIX_NEXT_SUBMITTED",
-    "next_job_id": "5135707",
+    "next_job_id": "5135737",
     "next_phase": "encoder",
-    "next_case": "ATM63",
-    "next_role": "oof0"
+    "next_case": "Joint63",
+    "next_role": "full"
   },
   "representation_wait": {
-    "hop": 4,
-    "job_id": "5135695",
-    "UTC": "2026-11-11T16:20:02.741727+00:00",
+    "hop": 9,
+    "job_id": "5135736",
+    "UTC": "2026-11-11T16:28:30.378572+00:00",
     "status": "WAITING_ON_ACTUAL_FULL_BACKBONE_TRAIN_IMAGE_SCORE_CHAIN",
-    "dependency": "5135707",
-    "next_job_id": "5135708"
+    "dependency": "5135737",
+    "next_job_id": "5135738"
   },
   "cases": [
     "MLP17",
@@ -227,12 +227,14 @@
     "One recovered R4 subject, no independentH/multiseed/all10-R80/second full generator or complete SEED. Do not claim SOTA or CCFA."
   ],
   "complete_encoder_roles": [
+    "ATM63/full",
+    "ATM63/oof0",
+    "ATM63/oof1",
     "MLP17/full",
     "MLP17/oof0",
-    "MLP17/oof1",
-    "ATM63/full"
+    "MLP17/oof1"
   ],
-  "complete_encoder_updates_observed": 1000,
+  "complete_encoder_updates_observed": 1350,
   "ordinary_training_not_yet_started": true,
   "new_backbone_images_not_yet_generated": true,
   "public_snapshot_validation": {
@@ -241,5 +243,21 @@
     "python_AST_files": 1686,
     "bytes": 23867096,
     "scope": "Integrity, syntax, size and secret-format checks; no scientific replay."
-  }
+  },
+  "interpretation_registry": "configs/EEG_backbone_interpretation_before_images_20261111_v326.json",
+  "first_publication_commit": "69b34addb36bbb7cef5113702b1170c1824da8ea",
+  "first_publication_pushed": true,
+  "first_publication_worktree_clean": true,
+  "Joint63_full_progress": {
+    "update": 240,
+    "epoch": 19,
+    "offset": 5120,
+    "n": 1024,
+    "exposures": 244284,
+    "loss": 5.449548721313477,
+    "gradient_norm": 2.7263686656951904,
+    "seconds": 70.78726199595258,
+    "peak_GPU_allocated_bytes": 2525718016
+  },
+  "scientific_updates_not_restarted": true
 }

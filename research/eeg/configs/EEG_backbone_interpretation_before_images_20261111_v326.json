@@ -1,0 +1,46 @@
+{
+  "status": "INTERPRETATION_REGISTERED_BEFORE_ANY_NEW_BACKBONE_IMAGES",
+  "scientific_GPU_source_version": "v322 unchanged",
+  "new_training_or_GPU_jobs": 0,
+  "purpose": "Make the five-backbone experiment decide a mechanism or rule out a next direction, rather than count five model substitutions as innovations.",
+  "one_seed": 1729,
+  "primary_joint_control": {
+    "contrast": "Joint63 minus Separated63, before and after own ordinary",
+    "matched": "Exact same parameter tensors, initialization, electrodes, training permissions, targets and exposure budget",
+    "changed": "Allowed attention connections and their computational path",
+    "does_not_isolate": "It does not by itself isolate compression timing, make FLOPs equal, or prove separated attention lacks global access."
+  },
+  "electrode_control": {
+    "contrast": "Joint63 minus Joint17",
+    "interpretation": "Electrode support plus 5888 positional parameters and compute differences; do not attribute this contrast solely to a new attention rule."
+  },
+  "protocol_check": "Compare the fresh MLP base and own ordinary to original parent and matched ordinary using the complete saved per-query tables. If the new training protocol weakens MLP, investigate this before making a claim about all backbone families. No partial-image inspection or refitting.",
+  "candidate_routes": [
+    {
+      "pattern": "Joint63 improves over the parameter-matched separated model in stimulus discrimination and final images, with the Joint17/MLP17 comparison supporting a gain under posterior electrodes.",
+      "next": "Investigate the EEG-specific interaction/compression mechanism; use an additional matched intervention before calling compression timing causal or proposing an original method."
+    },
+    {
+      "pattern": "63-electrode models improve over 17-electrode models but joint attention has no confirmed advantage over the matched separated control.",
+      "next": "Study useful measurement support and electrode interactions; do not claim joint attention itself as the innovation."
+    },
+    {
+      "pattern": "Condition-space stimulus discrimination improves on complete Dcheck, while final image semantics do not improve or only SSIM rises.",
+      "next": "Localize how encoded stimulus evidence is used by A/P/IP and final images. Do not conclude the encoder is useless or immediately repeat another response-MSE loss."
+    },
+    {
+      "pattern": "Own ordinary helps some backbones and hurts others.",
+      "next": "Analyze the predefined backbone-by-ordinary interaction and native coordinates/distributions. Portability is a training principle to validate, not one universal checkpoint."
+    },
+    {
+      "pattern": "Only an existing ATM backbone improves, without support from the mechanism controls.",
+      "next": "Retain it as the stronger baseline; this is not our second original algorithm or an official ATM pipeline reproduction."
+    },
+    {
+      "pattern": "No full-study semantic advantage is supported across the candidate controls.",
+      "next": "Use train/OOF/Dfit/Dcheck and image differences to distinguish optimization, generalization and interface explanations. Do not automatically enlarge models or append similar losses."
+    }
+  ],
+  "comparison_policy": "All planned final models, all830 images each, all14 readouts and all registered controls remain. Interpret semantic, within-concept and low-level changes together. CI crossing zero is not equivalence or noninferiority; one isolated metric does not terminate the remaining experiment.",
+  "limits": "One recovered R4 subject, fixed25epochs not a convergence proof, exposed development, no independentH/multiseed/completeSEED or complete second generative host. No outcome guarantees novelty, SOTA or CCFA acceptance."
+}

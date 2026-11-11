@@ -2,6 +2,7 @@
 > **2026-11-11 08:15 America/Los_Angeles：前轮全闭合，新骨干长队列已运行。** v320三组各827更新和3320新图/九组14读数全部闭合；native/forward/mismatch DINO0.768547/0.770836/0.766235，ordinary0.772164，仍无额外语义胜出。三组SSIM约0.369，高于ordinary0.329790；总loss下降而部分保护项上升，不能按总loss宣布机制。7470逐query/154对比/2481日志事件stdlib复核通过；一项5.55e-18零值符号差单列，bootstrap未本机重跑。
 > **新v322骨干×各自ordinary完整链：** MLP17/作者ATM63/Joint63/同参数同初始化Separated63/Joint17，各full/oof0/oof1固定25epoch，共15编码器3375更新；随后各自ordinary三遍，共5头12405更新，十组8300新图+旧三强参考、13组14读数。MLP三角色675更新已真闭合及CPU核验，最新队列stage6→ATM63 full GPU5135615，必须以实际next_job为准，不重挂。CPU5135574真实EEG/GradCache/BN/RNG检查通过，补充全T/Dfit/Dcheck148800条表征诊断CPU5135612检查通过、实际5135617等待原骨干链。单1729/本研究单A800/其他项目和旧ordinary不动。source_condition旧模板文字已显式勘误，真实输入为各自新父编码器和自己的头。v323/324只修私有依赖与环境；v325修诊断FP64，全部原失败保留，训练科学源v322未变。经典attention/GradCache不冒称原创，尚无新骨干图片收益/SOTA/CCFA。详见reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md及audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v325.json。
 > **08:20追加：** ATM63/full也已完成25轮325更新，累计四角色/1000更新；实际next5135707接ATM63/oof0，CPU5135708跟随，仅正常Priority等待。五个ordinary与8300新图尚未开始。
+> **v326研究判断规则已锁：** 五组是强基线+机制对照，不是五个创新。联合/分离只检验连接差异，不直接证明压缩时机；63/17分离输入支持；own-O交互分离适配效应；完整条件→图片定位证据是否传递。新MLP先与旧parent核对协议。若只有ATM胜出，先记更强基线；无新随机组件/训练改动/额外GPU。见configs/EEG_backbone_interpretation_before_images_20261111_v326.json及报告第8节。
 <!-- END_EEG_BACKBONE_LONG_CAMPAIGN_V325 -->
 
 <!-- EEG_PRESERVATION_CLOSED_AND_VISITATION_V320 -->

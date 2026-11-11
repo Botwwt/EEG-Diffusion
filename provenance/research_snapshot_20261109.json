@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "source_sha256": "79c2c02f1826c117db424db7fb1542e71e34be777793d34b6589ee5196ea427b",
-      "bytes": 378384,
-      "sha256": "775aac69c843f9dbabbce1c89231209c86772fd852852feadbf8d28aaceba771",
+      "source_sha256": "219052d79c9a2b539df7bd65f731bd945961a1b20121e3dede96fbdc00e124da",
+      "bytes": 378863,
+      "sha256": "0954811b7d5996f73718a882d3f64ce2549988a9bac542de67e26c17d6192b83",
       "access_metadata_redactions": 0
     },
     {
@@ -17853,9 +17853,9 @@
     {
       "path": "research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
       "source_path": "reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
-      "source_sha256": "7b306bcd4808daa7a93112d7e88a178535f534102b25a21ea2312ee7d8664e7c",
-      "bytes": 13190,
-      "sha256": "af1b0044d765a070feb36f89b1c4693033f7d57666a255b494c7726a3e79a504",
+      "source_sha256": "18d8d377aa5aee9d7281b03a8fcfe0d5d3a35c1b156f9a7a89a1f632648fb5d1",
+      "bytes": 15446,
+      "sha256": "483f4b8b18cb02626fbaae449c80338352138256a351f89a215ad745f3557164",
       "access_metadata_redactions": 0
     },
     {
@@ -17869,9 +17869,9 @@
     {
       "path": "research/eeg/evidence/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v325.json",
       "source_path": "audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v325.json",
-      "source_sha256": "866318eefe39c8730eb79462bf2c3a35475999054f64aec4dbd8177a4626af37",
-      "bytes": 12147,
-      "sha256": "866318eefe39c8730eb79462bf2c3a35475999054f64aec4dbd8177a4626af37",
+      "source_sha256": "4e97c7406e0062874dfbc9a9ca0fb2d340e1cf28dcf2095e6db275556cb7a668",
+      "bytes": 12774,
+      "sha256": "4e97c7406e0062874dfbc9a9ca0fb2d340e1cf28dcf2095e6db275556cb7a668",
       "access_metadata_redactions": 0
     },
     {
@@ -17881,14 +17881,22 @@
       "bytes": 8426,
       "sha256": "0ea9c35343aa8c8f2f94eb55600099384d6942600d59625574747446dfe8c7d6",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_backbone_interpretation_before_images_20261111_v326.json",
+      "source_path": "configs/EEG_backbone_interpretation_before_images_20261111_v326.json",
+      "source_sha256": "7b84a9443036066c68a7b1f6b51e54fe9982bcf7b8e9fc6c7237df813f170d59",
+      "bytes": 3793,
+      "sha256": "7b84a9443036066c68a7b1f6b51e54fe9982bcf7b8e9fc6c7237df813f170d59",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 23867960,
+  "bytes": 23875115,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-11T16:20:20.149726+00:00"
+  "updated_UTC": "2026-11-11T16:29:59.261529+00:00"
 }
