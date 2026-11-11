@@ -1,0 +1,82 @@
+{
+  "status": "REGISTERED_FULL_BACKBONE_AND_OWN_ORDINARY_MATRIX_BEFORE_RESULTS",
+  "cases": [
+    "MLP17",
+    "ATM63",
+    "Joint63",
+    "Separated63",
+    "Joint17"
+  ],
+  "roles": [
+    "full",
+    "oof0",
+    "oof1"
+  ],
+  "subject": "sub-03",
+  "repeat": "physical_R4",
+  "seed": 1729,
+  "T_queries": 13230,
+  "T_concepts": 1323,
+  "epochs": 25,
+  "effective_batch": 1024,
+  "microbatch": 128,
+  "encoder_updates_per_case": 675,
+  "encoder_exposures_per_case": 661500,
+  "total_encoder_updates": 3375,
+  "total_encoder_exposures": 3307500,
+  "teacher": "Same frozen stochastic HIVE visual fusion, dropout0.1, independent teacher RNG1732 and shared order1730 across cases; final25 only",
+  "original_native_training_diff": "Effective1024 maintained with GradCache, per-micro128 BN for ATM, fullFP32 InfoNCE and independent visual-dropout RNG; all cases including fresh MLP use the same protocol. Not bitexact author training or an optimized ATM paper reproduction.",
+  "main_contrasts": [
+    "Joint63 vs Separated63: exact equal parameter tensors/init, different channel-time attention connectivity",
+    "Joint63 vs Joint17: effect of electrode support plus its small positional-parameter difference",
+    "All new backbones vs fresh MLP17, before and after independently fitted ordinary",
+    "Own ordinary minus own base, and backbone x ordinary interaction"
+  ],
+  "ordinary": {
+    "passes": 3,
+    "updates_per_case": 2481,
+    "exposures_per_case": 39690,
+    "parameters": 525568,
+    "radius": 0.25,
+    "training": "Own trueOOF conditions and own native output affine; original epsilon+.1 token loss; no old ordinary head reused",
+    "calibration": "Original five-strength Dfit820 rule, tie smaller"
+  },
+  "total_ordinary_updates": 12405,
+  "new_images": 8300,
+  "image_arms": [
+    "MLP17_base",
+    "MLP17_ordinary",
+    "ATM63_base",
+    "ATM63_ordinary",
+    "Joint63_base",
+    "Joint63_ordinary",
+    "Separated63_base",
+    "Separated63_ordinary",
+    "Joint17_base",
+    "Joint17_ordinary"
+  ],
+  "queries": 830,
+  "metrics": 14,
+  "heldout": "83 Dcheck concepts, exposed development, all830 unconditional final evaluation",
+  "method_status": "Backbone hypotheses plus strong baselines, not five newly invented algorithms. Attention before compression, separated/joint attention and gradient caching have prior art. No promise of SOTA or publication.",
+  "protocol_limits": "Only sub03 R4 recovered. No all10/R80, independentH, multiseed or complete second generative-host confirmation. One pass is not used for EEG: all backbones fixed25epochs; still no convergence guarantee.",
+  "caps": {
+    "GPU_concurrency": 1,
+    "allocated_GPU_bytes": 21474836480,
+    "GPU_stage_seconds": 1200,
+    "parent_safe_seconds": 850,
+    "head_safe_seconds": 950,
+    "queue_stages": 160,
+    "wait_hops": 160,
+    "training_bytes": 12884901888,
+    "image_bytes": 8589934592,
+    "feature_bytes": 3221225472,
+    "minimum_disk_free": 107374182400
+  },
+  "prior_art": [
+    "https://arxiv.org/abs/2403.07721",
+    "https://proceedings.mlr.press/v139/bertasius21a.html",
+    "https://aclanthology.org/2021.repl4nlp-1.31/",
+    "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f0f39b7686634fc81ca0112566b2c05f-Abstract-Conference.html"
+  ]
+}

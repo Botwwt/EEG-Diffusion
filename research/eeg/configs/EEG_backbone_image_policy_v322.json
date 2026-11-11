@@ -1,0 +1,32 @@
+{
+  "status": "REGISTERED_BEFORE_IMAGES",
+  "arms": [
+    "MLP17_base",
+    "MLP17_ordinary",
+    "ATM63_base",
+    "ATM63_ordinary",
+    "Joint63_base",
+    "Joint63_ordinary",
+    "Separated63_base",
+    "Separated63_ordinary",
+    "Joint17_base",
+    "Joint17_ordinary"
+  ],
+  "queries": 830,
+  "images": 8300,
+  "source_condition": "samefrozenmatchedordinary",
+  "query_seed": "1729|sub-03|stimulus_id|R4|EEG_Dcheck830_v271",
+  "layout": "armmajor on disk, audited querymajor manifest for unchanged scoringcore",
+  "max_GPU_stages": 32,
+  "perstage_images": 512,
+  "seconds": 900,
+  "width": 512,
+  "height": 512,
+  "steps": 4,
+  "CFG": 0,
+  "IP_scale": 1,
+  "one_image_per_query": true,
+  "new_images": 8300,
+  "training_models": "Five full/oof0/oof1 encoders and five separately fitted ordinary heads",
+  "trainable_new_models": 20
+}

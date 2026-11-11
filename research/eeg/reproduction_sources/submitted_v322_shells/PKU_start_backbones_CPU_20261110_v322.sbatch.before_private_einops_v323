@@ -1,0 +1,45 @@
+#!/bin/bash
+#SBATCH --job-name=eeg_bb_start322
+#SBATCH --partition=C64M256G
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=15000M
+#SBATCH --time=00:20:00
+set -euo pipefail
+umask 077
+PROJECT=/dfs/share/maleiLab/wwt/eeg
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+cd "$PROJECT"
+sha256sum --check <<'SOURCE_SHA'
+15b9a1f507f2ae127ef6674fbdf1157fa394114c2057acb5e3533f32fbe326a5  /dfs/share/maleiLab/wwt/eeg/code/PKU_backbone_core_20261110_v322.py
+2c30aea34e70f2738efef2c00a937f035860d386f04cc2a43908c2ce1351e739  /dfs/share/maleiLab/wwt/eeg/code/PKU_probe_backbones_CPU_20261110_v322.py
+39735e3996e4874b934481ab089cbbfbdc87f4ab918ddf3d25a3068d85bc1508  /dfs/share/maleiLab/wwt/eeg/code/PKU_train_backbone_GPU_20261110_v322.py
+105e0bca0021942bed13ca39563323e46a46acc4a13ac69ac47950230ab917cd  /dfs/share/maleiLab/wwt/eeg/code/PKU_audit_backbone_CPU_20261110_v322.py
+13e61691773861ce8b58c7fa815e3deb351c432afd600a4e5e262678e268aa62  /dfs/share/maleiLab/wwt/eeg/code/PKU_assemble_backbone_OOF_CPU_20261110_v322.py
+3114c4d2112b54e080bdde415cac88a7b2b649b284dc3ee6cf04260d3cd4bd54  /dfs/share/maleiLab/wwt/eeg/code/PKU_calibrate_backbone_ordinary_GPU_20261110_v322.py
+2a93ffd9c82e0fcb23c44e70346c2c3041a94b0ab128129aac7fe6e467731eb7  /dfs/share/maleiLab/wwt/eeg/code/PKU_prepare_backbone_images_CPU_20261110_v322.py
+e2eb588dfb8d64ff2400594afd0ef7f639833ef29174a36ba736804cdf2fd863  /dfs/share/maleiLab/wwt/eeg/code/ATM_author_atms_v322.py
+c570804bb4817ba6902830cbe6855981bee601816f3191c832b26919d9e724fe  /dfs/share/maleiLab/wwt/eeg/code/ATM_author_Embed_v322.py
+57d260ba4e0f1f474f6735929598112554fcddff16a6d81160d6eaf89a5dc7b1  /dfs/share/maleiLab/wwt/eeg/code/ATM_author_SelfAttention_Family_v322.py
+7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4  /dfs/share/maleiLab/wwt/eeg/code/ATM_author_Transformer_EncDec_v322.py
+df55b80c98fb24ec2f940d26f73df84a0f9518db17537ccaa4df955179212118  /dfs/share/maleiLab/wwt/eeg/code/ATM_author_loss_v322.py
+31786fb5f1a091b533afdb4a444e8c43344864cf64a7605783eae3894901def0  /dfs/share/maleiLab/wwt/eeg/code/EEG_backbone_author_pins_v322.json
+ff71c321e9d80ac96a8808b6ac8e74af8e789dad3156866c3347f8cdc0887b04  /dfs/share/maleiLab/wwt/eeg/code/ATM_author_LICENSE_v322.txt
+11da48ba838d9096facf81daa7ce952c4b0daf437f0677ca2115a1f230d32fdd  /dfs/share/maleiLab/wwt/eeg/code/EEG_backbone_policy_v322.json
+264d317766c95c5451869224536e6d96abcbb506ec13baed69f5699188864ad7  /dfs/share/maleiLab/wwt/eeg/code/EEG_backbone_ordinary_policy_v322.json
+99e49231ea9c202ec80945664fca7ef6578e4f2a4a47f4b3b059b5a8fea92476  /dfs/share/maleiLab/wwt/eeg/code/PKU_train_backbone_ordinary_GPU_20261110_v322.py
+850b65e2f3684cba7636714c58eb86f921e30c339f3124ca6ac39fc09a7542b8  /dfs/share/maleiLab/wwt/eeg/code/PKU_audit_backbone_ordinary_CPU_20261110_v322.py
+0fa844de653a82fe7a5a1365e3834a3de5c516c1d33f910fcbacd19b60d9a4aa  /dfs/share/maleiLab/wwt/eeg/code/PKU_queue_backbones_GPU_20261110_v322.py
+5d469103b876851920868547c53bd664b128543ec1b3cb2e8458401fdf204632  /dfs/share/maleiLab/wwt/eeg/code/PKU_start_backbones_CPU_20261110_v322.py
+f90233681c23aa58ba04cfb48a4d7e693a5f21370660954a8c01efc56ccf34f5  /dfs/share/maleiLab/wwt/eeg/code/PKU_generate_backbone_images_GPU_20261110_v322.py
+3d89fd2c732ba5d04b622111ce6568b9ac034ba3588b0196510a8235d37250fc  /dfs/share/maleiLab/wwt/eeg/code/PKU_prepare_backbone_scoring_CPU_20261110_v322.py
+84de99746bbb9e71fdfb2bc666cc118b2958965282103df7d48daa7cf41d4b4a  /dfs/share/maleiLab/wwt/eeg/code/PKU_score_backbone_images_GPU_20261110_v322.py
+776a7da2e776411ded047dc92ea4329234287d0989e0f7125ddf701720edb480  /dfs/share/maleiLab/wwt/eeg/code/PKU_dispatch_backbone_scoring_CPU_20261110_v322.py
+7ba8056d46e68b46f4475febb1c1650d898af952d669943d8aafaa2d59462bd1  /dfs/share/maleiLab/wwt/eeg/code/PKU_analyze_backbone_scores_CPU_20261110_v322.py
+ef32980bcd9c1acff26bb891172456d48c066847e6f681007a9df56c7bb88a0f  /dfs/share/maleiLab/wwt/eeg/code/EEG_backbone_image_policy_v322.json
+9b554a9310cd6d67ff5ed3edfee901f67073e8d64412379ac00f643f6aff89db  /dfs/share/maleiLab/wwt/eeg/code/EEG_backbone_scoring_policy_v322.json
+eadac5601fe9ad454f542c2a5ae3812b7ae13620fd3a70b6449d05926acfb850  /dfs/share/maleiLab/wwt/eeg/code/EEG_backbone_pins_v322.json
+SOURCE_SHA
+test "$(df --output=avail -B1 "$PROJECT" | tail -1)" -gt 107374182400
+"$PROJECT/envs/torch230_cu121_v235/bin/python" -B "$PROJECT/code/PKU_start_backbones_CPU_20261110_v322.py" --hop "$1"

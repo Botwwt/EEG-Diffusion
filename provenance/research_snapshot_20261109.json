@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "source_sha256": "7a29e8b52a7095295beda62e30a5314ce207474eed3657ba0bb9e06c60e5be7f",
-      "bytes": 376521,
-      "sha256": "aab5f08244aeed0e9c2d0fc300a227d2f4600a0794c3b23312e547e06463c861",
+      "source_sha256": "79c2c02f1826c117db424db7fb1542e71e34be777793d34b6589ee5196ea427b",
+      "bytes": 378384,
+      "sha256": "775aac69c843f9dbabbce1c89231209c86772fd852852feadbf8d28aaceba771",
       "access_metadata_redactions": 0
     },
     {
@@ -17341,9 +17341,9 @@
     {
       "path": "research/eeg/reports/EEG_PRESERVATION_RESULTS_AND_SAMPLING_VISITATION_20261110_v320.md",
       "source_path": "reports/EEG_PRESERVATION_RESULTS_AND_SAMPLING_VISITATION_20261110_v320.md",
-      "source_sha256": "b7f583d095cb199043fdf8c41de4f24cc90043b2bcc3c94947e82766ec2e5b03",
-      "bytes": 10454,
-      "sha256": "8637f2c5f2f42f2e6b23cf446c49a0f023c5e270cd70672da3810e64588bd0a4",
+      "source_sha256": "e150bd7158b9ccab3b3e87c21fecd164d9a26be1d96ec6fd8fc0d643857b66b2",
+      "bytes": 10782,
+      "sha256": "a73784ac8497614ebffb599f25b57409adafed101a60c46809b492b1339b50a5",
       "access_metadata_redactions": 0
     },
     {
@@ -17369,14 +17369,526 @@
       "bytes": 8772,
       "sha256": "78399cc5d672107d5efd3cb5f2169830c1607b6fb306f1bdbcdf371bfe73c184",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_backbone_core_20261110_v322.py",
+      "source_path": "PKU_backbone_core_20261110_v322.py",
+      "source_sha256": "15b9a1f507f2ae127ef6674fbdf1157fa394114c2057acb5e3533f32fbe326a5",
+      "bytes": 6955,
+      "sha256": "15b9a1f507f2ae127ef6674fbdf1157fa394114c2057acb5e3533f32fbe326a5",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_backbones_CPU_20261110_v322.py",
+      "source_path": "PKU_probe_backbones_CPU_20261110_v322.py",
+      "source_sha256": "2c30aea34e70f2738efef2c00a937f035860d386f04cc2a43908c2ce1351e739",
+      "bytes": 2870,
+      "sha256": "2c30aea34e70f2738efef2c00a937f035860d386f04cc2a43908c2ce1351e739",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_train_backbone_GPU_20261110_v322.py",
+      "source_path": "PKU_train_backbone_GPU_20261110_v322.py",
+      "source_sha256": "39735e3996e4874b934481ab089cbbfbdc87f4ab918ddf3d25a3068d85bc1508",
+      "bytes": 8186,
+      "sha256": "39735e3996e4874b934481ab089cbbfbdc87f4ab918ddf3d25a3068d85bc1508",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_backbone_CPU_20261110_v322.py",
+      "source_path": "PKU_audit_backbone_CPU_20261110_v322.py",
+      "source_sha256": "105e0bca0021942bed13ca39563323e46a46acc4a13ac69ac47950230ab917cd",
+      "bytes": 3082,
+      "sha256": "105e0bca0021942bed13ca39563323e46a46acc4a13ac69ac47950230ab917cd",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_assemble_backbone_OOF_CPU_20261110_v322.py",
+      "source_path": "PKU_assemble_backbone_OOF_CPU_20261110_v322.py",
+      "source_sha256": "13e61691773861ce8b58c7fa815e3deb351c432afd600a4e5e262678e268aa62",
+      "bytes": 1427,
+      "sha256": "13e61691773861ce8b58c7fa815e3deb351c432afd600a4e5e262678e268aa62",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_calibrate_backbone_ordinary_GPU_20261110_v322.py",
+      "source_path": "PKU_calibrate_backbone_ordinary_GPU_20261110_v322.py",
+      "source_sha256": "3114c4d2112b54e080bdde415cac88a7b2b649b284dc3ee6cf04260d3cd4bd54",
+      "bytes": 3101,
+      "sha256": "3114c4d2112b54e080bdde415cac88a7b2b649b284dc3ee6cf04260d3cd4bd54",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_backbone_images_CPU_20261110_v322.py",
+      "source_path": "PKU_prepare_backbone_images_CPU_20261110_v322.py",
+      "source_sha256": "2a93ffd9c82e0fcb23c44e70346c2c3041a94b0ab128129aac7fe6e467731eb7",
+      "bytes": 3038,
+      "sha256": "2a93ffd9c82e0fcb23c44e70346c2c3041a94b0ab128129aac7fe6e467731eb7",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/ATM_author_atms_v322.py",
+      "source_path": "ATM_author_atms_v322.py",
+      "source_sha256": "e2eb588dfb8d64ff2400594afd0ef7f639833ef29174a36ba736804cdf2fd863",
+      "bytes": 6895,
+      "sha256": "e2eb588dfb8d64ff2400594afd0ef7f639833ef29174a36ba736804cdf2fd863",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/ATM_author_Embed_v322.py",
+      "source_path": "ATM_author_Embed_v322.py",
+      "source_sha256": "c570804bb4817ba6902830cbe6855981bee601816f3191c832b26919d9e724fe",
+      "bytes": 9027,
+      "sha256": "c570804bb4817ba6902830cbe6855981bee601816f3191c832b26919d9e724fe",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/ATM_author_SelfAttention_Family_v322.py",
+      "source_path": "ATM_author_SelfAttention_Family_v322.py",
+      "source_sha256": "57d260ba4e0f1f474f6735929598112554fcddff16a6d81160d6eaf89a5dc7b1",
+      "bytes": 12065,
+      "sha256": "57d260ba4e0f1f474f6735929598112554fcddff16a6d81160d6eaf89a5dc7b1",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/ATM_author_Transformer_EncDec_v322.py",
+      "source_path": "ATM_author_Transformer_EncDec_v322.py",
+      "source_sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4",
+      "bytes": 4929,
+      "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/ATM_author_loss_v322.py",
+      "source_path": "ATM_author_loss_v322.py",
+      "source_sha256": "df55b80c98fb24ec2f940d26f73df84a0f9518db17537ccaa4df955179212118",
+      "bytes": 5165,
+      "sha256": "df55b80c98fb24ec2f940d26f73df84a0f9518db17537ccaa4df955179212118",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/EEG_backbone_author_pins_v322.json",
+      "source_path": "EEG_backbone_author_pins_v322.json",
+      "source_sha256": "31786fb5f1a091b533afdb4a444e8c43344864cf64a7605783eae3894901def0",
+      "bytes": 519,
+      "sha256": "31786fb5f1a091b533afdb4a444e8c43344864cf64a7605783eae3894901def0",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/ATM_author_LICENSE_v322.txt",
+      "source_path": "ATM_author_LICENSE_v322.txt",
+      "source_sha256": "ff71c321e9d80ac96a8808b6ac8e74af8e789dad3156866c3347f8cdc0887b04",
+      "bytes": 1068,
+      "sha256": "ff71c321e9d80ac96a8808b6ac8e74af8e789dad3156866c3347f8cdc0887b04",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_backbone_policy_v322.json",
+      "source_path": "EEG_backbone_policy_v322.json",
+      "source_sha256": "11da48ba838d9096facf81daa7ce952c4b0daf437f0677ca2115a1f230d32fdd",
+      "bytes": 3262,
+      "sha256": "11da48ba838d9096facf81daa7ce952c4b0daf437f0677ca2115a1f230d32fdd",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_backbone_ordinary_policy_v322.json",
+      "source_path": "EEG_backbone_ordinary_policy_v322.json",
+      "source_sha256": "264d317766c95c5451869224536e6d96abcbb506ec13baed69f5699188864ad7",
+      "bytes": 2198,
+      "sha256": "264d317766c95c5451869224536e6d96abcbb506ec13baed69f5699188864ad7",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_train_backbone_ordinary_GPU_20261110_v322.py",
+      "source_path": "PKU_train_backbone_ordinary_GPU_20261110_v322.py",
+      "source_sha256": "99e49231ea9c202ec80945664fca7ef6578e4f2a4a47f4b3b059b5a8fea92476",
+      "bytes": 11451,
+      "sha256": "99e49231ea9c202ec80945664fca7ef6578e4f2a4a47f4b3b059b5a8fea92476",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_audit_backbone_ordinary_CPU_20261110_v322.py",
+      "source_path": "PKU_audit_backbone_ordinary_CPU_20261110_v322.py",
+      "source_sha256": "850b65e2f3684cba7636714c58eb86f921e30c339f3124ca6ac39fc09a7542b8",
+      "bytes": 5152,
+      "sha256": "850b65e2f3684cba7636714c58eb86f921e30c339f3124ca6ac39fc09a7542b8",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_backbones_GPU_20261110_v322.py",
+      "source_path": "PKU_queue_backbones_GPU_20261110_v322.py",
+      "source_sha256": "0fa844de653a82fe7a5a1365e3834a3de5c516c1d33f910fcbacd19b60d9a4aa",
+      "bytes": 4733,
+      "sha256": "0fa844de653a82fe7a5a1365e3834a3de5c516c1d33f910fcbacd19b60d9a4aa",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_start_backbones_CPU_20261110_v322.py",
+      "source_path": "PKU_start_backbones_CPU_20261110_v322.py",
+      "source_sha256": "5d469103b876851920868547c53bd664b128543ec1b3cb2e8458401fdf204632",
+      "bytes": 2870,
+      "sha256": "8bb88a262c31454fb9ac6585374f4ecd5d9a20c438b0283d8fa6b3e218eba670",
+      "access_metadata_redactions": 1
+    },
+    {
+      "path": "research/eeg/PKU_generate_backbone_images_GPU_20261110_v322.py",
+      "source_path": "PKU_generate_backbone_images_GPU_20261110_v322.py",
+      "source_sha256": "f90233681c23aa58ba04cfb48a4d7e693a5f21370660954a8c01efc56ccf34f5",
+      "bytes": 11242,
+      "sha256": "f90233681c23aa58ba04cfb48a4d7e693a5f21370660954a8c01efc56ccf34f5",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_backbone_scoring_CPU_20261110_v322.py",
+      "source_path": "PKU_prepare_backbone_scoring_CPU_20261110_v322.py",
+      "source_sha256": "3d89fd2c732ba5d04b622111ce6568b9ac034ba3588b0196510a8235d37250fc",
+      "bytes": 6338,
+      "sha256": "3d89fd2c732ba5d04b622111ce6568b9ac034ba3588b0196510a8235d37250fc",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_backbone_images_GPU_20261110_v322.py",
+      "source_path": "PKU_score_backbone_images_GPU_20261110_v322.py",
+      "source_sha256": "84de99746bbb9e71fdfb2bc666cc118b2958965282103df7d48daa7cf41d4b4a",
+      "bytes": 9940,
+      "sha256": "84de99746bbb9e71fdfb2bc666cc118b2958965282103df7d48daa7cf41d4b4a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_backbone_scoring_CPU_20261110_v322.py",
+      "source_path": "PKU_dispatch_backbone_scoring_CPU_20261110_v322.py",
+      "source_sha256": "776a7da2e776411ded047dc92ea4329234287d0989e0f7125ddf701720edb480",
+      "bytes": 2560,
+      "sha256": "776a7da2e776411ded047dc92ea4329234287d0989e0f7125ddf701720edb480",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_backbone_scores_CPU_20261110_v322.py",
+      "source_path": "PKU_analyze_backbone_scores_CPU_20261110_v322.py",
+      "source_sha256": "7ba8056d46e68b46f4475febb1c1650d898af952d669943d8aafaa2d59462bd1",
+      "bytes": 6223,
+      "sha256": "7ba8056d46e68b46f4475febb1c1650d898af952d669943d8aafaa2d59462bd1",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_backbone_image_policy_v322.json",
+      "source_path": "EEG_backbone_image_policy_v322.json",
+      "source_sha256": "ef32980bcd9c1acff26bb891172456d48c066847e6f681007a9df56c7bb88a0f",
+      "bytes": 840,
+      "sha256": "ef32980bcd9c1acff26bb891172456d48c066847e6f681007a9df56c7bb88a0f",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/configs/EEG_backbone_scoring_policy_v322.json",
+      "source_path": "EEG_backbone_scoring_policy_v322.json",
+      "source_sha256": "9b554a9310cd6d67ff5ed3edfee901f67073e8d64412379ac00f643f6aff89db",
+      "bytes": 3034,
+      "sha256": "9b554a9310cd6d67ff5ed3edfee901f67073e8d64412379ac00f643f6aff89db",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/EEG_backbone_pins_v322.json",
+      "source_path": "EEG_backbone_pins_v322.json",
+      "source_sha256": "eadac5601fe9ad454f542c2a5ae3812b7ae13620fd3a70b6449d05926acfb850",
+      "bytes": 3063,
+      "sha256": "eadac5601fe9ad454f542c2a5ae3812b7ae13620fd3a70b6449d05926acfb850",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_backbones_CPU_20261110_v322.sbatch",
+      "source_path": "PKU_probe_backbones_CPU_20261110_v322.sbatch",
+      "source_sha256": "a76b2e6b5d24a547b086d7955d1d88eccaf30e4d4fdb91dac0dade129effae5c",
+      "bytes": 4590,
+      "sha256": "a76b2e6b5d24a547b086d7955d1d88eccaf30e4d4fdb91dac0dade129effae5c",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_start_backbones_CPU_20261110_v322.sbatch",
+      "source_path": "PKU_start_backbones_CPU_20261110_v322.sbatch",
+      "source_sha256": "a669d20568ad1241ddc5e60fb612c18806fcad22110f4857044767adceb7535a",
+      "bytes": 4600,
+      "sha256": "a669d20568ad1241ddc5e60fb612c18806fcad22110f4857044767adceb7535a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_queue_backbones_GPU_20261110_v322.sbatch",
+      "source_path": "PKU_queue_backbones_GPU_20261110_v322.sbatch",
+      "source_sha256": "12808b1c0d338ac300acb1ae34c8b123cdc124b0b6b6105e393ab1ea8d361fd5",
+      "bytes": 4656,
+      "sha256": "12808b1c0d338ac300acb1ae34c8b123cdc124b0b6b6105e393ab1ea8d361fd5",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_backbone_images_CPU_20261110_v322.sbatch",
+      "source_path": "PKU_prepare_backbone_images_CPU_20261110_v322.sbatch",
+      "source_sha256": "fb32badf0cca16f19c078c64457b6b5686519ab61a3cd07b6512bc3d17992c9a",
+      "bytes": 4600,
+      "sha256": "fb32badf0cca16f19c078c64457b6b5686519ab61a3cd07b6512bc3d17992c9a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_generate_backbone_images_GPU_20261110_v322.sbatch",
+      "source_path": "PKU_generate_backbone_images_GPU_20261110_v322.sbatch",
+      "source_sha256": "438e7380b352973b3a6202161f354bb8ba232b98c1299bb0d0c848b50468ee10",
+      "bytes": 4631,
+      "sha256": "438e7380b352973b3a6202161f354bb8ba232b98c1299bb0d0c848b50468ee10",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_backbone_scoring_CPU_20261110_v322.sbatch",
+      "source_path": "PKU_prepare_backbone_scoring_CPU_20261110_v322.sbatch",
+      "source_sha256": "5c1d69fbd524954cfd5b7a22f1da5ca60b928bd1473687836689619a164bcb84",
+      "bytes": 4601,
+      "sha256": "5c1d69fbd524954cfd5b7a22f1da5ca60b928bd1473687836689619a164bcb84",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_score_backbone_images_GPU_20261110_v322.sbatch",
+      "source_path": "PKU_score_backbone_images_GPU_20261110_v322.sbatch",
+      "source_sha256": "85a4e3f079801995c2297b08ee344a7192f19b6dfe00ea719e47755561839baf",
+      "bytes": 4639,
+      "sha256": "85a4e3f079801995c2297b08ee344a7192f19b6dfe00ea719e47755561839baf",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_dispatch_backbone_scoring_CPU_20261110_v322.sbatch",
+      "source_path": "PKU_dispatch_backbone_scoring_CPU_20261110_v322.sbatch",
+      "source_sha256": "5f6cccf657df32e6a57a67ac814333d9199d5d4d8d1eeddb673fcae39e79430c",
+      "bytes": 4613,
+      "sha256": "5f6cccf657df32e6a57a67ac814333d9199d5d4d8d1eeddb673fcae39e79430c",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_analyze_backbone_scores_CPU_20261110_v322.sbatch",
+      "source_path": "PKU_analyze_backbone_scores_CPU_20261110_v322.sbatch",
+      "source_sha256": "19cb2ef3f473c7be4cdc71c97637c2593d071bc0ac4060658134a240232f9e81",
+      "bytes": 4600,
+      "sha256": "19cb2ef3f473c7be4cdc71c97637c2593d071bc0ac4060658134a240232f9e81",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_install_backbone_runtime_CPU_20261110_v323.py",
+      "source_path": "PKU_install_backbone_runtime_CPU_20261110_v323.py",
+      "source_sha256": "62363d9df5e87ecbd7bc4b1b28bcfa6bd02d7c7075075493a8f5a0a73783da16",
+      "bytes": 1237,
+      "sha256": "62363d9df5e87ecbd7bc4b1b28bcfa6bd02d7c7075075493a8f5a0a73783da16",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_install_backbone_runtime_CPU_20261110_v323.sbatch",
+      "source_path": "PKU_install_backbone_runtime_CPU_20261110_v323.sbatch",
+      "source_sha256": "7e700b77051036692680d0beff4296d6257557ead111f829793fd789530220cd",
+      "bytes": 4635,
+      "sha256": "7e700b77051036692680d0beff4296d6257557ead111f829793fd789530220cd",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_install_backbone_runtime_CPU_20261111_v324.py",
+      "source_path": "PKU_install_backbone_runtime_CPU_20261111_v324.py",
+      "source_sha256": "063e7387e9c847090a8d5422633dfab019a090c0005193f0ebb72934a86343d2",
+      "bytes": 1304,
+      "sha256": "063e7387e9c847090a8d5422633dfab019a090c0005193f0ebb72934a86343d2",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_install_backbone_runtime_CPU_20261111_v324.sbatch",
+      "source_path": "PKU_install_backbone_runtime_CPU_20261111_v324.sbatch",
+      "source_sha256": "54d1b324af2c9c9058e2f9a8dfe37c30d0e38c27d7cf394260ddecb51876a517",
+      "bytes": 4635,
+      "sha256": "54d1b324af2c9c9058e2f9a8dfe37c30d0e38c27d7cf394260ddecb51876a517",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_backbone_representation_analysis_CPU_20261111_v324.py",
+      "source_path": "PKU_backbone_representation_analysis_CPU_20261111_v324.py",
+      "source_sha256": "d356c41c577c96e7c764c468ba6f867e182b025ed987b8b84af4ccb8414d89bf",
+      "bytes": 6592,
+      "sha256": "d356c41c577c96e7c764c468ba6f867e182b025ed987b8b84af4ccb8414d89bf",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_backbone_representation_CPU_20261111_v324.py",
+      "source_path": "PKU_probe_backbone_representation_CPU_20261111_v324.py",
+      "source_sha256": "22ae78e41ad9e023c20e44488b2e0e4f8294a53827bfb985981a1aceacc1c657",
+      "bytes": 2269,
+      "sha256": "22ae78e41ad9e023c20e44488b2e0e4f8294a53827bfb985981a1aceacc1c657",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_follow_backbone_analysis_CPU_20261111_v324.py",
+      "source_path": "PKU_follow_backbone_analysis_CPU_20261111_v324.py",
+      "source_sha256": "8bfd6ad4d720fad2c5cef27714f03ccdf271525ec523e615330b89c72f272f9f",
+      "bytes": 2822,
+      "sha256": "8ea3b3916e50ad760459a0e19ed54b47a6d93e4b920804ba4e22705c385737bb",
+      "access_metadata_redactions": 1
+    },
+    {
+      "path": "research/eeg/PKU_probe_backbone_representation_CPU_20261111_v324.sbatch",
+      "source_path": "PKU_probe_backbone_representation_CPU_20261111_v324.sbatch",
+      "source_sha256": "b9e0225d9aa2336ba3657d2606d55a266819ba685a3f7d749eecbc192b4c9840",
+      "bytes": 5066,
+      "sha256": "b9e0225d9aa2336ba3657d2606d55a266819ba685a3f7d749eecbc192b4c9840",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_follow_backbone_representation_CPU_20261111_v324.sbatch",
+      "source_path": "PKU_follow_backbone_representation_CPU_20261111_v324.sbatch",
+      "source_sha256": "144688b9c35b6ce3d8552aee82ecfb4e0818c5d40f814cf95f1583bfef825ef9",
+      "bytes": 5073,
+      "sha256": "144688b9c35b6ce3d8552aee82ecfb4e0818c5d40f814cf95f1583bfef825ef9",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_backbone_representation_analysis_CPU_20261111_v325.py",
+      "source_path": "PKU_backbone_representation_analysis_CPU_20261111_v325.py",
+      "source_sha256": "bf77fc9fb948b3fdbbf7a7b00e77c1660fc611476218feddd2d0f797efe2ace1",
+      "bytes": 6610,
+      "sha256": "bf77fc9fb948b3fdbbf7a7b00e77c1660fc611476218feddd2d0f797efe2ace1",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_probe_backbone_representation_CPU_20261111_v325.py",
+      "source_path": "PKU_probe_backbone_representation_CPU_20261111_v325.py",
+      "source_sha256": "dc28503b5856f530ce885f1341e77915f67c5e8b3a1b828c8977f08139e83161",
+      "bytes": 2345,
+      "sha256": "dc28503b5856f530ce885f1341e77915f67c5e8b3a1b828c8977f08139e83161",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_follow_backbone_analysis_CPU_20261111_v325.py",
+      "source_path": "PKU_follow_backbone_analysis_CPU_20261111_v325.py",
+      "source_sha256": "61f229d7947aaf9a2c6ae7947421dc21918fb640c45bc541c5cdfa9cff1a43bb",
+      "bytes": 2822,
+      "sha256": "427a45b19ab9a3b6b3586a24fa935054e05d7ee1ef440cd60a946ca7deedaabf",
+      "access_metadata_redactions": 1
+    },
+    {
+      "path": "research/eeg/PKU_probe_backbone_representation_CPU_20261111_v325.sbatch",
+      "source_path": "PKU_probe_backbone_representation_CPU_20261111_v325.sbatch",
+      "source_sha256": "802fc0fc6bae39df0a227828bbfcb2185e9c67f78ef7c825d55445c5424c9f46",
+      "bytes": 5066,
+      "sha256": "802fc0fc6bae39df0a227828bbfcb2185e9c67f78ef7c825d55445c5424c9f46",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_follow_backbone_representation_CPU_20261111_v325.sbatch",
+      "source_path": "PKU_follow_backbone_representation_CPU_20261111_v325.sbatch",
+      "source_sha256": "f1cc98b01449eaed695351707018eac1c22a2f69a50f1e7c8b15f19318dab57d",
+      "bytes": 5073,
+      "sha256": "f1cc98b01449eaed695351707018eac1c22a2f69a50f1e7c8b15f19318dab57d",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_analyze_backbone_scores_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_analyze_backbone_scores_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "c5f61d03b69c01fcac6b613496e39a64a949fde048403f024e7fb8195bc8c49e",
+      "bytes": 4489,
+      "sha256": "c5f61d03b69c01fcac6b613496e39a64a949fde048403f024e7fb8195bc8c49e",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_dispatch_backbone_scoring_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_dispatch_backbone_scoring_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "d5665b19320d7cf584e53424653d6687e95ad1b2b481636f71ef721ff74fd872",
+      "bytes": 4502,
+      "sha256": "d5665b19320d7cf584e53424653d6687e95ad1b2b481636f71ef721ff74fd872",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_generate_backbone_images_GPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_generate_backbone_images_GPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "e0de9c3d13bdedae5f5a76bf83874f76ad55d1990a8b0c6757552e469df056c9",
+      "bytes": 4520,
+      "sha256": "e0de9c3d13bdedae5f5a76bf83874f76ad55d1990a8b0c6757552e469df056c9",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_prepare_backbone_images_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_prepare_backbone_images_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "28bc0bf0e1c214d71af7f7792c2a18062286cace4c488a807e6ddd03843bb093",
+      "bytes": 4489,
+      "sha256": "28bc0bf0e1c214d71af7f7792c2a18062286cace4c488a807e6ddd03843bb093",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_prepare_backbone_scoring_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_prepare_backbone_scoring_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "15692078d712ec80e75c62f70d3dc2d475c3a221cec9bfb8602bdc2d82744175",
+      "bytes": 4490,
+      "sha256": "15692078d712ec80e75c62f70d3dc2d475c3a221cec9bfb8602bdc2d82744175",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_probe_backbones_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_probe_backbones_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "dc7891ba254f8cf396d3a1f0f2869b43febb90b139f10622285b00e64eae8afe",
+      "bytes": 4479,
+      "sha256": "dc7891ba254f8cf396d3a1f0f2869b43febb90b139f10622285b00e64eae8afe",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_queue_backbones_GPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_queue_backbones_GPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "78ffab454f66e52dd477338f1c94b88acda07c3e06ad64818bb9610b5c412cdc",
+      "bytes": 4545,
+      "sha256": "78ffab454f66e52dd477338f1c94b88acda07c3e06ad64818bb9610b5c412cdc",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_score_backbone_images_GPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_score_backbone_images_GPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "1b127604b79ebf0e271f23b2811ead2db05007738689294674f696f1b77213ae",
+      "bytes": 4528,
+      "sha256": "1b127604b79ebf0e271f23b2811ead2db05007738689294674f696f1b77213ae",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reproduction_sources/submitted_v322_shells/PKU_start_backbones_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_path": "PKU_start_backbones_CPU_20261110_v322.sbatch.before_private_einops_v323",
+      "source_sha256": "a7f589dd2ab36d10f0b80bfd67d6c6f024a2e3ce54606b28d192235398e7f01a",
+      "bytes": 4489,
+      "sha256": "a7f589dd2ab36d10f0b80bfd67d6c6f024a2e3ce54606b28d192235398e7f01a",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
+      "source_path": "reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
+      "source_sha256": "7b306bcd4808daa7a93112d7e88a178535f534102b25a21ea2312ee7d8664e7c",
+      "bytes": 13190,
+      "sha256": "af1b0044d765a070feb36f89b1c4693033f7d57666a255b494c7726a3e79a504",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_VISITATION_RESULTS_20261111_v324.json",
+      "source_path": "audit/EEG_VISITATION_RESULTS_20261111_v324.json",
+      "source_sha256": "a064f7cb7eb730eeb4d219747306efc67dc4525dccb7ab84aa43972f7653f844",
+      "bytes": 449499,
+      "sha256": "a064f7cb7eb730eeb4d219747306efc67dc4525dccb7ab84aa43972f7653f844",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v325.json",
+      "source_path": "audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v325.json",
+      "source_sha256": "866318eefe39c8730eb79462bf2c3a35475999054f64aec4dbd8177a4626af37",
+      "bytes": 12147,
+      "sha256": "866318eefe39c8730eb79462bf2c3a35475999054f64aec4dbd8177a4626af37",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_BACKBONE_ACTUAL_SUBMISSION_20261111_v325.json",
+      "source_path": "audit/EEG_BACKBONE_ACTUAL_SUBMISSION_20261111_v325.json",
+      "source_sha256": "0ea9c35343aa8c8f2f94eb55600099384d6942600d59625574747446dfe8c7d6",
+      "bytes": 8426,
+      "sha256": "0ea9c35343aa8c8f2f94eb55600099384d6942600d59625574747446dfe8c7d6",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 23103664,
+  "bytes": 23867960,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-11T02:02:09.498480+00:00"
+  "updated_UTC": "2026-11-11T16:20:20.149726+00:00"
 }
