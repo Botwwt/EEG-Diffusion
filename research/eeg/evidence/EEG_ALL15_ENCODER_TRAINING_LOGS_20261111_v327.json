@@ -1,0 +1,2957 @@
+{
+  "status": "PASS_ALL15_COMPLETE_ENCODER_LOGS_EXACT25_EPOCH_EVENT_ACCOUNTING",
+  "UTC": "2026-11-11T17:29:22.316034+00:00",
+  "updates": 3375,
+  "EEG_query_exposures": 3307500,
+  "models": [
+    {
+      "case": "MLP17",
+      "role": "full",
+      "updates": 325,
+      "query_exposures": 330750,
+      "epoch1_InfoNCE": 6.536417886585515,
+      "epoch25_InfoNCE": 2.417801492500738,
+      "epochs1_5_mean": 5.115366086707544,
+      "epochs16_20_mean": 2.5854572584479483,
+      "epochs21_25_mean": 2.434933016748926,
+      "late_minus_previous": -0.15052424169902245,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.536417886585515,
+          "gradient_norm_mean": 1.163339885535424
+        },
+        {
+          "epoch": 2,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.3899292699333765,
+          "gradient_norm_mean": 1.272735138004329
+        },
+        {
+          "epoch": 3,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.864848775135597,
+          "gradient_norm_mean": 1.6582382163763587
+        },
+        {
+          "epoch": 4,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.52331915543283,
+          "gradient_norm_mean": 1.9893536836562153
+        },
+        {
+          "epoch": 5,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.262315346450402,
+          "gradient_norm_mean": 2.2595440223734213
+        },
+        {
+          "epoch": 6,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.042828987046614,
+          "gradient_norm_mean": 2.5042570061153837
+        },
+        {
+          "epoch": 7,
+          "exposures": 13230,
+          "InfoNCE_mean": 3.84207426930411,
+          "gradient_norm_mean": 2.6986341169722046
+        },
+        {
+          "epoch": 8,
+          "exposures": 13230,
+          "InfoNCE_mean": 3.659432499136604,
+          "gradient_norm_mean": 2.8722769378985045
+        },
+        {
+          "epoch": 9,
+          "exposures": 13230,
+          "InfoNCE_mean": 3.4958049349233407,
+          "gradient_norm_mean": 3.0497746399110315
+        },
+        {
+          "epoch": 10,
+          "exposures": 13230,
+          "InfoNCE_mean": 3.344320648291394,
+          "gradient_norm_mean": 3.2083151661259426
+        },
+        {
+          "epoch": 11,
+          "exposures": 13230,
+          "InfoNCE_mean": 3.2098173336106903,
+          "gradient_norm_mean": 3.342809916623866
+        },
+        {
+          "epoch": 12,
+          "exposures": 13230,
+          "InfoNCE_mean": 3.080341850765168,
+          "gradient_norm_mean": 3.455091976488709
+        },
+        {
+          "epoch": 13,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.9688679781270046,
+          "gradient_norm_mean": 3.5475649673291794
+        },
+        {
+          "epoch": 14,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.86742231970201,
+          "gradient_norm_mean": 3.61628916701492
+        },
+        {
+          "epoch": 15,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.779087373873364,
+          "gradient_norm_mean": 3.6986579753734445
+        },
+        {
+          "epoch": 16,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.700297980622099,
+          "gradient_norm_mean": 3.7538789786268882
+        },
+        {
+          "epoch": 17,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.631125246928843,
+          "gradient_norm_mean": 3.794513577470614
+        },
+        {
+          "epoch": 18,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.5750430291291897,
+          "gradient_norm_mean": 3.830934187217995
+        },
+        {
+          "epoch": 19,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.5298069141889648,
+          "gradient_norm_mean": 3.859998612501183
+        },
+        {
+          "epoch": 20,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.4910131213706457,
+          "gradient_norm_mean": 3.8744476511545103
+        },
+        {
+          "epoch": 21,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.4631879389871725,
+          "gradient_norm_mean": 3.875431462912873
+        },
+        {
+          "epoch": 22,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.4434321873492575,
+          "gradient_norm_mean": 3.8769716493486905
+        },
+        {
+          "epoch": 23,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.428772067447008,
+          "gradient_norm_mean": 3.8804946973300396
+        },
+        {
+          "epoch": 24,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.421471397460453,
+          "gradient_norm_mean": 3.876008397741743
+        },
+        {
+          "epoch": 25,
+          "exposures": 13230,
+          "InfoNCE_mean": 2.417801492500738,
+          "gradient_norm_mean": 3.8775261168577235
+        }
+      ],
+      "logged_seconds": 50.26680657779798,
+      "peak_GPU_allocated_bytes": 1506208256,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "MLP17",
+        "role": "full",
+        "epochs": 25,
+        "updates": 325,
+        "exposures": 330750,
+        "model_sha256": "4b75f2d3e50923eeb91930126c476551a523fb76dfce63fe4172597ec1132d9d",
+        "conditions_sha256": "75896a875178748568594efdc39218c96693a9782e51b32c1801c32df6c7a793",
+        "parameters": 6452224
+      }
+    },
+    {
+      "case": "MLP17",
+      "role": "oof0",
+      "updates": 175,
+      "query_exposures": 165250,
+      "epoch1_InfoNCE": 6.7400527006198345,
+      "epoch25_InfoNCE": 2.2024386928950785,
+      "epochs1_5_mean": 5.190191761051473,
+      "epochs16_20_mean": 2.353038378223529,
+      "epochs21_25_mean": 2.215636595150346,
+      "late_minus_previous": -0.1374017830731833,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.7400527006198345,
+          "gradient_norm_mean": 1.4217749207535597
+        },
+        {
+          "epoch": 2,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.560759409617368,
+          "gradient_norm_mean": 1.2857542962782682
+        },
+        {
+          "epoch": 3,
+          "exposures": 6610,
+          "InfoNCE_mean": 4.948140820288262,
+          "gradient_norm_mean": 1.6781116005872996
+        },
+        {
+          "epoch": 4,
+          "exposures": 6610,
+          "InfoNCE_mean": 4.515096750995215,
+          "gradient_norm_mean": 2.0133904193785837
+        },
+        {
+          "epoch": 5,
+          "exposures": 6610,
+          "InfoNCE_mean": 4.186909123736683,
+          "gradient_norm_mean": 2.2985655729060093
+        },
+        {
+          "epoch": 6,
+          "exposures": 6610,
+          "InfoNCE_mean": 3.9100673195093014,
+          "gradient_norm_mean": 2.562248364663521
+        },
+        {
+          "epoch": 7,
+          "exposures": 6610,
+          "InfoNCE_mean": 3.6765254091386894,
+          "gradient_norm_mean": 2.805212305894237
+        },
+        {
+          "epoch": 8,
+          "exposures": 6610,
+          "InfoNCE_mean": 3.472840164577005,
+          "gradient_norm_mean": 2.9912131121948518
+        },
+        {
+          "epoch": 9,
+          "exposures": 6610,
+          "InfoNCE_mean": 3.285886232863757,
+          "gradient_norm_mean": 3.1515291100731417
+        },
+        {
+          "epoch": 10,
+          "exposures": 6610,
+          "InfoNCE_mean": 3.1272312229952908,
+          "gradient_norm_mean": 3.3036081741148333
+        },
+        {
+          "epoch": 11,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.9809576993991316,
+          "gradient_norm_mean": 3.4284879570469013
+        },
+        {
+          "epoch": 12,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.8489971560537364,
+          "gradient_norm_mean": 3.5434219379829024
+        },
+        {
+          "epoch": 13,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.733533043291493,
+          "gradient_norm_mean": 3.634887574263672
+        },
+        {
+          "epoch": 14,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.632324365768779,
+          "gradient_norm_mean": 3.7072513540645953
+        },
+        {
+          "epoch": 15,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.541594919242224,
+          "gradient_norm_mean": 3.7686614394368276
+        },
+        {
+          "epoch": 16,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.4631323530165403,
+          "gradient_norm_mean": 3.810229563532727
+        },
+        {
+          "epoch": 17,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.396986892400098,
+          "gradient_norm_mean": 3.8440117306500086
+        },
+        {
+          "epoch": 18,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.3425084497852873,
+          "gradient_norm_mean": 3.873031936939834
+        },
+        {
+          "epoch": 19,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.298615308247969,
+          "gradient_norm_mean": 3.894493297874116
+        },
+        {
+          "epoch": 20,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.2639488876677496,
+          "gradient_norm_mean": 3.9037626694983687
+        },
+        {
+          "epoch": 21,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.2387140913918593,
+          "gradient_norm_mean": 3.913454283383899
+        },
+        {
+          "epoch": 22,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.2219174097237175,
+          "gradient_norm_mean": 3.916160699134515
+        },
+        {
+          "epoch": 23,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.2113725155456705,
+          "gradient_norm_mean": 3.9217248627349575
+        },
+        {
+          "epoch": 24,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.203740266195404,
+          "gradient_norm_mean": 3.9286639168835986
+        },
+        {
+          "epoch": 25,
+          "exposures": 6610,
+          "InfoNCE_mean": 2.2024386928950785,
+          "gradient_norm_mean": 3.922114524249771
+        }
+      ],
+      "logged_seconds": 38.14507360383868,
+      "peak_GPU_allocated_bytes": 1506208256,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "MLP17",
+        "role": "oof0",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165250,
+        "model_sha256": "dcc780241bb841742ce0cdef341bec66e01ab44e414392267974109c12b08802",
+        "conditions_sha256": "2bad6f7d9ac9ca7baf8156cff89141aeae840ebe20c19c795b38798a3ae8c79d",
+        "parameters": 6452224
+      }
+    },
+    {
+      "case": "MLP17",
+      "role": "oof1",
+      "updates": 175,
+      "query_exposures": 165500,
+      "epoch1_InfoNCE": 6.732514642444622,
+      "epoch25_InfoNCE": 2.194688980673015,
+      "epochs1_5_mean": 5.181044785306533,
+      "epochs16_20_mean": 2.3443081218022237,
+      "epochs21_25_mean": 2.207496188616104,
+      "late_minus_previous": -0.13681193318611973,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.732514642444622,
+          "gradient_norm_mean": 1.4246774123874675
+        },
+        {
+          "epoch": 2,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.555218738371512,
+          "gradient_norm_mean": 1.2979748715086645
+        },
+        {
+          "epoch": 3,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.9384070768097015,
+          "gradient_norm_mean": 1.6882074431710372
+        },
+        {
+          "epoch": 4,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.503456107367201,
+          "gradient_norm_mean": 2.0220171732484755
+        },
+        {
+          "epoch": 5,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.175627361539627,
+          "gradient_norm_mean": 2.3053444536791106
+        },
+        {
+          "epoch": 6,
+          "exposures": 6620,
+          "InfoNCE_mean": 3.9016713998108834,
+          "gradient_norm_mean": 2.5710857555585327
+        },
+        {
+          "epoch": 7,
+          "exposures": 6620,
+          "InfoNCE_mean": 3.6717251241747344,
+          "gradient_norm_mean": 2.799136510860524
+        },
+        {
+          "epoch": 8,
+          "exposures": 6620,
+          "InfoNCE_mean": 3.462620811520026,
+          "gradient_norm_mean": 2.9916060707000085
+        },
+        {
+          "epoch": 9,
+          "exposures": 6620,
+          "InfoNCE_mean": 3.279057616553638,
+          "gradient_norm_mean": 3.1546877706879215
+        },
+        {
+          "epoch": 10,
+          "exposures": 6620,
+          "InfoNCE_mean": 3.1191847553426046,
+          "gradient_norm_mean": 3.2994367145699677
+        },
+        {
+          "epoch": 11,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.9726906782190605,
+          "gradient_norm_mean": 3.4277221495291257
+        },
+        {
+          "epoch": 12,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.8417506387946827,
+          "gradient_norm_mean": 3.5392525733417615
+        },
+        {
+          "epoch": 13,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.7252078417924954,
+          "gradient_norm_mean": 3.629084956465891
+        },
+        {
+          "epoch": 14,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.619461745437899,
+          "gradient_norm_mean": 3.7130479864483514
+        },
+        {
+          "epoch": 15,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.5292610881551876,
+          "gradient_norm_mean": 3.7686745070258656
+        },
+        {
+          "epoch": 16,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.452731743319877,
+          "gradient_norm_mean": 3.8171426450377863
+        },
+        {
+          "epoch": 17,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.387411163796831,
+          "gradient_norm_mean": 3.848288340582948
+        },
+        {
+          "epoch": 18,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.334198237185752,
+          "gradient_norm_mean": 3.885470935009037
+        },
+        {
+          "epoch": 19,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.291619184586217,
+          "gradient_norm_mean": 3.8996803247676515
+        },
+        {
+          "epoch": 20,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.25558028012244,
+          "gradient_norm_mean": 3.906918194646922
+        },
+        {
+          "epoch": 21,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.230717117980888,
+          "gradient_norm_mean": 3.9136095836443485
+        },
+        {
+          "epoch": 22,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.214476359646846,
+          "gradient_norm_mean": 3.9220027917821603
+        },
+        {
+          "epoch": 23,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.2011926334069933,
+          "gradient_norm_mean": 3.923774201344147
+        },
+        {
+          "epoch": 24,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.1964058513727793,
+          "gradient_norm_mean": 3.9253754138946535
+        },
+        {
+          "epoch": 25,
+          "exposures": 6620,
+          "InfoNCE_mean": 2.194688980673015,
+          "gradient_norm_mean": 3.920481386933802
+        }
+      ],
+      "logged_seconds": 39.33436776697636,
+      "peak_GPU_allocated_bytes": 1506208256,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "MLP17",
+        "role": "oof1",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165500,
+        "model_sha256": "13efc4c2d4b0860fd373480441a0de05875610ea25145a69f6643dcae479d15d",
+        "conditions_sha256": "257dbad9b64588e4450ffa9145f397ec84abbb9d447fccc3eaed06f69cc26624",
+        "parameters": 6452224
+      }
+    },
+    {
+      "case": "ATM63",
+      "role": "full",
+      "updates": 325,
+      "query_exposures": 330750,
+      "epoch1_InfoNCE": 6.9613462596613624,
+      "epoch25_InfoNCE": 5.112918268003341,
+      "epochs1_5_mean": 6.776564105618478,
+      "epochs16_20_mean": 5.166763742018718,
+      "epochs21_25_mean": 5.116468606416871,
+      "late_minus_previous": -0.050295135601847285,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.9613462596613624,
+          "gradient_norm_mean": 0.4962310076615888
+        },
+        {
+          "epoch": 2,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.945931220685363,
+          "gradient_norm_mean": 0.2408199745443673
+        },
+        {
+          "epoch": 3,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.929081259689274,
+          "gradient_norm_mean": 0.5187752761538067
+        },
+        {
+          "epoch": 4,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.67447600808003,
+          "gradient_norm_mean": 1.816798647497066
+        },
+        {
+          "epoch": 5,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.371985779976359,
+          "gradient_norm_mean": 1.0430196994646697
+        },
+        {
+          "epoch": 6,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.103358452047981,
+          "gradient_norm_mean": 0.8204763857595685
+        },
+        {
+          "epoch": 7,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.893774912885347,
+          "gradient_norm_mean": 0.8768715689421962
+        },
+        {
+          "epoch": 8,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.730256190051297,
+          "gradient_norm_mean": 0.9249140840809361
+        },
+        {
+          "epoch": 9,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.615865237408304,
+          "gradient_norm_mean": 0.9935823137798007
+        },
+        {
+          "epoch": 10,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.5243808038470785,
+          "gradient_norm_mean": 1.0848874007943716
+        },
+        {
+          "epoch": 11,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.447787565474968,
+          "gradient_norm_mean": 1.1028521311976922
+        },
+        {
+          "epoch": 12,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.383432577670927,
+          "gradient_norm_mean": 1.153696100565852
+        },
+        {
+          "epoch": 13,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.327465869473943,
+          "gradient_norm_mean": 1.1870159580053385
+        },
+        {
+          "epoch": 14,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.286401862838641,
+          "gradient_norm_mean": 1.2382156158520792
+        },
+        {
+          "epoch": 15,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.244872004825422,
+          "gradient_norm_mean": 1.2690676558315077
+        },
+        {
+          "epoch": 16,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.21014715592607,
+          "gradient_norm_mean": 1.2925760617872484
+        },
+        {
+          "epoch": 17,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.186373857251641,
+          "gradient_norm_mean": 1.3218095526943943
+        },
+        {
+          "epoch": 18,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.163670205385146,
+          "gradient_norm_mean": 1.3131446923258083
+        },
+        {
+          "epoch": 19,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.1430492276417334,
+          "gradient_norm_mean": 1.3445321877256813
+        },
+        {
+          "epoch": 20,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.130578263889004,
+          "gradient_norm_mean": 1.3437448160988943
+        },
+        {
+          "epoch": 21,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.1278712448529555,
+          "gradient_norm_mean": 1.344908726224373
+        },
+        {
+          "epoch": 22,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.117949916265809,
+          "gradient_norm_mean": 1.3568267958685023
+        },
+        {
+          "epoch": 23,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.1163942804862765,
+          "gradient_norm_mean": 1.3530693371009395
+        },
+        {
+          "epoch": 24,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.107209322475972,
+          "gradient_norm_mean": 1.3614000411260696
+        },
+        {
+          "epoch": 25,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.112918268003341,
+          "gradient_norm_mean": 1.349184196119676
+        }
+      ],
+      "logged_seconds": 120.24844032293186,
+      "peak_GPU_allocated_bytes": 1919411712,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "ATM63",
+        "role": "full",
+        "epochs": 25,
+        "updates": 325,
+        "exposures": 330750,
+        "model_sha256": "d4841f3e0dd7c1164b1fce34a0883635c3a6978412ec87027c93ce7112acd5be",
+        "conditions_sha256": "b3a44972e9f061e6a5b165d1e5214b9fee383997e15c9cc6cfe6ef83804bb59e",
+        "parameters": 3704413
+      }
+    },
+    {
+      "case": "ATM63",
+      "role": "oof0",
+      "updates": 175,
+      "query_exposures": 165250,
+      "epoch1_InfoNCE": 6.911832342854787,
+      "epoch25_InfoNCE": 5.347173888744637,
+      "epochs1_5_mean": 6.891606163855942,
+      "epochs16_20_mean": 5.413299668841571,
+      "epochs21_25_mean": 5.347369218067394,
+      "late_minus_previous": -0.06593045077417692,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.911832342854787,
+          "gradient_norm_mean": 0.6429586721981527
+        },
+        {
+          "epoch": 2,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.8972881112264615,
+          "gradient_norm_mean": 0.3122783838710698
+        },
+        {
+          "epoch": 3,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.893238279714887,
+          "gradient_norm_mean": 0.24768148494740658
+        },
+        {
+          "epoch": 4,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.88688044641815,
+          "gradient_norm_mean": 0.2412710590459936
+        },
+        {
+          "epoch": 5,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.868791639065418,
+          "gradient_norm_mean": 0.3360339475471566
+        },
+        {
+          "epoch": 6,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.744079333318344,
+          "gradient_norm_mean": 1.3605369027912526
+        },
+        {
+          "epoch": 7,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.491978723523116,
+          "gradient_norm_mean": 1.0672263921299068
+        },
+        {
+          "epoch": 8,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.2754964920828815,
+          "gradient_norm_mean": 1.0495997239890509
+        },
+        {
+          "epoch": 9,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.085747966824068,
+          "gradient_norm_mean": 1.0009121560833998
+        },
+        {
+          "epoch": 10,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.935300532988809,
+          "gradient_norm_mean": 0.9378567063682198
+        },
+        {
+          "epoch": 11,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.8049411863133695,
+          "gradient_norm_mean": 0.9790190179842142
+        },
+        {
+          "epoch": 12,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.707103308823394,
+          "gradient_norm_mean": 1.037689610905438
+        },
+        {
+          "epoch": 13,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.628318451753001,
+          "gradient_norm_mean": 1.0589325089317587
+        },
+        {
+          "epoch": 14,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.558228939708531,
+          "gradient_norm_mean": 1.1111004872689991
+        },
+        {
+          "epoch": 15,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.512769803842149,
+          "gradient_norm_mean": 1.1536861809587695
+        },
+        {
+          "epoch": 16,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.467649589688623,
+          "gradient_norm_mean": 1.189348749241562
+        },
+        {
+          "epoch": 17,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.435488618772798,
+          "gradient_norm_mean": 1.2016591385886095
+        },
+        {
+          "epoch": 18,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.405433974792665,
+          "gradient_norm_mean": 1.2181222359098933
+        },
+        {
+          "epoch": 19,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.38907188597317,
+          "gradient_norm_mean": 1.2280413858107828
+        },
+        {
+          "epoch": 20,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.3688542749806,
+          "gradient_norm_mean": 1.2442725712160119
+        },
+        {
+          "epoch": 21,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.3564625157170145,
+          "gradient_norm_mean": 1.2585632531256972
+        },
+        {
+          "epoch": 22,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.3430361649633,
+          "gradient_norm_mean": 1.2674307137862997
+        },
+        {
+          "epoch": 23,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.347825676374104,
+          "gradient_norm_mean": 1.2631369308336058
+        },
+        {
+          "epoch": 24,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.342347844537917,
+          "gradient_norm_mean": 1.2778201609263802
+        },
+        {
+          "epoch": 25,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.347173888744637,
+          "gradient_norm_mean": 1.2620717658578178
+        }
+      ],
+      "logged_seconds": 77.42544875992462,
+      "peak_GPU_allocated_bytes": 1919411712,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "ATM63",
+        "role": "oof0",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165250,
+        "model_sha256": "2a9198f7d89ad256eaeb01393d102ab76aa5c64059fd4366437e4df8ceeba533",
+        "conditions_sha256": "a119f045940744941a8f84724b57b72973653aa7ededc4405a0a898cec161922",
+        "parameters": 3704413
+      }
+    },
+    {
+      "case": "ATM63",
+      "role": "oof1",
+      "updates": 175,
+      "query_exposures": 165500,
+      "epoch1_InfoNCE": 6.92078931180372,
+      "epoch25_InfoNCE": 5.303396190977529,
+      "epochs1_5_mean": 6.8439533833506605,
+      "epochs16_20_mean": 5.371612568420226,
+      "epochs21_25_mean": 5.316039411596661,
+      "late_minus_previous": -0.05557315682356556,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.92078931180372,
+          "gradient_norm_mean": 0.7414818132391869
+        },
+        {
+          "epoch": 2,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.904605085251915,
+          "gradient_norm_mean": 0.36711044376350244
+        },
+        {
+          "epoch": 3,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.886060936573409,
+          "gradient_norm_mean": 0.3842936821574531
+        },
+        {
+          "epoch": 4,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.848409399453247,
+          "gradient_norm_mean": 0.6233655484421375
+        },
+        {
+          "epoch": 5,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.659902183671012,
+          "gradient_norm_mean": 1.188058093523331
+        },
+        {
+          "epoch": 6,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.418859265145938,
+          "gradient_norm_mean": 1.1122287851806134
+        },
+        {
+          "epoch": 7,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.23429232882589,
+          "gradient_norm_mean": 0.9562702585923347
+        },
+        {
+          "epoch": 8,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.056754771748338,
+          "gradient_norm_mean": 1.0056071740262817
+        },
+        {
+          "epoch": 9,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.902948607706952,
+          "gradient_norm_mean": 1.0012191061526987
+        },
+        {
+          "epoch": 10,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.793185376112555,
+          "gradient_norm_mean": 1.0469638443425342
+        },
+        {
+          "epoch": 11,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.69855955705902,
+          "gradient_norm_mean": 1.1059063769539317
+        },
+        {
+          "epoch": 12,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.62190029714763,
+          "gradient_norm_mean": 1.1815875528802324
+        },
+        {
+          "epoch": 13,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.5541823436126245,
+          "gradient_norm_mean": 1.181341197555519
+        },
+        {
+          "epoch": 14,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.500759945607258,
+          "gradient_norm_mean": 1.2443679221086992
+        },
+        {
+          "epoch": 15,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.446638975978978,
+          "gradient_norm_mean": 1.2576115395727474
+        },
+        {
+          "epoch": 16,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.415896688847384,
+          "gradient_norm_mean": 1.266891500813003
+        },
+        {
+          "epoch": 17,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.384541906258851,
+          "gradient_norm_mean": 1.2702902192435597
+        },
+        {
+          "epoch": 18,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.369980854138147,
+          "gradient_norm_mean": 1.2928226761947585
+        },
+        {
+          "epoch": 19,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.347385940667006,
+          "gradient_norm_mean": 1.304719019296306
+        },
+        {
+          "epoch": 20,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.340257452189742,
+          "gradient_norm_mean": 1.3045187109546719
+        },
+        {
+          "epoch": 21,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.320017561955755,
+          "gradient_norm_mean": 1.314674555138879
+        },
+        {
+          "epoch": 22,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.32238807562975,
+          "gradient_norm_mean": 1.3114053263765086
+        },
+        {
+          "epoch": 23,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.311927172784719,
+          "gradient_norm_mean": 1.33216980360786
+        },
+        {
+          "epoch": 24,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.322468056635554,
+          "gradient_norm_mean": 1.3172128846638151
+        },
+        {
+          "epoch": 25,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.303396190977529,
+          "gradient_norm_mean": 1.322409345160078
+        }
+      ],
+      "logged_seconds": 76.82811019476503,
+      "peak_GPU_allocated_bytes": 1919411712,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "ATM63",
+        "role": "oof1",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165500,
+        "model_sha256": "24e8db8d4b1591941a3906794de0ae972416204271b5427c798bdddea99b2895",
+        "conditions_sha256": "ae6a747a5613ee25e169bcddb8fefa4fd4496660dd3cc9401f8a46c04322304c",
+        "parameters": 3704413
+      }
+    },
+    {
+      "case": "Joint63",
+      "role": "full",
+      "updates": 325,
+      "query_exposures": 330750,
+      "epoch1_InfoNCE": 6.9532979635064205,
+      "epoch25_InfoNCE": 5.364282822915306,
+      "epochs1_5_mean": 6.8235767954871775,
+      "epochs16_20_mean": 5.45973638328385,
+      "epochs21_25_mean": 5.37375071204799,
+      "late_minus_previous": -0.08598567123586065,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.9532979635064205,
+          "gradient_norm_mean": 0.2577556980642872
+        },
+        {
+          "epoch": 2,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.927500268499327,
+          "gradient_norm_mean": 0.06443803863190199
+        },
+        {
+          "epoch": 3,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.893064893922928,
+          "gradient_norm_mean": 0.250780448279233
+        },
+        {
+          "epoch": 4,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.769267470099578,
+          "gradient_norm_mean": 0.7175576665143758
+        },
+        {
+          "epoch": 5,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.57475338140763,
+          "gradient_norm_mean": 1.1408562523077044
+        },
+        {
+          "epoch": 6,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.3659266207313685,
+          "gradient_norm_mean": 1.402638360720553
+        },
+        {
+          "epoch": 7,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.18987327368081,
+          "gradient_norm_mean": 1.9911881352768463
+        },
+        {
+          "epoch": 8,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.074067567535539,
+          "gradient_norm_mean": 3.15754540303577
+        },
+        {
+          "epoch": 9,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.987804145913906,
+          "gradient_norm_mean": 2.1905175378803765
+        },
+        {
+          "epoch": 10,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.901442189695974,
+          "gradient_norm_mean": 2.1494921277710097
+        },
+        {
+          "epoch": 11,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.818296311681953,
+          "gradient_norm_mean": 2.7326528167147934
+        },
+        {
+          "epoch": 12,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.751272877543962,
+          "gradient_norm_mean": 2.3790364660463457
+        },
+        {
+          "epoch": 13,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.688259000626822,
+          "gradient_norm_mean": 2.584843424100004
+        },
+        {
+          "epoch": 14,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.631847409488392,
+          "gradient_norm_mean": 2.132439608458579
+        },
+        {
+          "epoch": 15,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.581072471832021,
+          "gradient_norm_mean": 2.4840914914397154
+        },
+        {
+          "epoch": 16,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.52850277584246,
+          "gradient_norm_mean": 2.184552704467975
+        },
+        {
+          "epoch": 17,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.487979091952807,
+          "gradient_norm_mean": 1.9227592371488644
+        },
+        {
+          "epoch": 18,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.451932876684949,
+          "gradient_norm_mean": 2.2746384807364652
+        },
+        {
+          "epoch": 19,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.425036033463136,
+          "gradient_norm_mean": 2.4248351994555555
+        },
+        {
+          "epoch": 20,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.405231138475898,
+          "gradient_norm_mean": 2.365503969466425
+        },
+        {
+          "epoch": 21,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.389634103046974,
+          "gradient_norm_mean": 2.1581169811416014
+        },
+        {
+          "epoch": 22,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.37857672445538,
+          "gradient_norm_mean": 1.8823897155594482
+        },
+        {
+          "epoch": 23,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.371789205497805,
+          "gradient_norm_mean": 1.7057788229493238
+        },
+        {
+          "epoch": 24,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.364470704324481,
+          "gradient_norm_mean": 1.6578803794454284
+        },
+        {
+          "epoch": 25,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.364282822915306,
+          "gradient_norm_mean": 1.5726231067899674
+        }
+      ],
+      "logged_seconds": 84.16240556538105,
+      "peak_GPU_allocated_bytes": 2525718016,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Joint63",
+        "role": "full",
+        "epochs": 25,
+        "updates": 325,
+        "exposures": 330750,
+        "model_sha256": "8f3dfeeb86e4d7ced9e7fe23e27dec8d708683dca9985a96eb59980cc41af317",
+        "conditions_sha256": "7f62fc0b5356f913f431f2a5b0c97c1fff36dabd22988a9f1c46f3e268b89c2e",
+        "parameters": 3822208
+      }
+    },
+    {
+      "case": "Joint63",
+      "role": "oof0",
+      "updates": 175,
+      "query_exposures": 165250,
+      "epoch1_InfoNCE": 6.916296382967535,
+      "epoch25_InfoNCE": 5.455238217052281,
+      "epochs1_5_mean": 6.827164678328337,
+      "epochs16_20_mean": 5.556878443211542,
+      "epochs21_25_mean": 5.465954553889795,
+      "late_minus_previous": -0.090923889321747,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.916296382967535,
+          "gradient_norm_mean": 0.38784852835396233
+        },
+        {
+          "epoch": 2,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.879842617940975,
+          "gradient_norm_mean": 0.10811666523228976
+        },
+        {
+          "epoch": 3,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.864490632823303,
+          "gradient_norm_mean": 0.11106530128556914
+        },
+        {
+          "epoch": 4,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.810238908170391,
+          "gradient_norm_mean": 0.48762970219581825
+        },
+        {
+          "epoch": 5,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.664954849739479,
+          "gradient_norm_mean": 1.00762912145
+        },
+        {
+          "epoch": 6,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.524328492088145,
+          "gradient_norm_mean": 1.2965812952904405
+        },
+        {
+          "epoch": 7,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.388232064499617,
+          "gradient_norm_mean": 1.4208731066982252
+        },
+        {
+          "epoch": 8,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.27208274979815,
+          "gradient_norm_mean": 1.5110915340201396
+        },
+        {
+          "epoch": 9,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.164582287706153,
+          "gradient_norm_mean": 1.6878205959447032
+        },
+        {
+          "epoch": 10,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.058825758762331,
+          "gradient_norm_mean": 1.7038028541022459
+        },
+        {
+          "epoch": 11,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.957265502854663,
+          "gradient_norm_mean": 1.7997705606757783
+        },
+        {
+          "epoch": 12,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.868693535266593,
+          "gradient_norm_mean": 1.8213166001705106
+        },
+        {
+          "epoch": 13,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.789745296039668,
+          "gradient_norm_mean": 2.2920400072695086
+        },
+        {
+          "epoch": 14,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.725828323133414,
+          "gradient_norm_mean": 2.1078996074722682
+        },
+        {
+          "epoch": 15,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.672915995247245,
+          "gradient_norm_mean": 2.0472752001209806
+        },
+        {
+          "epoch": 16,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.626068018424168,
+          "gradient_norm_mean": 2.1191810087789746
+        },
+        {
+          "epoch": 17,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.58539128873424,
+          "gradient_norm_mean": 2.0159541604738913
+        },
+        {
+          "epoch": 18,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.551160146681516,
+          "gradient_norm_mean": 1.876831405065424
+        },
+        {
+          "epoch": 19,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.522588053052616,
+          "gradient_norm_mean": 1.870880707706157
+        },
+        {
+          "epoch": 20,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.499184709165172,
+          "gradient_norm_mean": 1.7871531998696377
+        },
+        {
+          "epoch": 21,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.481374915176368,
+          "gradient_norm_mean": 1.598681970118755
+        },
+        {
+          "epoch": 22,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.470359623919096,
+          "gradient_norm_mean": 1.6021777628770213
+        },
+        {
+          "epoch": 23,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.464414546349045,
+          "gradient_norm_mean": 1.551064593781141
+        },
+        {
+          "epoch": 24,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.458385466952187,
+          "gradient_norm_mean": 1.523401006880398
+        },
+        {
+          "epoch": 25,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.455238217052281,
+          "gradient_norm_mean": 1.4417440362849503
+        }
+      ],
+      "logged_seconds": 57.53610986657441,
+      "peak_GPU_allocated_bytes": 2525718016,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Joint63",
+        "role": "oof0",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165250,
+        "model_sha256": "bc94694e19c1e7aa4faa04b9fca543696eaf1b9fe6ad896df1d357ef9a59aa98",
+        "conditions_sha256": "f32baa757513f648bcfa8f25d86a03f2efb455ca7cdf486baaf0db9bb45fc14f",
+        "parameters": 3822208
+      }
+    },
+    {
+      "case": "Joint63",
+      "role": "oof1",
+      "updates": 175,
+      "query_exposures": 165500,
+      "epoch1_InfoNCE": 6.913664592212781,
+      "epoch25_InfoNCE": 5.433484166770543,
+      "epochs1_5_mean": 6.823879605837819,
+      "epochs16_20_mean": 5.529199318151099,
+      "epochs21_25_mean": 5.444390771871607,
+      "late_minus_previous": -0.08480854627949252,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.913664592212781,
+          "gradient_norm_mean": 0.3559762261335223
+        },
+        {
+          "epoch": 2,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.879856565999841,
+          "gradient_norm_mean": 0.09555134921365634
+        },
+        {
+          "epoch": 3,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.863519700272206,
+          "gradient_norm_mean": 0.1148694128428341
+        },
+        {
+          "epoch": 4,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.805061604825392,
+          "gradient_norm_mean": 0.5764649530912094
+        },
+        {
+          "epoch": 5,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.657295565878877,
+          "gradient_norm_mean": 0.9954172444127477
+        },
+        {
+          "epoch": 6,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.49756811839216,
+          "gradient_norm_mean": 1.268404660052043
+        },
+        {
+          "epoch": 7,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.358811017177616,
+          "gradient_norm_mean": 1.2377370337345088
+        },
+        {
+          "epoch": 8,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.234846627676235,
+          "gradient_norm_mean": 1.4299855594548574
+        },
+        {
+          "epoch": 9,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.119356068959769,
+          "gradient_norm_mean": 1.6251972689009144
+        },
+        {
+          "epoch": 10,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.008970905430727,
+          "gradient_norm_mean": 1.7551198687798306
+        },
+        {
+          "epoch": 11,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.908746901163521,
+          "gradient_norm_mean": 1.721081322053408
+        },
+        {
+          "epoch": 12,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.820517875348694,
+          "gradient_norm_mean": 2.1338882673903172
+        },
+        {
+          "epoch": 13,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.74590008438894,
+          "gradient_norm_mean": 2.0804210547594146
+        },
+        {
+          "epoch": 14,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.683002324694954,
+          "gradient_norm_mean": 2.4206151750512714
+        },
+        {
+          "epoch": 15,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.633640152161935,
+          "gradient_norm_mean": 2.293169992711969
+        },
+        {
+          "epoch": 16,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.59041075346333,
+          "gradient_norm_mean": 2.335391987630608
+        },
+        {
+          "epoch": 17,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.553779071911584,
+          "gradient_norm_mean": 2.202178876421603
+        },
+        {
+          "epoch": 18,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.52555526606626,
+          "gradient_norm_mean": 2.0139503216815497
+        },
+        {
+          "epoch": 19,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.499856682054226,
+          "gradient_norm_mean": 1.7717713178824803
+        },
+        {
+          "epoch": 20,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.476394817260097,
+          "gradient_norm_mean": 1.6933545763759095
+        },
+        {
+          "epoch": 21,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.459998396444177,
+          "gradient_norm_mean": 1.7589998500224686
+        },
+        {
+          "epoch": 22,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.44941200187199,
+          "gradient_norm_mean": 1.6748993171305815
+        },
+        {
+          "epoch": 23,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.440059645730563,
+          "gradient_norm_mean": 1.5976445607908543
+        },
+        {
+          "epoch": 24,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.4389996485407615,
+          "gradient_norm_mean": 1.5488345687122864
+        },
+        {
+          "epoch": 25,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.433484166770543,
+          "gradient_norm_mean": 1.4665202184025974
+        }
+      ],
+      "logged_seconds": 59.02831095503643,
+      "peak_GPU_allocated_bytes": 2525718016,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Joint63",
+        "role": "oof1",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165500,
+        "model_sha256": "9b7f9fb971592ff90d0d93eff6294375af6f36c428311c4d55dd8c3481f4d792",
+        "conditions_sha256": "0d4264c2e715d7d044c9f62b03635499209eced3bfb147b36bc7b4e4b43d68f2",
+        "parameters": 3822208
+      }
+    },
+    {
+      "case": "Separated63",
+      "role": "full",
+      "updates": 325,
+      "query_exposures": 330750,
+      "epoch1_InfoNCE": 6.9512796638413805,
+      "epoch25_InfoNCE": 4.8097558189501655,
+      "epochs1_5_mean": 6.626722935397609,
+      "epochs16_20_mean": 4.90193388856007,
+      "epochs21_25_mean": 4.818868363972244,
+      "late_minus_previous": -0.08306552458782601,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.9512796638413805,
+          "gradient_norm_mean": 0.260099512444512
+        },
+        {
+          "epoch": 2,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.911426717191596,
+          "gradient_norm_mean": 0.11492287798172943
+        },
+        {
+          "epoch": 3,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.768419300563751,
+          "gradient_norm_mean": 0.5347771883731707
+        },
+        {
+          "epoch": 4,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.390969354062935,
+          "gradient_norm_mean": 0.9614921900330398
+        },
+        {
+          "epoch": 5,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.111519641328381,
+          "gradient_norm_mean": 1.3199623718103133
+        },
+        {
+          "epoch": 6,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.905108495670471,
+          "gradient_norm_mean": 1.2317686727167707
+        },
+        {
+          "epoch": 7,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.719547276558159,
+          "gradient_norm_mean": 1.681183599758941
+        },
+        {
+          "epoch": 8,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.574268416320385,
+          "gradient_norm_mean": 1.8397178026013363
+        },
+        {
+          "epoch": 9,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.461702788029308,
+          "gradient_norm_mean": 1.721801526476196
+        },
+        {
+          "epoch": 10,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.356016092884297,
+          "gradient_norm_mean": 1.9641575726251754
+        },
+        {
+          "epoch": 11,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.2680838110585695,
+          "gradient_norm_mean": 2.149504161655948
+        },
+        {
+          "epoch": 12,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.191792094950773,
+          "gradient_norm_mean": 1.9137796146258745
+        },
+        {
+          "epoch": 13,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.124441604297087,
+          "gradient_norm_mean": 2.120311599866243
+        },
+        {
+          "epoch": 14,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.061827484874769,
+          "gradient_norm_mean": 1.977471872954682
+        },
+        {
+          "epoch": 15,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.0105222282496165,
+          "gradient_norm_mean": 2.205115275300099
+        },
+        {
+          "epoch": 16,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.964106785953721,
+          "gradient_norm_mean": 2.32216072107749
+        },
+        {
+          "epoch": 17,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.9263600557749685,
+          "gradient_norm_mean": 2.3143400356252357
+        },
+        {
+          "epoch": 18,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.897002143023686,
+          "gradient_norm_mean": 1.9626785376535072
+        },
+        {
+          "epoch": 19,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.872208536022645,
+          "gradient_norm_mean": 1.9809782503593716
+        },
+        {
+          "epoch": 20,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.849991922025327,
+          "gradient_norm_mean": 2.084099181060618
+        },
+        {
+          "epoch": 21,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.833920355412605,
+          "gradient_norm_mean": 2.1031333073106393
+        },
+        {
+          "epoch": 22,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.823771915017702,
+          "gradient_norm_mean": 1.8928839960516355
+        },
+        {
+          "epoch": 23,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.815551249330366,
+          "gradient_norm_mean": 1.8697252329605056
+        },
+        {
+          "epoch": 24,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.811342481150379,
+          "gradient_norm_mean": 1.8975518863307466
+        },
+        {
+          "epoch": 25,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.8097558189501655,
+          "gradient_norm_mean": 1.8518213916707922
+        }
+      ],
+      "logged_seconds": 107.3175586964935,
+      "peak_GPU_allocated_bytes": 2527311360,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Separated63",
+        "role": "full",
+        "epochs": 25,
+        "updates": 325,
+        "exposures": 330750,
+        "model_sha256": "5fc0a851ba41159231ccd797d29e7d42675b46d1cbd02ea71bea7836d4a36cc4",
+        "conditions_sha256": "aaef2aec11391aff8f15a26a86ee2f992a159f6eaf3f7f24fd3b7c1690a2d162",
+        "parameters": 3822208
+      }
+    },
+    {
+      "case": "Separated63",
+      "role": "oof0",
+      "updates": 175,
+      "query_exposures": 165250,
+      "epoch1_InfoNCE": 6.914499190932142,
+      "epoch25_InfoNCE": 5.0222453962836795,
+      "epochs1_5_mean": 6.749972552185521,
+      "epochs16_20_mean": 5.119457151554355,
+      "epochs21_25_mean": 5.029477054030379,
+      "late_minus_previous": -0.08998009752397618,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.914499190932142,
+          "gradient_norm_mean": 0.39123455872604235
+        },
+        {
+          "epoch": 2,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.873228013100674,
+          "gradient_norm_mean": 0.1267527281020665
+        },
+        {
+          "epoch": 3,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.816623594108039,
+          "gradient_norm_mean": 0.29695732153489984
+        },
+        {
+          "epoch": 4,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.662416583651313,
+          "gradient_norm_mean": 0.6190390262769679
+        },
+        {
+          "epoch": 5,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.483095379135432,
+          "gradient_norm_mean": 0.837349691116864
+        },
+        {
+          "epoch": 6,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.304482220809867,
+          "gradient_norm_mean": 1.0443685196892396
+        },
+        {
+          "epoch": 7,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.1120218556875905,
+          "gradient_norm_mean": 1.2019700888606315
+        },
+        {
+          "epoch": 8,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.909347631711282,
+          "gradient_norm_mean": 1.3853076990721986
+        },
+        {
+          "epoch": 9,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.758410693008492,
+          "gradient_norm_mean": 1.5490552590221573
+        },
+        {
+          "epoch": 10,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.634748498682897,
+          "gradient_norm_mean": 1.6946594394461652
+        },
+        {
+          "epoch": 11,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.531374225097056,
+          "gradient_norm_mean": 1.6568233301347395
+        },
+        {
+          "epoch": 12,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.440417887619873,
+          "gradient_norm_mean": 1.8315893544732351
+        },
+        {
+          "epoch": 13,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.362712652780646,
+          "gradient_norm_mean": 1.893800889994842
+        },
+        {
+          "epoch": 14,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.298993688776706,
+          "gradient_norm_mean": 1.8451135662788702
+        },
+        {
+          "epoch": 15,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.242170750824298,
+          "gradient_norm_mean": 1.8094497875078002
+        },
+        {
+          "epoch": 16,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.189260689393475,
+          "gradient_norm_mean": 1.877630256344078
+        },
+        {
+          "epoch": 17,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.14902723748096,
+          "gradient_norm_mean": 1.939677876243072
+        },
+        {
+          "epoch": 18,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.114375221494828,
+          "gradient_norm_mean": 1.8663536323180898
+        },
+        {
+          "epoch": 19,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.083468204619484,
+          "gradient_norm_mean": 1.7951974786536236
+        },
+        {
+          "epoch": 20,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.061154404783032,
+          "gradient_norm_mean": 1.74175691330487
+        },
+        {
+          "epoch": 21,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.0444272531864325,
+          "gradient_norm_mean": 1.714674171954168
+        },
+        {
+          "epoch": 22,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.03326848314317,
+          "gradient_norm_mean": 1.7105712414869922
+        },
+        {
+          "epoch": 23,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.025348195293848,
+          "gradient_norm_mean": 1.7155784376089585
+        },
+        {
+          "epoch": 24,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.022095942244768,
+          "gradient_norm_mean": 1.7106588910098517
+        },
+        {
+          "epoch": 25,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.0222453962836795,
+          "gradient_norm_mean": 1.6494562101436274
+        }
+      ],
+      "logged_seconds": 77.84795635659248,
+      "peak_GPU_allocated_bytes": 2527311360,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Separated63",
+        "role": "oof0",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165250,
+        "model_sha256": "6613f655a1107317d6585be450352dbfa2816fa8563216bd6a120d07152fbefa",
+        "conditions_sha256": "7480b90ca585c6a7c16869d95863dcb0e06a4ce11a51b84c580fbebb5875c598",
+        "parameters": 3822208
+      }
+    },
+    {
+      "case": "Separated63",
+      "role": "oof1",
+      "updates": 175,
+      "query_exposures": 165500,
+      "epoch1_InfoNCE": 6.910715025357249,
+      "epoch25_InfoNCE": 4.943949415028276,
+      "epochs1_5_mean": 6.715033113934842,
+      "epochs16_20_mean": 5.036140660288831,
+      "epochs21_25_mean": 4.950975461539185,
+      "late_minus_previous": -0.08516519874964601,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.910715025357249,
+          "gradient_norm_mean": 0.35486170997072203
+        },
+        {
+          "epoch": 2,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.870604216296147,
+          "gradient_norm_mean": 0.12088001344319196
+        },
+        {
+          "epoch": 3,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.789450966987725,
+          "gradient_norm_mean": 0.3857638674200121
+        },
+        {
+          "epoch": 4,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.610138792285746,
+          "gradient_norm_mean": 0.669247030563585
+        },
+        {
+          "epoch": 5,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.394256568747345,
+          "gradient_norm_mean": 0.886770832790709
+        },
+        {
+          "epoch": 6,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.146002019784242,
+          "gradient_norm_mean": 1.2491343166892983
+        },
+        {
+          "epoch": 7,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.920314268475213,
+          "gradient_norm_mean": 1.2788991844546038
+        },
+        {
+          "epoch": 8,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.737640046641186,
+          "gradient_norm_mean": 1.511015304193756
+        },
+        {
+          "epoch": 9,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.592467461900048,
+          "gradient_norm_mean": 1.6072264878771456
+        },
+        {
+          "epoch": 10,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.481560480054411,
+          "gradient_norm_mean": 2.2278654696357933
+        },
+        {
+          "epoch": 11,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.389482489237253,
+          "gradient_norm_mean": 2.2952582524982463
+        },
+        {
+          "epoch": 12,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.319155691325484,
+          "gradient_norm_mean": 2.3412494722810036
+        },
+        {
+          "epoch": 13,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.257801470799748,
+          "gradient_norm_mean": 2.259742485144347
+        },
+        {
+          "epoch": 14,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.2012403828139755,
+          "gradient_norm_mean": 1.9462811953351578
+        },
+        {
+          "epoch": 15,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.149944350942744,
+          "gradient_norm_mean": 1.7449635566901585
+        },
+        {
+          "epoch": 16,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.10450920669694,
+          "gradient_norm_mean": 1.7916220258730056
+        },
+        {
+          "epoch": 17,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.062382896285043,
+          "gradient_norm_mean": 1.958444249089751
+        },
+        {
+          "epoch": 18,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.029381811366701,
+          "gradient_norm_mean": 1.9208006521006005
+        },
+        {
+          "epoch": 19,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.002476458246974,
+          "gradient_norm_mean": 1.8705509037409664
+        },
+        {
+          "epoch": 20,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.981952928848497,
+          "gradient_norm_mean": 1.8283810875567064
+        },
+        {
+          "epoch": 21,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.963971983053893,
+          "gradient_norm_mean": 1.747985788558545
+        },
+        {
+          "epoch": 22,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.9544484703202265,
+          "gradient_norm_mean": 1.7854419811254543
+        },
+        {
+          "epoch": 23,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.948655190424617,
+          "gradient_norm_mean": 1.8157285008905877
+        },
+        {
+          "epoch": 24,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.943852248868914,
+          "gradient_norm_mean": 1.7449777144319703
+        },
+        {
+          "epoch": 25,
+          "exposures": 6620,
+          "InfoNCE_mean": 4.943949415028276,
+          "gradient_norm_mean": 1.7385596889743633
+        }
+      ],
+      "logged_seconds": 76.18057546764612,
+      "peak_GPU_allocated_bytes": 2527311360,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Separated63",
+        "role": "oof1",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165500,
+        "model_sha256": "3b36c9e1ca5b099ea59e897dbf00a4ff6fc4f6e3771e7c1626f5d9a0a19446f3",
+        "conditions_sha256": "2e24a7c49799d9bd36268ebc0aa4c871dabd9b30dbb5603449e6e7f1c1d915fe",
+        "parameters": 3822208
+      }
+    },
+    {
+      "case": "Joint17",
+      "role": "full",
+      "updates": 325,
+      "query_exposures": 330750,
+      "epoch1_InfoNCE": 6.922950156493703,
+      "epoch25_InfoNCE": 4.940394002492015,
+      "epochs1_5_mean": 6.312513063132357,
+      "epochs16_20_mean": 5.015484084160329,
+      "epochs21_25_mean": 4.9478767022344075,
+      "late_minus_previous": -0.06760738192592175,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.922950156493703,
+          "gradient_norm_mean": 0.3421197903985249
+        },
+        {
+          "epoch": 2,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.579494447484668,
+          "gradient_norm_mean": 0.7285940405913401
+        },
+        {
+          "epoch": 3,
+          "exposures": 13230,
+          "InfoNCE_mean": 6.218594855281862,
+          "gradient_norm_mean": 1.0824430569589634
+        },
+        {
+          "epoch": 4,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.999263208090854,
+          "gradient_norm_mean": 1.5260184402458612
+        },
+        {
+          "epoch": 5,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.842262648310701,
+          "gradient_norm_mean": 1.276050041826584
+        },
+        {
+          "epoch": 6,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.709306408830962,
+          "gradient_norm_mean": 1.6344442988559322
+        },
+        {
+          "epoch": 7,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.5967539749087845,
+          "gradient_norm_mean": 1.7049984746148708
+        },
+        {
+          "epoch": 8,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.513734753782426,
+          "gradient_norm_mean": 1.8199004652098283
+        },
+        {
+          "epoch": 9,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.431630625043597,
+          "gradient_norm_mean": 1.6532752242488384
+        },
+        {
+          "epoch": 10,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.362624597152975,
+          "gradient_norm_mean": 2.0412312447439067
+        },
+        {
+          "epoch": 11,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.30388939368031,
+          "gradient_norm_mean": 1.7476606276750746
+        },
+        {
+          "epoch": 12,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.242789690330546,
+          "gradient_norm_mean": 1.8180626503194
+        },
+        {
+          "epoch": 13,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.193979640162,
+          "gradient_norm_mean": 1.9276755917549855
+        },
+        {
+          "epoch": 14,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.14628700391866,
+          "gradient_norm_mean": 1.8065579738386275
+        },
+        {
+          "epoch": 15,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.105004117782604,
+          "gradient_norm_mean": 1.9221498422341552
+        },
+        {
+          "epoch": 16,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.067377571255892,
+          "gradient_norm_mean": 1.9491466407963298
+        },
+        {
+          "epoch": 17,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.037749323048379,
+          "gradient_norm_mean": 1.8824328115828004
+        },
+        {
+          "epoch": 18,
+          "exposures": 13230,
+          "InfoNCE_mean": 5.009825819221664,
+          "gradient_norm_mean": 1.805130704640441
+        },
+        {
+          "epoch": 19,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.989648172230047,
+          "gradient_norm_mean": 1.8098527847594235
+        },
+        {
+          "epoch": 20,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.972819535045667,
+          "gradient_norm_mean": 1.8577399766364064
+        },
+        {
+          "epoch": 21,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.959906904821763,
+          "gradient_norm_mean": 1.803463905738865
+        },
+        {
+          "epoch": 22,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.950101619729109,
+          "gradient_norm_mean": 1.7419241169592872
+        },
+        {
+          "epoch": 23,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.947164057315702,
+          "gradient_norm_mean": 1.7565810428635242
+        },
+        {
+          "epoch": 24,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.94181692681345,
+          "gradient_norm_mean": 1.7366745187401862
+        },
+        {
+          "epoch": 25,
+          "exposures": 13230,
+          "InfoNCE_mean": 4.940394002492015,
+          "gradient_norm_mean": 1.702602195685683
+        }
+      ],
+      "logged_seconds": 53.92721245344728,
+      "peak_GPU_allocated_bytes": 1730216448,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Joint17",
+        "role": "full",
+        "epochs": 25,
+        "updates": 325,
+        "exposures": 330750,
+        "model_sha256": "a27b87a1bd2c5dede4519188ec701b2ce602d036cf4371b25c1d33d1419502a4",
+        "conditions_sha256": "e6fbfd23a24628274375ed662227e85677f4f0ac0ec162a9d9e53ece74c068a3",
+        "parameters": 3816320
+      }
+    },
+    {
+      "case": "Joint17",
+      "role": "oof0",
+      "updates": 175,
+      "query_exposures": 165250,
+      "epoch1_InfoNCE": 6.903062444735944,
+      "epoch25_InfoNCE": 5.0260839189595785,
+      "epochs1_5_mean": 6.514530462706503,
+      "epochs16_20_mean": 5.098747243260833,
+      "epochs21_25_mean": 5.032587008194916,
+      "late_minus_previous": -0.06616023506591695,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.903062444735944,
+          "gradient_norm_mean": 0.4016083373875553
+        },
+        {
+          "epoch": 2,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.829551812776459,
+          "gradient_norm_mean": 0.2605627655982971
+        },
+        {
+          "epoch": 3,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.532135654397523,
+          "gradient_norm_mean": 0.8522330731018228
+        },
+        {
+          "epoch": 4,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.258402520553427,
+          "gradient_norm_mean": 1.0203718227625975
+        },
+        {
+          "epoch": 5,
+          "exposures": 6610,
+          "InfoNCE_mean": 6.049499881069166,
+          "gradient_norm_mean": 1.2645501837968465
+        },
+        {
+          "epoch": 6,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.885763147270445,
+          "gradient_norm_mean": 1.4418858784951167
+        },
+        {
+          "epoch": 7,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.758169987919471,
+          "gradient_norm_mean": 1.524967170374837
+        },
+        {
+          "epoch": 8,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.654691687221787,
+          "gradient_norm_mean": 1.849657814802092
+        },
+        {
+          "epoch": 9,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.561457849234207,
+          "gradient_norm_mean": 1.6779602625727112
+        },
+        {
+          "epoch": 10,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.47951315390721,
+          "gradient_norm_mean": 1.482989436739692
+        },
+        {
+          "epoch": 11,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.40233142264131,
+          "gradient_norm_mean": 1.5934982153363018
+        },
+        {
+          "epoch": 12,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.333980581944361,
+          "gradient_norm_mean": 1.9481335306672574
+        },
+        {
+          "epoch": 13,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.274124041339453,
+          "gradient_norm_mean": 1.9654345378933444
+        },
+        {
+          "epoch": 14,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.224683406818292,
+          "gradient_norm_mean": 2.1353354586775835
+        },
+        {
+          "epoch": 15,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.187201246010554,
+          "gradient_norm_mean": 2.0013153459228654
+        },
+        {
+          "epoch": 16,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.151381753612755,
+          "gradient_norm_mean": 1.8196839567752903
+        },
+        {
+          "epoch": 17,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.119937691565902,
+          "gradient_norm_mean": 1.722597638886202
+        },
+        {
+          "epoch": 18,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.092838116817504,
+          "gradient_norm_mean": 1.7147173769715693
+        },
+        {
+          "epoch": 19,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.0719467858503515,
+          "gradient_norm_mean": 1.7785692523719683
+        },
+        {
+          "epoch": 20,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.05763186845765,
+          "gradient_norm_mean": 1.7689884924852541
+        },
+        {
+          "epoch": 21,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.0473224401834695,
+          "gradient_norm_mean": 1.7324442605568313
+        },
+        {
+          "epoch": 22,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.033888856365532,
+          "gradient_norm_mean": 1.7115745807018654
+        },
+        {
+          "epoch": 23,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.028813221595291,
+          "gradient_norm_mean": 1.7141070030099865
+        },
+        {
+          "epoch": 24,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.02682660387071,
+          "gradient_norm_mean": 1.647790178697156
+        },
+        {
+          "epoch": 25,
+          "exposures": 6610,
+          "InfoNCE_mean": 5.0260839189595785,
+          "gradient_norm_mean": 1.6182535119208192
+        }
+      ],
+      "logged_seconds": 42.189400570467114,
+      "peak_GPU_allocated_bytes": 1731742720,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Joint17",
+        "role": "oof0",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165250,
+        "model_sha256": "4827be3ef46502a4aaf74c93351dd6dac69a9338b734f6470dd34bcb824add8a",
+        "conditions_sha256": "17cd8e5710a464640fdfaf76b109e27f42469207c42e9391ed12b4e47d87113c",
+        "parameters": 3816320
+      }
+    },
+    {
+      "case": "Joint17",
+      "role": "oof1",
+      "updates": 175,
+      "query_exposures": 165500,
+      "epoch1_InfoNCE": 6.902378972851618,
+      "epoch25_InfoNCE": 5.050993509667157,
+      "epochs1_5_mean": 6.548497050420755,
+      "epochs16_20_mean": 5.12093503012758,
+      "epochs21_25_mean": 5.055757650507902,
+      "late_minus_previous": -0.06517737961967818,
+      "epochs": [
+        {
+          "epoch": 1,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.902378972851618,
+          "gradient_norm_mean": 0.362533145188565
+        },
+        {
+          "epoch": 2,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.847275369188937,
+          "gradient_norm_mean": 0.17261611230423804
+        },
+        {
+          "epoch": 3,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.6021608171146084,
+          "gradient_norm_mean": 0.8045311167881208
+        },
+        {
+          "epoch": 4,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.312529022816085,
+          "gradient_norm_mean": 1.0358419635144605
+        },
+        {
+          "epoch": 5,
+          "exposures": 6620,
+          "InfoNCE_mean": 6.07814107013253,
+          "gradient_norm_mean": 1.0350098285790297
+        },
+        {
+          "epoch": 6,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.887040992805965,
+          "gradient_norm_mean": 1.1154180819894612
+        },
+        {
+          "epoch": 7,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.752152573738213,
+          "gradient_norm_mean": 1.3667805871934688
+        },
+        {
+          "epoch": 8,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.636450704130882,
+          "gradient_norm_mean": 1.557059151528465
+        },
+        {
+          "epoch": 9,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.548189663959054,
+          "gradient_norm_mean": 1.9511354871386848
+        },
+        {
+          "epoch": 10,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.476202173031349,
+          "gradient_norm_mean": 1.9866322481380128
+        },
+        {
+          "epoch": 11,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.4077046241645,
+          "gradient_norm_mean": 1.8568254969271287
+        },
+        {
+          "epoch": 12,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.353463758946906,
+          "gradient_norm_mean": 2.016418412372785
+        },
+        {
+          "epoch": 13,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.301735026310578,
+          "gradient_norm_mean": 1.9089230370305457
+        },
+        {
+          "epoch": 14,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.253839947449837,
+          "gradient_norm_mean": 1.7042725509747279
+        },
+        {
+          "epoch": 15,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.212268979743889,
+          "gradient_norm_mean": 1.673049833335185
+        },
+        {
+          "epoch": 16,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.171736044177836,
+          "gradient_norm_mean": 1.804200067404894
+        },
+        {
+          "epoch": 17,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.142488031877131,
+          "gradient_norm_mean": 1.8992573017800323
+        },
+        {
+          "epoch": 18,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.115371216027758,
+          "gradient_norm_mean": 1.8879683879927205
+        },
+        {
+          "epoch": 19,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.095178256654307,
+          "gradient_norm_mean": 1.7326013722088403
+        },
+        {
+          "epoch": 20,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.079901601900867,
+          "gradient_norm_mean": 1.704510161739822
+        },
+        {
+          "epoch": 21,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.065034241114498,
+          "gradient_norm_mean": 1.6550248437777746
+        },
+        {
+          "epoch": 22,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.0610850642454945,
+          "gradient_norm_mean": 1.6414836022068726
+        },
+        {
+          "epoch": 23,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.054383267520778,
+          "gradient_norm_mean": 1.6844358874231666
+        },
+        {
+          "epoch": 24,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.047292169991577,
+          "gradient_norm_mean": 1.6026331086893457
+        },
+        {
+          "epoch": 25,
+          "exposures": 6620,
+          "InfoNCE_mean": 5.050993509667157,
+          "gradient_norm_mean": 1.577881075032168
+        }
+      ],
+      "logged_seconds": 39.693631063215435,
+      "peak_GPU_allocated_bytes": 1731742720,
+      "completion": {
+        "status": "COMPLETE_FIXED25_ONE_BACKBONE_ROLE",
+        "case": "Joint17",
+        "role": "oof1",
+        "epochs": 25,
+        "updates": 175,
+        "exposures": 165500,
+        "model_sha256": "b1b3d7d932cfbf4f3155d5e38c7ab2a37ea5181915af4fbff5694ce6a49ad237",
+        "conditions_sha256": "a3ad9337d19784418467d2df01629137b19e0e0d68cb6b590ec74c32996519ba",
+        "parameters": 3816320
+      }
+    }
+  ],
+  "OOF_bank_markers": {
+    "MLP17": {
+      "status": "COMPLETE_TRUE_CONCEPT_EXCLUDED_THREE_ROLE_BANK",
+      "queries": 13230,
+      "roles": [
+        "full",
+        "oof0",
+        "oof1"
+      ],
+      "sha256": "3018120ae6d211aa37788de57adb0478cf74ab1efb366f812893dc0a29b87ad6",
+      "new_updates": 0,
+      "whole_ordinary_not_OOF": true
+    },
+    "ATM63": {
+      "status": "COMPLETE_TRUE_CONCEPT_EXCLUDED_THREE_ROLE_BANK",
+      "queries": 13230,
+      "roles": [
+        "full",
+        "oof0",
+        "oof1"
+      ],
+      "sha256": "004ae3152d6eeb672f6db316cc99d13137531be2ee995615661dfe2b6443d450",
+      "new_updates": 0,
+      "whole_ordinary_not_OOF": true
+    },
+    "Joint63": {
+      "status": "COMPLETE_TRUE_CONCEPT_EXCLUDED_THREE_ROLE_BANK",
+      "queries": 13230,
+      "roles": [
+        "full",
+        "oof0",
+        "oof1"
+      ],
+      "sha256": "fef09c09102ede09ee70a017adf87b2463945fd12616f9964ad17d75871f23ad",
+      "new_updates": 0,
+      "whole_ordinary_not_OOF": true
+    },
+    "Separated63": {
+      "status": "COMPLETE_TRUE_CONCEPT_EXCLUDED_THREE_ROLE_BANK",
+      "queries": 13230,
+      "roles": [
+        "full",
+        "oof0",
+        "oof1"
+      ],
+      "sha256": "75ad4ecb6e6e1f9eb75c7d9c12e056b1e870db0eb6fe0e9c176af80f7a79d70f",
+      "new_updates": 0,
+      "whole_ordinary_not_OOF": true
+    },
+    "Joint17": {
+      "status": "COMPLETE_TRUE_CONCEPT_EXCLUDED_THREE_ROLE_BANK",
+      "queries": 13230,
+      "roles": [
+        "full",
+        "oof0",
+        "oof1"
+      ],
+      "sha256": "60c13e5ac0885b858d762991ab4170214c7959c568913bcc4085376af83c0453",
+      "new_updates": 0,
+      "whole_ordinary_not_OOF": true
+    }
+  },
+  "source_file_hashes": [
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/full/attempt_5135591.jsonl",
+      "bytes": 68068,
+      "sha256": "a83e940b96877d9f1507246135f3084818fccbf7316ecc07b184b6d1e8b597dd"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/full/attempt_5135581.jsonl",
+      "bytes": 203,
+      "sha256": "c6253170a7e70c6745491ab086fd830786238742cdc24db8d2d8eb0439473a18"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/full/completion.json",
+      "bytes": 349,
+      "sha256": "62566f41ee5acdb81dc6fc1c47d39603e3be450603349b20ed12ef7ba9f3aaa3"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/oof0/attempt_5135593.jsonl",
+      "bytes": 203,
+      "sha256": "f3c9a1b67cf67b9ead9b19cf817477f5b911508c96d88e299973221b26c1ac82"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/oof0/attempt_5135597.jsonl",
+      "bytes": 36352,
+      "sha256": "aba29eccba6af31f159723d6784a87661ca70632622a8f2ccbb189bf6d5306aa"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/oof0/completion.json",
+      "bytes": 349,
+      "sha256": "8d1f08a409385e1aa9576aec8c513ee410cdd14325a1a76cf8130f1a3df527da"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/oof1/attempt_5135608.jsonl",
+      "bytes": 36376,
+      "sha256": "5ddd3039ae99f9ec6738d17baa6ab0513b2326ebeda4d9e65112c10115f55751"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/oof1/attempt_5135602.jsonl",
+      "bytes": 205,
+      "sha256": "06a0bb347458531ac2b9359ca8fb9c675fcbced62717076c0097ce1a0f2b5c79"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/MLP17/encoders/oof1/completion.json",
+      "bytes": 349,
+      "sha256": "847ecd2e9758be0d5e65e71a5a47daae836c721c067baf2a6c0dd659755e03be"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/full/attempt_5135615.jsonl",
+      "bytes": 204,
+      "sha256": "189e5273891bf600a8b1113190810c25f370081d425cc2ae472681bb5d71edec"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/full/attempt_5135694.jsonl",
+      "bytes": 68026,
+      "sha256": "f81ec4c9bb37bcfaa7b8d2c40803e364993a365c08f2620c4667a0588c4c4c70"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/full/completion.json",
+      "bytes": 349,
+      "sha256": "f1e367d195a76658a5412e06e51b064bd16b8060bb4b8e0af5f0d67223602f9e"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/oof0/attempt_5135714.jsonl",
+      "bytes": 36344,
+      "sha256": "260f33a8b4591e5713c2805be1ba0611a1ef900f4fb0caaae0ba0f9150704453"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/oof0/attempt_5135707.jsonl",
+      "bytes": 202,
+      "sha256": "119c4d9447c6e05a1f0cf2f9003f7e3006f87fd70a19c00ff095acbb1a5e213c"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/oof0/completion.json",
+      "bytes": 349,
+      "sha256": "531f44eb073fad6c0f840093c87e48ab3ed15ea39780d4cf499d576200d03e6f"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/oof1/attempt_5135727.jsonl",
+      "bytes": 36334,
+      "sha256": "39261636bdef77bf0ab43449a815b41d4c417853e06ea963a46bb8e95650f86a"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/oof1/attempt_5135721.jsonl",
+      "bytes": 202,
+      "sha256": "cc301400e958847958e0b4c125f3728ddafd04a629763240607d5ce6b2df4bb7"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/ATM63/encoders/oof1/completion.json",
+      "bytes": 349,
+      "sha256": "17f75c4a50b5f16630740764fd1c879bcf79ae25c0dc13e9ad7cd7d80e80534b"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/full/attempt_5135735.jsonl",
+      "bytes": 203,
+      "sha256": "c60b7fa497471cefae8f49aa980c165ce5cf6c2627244bdceb3917a55aade25a"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/full/attempt_5135737.jsonl",
+      "bytes": 67992,
+      "sha256": "d1f267710d902926ed71684afc80edd3649f5d949d5ca176f8d05517e0406d34"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/full/completion.json",
+      "bytes": 351,
+      "sha256": "e5b7907ecda4ce0c9d400a6a358c344bd592d1adff5ca3b911de365598d13e30"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/oof0/attempt_5135745.jsonl",
+      "bytes": 205,
+      "sha256": "88d0a583fc2dd30992e70d14e7269af6a0fdd0b6a9af048860effab9d85e1496"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/oof0/attempt_5135751.jsonl",
+      "bytes": 36339,
+      "sha256": "825bea2dd7f95b26dd2a2b31c6b68a56cc01f08e3c32efa022cc1fafc0204d6a"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/oof0/completion.json",
+      "bytes": 351,
+      "sha256": "a4c079fd1a2a37289dd50a090ef86c075959394fc37a60e351d4a7ab5b89b533"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/oof1/attempt_5135782.jsonl",
+      "bytes": 36357,
+      "sha256": "454015aba04ea0261beb4d57323a21ec8c58ae777023d064b6ad3a8f1c8305ec"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/oof1/attempt_5135762.jsonl",
+      "bytes": 205,
+      "sha256": "82eaa2c54d4d5ae66a335f8e0532be0abe5aad39286ed5d1a0c31a7d54438eef"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint63/encoders/oof1/completion.json",
+      "bytes": 351,
+      "sha256": "d19170bca46b99a89710fe94c4ce476bc60ab04d6b9007aac3fd6c21062142fd"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/full/attempt_5135815.jsonl",
+      "bytes": 67962,
+      "sha256": "38e1b4c0847ba5e06bcc88c59ec768fd64d21f66c3b2a7bb0b9169bae4a912a7"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/full/attempt_5135798.jsonl",
+      "bytes": 204,
+      "sha256": "46b7344d4abddbfa5a250d989b5d6c3485ea3c50e9bedb7e6d4162652c1d24bc"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/full/completion.json",
+      "bytes": 355,
+      "sha256": "d8b6c2e19b4d9b285dbac985dc6ff488e5d085d5f24d5ea18ae8fc0fa8521055"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/oof0/attempt_5135868.jsonl",
+      "bytes": 204,
+      "sha256": "e0d57064483c22f0e3b4d3e67b198efa9013d6b987702e1df91bed0b3a810d46"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/oof0/attempt_5135881.jsonl",
+      "bytes": 36297,
+      "sha256": "296379685751fb738d9c448f34912adb035d567aed8319aca86fa5150b7541ba"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/oof0/completion.json",
+      "bytes": 355,
+      "sha256": "a198a964406da740ec2459f0c7d6a23e542d1e9c22e971b3a82268f458f96102"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/oof1/attempt_5135921.jsonl",
+      "bytes": 202,
+      "sha256": "da07044c9599078d08951f7aa57c62b32e880b8d3c6c408c6fcc3cec82a89304"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/oof1/attempt_5135932.jsonl",
+      "bytes": 36325,
+      "sha256": "f5e0ac0095caca4e0969a7a406dc231d8a00def47a47f08a523ddfbd97044cf6"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Separated63/encoders/oof1/completion.json",
+      "bytes": 355,
+      "sha256": "0c5f452e3d3e6e5addd2dc21c9dde81d30153e08e0ed5a433ee565813fc5b2ee"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/full/attempt_5135948.jsonl",
+      "bytes": 205,
+      "sha256": "920e76ac6d579418fd72ca62950bccdfa79d673d1dce61d5dc8ea27dee3921fc"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/full/attempt_5135952.jsonl",
+      "bytes": 67989,
+      "sha256": "43d9853dab6e5d7fe33617d3c191669a6a84dc40920c253cdc8f65ba2cb2b296"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/full/completion.json",
+      "bytes": 351,
+      "sha256": "2f4a4ca9afe3a9e7e91111a60296972c6e4bef29950ddf00cd05ab2f203ae182"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/oof0/attempt_5135984.jsonl",
+      "bytes": 36338,
+      "sha256": "599d204f6ecdce5e4e01646ffd85da34db97ae1adf28a0ce2aa9cda4a678d1d9"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/oof0/attempt_5135976.jsonl",
+      "bytes": 205,
+      "sha256": "7a8141680bb96951808c5b7593b472b12e6aa7a9658da609ed711bea96d44fdf"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/oof0/completion.json",
+      "bytes": 351,
+      "sha256": "ffe96562b56862ab96751f7b03c4fcf18285f039de94d38f2faa067610a631ca"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/oof1/attempt_5135992.jsonl",
+      "bytes": 204,
+      "sha256": "23e66ae63566d748bf95a112fa77cf05aa35289919b72f2f17236b4037eeb890"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/oof1/attempt_5135999.jsonl",
+      "bytes": 36360,
+      "sha256": "a2e7250c8a20d3223fbffb79f8055772217eb3dd8235c33cfbbd9cf458daa8e3"
+    },
+    {
+      "path": "runs/EEG_backbones_v322/Joint17/encoders/oof1/completion.json",
+      "bytes": 351,
+      "sha256": "468724290363ac29e85a343f4f058ace8ccae59e804e5beaa0486af18b2c28b5"
+    }
+  ],
+  "source_receipt": "PKU_HPC_encoderlogs327_20261111T172926264122Z.json",
+  "verifier_sha256": "5d6a0c2a88b86d9c843650d3486d6f0951b316e2a3663ab4ff7bb4142354167c",
+  "independent_check_scope": "All3375 log events, epochs, offsets, counts, finite losses and resource caps; does not recompute neural gradients, model bytes or parameter trajectories.",
+  "interpretation": "Training-loss trajectories are optimization diagnostics, not heldout representation gain, image benefit, information bounds or convergence proof. Do not rank backbones by training loss alone.",
+  "local_Torch_NumPy_imported": false
+}

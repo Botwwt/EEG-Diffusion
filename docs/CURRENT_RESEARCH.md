@@ -1,3 +1,8 @@
+<!-- EEG_ALL15_ENCODERS_COMPLETE_V327 -->
+> **2026-11-11 09:30 America/Los_Angeles：15个25轮编码器全部完成。** 共3375更新和3307500次query暴露，五份真实OOF银行已闭合；全部训练日志独立复核通过。各自ordinary已接续，第一个MLP头第3遍2368/2481更新；其他头与8300新图仍待完整运行。同参数分离注意力的训练loss低于联合注意力，是优化线索，最终仍按完整表征及图片判断。原科学配方和单GPU链保持。
+> [完整训练日志分析、公式及待验证结论](../research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md)
+<!-- END_EEG_ALL15_ENCODERS_COMPLETE_V327 -->
+
 <!-- EEG_BACKBONE_LONG_CAMPAIGN_V325 -->
 > **2026-11-11：骨干与各自ordinary的完整长队列已实际运行。** 前轮三组2481更新/3320图片闭合；DINO未确认胜过ordinary，SSIM收益保留。新MLP17/锁定作者ATM63/Joint63/同参数Separated63/Joint17，共15个25轮编码器、5个独立ordinary、8300新图及13组14读数。新MLP三角色675更新已完成并核验，GPU链已接ATM。附完整T/Dfit/Dcheck的148800条条件诊断，避免只看图片分数猜原因。单1729，本研究单GPU，其他项目不变。
 > CPU真实EEG/梯度缓存/BN/RNG检查通过；表征测量独立参考误差5.56e-17。原依赖/诊断精度失败均保留、训练科学源未改。既有attention/GradCache不能直接作为原创，尚无新骨干图片收益或SOTA/CCFA结论。

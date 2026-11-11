@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "source_sha256": "219052d79c9a2b539df7bd65f731bd945961a1b20121e3dede96fbdc00e124da",
-      "bytes": 378863,
-      "sha256": "0954811b7d5996f73718a882d3f64ce2549988a9bac542de67e26c17d6192b83",
+      "source_sha256": "2831a5f09e1c648ec807ec3411327cbd7793e23d24ced1ff0d647148ebc3a7ed",
+      "bytes": 379822,
+      "sha256": "d6e12479e66282dea155dd7d59699ffce455e8ee5e9d35e66d1e5f11aaaf96d4",
       "access_metadata_redactions": 0
     },
     {
@@ -17853,9 +17853,9 @@
     {
       "path": "research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
       "source_path": "reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
-      "source_sha256": "18d8d377aa5aee9d7281b03a8fcfe0d5d3a35c1b156f9a7a89a1f632648fb5d1",
-      "bytes": 15446,
-      "sha256": "483f4b8b18cb02626fbaae449c80338352138256a351f89a215ad745f3557164",
+      "source_sha256": "d9e72cb310375b0c8fc056c5f4a363345e172d3ac2b38afc5526e5a373acf7d4",
+      "bytes": 18497,
+      "sha256": "d635744b4ee14bb5eb46fb613e07f9f4acc1c1266742667f4c6c00f275e7a4dc",
       "access_metadata_redactions": 0
     },
     {
@@ -17889,14 +17889,30 @@
       "bytes": 3793,
       "sha256": "7b84a9443036066c68a7b1f6b51e54fe9982bcf7b8e9fc6c7237df813f170d59",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v327.json",
+      "source_path": "audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v327.json",
+      "source_sha256": "5c0f6c977e7a5e30cfe6f2d5d7cc9240db69de01f5a810db4c6c44bdd4b14009",
+      "bytes": 13973,
+      "sha256": "5c0f6c977e7a5e30cfe6f2d5d7cc9240db69de01f5a810db4c6c44bdd4b14009",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_ALL15_ENCODER_TRAINING_LOGS_20261111_v327.json",
+      "source_path": "audit/EEG_ALL15_ENCODER_TRAINING_LOGS_20261111_v327.json",
+      "source_sha256": "527a8db29f2c7be776d0c4c75091929f4311029fb80cd3a377f1d109a70215c6",
+      "bytes": 88783,
+      "sha256": "527a8db29f2c7be776d0c4c75091929f4311029fb80cd3a377f1d109a70215c6",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 23875115,
+  "bytes": 23981881,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-11T16:29:59.261529+00:00"
+  "updated_UTC": "2026-11-11T17:32:46.458395+00:00"
 }

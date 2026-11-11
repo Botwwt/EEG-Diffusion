@@ -1,3 +1,7 @@
+<!-- EEG_ALL15_ENCODERS_COMPLETE_V327 -->
+> **2026-11-11 09:30 America/Los_Angeles：全部15编码器25轮已完成。** 共3375更新/3307500暴露、五个真OOF银行闭合；全部3375逐步日志标准库独立复核通过。MLP17自己的ordinary已第3遍2368/2481，真实GPU5136310、CPU跟随5136311；其他四个ordinary及8300新图尚未完成，不能称图片收益。同参数Separated63的三角色训练loss均低于Joint63，Joint17也低于Joint63，但15模型后五轮仍下降；仅优化线索，不把训练loss当泛化/信息量/收敛证据。不改固定25轮、原目标和完整图片计划，不为凑任务数重挂。全量表征诊断已跟随原链；本次无新GPU/新配方/已完成模型重训，其他项目和旧ordinary不动。权威audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v327.json、报告第9节及audit/EEG_ALL15_ENCODER_TRAINING_LOGS_20261111_v327.json。
+<!-- END_EEG_ALL15_ENCODERS_COMPLETE_V327 -->
+
 <!-- EEG_BACKBONE_LONG_CAMPAIGN_V325 -->
 > **2026-11-11 08:15 America/Los_Angeles：前轮全闭合，新骨干长队列已运行。** v320三组各827更新和3320新图/九组14读数全部闭合；native/forward/mismatch DINO0.768547/0.770836/0.766235，ordinary0.772164，仍无额外语义胜出。三组SSIM约0.369，高于ordinary0.329790；总loss下降而部分保护项上升，不能按总loss宣布机制。7470逐query/154对比/2481日志事件stdlib复核通过；一项5.55e-18零值符号差单列，bootstrap未本机重跑。
 > **新v322骨干×各自ordinary完整链：** MLP17/作者ATM63/Joint63/同参数同初始化Separated63/Joint17，各full/oof0/oof1固定25epoch，共15编码器3375更新；随后各自ordinary三遍，共5头12405更新，十组8300新图+旧三强参考、13组14读数。MLP三角色675更新已真闭合及CPU核验，最新队列stage6→ATM63 full GPU5135615，必须以实际next_job为准，不重挂。CPU5135574真实EEG/GradCache/BN/RNG检查通过，补充全T/Dfit/Dcheck148800条表征诊断CPU5135612检查通过、实际5135617等待原骨干链。单1729/本研究单A800/其他项目和旧ordinary不动。source_condition旧模板文字已显式勘误，真实输入为各自新父编码器和自己的头。v323/324只修私有依赖与环境；v325修诊断FP64，全部原失败保留，训练科学源v322未变。经典attention/GradCache不冒称原创，尚无新骨干图片收益/SOTA/CCFA。详见reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md及audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v325.json。
