@@ -1,0 +1,91 @@
+{
+  "status": "PASS_INDEPENDENT_ALL132300_T_RECORDS_PERMISSIONS_MEANS_AND84_CONTRASTS",
+  "CPU_job": "5139239",
+  "UTC": "2026-11-12T01:47:54.225315+00:00",
+  "rows": 132300,
+  "views": 10,
+  "concepts": 1323,
+  "comparisons": 84,
+  "metric_cells": 926100,
+  "max_mean_error": 7.105427357601002e-15,
+  "near_zero_sign_disagreements": [
+    {
+      "comparison": "ATM63_minus_MLP17",
+      "exposure": "concept_OOF",
+      "metric": "F_same_concept_2AFC",
+      "independent_positive": 456,
+      "server_positive": 459,
+      "independent_negative": 849,
+      "server_negative": 847,
+      "near_zero_concepts": 64
+    },
+    {
+      "comparison": "Joint63_minus_MLP17",
+      "exposure": "concept_OOF",
+      "metric": "F_same_concept_2AFC",
+      "independent_positive": 121,
+      "server_positive": 121,
+      "independent_negative": 1195,
+      "server_negative": 1196,
+      "near_zero_concepts": 24
+    },
+    {
+      "comparison": "Separated63_minus_MLP17",
+      "exposure": "concept_OOF",
+      "metric": "F_same_concept_2AFC",
+      "independent_positive": 281,
+      "server_positive": 277,
+      "independent_negative": 1036,
+      "server_negative": 1036,
+      "near_zero_concepts": 43
+    },
+    {
+      "comparison": "Joint17_minus_MLP17",
+      "exposure": "concept_OOF",
+      "metric": "F_same_concept_2AFC",
+      "independent_positive": 358,
+      "server_positive": 356,
+      "independent_negative": 945,
+      "server_negative": 945,
+      "near_zero_concepts": 60
+    },
+    {
+      "comparison": "Joint63_minus_Separated63",
+      "exposure": "concept_OOF",
+      "metric": "F_same_concept_2AFC",
+      "independent_positive": 212,
+      "server_positive": 211,
+      "independent_negative": 1099,
+      "server_negative": 1098,
+      "near_zero_concepts": 44
+    },
+    {
+      "comparison": "Joint63_minus_Joint17",
+      "exposure": "concept_OOF",
+      "metric": "F_same_concept_2AFC",
+      "independent_positive": 209,
+      "server_positive": 208,
+      "independent_negative": 1109,
+      "server_negative": 1106,
+      "near_zero_concepts": 36
+    },
+    {
+      "comparison": "Joint63_minus_Joint17",
+      "exposure": "full_T_training",
+      "metric": "F_same_concept_2AFC",
+      "independent_positive": 518,
+      "server_positive": 518,
+      "independent_negative": 724,
+      "server_negative": 723,
+      "near_zero_concepts": 140
+    }
+  ],
+  "per_query_sha256": "8cc6811b8f908cdf3ca9691380fa7e48244098bceba3298e8e3fc549e40ffdec",
+  "summary_sha256": "803b9592a8bb9cb0ba93ce36fa9a410c849b4b688cf62317748c362384b5059a",
+  "verifier_sha256": "821bfed9974674183ef88ed4e0c0c0fd00b958b018b8c4d968d3fa38578c4ed5",
+  "neural_feature_generation_not_recomputed": true,
+  "bootstrap_not_independently_recomputed": true,
+  "new_training": 0,
+  "new_images": 0,
+  "seconds": 1.4587636515498161
+}

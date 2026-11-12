@@ -1,3 +1,8 @@
+<!-- EEG_COMPLETE_T_ENCODER_DIAGNOSIS_V330 -->
+> **2026-11-11 17:49 America/Los_Angeles：完整T编码诊断闭合，原图片链继续。** 五骨干×训练内/概念OOF，全13230刺激、132300记录/84对比已独立复核(max7.11e-15)。OOF同概念十图Top1：MLP31.66%、ATM26.67%、Joint63 15.89%、Separated63 22.15%、Joint17 24.60%。分离交互改善联合模型但仍低于MLP；ATM误差较低而身份区分更差。它们是编码诊断，不是新图片收益。原GPU已保存1898/8300新图，各组完整评分及最终T/Dfit/Dcheck/ordinary诊断继续，不改训练。
+> [完整数字、解释边界与当前队列](../research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md)
+<!-- END_EEG_COMPLETE_T_ENCODER_DIAGNOSIS_V330 -->
+
 <!-- EEG_ALL20_FITS_AND_IMAGE_RECOVERY_V329 -->
 > **2026-11-11 17:23 America/Los_Angeles：20个拟合全部完成，图片已恢复运行。** 15编码器3375更新、五个各自ordinary12405更新及Dfit校准闭合。12:01出图前CPU eval注意力NaN导致队列停滞，本次已定位并保留失败；数学CPU后端全8300条件复核通过，20模型SHA不变，最大缩放误差4.526e-6。GPU已保存107图，首图原生像素/祖先噪声RNG逐位一致；新骨干完整图片分数仍待评价，不能称新方法收益。
 > [实际故障、完整复核与当前队列](../research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md)

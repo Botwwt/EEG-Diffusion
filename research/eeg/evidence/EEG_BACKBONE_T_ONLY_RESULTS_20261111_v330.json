@@ -1,0 +1,1271 @@
+{
+  "status": "COMPLETE_FULL13230_T_ONLY_FIVE_BACKBONES_TRAINING_VS_CONCEPT_OOF_NO_METHOD_FIT",
+  "CPU_job": "5139211",
+  "queries_each": 13230,
+  "concepts": 1323,
+  "encoders": 5,
+  "exposure_views": 2,
+  "query_records": 132300,
+  "F_gallery_candidates": 13230,
+  "summary": [
+    {
+      "case": "MLP17",
+      "exposure": "concept_OOF",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.7891435298385399,
+        "F_cosine": 0.10623667699470517,
+        "F_same_concept_Top1": 0.31662887377173093,
+        "F_same_concept_2AFC": 0.7498026371042246,
+        "condition_norm": 32.021646253243965,
+        "F_global_Top1": 0.005291005291005291,
+        "F_global_2AFC": 0.8832492999215459
+      },
+      "geometry": {
+        "condition_mean_energy": 0.37756958495036747,
+        "condition_total_second_moment": 1025.3870137283434,
+        "condition_mean_energy_fraction": 0.00036822153966775055,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "MLP17",
+      "exposure": "full_T_training",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.3157761835943078,
+        "F_cosine": 0.3426124917582113,
+        "F_same_concept_Top1": 0.9939531368102796,
+        "F_same_concept_2AFC": 0.9991181657848324,
+        "condition_norm": 32.01691441405581,
+        "F_global_Top1": 0.9532123960695389,
+        "F_global_2AFC": 0.9999781624545401
+      },
+      "geometry": {
+        "condition_mean_energy": 0.26577830872564456,
+        "condition_total_second_moment": 1025.087013039599,
+        "condition_mean_energy_fraction": 0.00025927390099066404,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "ATM63",
+      "exposure": "concept_OOF",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.7420978449647386,
+        "F_cosine": 0.12994792487848378,
+        "F_same_concept_Top1": 0.26674225245653815,
+        "F_same_concept_2AFC": 0.7138741916519694,
+        "condition_norm": 32.029674946190845,
+        "F_global_Top1": 0.002494331065759637,
+        "F_global_2AFC": 0.8666951891750224
+      },
+      "geometry": {
+        "condition_mean_energy": 9.61197130394686,
+        "condition_total_second_moment": 1025.9008712428022,
+        "condition_mean_energy_fraction": 0.00936929831466336,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "ATM63",
+      "exposure": "full_T_training",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.6026935647510776,
+        "F_cosine": 0.19954610522612073,
+        "F_same_concept_Top1": 0.48488284202569915,
+        "F_same_concept_2AFC": 0.8542286050222558,
+        "condition_norm": 32.029449355665,
+        "F_global_Top1": 0.024036281179138322,
+        "F_global_2AFC": 0.9605430635310876
+      },
+      "geometry": {
+        "condition_mean_energy": 10.760785586413611,
+        "condition_total_second_moment": 1025.888580447901,
+        "condition_mean_energy_fraction": 0.010489234202914583,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "Joint63",
+      "exposure": "concept_OOF",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.9006398666220523,
+        "F_cosine": 0.04858437982673052,
+        "F_same_concept_Top1": 0.15888133030990173,
+        "F_same_concept_2AFC": 0.5923238431174939,
+        "condition_norm": 31.955860458555616,
+        "F_global_Top1": 0.0003023431594860166,
+        "F_global_2AFC": 0.669694823444702
+      },
+      "geometry": {
+        "condition_mean_energy": 4.657798218793912,
+        "condition_total_second_moment": 1021.1773810825437,
+        "condition_mean_energy_fraction": 0.004561203866321647,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "Joint63",
+      "exposure": "full_T_training",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.6778139417013715,
+        "F_cosine": 0.15966906590673274,
+        "F_same_concept_Top1": 0.6265306122448979,
+        "F_same_concept_2AFC": 0.9065507684555304,
+        "condition_norm": 31.93861016830446,
+        "F_global_Top1": 0.041874527588813305,
+        "F_global_2AFC": 0.9539069408598474
+      },
+      "geometry": {
+        "condition_mean_energy": 9.866522303063554,
+        "condition_total_second_moment": 1020.0756695549335,
+        "condition_mean_energy_fraction": 0.009672343530522976,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "Separated63",
+      "exposure": "concept_OOF",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.8369689350329133,
+        "F_cosine": 0.0815801946209497,
+        "F_same_concept_Top1": 0.2214663643235072,
+        "F_same_concept_2AFC": 0.6724699756445789,
+        "condition_norm": 31.994913389886595,
+        "F_global_Top1": 0.0006046863189720333,
+        "F_global_2AFC": 0.7773601904288815
+      },
+      "geometry": {
+        "condition_mean_energy": 3.677838699124539,
+        "condition_total_second_moment": 1023.6746805894686,
+        "condition_mean_energy_fraction": 0.003592780762152589,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "Separated63",
+      "exposure": "full_T_training",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.621357800834965,
+        "F_cosine": 0.1893104242862911,
+        "F_same_concept_Top1": 0.6718820861678004,
+        "F_same_concept_2AFC": 0.9258671369782481,
+        "condition_norm": 31.992507182128506,
+        "F_global_Top1": 0.07838246409674982,
+        "F_global_2AFC": 0.9762089312589836
+      },
+      "geometry": {
+        "condition_mean_energy": 4.255502922411971,
+        "condition_total_second_moment": 1023.5214224142865,
+        "condition_mean_energy_fraction": 0.004157707722789107,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "Joint17",
+      "exposure": "concept_OOF",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.8113457183361594,
+        "F_cosine": 0.09463514611461994,
+        "F_same_concept_Top1": 0.24595616024187453,
+        "F_same_concept_2AFC": 0.6933568489124045,
+        "condition_norm": 32.00370305413189,
+        "F_global_Top1": 0.0017384731670445955,
+        "F_global_2AFC": 0.8098048122248203
+      },
+      "geometry": {
+        "condition_mean_energy": 4.168525125347309,
+        "condition_total_second_moment": 1024.237391839567,
+        "condition_mean_energy_fraction": 0.004069881805291729,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    },
+    {
+      "case": "Joint17",
+      "exposure": "full_T_training",
+      "queries": 13230,
+      "means": {
+        "F_MSE": 1.6291793498295986,
+        "F_cosine": 0.18550206465638464,
+        "F_same_concept_Top1": 0.645880574452003,
+        "F_same_concept_2AFC": 0.9160493827160494,
+        "condition_norm": 31.996513684053905,
+        "F_global_Top1": 0.060241874527588814,
+        "F_global_2AFC": 0.9711495170799945
+      },
+      "geometry": {
+        "condition_mean_energy": 5.94687367721371,
+        "condition_total_second_moment": 1023.7778100879417,
+        "condition_mean_energy_fraction": 0.005808754222464421,
+        "Top1_tie_queries": 0
+      },
+      "global_Top1_tied_queries": 0
+    }
+  ],
+  "comparisons": [
+    {
+      "exposure": "concept_OOF",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_MSE",
+      "mean": -0.04704568487380109,
+      "concept95": [
+        -0.049692929728728207,
+        -0.04438103179945077
+      ],
+      "positive_concepts": 228,
+      "negative_concepts": 1095
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_cosine",
+      "mean": 0.02371124788377863,
+      "concept95": [
+        0.02237224894636125,
+        0.025031781706468897
+      ],
+      "positive_concepts": 1094,
+      "negative_concepts": 229
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.049886621315192746,
+      "concept95": [
+        -0.05918556311413455,
+        -0.04088813303099018
+      ],
+      "positive_concepts": 364,
+      "negative_concepts": 665
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.03592844545225498,
+      "concept95": [
+        -0.04116948013773411,
+        -0.03100676072898295
+      ],
+      "positive_concepts": 459,
+      "negative_concepts": 847
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "condition_norm",
+      "mean": 0.008028692946876836,
+      "concept95": [
+        0.0071760793897904015,
+        0.008885127810258854
+      ],
+      "positive_concepts": 901,
+      "negative_concepts": 422
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_global_Top1",
+      "mean": -0.002796674225245654,
+      "concept95": [
+        -0.004232804232804233,
+        -0.001360544217687075
+      ],
+      "positive_concepts": 26,
+      "negative_concepts": 62
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_global_2AFC",
+      "mean": -0.016554110746523517,
+      "concept95": [
+        -0.019852555715594713,
+        -0.013249979559440376
+      ],
+      "positive_concepts": 538,
+      "negative_concepts": 785
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_MSE",
+      "mean": 0.11149633678351233,
+      "concept95": [
+        0.10871017881008609,
+        0.11424784195541968
+      ],
+      "positive_concepts": 1307,
+      "negative_concepts": 16
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_cosine",
+      "mean": -0.05765229716797462,
+      "concept95": [
+        -0.059066450054243366,
+        -0.056255716519240356
+      ],
+      "positive_concepts": 11,
+      "negative_concepts": 1312
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.15774754346182918,
+      "concept95": [
+        -0.1673469387755102,
+        -0.1489002267573696
+      ],
+      "positive_concepts": 154,
+      "negative_concepts": 964
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.15747879398673048,
+      "concept95": [
+        -0.16429243302259175,
+        -0.15106093054505754
+      ],
+      "positive_concepts": 121,
+      "negative_concepts": 1196
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "condition_norm",
+      "mean": -0.06578579468834146,
+      "concept95": [
+        -0.06711161311424488,
+        -0.06459374062406534
+      ],
+      "positive_concepts": 3,
+      "negative_concepts": 1320
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_global_Top1",
+      "mean": -0.004988662131519274,
+      "concept95": [
+        -0.0062736205593348455,
+        -0.003703703703703704
+      ],
+      "positive_concepts": 2,
+      "negative_concepts": 66
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_global_2AFC",
+      "mean": -0.21355447647684403,
+      "concept95": [
+        -0.21886013526365353,
+        -0.20859665802135266
+      ],
+      "positive_concepts": 15,
+      "negative_concepts": 1308
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_MSE",
+      "mean": 0.04782540519437347,
+      "concept95": [
+        0.04524048099928029,
+        0.05032095018962198
+      ],
+      "positive_concepts": 1119,
+      "negative_concepts": 204
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_cosine",
+      "mean": -0.024656482373755444,
+      "concept95": [
+        -0.025897383621954415,
+        -0.023372925582344113
+      ],
+      "positive_concepts": 194,
+      "negative_concepts": 1129
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.09516250944822373,
+      "concept95": [
+        -0.10483938019652307,
+        -0.08616591080876795
+      ],
+      "positive_concepts": 258,
+      "negative_concepts": 808
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.0773326614596456,
+      "concept95": [
+        -0.08291887125220458,
+        -0.07241895523641555
+      ],
+      "positive_concepts": 277,
+      "negative_concepts": 1036
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "condition_norm",
+      "mean": -0.026732863357366,
+      "concept95": [
+        -0.027879139282844596,
+        -0.025685026890785372
+      ],
+      "positive_concepts": 119,
+      "negative_concepts": 1204
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_global_Top1",
+      "mean": -0.004686318972033258,
+      "concept95": [
+        -0.006046863189720333,
+        -0.003475056689342405
+      ],
+      "positive_concepts": 6,
+      "negative_concepts": 66
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_global_2AFC",
+      "mean": -0.10588910949266446,
+      "concept95": [
+        -0.11011681629841949,
+        -0.10184219922252168
+      ],
+      "positive_concepts": 107,
+      "negative_concepts": 1216
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_MSE",
+      "mean": 0.022202188497619426,
+      "concept95": [
+        0.01994057773798163,
+        0.02466862992824176
+      ],
+      "positive_concepts": 917,
+      "negative_concepts": 406
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_cosine",
+      "mean": -0.01160153088008523,
+      "concept95": [
+        -0.012838142126382077,
+        -0.010463931766930888
+      ],
+      "positive_concepts": 397,
+      "negative_concepts": 926
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.07067271352985639,
+      "concept95": [
+        -0.07944255479969765,
+        -0.06190287226001512
+      ],
+      "positive_concepts": 303,
+      "negative_concepts": 740
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.05644578819181994,
+      "concept95": [
+        -0.06135949441504997,
+        -0.05165679852187789
+      ],
+      "positive_concepts": 356,
+      "negative_concepts": 945
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "condition_norm",
+      "mean": -0.01794319911207054,
+      "concept95": [
+        -0.019023276588623152,
+        -0.016949978719937184
+      ],
+      "positive_concepts": 229,
+      "negative_concepts": 1094
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_global_Top1",
+      "mean": -0.003552532123960695,
+      "concept95": [
+        -0.005064247921390779,
+        -0.0021919879062736207
+      ],
+      "positive_concepts": 18,
+      "negative_concepts": 64
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_global_2AFC",
+      "mean": -0.07344448769672575,
+      "concept95": [
+        -0.07724779906167119,
+        -0.06989971884303062
+      ],
+      "positive_concepts": 158,
+      "negative_concepts": 1165
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_MSE",
+      "mean": 0.06367093158913885,
+      "concept95": [
+        0.06202317012045669,
+        0.06532472709441005
+      ],
+      "positive_concepts": 1304,
+      "negative_concepts": 19
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_cosine",
+      "mean": -0.03299581479421918,
+      "concept95": [
+        -0.03382673842175467,
+        -0.03217270387805112
+      ],
+      "positive_concepts": 17,
+      "negative_concepts": 1306
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.06258503401360545,
+      "concept95": [
+        -0.06984315948601663,
+        -0.05532312925170067
+      ],
+      "positive_concepts": 245,
+      "negative_concepts": 706
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.08014613252708493,
+      "concept95": [
+        -0.0850172167632485,
+        -0.07571932476694382
+      ],
+      "positive_concepts": 211,
+      "negative_concepts": 1098
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "condition_norm",
+      "mean": -0.03905293133097546,
+      "concept95": [
+        -0.03937371222565823,
+        -0.038727404620185
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_global_Top1",
+      "mean": -0.0003023431594860166,
+      "concept95": [
+        -0.0008314436885865458,
+        0.0002267573696145125
+      ],
+      "positive_concepts": 4,
+      "negative_concepts": 8
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_global_2AFC",
+      "mean": -0.10766536698417954,
+      "concept95": [
+        -0.11150951490195359,
+        -0.10423525424313736
+      ],
+      "positive_concepts": 64,
+      "negative_concepts": 1259
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_MSE",
+      "mean": 0.0892941482858929,
+      "concept95": [
+        0.0872486769314127,
+        0.09158106951109342
+      ],
+      "positive_concepts": 1309,
+      "negative_concepts": 14
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_cosine",
+      "mean": -0.04605076628788939,
+      "concept95": [
+        -0.047191070979130494,
+        -0.045021595483183574
+      ],
+      "positive_concepts": 13,
+      "negative_concepts": 1310
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.08707482993197278,
+      "concept95": [
+        -0.09554043839758126,
+        -0.07898337112622826
+      ],
+      "positive_concepts": 223,
+      "negative_concepts": 780
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.10103300579491056,
+      "concept95": [
+        -0.1074580078945158,
+        -0.09542978919963048
+      ],
+      "positive_concepts": 208,
+      "negative_concepts": 1106
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "condition_norm",
+      "mean": -0.04784259557627092,
+      "concept95": [
+        -0.048333775711262066,
+        -0.047318273642782745
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_global_Top1",
+      "mean": -0.001436130007558579,
+      "concept95": [
+        -0.0022675736961451248,
+        -0.0006802721088435375
+      ],
+      "positive_concepts": 4,
+      "negative_concepts": 22
+    },
+    {
+      "exposure": "concept_OOF",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_global_2AFC",
+      "mean": -0.14010998878011827,
+      "concept95": [
+        -0.14484983659265271,
+        -0.13586565355768299
+      ],
+      "positive_concepts": 45,
+      "negative_concepts": 1278
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_MSE",
+      "mean": 0.2869173811567699,
+      "concept95": [
+        0.28402516162236935,
+        0.2897757842225875
+      ],
+      "positive_concepts": 1323,
+      "negative_concepts": 0
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_cosine",
+      "mean": -0.14306638653209053,
+      "concept95": [
+        -0.14453249913682378,
+        -0.14160968480253242
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.5090702947845805,
+      "concept95": [
+        -0.5182936507936508,
+        -0.49947089947089945
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1320
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.14488956076257664,
+      "concept95": [
+        -0.14866171159821956,
+        -0.14109347442680778
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1321
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "condition_norm",
+      "mean": 0.012534941609189956,
+      "concept95": [
+        0.009929759636826994,
+        0.014985423853411799
+      ],
+      "positive_concepts": 736,
+      "negative_concepts": 587
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_global_Top1",
+      "mean": -0.9291761148904006,
+      "concept95": [
+        -0.9342422524565381,
+        -0.9245634920634921
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "ATM63_minus_MLP17",
+      "metric": "F_global_2AFC",
+      "mean": -0.03943509892345243,
+      "concept95": [
+        -0.04093884390251678,
+        -0.0379932838406106
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_MSE",
+      "mean": 0.3620377581070639,
+      "concept95": [
+        0.35950843166283647,
+        0.3647527706845782
+      ],
+      "positive_concepts": 1323,
+      "negative_concepts": 0
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_cosine",
+      "mean": -0.18294342585147855,
+      "concept95": [
+        -0.18432077284227635,
+        -0.1816652551015592
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.3674225245653817,
+      "concept95": [
+        -0.37573696145124713,
+        -0.3593310657596372
+      ],
+      "positive_concepts": 1,
+      "negative_concepts": 1306
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.09256739732930211,
+      "concept95": [
+        -0.09575060888552953,
+        -0.08964411690602168
+      ],
+      "positive_concepts": 2,
+      "negative_concepts": 1306
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "condition_norm",
+      "mean": -0.07830424575134717,
+      "concept95": [
+        -0.08082093972778638,
+        -0.07617100216880661
+      ],
+      "positive_concepts": 40,
+      "negative_concepts": 1283
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_global_Top1",
+      "mean": -0.9113378684807256,
+      "concept95": [
+        -0.9167044595616025,
+        -0.9061961451247165
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_MLP17",
+      "metric": "F_global_2AFC",
+      "mean": -0.04607122159469276,
+      "concept95": [
+        -0.04765944479269101,
+        -0.044474294089344356
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_MSE",
+      "mean": 0.3055816172406574,
+      "concept95": [
+        0.30328988511406385,
+        0.30787262138523513
+      ],
+      "positive_concepts": 1323,
+      "negative_concepts": 0
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_cosine",
+      "mean": -0.15330206747192018,
+      "concept95": [
+        -0.15444949613678385,
+        -0.1521442170332193
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.3220710506424792,
+      "concept95": [
+        -0.3302380952380952,
+        -0.31360355253212396
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1284
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.07325102880658436,
+      "concept95": [
+        -0.07589737129419671,
+        -0.07070609725371631
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1285
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "condition_norm",
+      "mean": -0.024407231927296175,
+      "concept95": [
+        -0.027376385903422288,
+        -0.021892401947326716
+      ],
+      "positive_concepts": 411,
+      "negative_concepts": 912
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_global_Top1",
+      "mean": -0.8748299319727891,
+      "concept95": [
+        -0.8807256235827663,
+        -0.8685563114134542
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Separated63_minus_MLP17",
+      "metric": "F_global_2AFC",
+      "mean": -0.02376923119555648,
+      "concept95": [
+        -0.02474169131960996,
+        -0.02268175757044908
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_MSE",
+      "mean": 0.31340316623529074,
+      "concept95": [
+        0.31125597164124175,
+        0.3157207022012629
+      ],
+      "positive_concepts": 1323,
+      "negative_concepts": 0
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_cosine",
+      "mean": -0.15711042710182663,
+      "concept95": [
+        -0.1582700310928214,
+        -0.1560014410524326
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.34807256235827666,
+      "concept95": [
+        -0.3563133030990174,
+        -0.3392214663643235
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1290
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.08306878306878307,
+      "concept95": [
+        -0.08595804988662133,
+        -0.0800854539346603
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1291
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "condition_norm",
+      "mean": -0.02040073000190263,
+      "concept95": [
+        -0.022974508041765013,
+        -0.017997824364990915
+      ],
+      "positive_concepts": 413,
+      "negative_concepts": 910
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_global_Top1",
+      "mean": -0.8929705215419501,
+      "concept95": [
+        -0.8987169312169312,
+        -0.8873771730914588
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint17_minus_MLP17",
+      "metric": "F_global_2AFC",
+      "mean": -0.028828645374545617,
+      "concept95": [
+        -0.029922194888151715,
+        -0.027657194331357157
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_MSE",
+      "mean": 0.05645614086640654,
+      "concept95": [
+        0.0544938275717042,
+        0.05835986549439198
+      ],
+      "positive_concepts": 1255,
+      "negative_concepts": 68
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_cosine",
+      "mean": -0.02964135837955837,
+      "concept95": [
+        -0.030593594684697523,
+        -0.02865528861257762
+      ],
+      "positive_concepts": 54,
+      "negative_concepts": 1269
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.045351473922902494,
+      "concept95": [
+        -0.05450113378684807,
+        -0.03650793650793651
+      ],
+      "positive_concepts": 378,
+      "negative_concepts": 651
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.019316368522717727,
+      "concept95": [
+        -0.021871168220374573,
+        -0.01677962543041908
+      ],
+      "positive_concepts": 426,
+      "negative_concepts": 832
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "condition_norm",
+      "mean": -0.053897013824050995,
+      "concept95": [
+        -0.05467743229808632,
+        -0.053098863022485634
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_global_Top1",
+      "mean": -0.03650793650793651,
+      "concept95": [
+        -0.042329931972789114,
+        -0.031592970521541947
+      ],
+      "positive_concepts": 181,
+      "negative_concepts": 501
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Separated63",
+      "metric": "F_global_2AFC",
+      "mean": -0.02230199039913628,
+      "concept95": [
+        -0.023646526416145112,
+        -0.021047441696124786
+      ],
+      "positive_concepts": 200,
+      "negative_concepts": 1123
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_MSE",
+      "mean": 0.04863459187177316,
+      "concept95": [
+        0.04669634647216717,
+        0.050603108970154013
+      ],
+      "positive_concepts": 1199,
+      "negative_concepts": 124
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_cosine",
+      "mean": -0.025832998749651927,
+      "concept95": [
+        -0.026820420364367492,
+        -0.024858173667035684
+      ],
+      "positive_concepts": 103,
+      "negative_concepts": 1220
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_same_concept_Top1",
+      "mean": -0.019349962207105064,
+      "concept95": [
+        -0.028425925925925927,
+        -0.01012849584278156
+      ],
+      "positive_concepts": 446,
+      "negative_concepts": 556
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_same_concept_2AFC",
+      "mean": -0.009498614260519022,
+      "concept95": [
+        -0.012396279499454104,
+        -0.006625094482237341
+      ],
+      "positive_concepts": 518,
+      "negative_concepts": 723
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "condition_norm",
+      "mean": -0.05790351574944453,
+      "concept95": [
+        -0.05848820542513418,
+        -0.057278438169129926
+      ],
+      "positive_concepts": 0,
+      "negative_concepts": 1323
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_global_Top1",
+      "mean": -0.018367346938775512,
+      "concept95": [
+        -0.023510959939531367,
+        -0.013605442176870748
+      ],
+      "positive_concepts": 217,
+      "negative_concepts": 392
+    },
+    {
+      "exposure": "full_T_training",
+      "comparison": "Joint63_minus_Joint17",
+      "metric": "F_global_2AFC",
+      "mean": -0.01724257622014714,
+      "concept95": [
+        -0.018756096957559112,
+        -0.01590824577031827
+      ],
+      "positive_concepts": 289,
+      "negative_concepts": 1034
+    }
+  ],
+  "inputs": {
+    "MLP17": {
+      "OOF_sha256": "3018120ae6d211aa37788de57adb0478cf74ab1efb366f812893dc0a29b87ad6",
+      "full_condition_sha256": "75896a875178748568594efdc39218c96693a9782e51b32c1801c32df6c7a793",
+      "full_model_sha256": "4b75f2d3e50923eeb91930126c476551a523fb76dfce63fe4172597ec1132d9d"
+    },
+    "ATM63": {
+      "OOF_sha256": "004ae3152d6eeb672f6db316cc99d13137531be2ee995615661dfe2b6443d450",
+      "full_condition_sha256": "b3a44972e9f061e6a5b165d1e5214b9fee383997e15c9cc6cfe6ef83804bb59e",
+      "full_model_sha256": "d4841f3e0dd7c1164b1fce34a0883635c3a6978412ec87027c93ce7112acd5be"
+    },
+    "Joint63": {
+      "OOF_sha256": "fef09c09102ede09ee70a017adf87b2463945fd12616f9964ad17d75871f23ad",
+      "full_condition_sha256": "7f62fc0b5356f913f431f2a5b0c97c1fff36dabd22988a9f1c46f3e268b89c2e",
+      "full_model_sha256": "8f3dfeeb86e4d7ced9e7fe23e27dec8d708683dca9985a96eb59980cc41af317"
+    },
+    "Separated63": {
+      "OOF_sha256": "75ad4ecb6e6e1f9eb75c7d9c12e056b1e870db0eb6fe0e9c176af80f7a79d70f",
+      "full_condition_sha256": "aaef2aec11391aff8f15a26a86ee2f992a159f6eaf3f7f24fd3b7c1690a2d162",
+      "full_model_sha256": "5fc0a851ba41159231ccd797d29e7d42675b46d1cbd02ea71bea7836d4a36cc4"
+    },
+    "Joint17": {
+      "OOF_sha256": "60c13e5ac0885b858d762991ab4170214c7959c568913bcc4085376af83c0453",
+      "full_condition_sha256": "e6fbfd23a24628274375ed662227e85677f4f0ac0ec162a9d9e53ece74c068a3",
+      "full_model_sha256": "a27b87a1bd2c5dede4519188ec701b2ce602d036cf4371b25c1d33d1419502a4"
+    }
+  },
+  "deterministic_F_sha256": "b6c1d412492a3277ffe821f43f33ffeeb31bd064fc8f5630d0508d5fe6dd46a8",
+  "measurement_source_sha256": "bf77fc9fb948b3fdbbf7a7b00e77c1660fc611476218feddd2d0f797efe2ace1",
+  "source_sha256": "d311c814683e6d61da7feae1af76b61427d236958410fabcb2515e9585914d70",
+  "per_query_sha256": "8cc6811b8f908cdf3ca9691380fa7e48244098bceba3298e8e3fc549e40ffdec",
+  "explicit_global_dot_reference_max_error": 2.220446049250313e-16,
+  "new_training_updates": 0,
+  "new_images": 0,
+  "Dfit_Dcheck_V_or_R80_effects_computed": false,
+  "ordinary_evaluated": false,
+  "original_image_and_final_CPU_chains_unchanged": true,
+  "interpretation": "Encoder-only diagnostic. Concept OOF is upstream training-concept exclusion, not an independent confirmation set. Full vs OOF differs both training exposure and allowed data size/model identity; it is not an isolated overfitting estimate. F similarity/ranks are not generated-image gains. No retraining, selection, threshold or protocol change.",
+  "seconds": 25.41970195248723
+}
