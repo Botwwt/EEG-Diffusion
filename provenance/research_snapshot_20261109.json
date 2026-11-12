@@ -15075,9 +15075,9 @@
     {
       "path": "research/eeg/BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
       "source_path": "BRAINHIVE_CURRENT_METHOD_EXPLAINED_20261020.md",
-      "source_sha256": "2831a5f09e1c648ec807ec3411327cbd7793e23d24ced1ff0d647148ebc3a7ed",
-      "bytes": 379822,
-      "sha256": "d6e12479e66282dea155dd7d59699ffce455e8ee5e9d35e66d1e5f11aaaf96d4",
+      "source_sha256": "6b1c6cce724103016f681592277fee78b1b9e82783f67ccd2928a3c8757e56da",
+      "bytes": 381200,
+      "sha256": "ba4a1088213f11b0fc40edc3cd6500aae0a28c0eab3cd790472b79aa9bef05c5",
       "access_metadata_redactions": 0
     },
     {
@@ -17853,9 +17853,9 @@
     {
       "path": "research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
       "source_path": "reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md",
-      "source_sha256": "d9e72cb310375b0c8fc056c5f4a363345e172d3ac2b38afc5526e5a373acf7d4",
-      "bytes": 18497,
-      "sha256": "d635744b4ee14bb5eb46fb613e07f9f4acc1c1266742667f4c6c00f275e7a4dc",
+      "source_sha256": "f8487988fb61e5bae6c2950069c6bad7a7832e41d5cef64e77ce0116a85492db",
+      "bytes": 21447,
+      "sha256": "2071c5fd614bee7f0590bcaac0926821d2c94b4c3c26c45721f62fecbb718737",
       "access_metadata_redactions": 0
     },
     {
@@ -17905,14 +17905,62 @@
       "bytes": 88783,
       "sha256": "527a8db29f2c7be776d0c4c75091929f4311029fb80cd3a377f1d109a70215c6",
       "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_diagnose_backbone_attention_CPU_20261111_v328.py",
+      "source_path": "PKU_diagnose_backbone_attention_CPU_20261111_v328.py",
+      "source_sha256": "667ebf47facdcbaf3fd3fcd6b9032a55b307a90c99a06a72b96e151a217ef3a5",
+      "bytes": 3617,
+      "sha256": "667ebf47facdcbaf3fd3fcd6b9032a55b307a90c99a06a72b96e151a217ef3a5",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_diagnose_backbone_attention_CPU_20261111_v328.sbatch",
+      "source_path": "PKU_diagnose_backbone_attention_CPU_20261111_v328.sbatch",
+      "source_sha256": "3fe2c20bb42315e2cf677d6e84244fdded8c1dd1b05417ded74e1f76b22d779f",
+      "bytes": 4752,
+      "sha256": "3fe2c20bb42315e2cf677d6e84244fdded8c1dd1b05417ded74e1f76b22d779f",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_backbone_images_CPU_20261111_v329.py",
+      "source_path": "PKU_prepare_backbone_images_CPU_20261111_v329.py",
+      "source_sha256": "1b90502d98d900a9c1db2e803d3e15d13141b8acda5a216169947f3d3ce06fc3",
+      "bytes": 2432,
+      "sha256": "1b90502d98d900a9c1db2e803d3e15d13141b8acda5a216169947f3d3ce06fc3",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/PKU_prepare_backbone_images_CPU_20261111_v329.sbatch",
+      "source_path": "PKU_prepare_backbone_images_CPU_20261111_v329.sbatch",
+      "source_sha256": "c81556573a25430fbf5c4184bc729e8b4485ab1715795e29ca874fd8809932e7",
+      "bytes": 4748,
+      "sha256": "c81556573a25430fbf5c4184bc729e8b4485ab1715795e29ca874fd8809932e7",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_BACKBONE_IMAGE_BLOCK_AND_RECOVERY_20261111_v329.json",
+      "source_path": "audit/EEG_BACKBONE_IMAGE_BLOCK_AND_RECOVERY_20261111_v329.json",
+      "source_sha256": "9db3d56c1f9938d92f1464c86f04e23cb34ee2e69cf2b4cefc760f9b0b2604dc",
+      "bytes": 26911,
+      "sha256": "9db3d56c1f9938d92f1464c86f04e23cb34ee2e69cf2b4cefc760f9b0b2604dc",
+      "access_metadata_redactions": 0
+    },
+    {
+      "path": "research/eeg/evidence/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v329.json",
+      "source_path": "audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v329.json",
+      "source_sha256": "4c8e27815f5e1ae8a6f48c7dff3c86e6dafe57f9ef951bc593b2c63b1b96262d",
+      "bytes": 19277,
+      "sha256": "4c8e27815f5e1ae8a6f48c7dff3c86e6dafe57f9ef951bc593b2c63b1b96262d",
+      "access_metadata_redactions": 0
     }
   ],
-  "bytes": 23981881,
+  "bytes": 24047946,
   "binary_weights_or_data_included": false,
   "raw_private_eeg_included": false,
   "credentials_included": false,
   "historical_machine_paths_are_not_portable_installation": true,
   "goal_achieved_or_SOTA": false,
   "public_text_line_endings": "LF; original source hash retained separately",
-  "updated_UTC": "2026-11-11T17:32:46.458395+00:00"
+  "updated_UTC": "2026-11-12T01:23:43.404095+00:00"
 }

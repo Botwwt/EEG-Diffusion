@@ -1,3 +1,8 @@
+<!-- EEG_ALL20_FITS_AND_IMAGE_RECOVERY_V329 -->
+> **2026-11-11 17:23 America/Los_Angeles：20个拟合全部完成，图片已恢复运行。** 15编码器3375更新、五个各自ordinary12405更新及Dfit校准闭合。12:01出图前CPU eval注意力NaN导致队列停滞，本次已定位并保留失败；数学CPU后端全8300条件复核通过，20模型SHA不变，最大缩放误差4.526e-6。GPU已保存107图，首图原生像素/祖先噪声RNG逐位一致；新骨干完整图片分数仍待评价，不能称新方法收益。
+> [实际故障、完整复核与当前队列](../research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md)
+<!-- END_EEG_ALL20_FITS_AND_IMAGE_RECOVERY_V329 -->
+
 <!-- EEG_ALL15_ENCODERS_COMPLETE_V327 -->
 > **2026-11-11 09:30 America/Los_Angeles：15个25轮编码器全部完成。** 共3375更新和3307500次query暴露，五份真实OOF银行已闭合；全部训练日志独立复核通过。各自ordinary已接续，第一个MLP头第3遍2368/2481更新；其他头与8300新图仍待完整运行。同参数分离注意力的训练loss低于联合注意力，是优化线索，最终仍按完整表征及图片判断。原科学配方和单GPU链保持。
 > [完整训练日志分析、公式及待验证结论](../research/eeg/reports/EEG_BACKBONE_COMPLETE_MATRIX_AND_LONG_CAMPAIGN_20261111_v325.md)

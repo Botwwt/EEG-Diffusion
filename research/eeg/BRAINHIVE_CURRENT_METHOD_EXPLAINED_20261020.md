@@ -1,3 +1,8 @@
+<!-- EEG_ALL20_FITS_COMPLETE_CPU_IMAGE_RECOVERY_V329 -->
+> **2026-11-11 17:20 America/Los_Angeles：15编码器+5个ordinary全部完成，但尚无新骨干图片分数。** 15模型3375更新，五头12405更新/198450暴露，各自Dfit均选强度1。12:01图片准备CPU5138095在Separated63默认SDPA出现NaN，后续三个未启动依赖等待，17:15检查发现；这几小时不能称持续训练。诊断CPU5139004证明全缓存/权重/输入有限，64条×4批大小默认CPU均NaN，math与显式参考均正常，对GPU缓存最大缩放误差2.8e-6<原2e-4。原失败和空目录保留，取消仅未启动5138096/7/8。新CPU5139012以math后端执行原830条件复核，原GPU生成5139013/评分接续5139014/表征跟随5139015已提交；本快照CPU仍运行，尚未观察全量PASS。训练科学源/20模型/seed/全评价协议不变，不重训/丢样本/改阈值。权威audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v329.json和报告第10节。其他项目不动、本研究单GPU。
+> **17:23恢复已实际通过：** CPU5139012全8300条件有限、20模型SHA前后一致，最大缩放误差4.526e-6；原生首图像素/最终RNG逐位回放通过。GPU5139013已真实保存107图，最近progress84；CPU5139019跟随原链。尚无新骨干评分，不能称效果胜出。
+<!-- END_EEG_ALL20_FITS_COMPLETE_CPU_IMAGE_RECOVERY_V329 -->
+
 <!-- EEG_ALL15_ENCODERS_COMPLETE_V327 -->
 > **2026-11-11 09:30 America/Los_Angeles：全部15编码器25轮已完成。** 共3375更新/3307500暴露、五个真OOF银行闭合；全部3375逐步日志标准库独立复核通过。MLP17自己的ordinary已第3遍2368/2481，真实GPU5136310、CPU跟随5136311；其他四个ordinary及8300新图尚未完成，不能称图片收益。同参数Separated63的三角色训练loss均低于Joint63，Joint17也低于Joint63，但15模型后五轮仍下降；仅优化线索，不把训练loss当泛化/信息量/收敛证据。不改固定25轮、原目标和完整图片计划，不为凑任务数重挂。全量表征诊断已跟随原链；本次无新GPU/新配方/已完成模型重训，其他项目和旧ordinary不动。权威audit/EEG_ACTIVE_EXECUTION_HANDOFF_20261111_v327.json、报告第9节及audit/EEG_ALL15_ENCODER_TRAINING_LOGS_20261111_v327.json。
 <!-- END_EEG_ALL15_ENCODERS_COMPLETE_V327 -->
