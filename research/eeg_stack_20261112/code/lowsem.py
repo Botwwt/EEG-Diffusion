@@ -24,6 +24,7 @@ p.add_argument("--mode", default="")
 p.add_argument("--w", type=float, default=0.0)
 p.add_argument("--k", type=int, default=20)
 p.add_argument("--temp", type=float, default=0.05)
+p.add_argument("--knn_pool", type=int, default=1, help="keep only the coarse part of the retrieved latents: average-pool 16x16 by this factor, upsample back")
 p.add_argument("--space", default="z", choices=["z", "raw"], help="raw: correlations and blends on unstandardised latent deviations")
 args = p.parse_args()
 nz = torch.nn.functional.normalize
@@ -50,7 +51,12 @@ def knn(c, k=args.k, temp=args.temp):
     sim = q @ Fc.T
     v, i = sim.topk(k, dim=1)
     w = torch.softmax(v / temp, dim=1)
-    return (w[:, :, None] * Yz[i]).sum(1)
+    out = (w[:, :, None] * Yz[i]).sum(1)
+    if args.knn_pool > 1:   # pooled in latent units, so the coarse layout is kept and fine structure dropped
+        lat = (out * ys).view(-1, 4, 16, 16)
+        lat = torch.nn.functional.interpolate(torch.nn.functional.avg_pool2d(lat, args.knn_pool), size=16, mode="bilinear", align_corners=False)
+        out = lat.flatten(1) / ys
+    return out
 
 
 rows = []

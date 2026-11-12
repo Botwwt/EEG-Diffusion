@@ -41,6 +41,7 @@ p.add_argument("--loop", type=float, default=0.0, help="closed-loop correction s
                "centred direction the images miss, regenerate with the same noise")
 p.add_argument("--loop_iters", type=int, default=1)
 p.add_argument("--sel_low", type=float, default=0.0, help="best-of-N score = semantic fit + sel_low * pixel correlation (64 px grey) with the low-level start image")
+p.add_argument("--proj_ckpt", default="", help="fine-tuned IP projection (ipft.py), path relative to runs/")
 p.add_argument("--reps", default="0:80", help="test repeats averaged into the input, start:stop")
 p.add_argument("--K", type=int, default=4, help="images per query")
 p.add_argument("--bs", type=int, default=0, help="queries per batch (0: about 20 images per batch)")
@@ -110,7 +111,10 @@ from diffusers import StableDiffusionXLPipeline  # noqa: E402
 pipe = StableDiffusionXLPipeline.from_pretrained(str(TURBO), torch_dtype=dt, variant="fp16")
 attn = IPAttnAdapterModel.from_pretrained(str(PRIOR), subfolder="attn_adapter")
 attn.bind_unet(pipe.unet)
-proj = IPProjectionModel.from_pretrained(str(PRIOR), subfolder="proj").to(dev, dt).eval()
+proj = IPProjectionModel.from_pretrained(str(PRIOR), subfolder="proj")
+if args.proj_ckpt:
+    proj.load_state_dict(torch.load(RUNS / args.proj_ckpt, weights_only=True))
+proj = proj.to(dev, dt).eval()
 A = FusionEncoderModel.from_pretrained(str(PRIOR), subfolder="fusion_encoder").adapter.to(dev, dt).eval()
 pipe.to(dev, dt)
 if args.ip_scale != 1.0:

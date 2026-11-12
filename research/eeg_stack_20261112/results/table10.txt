@@ -15,6 +15,8 @@ sub-01 joint enc: shared head + low-level          0.2692    0.4125    0.8563   
 sub-01 joint enc: shared head + low + best of 4    0.2692    0.4110    0.8636    0.9048    0.7359    0.7542    0.8762
 sub-01 joint enc: shared head + low + amp 2 + best of 4    0.2674    0.4068    0.8723    0.9074    0.7483    0.7697    0.8673
 sub-01 low-level point: strength 0.5 + best of 4    0.2704    0.4470    0.8244    0.8677    0.7302    0.7412    0.8895
+sub-01 A': shared head + ridge+retrieval start + best of 4    0.2806    0.3981    0.8725    0.9051    0.7448    0.7642    0.8764
+sub-01 B': ... + amp 2                             0.2772    0.3939    0.8794    0.9109    0.7490    0.7709    0.8670
 sub-01 calibration + low-level start               0.2500    0.3803    0.8585    0.8907    0.7260    0.7511    0.8863
 sub-01 + best of 4 candidates                      0.2497    0.3808    0.8605    0.8926    0.7291    0.7591    0.8830
 sub-02 baseline (reproduced)                       0.1832    0.3265    0.8254    0.8998    0.7261    0.8025    0.8937
@@ -32,6 +34,8 @@ sub-02 joint enc: shared head + low-level          0.2367    0.4053    0.8832   
 sub-02 joint enc: shared head + low + best of 4    0.2427    0.4047    0.8901    0.9330    0.7849    0.8399    0.8580
 sub-02 joint enc: shared head + low + amp 2 + best of 4    0.2325    0.3988    0.8942    0.9363    0.7811    0.8418    0.8570
 sub-02 low-level point: strength 0.5 + best of 4    0.2350    0.4345    0.8619    0.9161    0.7757    0.8078    0.8673
+sub-02 A': shared head + ridge+retrieval start + best of 4    0.2611    0.3956    0.8919    0.9328    0.7846    0.8420    0.8608
+sub-02 B': ... + amp 2                             0.2489    0.3904    0.8986    0.9339    0.7842    0.8385    0.8575
 sub-02 calibration + low-level start               0.2213    0.3831    0.8761    0.9269    0.7376    0.8094    0.8820
 sub-02 + best of 4 candidates                      0.2251    0.3828    0.8858    0.9278    0.7483    0.8141    0.8811
 sub-03 baseline (reproduced)                       0.1871    0.3061    0.8103    0.8845    0.7474    0.8020    0.8782
@@ -50,6 +54,8 @@ sub-03 joint enc: shared head + low-level          0.2509    0.3786    0.8857   
 sub-03 joint enc: shared head + low + best of 4    0.2588    0.3782    0.8933    0.9297    0.7942    0.8285    0.8492
 sub-03 joint enc: shared head + low + amp 2 + best of 4    0.2531    0.3742    0.8927    0.9304    0.8077    0.8343    0.8472
 sub-03 low-level point: strength 0.5 + best of 4    0.2640    0.4057    0.8524    0.9059    0.7788    0.8208    0.8632
+sub-03 A': shared head + ridge+retrieval start + best of 4    0.2634    0.3747    0.8936    0.9278    0.7971    0.8303    0.8484
+sub-03 B': ... + amp 2                             0.2576    0.3711    0.8960    0.9308    0.7994    0.8297    0.8486
 sub-03 calibration + low-level start               0.2342    0.3572    0.8805    0.9124    0.7580    0.8217    0.8679
 sub-03 + best of 4 candidates                      0.2402    0.3568    0.8845    0.9156    0.7724    0.8244    0.8662
 sub-04 baseline (reproduced)                       0.1738    0.3071    0.8196    0.8954    0.7551    0.8078    0.8665
@@ -67,6 +73,8 @@ sub-04 joint enc: shared head + low-level          0.2431    0.3861    0.8592   
 sub-04 joint enc: shared head + low + best of 4    0.2436    0.3840    0.8650    0.9285    0.7923    0.8406    0.8357
 sub-04 joint enc: shared head + low + amp 2 + best of 4    0.2341    0.3808    0.8727    0.9310    0.7910    0.8397    0.8373
 sub-04 low-level point: strength 0.5 + best of 4    0.2452    0.4171    0.8414    0.9099    0.7903    0.8108    0.8518
+sub-04 A': shared head + ridge+retrieval start + best of 4    0.2515    0.3793    0.8772    0.9301    0.7929    0.8426    0.8376
+sub-04 B': ... + amp 2                             0.2458    0.3749    0.8798    0.9333    0.7990    0.8444    0.8387
 sub-04 calibration + low-level start               0.2290    0.3634    0.8471    0.9160    0.7678    0.8147    0.8569
 sub-04 + best of 4 candidates                      0.2261    0.3637    0.8524    0.9145    0.7689    0.8132    0.8547
 sub-05 baseline (reproduced)                       0.1681    0.2840    0.8062    0.8667    0.6943    0.7828    0.8990
@@ -84,6 +92,8 @@ sub-05 joint enc: shared head + low-level          0.2353    0.3862    0.8614   
 sub-05 joint enc: shared head + low + best of 4    0.2405    0.3853    0.8649    0.9097    0.7383    0.8138    0.8642
 sub-05 joint enc: shared head + low + amp 2 + best of 4    0.2327    0.3813    0.8736    0.9170    0.7451    0.8147    0.8680
 sub-05 low-level point: strength 0.5 + best of 4    0.2355    0.4227    0.8273    0.8745    0.7450    0.7806    0.8834
+sub-05 A': shared head + ridge+retrieval start + best of 4    0.2549    0.3794    0.8763    0.9119    0.7419    0.8117    0.8702
+sub-05 B': ... + amp 2                             0.2476    0.3760    0.8859    0.9183    0.7501    0.8110    0.8667
 sub-05 calibration + low-level start               0.2183    0.3543    0.8586    0.8884    0.7049    0.7977    0.8857
 sub-05 + best of 4 candidates                      0.2189    0.3540    0.8527    0.8931    0.7100    0.8012    0.8837
 sub-06 baseline (reproduced)                       0.1972    0.3045    0.8386    0.9041    0.7510    0.7932    0.8826
@@ -102,6 +112,8 @@ sub-06 joint enc: shared head + low-level          0.2562    0.3772    0.8809   
 sub-06 joint enc: shared head + low + best of 4    0.2594    0.3768    0.8876    0.9343    0.7802    0.8254    0.8511
 sub-06 joint enc: shared head + low + amp 2 + best of 4    0.2508    0.3711    0.8884    0.9354    0.7775    0.8238    0.8529
 sub-06 low-level point: strength 0.5 + best of 4    0.2766    0.4115    0.8337    0.8961    0.7608    0.8041    0.8733
+sub-06 A': shared head + ridge+retrieval start + best of 4    0.2691    0.3733    0.8977    0.9395    0.7843    0.8237    0.8492
+sub-06 B': ... + amp 2                             0.2597    0.3679    0.8966    0.9384    0.7827    0.8212    0.8509
 sub-06 calibration + low-level start               0.2460    0.3505    0.8838    0.9255    0.7548    0.8133    0.8770
 sub-06 + best of 4 candidates                      0.2500    0.3511    0.8882    0.9295    0.7581    0.8127    0.8733
 sub-07 baseline (reproduced)                       0.1684    0.3109    0.8128    0.8949    0.7423    0.7910    0.8783
@@ -119,6 +131,8 @@ sub-07 joint enc: shared head + low-level          0.2369    0.3960    0.8452   
 sub-07 joint enc: shared head + low + best of 4    0.2357    0.3939    0.8564    0.9163    0.7712    0.8053    0.8475
 sub-07 joint enc: shared head + low + amp 2 + best of 4    0.2317    0.3903    0.8612    0.9201    0.7758    0.8110    0.8546
 sub-07 low-level point: strength 0.5 + best of 4    0.2568    0.4292    0.8224    0.8974    0.7797    0.7793    0.8667
+sub-07 A': shared head + ridge+retrieval start + best of 4    0.2470    0.3865    0.8634    0.9122    0.7727    0.8060    0.8520
+sub-07 B': ... + amp 2                             0.2349    0.3818    0.8681    0.9154    0.7759    0.8103    0.8545
 sub-07 calibration + low-level start               0.2276    0.3757    0.8420    0.9106    0.7543    0.8011    0.8683
 sub-07 + best of 4 candidates                      0.2295    0.3753    0.8474    0.9152    0.7687    0.8018    0.8660
 sub-08 baseline (reproduced)                       0.2096    0.3311    0.8556    0.9173    0.7802    0.8205    0.8558
@@ -137,6 +151,8 @@ sub-08 joint enc: shared head + low-level          0.2785    0.3989    0.8947   
 sub-08 joint enc: shared head + low + best of 4    0.2802    0.3990    0.9007    0.9405    0.8140    0.8406    0.8202
 sub-08 joint enc: shared head + low + amp 2 + best of 4    0.2723    0.3927    0.9069    0.9430    0.8213    0.8460    0.8213
 sub-08 low-level point: strength 0.5 + best of 4    0.2896    0.4292    0.8661    0.9222    0.8066    0.8256    0.8325
+sub-08 A': shared head + ridge+retrieval start + best of 4    0.2870    0.3944    0.9055    0.9422    0.8231    0.8443    0.8215
+sub-08 B': ... + amp 2                             0.2756    0.3879    0.9055    0.9439    0.8099    0.8430    0.8240
 sub-08 calibration + low-level start               0.2659    0.3780    0.8985    0.9370    0.7922    0.8314    0.8369
 sub-08 + best of 4 candidates                      0.2683    0.3791    0.9059    0.9356    0.7957    0.8300    0.8349
 sub-09 baseline (reproduced)                       0.1857    0.3222    0.8285    0.9017    0.7457    0.7955    0.8778
@@ -154,6 +170,8 @@ sub-09 joint enc: shared head + low-level          0.2554    0.3861    0.8635   
 sub-09 joint enc: shared head + low + best of 4    0.2591    0.3840    0.8681    0.9225    0.7799    0.8095    0.8441
 sub-09 joint enc: shared head + low + amp 2 + best of 4    0.2547    0.3809    0.8742    0.9283    0.7773    0.8093    0.8457
 sub-09 low-level point: strength 0.5 + best of 4    0.2503    0.4146    0.8396    0.8834    0.7610    0.7797    0.8629
+sub-09 A': shared head + ridge+retrieval start + best of 4    0.2782    0.3784    0.8776    0.9288    0.7685    0.8091    0.8434
+sub-09 B': ... + amp 2                             0.2685    0.3762    0.8853    0.9335    0.7856    0.8123    0.8471
 sub-09 calibration + low-level start               0.2397    0.3697    0.8658    0.9228    0.7653    0.7982    0.8579
 sub-09 + best of 4 candidates                      0.2424    0.3707    0.8652    0.9240    0.7657    0.7993    0.8572
 sub-10 baseline (reproduced)                       0.1854    0.3376    0.8417    0.9179    0.7846    0.8345    0.8533
@@ -171,6 +189,8 @@ sub-10 joint enc: shared head + low-level          0.2582    0.4212    0.8831   
 sub-10 joint enc: shared head + low + best of 4    0.2604    0.4205    0.8871    0.9421    0.8362    0.8592    0.8169
 sub-10 joint enc: shared head + low + amp 2 + best of 4    0.2539    0.4143    0.8871    0.9399    0.8369    0.8556    0.8235
 sub-10 low-level point: strength 0.5 + best of 4    0.2545    0.4520    0.8526    0.9174    0.8164    0.8421    0.8443
+sub-10 A': shared head + ridge+retrieval start + best of 4    0.2720    0.4104    0.8977    0.9402    0.8224    0.8578    0.8202
+sub-10 B': ... + amp 2                             0.2638    0.4033    0.9021    0.9427    0.8333    0.8573    0.8231
 sub-10 calibration + low-level start               0.2401    0.4022    0.8834    0.9363    0.8066    0.8534    0.8369
 sub-10 + best of 4 candidates                      0.2446    0.4028    0.8868    0.9397    0.8182    0.8613    0.8360
 
@@ -263,6 +283,18 @@ baseline (reproduced)                               0.1828    0.3120    0.8266  
 low-level point: strength 0.5 + best of 4           0.2578    0.4263    0.8422    0.8991    0.7744    0.7992    0.8635
 difference (mean)                                  +0.0750   +0.1144   +0.0156   +0.0032   +0.0304   +0.0006   -0.0151
 subjects improved                                    10/10     10/10      8/10      6/10     10/10      6/10     10/10
+
+A': shared head + ridge+retrieval start + best of 4 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+A': shared head + ridge+retrieval start + best of 4    0.2665    0.3870    0.8853    0.9271    0.7833    0.8232    0.8480
+difference (mean)                                  +0.0837   +0.0750   +0.0588   +0.0312   +0.0392   +0.0246   -0.0307
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
+
+B': ... + amp 2 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+B': ... + amp 2                                     0.2580    0.3823    0.8897    0.9301    0.7869    0.8239    0.8478
+difference (mean)                                  +0.0752   +0.0703   +0.0631   +0.0342   +0.0429   +0.0253   -0.0308
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
 
 calibration + low-level start vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
@@ -365,5 +397,19 @@ joint enc: head + low + amp 2 + best of 4           0.2477    0.3872    0.8818  
 joint enc: shared head + low + amp 2 + best of 4    0.2483    0.3891    0.8823    0.9289    0.7862    0.8246    0.8475
 difference (mean)                                  +0.0006   +0.0019   +0.0005   +0.0010   +0.0003   +0.0015   -0.0019
 subjects improved                                     6/10     10/10      6/10      7/10      4/10      7/10      9/10
+
+===== start image: ridge vs ridge + retrieved training latents (weight 0.5) =====
+
+A': shared head + ridge+retrieval start + best of 4 vs joint enc: shared head + low + best of 4, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+joint enc: shared head + low + best of 4            0.2550    0.3937    0.8777    0.9261    0.7827    0.8217    0.8463
+A': shared head + ridge+retrieval start + best of 4    0.2665    0.3870    0.8853    0.9271    0.7833    0.8232    0.8480
+difference (mean)                                  +0.0115   -0.0067   +0.0077   +0.0009   +0.0005   +0.0015   +0.0016
+subjects improved                                    10/10      0/10     10/10      6/10      7/10      6/10      3/10
+
+B': ... + amp 2 vs joint enc: shared head + low + amp 2 + best of 4, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+joint enc: shared head + low + amp 2 + best of 4    0.2483    0.3891    0.8823    0.9289    0.7862    0.8246    0.8475
+B': ... + amp 2                                     0.2580    0.3823    0.8897    0.9301    0.7869    0.8239    0.8478
+difference (mean)                                  +0.0097   -0.0068   +0.0074   +0.0012   +0.0007   -0.0007   +0.0003
+subjects improved                                    10/10      0/10      9/10      8/10      7/10      4/10      5/10
 
 paper Table 2 (10-subject mean)                     0.1950    0.3360    0.8430    0.9050    0.7560    0.8080

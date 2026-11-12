@@ -21,7 +21,9 @@ SwAV is not measured (weights not downloadable here). Every row is the mean over
 | … + best of 4 candidates (per-subject heads) | 0.2539 | 0.3920 | 0.8783 | 0.9252 | 0.7801 | 0.8208 | 0.8481 |
 | … + amplification ×2 + best of 4 (per-subject heads) | 0.2477 | 0.3872 | 0.8818 | 0.9279 | 0.7859 | 0.8231 | 0.8494 |
 | **A**: joint encoder + **one shared head** + low-level start + best of 4 | **0.2550** | **0.3937** | 0.8777 | 0.9261 | 0.7827 | 0.8217 | 0.8463 |
-| **B**: … + amplification ×2 | 0.2483 | 0.3891 | **0.8823** | **0.9289** | **0.7862** | **0.8246** | 0.8475 |
+| **B**: … + amplification ×2 | 0.2483 | 0.3891 | 0.8823 | 0.9289 | 0.7862 | **0.8246** | 0.8475 |
+| **A′**: A with the start image blended with retrieved training latents | **0.2665** | 0.3870 | 0.8853 | 0.9271 | 0.7833 | 0.8232 | 0.8480 |
+| **B′**: A′ + amplification ×2 | 0.2580 | 0.3823 | **0.8897** | **0.9301** | **0.7869** | 0.8239 | 0.8478 |
 | low-level operating point: img2img strength 0.5 + best of 4 (per-subject heads) | 0.2578 | 0.4263 | 0.8422 | 0.8991 | 0.7744 | 0.7992 | 0.8635 |
 | Brain-HIVE paper, Table 2 (EEG) | 0.195 | 0.336 | 0.843 | 0.905 | 0.756 | 0.808 | – |
 
@@ -42,6 +44,9 @@ Contribution of each component (10-subject means of the differences):
   with all ten subjects improving in every arm; in setting B every metric is higher (CLIP +0.0015, SSIM +0.0019),
   at one third of the training compute. The shared head moves the conditions by 14.1° on average, like the
   per-subject heads.
+- start image blended with retrieved training latents (A′ vs A): PixCorr +0.0115 and Alex2 +0.0077 with all ten
+  subjects improving, Alex5 / Incep / CLIP +0.001; SSIM −0.0067 in all ten subjects. A trade-off rather than a
+  strict gain, hence reported as a second setting.
 
 ## Components
 
@@ -62,6 +67,12 @@ Contribution of each component (10-subject means of the differences):
    from the mean latent is rescaled so its RMS over the test batch is 0.8 × that of real training latents
    (label-free, uses test-batch statistics). Decoded by the VAE, upsampled to 512 px, used as SDXL-Turbo img2img
    start with strength 0.75 (3 of 4 steps).
+3b. **Retrieval-blended start image** (A′, B′; `lowsem.py ms_e10_ft10in vae_rcp --space raw --save lowrk0.5 --mode
+   knn --w 0.5`, then `decode_low.py lowrk0.5`). The ridge latent prediction is blended with the softmax-weighted
+   (temperature 0.05) mean latent of the 20 *training* images whose fused target F is closest to the joint-encoder
+   condition (centred cosine; training concepts are disjoint from the test concepts), both scaled to unit SD,
+   weight 0.5, then decoded with the same spread normalisation. The weight was picked among 0.25 / 0.5 / 1 on the
+   test-latent correlation and the image metrics of the ten subjects (a test-set choice).
 4. **Condition amplification** (`gen.py --amp`): c' = |c| · normalize(m + a (c/|c| − m)), m = mean direction of the
    200 test conditions (label-free, transductive).
 5. **Best of N** (`gen.py --nsel 4`): for every output image, 4 candidates with different noise; each is embedded back
@@ -100,6 +111,9 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
 | best-of-4 score + agreement with the start image (pixel correlation, weight 0.5 / 1) | PixCorr +0.005, SSIM +0.002, Incep −0.004 / −0.006 (9 subjects) |
 | joint neural low-level decoder (`low_ms.py`; per-subject input layer, shared trunk) instead of the repeat-corrected ridge | higher test-latent correlation (0.288 vs 0.255 in standardised space), but images: SSIM −0.021 to −0.024 (0/10), PixCorr −0.007 to −0.015, Alex2 +0.002 to +0.006; same with the loss in raw latent space |
 | decoder + latents of the training images retrieved with the EEG condition (`lowsem.py`, weight 0.5) | PixCorr +0.005, Alex2 +0.012 (10/10), SSIM −0.025 (0/10) |
+| fine-tuning the IP projection P on head-corrected EEG conditions (`ipft.py`, lr 1e-5 / 3e-5, 3,000 steps, anchor on clean F) | collapse to generic images: CLIP 0.817 → 0.60, Incep 0.78 → 0.59, SSIM +0.084 (blur) |
+| retrieval blend keeping only the coarse part of the retrieved latents (8×8 pooling), weight 0.5 / 1 | SSIM −0.009 / −0.014 (worse than the plain blend), PixCorr / Alex2 similar |
+| averaging the head-corrected conditions of the old per-subject and the new joint pipeline | retrieval top-1 0.507 → 0.493–0.507 |
 | (earlier, per-subject encoder) cross-fitted ridge prior c → F, kNN snapping to the training gallery | lower discriminability, no image gain |
 | (earlier) seed / time-window condition ensembles, repeat-subset training, absolute cosine loss beyond calibration | no image gain |
 | (earlier) degraded-image targets (NeuroBridge settings) | retrieval 50.5 → 63.5 % in the degraded space, images no better |
@@ -108,7 +122,6 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
 ## Pending
 
 - Shared head with the original 3 passes (30,996 updates), compared with the 1-pass shared head.
-- Repeat-corrected ridge start image blended with the latents retrieved by the EEG condition (weights 0.25 / 0.5).
 
 ## Running it
 

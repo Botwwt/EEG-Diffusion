@@ -24,6 +24,8 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "joint enc: shared head + low + best of 4": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_low_sel4",
         "joint enc: shared head + low + amp 2 + best of 4": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_low_amp2_sel4",
         "low-level point: strength 0.5 + best of 4": "s{:02d}_ms_e10_ft10in_A1_ord_low_st0.5_sel4",
+        "A': shared head + ridge+retrieval start + best of 4": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_sel4",
+        "B': ... + amp 2": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel4",
         "calibration + low-level start": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low",
         "+ best of 4 candidates": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low_sel4"}
 PAPER = [0.195, 0.336, 0.843, 0.905, 0.756, 0.808]   # Brain-HIVE Table 2, EEG average (SwAV 0.554 not measured here)
@@ -65,4 +67,7 @@ for x, y in [("joint enc: ordinary head", "joint enc: SHARED head"), ("joint enc
              ("joint enc: head + low-level + best of 4", "joint enc: shared head + low + best of 4"),
              ("joint enc: head + low + amp 2 + best of 4", "joint enc: shared head + low + amp 2 + best of 4")]:
     compare(x, [y])
+print("\n===== start image: ridge vs ridge + retrieved training latents (weight 0.5) =====")
+compare("joint enc: shared head + low + best of 4", ["A': shared head + ridge+retrieval start + best of 4"])
+compare("joint enc: shared head + low + amp 2 + best of 4", ["B': ... + amp 2"])
 print(f"\n{'paper Table 2 (10-subject mean)':<48}" + "".join(f"{x:>10.4f}" for x in PAPER))
