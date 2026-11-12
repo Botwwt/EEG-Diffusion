@@ -1,0 +1,241 @@
+"""Generate official-test reconstructions from one trained encoder and score them.
+
+Chain: EEG (mean of the chosen repeats) -> encoder c -> [calibration] -> [A] -> IP projection P -> IP attention
+-> SDXL-Turbo (4 steps, guidance 0, 512x512, empty prompt), as in Brain-HIVE build_reconstruction.py.
+  --use_A 0  official script at commit f06db69: P(c), the Fusion Prior's residual adapter A is skipped
+  --use_A 1  paper Eq. 6 / prior training: P(A(c))
+Calibration (--alpha > 0): c' = ||c|| * normalize(c/||c|| + alpha * g), g = mean(F/||F||) - mean(c_oof/||c_oof||),
+both means over training images, c_oof from encoders that never saw the image's concept (same tag/seed, folds 0-4).
+
+Noise is fixed per (query, sample) and per batch, so every arm sees identical noise. Metrics follow
+main/utils_eval.py (MindEye-style); SwAV is omitted (its weights cannot be downloaded here).
+"""
+import argparse
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import torch
+from PIL import Image
+from torchvision import transforms as T
+
+from common import CH17, HIVE, IMG, PREP, PRIOR, RUNS, TURBO, write_json
+
+p = argparse.ArgumentParser()
+p.add_argument("--run", required=True, help="encoder run dir relative to runs/enc, e.g. t0_r4/sub-08/fold-1_seed2025")
+p.add_argument("--name", required=True)
+p.add_argument("--use_A", type=int, default=1)
+p.add_argument("--alpha", type=float, default=0.0)
+p.add_argument("--nsel", type=int, default=1, help="candidates per output image; the one whose embedding fits the EEG condition best is kept")
+p.add_argument("--init_file", default="", help="low-level start images [200, 3, h, h] in [0, 1] (.npy, relative to runs/low); img2img instead of pure noise")
+p.add_argument("--strength", type=float, default=0.5, help="img2img strength with --init_file (4 steps * strength are run)")
+p.add_argument("--steps", type=int, default=4, help="sampler steps (official: 4)")
+p.add_argument("--blend", type=float, default=0.0, help="final image = (1 - blend) * generated + blend * start image")
+p.add_argument("--cond_file", default="", help="precomputed conditions [200, 1024] .npy, relative to runs/cond")
+p.add_argument("--amp", type=float, default=1.0, help="c' = |c| * normalize(m + amp * (c/|c| - m)), m = mean direction of the 200 test conditions (label-free)")
+p.add_argument("--cfg", type=float, default=1.0, help="classifier-free guidance scale on the IP condition; the negative is the mean test condition")
+p.add_argument("--ip_scale", type=float, default=1.0, help="weight of the IP attention branch in every block (official 1)")
+p.add_argument("--prompt_file", default="", help="200 text prompts (.json list, relative to runs/prompt); default: empty prompt")
+p.add_argument("--loop", type=float, default=0.0, help="closed-loop correction strength: generate, embed the images back to F, push each condition along the part of its "
+               "centred direction the images miss, regenerate with the same noise")
+p.add_argument("--loop_iters", type=int, default=1)
+p.add_argument("--reps", default="0:80", help="test repeats averaged into the input, start:stop")
+p.add_argument("--K", type=int, default=4, help="images per query")
+p.add_argument("--bs", type=int, default=0, help="queries per batch (0: about 20 images per batch)")
+p.add_argument("--save", type=int, default=1, help="save sample 0 of every query as JPEG")
+args = p.parse_args()
+
+dev, dt = "cuda", torch.float16
+run = RUNS / "enc" / args.run
+out = RUNS / "img" / args.name
+out.mkdir(parents=True, exist_ok=True)
+if (out / "metrics.json").exists():
+    print("already done:", out)
+    sys.exit(0)
+ea = json.loads((run / "metrics.json").read_text())["args"]
+
+sys.path.insert(0, str(HIVE))
+from main.models_adapter import FusionEncoderModel, IPAttnAdapterModel, IPAttnProcessor2_0, IPProjectionModel  # noqa: E402
+from main.models_brain import BrainEncoder  # noqa: E402
+
+nz = torch.nn.functional.normalize
+
+# ------------------------------------------------------------ conditions
+x = torch.from_numpy(np.load(PREP / f"sub-{ea['sub']:02d}_test.npy"))
+if ea["chan"] == "typo":
+    x[:, :, CH17.index("POz")] = x[:, :, CH17.index("Oz")].clone()
+a, b = (int(v) for v in args.reps.split(":"))
+x = x[:, a:b].mean(1)[..., ea["t0"]:ea["t1"]]
+if ea["inorm"]:
+    x = x / x.pow(2).mean(dim=(1, 2), keepdim=True).sqrt()
+enc = BrainEncoder(backbone="brain_mlp", brain_channels=17, brain_sequence_length=ea["t1"] - ea["t0"],
+                   hidden_size=1024, embedding_dim=1440, dropout=0.1)
+enc.load_state_dict(torch.load(run / "brain_model.pt", weights_only=True))
+enc.eval()
+with torch.no_grad():
+    c = enc.backbone(x).float()                                           # [200, 1024]
+c_enc = c.clone()
+if args.cond_file:  # precomputed conditions (prior.py); --run only supplies the metadata
+    f = Path(args.cond_file)
+    c = torch.from_numpy(np.load(f if f.is_absolute() else RUNS / "cond" / f)).float()
+    assert c.shape == (200, 1024) and args.alpha == 0
+info = dict(args=vars(args), encoder_args=ea, cond_norm=float(c.norm(dim=1).mean()))
+if args.alpha > 0 or args.nsel > 1:
+    F_tr = torch.from_numpy(np.load(PREP / "F_train.npy"))
+    oof = torch.zeros_like(F_tr)
+    seen = torch.zeros(len(F_tr), dtype=torch.bool)
+    for k in range(5):
+        d = run.parent / f"fold{k}_seed{ea['seed']}"
+        idx = torch.from_numpy(np.load(d / "oof_index.npy"))
+        oof[idx] = torch.from_numpy(np.load(d / "cond_oof_r4.npy"))
+        seen[idx] = True
+    assert seen.all()
+    mu_fn, mu_x = nz(F_tr, dim=1).mean(0), nz(oof, dim=1).mean(0)
+    g = mu_fn - mu_x
+    qv = nz(nz(c_enc, dim=1) - mu_x, dim=1)                                # centred EEG direction, used to score candidates
+if args.alpha > 0:
+    info.update(gap_norm=float(g.norm()), gap_cos_before=float((nz(c, dim=1) @ nz(g, dim=0)).mean()))
+    c = c.norm(dim=1, keepdim=True) * nz(nz(c, dim=1) + args.alpha * g, dim=1)
+if args.amp != 1.0:
+    cn = nz(c, dim=1)
+    m = cn.mean(0, keepdim=True)
+    c = c.norm(dim=1, keepdim=True) * nz(m + args.amp * (cn - m), dim=1)
+c_neg = nz(c.mean(0, keepdim=True), dim=1) * c.norm(dim=1).mean()       # generic condition, the CFG negative
+
+# ------------------------------------------------------------ generator
+from diffusers import StableDiffusionXLPipeline  # noqa: E402
+
+pipe = StableDiffusionXLPipeline.from_pretrained(str(TURBO), torch_dtype=dt, variant="fp16")
+attn = IPAttnAdapterModel.from_pretrained(str(PRIOR), subfolder="attn_adapter")
+attn.bind_unet(pipe.unet)
+proj = IPProjectionModel.from_pretrained(str(PRIOR), subfolder="proj").to(dev, dt).eval()
+A = FusionEncoderModel.from_pretrained(str(PRIOR), subfolder="fusion_encoder").adapter.to(dev, dt).eval()
+pipe.to(dev, dt)
+if args.ip_scale != 1.0:
+    n_ip = 0
+    for proc in pipe.unet.attn_processors.values():
+        if isinstance(proc, IPAttnProcessor2_0):
+            proc.scale, n_ip = args.ip_scale, n_ip + 1
+    assert n_ip > 0
+    info["n_ip_processors"] = n_ip
+pipe.vae.enable_slicing()
+pipe.set_progress_bar_config(disable=True)
+args.bs = args.bs or max(1, 20 // args.K)
+info["scheduler"] = type(pipe.scheduler).__name__
+with torch.inference_mode():
+    pe, _, ppe, _ = pipe.encode_prompt("", device=dev, do_classifier_free_guidance=False, num_images_per_prompt=1)
+    pe_all = ppe_all = None
+    if args.prompt_file:
+        prompts = json.loads((RUNS / "prompt" / args.prompt_file).read_text())
+        assert len(prompts) == 200
+        enc_ = [pipe.encode_prompt(prompts[i:i + 50], device=dev, do_classifier_free_guidance=False)[::2] for i in range(0, 200, 50)]
+        pe_all, ppe_all = torch.cat([e[0] for e in enc_]), torch.cat([e[1] for e in enc_])
+        info["prompts_first"] = prompts[:5]
+
+ids = json.loads((PREP / "test_ids.json").read_text())
+gt_tf = T.Compose([T.Resize(512, interpolation=T.InterpolationMode.BILINEAR), T.CenterCrop(512), T.ToTensor()])
+files = {f.stem: f for f in (IMG / "test_images").glob("*/*.jpg")}
+gt = torch.stack([gt_tf(Image.open(files[i]).convert("RGB")) for i in ids["ids"]])   # [200, 3, 512, 512]
+
+K, N, NS = args.K, len(c), args.nsel
+init = None
+if args.init_file:
+    from diffusers import StableDiffusionXLImg2ImgPipeline  # noqa: E402
+    f = Path(args.init_file)
+    init = torch.from_numpy(np.load(f if f.is_absolute() else RUNS / "low" / f)).float()
+    init = torch.nn.functional.interpolate(init, size=512, mode="bicubic").clamp(0, 1)
+    p2 = StableDiffusionXLImg2ImgPipeline(**pipe.components)
+    p2.set_progress_bar_config(disable=True)
+def generate(cv, q, s, n):
+    lat = torch.stack([torch.randn(4, 64, 64, generator=torch.Generator().manual_seed(1_000_003 * i + k + 12345 + 100_003 * n))
+                       for i in q for k in range(K)]).to(dev, dt)
+    with torch.inference_mode():
+        cc = cv[q].to(dev, dt)
+        ips = proj(A(cc) if args.use_A else cc).repeat_interleave(K, dim=0)
+        m_ = len(ips)
+        pe_q = pe.expand(m_, -1, -1) if pe_all is None else pe_all[q].repeat_interleave(K, dim=0)
+        ppe_q = ppe.expand(m_, -1) if ppe_all is None else ppe_all[q].repeat_interleave(K, dim=0)
+        kw = dict(prompt_embeds=pe_q, pooled_prompt_embeds=ppe_q,
+                  num_inference_steps=args.steps, guidance_scale=0.0, output_type="pt")
+        if args.cfg > 1:  # the pipeline batches [negative, positive]; the IP tokens must follow the same order
+            cn_ = c_neg.to(dev, dt)
+            neg = proj(A(cn_) if args.use_A else cn_).expand(m_, -1, -1)
+            ips = torch.cat([neg, ips])
+            kw.update(guidance_scale=args.cfg, negative_prompt_embeds=pe.expand(m_, -1, -1), negative_pooled_prompt_embeds=ppe.expand(m_, -1))
+        kw["cross_attention_kwargs"] = {"ip_hidden_states": ips}
+        if init is None:
+            img = pipe(height=512, width=512, latents=lat, generator=torch.Generator(dev).manual_seed(777 + s + 100_000 * n), **kw).images
+        else:  # start from the noised low-level image; one generator per image keeps the noise tied to (query, sample)
+            gens = [torch.Generator(dev).manual_seed(1_000_003 * i + k + 12345 + 100_003 * n) for i in q for k in range(K)]
+            i0 = init[q].repeat_interleave(K, dim=0).to(dev, dt)
+            img = p2(image=i0, strength=args.strength, generator=gens, **kw).images
+            if args.blend > 0:
+                img = (1 - args.blend) * img.float() + args.blend * i0.float()
+    img = (img.float().clamp(0, 1) * 255).round().div(255)            # same 8-bit round trip as saving PNGs
+    return img
+
+
+rec = torch.empty(K, N, 3, 512, 512)
+if NS > 1 or args.loop > 0:
+    from fenc import FEmbedder  # noqa: E402
+    femb = FEmbedder(dev)
+for it in range(args.loop_iters if args.loop > 0 else 0):  # closed loop: first pass with candidate-0 noise
+    fimg = torch.zeros(N, c.shape[1])
+    for s in range(0, N, args.bs):
+        q = list(range(s, min(N, s + args.bs)))
+        fimg[q] = nz(femb(generate(c, q, s, 0)).cpu().float(), dim=1).view(len(q), K, -1).mean(1)
+    u = nz(c, dim=1)
+    dc, df = u - u.mean(0), fimg - fimg.mean(0)                                # centred, label-free (test-batch means)
+    before = float((nz(dc, dim=1) * nz(df, dim=1)).sum(1).mean())
+    u2 = u + args.loop * dc.norm(dim=1, keepdim=True) * (nz(dc, dim=1) - nz(df, dim=1))
+    c = c.norm(dim=1, keepdim=True) * nz(u2, dim=1)
+    info.setdefault("loop_cos_image_vs_condition", []).append(before)
+    print(f"loop {it}: centred cos(image, condition) {before:.4f}", flush=True)
+if NS > 1:
+    n_changed, sc0_sum, scb_sum = 0, 0.0, 0.0
+for s in range(0, N, args.bs):
+    q = list(range(s, min(N, s + args.bs)))
+    best = torch.full((len(q) * K,), -1e9)
+    cur = torch.empty(len(q) * K, 3, 512, 512)
+    for n in range(NS):  # candidate 0 is exactly the image a run without selection produces
+        img = generate(c, q, s, n)
+        if NS == 1:
+            cur = img.cpu()
+            break
+        f = femb(img).cpu()
+        sc = (nz(nz(f, dim=1) - mu_fn, dim=1) * qv[q].repeat_interleave(K, dim=0)).sum(1)
+        if n == 0:
+            sc0_sum += float(sc.sum())
+        upd = sc > best
+        cur[upd], best[upd] = img.cpu()[upd], sc[upd]
+        if n > 0:
+            n_changed += int(upd.sum())
+    if NS > 1:
+        scb_sum += float(best.sum())
+    rec[:, q] = cur.view(len(q), K, 3, 512, 512).transpose(0, 1)
+if NS > 1:
+    info.update(sel_score_first=sc0_sum / (N * K), sel_score_kept=scb_sum / (N * K), sel_updates_per_image=n_changed / (N * K))
+p2 = None
+femb = None
+del pipe, attn, proj, A
+torch.cuda.empty_cache()
+assert torch.isfinite(rec).all()
+if args.save:
+    (out / "images").mkdir(exist_ok=True)
+    for i, name in enumerate(ids["ids"]):
+        Image.fromarray((rec[0, i].permute(1, 2, 0).numpy() * 255).round().astype(np.uint8)).save(
+            out / "images" / f"{name}.jpg", quality=92)
+    grid = torch.cat([torch.cat([gt[i], rec[0, i], rec[min(1, K - 1), i]], dim=2) for i in range(0, 200, 25)], dim=1)
+    Image.fromarray((grid.permute(1, 2, 0).numpy() * 255).round().astype(np.uint8)).resize((768, 2048)).save(
+        out / "grid_target_s0_s1.jpg", quality=90)
+
+from metrics import score  # noqa: E402
+
+per_sample = score(rec, gt)
+info["per_sample"] = per_sample
+info["mean"] = {k: float(np.mean([s[k] for s in per_sample])) for k in per_sample[0]}
+write_json(out / "metrics.json", info)
+mm = info["mean"]
+print(f"{args.name} | pixcorr {mm['pixcorr']:.4f} ssim {mm['ssim']:.4f} alex2 {mm['alex2']:.4f} alex5 {mm['alex5']:.4f} "
+      f"incep {mm['inception']:.4f} clip {mm['clip']:.4f} effnet {mm['effnet']:.4f} clip_top1 {mm['clip_top1']:.4f}", flush=True)
