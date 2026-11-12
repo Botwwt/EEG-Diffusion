@@ -18,12 +18,16 @@ SwAV is not measured (weights not downloadable here). Every row is the mean over
 | + condition amplification ×2 | 0.2407 | 0.3832 | 0.8703 | 0.9176 | 0.7632 | 0.8113 | 0.8645 |
 | joint encoder + ordinary head | 0.2073 | 0.3374 | 0.8348 | 0.9109 | 0.7718 | 0.8176 | 0.8565 |
 | joint encoder + head + low-level start | 0.2513 | 0.3932 | 0.8716 | 0.9221 | 0.7793 | 0.8180 | 0.8510 |
-| **A**: … + best of 4 candidates | **0.2539** | **0.3920** | 0.8783 | 0.9252 | 0.7801 | 0.8208 | 0.8481 |
-| **B**: … + amplification ×2 + best of 4 | 0.2477 | 0.3872 | **0.8818** | **0.9279** | **0.7859** | **0.8231** | 0.8494 |
+| … + best of 4 candidates (per-subject heads) | 0.2539 | 0.3920 | 0.8783 | 0.9252 | 0.7801 | 0.8208 | 0.8481 |
+| … + amplification ×2 + best of 4 (per-subject heads) | 0.2477 | 0.3872 | 0.8818 | 0.9279 | 0.7859 | 0.8231 | 0.8494 |
+| **A**: joint encoder + **one shared head** + low-level start + best of 4 | **0.2550** | **0.3937** | 0.8777 | 0.9261 | 0.7827 | 0.8217 | 0.8463 |
+| **B**: … + amplification ×2 | 0.2483 | 0.3891 | **0.8823** | **0.9289** | **0.7862** | **0.8246** | 0.8475 |
+| low-level operating point: img2img strength 0.5 + best of 4 (per-subject heads) | 0.2578 | 0.4263 | 0.8422 | 0.8991 | 0.7744 | 0.7992 | 0.8635 |
 | Brain-HIVE paper, Table 2 (EEG) | 0.195 | 0.336 | 0.843 | 0.905 | 0.756 | 0.808 | – |
 
 A and B improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
-baseline is 0.01–0.02 below the paper's own numbers. Per-subject rows: `results/table10.txt`;
+baseline is 0.01–0.02 below the paper's own numbers. The low-level operating point trades semantics for SSIM
+(Alex2 / Alex5 / CLIP fall below A in all ten subjects) and is listed only to show the trade-off. Per-subject rows: `results/table10.txt`;
 every generation run: `results/runs_summary.csv`; every encoder: `results/encoders_summary.csv`.
 
 Contribution of each component (10-subject means of the differences):
@@ -33,6 +37,11 @@ Contribution of each component (10-subject means of the differences):
 - joint encoder over the per-subject encoder, same arm (head + start image): PixCorr +0.006, SSIM +0.004,
   Alex2 +0.007, Alex5 +0.006, Incep +0.024, CLIP +0.010.
 - best of 4 over a single candidate: Alex2 +0.007, CLIP +0.003 (it uses 4× the sampling budget; see below).
+- one shared head (the co-author's original pooled setting, 1 pass = 10,332 updates) over ten per-subject heads
+  (10 × 3,100 updates), same arm, joint encoder: equal or slightly better in all four arms; SSIM +0.0016 to +0.0033
+  with all ten subjects improving in every arm; in setting B every metric is higher (CLIP +0.0015, SSIM +0.0019),
+  at one third of the training compute. The shared head moves the conditions by 14.1° on average, like the
+  per-subject heads.
 
 ## Components
 
@@ -44,8 +53,9 @@ Contribution of each component (10-subject means of the differences):
    200-way test retrieval (R80): top-1 0.452 → 0.513, top-5 0.789 → 0.831 (10-subject means).
 2. **Ordinary head** (`code/ordh.py`). The co-author's network and recipe (noise-prediction MSE + 0.1 token cosine,
    AdamW 1e-4, batch 16, 3 passes, seed 1729), trained on out-of-fold conditions (5 concept folds, each with its own
-   encoder's LayerNorm affine). Difference from the original: one head per subject. A shared head over all ten
-   subjects (the original setting) is being run as a control; see "Pending".
+   encoder's LayerNorm affine). Used as in the original: **one head shared by the ten subjects** (`ordh.py train
+   all 1`, one pass over the 165,310 subject-image pairs; each sample keeps the affine of its own subject's fold
+   encoder). One head per subject (`ordh.py train <sub>`, 3 passes) was run as well; see the comparison above.
 3. **Low-level start image** (`code/low.py`). Closed-form ridge from the z-scored EEG (17 × 250) to the published
    SDXL-VAE latents of the 128-px image, with a repeat correction (signal covariance = PSD part of the 4-repeat second
    moment minus noise/4, plus noise/80) and the ridge weight chosen by 5-fold concept cross-validation; the deviation
@@ -85,6 +95,11 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
 | joint encoder: 25 / 50 epochs, 2 trunk layers, lr 1e-3 / 2.5e-4, dropout 0.2 / 0.3 | retrieval not better than the chosen setting (25 epochs overfits: top-1 0.471) |
 | joint encoder with repeat-subset augmentation | retrieval top-1 0.543, but images worse (subject 8 Incep 0.795 vs 0.809) |
 | averaging two encoder seeds | +1.4 points top-1 without fine-tuning, none with it |
+| test conditions at the training repeat level (mean of 20 embeddings of 4-repeat inputs, rescaled to the R80 norm) | retrieval top-1 after the head 0.505 → 0.533, but images: SSIM +0.008 (10/10), Incep −0.005, PixCorr −0.003 |
+| bagging the five fold encoders with the full encoder | retrieval 0.509 vs 0.513 |
+| best-of-4 score + agreement with the start image (pixel correlation, weight 0.5 / 1) | PixCorr +0.005, SSIM +0.002, Incep −0.004 / −0.006 (9 subjects) |
+| joint neural low-level decoder (`low_ms.py`; per-subject input layer, shared trunk) instead of the repeat-corrected ridge | higher test-latent correlation (0.288 vs 0.255 in standardised space), but images: SSIM −0.021 to −0.024 (0/10), PixCorr −0.007 to −0.015, Alex2 +0.002 to +0.006; same with the loss in raw latent space |
+| decoder + latents of the training images retrieved with the EEG condition (`lowsem.py`, weight 0.5) | PixCorr +0.005, Alex2 +0.012 (10/10), SSIM −0.025 (0/10) |
 | (earlier, per-subject encoder) cross-fitted ridge prior c → F, kNN snapping to the training gallery | lower discriminability, no image gain |
 | (earlier) seed / time-window condition ensembles, repeat-subset training, absolute cosine loss beyond calibration | no image gain |
 | (earlier) degraded-image targets (NeuroBridge settings) | retrieval 50.5 → 63.5 % in the degraded space, images no better |
@@ -92,9 +107,8 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
 
 ## Pending
 
-- Shared (pooled) ordinary head over the ten subjects on the joint encoder, 1 pass (10,332 updates) and the
-  original 3 passes (30,996 updates), compared arm by arm with the per-subject heads.
-- Low-level operating point (img2img strength 0.5, with and without best of 4) on all ten subjects.
+- Shared head with the original 3 passes (30,996 updates), compared with the 1-pass shared head.
+- Repeat-corrected ridge start image blended with the latents retrieved by the EEG condition (weights 0.25 / 0.5).
 
 ## Running it
 
@@ -106,10 +120,10 @@ Set `RAD_ROOT` to a working directory with `data/things-eeg/` (THINGS-EEG prepro
 python prep.py eeg <sub>                       # 17-channel arrays, for every subject
 python train_ms.py --tag ms_e10_ft10in --epochs 10 --ft_epochs 10 --ft_trunk 0 --ft_lr 5e-4 --fold -1   # and --fold 0..4
 ORD_TAG=ms_e10_ft10in python ordh.py latents   # once
-ORD_TAG=ms_e10_ft10in python ordh.py train <sub>
-ORD_TAG=ms_e10_ft10in python ordh.py apply <sub>
+ORD_TAG=ms_e10_ft10in ORD_HEAD=pooled_p1 python ordh.py train all 1        # one shared head
+ORD_TAG=ms_e10_ft10in ORD_HEAD=pooled_p1 python ordh.py apply <sub>        # -> runs/cond/ord_ms_e10_ft10in_pooled_p1/
 python low.py <sub>                            # start images, variant vae_rcp_n0.8
-python gen.py --run ms_e10_ft10in/sub-XX/fold-1_seed2025 --cond_file ord_ms_e10_ft10in/sub-XX.npy \
+python gen.py --run ms_e10_ft10in/sub-XX/fold-1_seed2025 --cond_file ord_ms_e10_ft10in_pooled_p1/sub-XX.npy \
     --init_file sub-XX/vae_rcp_n0.8.npy --strength 0.75 --amp 2 --nsel 4 --K 4 --name <name>
 python tab10.py                                # ten-subject table
 ```

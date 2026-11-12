@@ -40,6 +40,7 @@ p.add_argument("--prompt_file", default="", help="200 text prompts (.json list, 
 p.add_argument("--loop", type=float, default=0.0, help="closed-loop correction strength: generate, embed the images back to F, push each condition along the part of its "
                "centred direction the images miss, regenerate with the same noise")
 p.add_argument("--loop_iters", type=int, default=1)
+p.add_argument("--sel_low", type=float, default=0.0, help="best-of-N score = semantic fit + sel_low * pixel correlation (64 px grey) with the low-level start image")
 p.add_argument("--reps", default="0:80", help="test repeats averaged into the input, start:stop")
 p.add_argument("--K", type=int, default=4, help="images per query")
 p.add_argument("--bs", type=int, default=0, help="queries per batch (0: about 20 images per batch)")
@@ -205,6 +206,12 @@ for s in range(0, N, args.bs):
             break
         f = femb(img).cpu()
         sc = (nz(nz(f, dim=1) - mu_fn, dim=1) * qv[q].repeat_interleave(K, dim=0)).sum(1)
+        if args.sel_low > 0:
+            assert init is not None
+            small = lambda z: torch.nn.functional.interpolate(z.float().mean(1, keepdim=True), size=64, mode="area").flatten(1)  # noqa: E731
+            a_, b_ = small(img.cpu()), small(init[q].repeat_interleave(K, dim=0))
+            a_, b_ = a_ - a_.mean(1, keepdim=True), b_ - b_.mean(1, keepdim=True)
+            sc = sc + args.sel_low * (a_ * b_).sum(1) / (a_.norm(dim=1) * b_.norm(dim=1) + 1e-8)
         if n == 0:
             sc0_sum += float(sc.sum())
         upd = sc > best

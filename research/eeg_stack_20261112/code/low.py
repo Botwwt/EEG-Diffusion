@@ -1,6 +1,7 @@
 """Low-level branch: a blurry start image predicted from EEG by closed-form ridge (idea of MindEye / Perceptogram).
 
 python low.py <sub>  ->  runs/low/sub-XX/<variant>.npy  ([200, 3, h, h] in [0, 1]) and a table of their own metrics
+                     (+ vae_rcp_pred_z.npy / vae_plain_pred_z.npy: the latent predictions, for blending)
 
 Targets
   vae  published SDXL-VAE latents of the 128-px image (4x16x16, scaled), decoded with the VAE
@@ -129,6 +130,8 @@ for name, (tgt, wn, spread) in CFG.items():
     if spread is not None:
         dev_ = dev_ * (spread / nat)
     p = W[tgt]["my"] + dev_
+    if name in ("vae_rcp", "vae_plain"):  # raw ridge predictions in per-dimension z units (for blending, decode_low.py)
+        np.save(out / f"{name}_pred_z.npy", (dev_ / TARGETS["vae"].std(0)).float().cpu().numpy())
     print(f"{name}: natural spread {nat:.2f} of real targets | test latent correlation {rowcorr(p, lat_te):.4f} "
           f"(centred {rowcorr(dev_, lat_te - W['vae']['my']):.4f})")
     V[name] = decode(p)

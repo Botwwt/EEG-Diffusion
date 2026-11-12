@@ -1,4 +1,4 @@
-                                                  pixcorr      ssim     alex2     alex5 inception      clip    effnet
+                                                        pixcorr      ssim     alex2     alex5 inception      clip    effnet
 sub-01 baseline (reproduced)                       0.1693    0.2898    0.8272    0.8762    0.7137    0.7562    0.9009
 sub-01 ordinary head (co-author)                   0.1893    0.3178    0.8302    0.8829    0.7213    0.7655    0.8955
 sub-01 ordinary head + low-level start             0.2564    0.4031    0.8508    0.8919    0.7322    0.7532    0.8838
@@ -10,6 +10,11 @@ sub-01 joint enc: head + low-level + amp 2         0.2647    0.4060    0.8626   
 sub-01 joint enc: head + low-level + amp 1.5       0.2662    0.4078    0.8609    0.9024    0.7522    0.7611    0.8756
 sub-01 joint enc: head + low-level + best of 4     0.2671    0.4089    0.8610    0.8985    0.7421    0.7564    0.8764
 sub-01 joint enc: head + low + amp 2 + best of 4    0.2656    0.4047    0.8697    0.9062    0.7487    0.7701    0.8684
+sub-01 joint enc: SHARED head                      0.2081    0.3277    0.8294    0.8908    0.7378    0.7515    0.8883
+sub-01 joint enc: shared head + low-level          0.2692    0.4125    0.8563    0.8936    0.7443    0.7481    0.8779
+sub-01 joint enc: shared head + low + best of 4    0.2692    0.4110    0.8636    0.9048    0.7359    0.7542    0.8762
+sub-01 joint enc: shared head + low + amp 2 + best of 4    0.2674    0.4068    0.8723    0.9074    0.7483    0.7697    0.8673
+sub-01 low-level point: strength 0.5 + best of 4    0.2704    0.4470    0.8244    0.8677    0.7302    0.7412    0.8895
 sub-01 calibration + low-level start               0.2500    0.3803    0.8585    0.8907    0.7260    0.7511    0.8863
 sub-01 + best of 4 candidates                      0.2497    0.3808    0.8605    0.8926    0.7291    0.7591    0.8830
 sub-02 baseline (reproduced)                       0.1832    0.3265    0.8254    0.8998    0.7261    0.8025    0.8937
@@ -22,6 +27,11 @@ sub-02 joint enc: head + low-level + amp 2         0.2302    0.3981    0.8879   
 sub-02 joint enc: head + low-level + amp 1.5       0.2333    0.4004    0.8868    0.9296    0.7698    0.8351    0.8642
 sub-02 joint enc: head + low-level + best of 4     0.2388    0.4025    0.8899    0.9310    0.7793    0.8333    0.8629
 sub-02 joint enc: head + low + amp 2 + best of 4    0.2326    0.3964    0.8933    0.9377    0.7826    0.8372    0.8619
+sub-02 joint enc: SHARED head                      0.2186    0.3499    0.8480    0.9180    0.7795    0.8331    0.8663
+sub-02 joint enc: shared head + low-level          0.2367    0.4053    0.8832    0.9270    0.7746    0.8339    0.8627
+sub-02 joint enc: shared head + low + best of 4    0.2427    0.4047    0.8901    0.9330    0.7849    0.8399    0.8580
+sub-02 joint enc: shared head + low + amp 2 + best of 4    0.2325    0.3988    0.8942    0.9363    0.7811    0.8418    0.8570
+sub-02 low-level point: strength 0.5 + best of 4    0.2350    0.4345    0.8619    0.9161    0.7757    0.8078    0.8673
 sub-02 calibration + low-level start               0.2213    0.3831    0.8761    0.9269    0.7376    0.8094    0.8820
 sub-02 + best of 4 candidates                      0.2251    0.3828    0.8858    0.9278    0.7483    0.8141    0.8811
 sub-03 baseline (reproduced)                       0.1871    0.3061    0.8103    0.8845    0.7474    0.8020    0.8782
@@ -35,6 +45,11 @@ sub-03 joint enc: head + low-level + amp 2         0.2462    0.3731    0.8877   
 sub-03 joint enc: head + low-level + amp 1.5       0.2476    0.3743    0.8878    0.9305    0.7949    0.8279    0.8496
 sub-03 joint enc: head + low-level + best of 4     0.2572    0.3763    0.8921    0.9300    0.7914    0.8309    0.8508
 sub-03 joint enc: head + low + amp 2 + best of 4    0.2526    0.3723    0.8890    0.9264    0.8031    0.8293    0.8471
+sub-03 joint enc: SHARED head                      0.2079    0.3320    0.8343    0.9100    0.7801    0.8250    0.8534
+sub-03 joint enc: shared head + low-level          0.2509    0.3786    0.8857    0.9325    0.7925    0.8265    0.8496
+sub-03 joint enc: shared head + low + best of 4    0.2588    0.3782    0.8933    0.9297    0.7942    0.8285    0.8492
+sub-03 joint enc: shared head + low + amp 2 + best of 4    0.2531    0.3742    0.8927    0.9304    0.8077    0.8343    0.8472
+sub-03 low-level point: strength 0.5 + best of 4    0.2640    0.4057    0.8524    0.9059    0.7788    0.8208    0.8632
 sub-03 calibration + low-level start               0.2342    0.3572    0.8805    0.9124    0.7580    0.8217    0.8679
 sub-03 + best of 4 candidates                      0.2402    0.3568    0.8845    0.9156    0.7724    0.8244    0.8662
 sub-04 baseline (reproduced)                       0.1738    0.3071    0.8196    0.8954    0.7551    0.8078    0.8665
@@ -47,6 +62,11 @@ sub-04 joint enc: head + low-level + amp 2         0.2361    0.3811    0.8655   
 sub-04 joint enc: head + low-level + amp 1.5       0.2386    0.3827    0.8637    0.9256    0.7897    0.8416    0.8390
 sub-04 joint enc: head + low-level + best of 4     0.2422    0.3829    0.8657    0.9280    0.7889    0.8366    0.8382
 sub-04 joint enc: head + low + amp 2 + best of 4    0.2357    0.3794    0.8707    0.9279    0.7957    0.8457    0.8398
+sub-04 joint enc: SHARED head                      0.1911    0.3304    0.8290    0.9062    0.7876    0.8416    0.8454
+sub-04 joint enc: shared head + low-level          0.2431    0.3861    0.8592    0.9228    0.7978    0.8357    0.8396
+sub-04 joint enc: shared head + low + best of 4    0.2436    0.3840    0.8650    0.9285    0.7923    0.8406    0.8357
+sub-04 joint enc: shared head + low + amp 2 + best of 4    0.2341    0.3808    0.8727    0.9310    0.7910    0.8397    0.8373
+sub-04 low-level point: strength 0.5 + best of 4    0.2452    0.4171    0.8414    0.9099    0.7903    0.8108    0.8518
 sub-04 calibration + low-level start               0.2290    0.3634    0.8471    0.9160    0.7678    0.8147    0.8569
 sub-04 + best of 4 candidates                      0.2261    0.3637    0.8524    0.9145    0.7689    0.8132    0.8547
 sub-05 baseline (reproduced)                       0.1681    0.2840    0.8062    0.8667    0.6943    0.7828    0.8990
@@ -59,6 +79,11 @@ sub-05 joint enc: head + low-level + amp 2         0.2252    0.3801    0.8640   
 sub-05 joint enc: head + low-level + amp 1.5       0.2279    0.3819    0.8642    0.9068    0.7424    0.8081    0.8693
 sub-05 joint enc: head + low-level + best of 4     0.2400    0.3836    0.8655    0.9114    0.7393    0.8122    0.8645
 sub-05 joint enc: head + low + amp 2 + best of 4    0.2318    0.3791    0.8723    0.9157    0.7466    0.8106    0.8682
+sub-05 joint enc: SHARED head                      0.2013    0.3315    0.8217    0.9033    0.7251    0.8068    0.8700
+sub-05 joint enc: shared head + low-level          0.2353    0.3862    0.8614    0.9050    0.7345    0.8037    0.8686
+sub-05 joint enc: shared head + low + best of 4    0.2405    0.3853    0.8649    0.9097    0.7383    0.8138    0.8642
+sub-05 joint enc: shared head + low + amp 2 + best of 4    0.2327    0.3813    0.8736    0.9170    0.7451    0.8147    0.8680
+sub-05 low-level point: strength 0.5 + best of 4    0.2355    0.4227    0.8273    0.8745    0.7450    0.7806    0.8834
 sub-05 calibration + low-level start               0.2183    0.3543    0.8586    0.8884    0.7049    0.7977    0.8857
 sub-05 + best of 4 candidates                      0.2189    0.3540    0.8527    0.8931    0.7100    0.8012    0.8837
 sub-06 baseline (reproduced)                       0.1972    0.3045    0.8386    0.9041    0.7510    0.7932    0.8826
@@ -72,6 +97,11 @@ sub-06 joint enc: head + low-level + amp 2         0.2475    0.3691    0.8858   
 sub-06 joint enc: head + low-level + amp 1.5       0.2504    0.3714    0.8836    0.9301    0.7675    0.8187    0.8575
 sub-06 joint enc: head + low-level + best of 4     0.2560    0.3743    0.8841    0.9297    0.7687    0.8250    0.8524
 sub-06 joint enc: head + low + amp 2 + best of 4    0.2490    0.3691    0.8887    0.9325    0.7726    0.8235    0.8536
+sub-06 joint enc: SHARED head                      0.2223    0.3421    0.8546    0.9221    0.7568    0.8190    0.8565
+sub-06 joint enc: shared head + low-level          0.2562    0.3772    0.8809    0.9295    0.7617    0.8162    0.8567
+sub-06 joint enc: shared head + low + best of 4    0.2594    0.3768    0.8876    0.9343    0.7802    0.8254    0.8511
+sub-06 joint enc: shared head + low + amp 2 + best of 4    0.2508    0.3711    0.8884    0.9354    0.7775    0.8238    0.8529
+sub-06 low-level point: strength 0.5 + best of 4    0.2766    0.4115    0.8337    0.8961    0.7608    0.8041    0.8733
 sub-06 calibration + low-level start               0.2460    0.3505    0.8838    0.9255    0.7548    0.8133    0.8770
 sub-06 + best of 4 candidates                      0.2500    0.3511    0.8882    0.9295    0.7581    0.8127    0.8733
 sub-07 baseline (reproduced)                       0.1684    0.3109    0.8128    0.8949    0.7423    0.7910    0.8783
@@ -84,6 +114,11 @@ sub-07 joint enc: head + low-level + amp 2         0.2281    0.3895    0.8579   
 sub-07 joint enc: head + low-level + amp 1.5       0.2330    0.3915    0.8532    0.9116    0.7669    0.8064    0.8552
 sub-07 joint enc: head + low-level + best of 4     0.2381    0.3934    0.8582    0.9174    0.7703    0.8049    0.8502
 sub-07 joint enc: head + low + amp 2 + best of 4    0.2332    0.3888    0.8645    0.9223    0.7794    0.8036    0.8554
+sub-07 joint enc: SHARED head                      0.1849    0.3331    0.8043    0.8942    0.7629    0.7856    0.8641
+sub-07 joint enc: shared head + low-level          0.2369    0.3960    0.8452    0.9060    0.7791    0.8039    0.8526
+sub-07 joint enc: shared head + low + best of 4    0.2357    0.3939    0.8564    0.9163    0.7712    0.8053    0.8475
+sub-07 joint enc: shared head + low + amp 2 + best of 4    0.2317    0.3903    0.8612    0.9201    0.7758    0.8110    0.8546
+sub-07 low-level point: strength 0.5 + best of 4    0.2568    0.4292    0.8224    0.8974    0.7797    0.7793    0.8667
 sub-07 calibration + low-level start               0.2276    0.3757    0.8420    0.9106    0.7543    0.8011    0.8683
 sub-07 + best of 4 candidates                      0.2295    0.3753    0.8474    0.9152    0.7687    0.8018    0.8660
 sub-08 baseline (reproduced)                       0.2096    0.3311    0.8556    0.9173    0.7802    0.8205    0.8558
@@ -97,6 +132,11 @@ sub-08 joint enc: head + low-level + amp 2         0.2711    0.3909    0.8972   
 sub-08 joint enc: head + low-level + amp 1.5       0.2737    0.3928    0.8956    0.9430    0.8100    0.8448    0.8254
 sub-08 joint enc: head + low-level + best of 4     0.2803    0.3967    0.9055    0.9417    0.8195    0.8423    0.8196
 sub-08 joint enc: head + low + amp 2 + best of 4    0.2717    0.3910    0.9044    0.9421    0.8142    0.8451    0.8252
+sub-08 joint enc: SHARED head                      0.2282    0.3571    0.8705    0.9340    0.8183    0.8418    0.8310
+sub-08 joint enc: shared head + low-level          0.2785    0.3989    0.8947    0.9416    0.8161    0.8428    0.8233
+sub-08 joint enc: shared head + low + best of 4    0.2802    0.3990    0.9007    0.9405    0.8140    0.8406    0.8202
+sub-08 joint enc: shared head + low + amp 2 + best of 4    0.2723    0.3927    0.9069    0.9430    0.8213    0.8460    0.8213
+sub-08 low-level point: strength 0.5 + best of 4    0.2896    0.4292    0.8661    0.9222    0.8066    0.8256    0.8325
 sub-08 calibration + low-level start               0.2659    0.3780    0.8985    0.9370    0.7922    0.8314    0.8369
 sub-08 + best of 4 candidates                      0.2683    0.3791    0.9059    0.9356    0.7957    0.8300    0.8349
 sub-09 baseline (reproduced)                       0.1857    0.3222    0.8285    0.9017    0.7457    0.7955    0.8778
@@ -109,6 +149,11 @@ sub-09 joint enc: head + low-level + amp 2         0.2489    0.3803    0.8734   
 sub-09 joint enc: head + low-level + amp 1.5       0.2513    0.3818    0.8707    0.9205    0.7817    0.8069    0.8499
 sub-09 joint enc: head + low-level + best of 4     0.2601    0.3827    0.8708    0.9221    0.7714    0.8051    0.8476
 sub-09 joint enc: head + low + amp 2 + best of 4    0.2512    0.3794    0.8766    0.9265    0.7801    0.8109    0.8470
+sub-09 joint enc: SHARED head                      0.2113    0.3400    0.8240    0.9054    0.7690    0.8113    0.8531
+sub-09 joint enc: shared head + low-level          0.2554    0.3861    0.8635    0.9172    0.7787    0.8075    0.8485
+sub-09 joint enc: shared head + low + best of 4    0.2591    0.3840    0.8681    0.9225    0.7799    0.8095    0.8441
+sub-09 joint enc: shared head + low + amp 2 + best of 4    0.2547    0.3809    0.8742    0.9283    0.7773    0.8093    0.8457
+sub-09 low-level point: strength 0.5 + best of 4    0.2503    0.4146    0.8396    0.8834    0.7610    0.7797    0.8629
 sub-09 calibration + low-level start               0.2397    0.3697    0.8658    0.9228    0.7653    0.7982    0.8579
 sub-09 + best of 4 candidates                      0.2424    0.3707    0.8652    0.9240    0.7657    0.7993    0.8572
 sub-10 baseline (reproduced)                       0.1854    0.3376    0.8417    0.9179    0.7846    0.8345    0.8533
@@ -121,143 +166,204 @@ sub-10 joint enc: head + low-level + amp 2         0.2506    0.4130    0.8882   
 sub-10 joint enc: head + low-level + amp 1.5       0.2534    0.4155    0.8860    0.9372    0.8252    0.8496    0.8266
 sub-10 joint enc: head + low-level + best of 4     0.2597    0.4188    0.8908    0.9423    0.8303    0.8614    0.8183
 sub-10 joint enc: head + low + amp 2 + best of 4    0.2541    0.4120    0.8893    0.9413    0.8359    0.8548    0.8270
+sub-10 joint enc: SHARED head                      0.2176    0.3631    0.8453    0.9258    0.8146    0.8542    0.8270
+sub-10 joint enc: shared head + low-level          0.2582    0.4212    0.8831    0.9387    0.8258    0.8532    0.8235
+sub-10 joint enc: shared head + low + best of 4    0.2604    0.4205    0.8871    0.9421    0.8362    0.8592    0.8169
+sub-10 joint enc: shared head + low + amp 2 + best of 4    0.2539    0.4143    0.8871    0.9399    0.8369    0.8556    0.8235
+sub-10 low-level point: strength 0.5 + best of 4    0.2545    0.4520    0.8526    0.9174    0.8164    0.8421    0.8443
 sub-10 calibration + low-level start               0.2401    0.4022    0.8834    0.9363    0.8066    0.8534    0.8369
 sub-10 + best of 4 candidates                      0.2446    0.4028    0.8868    0.9397    0.8182    0.8613    0.8360
 
 ordinary head (co-author) vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-ordinary head (co-author)                     0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712
-difference (mean)                            +0.0188   +0.0240   +0.0033   +0.0058   +0.0111   +0.0121   -0.0074
-subjects improved                              10/10     10/10      8/10      9/10      8/10     10/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+ordinary head (co-author)                           0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712
+difference (mean)                                  +0.0188   +0.0240   +0.0033   +0.0058   +0.0111   +0.0121   -0.0074
+subjects improved                                    10/10     10/10      8/10      9/10      8/10     10/10     10/10
 
 ordinary head + low-level start vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-ordinary head + low-level start               0.2455    0.3895    0.8649    0.9163    0.7558    0.8085    0.8651
-difference (mean)                            +0.0627   +0.0775   +0.0384   +0.0204   +0.0118   +0.0099   -0.0135
-subjects improved                              10/10     10/10     10/10     10/10      9/10      8/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+ordinary head + low-level start                     0.2455    0.3895    0.8649    0.9163    0.7558    0.8085    0.8651
+difference (mean)                                  +0.0627   +0.0775   +0.0384   +0.0204   +0.0118   +0.0099   -0.0135
+subjects improved                                    10/10     10/10     10/10     10/10      9/10      8/10     10/10
 
 ordinary head + low-level + best of 4 vs baseline (reproduced), mean over 4 subjects [1, 3, 6, 8]
-baseline (reproduced)                         0.1908    0.3078    0.8329    0.8955    0.7481    0.7930    0.8794
-ordinary head + low-level + best of 4         0.2591    0.3843    0.8816    0.9169    0.7633    0.8073    0.8639
-difference (mean)                            +0.0683   +0.0764   +0.0487   +0.0214   +0.0153   +0.0143   -0.0155
-subjects improved                               4/4      4/4      4/4      4/4      4/4      4/4      4/4
+baseline (reproduced)                               0.1908    0.3078    0.8329    0.8955    0.7481    0.7930    0.8794
+ordinary head + low-level + best of 4               0.2591    0.3843    0.8816    0.9169    0.7633    0.8073    0.8639
+difference (mean)                                  +0.0683   +0.0764   +0.0487   +0.0214   +0.0153   +0.0143   -0.0155
+subjects improved                                     4/4      4/4      4/4      4/4      4/4      4/4      4/4
 
 ordinary head + low-level + amp 2 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-ordinary head + low-level + amp 2             0.2407    0.3832    0.8703    0.9176    0.7632    0.8113    0.8645
-difference (mean)                            +0.0579   +0.0712   +0.0437   +0.0217   +0.0192   +0.0127   -0.0141
-subjects improved                              10/10     10/10     10/10     10/10     10/10      9/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+ordinary head + low-level + amp 2                   0.2407    0.3832    0.8703    0.9176    0.7632    0.8113    0.8645
+difference (mean)                                  +0.0579   +0.0712   +0.0437   +0.0217   +0.0192   +0.0127   -0.0141
+subjects improved                                    10/10     10/10     10/10     10/10     10/10      9/10     10/10
 
 joint enc: ordinary head vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-joint enc: ordinary head                      0.2073    0.3374    0.8348    0.9109    0.7718    0.8176    0.8565
-difference (mean)                            +0.0245   +0.0255   +0.0082   +0.0151   +0.0278   +0.0190   -0.0221
-subjects improved                              10/10     10/10      7/10     10/10     10/10      8/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: ordinary head                            0.2073    0.3374    0.8348    0.9109    0.7718    0.8176    0.8565
+difference (mean)                                  +0.0245   +0.0255   +0.0082   +0.0151   +0.0278   +0.0190   -0.0221
+subjects improved                                    10/10     10/10      7/10     10/10     10/10      8/10     10/10
 
 joint enc: head + low-level vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-joint enc: head + low-level                   0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
-difference (mean)                            +0.0685   +0.0812   +0.0450   +0.0263   +0.0353   +0.0194   -0.0276
-subjects improved                              10/10     10/10     10/10     10/10     10/10      9/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: head + low-level                         0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
+difference (mean)                                  +0.0685   +0.0812   +0.0450   +0.0263   +0.0353   +0.0194   -0.0276
+subjects improved                                    10/10     10/10     10/10     10/10     10/10      9/10     10/10
 
 joint enc: head + low-level + amp 2 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-joint enc: head + low-level + amp 2           0.2449    0.3881    0.8770    0.9242    0.7793    0.8197    0.8516
-difference (mean)                            +0.0621   +0.0761   +0.0504   +0.0283   +0.0353   +0.0211   -0.0270
-subjects improved                              10/10     10/10     10/10     10/10     10/10     10/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: head + low-level + amp 2                 0.2449    0.3881    0.8770    0.9242    0.7793    0.8197    0.8516
+difference (mean)                                  +0.0621   +0.0761   +0.0504   +0.0283   +0.0353   +0.0211   -0.0270
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
 
 joint enc: head + low-level + amp 1.5 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-joint enc: head + low-level + amp 1.5         0.2475    0.3900    0.8753    0.9237    0.7800    0.8200    0.8512
-difference (mean)                            +0.0648   +0.0780   +0.0487   +0.0279   +0.0360   +0.0214   -0.0274
-subjects improved                              10/10     10/10     10/10     10/10     10/10     10/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: head + low-level + amp 1.5               0.2475    0.3900    0.8753    0.9237    0.7800    0.8200    0.8512
+difference (mean)                                  +0.0648   +0.0780   +0.0487   +0.0279   +0.0360   +0.0214   -0.0274
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
 
 joint enc: head + low-level + best of 4 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-joint enc: head + low-level + best of 4       0.2539    0.3920    0.8783    0.9252    0.7801    0.8208    0.8481
-difference (mean)                            +0.0712   +0.0800   +0.0518   +0.0294   +0.0361   +0.0222   -0.0305
-subjects improved                              10/10     10/10     10/10     10/10     10/10     10/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: head + low-level + best of 4             0.2539    0.3920    0.8783    0.9252    0.7801    0.8208    0.8481
+difference (mean)                                  +0.0712   +0.0800   +0.0518   +0.0294   +0.0361   +0.0222   -0.0305
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
 
 joint enc: head + low + amp 2 + best of 4 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-joint enc: head + low + amp 2 + best of 4     0.2477    0.3872    0.8818    0.9279    0.7859    0.8231    0.8494
-difference (mean)                            +0.0650   +0.0752   +0.0552   +0.0320   +0.0419   +0.0245   -0.0293
-subjects improved                              10/10     10/10     10/10     10/10     10/10     10/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: head + low + amp 2 + best of 4           0.2477    0.3872    0.8818    0.9279    0.7859    0.8231    0.8494
+difference (mean)                                  +0.0650   +0.0752   +0.0552   +0.0320   +0.0419   +0.0245   -0.0293
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
+
+joint enc: SHARED head vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: SHARED head                              0.2091    0.3407    0.8361    0.9110    0.7732    0.8170    0.8555
+difference (mean)                                  +0.0263   +0.0287   +0.0095   +0.0151   +0.0291   +0.0184   -0.0231
+subjects improved                                    10/10     10/10      8/10      9/10     10/10      8/10     10/10
+
+joint enc: shared head + low-level vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: shared head + low-level                  0.2520    0.3948    0.8713    0.9214    0.7805    0.8171    0.8503
+difference (mean)                                  +0.0692   +0.0828   +0.0447   +0.0255   +0.0365   +0.0185   -0.0283
+subjects improved                                    10/10     10/10     10/10     10/10     10/10      9/10     10/10
+
+joint enc: shared head + low + best of 4 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: shared head + low + best of 4            0.2550    0.3937    0.8777    0.9261    0.7827    0.8217    0.8463
+difference (mean)                                  +0.0722   +0.0818   +0.0511   +0.0303   +0.0387   +0.0231   -0.0323
+subjects improved                                    10/10     10/10     10/10     10/10     10/10      9/10     10/10
+
+joint enc: shared head + low + amp 2 + best of 4 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+joint enc: shared head + low + amp 2 + best of 4    0.2483    0.3891    0.8823    0.9289    0.7862    0.8246    0.8475
+difference (mean)                                  +0.0655   +0.0771   +0.0557   +0.0330   +0.0422   +0.0260   -0.0311
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
+
+low-level point: strength 0.5 + best of 4 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+low-level point: strength 0.5 + best of 4           0.2578    0.4263    0.8422    0.8991    0.7744    0.7992    0.8635
+difference (mean)                                  +0.0750   +0.1144   +0.0156   +0.0032   +0.0304   +0.0006   -0.0151
+subjects improved                                    10/10     10/10      8/10      6/10     10/10      6/10     10/10
 
 calibration + low-level start vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-calibration + low-level start                 0.2372    0.3714    0.8694    0.9167    0.7568    0.8092    0.8656
-difference (mean)                            +0.0544   +0.0595   +0.0428   +0.0208   +0.0127   +0.0106   -0.0130
-subjects improved                              10/10     10/10     10/10     10/10     10/10      9/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+calibration + low-level start                       0.2372    0.3714    0.8694    0.9167    0.7568    0.8092    0.8656
+difference (mean)                                  +0.0544   +0.0595   +0.0428   +0.0208   +0.0127   +0.0106   -0.0130
+subjects improved                                    10/10     10/10     10/10     10/10     10/10      9/10     10/10
 
 + best of 4 candidates vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-baseline (reproduced)                         0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
-+ best of 4 candidates                        0.2395    0.3717    0.8729    0.9187    0.7635    0.8117    0.8636
-difference (mean)                            +0.0567   +0.0597   +0.0464   +0.0229   +0.0195   +0.0131   -0.0150
-subjects improved                              10/10     10/10     10/10     10/10     10/10     10/10     10/10
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
++ best of 4 candidates                              0.2395    0.3717    0.8729    0.9187    0.7635    0.8117    0.8636
+difference (mean)                                  +0.0567   +0.0597   +0.0464   +0.0229   +0.0195   +0.0131   -0.0150
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
 
 ===== gain of the additions over the co-author's head alone =====
 
 ordinary head + low-level start vs ordinary head (co-author), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-ordinary head (co-author)                     0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712
-ordinary head + low-level start               0.2455    0.3895    0.8649    0.9163    0.7558    0.8085    0.8651
-difference (mean)                            +0.0439   +0.0534   +0.0350   +0.0145   +0.0007   -0.0022   -0.0061
-subjects improved                              10/10     10/10     10/10     10/10      5/10      3/10      9/10
+ordinary head (co-author)                           0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712
+ordinary head + low-level start                     0.2455    0.3895    0.8649    0.9163    0.7558    0.8085    0.8651
+difference (mean)                                  +0.0439   +0.0534   +0.0350   +0.0145   +0.0007   -0.0022   -0.0061
+subjects improved                                    10/10     10/10     10/10     10/10      5/10      3/10      9/10
 
 ordinary head + low-level + best of 4 vs ordinary head (co-author), mean over 4 subjects [1, 3, 6, 8]
-ordinary head (co-author)                     0.2112    0.3325    0.8416    0.9026    0.7594    0.8074    0.8712
-ordinary head + low-level + best of 4         0.2591    0.3843    0.8816    0.9169    0.7633    0.8073    0.8639
-difference (mean)                            +0.0480   +0.0517   +0.0400   +0.0144   +0.0039   -0.0001   -0.0073
-subjects improved                               4/4      4/4      4/4      4/4      3/4      1/4      3/4
+ordinary head (co-author)                           0.2112    0.3325    0.8416    0.9026    0.7594    0.8074    0.8712
+ordinary head + low-level + best of 4               0.2591    0.3843    0.8816    0.9169    0.7633    0.8073    0.8639
+difference (mean)                                  +0.0480   +0.0517   +0.0400   +0.0144   +0.0039   -0.0001   -0.0073
+subjects improved                                     4/4      4/4      4/4      4/4      3/4      1/4      3/4
 
 ordinary head + low-level + amp 2 vs ordinary head (co-author), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-ordinary head (co-author)                     0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712
-ordinary head + low-level + amp 2             0.2407    0.3832    0.8703    0.9176    0.7632    0.8113    0.8645
-difference (mean)                            +0.0391   +0.0471   +0.0404   +0.0159   +0.0081   +0.0006   -0.0067
-subjects improved                              10/10     10/10     10/10     10/10      8/10      5/10      9/10
+ordinary head (co-author)                           0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712
+ordinary head + low-level + amp 2                   0.2407    0.3832    0.8703    0.9176    0.7632    0.8113    0.8645
+difference (mean)                                  +0.0391   +0.0471   +0.0404   +0.0159   +0.0081   +0.0006   -0.0067
+subjects improved                                    10/10     10/10     10/10     10/10      8/10      5/10      9/10
 
 ===== joint encoder vs per-subject encoder, same arm =====
 
 joint enc: ordinary head vs ordinary head (co-author), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-ordinary head (co-author)                     0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712
-joint enc: ordinary head                      0.2073    0.3374    0.8348    0.9109    0.7718    0.8176    0.8565
-difference (mean)                            +0.0057   +0.0014   +0.0049   +0.0092   +0.0167   +0.0069   -0.0147
-subjects improved                               8/10      5/10      8/10      9/10      8/10      7/10     10/10
+ordinary head (co-author)                           0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712
+joint enc: ordinary head                            0.2073    0.3374    0.8348    0.9109    0.7718    0.8176    0.8565
+difference (mean)                                  +0.0057   +0.0014   +0.0049   +0.0092   +0.0167   +0.0069   -0.0147
+subjects improved                                     8/10      5/10      8/10      9/10      8/10      7/10     10/10
 
 joint enc: head + low-level vs ordinary head + low-level start, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-ordinary head + low-level start               0.2455    0.3895    0.8649    0.9163    0.7558    0.8085    0.8651
-joint enc: head + low-level                   0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
-difference (mean)                            +0.0058   +0.0037   +0.0066   +0.0059   +0.0235   +0.0095   -0.0141
-subjects improved                               9/10      8/10     10/10      8/10     10/10      8/10     10/10
+ordinary head + low-level start                     0.2455    0.3895    0.8649    0.9163    0.7558    0.8085    0.8651
+joint enc: head + low-level                         0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
+difference (mean)                                  +0.0058   +0.0037   +0.0066   +0.0059   +0.0235   +0.0095   -0.0141
+subjects improved                                     9/10      8/10     10/10      8/10     10/10      8/10     10/10
 
 joint enc: head + low-level + amp 2 vs ordinary head + low-level + amp 2, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-ordinary head + low-level + amp 2             0.2407    0.3832    0.8703    0.9176    0.7632    0.8113    0.8645
-joint enc: head + low-level + amp 2           0.2449    0.3881    0.8770    0.9242    0.7793    0.8197    0.8516
-difference (mean)                            +0.0042   +0.0050   +0.0067   +0.0066   +0.0161   +0.0084   -0.0129
-subjects improved                               9/10     10/10     10/10     10/10      9/10      8/10     10/10
+ordinary head + low-level + amp 2                   0.2407    0.3832    0.8703    0.9176    0.7632    0.8113    0.8645
+joint enc: head + low-level + amp 2                 0.2449    0.3881    0.8770    0.9242    0.7793    0.8197    0.8516
+difference (mean)                                  +0.0042   +0.0050   +0.0067   +0.0066   +0.0161   +0.0084   -0.0129
+subjects improved                                     9/10     10/10     10/10     10/10      9/10      8/10     10/10
 
 joint enc: head + low-level + amp 1.5 vs joint enc: head + low-level, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-joint enc: head + low-level                   0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
-joint enc: head + low-level + amp 1.5         0.2475    0.3900    0.8753    0.9237    0.7800    0.8200    0.8512
-difference (mean)                            -0.0037   -0.0032   +0.0037   +0.0016   +0.0007   +0.0020   +0.0002
-subjects improved                               0/10      0/10      9/10      7/10      5/10      7/10      3/10
+joint enc: head + low-level                         0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
+joint enc: head + low-level + amp 1.5               0.2475    0.3900    0.8753    0.9237    0.7800    0.8200    0.8512
+difference (mean)                                  -0.0037   -0.0032   +0.0037   +0.0016   +0.0007   +0.0020   +0.0002
+subjects improved                                     0/10      0/10      9/10      7/10      5/10      7/10      3/10
 
 joint enc: head + low-level + amp 2 vs joint enc: head + low-level, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-joint enc: head + low-level                   0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
-joint enc: head + low-level + amp 2           0.2449    0.3881    0.8770    0.9242    0.7793    0.8197    0.8516
-difference (mean)                            -0.0064   -0.0050   +0.0054   +0.0020   +0.0000   +0.0017   +0.0006
-subjects improved                               0/10      0/10      9/10      7/10      6/10      6/10      4/10
+joint enc: head + low-level                         0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
+joint enc: head + low-level + amp 2                 0.2449    0.3881    0.8770    0.9242    0.7793    0.8197    0.8516
+difference (mean)                                  -0.0064   -0.0050   +0.0054   +0.0020   +0.0000   +0.0017   +0.0006
+subjects improved                                     0/10      0/10      9/10      7/10      6/10      6/10      4/10
 
 joint enc: head + low-level + best of 4 vs joint enc: head + low-level, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-joint enc: head + low-level                   0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
-joint enc: head + low-level + best of 4       0.2539    0.3920    0.8783    0.9252    0.7801    0.8208    0.8481
-difference (mean)                            +0.0027   -0.0012   +0.0068   +0.0031   +0.0008   +0.0028   -0.0029
-subjects improved                               9/10      0/10     10/10      8/10      5/10      7/10      9/10
+joint enc: head + low-level                         0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
+joint enc: head + low-level + best of 4             0.2539    0.3920    0.8783    0.9252    0.7801    0.8208    0.8481
+difference (mean)                                  +0.0027   -0.0012   +0.0068   +0.0031   +0.0008   +0.0028   -0.0029
+subjects improved                                     9/10      0/10     10/10      8/10      5/10      7/10      9/10
 
 joint enc: head + low + amp 2 + best of 4 vs joint enc: head + low-level, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-joint enc: head + low-level                   0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
-joint enc: head + low + amp 2 + best of 4     0.2477    0.3872    0.8818    0.9279    0.7859    0.8231    0.8494
-difference (mean)                            -0.0035   -0.0059   +0.0103   +0.0057   +0.0066   +0.0051   -0.0016
-subjects improved                               1/10      0/10     10/10      8/10     10/10      9/10      6/10
+joint enc: head + low-level                         0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
+joint enc: head + low + amp 2 + best of 4           0.2477    0.3872    0.8818    0.9279    0.7859    0.8231    0.8494
+difference (mean)                                  -0.0035   -0.0059   +0.0103   +0.0057   +0.0066   +0.0051   -0.0016
+subjects improved                                     1/10      0/10     10/10      8/10     10/10      9/10      6/10
 
-paper Table 2 (10-subject mean)               0.1950    0.3360    0.8430    0.9050    0.7560    0.8080
+===== one shared head vs one head per subject (joint encoder) =====
+
+joint enc: SHARED head vs joint enc: ordinary head, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+joint enc: ordinary head                            0.2073    0.3374    0.8348    0.9109    0.7718    0.8176    0.8565
+joint enc: SHARED head                              0.2091    0.3407    0.8361    0.9110    0.7732    0.8170    0.8555
+difference (mean)                                  +0.0018   +0.0033   +0.0013   +0.0000   +0.0014   -0.0006   -0.0010
+subjects improved                                    10/10     10/10      7/10      5/10      5/10      4/10      7/10
+
+joint enc: shared head + low-level vs joint enc: head + low-level, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+joint enc: head + low-level                         0.2513    0.3932    0.8716    0.9221    0.7793    0.8180    0.8510
+joint enc: shared head + low-level                  0.2520    0.3948    0.8713    0.9214    0.7805    0.8171    0.8503
+difference (mean)                                  +0.0007   +0.0016   -0.0002   -0.0007   +0.0012   -0.0009   -0.0007
+subjects improved                                     9/10     10/10      6/10      3/10      5/10      2/10      7/10
+
+joint enc: shared head + low + best of 4 vs joint enc: head + low-level + best of 4, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+joint enc: head + low-level + best of 4             0.2539    0.3920    0.8783    0.9252    0.7801    0.8208    0.8481
+joint enc: shared head + low + best of 4            0.2550    0.3937    0.8777    0.9261    0.7827    0.8217    0.8463
+difference (mean)                                  +0.0010   +0.0017   -0.0007   +0.0009   +0.0026   +0.0009   -0.0018
+subjects improved                                     7/10     10/10      4/10      5/10      7/10      6/10      9/10
+
+joint enc: shared head + low + amp 2 + best of 4 vs joint enc: head + low + amp 2 + best of 4, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+joint enc: head + low + amp 2 + best of 4           0.2477    0.3872    0.8818    0.9279    0.7859    0.8231    0.8494
+joint enc: shared head + low + amp 2 + best of 4    0.2483    0.3891    0.8823    0.9289    0.7862    0.8246    0.8475
+difference (mean)                                  +0.0006   +0.0019   +0.0005   +0.0010   +0.0003   +0.0015   -0.0019
+subjects improved                                     6/10     10/10      6/10      7/10      4/10      7/10      9/10
+
+paper Table 2 (10-subject mean)                     0.1950    0.3360    0.8430    0.9050    0.7560    0.8080
