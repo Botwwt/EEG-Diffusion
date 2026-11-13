@@ -167,28 +167,59 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
   PixCorr +0.013, CLIP ±0.000, Alex2 −0.003 (vs −0.004 for the full high band) — possibly a slightly better trade, not
   established on ten subjects.
 
-## Running it
+## Running it (reproducing B‴ from scratch)
 
-Set `RAD_ROOT` to a working directory with `data/things-eeg/` (THINGS-EEG preprocessed EEG and image set),
-`data/hive_embeddings/`, `models/` (Fusion-Prior-H14_B32_VAE, sdxl-turbo, the two OpenCLIP image towers) and
-`code/Brain-HIVE` (commit f06db69); outputs go to `$RAD_ROOT/runs`. From `code/`:
+**Inputs** (downloaded once; nothing here is redistributed). Put them under one working directory `$RAD_ROOT`:
+
+| path under `$RAD_ROOT` | source |
+|---|---|
+| `data/things-eeg/Preprocessed_data_250Hz_whiten/`, `data/things-eeg/Image_set/` | Hugging Face dataset `Haitao999/things-eeg` (THINGS-EEG2, Gifford et al. 2022) |
+| `data/hive_embeddings/things-eeg/` (parquet) | Hugging Face dataset `fakekungfu/Brain-HIVE_Visual_Embeddings` |
+| `models/Fusion-Prior-H14_B32_VAE/` | Hugging Face `fakekungfu/Fusion-Prior-H14_B32_VAE` |
+| `models/sdxl-turbo/` | Hugging Face `stabilityai/sdxl-turbo` (fp16 variant) |
+| `models/CLIP-ViT-H-14-laion2B-s32B-b79K/`, `models/CLIP-ViT-B-32-laion2B-s34B-b79K/` | Hugging Face `laion/...` (same names) |
+| `code/Brain-HIVE/` | github.com/ssshamiii/Brain-HIVE at commit f06db69 |
+| metric weights | torchvision AlexNet / Inception-v3 / EfficientNet-B1 and OpenAI CLIP ViT-L/14 (`pip install git+https://github.com/openai/CLIP`), fetched on first use |
+
+**Environment used for every number here**: Python 3.10.12, torch 2.14.1 (CUDA 13.0), torchvision 0.29.2, diffusers 0.41.0,
+transformers 5.20.2, numpy 2.2.6, scikit-image 0.25.2, clip 1.0; one RTX 4090 (24 GB) per job.
+
+**Steps** (from this folder's `code/`, `export RAD_ROOT=...`; `XX` = 01 … 10):
 
 ```bash
-python prep.py eeg <sub>                       # 17-channel arrays, for every subject
-python train_ms.py --tag ms_e10_ft10in --epochs 10 --ft_epochs 10 --ft_trunk 0 --ft_lr 5e-4 --fold -1   # and --fold 0..4
-ORD_TAG=ms_e10_ft10in python ordh.py latents   # once
-ORD_TAG=ms_e10_ft10in ORD_HEAD=pooled_p1 python ordh.py train all 1        # one shared head
-ORD_TAG=ms_e10_ft10in ORD_HEAD=pooled_p1 python ordh.py apply <sub>        # -> runs/cond/ord_ms_e10_ft10in_pooled_p1/
-python low.py <sub>                            # start images, variant vae_rcp_n0.8
+# 1. data
+python prep.py eeg 1 2 3 4 5 6 7 8 9 10        # 17-channel arrays -> data/prep/sub-XX_{train,test}.npy, *_ids.json
+python prep.py targets                         # emb_{train,test}.pt, F_{train,test}.npy, train_concept.npy
+python b32fix.py                               # data/prep/b32_fix.pt (candidate embedder correction, training images only)
+python fenc.py                                 # optional check: embedder vs the published test embeddings
+# 2. joint encoder: the full model and the five concept folds (out-of-fold conditions for the head and the start image)
+for f in -1 0 1 2 3 4; do python train_ms.py --tag ms_e10_ft10in --epochs 10 --ft_epochs 10 --ft_trunk 0 --ft_lr 5e-4 --fold $f; done
+# 3. the co-author's ordinary head, one shared head (1 pass), applied to each subject's test conditions
+ORD_TAG=ms_e10_ft10in python ordh.py latents
+ORD_TAG=ms_e10_ft10in ORD_HEAD=pooled_p1 python ordh.py train all 1
+for s in $(seq 1 10); do ORD_TAG=ms_e10_ft10in ORD_HEAD=pooled_p1 python ordh.py apply $s; done
+# 4. start images: ridge (vae_rcp), then the retrieval blend (lowrk0.5)
+for s in $(seq 1 10); do python low.py $s; done
+python lowsem.py ms_e10_ft10in vae_rcp --space raw --mode knn --w 0.5 --save lowrk0.5
+python decode_low.py lowrk0.5                  # -> runs/low/sub-XX/lowrk0.5_n0.8.npy
+# 5. B‴ for each subject: amplification 2, best of 16, shrinkage 24 px / 0.8 scored inside the run
 python gen.py --run ms_e10_ft10in/sub-XX/fold-1_seed2025 --cond_file ord_ms_e10_ft10in_pooled_p1/sub-XX.npy \
-    --init_file sub-XX/vae_rcp_n0.8.npy --strength 0.75 --amp 2 --nsel 4 --K 4 --name <name>
-# A'' : start image lowrk0.5 (lowsem.py + decode_low.py, see 3b), best of 8, shrinkage scored inside the run
-python gen.py --run ms_e10_ft10in/sub-XX/fold-1_seed2025 --cond_file ord_ms_e10_ft10in_pooled_p1/sub-XX.npy \
-    --init_file sub-XX/lowrk0.5_n0.8.npy --strength 0.75 --nsel 8 --post 0,16,0.8 --K 4 --name <name>
-#   metrics.json: "mean" = images as generated, "post"["0,16,0.8"] = after shrinkage
-python tab10.py                                # ten-subject table
-python runsum.py > runs_summary.csv            # every run and every --post / --selvar variant
+    --init_file sub-XX/lowrk0.5_n0.8.npy --strength 0.75 --amp 2 --nsel 16 --K 4 --save 0 \
+    --post 0,24,0.8 --name sXX_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16
+#    metrics.json: "mean" = images as generated (B′ best of 16), "post"["0,24,0.8"] = B‴
+#    A″ instead: no --amp, --nsel 8, --post 0,16,0.8
+# 6. tables
+python tab10.py > table10.txt                  # every arm whose runs exist, per subject and averaged
+python runsum.py > runs_summary.csv
+python svsum.py _ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16 main   # all --post / --selvar variants of a run
 ```
+
+Cost on one RTX 4090: joint encoder a few minutes per fold run (all ten subjects), shared head ≈ 2.4 h (10,332 updates),
+start images ≈ 2 min per subject, B‴ generation ≈ 40 min per subject (64 SDXL-Turbo images per query plus scoring).
+
+**How close a re-run should come.** Generation noise is seeded per (query, sample, candidate), so step 5 is repeatable
+given the same conditions and start images (a re-run of step 5 from a fresh clone of this repository is reported below). Steps 2–3 train in bf16 on GPU and are not bit-exact; encoder seeds changed the per-subject image metrics
+by 0.001–0.007 (SD over three seeds, subjects 1, 3, 8), so ten-subject means should agree to about ±0.003.
 
 Downloaded `.pt` EEG files are numpy pickles; they are loaded only through the restricted unpickler in
 `common.safe_load_pt`. No EEG, image, embedding or model file is included here.
