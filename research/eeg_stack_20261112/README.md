@@ -105,6 +105,11 @@ the cross-product of the two halves estimates signal power, their mean square si
 | condition projected on the top-K principal components of the training targets (PCA denoising) | `condscreen.py`, K 64–768 | cosine to the target up (10/10) but top-1 down unless combined with adaptation |
 | adapted 7-seed ensemble condition, with and without PCA 512 | 10 subjects, images, on O4 | PixCorr +0.002, SSIM +0.005 (10/10), Alex +0.003, CLIP −0.001 / −0.002 (4/10, 3/10): not adopted; a higher cosine to the target did not raise CLIP here |
 | stronger retrieval blend of the start image (weight 0.75, 1.0 instead of 0.5) | 10 subjects, images, on O4 | Alex2 +0.002 / +0.003, Incep +0.001 / +0.002, SSIM −0.001 / −0.002, CLIP −0.000: no clear gain |
+| O5 with 20 or 5 repeat groups instead of 10 | 10 subjects, images | 20 groups: SSIM +0.003 (10/10) but Incep −0.003, CLIP −0.003; 5 groups: within ±0.001 of O5 on every metric: G = 10 kept |
+| O5 without repeat bagging (7-seed ensemble only) | 10 subjects, images | SSIM −0.002 (0/10), Incep +0.002, CLIP −0.000: bagging kept |
+| O5 with the start image retrieved by the adapted 7-seed ensemble | 10 subjects, images | Incep +0.002 (7/10), CLIP +0.001 (5/10), PixCorr / Alex −0.001: within noise, not adopted |
+| PCA-256 projection of the O4 condition, with and without adaptation | 10 subjects, images | with adaptation SSIM +0.003 but CLIP −0.006; without, every semantic metric −0.002 to −0.003: **negative** |
+| encoders trained on shorter windows (0–150, 0–100 samples) and multi-window ensembles (multi-scale windows, from time-series analysis), 7 seeds each | `condscreen.py`, 10 subjects (no images yet) | top-1 after the head 0.4985 (0–150, 7 seeds) / 0.5060 (with bagging) vs 0.4750 for the O5 condition, and the cosine to the target also rises (0.3334 vs 0.3291, 10/10), unlike adaptation; images in progress |
 
 ## Where each component comes from (prior-art audit, 2026-11-13)
 

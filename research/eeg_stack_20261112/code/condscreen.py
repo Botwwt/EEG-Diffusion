@@ -2,6 +2,8 @@
 
 Variants (all label-free; the per-subject ordinary head is applied to every one with the seed-2025 trunk affine):
   base     seed-2025 encoder on the IVW mean of the 80 repeats (= O2 / O3 / O4 condition, ord_ivw)
+  mwN, w150N, w100N   the same over encoders trained on the 0-150 / 0-100 sample windows (w*) or on all three
+           windows 0-250, 0-150, 0-100 (mw, multi-window ensemble), N seeds each; combine with bagG as for ens
   ensN     mean of the outputs of N independently seeded encoders (deep ensembles, Lakshminarayanan et al. 2017),
            each on the IVW input, rescaled per image to the norm of base (averaging shrinks the norm)
   bagG     seed-2025 encoder on G disjoint IVW group means (80 / G repeats each), outputs averaged, rescaled to base
@@ -13,7 +15,8 @@ Variants (all label-free; the per-subject ordinary head is applied to every one 
 Prints 200-way top-1 / top-5 and mean cos to F after the head, and the cosine drift from base.
 Labels are used only for scoring.
 
-python condscreen.py <subs> <variants, comma-separated> [save: 1 writes runs/cond/ord_<variant>/sub-XX.npy]
+python condscreen.py <subs> <variants, comma-separated> [save: 1 writes runs/cond/ord_<variant>/sub-XX.npy and,
+   before the head, cond_test_<variant>.npy in the seed-2025 encoder directory]
 """
 import sys
 
@@ -44,11 +47,17 @@ def ivw(x):
     return ((w / w.sum(1, keepdim=True))[:, :, None, None] * x).sum(1)
 
 
-def load(x, seed):
-    d = RUNS / "enc" / "t0_r4" / f"sub-{x}" / f"fold-1_seed{seed}"
+SETS = {"ens": ["t0_r4"], "w150": ["t0_r4_w150"], "w100": ["t0_r4_w100"],
+        "mw": ["t0_r4", "t0_r4_w150", "t0_r4_w100"]}   # mw: multi-window ensemble (0-250, 0-150, 0-100 samples)
+
+
+def load(x, seed, tag="t0_r4"):
+    d = RUNS / "enc" / tag / f"sub-{x}" / f"fold-1_seed{seed}"
     sd = torch.load(d / "brain_model.pt", weights_only=True)
-    m = BrainEncoder(backbone="brain_mlp", brain_channels=17, brain_sequence_length=250, hidden_size=1024, embedding_dim=1440, dropout=0.1)
+    a_ = __import__("json").loads((d / "metrics.json").read_text())["args"]
+    m = BrainEncoder(backbone="brain_mlp", brain_channels=17, brain_sequence_length=a_["t1"] - a_["t0"], hidden_size=1024, embedding_dim=1440, dropout=0.1)
     m.load_state_dict(sd)
+    m.win = (a_["t0"], a_["t1"])
     return m.eval(), sd
 
 
@@ -84,17 +93,18 @@ for s in subs:
     d0 = RUNS / "enc" / "t0_r4" / f"sub-{x}" / "fold-1_seed2025"
     cache = {}
 
-    def enc_out(seed, G):
-        if (seed, G) not in cache:
-            m = enc0 if seed == 2025 else load(x, seed)[0]
+    def enc_out(seed, G, tag="t0_r4"):
+        if (seed, G, tag) not in cache:
+            m = enc0 if (seed, tag) == (2025, "t0_r4") else load(x, seed, tag)[0]
+            t0_, t1_ = m.win
             with torch.no_grad():
                 if G == 1:
-                    cache[(seed, G)] = m.backbone(a).float()
+                    cache[(seed, G, tag)] = m.backbone(a[..., t0_:t1_]).float()
                 else:
                     k = 80 // G
                     perm = torch.randperm(80, generator=torch.Generator().manual_seed(7 + s))
-                    cache[(seed, G)] = torch.stack([m.backbone(ivw(xt[:, perm[i * k:(i + 1) * k]])).float() for i in range(G)]).mean(0)
-        return cache[(seed, G)]
+                    cache[(seed, G, tag)] = torch.stack([m.backbone(ivw(xt[:, perm[i * k:(i + 1) * k]])[..., t0_:t1_]).float() for i in range(G)]).mean(0)
+        return cache[(seed, G, tag)]
 
     base = enc_out(2025, 1)
     with torch.no_grad():
@@ -124,14 +134,15 @@ for s in subs:
             elif mode == "a":
                 c = base + alpha * (c - base)
         else:
-            N, G = 1, 1
-            if v.startswith("ens"):
-                rest = v[3:]
+            N, G, tags = 1, 1, ["t0_r4"]
+            if v.startswith("bag"):
+                G = int(v[3:])
+            else:      # <set><N>[bag<G>], set in SETS
+                st = next(k for k in sorted(SETS, key=len, reverse=True) if v.startswith(k))
+                tags, rest = SETS[st], v[len(st):]
                 N = int(rest.split("bag")[0])
                 G = int(rest.split("bag")[1]) if "bag" in rest else 1
-            elif v.startswith("bag"):
-                G = int(v[3:])
-            c = torch.stack([enc_out(sd_, G) for sd_ in SEEDS[:N]]).mean(0)
+            c = torch.stack([enc_out(sd_, G, tg) for tg in tags for sd_ in SEEDS[:N]]).mean(0)
             c = c * base.norm(dim=1, keepdim=True) / c.norm(dim=1, keepdim=True)
         if pk:
             c = proj(c, int(pk))
@@ -140,6 +151,7 @@ for s in subs:
         r = score(h) + (float((nz(h, dim=1) * nz(hb, dim=1)).sum(1).mean()),)
         res[vfull].append(r)
         if save and vfull != "base":
+            np.save(d0 / f"cond_test_{vfull}.npy", c.numpy())   # before the head: for lowsem.py --ctest (retrieval)
             (RUNS / "cond" / f"ord_{vfull}").mkdir(parents=True, exist_ok=True)
             np.save(RUNS / "cond" / f"ord_{vfull}" / f"sub-{x}.npy", h.numpy())
     print(f"sub-{x} " + " | ".join(f"{v} {res[v][-1][0]:.3f}/{res[v][-1][2]:.4f}" for v in VAR), flush=True)
