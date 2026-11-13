@@ -15,6 +15,24 @@ The full ten-subject R80 comparison supports ordinary over native Brain-HIVE (DI
 
 Model weights, private EEG, large feature arrays and machine credentials are excluded from Git. See the [verified storage and recovery record](docs/STORAGE.md). The October proposal below is historical; consult the dated current-state page before interpreting it as an active or completed experiment.
 
+## Stacked results on the ordinary head — 2026-11-13
+
+[`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks a joint ten-subject EEG encoder, a
+ridge + retrieval low-level start image, best-of-N selection and high-frequency shrinkage on top of the ordinary head
+(one head shared by the ten subjects). THINGS-EEG test set, R80, 10 subjects, K = 4 images per query, Brain-HIVE
+metrics (SwAV not measured):
+
+| setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP |
+|---|---|---|---|---|---|---|
+| Brain-HIVE, reproduced | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 |
+| + ordinary head | 0.2016 | 0.3360 | 0.8299 | 0.9017 | 0.7551 | 0.8107 |
+| A″: stack, best of 8, shrinkage | **0.2782** | **0.4043** | 0.8823 | 0.9255 | 0.7837 | 0.8251 |
+| B″: A″ + condition amplification ×2 | 0.2710 | 0.3995 | **0.8859** | **0.9269** | **0.7863** | **0.8266** |
+
+A″ and B″ improve on the reproduced baseline for every metric in every subject. Best of 8 uses 8× the sampling
+budget of a single draw. Every arm, the per-subject numbers, the selection rules and the negative results are in the
+folder's README; external methods are quoted there from their papers (not re-run here) and are not uniformly beaten.
+
 ## Overview
 
 Visual EEG-to-image reconstruction combines visual evidence decoded from brain activity with a pretrained image diffusion model. We study the connection between EEG–image representation alignment and the denoising responses that determine generated content. Our experiments examine intermediate visual supervision, conditional priors and image-level guidance.

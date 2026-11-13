@@ -11,7 +11,7 @@ from common import RUNS
 M = ["pixcorr", "ssim", "alex2", "alex5", "inception", "clip", "effnet", "clip_top1"]
 A = ["run", "use_A", "alpha", "nsel", "sel_low", "init_file", "strength", "steps", "blend", "cond_file", "amp", "cfg", "ip_scale",
      "prompt_file", "loop", "proj_ckpt", "reps", "K"]
-w = csv.writer(sys.stdout)
+w = csv.writer(sys.stdout, lineterminator="\n")
 w.writerow(["name"] + A + M)
 for f in sorted(RUNS.glob("img/*/metrics.json")):
     d = json.loads(f.read_text())
