@@ -36,10 +36,11 @@ often not stated), so the comparison is indicative, not a controlled benchmark.
 | **B‴** (best of 16, shrinkage 24 px) | 0.2748 | 0.4007 | 0.8861 | 0.9270 | 0.7882 | 0.8278 | 1 / 2 / 2 / 1 (tie) / 1 / 2 |
 | O3, original components only (no joint encoder, best-of-N, shrinkage, amplification; one draw) | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 | 2 / 2 / 2 / 2 / 4 / 3 |
 | O4, O3 + test-time-adapted start image (label-free, transductive; one draw) | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 | 1 / 2 / 2 / 2 / 4 / 3 |
-| **O5**, O4 + 7-seed ensemble condition with repeat bagging (one draw per image) | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 | 1 / 2 / 2 / 2 / 4 / 3 |
+| O5, O4 + 7-seed ensemble condition with repeat bagging (one draw per image) | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 | 1 / 2 / 2 / 2 / 4 / 3 |
+| **O6**, O5 over encoders on three input windows (0–250, 0–150, 0–100 samples; one draw per image) | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 | 1 / 2 / 2 / 2 / 4 / 3 |
 
 A″ and B‴ contain components taken from MindEye / MindEye2 / ENIGMA / Perceptogram (see the README's prior-art table);
-O3, O4 and O5 leave them out. Ranks count each method once (ENIGMA's single- and multi-subject rows as one).
+O3 to O6 leave them out. Ranks count each method once (ENIGMA's single- and multi-subject rows as one).
 
 Our reproduction of Brain-HIVE is 0.01–0.02 below the paper's own numbers, which suggests our metric code is not more
 lenient than theirs. Best of 16 uses 16× the sampling budget of a single draw.

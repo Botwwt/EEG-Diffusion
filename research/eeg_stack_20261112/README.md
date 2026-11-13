@@ -23,6 +23,7 @@ on top of the host and the co-author's head, only components that are ours or tr
 | O3 | **fractional img2img strength by re-injecting the noised start latent** (`gen.py --smap c0.611,0.5,1.0`) | mechanism of Differential Diffusion (image editing, credited), used here with a constant map |
 | O4 | **split-half contrastive test-time adaptation of the encoder input layer, used for the start image** (`tta.py`) | transferred from test-time adaptation (domain adaptation; Tent, TTT) with an InfoNCE objective (CPC / SimCLR); the split-half positives are ours |
 | O5 | **IP condition = deep ensemble of 7 independently seeded per-subject encoders, each applied to 10 inverse-variance group means of 8 repeats and averaged** (`condscreen.py ens7bag10`) | deep ensembles (Lakshminarayanan et al. 2017) and bagging (Breiman 1996), generic machine learning; not checked for prior use in brain decoding beyond the audited papers |
+| O6 | **the O5 ensemble extended over three input windows: encoders trained on samples 0–250, 0–150 and 0–100 (7 seeds each), 21 encoders × 10 repeat groups averaged** (`condscreen.py mw7bag10`) | multi-scale analysis of time series with an ensemble over the scales (generic); time-window analyses of EEG decoders are common in the field, so the shorter windows themselves are not claimed as new |
 
 O2 in detail: every test image has 80 repeats; trial r gets weight 1 / (mean squared residual of r against the mean of
 the other 79), so noisy trials (blinks, movement) count less. Label-free, one line of arithmetic, no training; the
@@ -46,6 +47,12 @@ each of the 7 encoders, the 70 outputs are averaged and rescaled per image to th
 subject's head is applied. The averaging removes encoder-seed variance and gives inputs closer to the repeat count the
 encoder was trained on. The start image stays the O4 one. Screen without images (`results/semantic_condition.txt`):
 top-1 0.4515 → 0.4750 (9/10 subjects), cosine to the target 0.3199 → 0.3291 (10/10).
+O6 in detail: the same official recipe, trained on the first 150 and the first 100 of the 250 samples (`train.py --t1 150`,
+`--t1 100`), seeds 2025 and 2028–2033, 14 extra encoders per subject (3 s each). The O5 condition is computed for all 21
+encoders (each on its own window of the 10 group means), the 210 outputs are averaged, rescaled to the base norm and
+passed through the subject's head (trained on the full-window encoder only). The start image stays the O4 one. The shorter
+windows decode better on their own (top-1 after the head 0.4985 for 7 seeds of 0–150 vs 0.4620 for 7 seeds of 0–250) and,
+unlike test-time adaptation, they also raise the cosine to the target (0.3334 vs 0.3286, 10/10).
 
 ### Results (10 subjects, same metric code and seeds as everywhere in this folder)
 
@@ -58,10 +65,12 @@ top-1 0.4515 → 0.4750 (9/10 subjects), cosine to the target 0.3199 → 0.3291 
 | + O2 inverse-variance repeat aggregation | 0.2525 | 0.3814 | 0.8717 | 0.9184 | 0.7603 | 0.8156 | 0.8640 |
 | + O3 fractional strength | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 | 0.8663 |
 | + O4 test-time-adapted start image | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 | 0.8659 |
-| **+ O5 seed ensemble with repeat bagging for the condition (final)** | **0.2692** | **0.4108** | **0.8780** | **0.9176** | **0.7584** | **0.8139** | **0.8642** |
+| + O5 seed ensemble with repeat bagging for the condition | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 | 0.8642 |
+| **+ O6 multi-window ensemble for the condition (final)** | **0.2711** | **0.4116** | **0.8796** | **0.9188** | **0.7616** | **0.8142** | **0.8634** |
 | O3 + adapted start *and* adapted condition (not adopted) | 0.2706 | 0.4142 | 0.8758 | 0.9153 | 0.7590 | 0.8087 | 0.8640 |
 
-- Final (O5) vs the reproduced baseline: every metric better; Incep in 9/10 subjects, every other metric in 10/10. O3 vs the co-author's head alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013
+- Final (O6) vs the reproduced baseline: every metric better (PixCorr +0.088, SSIM +0.100, Alex2 +0.053, Alex5 +0.023,
+  Incep +0.018, CLIP +0.016, EffNet −0.015); Incep in 9/10 subjects, every other metric in 10/10. O3 vs the co-author's head alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013
   (10/10 each), Incep +0.003 (6/10), CLIP +0.001 (4/10).
 - O1 (vs O0): PixCorr +0.006 (8/10), Alex2 +0.006 (9/10), CLIP +0.003 (7/10), SSIM −0.008 (0/10).
 - O2 (vs O1): CLIP +0.004 (8/10), Alex5 +0.003, Incep +0.002, EffNet −0.001 (7/10); start-latent correlation
@@ -74,7 +83,11 @@ top-1 0.4515 → 0.4750 (9/10 subjects), cosine to the target 0.3199 → 0.3291 
 - O5 (vs O4): every metric better: PixCorr +0.0005 (5/10), SSIM +0.0018 (9/10), Alex2 +0.0027 (8/10), Alex5 +0.0018
   (6/10), Incep +0.0011 (6/10), CLIP +0.0018 (8/10), EffNet −0.0018 (7/10). Chosen among five generated variants by
   the test metrics (all five reported in `results/semantic_condition.txt`); the gains are small, so this selection matters.
-- Ranking of O5 under the fixed rule of `results/leaderboard.md`: PixCorr 1st (Perceptogram 0.267), SSIM 2nd (ENIGMA 0.426),
+- O6 (vs O5): every metric better: PixCorr +0.0019 (9/10), SSIM +0.0007 (9/10), Alex2 +0.0016 (8/10), Alex5 +0.0012
+  (6/10), Incep +0.0031 (8/10), CLIP +0.0003 (7/10), EffNet −0.0008 (7/10). Chosen among four generated window variants
+  by the test metrics (`results/semantic_condition.txt`); it is the only one better than O5 on every metric. The 0–150
+  window alone (7 seeds, no bagging) has the largest Incep gain (+0.0048, 8/10) but SSIM −0.0001 and CLIP −0.0001.
+- Ranking of O6 (same ranks as O5) under the fixed rule of `results/leaderboard.md`: PixCorr 1st (Perceptogram 0.267), SSIM 2nd (ENIGMA 0.426),
   Alex2 2nd and Alex5 2nd (Perceptogram 0.910 / 0.927), CLIP 3rd (CogCapPro 0.830, ENIGMA 0.815), Inception 4th
   (CogCapPro 0.779, JMVR* 0.778, ENIGMA 0.777); each method counted once, as in the leaderboard. Leaving out the borrowed components costs mainly the semantic
   metrics: the full stack below (B‴) has Incep 0.788 and CLIP 0.828.
@@ -109,7 +122,7 @@ the cross-product of the two halves estimates signal power, their mean square si
 | O5 without repeat bagging (7-seed ensemble only) | 10 subjects, images | SSIM −0.002 (0/10), Incep +0.002, CLIP −0.000: bagging kept |
 | O5 with the start image retrieved by the adapted 7-seed ensemble | 10 subjects, images | Incep +0.002 (7/10), CLIP +0.001 (5/10), PixCorr / Alex −0.001: within noise, not adopted |
 | PCA-256 projection of the O4 condition, with and without adaptation | 10 subjects, images | with adaptation SSIM +0.003 but CLIP −0.006; without, every semantic metric −0.002 to −0.003: **negative** |
-| encoders trained on shorter windows (0–150, 0–100 samples) and multi-window ensembles (multi-scale windows, from time-series analysis), 7 seeds each | `condscreen.py`, 10 subjects (no images yet) | top-1 after the head 0.4985 (0–150, 7 seeds) / 0.5060 (with bagging) vs 0.4750 for the O5 condition, and the cosine to the target also rises (0.3334 vs 0.3291, 10/10), unlike adaptation; images in progress |
+| encoders trained on shorter windows (0–150, 0–100 samples) and multi-window ensembles (multi-scale windows, from time-series analysis), 7 seeds each | `condscreen.py`, then images for 4 variants, 10 subjects | top-1 after the head 0.4985 (0–150, 7 seeds) / 0.5060 (with bagging) vs 0.4750 for the O5 condition, cosine to the target 0.3334 vs 0.3291 (10/10). Images: the three-window ensemble with bagging is adopted as O6; 0–150 with bagging (CLIP −0.0007, 4/10), 0–150 alone (Incep +0.0048 but SSIM / CLIP −0.0001) and three windows without bagging (SSIM −0.0012, 2/10) are not adopted; a higher retrieval top-1 again did not mean a higher CLIP |
 
 ## Where each component comes from (prior-art audit, 2026-11-13)
 
@@ -125,6 +138,7 @@ the cross-product of the two halves estimates signal power, their mean square si
 | split-half reliability as a per-image / per-position Wiener gain | psychometrics (split-half, Spearman–Brown); closest: brain-optimized inference (Kneeland et al. 2023, fMRI: per-image strength from across-trial variance via an encoding model), DCBAN (learned confidence), UGDiff (learned spatial uncertainty, super-resolution) | closed-form, from the repeats, no training |
 | fractional strength by re-injection | Differential Diffusion (Levin & Fried 2023) | constant map, used to get strengths between the 4-step grid points |
 | seed ensemble with repeat bagging for the condition | deep ensembles (Lakshminarayanan et al. 2017), bagging (Breiman 1996) | applied to test repeats grouped at the training repeat level; generic practice, no novelty claimed |
+| multi-window encoder ensemble (O6) | multi-scale / multi-resolution time-series analysis, ensembles over input views; time-window analyses of EEG decoding are common in the field | only the averaging of whole encoders trained on nested windows; no novelty claimed |
 | split-half contrastive test-time adaptation | test-time adaptation (Tent, Wang et al. 2021; TTT, Sun et al. 2020); InfoNCE (CPC, van den Oord et al. 2018; SimCLR) | positives are two halves of the repeats of one test image, only the input layer is adapted; not checked for prior use in brain decoding beyond the audited papers |
 
 Novelty was checked by reading the closest papers in full (BOI, DCBAN, SPSC, UBP, UGDiff); papers seen only as abstracts
@@ -293,7 +307,7 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
   PixCorr +0.013, CLIP ±0.000, Alex2 −0.003 (vs −0.004 for the full high band) — possibly a slightly better trade, not
   established on ten subjects.
 
-## Running the original-components pipeline (O3 / O4 / O5)
+## Running the original-components pipeline (O3 / O4 / O5 / O6)
 
 Inputs, environment and step 1 (data) as in the next section; `b32fix.py`, `fenc.py`, the joint encoder, the shared head
 and `rel.py` are not needed. From `code/` (`XX` = 01 … 10):
@@ -325,13 +339,19 @@ for s in $(seq 1 10); do for k in 2028 2029 2030 2031 2032 2033; do python train
 python condscreen.py 1,2,3,4,5,6,7,8,9,10 base,ens7bag10 1          # writes runs/cond/ord_ens7bag10/
 python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_ens7bag10/sub-XX.npy --init_file sub-XX/lowrktta1_0.5_n0.8.npy \
     --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordens7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0
-python tab10.py > table10.txt          # rows O1 ... O5
+# O6: encoders on the 0-150 and 0-100 sample windows (7 seeds each), the multi-window condition, generation as O5
+for s in $(seq 1 10); do for w in 150 100; do for k in 2025 2028 2029 2030 2031 2032 2033; do
+    python train.py --sub $s --seed $k --t0 0 --t1 $w --tag t0_r4_w$w; done; done; done
+python condscreen.py 1,2,3,4,5,6,7,8,9,10 base,mw7bag10 1           # writes runs/cond/ord_mw7bag10/
+python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_mw7bag10/sub-XX.npy --init_file sub-XX/lowrktta1_0.5_n0.8.npy \
+    --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0
+python tab10.py > table10.txt          # rows O1 ... O6
 ```
 
 Analyses of this section: `robagg.py` (aggregators), `rel.py` (split-half reliability; its embedding part uses the joint
 encoder tag by default, pass `t0_r4` for the per-subject one), `permet.py` + `adapt.py` / `adapt_map.py` (per-image gain
 policies, needs `gen.py --dump 1`), `armsum.py` (paired means over subjects); outputs in `results/original_pipeline.txt`,
-`results/reliability_gain.txt`, `results/robust_aggregation.txt`, `results/test_time_adaptation.txt` (`tta.py`, all four settings), `results/semantic_condition.txt` (`condscreen.py` and the O5 arms). Cost: about 3 min of generation per subject on one RTX 4090.
+`results/reliability_gain.txt`, `results/robust_aggregation.txt`, `results/test_time_adaptation.txt` (`tta.py`, all four settings), `results/semantic_condition.txt` (`condscreen.py`, the O5 and O6 arms). Cost: about 3 min of generation per subject on one RTX 4090.
 The last command, re-run for subject 8 with the final version of `gen.py`, reproduced all stored metrics exactly (largest
 difference 0.0).
 

@@ -31,10 +31,11 @@ on top of the per-subject Brain-HIVE encoder and the ordinary head (one per subj
 | + ordinary head (per subject) | 0.2016 | 0.3360 | 0.8299 | 0.9017 | 0.7551 | 0.8107 |
 | O3: + original components | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 |
 | O4: + test-time-adapted start image | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 |
-| **O5: + seed-ensemble condition with repeat bagging** | **0.2692** | **0.4108** | **0.8780** | **0.9176** | **0.7584** | **0.8139** |
+| O5: + seed-ensemble condition with repeat bagging | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 |
+| **O6: + multi-window encoder ensemble for the condition** | **0.2711** | **0.4116** | **0.8796** | **0.9188** | **0.7616** | **0.8142** |
 
-O5 is better than the reproduced baseline on every metric (Incep in 9/10 subjects, the others in 10/10) and better than
-O4 on every metric; ranks 1 / 2 / 2 / 2 / 4 / 3 against published 10-subject EEG-only results. O4 adds label-free split-half
+O6 is better than the reproduced baseline on every metric (Incep in 9/10 subjects, the others in 10/10) and better than
+O5 (and O5 than O4) on every metric; ranks 1 / 2 / 2 / 2 / 4 / 3 against published 10-subject EEG-only results. O4 adds label-free split-half
 contrastive test-time adaptation of the encoder input layer (raw retrieval top-1 0.455 → 0.517, 10/10 subjects). Reliability-driven variants (split-half Wiener gains, strength maps) and ILVR
 were tested with controls; the strength maps and ILVR are negative. Details, credits and controls in the folder README.
 
