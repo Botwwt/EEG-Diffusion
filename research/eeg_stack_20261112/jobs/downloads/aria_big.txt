@@ -1,0 +1,189 @@
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/.DS_Store
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten
+  out=.DS_Store
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/ViT-B-32_features_test.pt
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten
+  out=ViT-B-32_features_test.pt
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/ViT-B-32_features_train.pt
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten
+  out=ViT-B-32_features_train.pt
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/sub-01/test.pt
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten/sub-01
+  out=test.pt
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/sub-01/train.pt
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten/sub-01
+  out=train.pt
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/sub-03/test.pt
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten/sub-03
+  out=test.pt
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/sub-03/train.pt
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten/sub-03
+  out=train.pt
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/sub-08/test.pt
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten/sub-08
+  out=test.pt
+https://hf-mirror.com/datasets/Haitao999/things-eeg/resolve/main/Preprocessed_data_250Hz_whiten/sub-08/train.pt
+  dir=data/things-eeg/Preprocessed_data_250Hz_whiten/sub-08
+  out=train.pt
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/.gitattributes
+  dir=data/hive_embeddings
+  out=.gitattributes
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/README.md
+  dir=data/hive_embeddings
+  out=README.md
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_RN50-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_RN50-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_RN50-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_RN50-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_dinov2-base-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_dinov2-base-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_dinov2-base-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_dinov2-base-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_synclr_vit_b_16-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_synclr_vit_b_16-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_synclr_vit_b_16-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_synclr_vit_b_16-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_vae-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_vae-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_test_vae-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_test_vae-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_RN50-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_RN50-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_RN50-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_RN50-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_dinov2-base-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_dinov2-base-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_dinov2-base-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_dinov2-base-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_synclr_vit_b_16-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_synclr_vit_b_16-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_synclr_vit_b_16-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_synclr_vit_b_16-part-00001-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_vae-part-00000-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_vae-part-00000-of-00001.parquet
+https://hf-mirror.com/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/main/things-eeg/things_train_vae-part-00001-of-00001.parquet
+  dir=data/hive_embeddings/things-eeg
+  out=things_train_vae-part-00001-of-00001.parquet
+https://hf-mirror.com/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/main/.gitattributes
+  dir=models/Fusion-Prior-H14_B32_VAE
+  out=.gitattributes
+https://hf-mirror.com/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/main/README.md
+  dir=models/Fusion-Prior-H14_B32_VAE
+  out=README.md
+https://hf-mirror.com/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/main/attn_adapter/config.json
+  dir=models/Fusion-Prior-H14_B32_VAE/attn_adapter
+  out=config.json
+https://hf-mirror.com/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/main/attn_adapter/diffusion_pytorch_model.safetensors
+  dir=models/Fusion-Prior-H14_B32_VAE/attn_adapter
+  out=diffusion_pytorch_model.safetensors
+https://hf-mirror.com/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/main/fusion_encoder/config.json
+  dir=models/Fusion-Prior-H14_B32_VAE/fusion_encoder
+  out=config.json
+https://hf-mirror.com/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/main/fusion_encoder/diffusion_pytorch_model.safetensors
+  dir=models/Fusion-Prior-H14_B32_VAE/fusion_encoder
+  out=diffusion_pytorch_model.safetensors
+https://hf-mirror.com/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/main/proj/config.json
+  dir=models/Fusion-Prior-H14_B32_VAE/proj
+  out=config.json
+https://hf-mirror.com/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/main/proj/diffusion_pytorch_model.safetensors
+  dir=models/Fusion-Prior-H14_B32_VAE/proj
+  out=diffusion_pytorch_model.safetensors
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/LICENSE.md
+  dir=models/sdxl-turbo
+  out=LICENSE.md
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/README.md
+  dir=models/sdxl-turbo
+  out=README.md
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/model_index.json
+  dir=models/sdxl-turbo
+  out=model_index.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/scheduler/scheduler_config.json
+  dir=models/sdxl-turbo/scheduler
+  out=scheduler_config.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/text_encoder/config.json
+  dir=models/sdxl-turbo/text_encoder
+  out=config.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/text_encoder/model.fp16.safetensors
+  dir=models/sdxl-turbo/text_encoder
+  out=model.fp16.safetensors
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/text_encoder_2/config.json
+  dir=models/sdxl-turbo/text_encoder_2
+  out=config.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/text_encoder_2/model.fp16.safetensors
+  dir=models/sdxl-turbo/text_encoder_2
+  out=model.fp16.safetensors
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/tokenizer/merges.txt
+  dir=models/sdxl-turbo/tokenizer
+  out=merges.txt
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/tokenizer/special_tokens_map.json
+  dir=models/sdxl-turbo/tokenizer
+  out=special_tokens_map.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/tokenizer/tokenizer_config.json
+  dir=models/sdxl-turbo/tokenizer
+  out=tokenizer_config.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/tokenizer/vocab.json
+  dir=models/sdxl-turbo/tokenizer
+  out=vocab.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/tokenizer_2/merges.txt
+  dir=models/sdxl-turbo/tokenizer_2
+  out=merges.txt
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/tokenizer_2/special_tokens_map.json
+  dir=models/sdxl-turbo/tokenizer_2
+  out=special_tokens_map.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/tokenizer_2/tokenizer_config.json
+  dir=models/sdxl-turbo/tokenizer_2
+  out=tokenizer_config.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/tokenizer_2/vocab.json
+  dir=models/sdxl-turbo/tokenizer_2
+  out=vocab.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/unet/config.json
+  dir=models/sdxl-turbo/unet
+  out=config.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/unet/diffusion_pytorch_model.fp16.safetensors
+  dir=models/sdxl-turbo/unet
+  out=diffusion_pytorch_model.fp16.safetensors
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/vae/config.json
+  dir=models/sdxl-turbo/vae
+  out=config.json
+https://hf-mirror.com/stabilityai/sdxl-turbo/resolve/main/vae/diffusion_pytorch_model.fp16.safetensors
+  dir=models/sdxl-turbo/vae
+  out=diffusion_pytorch_model.fp16.safetensors

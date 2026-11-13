@@ -217,9 +217,19 @@ python svsum.py _ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16 main   # all --p
 Cost on one RTX 4090: joint encoder a few minutes per fold run (all ten subjects), shared head ≈ 2.4 h (10,332 updates),
 start images ≈ 2 min per subject, B‴ generation ≈ 40 min per subject (64 SDXL-Turbo images per query plus scoring).
 
+**Other arms.** Every generation run in the tables, including the negative ones, is one row of
+`results/runs_summary.csv` with all its `gen.py` arguments (encoder run, condition file, start image, strength, steps,
+amplification, best-of-N, …); `#post:` / `#selvar:` rows are variants scored inside that run. The per-subject
+baseline encoders (`t0_r4`) come from `train.py`, the per-subject heads from `ordh.py train <sub>`.
+
 **How close a re-run should come.** Generation noise is seeded per (query, sample, candidate), so step 5 is repeatable
 given the same conditions and start images (a re-run of step 5 from a fresh clone of this repository is reported below). Steps 2–3 train in bf16 on GPU and are not bit-exact; encoder seeds changed the per-subject image metrics
 by 0.001–0.007 (SD over three seeds, subjects 1, 3, 8), so ten-subject means should agree to about ±0.003.
+
+**Folder layout.** `code/` every script used for the numbers here (`cmp.py`: paired two-arm comparison, `svsum.py`:
+all variants of one run); `jobs/` the shell wrappers that queued the experiments and the download lists (not needed
+for the steps above; see `jobs/README.md`); `results/` the tables. Generated files (EEG arrays, embeddings, start
+images, model weights, images, per-run metrics) are not included: each is rebuilt by the steps above.
 
 Downloaded `.pt` EEG files are numpy pickles; they are loaded only through the restricted unpickler in
 `common.safe_load_pt`. No EEG, image, embedding or model file is included here.
