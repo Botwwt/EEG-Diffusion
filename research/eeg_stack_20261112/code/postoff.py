@@ -30,7 +30,17 @@ def lowpass(x, sg):
 po = info.setdefault("post_off", {})
 for spec in specs:
     out_ = torch.empty_like(rec)
-    if spec.startswith("m"):
+    if spec.startswith("y"):  # 'y,sigma,beta': shrink only the luminance high band (colour detail kept)
+        sg, beta = (float(v) for v in spec.split(",")[1:])
+        wy = torch.tensor([0.299, 0.587, 0.114]).view(1, 3, 1, 1)
+        for k in range(K):
+            y = (rec[k] * wy).sum(1, keepdim=True)
+            out_[k] = (rec[k] - (1 - beta) * (y - lowpass(y.expand(-1, 3, -1, -1), sg)[:, :1])).clamp(0, 1)
+    elif spec.startswith("b"):  # 'b,s1,s2,beta': shrink only the band between blur scales s1 < s2 (finest detail kept)
+        s1, s2, beta = (float(v) for v in spec.split(",")[1:])
+        for k in range(K):
+            out_[k] = (rec[k] - (1 - beta) * (lowpass(rec[k], s1) - lowpass(rec[k], s2))).clamp(0, 1)
+    elif spec.startswith("m"):
         sg, beta = (float(v) for v in spec.split(",")[1:])
         hf = torch.stack([rec[k] - lowpass(rec[k], sg) for k in range(K)]) if sg > 0 else rec
         hm = hf.mean(0)

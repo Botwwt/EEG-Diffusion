@@ -27,10 +27,13 @@ metrics (SwAV not measured):
 | Brain-HIVE, reproduced | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 |
 | + ordinary head | 0.2016 | 0.3360 | 0.8299 | 0.9017 | 0.7551 | 0.8107 |
 | A″: stack, best of 8, shrinkage | **0.2782** | **0.4043** | 0.8823 | 0.9255 | 0.7837 | 0.8251 |
-| B″: A″ + condition amplification ×2 | 0.2710 | 0.3995 | **0.8859** | **0.9269** | **0.7863** | **0.8266** |
+| B″: A″ + condition amplification ×2 | 0.2710 | 0.3995 | 0.8859 | 0.9269 | 0.7863 | 0.8266 |
+| B‴: B″ with best of 16, shrinkage 24 px | 0.2748 | 0.4007 | **0.8861** | **0.9270** | **0.7882** | **0.8278** |
 
-A″ and B″ improve on the reproduced baseline for every metric in every subject. Best of 8 uses 8× the sampling
-budget of a single draw. Every arm, the per-subject numbers, the selection rules and the negative results are in the
+A″, B″ and B‴ improve on the reproduced baseline for every metric in every subject. Best of 8 / 16 uses 8× / 16× the
+sampling budget of a single draw. Against published 10-subject EEG-only results (inclusion rule and sources in
+[`results/leaderboard.md`](research/eeg_stack_20261112/results/leaderboard.md)), B‴ is first on PixCorr and Inception, level
+with the best on Alex5, and second on SSIM, Alex2 and CLIP. Every arm, the per-subject numbers, the selection rules and the negative results are in the
 folder's README; external methods are quoted there from their papers (not re-run here) and are not uniformly beaten.
 
 ## Overview

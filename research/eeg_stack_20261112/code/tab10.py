@@ -33,6 +33,11 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "A' best of 8, target = corrected condition": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_sel8sv#selvar:head@8",
         "B' best of 8, target = corrected condition": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel8sv#selvar:head@8",
         "A' best of 8, target = kNN training prototype": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_sel8sv#selvar:knn@8",
+        "B' best of 16": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16",
+        "B‴: B' best of 16 + HF shrink (24 px, 0.8)": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16#post:0,24,0.8",
+        "B' best of 16 + HF shrink (16 px, 0.8)": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16#post:0,16,0.8",
+        "B' best of 16, target = corrected condition": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16#selvar:head@16",
+        "A' best of 8, candidates alternating amp 1 / 2": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_ampmix12_sel8",
         "A' retrieval weight 0.25": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.25_sel4",
         "A' single draw": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5",
         "A' single draw, 8 steps strength 0.75": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_8st0.75",
@@ -98,6 +103,10 @@ compare("B': ... + amp 2", ["B' best of 8"])
 compare("A' best of 8", ["A' best of 8, target = corrected condition", "A' best of 8, target = kNN training prototype", "A'': A' best of 8 + HF shrink (16 px, 0.8)"])
 compare("B' best of 8", ["B' best of 8, target = corrected condition", "B'': B' best of 8 + HF shrink (16 px, 0.8)"])
 compare("A'': A' best of 8 + HF shrink (16 px, 0.8)", ["B'': B' best of 8 + HF shrink (16 px, 0.8)"])
+compare("B' best of 8", ["B' best of 16"])
+compare("B' best of 16", ["B' best of 16, target = corrected condition", "B' best of 16 + HF shrink (16 px, 0.8)", "B‴: B' best of 16 + HF shrink (24 px, 0.8)"])
+compare("A' best of 8", ["A' best of 8, candidates alternating amp 1 / 2"])
+compare("B' best of 8", ["A' best of 8, candidates alternating amp 1 / 2"])
 print("\n===== retrieval weight, sampler steps, 3-pass shared head =====")
 compare("joint enc: shared head + low + best of 4", ["A' retrieval weight 0.25"])
 compare("A' single draw", ["A' single draw, 8 steps strength 0.75", "A' single draw, 8 steps strength 0.625"])

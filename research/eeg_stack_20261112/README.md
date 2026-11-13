@@ -23,14 +23,16 @@ SwAV is not measured (weights not downloadable here). Every row is the mean over
 | **A**: joint encoder + **one shared head** + low-level start + best of 4 | 0.2550 | 0.3937 | 0.8777 | 0.9261 | 0.7827 | 0.8217 | **0.8463** |
 | **B**: … + amplification ×2 | 0.2483 | 0.3891 | 0.8823 | 0.9289 | 0.7862 | 0.8246 | 0.8475 |
 | **A′**: A with the start image blended with retrieved training latents | 0.2665 | 0.3870 | 0.8853 | 0.9271 | 0.7833 | 0.8232 | 0.8480 |
-| **B′**: A′ + amplification ×2 | 0.2580 | 0.3823 | 0.8897 | **0.9301** | **0.7869** | 0.8239 | 0.8478 |
-| B′ with best of 8 instead of 4 | 0.2602 | 0.3823 | **0.8899** | 0.9293 | 0.7864 | **0.8268** | 0.8475 |
+| **B′**: A′ + amplification ×2 | 0.2580 | 0.3823 | 0.8897 | 0.9301 | 0.7869 | 0.8239 | 0.8478 |
+| B′ with best of 8 instead of 4 | 0.2602 | 0.3823 | 0.8899 | 0.9293 | 0.7864 | 0.8268 | 0.8475 |
 | **A″**: A′ + best of 8 + high-frequency shrinkage | **0.2782** | **0.4043** | 0.8823 | 0.9255 | 0.7837 | 0.8251 | 0.8476 |
 | **B″**: B′ + best of 8 + high-frequency shrinkage | 0.2710 | 0.3995 | 0.8859 | 0.9269 | 0.7863 | 0.8266 | 0.8491 |
+| B′ with best of 16 | 0.2618 | 0.3824 | **0.8902** | **0.9298** | **0.7883** | **0.8284** | 0.8467 |
+| **B‴**: B′ + best of 16 + high-frequency shrinkage (24 px) | 0.2748 | 0.4007 | 0.8861 | 0.9270 | 0.7882 | 0.8278 | 0.8479 |
 | low-level operating point: img2img strength 0.5 + best of 4 (per-subject heads) | 0.2578 | 0.4263 | 0.8422 | 0.8991 | 0.7744 | 0.7992 | 0.8635 |
 | Brain-HIVE paper, Table 2 (EEG) | 0.195 | 0.336 | 0.843 | 0.905 | 0.756 | 0.808 | – |
 
-A, B, A′, B′, A″ and B″ improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
+A, B, A′, B′, A″, B″ and B‴ improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
 baseline is 0.01–0.02 below the paper's own numbers. The low-level operating point trades semantics for SSIM
 (Alex2 / Alex5 / CLIP fall below A in all ten subjects) and is listed only to show the trade-off. Per-subject rows: `results/table10.txt`;
 every generation run: `results/runs_summary.csv`; every encoder: `results/encoders_summary.csv`.
@@ -56,6 +58,14 @@ Contribution of each component (10-subject means of the differences):
   +0.017 in all ten subjects, Incep / CLIP within ±0.001, Alex2 −0.004 and Alex5 −0.003 (0/10). The setting
   (Gaussian 16 px, gain 0.8) is the one a leave-one-subject-out rule picks for every held-out subject (largest SSIM
   gain on the other nine with CLIP loss ≤ 0.001 and Alex2 loss ≤ 0.005, among the 10 settings of the grid below).
+- best of 16 over best of 8 (B′): CLIP +0.0015, Incep +0.0019, PixCorr +0.0016 (9/10), others within ±0.001; 64 generations
+  per query. B‴ = best of 16 + shrinkage at 24 px (the setting the leave-one-subject-out rule picks for every held-out
+  subject on this grid): PixCorr +0.013, SSIM +0.018 (10/10), CLIP −0.0005, Incep −0.0002, Alex2 −0.004, Alex5 −0.003.
+- Ranking against published 10-subject EEG-only numbers (`results/leaderboard.md`, inclusion rule fixed before
+  ranking, every paper read in full): B‴ is first on PixCorr (0.275 vs 0.267) and Inception (0.788 vs 0.779), level
+  with the best on Alex5 (0.927), second on SSIM (0.401; ENIGMA 0.426), Alex2 (0.886; Perceptogram 0.910) and CLIP
+  (0.828; CognitionCapturerPro 0.830). Not ranked but relevant: JMVR with VLM captions of the stimulus reaches CLIP
+  0.829 / Incep 0.793, and ENIGMA's re-run of Perceptogram reaches SSIM 0.431. Metric code differs between papers.
 - Against the external numbers quoted under Protocol details, A″ / B″ are above Perceptogram on PixCorr, SSIM, Incep
   and CLIP, level on Alex5 and below on Alex2 (0.882–0.886 vs 0.910); above ENIGMA on everything except SSIM
   (0.404 vs 0.423); above CogCapPro on PixCorr, SSIM and Incep, below on CLIP (0.827 vs 0.830). Evaluation details
@@ -88,7 +98,7 @@ Contribution of each component (10-subject means of the differences):
    test-latent correlation and the image metrics of the ten subjects (a test-set choice).
 4. **Condition amplification** (`gen.py --amp`): c' = |c| · normalize(m + a (c/|c| − m)), m = mean direction of the
    200 test conditions (label-free, transductive).
-5. **Best of N** (`gen.py --nsel 4`, or 8 in A″ / B″): for every output image, 4 candidates with different noise; each is embedded back
+5. **Best of N** (`gen.py --nsel 4`, 8 in A″ / B″, 16 in B‴): for every output image, 4 candidates with different noise; each is embedded back
    to F (`code/fenc.py`) and the one with the highest centred cosine to the EEG condition is kept. No label is used,
    but the sampling budget is 4× that of a single draw (16 generations per query instead of 4).
 
@@ -145,11 +155,17 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
 | best-of-8 selection target: kNN prototype of the training-image embeddings (top 20, T = 0.05), alone or mixed | CLIP +0.0006 / −0.0009, Alex5 −0.001 to −0.002, Incep −0.002 |
 | shrinkage grid, other settings (A′ / B′ best of 8, 10 subjects): gain 0.8 at σ 2 / 4 / 8 px; gain 0.7 / 0.6 at 8 px | smaller σ helps SSIM less at a similar or larger CLIP cost; gain 0.6 at 8 px: SSIM +0.032, PixCorr +0.014, CLIP −0.007 / −0.006, Alex2 −0.010 / −0.009 |
 | replacing the low-frequency band (σ 8 / 16 px) by that of the start image, weight 0.25 / 0.5, with or without shrinkage | PixCorr +0.025 to +0.035, SSIM up to +0.018, but CLIP −0.006 to −0.019 |
+| best-of-8 candidates alternating amplification 1 and 2 (one pool, the EEG score chooses) | between A′ and B′ on every metric (PixCorr 0.2646, SSIM 0.3850, Alex2 0.8882, CLIP 0.8273): no gain over picking one of them |
+| best of 16, target = corrected condition | CLIP +0.0009, SSIM +0.0011 (10/10), Incep −0.0020: within noise |
+| shrinkage at 24–48 px with gain 0.5–0.7 (B′ best of 16) | SSIM up to 0.437 (+0.055) and PixCorr up to 0.303, but CLIP −0.002 to −0.009 and Alex2 −0.008 to −0.022 |
 | shrinking the high band towards the mean of the K = 4 samples of a query (full band or above σ 4 / 8 px) | PixCorr +0.003 to +0.027, SSIM +0.008 to +0.023, Incep +0.001 to +0.003, but CLIP −0.002 to −0.014 |
 
-## Pending
+## Not finished (stopped 2026-11-13)
 
-- Best of 16 with larger shrinkage scales (σ 24–48 px) on B′ (running).
+- Shrinking only the luminance high band (`postoff.py` spec `y,σ,β`) or only the band between 1 and 24 px (`b,1,24,β`):
+  scored on B′ best of 16 for 4 subjects (5, 6, 8, 9) before the run was stopped. Band 1–24 px at 0.8: SSIM +0.015,
+  PixCorr +0.013, CLIP ±0.000, Alex2 −0.003 (vs −0.004 for the full high band) — possibly a slightly better trade, not
+  established on ten subjects.
 
 ## Running it
 
