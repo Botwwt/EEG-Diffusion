@@ -223,7 +223,10 @@ amplification, best-of-N, …); `#post:` / `#selvar:` rows are variants scored i
 baseline encoders (`t0_r4`) come from `train.py`, the per-subject heads from `ordh.py train <sub>`.
 
 **How close a re-run should come.** Generation noise is seeded per (query, sample, candidate), so step 5 is repeatable
-given the same conditions and start images (a re-run of step 5 from a fresh clone of this repository is reported below). Steps 2–3 train in bf16 on GPU and are not bit-exact; encoder seeds changed the per-subject image metrics
+given the same conditions and start images. Checked on 2026-11-13: a fresh clone of this repository (commit 4e5c80d)
+re-ran step 5 for subject 8 in both A″ (best of 8, shrinkage 16 px) and B‴ (best of 16, shrinkage 24 px) on the stored
+conditions and start images, and reproduced all seven stored metrics, before and after shrinkage, exactly (largest
+difference 0.0; same GPU type and environment). `b32fix.py` from the clone rebuilt `b32_fix.pt` bit-identically. Steps 2–3 train in bf16 on GPU and are not bit-exact; encoder seeds changed the per-subject image metrics
 by 0.001–0.007 (SD over three seeds, subjects 1, 3, 8), so ten-subject means should agree to about ±0.003.
 
 **Folder layout.** `code/` every script used for the numbers here (`cmp.py`: paired two-arm comparison, `svsum.py`:
