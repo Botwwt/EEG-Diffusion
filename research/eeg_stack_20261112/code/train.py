@@ -28,7 +28,8 @@ p.add_argument("--sub", type=int, required=True)
 p.add_argument("--seed", type=int, default=2025)
 p.add_argument("--fold", type=int, default=-1, help="-1: train on all 1654 concepts; k: hold out concept fold k")
 p.add_argument("--nfold", type=int, default=5)
-p.add_argument("--mode", default="r4", choices=["r4", "subset_u", "subset_k", "noise"])
+p.add_argument("--mode", default="r4", choices=["r4", "subset_u", "subset_k", "noise", "ivw4"],
+               help="ivw4: inverse-variance weighted mean of the 4 repeats (weight 1 / residual power against the other 3)")
 p.add_argument("--inorm", type=int, default=0, help="1: divide every input by its RMS (train and test)")
 p.add_argument("--t0", type=int, default=0)
 p.add_argument("--t1", type=int, default=250)
@@ -97,11 +98,21 @@ def rms_norm(x):
     return x / x.pow(2).mean(dim=(1, 2), keepdim=True).sqrt().clamp_min(1e-8) if args.inorm else x
 
 
+def ivw_mean(e):
+    """[B, R, C, T] -> inverse-variance weighted mean over the R repeats (weight 1 / residual power against the other R - 1)."""
+    tot = e.sum(1, keepdim=True)
+    v = (e - (tot - e) / (e.shape[1] - 1)).pow(2).mean(dim=(2, 3))
+    w = 1 / v.clamp_min(1e-12)
+    return ((w / w.sum(1, keepdim=True))[:, :, None, None] * e).sum(1)
+
+
 def train_input(idx):
     e = x_tr[idx]  # [B, 4, C, T]
     B = len(idx)
     if args.mode == "r4":
         return rms_norm(e.mean(1))
+    if args.mode == "ivw4":
+        return rms_norm(ivw_mean(e))
     if args.mode in ("subset_u", "subset_k"):
         w = torch.ones(4, device=dev) if args.mode == "subset_u" else torch.arange(1., 5., device=dev)
         k = torch.multinomial(w, B, replacement=True, generator=g) + 1                      # [B] in 1..4
@@ -204,6 +215,9 @@ for k in (1, 2, 4, 8, 16, 40, 80):
     test_by_k[k] = np.mean(accs, 0).tolist()
     mu_test[k] = torch.stack(mus).mean(0).cpu().numpy()
 c80 = encode(x_te.mean(1))
+c_ivw = encode(ivw_mean(x_te))
+m["test_ivw_top1_top5"] = topk(nz(c_ivw, dim=1) @ Fn_te.T, tgt)
+np.save(out / "cond_test_ivw.npy", c_ivw.cpu().numpy())
 c_emb = c4_sum / 20  # embedding-space average of 20 disjoint 4-repeat inputs (matches the training repeat level)
 m["test_top1_top5_by_k"] = test_by_k
 m["test_r80_top1_top5"] = topk(nz(c80, dim=1) @ Fn_te.T, tgt)

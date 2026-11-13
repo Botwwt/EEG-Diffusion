@@ -56,6 +56,8 @@ p.add_argument("--ilvr", default="", help="low-band anchoring (ILVR, Choi et al.
                "(k = 0: every step but the last) the latent's low band LP_f (average-pool by f, bilinear back) is moved by w towards that of the "
                "start latent noised to the current level: x += w * (LP_f(z0 + sigma * eps) - LP_f(x)). f = 4 keeps exactly the 16 x 16 band the "
                "EEG decoder predicts; uses --strength as the img2img start")
+p.add_argument("--ip_sched", default="", help="IP-attention weight per sampler step, comma-separated over the steps that are run (e.g. '1,1.5,1,1' with "
+               "4 steps); set before each step through the step callback")
 p.add_argument("--reps", default="0:80", help="test repeats averaged into the input, start:stop")
 p.add_argument("--K", type=int, default=4, help="images per query")
 p.add_argument("--bs", type=int, default=0, help="queries per batch (0: about 20 images per batch)")
@@ -163,6 +165,17 @@ if args.ip_scale != 1.0:
             proc.scale, n_ip = args.ip_scale, n_ip + 1
     assert n_ip > 0
     info["n_ip_processors"] = n_ip
+IP_PROCS = [proc for proc in pipe.unet.attn_processors.values() if isinstance(proc, IPAttnProcessor2_0)]
+ip_sched = [float(v) for v in args.ip_sched.split(",")] if args.ip_sched else []
+
+
+def set_ip(v):
+    for proc in IP_PROCS:
+        proc.scale = v
+
+
+if ip_sched:
+    assert args.init_file and IP_PROCS
 pipe.vae.enable_slicing()
 pipe.set_progress_bar_config(disable=True)
 args.bs = args.bs or max(1, 20 // args.K)
@@ -250,6 +263,7 @@ def generate(cv, q, s, n):
         else:  # start from the noised low-level image; one generator per image keeps the noise tied to (query, sample)
             gens = [torch.Generator(dev).manual_seed(1_000_003 * i + k + 12345 + 100_003 * n) for i in q for k in range(K)]
             i0 = init[q].repeat_interleave(K, dim=0).to(dev, dt)
+            cbs = []
             if smap is not None or ilvr is not None:
                 with torch.no_grad():
                     z0 = vae32.encode(i0.float() * 2 - 1).latent_dist.mean * vae32.config.scaling_factor
@@ -267,7 +281,7 @@ def generate(cv, q, s, n):
                         lt = ck["latents"].float()
                         ck["latents"] = (lt + w_ * (lp(z0 + sig * eps) - lp(lt))).to(ck["latents"].dtype)
                     return ck
-                kw.update(callback_on_step_end=cb, callback_on_step_end_tensor_inputs=["latents"])
+                cbs.append(cb)
             if smap is not None:
                 h_ = hold[q].repeat_interleave(K, dim=0).to(dev)
 
@@ -278,7 +292,20 @@ def generate(cv, q, s, n):
                         lt = ck["latents"]
                         ck["latents"] = (m_ * (z0 + sig * eps) + (1 - m_) * lt.float()).to(lt.dtype)
                     return ck
-                kw.update(callback_on_step_end=cb, callback_on_step_end_tensor_inputs=["latents"])
+                cbs.append(cb)
+            if ip_sched:
+                set_ip(ip_sched[0])
+
+                def cb_ip(pp, i, t, ck):
+                    set_ip(ip_sched[min(i + 1, len(ip_sched) - 1)])
+                    return ck
+                cbs.append(cb_ip)
+            if cbs:
+                def cb_all(pp, i, t, ck):
+                    for f in cbs:
+                        ck = f(pp, i, t, ck)
+                    return ck
+                kw.update(callback_on_step_end=cb_all, callback_on_step_end_tensor_inputs=["latents"])
             img = p2(image=i0, strength=args.strength, generator=gens, **kw).images
             if args.blend > 0:
                 img = (1 - args.blend) * img.float() + args.blend * i0.float()

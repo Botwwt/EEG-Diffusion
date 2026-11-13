@@ -21,17 +21,20 @@ Model weights, private EEG, large feature arrays and machine credentials are exc
 output shrinkage and condition amplification of the stack below come from same-field papers (MindEye2 / ENIGMA,
 MindEye, MindEye2, Perceptogram). Leaving them out and keeping only components that are ours or transferred from other
 fields — repeat-corrected ridge start image blended with retrieved training latents, inverse-variance aggregation of
-the 80 test repeats (robust statistics), fractional img2img strength by re-injection (Differential Diffusion) —
+the 80 test repeats (robust statistics), fractional img2img strength by re-injection (Differential Diffusion), split-half contrastive test-time
+adaptation of the encoder input layer (test-time adaptation, domain adaptation) —
 on top of the per-subject Brain-HIVE encoder and the ordinary head (one per subject), one draw per image:
 
 | setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP |
 |---|---|---|---|---|---|---|
 | Brain-HIVE, reproduced | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 |
 | + ordinary head (per subject) | 0.2016 | 0.3360 | 0.8299 | 0.9017 | 0.7551 | 0.8107 |
-| **O3: + original components** | **0.2636** | **0.4073** | **0.8727** | **0.9152** | **0.7581** | **0.8118** |
+| O3: + original components | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 |
+| **O4: + test-time-adapted start image** | **0.2687** | **0.4090** | **0.8753** | **0.9158** | **0.7573** | **0.8121** |
 
-Better than the reproduced baseline on every metric in every subject (CLIP 9/10); ranks 2 / 2 / 2 / 2 / 4 / 3 against
-published 10-subject EEG-only results. Reliability-driven variants (split-half Wiener gains, strength maps) and ILVR
+O4 is better than the reproduced baseline on every metric (PixCorr, SSIM, Alex2, Alex5 in 10/10 subjects, Incep and CLIP
+in 9/10); ranks 1 / 2 / 2 / 2 / 4 / 3 against published 10-subject EEG-only results. O4 adds label-free split-half
+contrastive test-time adaptation of the encoder input layer (raw retrieval top-1 0.455 → 0.517, 10/10 subjects). Reliability-driven variants (split-half Wiener gains, strength maps) and ILVR
 were tested with controls; the strength maps and ILVR are negative. Details, credits and controls in the folder README.
 
 **Full stack including the borrowed components (credited):** [`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks a joint ten-subject EEG encoder, a

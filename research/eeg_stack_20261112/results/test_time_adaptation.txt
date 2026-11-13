@@ -1,0 +1,84 @@
+# Split-half contrastive test-time adaptation of the encoder input layer (tta.py)
+# Label-free and transductive: the 80 repeats of each test image are split at random into two halves of 40; the two
+# inverse-variance-weighted half-means of one image are positives, the other 199 images negatives (symmetric InfoNCE,
+# temperature tau). Only the subject's input layer (proj_in) is updated; anchor lam * relative L2 to the unadapted
+# output. Scored by raw 200-way retrieval of the CLIP target (labels used only for scoring).
+# Columns: steps lr tau lam. The first setting (50 1e-4 0.1 1) was fixed before any run and is the one used for O4;
+# the other three are the only other settings tried, all reported.
+# Before = inverse-variance aggregation of the 80 repeats (O2/O3 encoder input).
+
+## python tta.py t0_r4 1,...,10 50 1e-4 0.1 1
+sub-01: top1/top5 0.495/0.795 -> 0.535/0.830 | anchor 0.0502 loss 0.261
+sub-02: top1/top5 0.450/0.790 -> 0.530/0.805 | anchor 0.0541 loss 0.278
+sub-03: top1/top5 0.480/0.795 -> 0.500/0.815 | anchor 0.0516 loss 0.222
+sub-04: top1/top5 0.430/0.770 -> 0.490/0.780 | anchor 0.0491 loss 0.240
+sub-05: top1/top5 0.310/0.690 -> 0.375/0.735 | anchor 0.0650 loss 0.363
+sub-06: top1/top5 0.465/0.815 -> 0.540/0.830 | anchor 0.0497 loss 0.236
+sub-07: top1/top5 0.415/0.805 -> 0.510/0.840 | anchor 0.0417 loss 0.192
+sub-08: top1/top5 0.510/0.840 -> 0.545/0.845 | anchor 0.0451 loss 0.179
+sub-09: top1/top5 0.445/0.790 -> 0.505/0.785 | anchor 0.0627 loss 0.308
+sub-10: top1/top5 0.550/0.880 -> 0.635/0.910 | anchor 0.0471 loss 0.193
+mean over 10: 0.4550/0.7970 -> 0.5165/0.8175 | top1 better in 10, worse in 0
+
+## python tta.py t0_r4 1,...,10 100 3e-5 0.1 1
+sub-01: top1/top5 0.495/0.795 -> 0.510/0.830 | anchor 0.0397 loss 0.320
+sub-02: top1/top5 0.450/0.790 -> 0.525/0.805 | anchor 0.0423 loss 0.343
+sub-03: top1/top5 0.480/0.795 -> 0.510/0.820 | anchor 0.0422 loss 0.255
+sub-04: top1/top5 0.430/0.770 -> 0.485/0.755 | anchor 0.0401 loss 0.290
+sub-05: top1/top5 0.310/0.690 -> 0.370/0.735 | anchor 0.0505 loss 0.458
+sub-06: top1/top5 0.465/0.815 -> 0.540/0.810 | anchor 0.0388 loss 0.306
+sub-07: top1/top5 0.415/0.805 -> 0.500/0.840 | anchor 0.0343 loss 0.227
+sub-08: top1/top5 0.510/0.840 -> 0.550/0.850 | anchor 0.0393 loss 0.201
+sub-09: top1/top5 0.445/0.790 -> 0.500/0.790 | anchor 0.0475 loss 0.422
+sub-10: top1/top5 0.550/0.880 -> 0.630/0.910 | anchor 0.0407 loss 0.232
+mean over 10: 0.4550/0.7970 -> 0.5120/0.8145 | top1 better in 10, worse in 0
+
+## python tta.py t0_r4 1,...,10 50 3e-4 0.1 10
+sub-01: top1/top5 0.495/0.795 -> 0.515/0.820 | anchor 0.0087 loss 0.415
+sub-02: top1/top5 0.450/0.790 -> 0.475/0.810 | anchor 0.0083 loss 0.434
+sub-03: top1/top5 0.480/0.795 -> 0.495/0.820 | anchor 0.0074 loss 0.370
+sub-04: top1/top5 0.430/0.770 -> 0.460/0.765 | anchor 0.0074 loss 0.388
+sub-05: top1/top5 0.310/0.690 -> 0.365/0.715 | anchor 0.0120 loss 0.537
+sub-06: top1/top5 0.465/0.815 -> 0.500/0.810 | anchor 0.0065 loss 0.386
+sub-07: top1/top5 0.415/0.805 -> 0.445/0.820 | anchor 0.0057 loss 0.312
+sub-08: top1/top5 0.510/0.840 -> 0.525/0.840 | anchor 0.0067 loss 0.309
+sub-09: top1/top5 0.445/0.790 -> 0.465/0.790 | anchor 0.0107 loss 0.463
+sub-10: top1/top5 0.550/0.880 -> 0.585/0.905 | anchor 0.0067 loss 0.333
+mean over 10: 0.4550/0.7970 -> 0.4830/0.8095 | top1 better in 10, worse in 0
+
+## python tta.py t0_r4 1,...,10 100 1e-4 0.1 10
+sub-01: top1/top5 0.495/0.795 -> 0.505/0.810 | anchor 0.0061 loss 0.417
+sub-02: top1/top5 0.450/0.790 -> 0.475/0.805 | anchor 0.0066 loss 0.415
+sub-03: top1/top5 0.480/0.795 -> 0.490/0.810 | anchor 0.0051 loss 0.359
+sub-04: top1/top5 0.430/0.770 -> 0.460/0.770 | anchor 0.0056 loss 0.383
+sub-05: top1/top5 0.310/0.690 -> 0.360/0.705 | anchor 0.0094 loss 0.499
+sub-06: top1/top5 0.465/0.815 -> 0.505/0.805 | anchor 0.0053 loss 0.380
+sub-07: top1/top5 0.415/0.805 -> 0.455/0.815 | anchor 0.0041 loss 0.310
+sub-08: top1/top5 0.510/0.840 -> 0.535/0.835 | anchor 0.0043 loss 0.306
+sub-09: top1/top5 0.445/0.790 -> 0.465/0.790 | anchor 0.0083 loss 0.461
+sub-10: top1/top5 0.550/0.880 -> 0.580/0.895 | anchor 0.0047 loss 0.341
+mean over 10: 0.4550/0.7970 -> 0.4830/0.8040 | top1 better in 10, worse in 0
+
+## saved run (tta1), with the per-subject head applied
+sub-01: top1/top5 0.495/0.795 -> 0.535/0.830 | anchor 0.0502 loss 0.261 | after head 0.510
+sub-02: top1/top5 0.450/0.790 -> 0.530/0.805 | anchor 0.0541 loss 0.278 | after head 0.505
+sub-03: top1/top5 0.480/0.795 -> 0.500/0.815 | anchor 0.0516 loss 0.222 | after head 0.525
+sub-04: top1/top5 0.430/0.770 -> 0.490/0.780 | anchor 0.0491 loss 0.240 | after head 0.460
+sub-05: top1/top5 0.310/0.690 -> 0.375/0.735 | anchor 0.0650 loss 0.363 | after head 0.400
+sub-06: top1/top5 0.465/0.815 -> 0.540/0.830 | anchor 0.0497 loss 0.236 | after head 0.550
+sub-07: top1/top5 0.415/0.805 -> 0.510/0.840 | anchor 0.0417 loss 0.192 | after head 0.470
+sub-08: top1/top5 0.510/0.840 -> 0.545/0.845 | anchor 0.0451 loss 0.179 | after head 0.550
+sub-09: top1/top5 0.445/0.790 -> 0.505/0.785 | anchor 0.0627 loss 0.308 | after head 0.495
+sub-10: top1/top5 0.550/0.880 -> 0.635/0.910 | anchor 0.0471 loss 0.193 | after head 0.615
+mean over 10: 0.4550/0.7970 -> 0.5165/0.8175 | top1 better in 10, worse in 0
+
+## Negative results recorded with this step
+# finer inverse-variance weights (robagg.py t0_r4 mean,ivw,ivwc,ivw2,ivwit; top1 / top5 / centred latent corr, 10 subjects)
+mean over 10 subjects: top1 / top5 / latent corr, and subjects better than the plain mean
+mean     0.4520 0.7885 0.2336   better: [0, 0, 0]
+ivw      0.4550 0.7970 0.2382   better: [5, 6, 8]
+ivwc     0.4560 0.7920 0.2362   better: [7, 5, 3]
+ivw2     0.4510 0.7920 0.2356   better: [6, 6, 4]
+ivwit    0.4550 0.7975 0.2382   better: [6, 6, 8]
+# training with inverse-variance-weighted 4-repeat inputs (train.py --mode ivw4): test-IVW top1 / top5 0.4525 / 0.7985
+# vs 0.4550 / 0.7970 for the standard encoder (10 subjects) -> not adopted.

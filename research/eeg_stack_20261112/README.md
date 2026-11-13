@@ -21,6 +21,7 @@ on top of the host and the co-author's head, only components that are ours or tr
 | O1 | **start latent blended with the latents of retrieved training images** (`lowsem.py`) | ours (not found in the audited papers) |
 | O2 | **inverse-variance aggregation of the 80 test repeats** (`robagg.py`, `ivwprep.py`) | ours; transferred from robust statistics (inverse-variance weighting) |
 | O3 | **fractional img2img strength by re-injecting the noised start latent** (`gen.py --smap c0.611,0.5,1.0`) | mechanism of Differential Diffusion (image editing, credited), used here with a constant map |
+| O4 | **split-half contrastive test-time adaptation of the encoder input layer, used for the start image** (`tta.py`) | transferred from test-time adaptation (domain adaptation; Tent, TTT) with an InfoNCE objective (CPC / SimCLR); the split-half positives are ours |
 
 O2 in detail: every test image has 80 repeats; trial r gets weight 1 / (mean squared residual of r against the mean of
 the other 79), so noisy trials (blinks, movement) count less. Label-free, one line of arithmetic, no training; the
@@ -29,6 +30,15 @@ O3 in detail: SDXL-Turbo has 4 steps, so img2img strength can only be 0.25, 0.5,
 noise (strength 1) and, after each step, the latent is replaced by the start latent noised to the current level with
 weight clamp(h − i, 0, 1), h = 4 − 4·s, s = 1 − 0.5 · 0.611 = 0.69: the start image is kept for the first 1.2 steps,
 i.e. a strength of 0.69 that the integer schedule cannot express.
+O4 in detail: at test time, without labels or images, the 80 repeats of each of the 200 test images are split at random
+into two halves of 40. The two inverse-variance half-means of the same image should map to the same embedding, so they
+are positives and the other 199 images are negatives (symmetric InfoNCE, τ 0.1). Only the subject's input layer is
+updated (50 Adam steps, lr 1e-4), with an anchor (λ 1, relative L2) to the unadapted output. All four settings were
+fixed before the image runs (the first one is used; the three others are reported). Raw 200-way retrieval rises from
+0.455 to 0.517 top-1 (10/10 subjects, `results/test_time_adaptation.txt`). The adapted embedding is used only for the
+retrieval blend of the start image; the IP-adapter condition stays the O3 one (using the adapted condition there too
+raises PixCorr / SSIM further but costs CLIP −0.003, 3/10 subjects, see below). Transductive: it uses the 200 test EEG
+recordings together, but no test image and no label.
 
 ### Results (10 subjects, same metric code and seeds as everywhere in this folder)
 
@@ -39,16 +49,22 @@ i.e. a strength of 0.69 that the integer schedule cannot express.
 | + O0 repeat-corrected ridge start image | 0.2455 | 0.3895 | 0.8649 | 0.9163 | 0.7558 | 0.8085 | 0.8651 |
 | + O1 retrieval-blended start | 0.2511 | 0.3811 | 0.8712 | 0.9155 | 0.7587 | 0.8118 | 0.8651 |
 | + O2 inverse-variance repeat aggregation | 0.2525 | 0.3814 | 0.8717 | 0.9184 | 0.7603 | 0.8156 | 0.8640 |
-| **+ O3 fractional strength (final)** | **0.2636** | **0.4073** | **0.8727** | **0.9152** | **0.7581** | **0.8118** | **0.8663** |
+| + O3 fractional strength | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 | 0.8663 |
+| **+ O4 test-time-adapted start image (final)** | **0.2687** | **0.4090** | **0.8753** | **0.9158** | **0.7573** | **0.8121** | **0.8659** |
+| O3 + adapted start *and* adapted condition (not adopted) | 0.2706 | 0.4142 | 0.8758 | 0.9153 | 0.7590 | 0.8087 | 0.8640 |
 
-- Final vs the reproduced baseline: every metric better, in 10/10 subjects (CLIP 9/10). Final vs the co-author's head
-  alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013 (10/10 each), Incep +0.003 (6/10), CLIP +0.001 (4/10).
+- Final (O4) vs the reproduced baseline: every metric better; PixCorr, SSIM, Alex2, Alex5 and EffNet in 10/10 subjects,
+  Incep and CLIP in 9/10. O3 vs the co-author's head alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013
+  (10/10 each), Incep +0.003 (6/10), CLIP +0.001 (4/10).
 - O1 (vs O0): PixCorr +0.006 (8/10), Alex2 +0.006 (9/10), CLIP +0.003 (7/10), SSIM −0.008 (0/10).
 - O2 (vs O1): CLIP +0.004 (8/10), Alex5 +0.003, Incep +0.002, EffNet −0.001 (7/10); start-latent correlation
   0.2655 → 0.2681. Among aggregators (`results/robust_aggregation.txt`): trimmed means and Huber are similar on the
   latent, the median is worse, inverse-variance is the only one that does not lose retrieval.
 - O3 (vs O2): PixCorr +0.011, SSIM +0.026 (10/10 each), Alex2 +0.001, Alex5 −0.003, Incep −0.002, CLIP −0.004 (1/10).
-- Ranking under the fixed rule of `results/leaderboard.md`: PixCorr 2nd (Perceptogram 0.267), SSIM 2nd (ENIGMA 0.426),
+- O4 (vs O3): PixCorr +0.0051 (10/10), SSIM +0.0017 (8/10), Alex2 +0.0027 (8/10), Alex5 +0.0006 (7/10), EffNet −0.0004
+  (7/10), Incep −0.0007 and CLIP +0.0002 (5/10 each). Adapting the condition as well: PixCorr +0.0070, SSIM +0.0069
+  (10/10 each), CLIP −0.0031 (3/10), so it is reported but not adopted.
+- Ranking of O4 under the fixed rule of `results/leaderboard.md`: PixCorr 1st (Perceptogram 0.267), SSIM 2nd (ENIGMA 0.426),
   Alex2 2nd and Alex5 2nd (Perceptogram 0.910 / 0.927), CLIP 3rd (CogCapPro 0.830, ENIGMA 0.815), Inception 4th
   (CogCapPro 0.779, JMVR* 0.778, ENIGMA 0.777); each method counted once, as in the leaderboard. Leaving out the borrowed components costs mainly the semantic
   metrics: the full stack below (B‴) has Incep 0.788 and CLIP 0.828.
@@ -71,6 +87,10 @@ the cross-product of the two halves estimates signal power, their mean square si
 | strength per subject from its mean reliability | 10 subjects, against one fixed value (0.611, the ten-subject mean) | fixed is as good or better (CLIP 0.8118 vs 0.8098): the gain of O3 comes from the fractional schedule, not from reliability |
 | ILVR low-band anchoring (Choi et al. 2021, transferred): after every step pull the 16 × 16 (or 8 × 8) band of the latent to that of the noised start | 6 settings, subjects 2, 5, 8 | anchoring after every step: SSIM +0.006 to +0.016 but CLIP −0.011 to −0.031 (0/3 subjects in every setting); after the first step only: no effect. **Negative** |
 | robust aggregation: median / trimmed / Huber | 10 subjects, retrieval and start-latent correlation | see O2; the median is worse than the plain mean |
+| finer inverse-variance weights: per channel, 1 / v², iterated (`robagg.py ... mean,ivw,ivwc,ivw2,ivwit`) | 10 subjects, retrieval and start-latent correlation | top-1 0.456 / 0.451 / 0.455 vs 0.455, latent corr ≤ ivw: no gain over O2 |
+| training the encoder on inverse-variance means of 4 repeats (`train.py --mode ivw4`) | 10 subjects, test retrieval on the O2 input | top-1 0.4525 vs 0.4550: **negative** |
+| IP-adapter weight per sampler step (`gen.py --ip_sched`, 6 schedules between 0.75 and 1.5) | subjects 2, 5, 8, 9, on O3 | CLIP −0.002 to −0.006 in every schedule (0–1/4 subjects better): **negative** |
+| test-time adaptation also for the IP condition | 10 subjects, on O3 | PixCorr / SSIM +0.007, CLIP −0.003 (3/10): not adopted (O4 uses it for the start image only) |
 
 ## Where each component comes from (prior-art audit, 2026-11-13)
 
@@ -85,6 +105,7 @@ the cross-product of the two halves estimates signal power, their mean square si
 | inverse-variance repeat aggregation | robust statistics; SPSC (arXiv 2611.09380) names reliability-weighted trial aggregation as future work | not found implemented in brain-to-image work |
 | split-half reliability as a per-image / per-position Wiener gain | psychometrics (split-half, Spearman–Brown); closest: brain-optimized inference (Kneeland et al. 2023, fMRI: per-image strength from across-trial variance via an encoding model), DCBAN (learned confidence), UGDiff (learned spatial uncertainty, super-resolution) | closed-form, from the repeats, no training |
 | fractional strength by re-injection | Differential Diffusion (Levin & Fried 2023) | constant map, used to get strengths between the 4-step grid points |
+| split-half contrastive test-time adaptation | test-time adaptation (Tent, Wang et al. 2021; TTT, Sun et al. 2020); InfoNCE (CPC, van den Oord et al. 2018; SimCLR) | positives are two halves of the repeats of one test image, only the input layer is adapted; not checked for prior use in brain decoding beyond the audited papers |
 
 Novelty was checked by reading the closest papers in full (BOI, DCBAN, SPSC, UBP, UGDiff); papers seen only as abstracts
 were not used to claim novelty. "Not found" means not in the papers read, not proof that nobody has done it.
@@ -252,7 +273,7 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
   PixCorr +0.013, CLIP ±0.000, Alex2 −0.003 (vs −0.004 for the full high band) — possibly a slightly better trade, not
   established on ten subjects.
 
-## Running the original-components pipeline (O3)
+## Running the original-components pipeline (O3 / O4)
 
 Inputs, environment and step 1 (data) as in the next section; `b32fix.py`, `fenc.py`, the joint encoder, the shared head
 and `rel.py` are not needed. From `code/` (`XX` = 01 … 10):
@@ -273,13 +294,19 @@ python decode_low.py lowrkivw_0.5
 # O3: generation with fractional strength (one draw per image, K = 4 images per query)
 python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_ivw/sub-XX.npy --init_file sub-XX/lowrkivw_0.5_n0.8.npy \
     --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0
-python tab10.py > table10.txt          # rows O1 / O2 / O3
+# O4: split-half contrastive test-time adaptation, then the retrieval blend and the O3 generation with the new start
+python tta.py t0_r4 1,2,3,4,5,6,7,8,9,10 50 1e-4 0.1 1 tta1     # writes cond_test_tta1.npy (and ord_tta1/, not used by O4)
+python lowsem.py t0_r4 vae_rcp_ivw --ctest cond_test_tta1.npy --space raw --mode knn --w 0.5 --save lowrktta1_0.5
+python decode_low.py lowrktta1_0.5
+python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_ivw/sub-XX.npy --init_file sub-XX/lowrktta1_0.5_n0.8.npy \
+    --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordivw_lowrktta1_0.5_smap_c0.611_0.5_1.0
+python tab10.py > table10.txt          # rows O1 / O2 / O3 / O4
 ```
 
 Analyses of this section: `robagg.py` (aggregators), `rel.py` (split-half reliability; its embedding part uses the joint
 encoder tag by default, pass `t0_r4` for the per-subject one), `permet.py` + `adapt.py` / `adapt_map.py` (per-image gain
 policies, needs `gen.py --dump 1`), `armsum.py` (paired means over subjects); outputs in `results/original_pipeline.txt`,
-`results/reliability_gain.txt`, `results/robust_aggregation.txt`. Cost: about 3 min of generation per subject on one RTX 4090.
+`results/reliability_gain.txt`, `results/robust_aggregation.txt`, `results/test_time_adaptation.txt` (`tta.py`, all four settings). Cost: about 3 min of generation per subject on one RTX 4090.
 The last command, re-run for subject 8 with the final version of `gen.py`, reproduced all stored metrics exactly (largest
 difference 0.0).
 

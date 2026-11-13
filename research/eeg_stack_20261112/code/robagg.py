@@ -10,7 +10,7 @@ Label-free: only the test EEG of the image itself. Scored with the per-subject e
 top-1 / top-5) and with the repeat-corrected ridge (centred correlation with the true test latent). The labels are
 used only for scoring.
 
-python robagg.py [encoder tag]  ->  runs/rel/robagg_<tag>.json, and runs/rel/agg_<method>/sub-XX_test_agg.npy
+python robagg.py [encoder tag] [methods, comma-separated]  ->  runs/rel/robagg_<tag>.json, and runs/rel/agg_<method>/sub-XX_test_agg.npy
 """
 import json
 import sys
@@ -50,6 +50,23 @@ def aggregate(x, method):
         w = 1 / v
         w = w / w.sum(1, keepdim=True)
         return (w[:, :, None, None] * x).sum(1)
+    if method.startswith("ivw") and method != "ivw":
+        tot = x.sum(1, keepdim=True)
+        if method == "ivwc":       # one weight per trial and channel
+            v = (x - (tot - x) / 79).pow(2).mean(3)                          # [200, 80, 17]
+            w = 1 / v
+            return ((w / w.sum(1, keepdim=True))[..., None] * x).sum(1)
+        if method == "ivw2":       # stronger: w = 1 / v^2
+            v = (x - (tot - x) / 79).pow(2).mean(dim=(2, 3))
+            w = 1 / v ** 2
+            return ((w / w.sum(1, keepdim=True))[:, :, None, None] * x).sum(1)
+        if method == "ivwit":      # iterated: residuals against the current weighted mean, 3 rounds
+            mu = x.mean(1)
+            for _ in range(3):
+                v = (x - mu[:, None]).pow(2).mean(dim=(2, 3))
+                w = 1 / v
+                mu = ((w / w.sum(1, keepdim=True))[:, :, None, None] * x).sum(1)
+            return mu
     if method == "huber":
         mu = x.median(1).values
         for _ in range(10):
@@ -67,7 +84,7 @@ def rowcorr(a, b):
     return ((a * b).sum(1) / (a.norm(dim=1) * b.norm(dim=1))).mean().item()
 
 
-METHODS = ["mean", "trim10", "trim20", "median", "ivw", "huber"]
+METHODS = sys.argv[2].split(",") if len(sys.argv) > 2 else ["mean", "trim10", "trim20", "median", "ivw", "huber"]
 res = {m: [] for m in METHODS}
 for s in range(1, 11):
     x = f"{s:02d}"
@@ -120,4 +137,4 @@ for m in METHODS:
     a = np.array([[r["top1"], r["top5"], r["lat"]] for r in res[m]])
     b = np.array([[r["top1"], r["top5"], r["lat"]] for r in res["mean"]])
     print(f"{m:<8} {a[:, 0].mean():.4f} {a[:, 1].mean():.4f} {a[:, 2].mean():.4f}   better: {(a > b).sum(0).tolist()}")
-(RUNS / "rel" / f"robagg_{tag}.json").write_text(json.dumps(res, indent=1))
+(RUNS / "rel" / f"robagg_{tag}_{'-'.join(METHODS)}.json").write_text(json.dumps(res, indent=1))

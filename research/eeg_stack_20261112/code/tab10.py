@@ -50,6 +50,14 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "O2: O1 + inverse-variance repeat aggregation": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5",
         "O3: O2 + fractional-strength re-injection": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0",
         "O3 with the strength set by subject reliability": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_const_0.5_1.0",
+        "O4: O3 + test-time-adapted start image": "s{:02d}_t0_s2025_A1_ordivw_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O3 + TTA for start and condition": "s{:02d}_t0_s2025_A1_ordtta1_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O3 + IP weight schedule 1.25 / 1.25 / 1.25": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1.25_1.25_1.25",
+        "O3 + IP weight schedule 1 / 1.25 / 1.25": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1_1.25_1.25",
+        "O3 + IP weight schedule 1.25 / 1.25 / 1": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1.25_1.25_1",
+        "O3 + IP weight schedule 1.5 / 1 / 1": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1.5_1_1",
+        "O3 + IP weight schedule 1 / 1 / 1.5": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1_1_1.5",
+        "O3 + IP weight schedule 0.75 / 1 / 1.25": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_0.75_1_1.25",
         "O1 + re-injection (no aggregation)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_const_0.5_1.0",
         "O1 + strength map from reliability (0.5-0.75)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_map_0.5_0.75",
         "O1 + shuffled reliability map (0.5-0.75)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_shuf_0.5_0.75",
@@ -135,6 +143,9 @@ print("\n===== original-components pipeline (no joint encoder, no best-of-N, no 
 compare("ordinary head + low-level start", ["O1: per-subject enc + head + retrieval-blended start"])
 compare("O1: per-subject enc + head + retrieval-blended start", ["O2: O1 + inverse-variance repeat aggregation", "O1 + re-injection (no aggregation)"])
 compare("O2: O1 + inverse-variance repeat aggregation", ["O3: O2 + fractional-strength re-injection", "O3 with the strength set by subject reliability"])
+compare("O3: O2 + fractional-strength re-injection", ["O4: O3 + test-time-adapted start image", "O3 + TTA for start and condition"])
+print("\n===== IP-adapter weight schedules on O3 (screening, subjects 2, 5, 8, 9) =====")
+compare("O3: O2 + fractional-strength re-injection", [a for a in ARMS if a.startswith("O3 + IP weight")])
 print("\n===== reliability-driven strength maps and ILVR (screening, subjects 2, 5, 8, 9 / 2, 8) =====")
 compare("O1: per-subject enc + head + retrieval-blended start", [a for a in ARMS if a.startswith("O1 + ") and a != "O1 + re-injection (no aggregation)"])
 compare("O1 + shuffled reliability map (0.5-0.75)", ["O1 + strength map from reliability (0.5-0.75)"])
