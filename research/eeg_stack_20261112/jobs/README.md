@@ -25,6 +25,7 @@ that were free at the time.
 | `dl.sh` | download data, embeddings and models with aria2c from the lists in `downloads/` (copy them to `$RAD_ROOT/tmp/`; hf-mirror.com can be replaced by huggingface.co); the per-image list `aria_images.txt` is not included — it is the file listing of the `Haitao999/things-eeg` Image_set folder |
 | `dl_enc.sh` | download the two OpenCLIP image towers used by the candidate embedder |
 | `env.sh` | create the uv virtual environment (Python 3.10) and install the packages, plus OpenAI CLIP for the metrics |
+| `envr.sh` | `source envr.sh <gpu>`: the cache / offline environment of the workers and `$P` = the project Python (used for the 2026-11-13 evening jobs) |
 | `g12.sh` | start images for subject 8 (low.py), then an image queue on one card |
 | `joinq.sh` | joinq.sh <queue> <session prefix> <gpu>...: when session <prefix><gpu> has ended and the card is idle, start a pw.sh worker there |
 | `launch05.sh` | joint-encoder epoch screen plus an amplification image queue |

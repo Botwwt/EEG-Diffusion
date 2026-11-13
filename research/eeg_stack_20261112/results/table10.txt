@@ -37,6 +37,11 @@ sub-01 A with the 3-pass shared head               0.2687    0.4117    0.8591   
 sub-01 B with the 3-pass shared head               0.2669    0.4072    0.8695    0.9081    0.7507    0.7688    0.8670
 sub-01 A' with the 3-pass shared head              0.2822    0.3991    0.8744    0.9077    0.7404    0.7613    0.8747
 sub-01 B' with the 3-pass shared head              0.2776    0.3953    0.8774    0.9082    0.7528    0.7742    0.8678
+sub-01 O1: per-subject enc + head + retrieval-blended start    0.2620    0.3887    0.8668    0.8932    0.7374    0.7647    0.8853
+sub-01 O2: O1 + inverse-variance repeat aggregation    0.2764    0.3884    0.8792    0.9164    0.7591    0.7839    0.8728
+sub-01 O3: O2 + fractional-strength re-injection    0.2895    0.4162    0.8786    0.9163    0.7518    0.7823    0.8714
+sub-01 O3 with the strength set by subject reliability    0.2873    0.4131    0.8785    0.9163    0.7520    0.7807    0.8729
+sub-01 O1 + re-injection (no aggregation)          0.2746    0.4137    0.8604    0.8954    0.7342    0.7586    0.8863
 sub-01 calibration + low-level start               0.2500    0.3803    0.8585    0.8907    0.7260    0.7511    0.8863
 sub-01 + best of 4 candidates                      0.2497    0.3808    0.8605    0.8926    0.7291    0.7591    0.8830
 sub-02 baseline (reproduced)                       0.1832    0.3265    0.8254    0.8998    0.7261    0.8025    0.8937
@@ -76,6 +81,24 @@ sub-02 A with the 3-pass shared head               0.2421    0.4050    0.8876   
 sub-02 B with the 3-pass shared head               0.2331    0.3991    0.8980    0.9329    0.7781    0.8387    0.8582
 sub-02 A' with the 3-pass shared head              0.2605    0.3963    0.8916    0.9309    0.7771    0.8420    0.8618
 sub-02 B' with the 3-pass shared head              0.2511    0.3907    0.8980    0.9269    0.7769    0.8416    0.8584
+sub-02 O1: per-subject enc + head + retrieval-blended start    0.2419    0.3871    0.8865    0.9245    0.7445    0.8175    0.8818
+sub-02 O2: O1 + inverse-variance repeat aggregation    0.2446    0.3893    0.8825    0.9224    0.7343    0.8166    0.8816
+sub-02 O3: O2 + fractional-strength re-injection    0.2515    0.4122    0.8778    0.9175    0.7529    0.8106    0.8838
+sub-02 O3 with the strength set by subject reliability    0.2488    0.4061    0.8786    0.9195    0.7554    0.8103    0.8832
+sub-02 O1 + re-injection (no aggregation)          0.2469    0.4042    0.8811    0.9199    0.7484    0.8130    0.8852
+sub-02 O1 + strength map from reliability (0.5-0.75)    0.2657    0.4440    0.8414    0.8844    0.7311    0.7866    0.8962
+sub-02 O1 + shuffled reliability map (0.5-0.75)    0.2669    0.4483    0.8447    0.8925    0.7255    0.7872    0.8938
+sub-02 O1 + constant strength (0.5-0.75)           0.2753    0.4617    0.8288    0.8731    0.7149    0.7660    0.9038
+sub-02 O1 + per-image reliability strength (0.5-0.75)    0.2692    0.4535    0.8334    0.8828    0.7250    0.7713    0.8987
+sub-02 O1 + strength map (0.625-0.75)              0.2624    0.4339    0.8557    0.8998    0.7414    0.8034    0.8875
+sub-02 O1 + constant strength (0.625-0.75)         0.2628    0.4408    0.8638    0.9070    0.7390    0.8025    0.8902
+sub-02 O1 + strength map (0.5-1.0)                 0.2553    0.4107    0.8690    0.9133    0.7517    0.8030    0.8840
+sub-02 O1 + ILVR f4 w1, strength 1                 0.2414    0.3947    0.8976    0.9245    0.7570    0.7857    0.8846
+sub-02 O1 + ILVR f4 w1, strength 0.75              0.2452    0.4015    0.8914    0.9174    0.7403    0.7829    0.8866
+sub-02 O1 + ILVR f4 w0.5, strength 0.75            0.2532    0.4001    0.8951    0.9248    0.7443    0.8053    0.8847
+sub-02 O1 + ILVR f4 w0.5, strength 1               0.2564    0.3929    0.8895    0.9222    0.7389    0.8043    0.8849
+sub-02 O1 + ILVR f8 w1, strength 0.75              0.2387    0.3948    0.9002    0.9288    0.7452    0.8034    0.8850
+sub-02 O1 + ILVR f4 w1 first step only, strength 1    0.2414    0.3833    0.8852    0.9213    0.7537    0.8128    0.8849
 sub-02 calibration + low-level start               0.2213    0.3831    0.8761    0.9269    0.7376    0.8094    0.8820
 sub-02 + best of 4 candidates                      0.2251    0.3828    0.8858    0.9278    0.7483    0.8141    0.8811
 sub-03 baseline (reproduced)                       0.1871    0.3061    0.8103    0.8845    0.7474    0.8020    0.8782
@@ -116,6 +139,11 @@ sub-03 A with the 3-pass shared head               0.2595    0.3780    0.8935   
 sub-03 B with the 3-pass shared head               0.2515    0.3743    0.8932    0.9310    0.8029    0.8350    0.8461
 sub-03 A' with the 3-pass shared head              0.2667    0.3752    0.8944    0.9269    0.7909    0.8278    0.8466
 sub-03 B' with the 3-pass shared head              0.2589    0.3716    0.8975    0.9312    0.8015    0.8287    0.8458
+sub-03 O1: per-subject enc + head + retrieval-blended start    0.2447    0.3695    0.8775    0.9134    0.7617    0.8137    0.8644
+sub-03 O2: O1 + inverse-variance repeat aggregation    0.2493    0.3706    0.8734    0.9123    0.7564    0.8217    0.8617
+sub-03 O3: O2 + fractional-strength re-injection    0.2665    0.3978    0.8773    0.9090    0.7486    0.8088    0.8654
+sub-03 O3 with the strength set by subject reliability    0.2729    0.4108    0.8677    0.9028    0.7473    0.8029    0.8662
+sub-03 O1 + re-injection (no aggregation)          0.2664    0.4095    0.8652    0.9034    0.7455    0.8019    0.8708
 sub-03 calibration + low-level start               0.2342    0.3572    0.8805    0.9124    0.7580    0.8217    0.8679
 sub-03 + best of 4 candidates                      0.2402    0.3568    0.8845    0.9156    0.7724    0.8244    0.8662
 sub-04 baseline (reproduced)                       0.1738    0.3071    0.8196    0.8954    0.7551    0.8078    0.8665
@@ -155,6 +183,11 @@ sub-04 A with the 3-pass shared head               0.2437    0.3853    0.8669   
 sub-04 B with the 3-pass shared head               0.2379    0.3823    0.8691    0.9279    0.7999    0.8381    0.8348
 sub-04 A' with the 3-pass shared head              0.2516    0.3803    0.8745    0.9315    0.7950    0.8448    0.8374
 sub-04 B' with the 3-pass shared head              0.2451    0.3754    0.8783    0.9329    0.8107    0.8503    0.8337
+sub-04 O1: per-subject enc + head + retrieval-blended start    0.2475    0.3772    0.8517    0.9159    0.7631    0.8128    0.8581
+sub-04 O2: O1 + inverse-variance repeat aggregation    0.2419    0.3758    0.8509    0.9157    0.7763    0.8159    0.8554
+sub-04 O3: O2 + fractional-strength re-injection    0.2513    0.4031    0.8532    0.9138    0.7649    0.8100    0.8582
+sub-04 O3 with the strength set by subject reliability    0.2505    0.4008    0.8536    0.9143    0.7665    0.8104    0.8583
+sub-04 O1 + re-injection (no aggregation)          0.2507    0.4037    0.8510    0.9075    0.7612    0.8115    0.8595
 sub-04 calibration + low-level start               0.2290    0.3634    0.8471    0.9160    0.7678    0.8147    0.8569
 sub-04 + best of 4 candidates                      0.2261    0.3637    0.8524    0.9145    0.7689    0.8132    0.8547
 sub-05 baseline (reproduced)                       0.1681    0.2840    0.8062    0.8667    0.6943    0.7828    0.8990
@@ -194,6 +227,24 @@ sub-05 A with the 3-pass shared head               0.2413    0.3854    0.8692   
 sub-05 B with the 3-pass shared head               0.2312    0.3821    0.8753    0.9126    0.7507    0.8159    0.8677
 sub-05 A' with the 3-pass shared head              0.2544    0.3789    0.8787    0.9145    0.7370    0.8111    0.8657
 sub-05 B' with the 3-pass shared head              0.2469    0.3760    0.8870    0.9183    0.7547    0.8160    0.8660
+sub-05 O1: per-subject enc + head + retrieval-blended start    0.2373    0.3650    0.8552    0.8869    0.7004    0.7919    0.8865
+sub-05 O2: O1 + inverse-variance repeat aggregation    0.2388    0.3664    0.8569    0.8915    0.7093    0.7980    0.8863
+sub-05 O3: O2 + fractional-strength re-injection    0.2496    0.3947    0.8589    0.8870    0.6970    0.7976    0.8905
+sub-05 O3 with the strength set by subject reliability    0.2464    0.3865    0.8594    0.8895    0.6959    0.7961    0.8894
+sub-05 O1 + re-injection (no aggregation)          0.2441    0.3856    0.8638    0.8904    0.6848    0.7941    0.8877
+sub-05 O1 + strength map from reliability (0.5-0.75)    0.2630    0.4357    0.8213    0.8534    0.6953    0.7666    0.9025
+sub-05 O1 + shuffled reliability map (0.5-0.75)    0.2684    0.4402    0.8208    0.8554    0.6968    0.7749    0.9020
+sub-05 O1 + constant strength (0.5-0.75)           0.2755    0.4578    0.8008    0.8388    0.6743    0.7515    0.9080
+sub-05 O1 + per-image reliability strength (0.5-0.75)    0.2686    0.4487    0.8129    0.8552    0.6849    0.7515    0.9072
+sub-05 O1 + strength map (0.625-0.75)              0.2590    0.4218    0.8300    0.8658    0.7098    0.7775    0.8946
+sub-05 O1 + constant strength (0.625-0.75)         0.2612    0.4302    0.8359    0.8721    0.7082    0.7880    0.8948
+sub-05 O1 + strength map (0.5-1.0)                 0.2500    0.3937    0.8552    0.8870    0.6969    0.7851    0.8883
+sub-05 O1 + ILVR f4 w1, strength 1                 0.2377    0.3808    0.8675    0.8989    0.7049    0.7689    0.8928
+sub-05 O1 + ILVR f4 w1, strength 0.75              0.2415    0.3891    0.8560    0.8943    0.7130    0.7597    0.8903
+sub-05 O1 + ILVR f4 w0.5, strength 0.75            0.2498    0.3843    0.8638    0.8929    0.7037    0.7844    0.8863
+sub-05 O1 + ILVR f4 w0.5, strength 1               0.2509    0.3731    0.8728    0.8932    0.6872    0.7822    0.8884
+sub-05 O1 + ILVR f8 w1, strength 0.75              0.2345    0.3817    0.8659    0.8927    0.7146    0.7757    0.8877
+sub-05 O1 + ILVR f4 w1 first step only, strength 1    0.2335    0.3582    0.8639    0.8924    0.6884    0.7949    0.8901
 sub-05 calibration + low-level start               0.2183    0.3543    0.8586    0.8884    0.7049    0.7977    0.8857
 sub-05 + best of 4 candidates                      0.2189    0.3540    0.8527    0.8931    0.7100    0.8012    0.8837
 sub-06 baseline (reproduced)                       0.1972    0.3045    0.8386    0.9041    0.7510    0.7932    0.8826
@@ -234,6 +285,11 @@ sub-06 A with the 3-pass shared head               0.2593    0.3773    0.8876   
 sub-06 B with the 3-pass shared head               0.2486    0.3712    0.8898    0.9336    0.7795    0.8247    0.8517
 sub-06 A' with the 3-pass shared head              0.2682    0.3743    0.8973    0.9385    0.7792    0.8266    0.8513
 sub-06 B' with the 3-pass shared head              0.2603    0.3682    0.8970    0.9386    0.7795    0.8269    0.8489
+sub-06 O1: per-subject enc + head + retrieval-blended start    0.2612    0.3656    0.8814    0.9270    0.7692    0.8213    0.8722
+sub-06 O2: O1 + inverse-variance repeat aggregation    0.2588    0.3654    0.8847    0.9290    0.7652    0.8224    0.8721
+sub-06 O3: O2 + fractional-strength re-injection    0.2737    0.3924    0.8789    0.9263    0.7675    0.8174    0.8677
+sub-06 O3 with the strength set by subject reliability    0.2857    0.4145    0.8631    0.9153    0.7496    0.8090    0.8755
+sub-06 O1 + re-injection (no aggregation)          0.2878    0.4150    0.8593    0.9125    0.7594    0.8042    0.8755
 sub-06 calibration + low-level start               0.2460    0.3505    0.8838    0.9255    0.7548    0.8133    0.8770
 sub-06 + best of 4 candidates                      0.2500    0.3511    0.8882    0.9295    0.7581    0.8127    0.8733
 sub-07 baseline (reproduced)                       0.1684    0.3109    0.8128    0.8949    0.7423    0.7910    0.8783
@@ -273,6 +329,11 @@ sub-07 A with the 3-pass shared head               0.2360    0.3951    0.8559   
 sub-07 B with the 3-pass shared head               0.2307    0.3905    0.8627    0.9187    0.7754    0.8073    0.8546
 sub-07 A' with the 3-pass shared head              0.2452    0.3870    0.8665    0.9152    0.7749    0.8069    0.8521
 sub-07 B' with the 3-pass shared head              0.2349    0.3823    0.8731    0.9176    0.7760    0.8152    0.8548
+sub-07 O1: per-subject enc + head + retrieval-blended start    0.2362    0.3843    0.8505    0.9090    0.7587    0.8098    0.8673
+sub-07 O2: O1 + inverse-variance repeat aggregation    0.2378    0.3830    0.8456    0.9060    0.7540    0.8016    0.8693
+sub-07 O3: O2 + fractional-strength re-injection    0.2524    0.4090    0.8471    0.8995    0.7455    0.8095    0.8732
+sub-07 O3 with the strength set by subject reliability    0.2465    0.3955    0.8488    0.9040    0.7525    0.8084    0.8730
+sub-07 O1 + re-injection (no aggregation)          0.2451    0.3966    0.8545    0.9095    0.7541    0.8089    0.8720
 sub-07 calibration + low-level start               0.2276    0.3757    0.8420    0.9106    0.7543    0.8011    0.8683
 sub-07 + best of 4 candidates                      0.2295    0.3753    0.8474    0.9152    0.7687    0.8018    0.8660
 sub-08 baseline (reproduced)                       0.2096    0.3311    0.8556    0.9173    0.7802    0.8205    0.8558
@@ -313,6 +374,24 @@ sub-08 A with the 3-pass shared head               0.2807    0.3990    0.9000   
 sub-08 B with the 3-pass shared head               0.2732    0.3933    0.9063    0.9441    0.8144    0.8485    0.8207
 sub-08 A' with the 3-pass shared head              0.2878    0.3948    0.9054    0.9454    0.8225    0.8489    0.8165
 sub-08 B' with the 3-pass shared head              0.2767    0.3890    0.9055    0.9443    0.8148    0.8458    0.8223
+sub-08 O1: per-subject enc + head + retrieval-blended start    0.2700    0.3878    0.8984    0.9354    0.7950    0.8308    0.8371
+sub-08 O2: O1 + inverse-variance repeat aggregation    0.2674    0.3902    0.8964    0.9369    0.7877    0.8322    0.8432
+sub-08 O3: O2 + fractional-strength re-injection    0.2736    0.4141    0.9008    0.9371    0.7865    0.8307    0.8483
+sub-08 O3 with the strength set by subject reliability    0.2818    0.4316    0.8930    0.9328    0.7865    0.8250    0.8523
+sub-08 O1 + re-injection (no aggregation)          0.2881    0.4293    0.8934    0.9319    0.7842    0.8246    0.8454
+sub-08 O1 + strength map from reliability (0.5-0.75)    0.3008    0.4499    0.8520    0.9072    0.7634    0.8002    0.8619
+sub-08 O1 + shuffled reliability map (0.5-0.75)    0.3005    0.4489    0.8529    0.9017    0.7664    0.7942    0.8650
+sub-08 O1 + constant strength (0.5-0.75)           0.3064    0.4606    0.8365    0.8867    0.7765    0.7882    0.8703
+sub-08 O1 + per-image reliability strength (0.5-0.75)    0.2997    0.4512    0.8498    0.9027    0.7700    0.7944    0.8628
+sub-08 O1 + strength map (0.625-0.75)              0.2963    0.4492    0.8567    0.9056    0.7741    0.8091    0.8610
+sub-08 O1 + constant strength (0.625-0.75)         0.2963    0.4534    0.8576    0.9066    0.7780    0.8070    0.8594
+sub-08 O1 + strength map (0.5-1.0)                 0.2887    0.4227    0.8893    0.9339    0.7831    0.8218    0.8475
+sub-08 O1 + ILVR f4 w1, strength 1                 0.2785    0.3912    0.9021    0.9276    0.7978    0.8107    0.8465
+sub-08 O1 + ILVR f4 w1, strength 0.75              0.2831    0.3982    0.8956    0.9274    0.7913    0.8042    0.8487
+sub-08 O1 + ILVR f4 w0.5, strength 0.75            0.2857    0.3984    0.9009    0.9282    0.7943    0.8169    0.8403
+sub-08 O1 + ILVR f4 w0.5, strength 1               0.2845    0.3907    0.8985    0.9262    0.7925    0.8178    0.8393
+sub-08 O1 + ILVR f8 w1, strength 0.75              0.2736    0.3921    0.9014    0.9343    0.7924    0.8209    0.8407
+sub-08 O1 + ILVR f4 w1 first step only, strength 1    0.2693    0.3821    0.9005    0.9314    0.7963    0.8272    0.8425
 sub-08 calibration + low-level start               0.2659    0.3780    0.8985    0.9370    0.7922    0.8314    0.8369
 sub-08 + best of 4 candidates                      0.2683    0.3791    0.9059    0.9356    0.7957    0.8300    0.8349
 sub-09 baseline (reproduced)                       0.1857    0.3222    0.8285    0.9017    0.7457    0.7955    0.8778
@@ -352,6 +431,18 @@ sub-09 A with the 3-pass shared head               0.2604    0.3853    0.8709   
 sub-09 B with the 3-pass shared head               0.2556    0.3824    0.8740    0.9257    0.7881    0.8074    0.8446
 sub-09 A' with the 3-pass shared head              0.2798    0.3798    0.8777    0.9238    0.7711    0.8134    0.8439
 sub-09 B' with the 3-pass shared head              0.2679    0.3765    0.8866    0.9317    0.7892    0.8184    0.8458
+sub-09 O1: per-subject enc + head + retrieval-blended start    0.2558    0.3786    0.8701    0.9183    0.7506    0.7972    0.8618
+sub-09 O2: O1 + inverse-variance repeat aggregation    0.2573    0.3792    0.8729    0.9209    0.7447    0.8007    0.8624
+sub-09 O3: O2 + fractional-strength re-injection    0.2663    0.4036    0.8747    0.9159    0.7511    0.7953    0.8642
+sub-09 O3 with the strength set by subject reliability    0.2661    0.4031    0.8750    0.9163    0.7511    0.7957    0.8641
+sub-09 O1 + re-injection (no aggregation)          0.2667    0.4028    0.8711    0.9139    0.7358    0.7901    0.8657
+sub-09 O1 + strength map from reliability (0.5-0.75)    0.2782    0.4369    0.8279    0.8666    0.7089    0.7605    0.8852
+sub-09 O1 + shuffled reliability map (0.5-0.75)    0.2825    0.4396    0.8306    0.8684    0.7155    0.7540    0.8837
+sub-09 O1 + constant strength (0.5-0.75)           0.2885    0.4538    0.8167    0.8566    0.7004    0.7362    0.8922
+sub-09 O1 + per-image reliability strength (0.5-0.75)    0.2847    0.4460    0.8202    0.8594    0.7048    0.7533    0.8904
+sub-09 O1 + strength map (0.625-0.75)              0.2735    0.4290    0.8399    0.8870    0.7152    0.7655    0.8831
+sub-09 O1 + constant strength (0.625-0.75)         0.2748    0.4348    0.8520    0.8952    0.7304    0.7674    0.8799
+sub-09 O1 + strength map (0.5-1.0)                 0.2671    0.4052    0.8558    0.9004    0.7361    0.7807    0.8692
 sub-09 calibration + low-level start               0.2397    0.3697    0.8658    0.9228    0.7653    0.7982    0.8579
 sub-09 + best of 4 candidates                      0.2424    0.3707    0.8652    0.9240    0.7657    0.7993    0.8572
 sub-10 baseline (reproduced)                       0.1854    0.3376    0.8417    0.9179    0.7846    0.8345    0.8533
@@ -391,6 +482,11 @@ sub-10 A with the 3-pass shared head               0.2576    0.4206    0.8889   
 sub-10 B with the 3-pass shared head               0.2547    0.4154    0.8900    0.9407    0.8329    0.8558    0.8232
 sub-10 A' with the 3-pass shared head              0.2724    0.4102    0.8953    0.9401    0.8195    0.8606    0.8191
 sub-10 B' with the 3-pass shared head              0.2609    0.4031    0.8995    0.9395    0.8300    0.8598    0.8249
+sub-10 O1: per-subject enc + head + retrieval-blended start    0.2543    0.4069    0.8740    0.9316    0.8060    0.8580    0.8362
+sub-10 O2: O1 + inverse-variance repeat aggregation    0.2530    0.4058    0.8741    0.9334    0.8166    0.8628    0.8358
+sub-10 O3: O2 + fractional-strength re-injection    0.2617    0.4300    0.8795    0.9292    0.8147    0.8562    0.8406
+sub-10 O3 with the strength set by subject reliability    0.2571    0.4186    0.8830    0.9320    0.8154    0.8597    0.8369
+sub-10 O1 + re-injection (no aggregation)          0.2583    0.4196    0.8833    0.9307    0.8120    0.8578    0.8399
 sub-10 calibration + low-level start               0.2401    0.4022    0.8834    0.9363    0.8066    0.8534    0.8369
 sub-10 + best of 4 candidates                      0.2446    0.4028    0.8868    0.9397    0.8182    0.8613    0.8360
 
@@ -615,6 +711,114 @@ baseline (reproduced)                               0.1828    0.3120    0.8266  
 B' with the 3-pass shared head                      0.2580    0.3828    0.8900    0.9289    0.7886    0.8277    0.8468
 difference (mean)                                  +0.0752   +0.0708   +0.0634   +0.0331   +0.0445   +0.0291   -0.0318
 subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
+
+O1: per-subject enc + head + retrieval-blended start vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O1: per-subject enc + head + retrieval-blended start    0.2511    0.3811    0.8712    0.9155    0.7587    0.8118    0.8651
+difference (mean)                                  +0.0683   +0.0691   +0.0446   +0.0197   +0.0146   +0.0132   -0.0136
+subjects improved                                    10/10     10/10     10/10     10/10     10/10     10/10     10/10
+
+O2: O1 + inverse-variance repeat aggregation vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O2: O1 + inverse-variance repeat aggregation        0.2525    0.3814    0.8717    0.9184    0.7603    0.8156    0.8640
+difference (mean)                                  +0.0697   +0.0694   +0.0451   +0.0226   +0.0163   +0.0170   -0.0146
+subjects improved                                    10/10     10/10     10/10     10/10      9/10     10/10     10/10
+
+O3: O2 + fractional-strength re-injection vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O3: O2 + fractional-strength re-injection           0.2636    0.4073    0.8727    0.9152    0.7581    0.8118    0.8663
+difference (mean)                                  +0.0808   +0.0953   +0.0461   +0.0193   +0.0140   +0.0132   -0.0123
+subjects improved                                    10/10     10/10     10/10     10/10     10/10      9/10     10/10
+
+O3 with the strength set by subject reliability vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O3 with the strength set by subject reliability     0.2643    0.4081    0.8701    0.9143    0.7572    0.8098    0.8672
+difference (mean)                                  +0.0815   +0.0961   +0.0435   +0.0184   +0.0132   +0.0112   -0.0114
+subjects improved                                    10/10     10/10     10/10     10/10      8/10     10/10     10/10
+
+O1 + re-injection (no aggregation) vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O1 + re-injection (no aggregation)                  0.2629    0.4080    0.8683    0.9115    0.7520    0.8065    0.8688
+difference (mean)                                  +0.0801   +0.0960   +0.0417   +0.0156   +0.0079   +0.0079   -0.0098
+subjects improved                                    10/10     10/10     10/10     10/10      7/10      8/10     10/10
+
+O1 + strength map from reliability (0.5-0.75) vs baseline (reproduced), mean over 4 subjects [2, 5, 8, 9]
+baseline (reproduced)                               0.1867    0.3160    0.8289    0.8964    0.7366    0.8003    0.8816
+O1 + strength map from reliability (0.5-0.75)       0.2769    0.4416    0.8356    0.8779    0.7247    0.7785    0.8865
+difference (mean)                                  +0.0903   +0.1257   +0.0067   -0.0185   -0.0119   -0.0218   +0.0049
+subjects improved                                     4/4      4/4      2/4      0/4      2/4      0/4      0/4
+
+O1 + shuffled reliability map (0.5-0.75) vs baseline (reproduced), mean over 4 subjects [2, 5, 8, 9]
+baseline (reproduced)                               0.1867    0.3160    0.8289    0.8964    0.7366    0.8003    0.8816
+O1 + shuffled reliability map (0.5-0.75)            0.2796    0.4443    0.8373    0.8795    0.7261    0.7776    0.8861
+difference (mean)                                  +0.0929   +0.1283   +0.0083   -0.0169   -0.0105   -0.0227   +0.0046
+subjects improved                                     4/4      4/4      3/4      0/4      1/4      0/4      0/4
+
+O1 + constant strength (0.5-0.75) vs baseline (reproduced), mean over 4 subjects [2, 5, 8, 9]
+baseline (reproduced)                               0.1867    0.3160    0.8289    0.8964    0.7366    0.8003    0.8816
+O1 + constant strength (0.5-0.75)                   0.2864    0.4585    0.8207    0.8638    0.7165    0.7605    0.8936
+difference (mean)                                  +0.0998   +0.1425   -0.0082   -0.0326   -0.0200   -0.0398   +0.0120
+subjects improved                                     4/4      4/4      1/4      0/4      0/4      0/4      0/4
+
+O1 + per-image reliability strength (0.5-0.75) vs baseline (reproduced), mean over 4 subjects [2, 5, 8, 9]
+baseline (reproduced)                               0.1867    0.3160    0.8289    0.8964    0.7366    0.8003    0.8816
+O1 + per-image reliability strength (0.5-0.75)      0.2806    0.4498    0.8291    0.8750    0.7212    0.7676    0.8898
+difference (mean)                                  +0.0939   +0.1339   +0.0002   -0.0214   -0.0154   -0.0327   +0.0082
+subjects improved                                     4/4      4/4      2/4      0/4      0/4      0/4      0/4
+
+O1 + strength map (0.625-0.75) vs baseline (reproduced), mean over 4 subjects [2, 5, 8, 9]
+baseline (reproduced)                               0.1867    0.3160    0.8289    0.8964    0.7366    0.8003    0.8816
+O1 + strength map (0.625-0.75)                      0.2728    0.4335    0.8456    0.8896    0.7351    0.7889    0.8816
+difference (mean)                                  +0.0861   +0.1175   +0.0166   -0.0068   -0.0015   -0.0114   -0.0000
+subjects improved                                     4/4      4/4      4/4      0/4      2/4      1/4      2/4
+
+O1 + constant strength (0.625-0.75) vs baseline (reproduced), mean over 4 subjects [2, 5, 8, 9]
+baseline (reproduced)                               0.1867    0.3160    0.8289    0.8964    0.7366    0.8003    0.8816
+O1 + constant strength (0.625-0.75)                 0.2738    0.4398    0.8523    0.8952    0.7389    0.7912    0.8811
+difference (mean)                                  +0.0871   +0.1238   +0.0234   -0.0012   +0.0023   -0.0091   -0.0005
+subjects improved                                     4/4      4/4      4/4      2/4      2/4      2/4      2/4
+
+O1 + strength map (0.5-1.0) vs baseline (reproduced), mean over 4 subjects [2, 5, 8, 9]
+baseline (reproduced)                               0.1867    0.3160    0.8289    0.8964    0.7366    0.8003    0.8816
+O1 + strength map (0.5-1.0)                         0.2653    0.4081    0.8673    0.9086    0.7419    0.7976    0.8723
+difference (mean)                                  +0.0786   +0.0921   +0.0384   +0.0123   +0.0054   -0.0027   -0.0093
+subjects improved                                     4/4      4/4      4/4      3/4      3/4      3/4      4/4
+
+O1 + ILVR f4 w1, strength 1 vs baseline (reproduced), mean over 3 subjects [2, 5, 8]
+baseline (reproduced)                               0.1870    0.3139    0.8291    0.8946    0.7335    0.8019    0.8828
+O1 + ILVR f4 w1, strength 1                         0.2525    0.3889    0.8891    0.9170    0.7532    0.7884    0.8746
+difference (mean)                                  +0.0655   +0.0751   +0.0600   +0.0224   +0.0197   -0.0135   -0.0082
+subjects improved                                     3/3      3/3      3/3      3/3      3/3      0/3      3/3
+
+O1 + ILVR f4 w1, strength 0.75 vs baseline (reproduced), mean over 3 subjects [2, 5, 8]
+baseline (reproduced)                               0.1870    0.3139    0.8291    0.8946    0.7335    0.8019    0.8828
+O1 + ILVR f4 w1, strength 0.75                      0.2566    0.3962    0.8810    0.9130    0.7482    0.7823    0.8752
+difference (mean)                                  +0.0696   +0.0824   +0.0519   +0.0184   +0.0147   -0.0197   -0.0076
+subjects improved                                     3/3      3/3      3/3      3/3      3/3      0/3      3/3
+
+O1 + ILVR f4 w0.5, strength 0.75 vs baseline (reproduced), mean over 3 subjects [2, 5, 8]
+baseline (reproduced)                               0.1870    0.3139    0.8291    0.8946    0.7335    0.8019    0.8828
+O1 + ILVR f4 w0.5, strength 0.75                    0.2629    0.3943    0.8866    0.9153    0.7474    0.8022    0.8705
+difference (mean)                                  +0.0759   +0.0804   +0.0576   +0.0207   +0.0139   +0.0003   -0.0124
+subjects improved                                     3/3      3/3      3/3      3/3      3/3      2/3      3/3
+
+O1 + ILVR f4 w0.5, strength 1 vs baseline (reproduced), mean over 3 subjects [2, 5, 8]
+baseline (reproduced)                               0.1870    0.3139    0.8291    0.8946    0.7335    0.8019    0.8828
+O1 + ILVR f4 w0.5, strength 1                       0.2639    0.3856    0.8869    0.9139    0.7395    0.8014    0.8709
+difference (mean)                                  +0.0770   +0.0717   +0.0579   +0.0193   +0.0060   -0.0005   -0.0120
+subjects improved                                     3/3      3/3      3/3      3/3      2/3      1/3      3/3
+
+O1 + ILVR f8 w1, strength 0.75 vs baseline (reproduced), mean over 3 subjects [2, 5, 8]
+baseline (reproduced)                               0.1870    0.3139    0.8291    0.8946    0.7335    0.8019    0.8828
+O1 + ILVR f8 w1, strength 0.75                      0.2489    0.3895    0.8891    0.9186    0.7507    0.8000    0.8711
+difference (mean)                                  +0.0620   +0.0757   +0.0601   +0.0240   +0.0172   -0.0020   -0.0117
+subjects improved                                     3/3      3/3      3/3      3/3      3/3      2/3      3/3
+
+O1 + ILVR f4 w1 first step only, strength 1 vs baseline (reproduced), mean over 3 subjects [2, 5, 8]
+baseline (reproduced)                               0.1870    0.3139    0.8291    0.8946    0.7335    0.8019    0.8828
+O1 + ILVR f4 w1 first step only, strength 1         0.2481    0.3745    0.8832    0.9150    0.7461    0.8116    0.8725
+difference (mean)                                  +0.0611   +0.0606   +0.0541   +0.0204   +0.0126   +0.0097   -0.0104
+subjects improved                                     3/3      3/3      3/3      3/3      2/3      3/3      3/3
 
 calibration + low-level start vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
@@ -861,5 +1065,129 @@ B': ... + amp 2                                     0.2580    0.3823    0.8897  
 B' with the 3-pass shared head                      0.2580    0.3828    0.8900    0.9289    0.7886    0.8277    0.8468
 difference (mean)                                  +0.0000   +0.0005   +0.0003   -0.0012   +0.0017   +0.0038   -0.0010
 subjects improved                                     5/10      9/10      5/10      5/10      7/10      9/10      6/10
+
+===== original-components pipeline (no joint encoder, no best-of-N, no shrinkage, no amplification) =====
+
+O1: per-subject enc + head + retrieval-blended start vs ordinary head + low-level start, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ordinary head + low-level start                     0.2455    0.3895    0.8649    0.9163    0.7558    0.8085    0.8651
+O1: per-subject enc + head + retrieval-blended start    0.2511    0.3811    0.8712    0.9155    0.7587    0.8118    0.8651
+difference (mean)                                  +0.0056   -0.0084   +0.0063   -0.0007   +0.0028   +0.0032   -0.0000
+subjects improved                                     8/10      0/10      9/10      3/10      7/10      7/10      4/10
+
+O2: O1 + inverse-variance repeat aggregation vs O1: per-subject enc + head + retrieval-blended start, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O1: per-subject enc + head + retrieval-blended start    0.2511    0.3811    0.8712    0.9155    0.7587    0.8118    0.8651
+O2: O1 + inverse-variance repeat aggregation        0.2525    0.3814    0.8717    0.9184    0.7603    0.8156    0.8640
+difference (mean)                                  +0.0015   +0.0003   +0.0005   +0.0029   +0.0017   +0.0038   -0.0010
+subjects improved                                     6/10      5/10      5/10      6/10      4/10      8/10      7/10
+
+O1 + re-injection (no aggregation) vs O1: per-subject enc + head + retrieval-blended start, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O1: per-subject enc + head + retrieval-blended start    0.2511    0.3811    0.8712    0.9155    0.7587    0.8118    0.8651
+O1 + re-injection (no aggregation)                  0.2629    0.4080    0.8683    0.9115    0.7520    0.8065    0.8688
+difference (mean)                                  +0.0118   +0.0269   -0.0029   -0.0040   -0.0067   -0.0053   +0.0037
+subjects improved                                    10/10     10/10      4/10      3/10      2/10      1/10      0/10
+
+O3: O2 + fractional-strength re-injection vs O2: O1 + inverse-variance repeat aggregation, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O2: O1 + inverse-variance repeat aggregation        0.2525    0.3814    0.8717    0.9184    0.7603    0.8156    0.8640
+O3: O2 + fractional-strength re-injection           0.2636    0.4073    0.8727    0.9152    0.7581    0.8118    0.8663
+difference (mean)                                  +0.0111   +0.0259   +0.0010   -0.0033   -0.0023   -0.0038   +0.0023
+subjects improved                                    10/10     10/10      7/10      1/10      3/10      1/10      2/10
+
+O3 with the strength set by subject reliability vs O2: O1 + inverse-variance repeat aggregation, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O2: O1 + inverse-variance repeat aggregation        0.2525    0.3814    0.8717    0.9184    0.7603    0.8156    0.8640
+O3 with the strength set by subject reliability     0.2643    0.4081    0.8701    0.9143    0.7572    0.8098    0.8672
+difference (mean)                                  +0.0118   +0.0266   -0.0016   -0.0042   -0.0031   -0.0057   +0.0032
+subjects improved                                    10/10     10/10      5/10      0/10      2/10      1/10      0/10
+
+===== reliability-driven strength maps and ILVR (screening, subjects 2, 5, 8, 9 / 2, 8) =====
+
+O1 + strength map from reliability (0.5-0.75) vs O1: per-subject enc + head + retrieval-blended start, mean over 4 subjects [2, 5, 8, 9]
+O1: per-subject enc + head + retrieval-blended start    0.2512    0.3797    0.8776    0.9163    0.7476    0.8094    0.8668
+O1 + strength map from reliability (0.5-0.75)       0.2769    0.4416    0.8356    0.8779    0.7247    0.7785    0.8865
+difference (mean)                                  +0.0257   +0.0620   -0.0419   -0.0384   -0.0230   -0.0309   +0.0197
+subjects improved                                     4/4      4/4      0/4      0/4      0/4      0/4      0/4
+
+O1 + shuffled reliability map (0.5-0.75) vs O1: per-subject enc + head + retrieval-blended start, mean over 4 subjects [2, 5, 8, 9]
+O1: per-subject enc + head + retrieval-blended start    0.2512    0.3797    0.8776    0.9163    0.7476    0.8094    0.8668
+O1 + shuffled reliability map (0.5-0.75)            0.2796    0.4443    0.8373    0.8795    0.7261    0.7776    0.8861
+difference (mean)                                  +0.0283   +0.0646   -0.0403   -0.0368   -0.0216   -0.0318   +0.0194
+subjects improved                                     4/4      4/4      0/4      0/4      0/4      0/4      0/4
+
+O1 + constant strength (0.5-0.75) vs O1: per-subject enc + head + retrieval-blended start, mean over 4 subjects [2, 5, 8, 9]
+O1: per-subject enc + head + retrieval-blended start    0.2512    0.3797    0.8776    0.9163    0.7476    0.8094    0.8668
+O1 + constant strength (0.5-0.75)                   0.2864    0.4585    0.8207    0.8638    0.7165    0.7605    0.8936
+difference (mean)                                  +0.0352   +0.0788   -0.0569   -0.0525   -0.0311   -0.0489   +0.0268
+subjects improved                                     4/4      4/4      0/4      0/4      0/4      0/4      0/4
+
+O1 + per-image reliability strength (0.5-0.75) vs O1: per-subject enc + head + retrieval-blended start, mean over 4 subjects [2, 5, 8, 9]
+O1: per-subject enc + head + retrieval-blended start    0.2512    0.3797    0.8776    0.9163    0.7476    0.8094    0.8668
+O1 + per-image reliability strength (0.5-0.75)      0.2806    0.4498    0.8291    0.8750    0.7212    0.7676    0.8898
+difference (mean)                                  +0.0293   +0.0702   -0.0485   -0.0413   -0.0264   -0.0417   +0.0230
+subjects improved                                     4/4      4/4      0/4      0/4      0/4      0/4      0/4
+
+O1 + strength map (0.625-0.75) vs O1: per-subject enc + head + retrieval-blended start, mean over 4 subjects [2, 5, 8, 9]
+O1: per-subject enc + head + retrieval-blended start    0.2512    0.3797    0.8776    0.9163    0.7476    0.8094    0.8668
+O1 + strength map (0.625-0.75)                      0.2728    0.4335    0.8456    0.8896    0.7351    0.7889    0.8816
+difference (mean)                                  +0.0215   +0.0538   -0.0320   -0.0267   -0.0125   -0.0205   +0.0148
+subjects improved                                     4/4      4/4      0/4      0/4      1/4      0/4      0/4
+
+O1 + constant strength (0.625-0.75) vs O1: per-subject enc + head + retrieval-blended start, mean over 4 subjects [2, 5, 8, 9]
+O1: per-subject enc + head + retrieval-blended start    0.2512    0.3797    0.8776    0.9163    0.7476    0.8094    0.8668
+O1 + constant strength (0.625-0.75)                 0.2738    0.4398    0.8523    0.8952    0.7389    0.7912    0.8811
+difference (mean)                                  +0.0225   +0.0601   -0.0252   -0.0210   -0.0087   -0.0181   +0.0143
+subjects improved                                     4/4      4/4      0/4      0/4      1/4      0/4      0/4
+
+O1 + strength map (0.5-1.0) vs O1: per-subject enc + head + retrieval-blended start, mean over 4 subjects [2, 5, 8, 9]
+O1: per-subject enc + head + retrieval-blended start    0.2512    0.3797    0.8776    0.9163    0.7476    0.8094    0.8668
+O1 + strength map (0.5-1.0)                         0.2653    0.4081    0.8673    0.9086    0.7419    0.7976    0.8723
+difference (mean)                                  +0.0140   +0.0284   -0.0103   -0.0076   -0.0057   -0.0117   +0.0055
+subjects improved                                     4/4      4/4      0/4      1/4      1/4      0/4      0/4
+
+O1 + ILVR f4 w1, strength 1 vs O1: per-subject enc + head + retrieval-blended start, mean over 3 subjects [2, 5, 8]
+O1: per-subject enc + head + retrieval-blended start    0.2497    0.3800    0.8800    0.9156    0.7466    0.8134    0.8685
+O1 + ILVR f4 w1, strength 1                         0.2525    0.3889    0.8891    0.9170    0.7532    0.7884    0.8746
+difference (mean)                                  +0.0028   +0.0089   +0.0090   +0.0014   +0.0066   -0.0250   +0.0062
+subjects improved                                     2/3      3/3      3/3      2/3      3/3      0/3      0/3
+
+O1 + ILVR f4 w1, strength 0.75 vs O1: per-subject enc + head + retrieval-blended start, mean over 3 subjects [2, 5, 8]
+O1: per-subject enc + head + retrieval-blended start    0.2497    0.3800    0.8800    0.9156    0.7466    0.8134    0.8685
+O1 + ILVR f4 w1, strength 0.75                      0.2566    0.3962    0.8810    0.9130    0.7482    0.7823    0.8752
+difference (mean)                                  +0.0069   +0.0162   +0.0010   -0.0026   +0.0016   -0.0312   +0.0068
+subjects improved                                     3/3      3/3      2/3      1/3      1/3      0/3      0/3
+
+O1 + ILVR f4 w0.5, strength 0.75 vs O1: per-subject enc + head + retrieval-blended start, mean over 3 subjects [2, 5, 8]
+O1: per-subject enc + head + retrieval-blended start    0.2497    0.3800    0.8800    0.9156    0.7466    0.8134    0.8685
+O1 + ILVR f4 w0.5, strength 0.75                    0.2629    0.3943    0.8866    0.9153    0.7474    0.8022    0.8705
+difference (mean)                                  +0.0132   +0.0143   +0.0066   -0.0003   +0.0008   -0.0112   +0.0020
+subjects improved                                     3/3      3/3      3/3      2/3      1/3      0/3      1/3
+
+O1 + ILVR f4 w0.5, strength 1 vs O1: per-subject enc + head + retrieval-blended start, mean over 3 subjects [2, 5, 8]
+O1: per-subject enc + head + retrieval-blended start    0.2497    0.3800    0.8800    0.9156    0.7466    0.8134    0.8685
+O1 + ILVR f4 w0.5, strength 1                       0.2639    0.3856    0.8869    0.9139    0.7395    0.8014    0.8709
+difference (mean)                                  +0.0142   +0.0056   +0.0069   -0.0017   -0.0071   -0.0120   +0.0024
+subjects improved                                     3/3      3/3      3/3      1/3      0/3      0/3      0/3
+
+O1 + ILVR f8 w1, strength 0.75 vs O1: per-subject enc + head + retrieval-blended start, mean over 3 subjects [2, 5, 8]
+O1: per-subject enc + head + retrieval-blended start    0.2497    0.3800    0.8800    0.9156    0.7466    0.8134    0.8685
+O1 + ILVR f8 w1, strength 0.75                      0.2489    0.3895    0.8891    0.9186    0.7507    0.8000    0.8711
+difference (mean)                                  -0.0008   +0.0095   +0.0091   +0.0030   +0.0041   -0.0135   +0.0027
+subjects improved                                     1/3      3/3      3/3      2/3      2/3      0/3      0/3
+
+O1 + ILVR f4 w1 first step only, strength 1 vs O1: per-subject enc + head + retrieval-blended start, mean over 3 subjects [2, 5, 8]
+O1: per-subject enc + head + retrieval-blended start    0.2497    0.3800    0.8800    0.9156    0.7466    0.8134    0.8685
+O1 + ILVR f4 w1 first step only, strength 1         0.2481    0.3745    0.8832    0.9150    0.7461    0.8116    0.8725
+difference (mean)                                  -0.0016   -0.0055   +0.0031   -0.0006   -0.0005   -0.0018   +0.0040
+subjects improved                                     0/3      0/3      2/3      1/3      2/3      1/3      0/3
+
+O1 + strength map from reliability (0.5-0.75) vs O1 + shuffled reliability map (0.5-0.75), mean over 4 subjects [2, 5, 8, 9]
+O1 + shuffled reliability map (0.5-0.75)            0.2796    0.4443    0.8373    0.8795    0.7261    0.7776    0.8861
+O1 + strength map from reliability (0.5-0.75)       0.2769    0.4416    0.8356    0.8779    0.7247    0.7785    0.8865
+difference (mean)                                  -0.0027   -0.0026   -0.0017   -0.0016   -0.0014   +0.0009   +0.0003
+subjects improved                                     1/4      1/4      1/4      1/4      1/4      2/4      1/4
+
+O1 + strength map (0.625-0.75) vs O1 + constant strength (0.625-0.75), mean over 4 subjects [2, 5, 8, 9]
+O1 + constant strength (0.625-0.75)                 0.2738    0.4398    0.8523    0.8952    0.7389    0.7912    0.8811
+O1 + strength map (0.625-0.75)                      0.2728    0.4335    0.8456    0.8896    0.7351    0.7889    0.8816
+difference (mean)                                  -0.0010   -0.0063   -0.0068   -0.0057   -0.0038   -0.0024   +0.0005
+subjects improved                                     1/4      0/4      0/4      0/4      2/4      2/4      2/4
 
 paper Table 2 (10-subject mean)                     0.1950    0.3360    0.8430    0.9050    0.7560    0.8080

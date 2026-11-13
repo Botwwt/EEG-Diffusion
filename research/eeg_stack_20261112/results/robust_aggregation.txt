@@ -1,0 +1,42 @@
+# aggregation of the 80 test repeats (robagg.py, per-subject encoder t0_r4)
+sub-01 mean 0.475/0.770/0.2052 | trim10 0.470/0.800/0.2280 | trim20 0.470/0.830/0.2316 | median 0.430/0.790/0.2289 | ivw 0.495/0.795/0.2319 | huber 0.485/0.820/0.2296
+sub-02 mean 0.460/0.795/0.2341 | trim10 0.435/0.795/0.2378 | trim20 0.425/0.805/0.2377 | median 0.420/0.790/0.2328 | ivw 0.450/0.790/0.2396 | huber 0.440/0.790/0.2379
+sub-03 mean 0.480/0.785/0.2516 | trim10 0.470/0.810/0.2532 | trim20 0.465/0.790/0.2527 | median 0.440/0.795/0.2518 | ivw 0.480/0.795/0.2542 | huber 0.470/0.805/0.2533
+sub-04 mean 0.450/0.750/0.2364 | trim10 0.435/0.750/0.2421 | trim20 0.415/0.755/0.2408 | median 0.415/0.750/0.2363 | ivw 0.430/0.770/0.2416 | huber 0.430/0.750/0.2421
+sub-05 mean 0.290/0.685/0.2140 | trim10 0.300/0.690/0.2136 | trim20 0.300/0.695/0.2117 | median 0.295/0.680/0.2065 | ivw 0.310/0.690/0.2162 | huber 0.295/0.685/0.2134
+sub-06 mean 0.455/0.800/0.2606 | trim10 0.460/0.795/0.2599 | trim20 0.465/0.810/0.2594 | median 0.450/0.790/0.2569 | ivw 0.465/0.815/0.2599 | huber 0.455/0.790/0.2601
+sub-07 mean 0.405/0.785/0.2126 | trim10 0.410/0.800/0.2146 | trim20 0.430/0.795/0.2131 | median 0.430/0.775/0.2094 | ivw 0.415/0.805/0.2157 | huber 0.420/0.795/0.2146
+sub-08 mean 0.505/0.845/0.2716 | trim10 0.515/0.835/0.2723 | trim20 0.510/0.835/0.2717 | median 0.500/0.810/0.2713 | ivw 0.510/0.840/0.2696 | huber 0.520/0.825/0.2723
+sub-09 mean 0.450/0.790/0.2165 | trim10 0.455/0.785/0.2193 | trim20 0.455/0.775/0.2184 | median 0.410/0.740/0.2158 | ivw 0.445/0.790/0.2172 | huber 0.440/0.780/0.2196
+sub-10 mean 0.550/0.880/0.2341 | trim10 0.540/0.885/0.2367 | trim20 0.540/0.880/0.2361 | median 0.545/0.875/0.2287 | ivw 0.550/0.880/0.2358 | huber 0.555/0.880/0.2367
+
+mean over 10 subjects: top1 / top5 / latent corr, and subjects better than the plain mean
+mean     0.4520 0.7885 0.2336   better: [0, 0, 0]
+trim10   0.4490 0.7945 0.2378   better: [5, 5, 8]
+trim20   0.4475 0.7970 0.2373   better: [5, 7, 8]
+median   0.4335 0.7795 0.2338   better: [2, 2, 2]
+ivw      0.4550 0.7970 0.2382   better: [5, 6, 8]
+huber    0.4510 0.7920 0.2380   better: [5, 3, 8]
+
+# ivwprep.py
+sub-01: effective trials 70.5/80 | ridge weight 1.0 | top1 raw 0.475 -> ivw 0.495, after head 0.450 -> 0.465
+sub-02: effective trials 72.9/80 | ridge weight 1.0 | top1 raw 0.460 -> ivw 0.450, after head 0.455 -> 0.470
+sub-03: effective trials 74.5/80 | ridge weight 3.0 | top1 raw 0.480 -> ivw 0.480, after head 0.485 -> 0.480
+sub-04: effective trials 70.8/80 | ridge weight 1.0 | top1 raw 0.450 -> ivw 0.430, after head 0.430 -> 0.430
+sub-05: effective trials 74.2/80 | ridge weight 3.0 | top1 raw 0.290 -> ivw 0.310, after head 0.325 -> 0.315
+sub-06: effective trials 75.2/80 | ridge weight 3.0 | top1 raw 0.455 -> ivw 0.465, after head 0.455 -> 0.470
+sub-07: effective trials 73.3/80 | ridge weight 1.0 | top1 raw 0.405 -> ivw 0.415, after head 0.420 -> 0.410
+sub-08: effective trials 68.9/80 | ridge weight 3.0 | top1 raw 0.505 -> ivw 0.510, after head 0.505 -> 0.520
+sub-09: effective trials 76.9/80 | ridge weight 3.0 | top1 raw 0.450 -> ivw 0.445, after head 0.460 -> 0.435
+sub-10: effective trials 74.6/80 | ridge weight 1.0 | top1 raw 0.550 -> ivw 0.550, after head 0.515 -> 0.520
+mean centred test-latent correlation over 10 subjects:
+  net              0.2382   better than net in 0/10
+  knn              0.2600   better than net in 10/10
+  ridge            0.2796   better than net in 10/10
+  net+0.25knn      0.2580   better than net in 10/10
+  net+0.25ridge    0.2558   better than net in 10/10
+  net+0.5knn       0.2681   better than net in 10/10
+  net+0.5ridge     0.2655   better than net in 10/10
+  net+1.0knn       0.2758   better than net in 10/10
+  net+1.0ridge     0.2746   better than net in 10/10
+DECODED lowrkivw_0.5

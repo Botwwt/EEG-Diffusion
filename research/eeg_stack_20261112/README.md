@@ -1,10 +1,95 @@
-# Stacking on the ordinary head: joint EEG encoder + low-level start image (2026-11-12, updated 2026-11-13)
+# Stacking on the ordinary head (2026-11-12, updated 2026-11-13)
 
 This folder adds components on top of the **ordinary bounded condition head**
 (`research/eeg/brainhive_bounded_component_v1.py`, imported unchanged) and reports every arm that was run,
 including the ones that did not help. Host model: Brain-HIVE (commit f06db69) with SDXL-Turbo.
 
-## Headline (10 subjects, seed 2025)
+## Original-components pipeline (headline since 2026-11-13 evening)
+
+A prior-art audit (full text of Brain-HIVE, MindEye, MindEye2, Brain-Diffuser, Perceptogram, ATM, ENIGMA, AVDE, JMVR,
+CognitionCapturerPro, UMind, UBP, NeuroBridge and the saliency-guided paper; table under "Where each component comes
+from") showed that several components of the full stack below are taken from same-field papers: the joint encoder
+(MindEye2 / ENIGMA), best-of-N selection (MindEye), output averaging with a blurred image (MindEye2) and the
+test-statistics renormalisation (Perceptogram). The headline is therefore a pipeline that **leaves those out** and keeps,
+on top of the host and the co-author's head, only components that are ours or transferred from outside brain decoding:
+
+| | component | origin |
+|---|---|---|
+| host | Brain-HIVE per-subject encoder + SDXL-Turbo / IP adapter | Brain-HIVE (baseline, not ours) |
+| head | ordinary bounded condition head, one per subject | co-author (`research/eeg/brainhive_bounded_component_v1.py`) |
+| O0 | EEG → SDXL-VAE latent start image by ridge, **with a repeat-noise correction of the covariance** | scaffold from Brain-Diffuser / Perceptogram (credited); the repeat correction is ours |
+| O1 | **start latent blended with the latents of retrieved training images** (`lowsem.py`) | ours (not found in the audited papers) |
+| O2 | **inverse-variance aggregation of the 80 test repeats** (`robagg.py`, `ivwprep.py`) | ours; transferred from robust statistics (inverse-variance weighting) |
+| O3 | **fractional img2img strength by re-injecting the noised start latent** (`gen.py --smap c0.611,0.5,1.0`) | mechanism of Differential Diffusion (image editing, credited), used here with a constant map |
+
+O2 in detail: every test image has 80 repeats; trial r gets weight 1 / (mean squared residual of r against the mean of
+the other 79), so noisy trials (blinks, movement) count less. Label-free, one line of arithmetic, no training; the
+effective number of trials is 69–77 of 80. The same weighted mean feeds the encoder and the ridge.
+O3 in detail: SDXL-Turbo has 4 steps, so img2img strength can only be 0.25, 0.5, 0.75 or 1. Here the sampler starts from
+noise (strength 1) and, after each step, the latent is replaced by the start latent noised to the current level with
+weight clamp(h − i, 0, 1), h = 4 − 4·s, s = 1 − 0.5 · 0.611 = 0.69: the start image is kept for the first 1.2 steps,
+i.e. a strength of 0.69 that the integer schedule cannot express.
+
+### Results (10 subjects, same metric code and seeds as everywhere in this folder)
+
+| arm | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP | EffNet ↓ |
+|---|---|---|---|---|---|---|---|
+| Brain-HIVE baseline, reproduced | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 | 0.8786 |
+| + ordinary head (co-author) | 0.2016 | 0.3360 | 0.8299 | 0.9017 | 0.7551 | 0.8107 | 0.8712 |
+| + O0 repeat-corrected ridge start image | 0.2455 | 0.3895 | 0.8649 | 0.9163 | 0.7558 | 0.8085 | 0.8651 |
+| + O1 retrieval-blended start | 0.2511 | 0.3811 | 0.8712 | 0.9155 | 0.7587 | 0.8118 | 0.8651 |
+| + O2 inverse-variance repeat aggregation | 0.2525 | 0.3814 | 0.8717 | 0.9184 | 0.7603 | 0.8156 | 0.8640 |
+| **+ O3 fractional strength (final)** | **0.2636** | **0.4073** | **0.8727** | **0.9152** | **0.7581** | **0.8118** | **0.8663** |
+
+- Final vs the reproduced baseline: every metric better, in 10/10 subjects (CLIP 9/10). Final vs the co-author's head
+  alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013 (10/10 each), Incep +0.003 (6/10), CLIP +0.001 (4/10).
+- O1 (vs O0): PixCorr +0.006 (8/10), Alex2 +0.006 (9/10), CLIP +0.003 (7/10), SSIM −0.008 (0/10).
+- O2 (vs O1): CLIP +0.004 (8/10), Alex5 +0.003, Incep +0.002, EffNet −0.001 (7/10); start-latent correlation
+  0.2655 → 0.2681. Among aggregators (`results/robust_aggregation.txt`): trimmed means and Huber are similar on the
+  latent, the median is worse, inverse-variance is the only one that does not lose retrieval.
+- O3 (vs O2): PixCorr +0.011, SSIM +0.026 (10/10 each), Alex2 +0.001, Alex5 −0.003, Incep −0.002, CLIP −0.004 (1/10).
+- Ranking under the fixed rule of `results/leaderboard.md`: PixCorr 2nd (Perceptogram 0.267), SSIM 2nd (ENIGMA 0.426),
+  Alex2 2nd and Alex5 2nd (Perceptogram 0.910 / 0.927), CLIP 3rd (CogCapPro 0.830, ENIGMA 0.815), Inception 4th
+  (CogCapPro 0.779, JMVR* 0.778, ENIGMA 0.777); each method counted once, as in the leaderboard. Leaving out the borrowed components costs mainly the semantic
+  metrics: the full stack below (B‴) has Incep 0.788 and CLIP 0.828.
+- Cost: no extra training; one SDXL-Turbo pass per image (4 steps), no best-of-N. Re-running the final arm with
+  `--dump 1` reproduced every metric exactly.
+
+### Reliability-driven ideas that were tested (ours; novelty check in "Where each component comes from")
+
+Split-half reliability (`rel.py`): the 80 repeats are split into two halves of 40 (32 random splits), both decoded;
+the cross-product of the two halves estimates signal power, their mean square signal + noise, and the ratio, corrected to
+80 repeats by Spearman–Brown, is a label-free Wiener gain per image (embedding and start latent) and per latent position
+(16 × 16 map). The image-level start-latent reliability varies strongly between images (SD 0.09–0.22 within a subject).
+
+| idea | test | outcome |
+|---|---|---|
+| per-image high-frequency gain set by reliability (shrink unreliable images more) | per-image metric tables (`permet.py`, `adapt.py`), against uniform gain at the same SSIM gain, and against the same gains in random / reversed order | CLIP +0.0007 / +0.0008 better than uniform at matched SSIM on O3 (10 subjects) and on B′ best of 16 (6 subjects); random order −0.001, reversed −0.002. A real but small effect; with the leave-one-subject-out rule it adds SSIM +0.009 and costs Alex2 −0.0035, so it is not in the final arm |
+| spatial reliability map for that gain | `permet.py map:`, `adapt_map.py`, 6 subjects | at matched SSIM: Alex2 +0.0011 to +0.0019 but CLIP −0.0004 to −0.0033 (better in 0–2/6): no gain |
+| img2img strength per latent position from the reliability map (differential diffusion) | 4 subjects, against a shuffled map and a constant map of the same mean strength | map = shuffled map (SSIM 0.4416 vs 0.4443, CLIP 0.7785 vs 0.7776); the constant map is better at equal strength: **negative** |
+| strength per image from image-level reliability | 4 subjects | between map and constant, no gain |
+| strength per subject from its mean reliability | 10 subjects, against one fixed value (0.611, the ten-subject mean) | fixed is as good or better (CLIP 0.8118 vs 0.8098): the gain of O3 comes from the fractional schedule, not from reliability |
+| ILVR low-band anchoring (Choi et al. 2021, transferred): after every step pull the 16 × 16 (or 8 × 8) band of the latent to that of the noised start | 6 settings, subjects 2, 5, 8 | anchoring after every step: SSIM +0.006 to +0.016 but CLIP −0.011 to −0.031 (0/3 subjects in every setting); after the first step only: no effect. **Negative** |
+| robust aggregation: median / trimmed / Huber | 10 subjects, retrieval and start-latent correlation | see O2; the median is worse than the plain mean |
+
+## Where each component comes from (prior-art audit, 2026-11-13)
+
+| component | origin | what is different here |
+|---|---|---|
+| joint encoder (per-subject input layer, shared trunk) — full stack only | MindEye2 §2.1 (fMRI), ENIGMA §3.3 (THINGS-EEG); ATM's code has a joint mode; trunk = Brain-HIVE Eq. 3 | trained to Brain-HIVE's fused target; afterwards only the input layers are fine-tuned on the same subjects |
+| ridge → VAE latent start image, img2img 0.75 | Brain-Diffuser §2.2–2.3 (strength 0.75), Perceptogram §2.4.1 (EEG), ATM App. C.3, MindEye §2.2 | repeat-noise correction of the ridge covariance |
+| start latent blended with retrieved training latents | none found | — |
+| condition amplification — full stack only | close in spirit to Perceptogram's renormalisation with test statistics (§2.4.1); both transductive | direction-space extrapolation, norm kept |
+| best of N by re-embedding — full stack only | MindEye §3.2 (from DALL-E 2) | only the embedding space and N |
+| high-frequency shrinkage — full stack only | same form as MindEye2's 4:1 averaging (§2.5), but with the image's own blur | post-processing; adds no EEG information, so its PixCorr / SSIM gain is not decoding |
+| inverse-variance repeat aggregation | robust statistics; SPSC (arXiv 2611.09380) names reliability-weighted trial aggregation as future work | not found implemented in brain-to-image work |
+| split-half reliability as a per-image / per-position Wiener gain | psychometrics (split-half, Spearman–Brown); closest: brain-optimized inference (Kneeland et al. 2023, fMRI: per-image strength from across-trial variance via an encoding model), DCBAN (learned confidence), UGDiff (learned spatial uncertainty, super-resolution) | closed-form, from the repeats, no training |
+| fractional strength by re-injection | Differential Diffusion (Levin & Fried 2023) | constant map, used to get strengths between the 4-step grid points |
+
+Novelty was checked by reading the closest papers in full (BOI, DCBAN, SPSC, UBP, UGDiff); papers seen only as abstracts
+were not used to claim novelty. "Not found" means not in the papers read, not proof that nobody has done it.
+
+## Full stack including the borrowed components (credited above; headline until 2026-11-13 afternoon)
 
 Official THINGS-EEG test set (200 images, mean of 80 repeats), K = 4 generated images per query, metrics as in
 Brain-HIVE `main/utils_eval.py` (MindEye style; CLIP = ViT-L/14 two-way, EffNet is a distance, lower is better).
@@ -166,6 +251,37 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
   scored on B′ best of 16 for 4 subjects (5, 6, 8, 9) before the run was stopped. Band 1–24 px at 0.8: SSIM +0.015,
   PixCorr +0.013, CLIP ±0.000, Alex2 −0.003 (vs −0.004 for the full high band) — possibly a slightly better trade, not
   established on ten subjects.
+
+## Running the original-components pipeline (O3)
+
+Inputs, environment and step 1 (data) as in the next section; `b32fix.py`, `fenc.py`, the joint encoder, the shared head
+and `rel.py` are not needed. From `code/` (`XX` = 01 … 10):
+
+```bash
+# per-subject Brain-HIVE encoders (official recipe) and their concept-fold versions (for the retrieval blend)
+for s in $(seq 1 10); do for f in -1 0 1 2 3 4; do python train.py --sub $s --fold $f --tag t0_r4; done; done
+# the co-author's head, one per subject
+python ordh.py latents
+for s in $(seq 1 10); do python ordh.py train $s; done
+# O0: repeat-corrected ridge start images (the O0 row; O1-O3 recompute the ridge on the aggregated input)
+for s in $(seq 1 10); do python low.py $s; done
+# O2: inverse-variance aggregation -> conditions through each subject's head, ridge latents
+python ivwprep.py t0_r4
+# O1: retrieval blend on the aggregated inputs, decoded to start images
+python lowsem.py t0_r4 vae_rcp_ivw --ctest cond_test_ivw.npy --space raw --mode knn --w 0.5 --save lowrkivw_0.5
+python decode_low.py lowrkivw_0.5
+# O3: generation with fractional strength (one draw per image, K = 4 images per query)
+python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_ivw/sub-XX.npy --init_file sub-XX/lowrkivw_0.5_n0.8.npy \
+    --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0
+python tab10.py > table10.txt          # rows O1 / O2 / O3
+```
+
+Analyses of this section: `robagg.py` (aggregators), `rel.py` (split-half reliability; its embedding part uses the joint
+encoder tag by default, pass `t0_r4` for the per-subject one), `permet.py` + `adapt.py` / `adapt_map.py` (per-image gain
+policies, needs `gen.py --dump 1`), `armsum.py` (paired means over subjects); outputs in `results/original_pipeline.txt`,
+`results/reliability_gain.txt`, `results/robust_aggregation.txt`. Cost: about 3 min of generation per subject on one RTX 4090.
+The last command, re-run for subject 8 with the final version of `gen.py`, reproduced all stored metrics exactly (largest
+difference 0.0).
 
 ## Running it (reproducing B‴ from scratch)
 

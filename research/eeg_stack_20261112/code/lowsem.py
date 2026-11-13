@@ -25,6 +25,7 @@ p.add_argument("--w", type=float, default=0.0)
 p.add_argument("--k", type=int, default=20)
 p.add_argument("--temp", type=float, default=0.05)
 p.add_argument("--knn_pool", type=int, default=1, help="keep only the coarse part of the retrieved latents: average-pool 16x16 by this factor, upsample back")
+p.add_argument("--ctest", default="cond_test_r80.npy", help="test-condition file in the encoder's fold-1 directory (ivwprep.py: cond_test_ivw.npy)")
 p.add_argument("--space", default="z", choices=["z", "raw"], help="raw: correlations and blends on unstandardised latent deviations")
 args = p.parse_args()
 nz = torch.nn.functional.normalize
@@ -62,7 +63,7 @@ def knn(c, k=args.k, temp=args.temp):
 rows = []
 for s in range(1, 11):
     d = RUNS / "enc" / args.enc / f"sub-{s:02d}"
-    ct = torch.from_numpy(np.load(d / "fold-1_seed2025" / "cond_test_r80.npy")).float()
+    ct = torch.from_numpy(np.load(d / "fold-1_seed2025" / args.ctest)).float()
     oof = torch.zeros(len(Y), ct.shape[1])
     for k in range(5):
         idx = torch.from_numpy(np.load(d / f"fold{k}_seed2025" / "oof_index.npy"))

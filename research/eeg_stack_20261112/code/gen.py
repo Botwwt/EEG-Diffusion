@@ -48,6 +48,14 @@ p.add_argument("--selvar", default="", help="extra best-of-N variants scored in 
                "enc (raw EEG direction, the default target), head (corrected condition, centred on the test mean), knn (kNN prototype of training-image "
                "embeddings), e.g. 'enc+knn0.5@8'; n = candidates used (<= nsel)")
 p.add_argument("--dump", type=int, default=0, help="save the final images as uint8 rec.npy [K, 200, 3, 512, 512] (for offline post-processing)")
+p.add_argument("--amp_mix", default="", help="comma-separated amplification factors cycled over the best-of-N candidates (candidate n uses factor n mod L); overrides --amp")
+p.add_argument("--smap", default="", help="reliability-driven differential img2img: '<kind>,s_rel,s_unrel', kind map / img (controls: const, shuf). The strength at each latent "
+               "position is s_unrel - (s_unrel - s_rel) * rho, rho = split-half reliability of the start-image latent (rel.py: map per position, or "
+               "one value per image); positions are held at the noised start latent until their own number of steps remains (--strength is ignored)")
+p.add_argument("--ilvr", default="", help="low-band anchoring (ILVR, Choi et al. 2021, transferred): 'f,w,k'. After each of the first k sampler steps "
+               "(k = 0: every step but the last) the latent's low band LP_f (average-pool by f, bilinear back) is moved by w towards that of the "
+               "start latent noised to the current level: x += w * (LP_f(z0 + sigma * eps) - LP_f(x)). f = 4 keeps exactly the 16 x 16 band the "
+               "EEG decoder predicts; uses --strength as the img2img start")
 p.add_argument("--reps", default="0:80", help="test repeats averaged into the input, start:stop")
 p.add_argument("--K", type=int, default=4, help="images per query")
 p.add_argument("--bs", type=int, default=0, help="queries per batch (0: about 20 images per batch)")
@@ -123,6 +131,13 @@ if args.selvar:
 if args.alpha > 0:
     info.update(gap_norm=float(g.norm()), gap_cos_before=float((nz(c, dim=1) @ nz(g, dim=0)).mean()))
     c = c.norm(dim=1, keepdim=True) * nz(nz(c, dim=1) + args.alpha * g, dim=1)
+def amplify(c, a):
+    cn = nz(c, dim=1)
+    m = cn.mean(0, keepdim=True)
+    return c.norm(dim=1, keepdim=True) * nz(m + a * (cn - m), dim=1)
+
+
+c_mix = [amplify(c, float(a)) for a in args.amp_mix.split(",")] if args.amp_mix else None
 if args.amp != 1.0:
     cn = nz(c, dim=1)
     m = cn.mean(0, keepdim=True)
@@ -176,6 +191,43 @@ if args.init_file:
     init = torch.nn.functional.interpolate(init, size=512, mode="bicubic").clamp(0, 1)
     p2 = StableDiffusionXLImg2ImgPipeline(**pipe.components)
     p2.set_progress_bar_config(disable=True)
+smap = None
+ilvr = None
+if args.ilvr:
+    assert init is not None and not args.smap
+    f_, w_, k_ = args.ilvr.split(",")
+    ilvr = (int(f_), float(w_), int(k_))
+    n_run = min(int(args.steps * args.strength), args.steps)
+    vae32 = __import__("copy").deepcopy(pipe.vae).float()
+if args.smap:
+    assert init is not None
+    kind, s_rel, s_unrel = args.smap.split(",")
+    s_rel, s_unrel = float(s_rel), float(s_unrel)
+    assert 0.25 <= s_rel <= s_unrel <= 1
+    if kind.startswith("c") and kind != "const":  # fixed value: no reliability file needed
+        rz, lm = None, torch.zeros(200, 1, 16, 16)
+    else:
+        rz = np.load(RUNS / "rel" / f"sub-{ea['sub']:02d}.npz")
+        lm = torch.from_numpy(rz["low_map"]).float()[:, None]             # [200, 1, 16, 16]
+    if kind == "map":
+        rho = lm
+    elif kind == "img":
+        rho = torch.from_numpy(rz["low"]).float().view(-1, 1, 1, 1).expand(-1, 1, 16, 16)
+    elif kind == "const":    # control: same mean reliability everywhere (no spatial or per-image information)
+        rho = torch.full_like(lm, float(lm.clamp(0, 1).mean()))
+    elif kind == "shuf":     # control: each image gets the map of another image (fixed permutation)
+        rho = lm[torch.randperm(200, generator=torch.Generator().manual_seed(5))]
+    elif kind.startswith("c"):  # control: one fixed reliability for every subject and position, e.g. 'c0.611'
+        rho = torch.full_like(lm, float(kind[1:]))
+    else:
+        raise ValueError(kind)
+    rho = torch.nn.functional.interpolate(rho, size=64, mode="bilinear", align_corners=False).clamp(0, 1)
+    smap = s_unrel - (s_unrel - s_rel) * rho                              # [200, 1, 64, 64] strength per latent position
+    args.strength = s_unrel
+    n_run = min(int(args.steps * s_unrel), args.steps)
+    hold = (n_run - args.steps * smap).clamp(min=0)                       # steps each position is held at the noised start latent
+    vae32 = __import__("copy").deepcopy(pipe.vae).float()
+    info.update(smap_mean_strength=float(smap.mean()), smap_mean_hold=float(hold.mean()))
 def generate(cv, q, s, n):
     lat = torch.stack([torch.randn(4, 64, 64, generator=torch.Generator().manual_seed(1_000_003 * i + k + 12345 + 100_003 * n))
                        for i in q for k in range(K)]).to(dev, dt)
@@ -198,6 +250,35 @@ def generate(cv, q, s, n):
         else:  # start from the noised low-level image; one generator per image keeps the noise tied to (query, sample)
             gens = [torch.Generator(dev).manual_seed(1_000_003 * i + k + 12345 + 100_003 * n) for i in q for k in range(K)]
             i0 = init[q].repeat_interleave(K, dim=0).to(dev, dt)
+            if smap is not None or ilvr is not None:
+                with torch.no_grad():
+                    z0 = vae32.encode(i0.float() * 2 - 1).latent_dist.mean * vae32.config.scaling_factor
+                eps = torch.stack([torch.randn(4, 64, 64, generator=torch.Generator().manual_seed(7_000_003 * i + k + 100_003 * n + 99))
+                                   for i in q for k in range(K)]).to(dev)
+            if ilvr is not None:
+                f_, w_, k_ = ilvr
+
+                def lp(z):
+                    return torch.nn.functional.interpolate(torch.nn.functional.avg_pool2d(z, f_), size=z.shape[-1], mode="bilinear", align_corners=False)
+
+                def cb(pp, i, t, ck):
+                    if i < n_run - 1 and (k_ == 0 or i < k_):
+                        sig = pp.scheduler.sigmas[pp.scheduler.step_index].to(dev)
+                        lt = ck["latents"].float()
+                        ck["latents"] = (lt + w_ * (lp(z0 + sig * eps) - lp(lt))).to(ck["latents"].dtype)
+                    return ck
+                kw.update(callback_on_step_end=cb, callback_on_step_end_tensor_inputs=["latents"])
+            if smap is not None:
+                h_ = hold[q].repeat_interleave(K, dim=0).to(dev)
+
+                def cb(pp, i, t, ck):
+                    m_ = (h_ - i).clamp(0, 1)
+                    if float(m_.max()) > 0:
+                        sig = pp.scheduler.sigmas[pp.scheduler.step_index].to(dev)
+                        lt = ck["latents"]
+                        ck["latents"] = (m_ * (z0 + sig * eps) + (1 - m_) * lt.float()).to(lt.dtype)
+                    return ck
+                kw.update(callback_on_step_end=cb, callback_on_step_end_tensor_inputs=["latents"])
             img = p2(image=i0, strength=args.strength, generator=gens, **kw).images
             if args.blend > 0:
                 img = (1 - args.blend) * img.float() + args.blend * i0.float()
@@ -232,7 +313,7 @@ for s in range(0, N, args.bs):
         sv_best = {spec: torch.full((len(q) * K,), -1e9) for spec, _, _ in selvars}
         sv_cur = {spec: torch.empty(len(q) * K, 3, 512, 512, dtype=torch.uint8) for spec, _, _ in selvars}
     for n in range(NS):  # candidate 0 is exactly the image a run without selection produces
-        img = generate(c, q, s, n)
+        img = generate(c if c_mix is None else c_mix[n % len(c_mix)], q, s, n)
         if NS == 1:
             cur = img.cpu()
             break

@@ -46,6 +46,24 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "B with the 3-pass shared head": "s{:02d}_ms_e10_ft10in_A1_pooled_p3_low_amp2_sel4",
         "A' with the 3-pass shared head": "s{:02d}_ms_e10_ft10in_A1_pooled_p3_lowrk0.5_sel4",
         "B' with the 3-pass shared head": "s{:02d}_ms_e10_ft10in_A1_pooled_p3_lowrk0.5_amp2_sel4",
+        "O1: per-subject enc + head + retrieval-blended start": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5",
+        "O2: O1 + inverse-variance repeat aggregation": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5",
+        "O3: O2 + fractional-strength re-injection": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0",
+        "O3 with the strength set by subject reliability": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_const_0.5_1.0",
+        "O1 + re-injection (no aggregation)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_const_0.5_1.0",
+        "O1 + strength map from reliability (0.5-0.75)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_map_0.5_0.75",
+        "O1 + shuffled reliability map (0.5-0.75)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_shuf_0.5_0.75",
+        "O1 + constant strength (0.5-0.75)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_const_0.5_0.75",
+        "O1 + per-image reliability strength (0.5-0.75)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_img_0.5_0.75",
+        "O1 + strength map (0.625-0.75)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_map_0.625_0.75",
+        "O1 + constant strength (0.625-0.75)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_const_0.625_0.75",
+        "O1 + strength map (0.5-1.0)": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_smap_map_0.5_1.0",
+        "O1 + ILVR f4 w1, strength 1": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_ilvr4_1.0_0_st1.0",
+        "O1 + ILVR f4 w1, strength 0.75": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_ilvr4_1.0_0_st0.75",
+        "O1 + ILVR f4 w0.5, strength 0.75": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_ilvr4_0.5_0_st0.75",
+        "O1 + ILVR f4 w0.5, strength 1": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_ilvr4_0.5_0_st1.0",
+        "O1 + ILVR f8 w1, strength 0.75": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_ilvr8_1.0_0_st0.75",
+        "O1 + ILVR f4 w1 first step only, strength 1": "s{:02d}_t0_s2025_A1_ord_lowrkt0_0.5_ilvr4_1.0_1_st1.0",
         "calibration + low-level start": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low",
         "+ best of 4 candidates": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low_sel4"}
 PAPER = [0.195, 0.336, 0.843, 0.905, 0.756, 0.808]   # Brain-HIVE Table 2, EEG average (SwAV 0.554 not measured here)
@@ -113,4 +131,12 @@ compare("A' single draw", ["A' single draw, 8 steps strength 0.75", "A' single d
 for x, y in [("joint enc: shared head + low + best of 4", "A with the 3-pass shared head"), ("joint enc: shared head + low + amp 2 + best of 4", "B with the 3-pass shared head"),
              ("A': shared head + ridge+retrieval start + best of 4", "A' with the 3-pass shared head"), ("B': ... + amp 2", "B' with the 3-pass shared head")]:
     compare(x, [y])
+print("\n===== original-components pipeline (no joint encoder, no best-of-N, no shrinkage, no amplification) =====")
+compare("ordinary head + low-level start", ["O1: per-subject enc + head + retrieval-blended start"])
+compare("O1: per-subject enc + head + retrieval-blended start", ["O2: O1 + inverse-variance repeat aggregation", "O1 + re-injection (no aggregation)"])
+compare("O2: O1 + inverse-variance repeat aggregation", ["O3: O2 + fractional-strength re-injection", "O3 with the strength set by subject reliability"])
+print("\n===== reliability-driven strength maps and ILVR (screening, subjects 2, 5, 8, 9 / 2, 8) =====")
+compare("O1: per-subject enc + head + retrieval-blended start", [a for a in ARMS if a.startswith("O1 + ") and a != "O1 + re-injection (no aggregation)"])
+compare("O1 + shuffled reliability map (0.5-0.75)", ["O1 + strength map from reliability (0.5-0.75)"])
+compare("O1 + constant strength (0.625-0.75)", ["O1 + strength map (0.625-0.75)"])
 print(f"\n{'paper Table 2 (10-subject mean)':<48}" + "".join(f"{x:>10.4f}" for x in PAPER))

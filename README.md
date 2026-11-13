@@ -17,7 +17,24 @@ Model weights, private EEG, large feature arrays and machine credentials are exc
 
 ## Stacked results on the ordinary head — 2026-11-13
 
-[`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks a joint ten-subject EEG encoder, a
+**Original-components pipeline (headline).** A prior-art audit found that the joint encoder, best-of-N selection,
+output shrinkage and condition amplification of the stack below come from same-field papers (MindEye2 / ENIGMA,
+MindEye, MindEye2, Perceptogram). Leaving them out and keeping only components that are ours or transferred from other
+fields — repeat-corrected ridge start image blended with retrieved training latents, inverse-variance aggregation of
+the 80 test repeats (robust statistics), fractional img2img strength by re-injection (Differential Diffusion) —
+on top of the per-subject Brain-HIVE encoder and the ordinary head (one per subject), one draw per image:
+
+| setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP |
+|---|---|---|---|---|---|---|
+| Brain-HIVE, reproduced | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 |
+| + ordinary head (per subject) | 0.2016 | 0.3360 | 0.8299 | 0.9017 | 0.7551 | 0.8107 |
+| **O3: + original components** | **0.2636** | **0.4073** | **0.8727** | **0.9152** | **0.7581** | **0.8118** |
+
+Better than the reproduced baseline on every metric in every subject (CLIP 9/10); ranks 2 / 2 / 2 / 2 / 4 / 3 against
+published 10-subject EEG-only results. Reliability-driven variants (split-half Wiener gains, strength maps) and ILVR
+were tested with controls; the strength maps and ILVR are negative. Details, credits and controls in the folder README.
+
+**Full stack including the borrowed components (credited):** [`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks a joint ten-subject EEG encoder, a
 ridge + retrieval low-level start image, best-of-N selection and high-frequency shrinkage on top of the ordinary head
 (one head shared by the ten subjects). THINGS-EEG test set, R80, 10 subjects, K = 4 images per query, Brain-HIVE
 metrics (SwAV not measured):
