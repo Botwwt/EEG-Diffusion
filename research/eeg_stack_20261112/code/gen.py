@@ -42,6 +42,12 @@ p.add_argument("--loop", type=float, default=0.0, help="closed-loop correction s
 p.add_argument("--loop_iters", type=int, default=1)
 p.add_argument("--sel_low", type=float, default=0.0, help="best-of-N score = semantic fit + sel_low * pixel correlation (64 px grey) with the low-level start image")
 p.add_argument("--proj_ckpt", default="", help="fine-tuned IP projection (ipft.py), path relative to runs/")
+p.add_argument("--post", default="", help="extra scored variants (';'-separated 'w,sigma,beta'): out = (1-w)*LF(gen) + w*LF(start) + beta*(gen - LF(gen)), "
+               "LF = Gaussian blur with sigma px at 512; or 'm,sigma,beta': high band shrunk towards the mean of the K samples; the main metrics stay those of the unmodified images")
+p.add_argument("--selvar", default="", help="extra best-of-N variants scored in the same run (';'-separated 'target@n'): target = '+'-joined weighted terms "
+               "enc (raw EEG direction, the default target), head (corrected condition, centred on the test mean), knn (kNN prototype of training-image "
+               "embeddings), e.g. 'enc+knn0.5@8'; n = candidates used (<= nsel)")
+p.add_argument("--dump", type=int, default=0, help="save the final images as uint8 rec.npy [K, 200, 3, 512, 512] (for offline post-processing)")
 p.add_argument("--reps", default="0:80", help="test repeats averaged into the input, start:stop")
 p.add_argument("--K", type=int, default=4, help="images per query")
 p.add_argument("--bs", type=int, default=0, help="queries per batch (0: about 20 images per batch)")
@@ -96,6 +102,24 @@ if args.alpha > 0 or args.nsel > 1:
     mu_fn, mu_x = nz(F_tr, dim=1).mean(0), nz(oof, dim=1).mean(0)
     g = mu_fn - mu_x
     qv = nz(nz(c_enc, dim=1) - mu_x, dim=1)                                # centred EEG direction, used to score candidates
+c_head = c.clone()
+if args.selvar:
+    assert args.nsel > 1
+    Fc = nz(nz(F_tr.float(), dim=1) - mu_fn, dim=1)                     # centred training-image embeddings
+    sim = qv @ Fc.T                                                         # [200, 16540]
+    tv, ti = sim.topk(20, dim=1)
+    knn = nz((torch.softmax(tv / 0.05, dim=1).unsqueeze(-1) * Fc[ti]).sum(1), dim=1)
+    hd = nz(nz(c_head, dim=1) - nz(c_head, dim=1).mean(0), dim=1)
+    terms = dict(enc=qv, head=hd, knn=knn)
+    selvars = []
+    for spec in args.selvar.split(";"):
+        tgt, n_ = spec.split("@")
+        v = torch.zeros_like(qv)
+        for t_ in tgt.split("+"):
+            name = t_.rstrip("0123456789.")
+            v = v + float(t_[len(name):] or 1) * terms[name]
+        assert int(n_) <= args.nsel
+        selvars.append((spec, nz(v, dim=1), int(n_)))
 if args.alpha > 0:
     info.update(gap_norm=float(g.norm()), gap_cos_before=float((nz(c, dim=1) @ nz(g, dim=0)).mean()))
     c = c.norm(dim=1, keepdim=True) * nz(nz(c, dim=1) + args.alpha * g, dim=1)
@@ -199,10 +223,14 @@ for it in range(args.loop_iters if args.loop > 0 else 0):  # closed loop: first 
     print(f"loop {it}: centred cos(image, condition) {before:.4f}", flush=True)
 if NS > 1:
     n_changed, sc0_sum, scb_sum = 0, 0.0, 0.0
+    sv_rec = {spec: torch.empty(K, N, 3, 512, 512, dtype=torch.uint8) for spec, _, _ in (selvars if args.selvar else [])}
 for s in range(0, N, args.bs):
     q = list(range(s, min(N, s + args.bs)))
     best = torch.full((len(q) * K,), -1e9)
     cur = torch.empty(len(q) * K, 3, 512, 512)
+    if args.selvar:
+        sv_best = {spec: torch.full((len(q) * K,), -1e9) for spec, _, _ in selvars}
+        sv_cur = {spec: torch.empty(len(q) * K, 3, 512, 512, dtype=torch.uint8) for spec, _, _ in selvars}
     for n in range(NS):  # candidate 0 is exactly the image a run without selection produces
         img = generate(c, q, s, n)
         if NS == 1:
@@ -216,6 +244,14 @@ for s in range(0, N, args.bs):
             a_, b_ = small(img.cpu()), small(init[q].repeat_interleave(K, dim=0))
             a_, b_ = a_ - a_.mean(1, keepdim=True), b_ - b_.mean(1, keepdim=True)
             sc = sc + args.sel_low * (a_ * b_).sum(1) / (a_.norm(dim=1) * b_.norm(dim=1) + 1e-8)
+        if args.selvar:
+            fn_ = nz(nz(f, dim=1) - mu_fn, dim=1)
+            img8 = (img.cpu() * 255).round().to(torch.uint8)
+            for spec, v, n_ in selvars:
+                if n < n_:
+                    sv_sc = (fn_ * v[q].repeat_interleave(K, dim=0)).sum(1)
+                    u_ = sv_sc > sv_best[spec]
+                    sv_cur[spec][u_], sv_best[spec][u_] = img8[u_], sv_sc[u_]
         if n == 0:
             sc0_sum += float(sc.sum())
         upd = sc > best
@@ -225,6 +261,9 @@ for s in range(0, N, args.bs):
     if NS > 1:
         scb_sum += float(best.sum())
     rec[:, q] = cur.view(len(q), K, 3, 512, 512).transpose(0, 1)
+    if args.selvar:
+        for spec in sv_cur:
+            sv_rec[spec][:, q] = sv_cur[spec].view(len(q), K, 3, 512, 512).transpose(0, 1)
 if NS > 1:
     info.update(sel_score_first=sc0_sum / (N * K), sel_score_kept=scb_sum / (N * K), sel_updates_per_image=n_changed / (N * K))
 p2 = None
@@ -241,6 +280,8 @@ if args.save:
     Image.fromarray((grid.permute(1, 2, 0).numpy() * 255).round().astype(np.uint8)).resize((768, 2048)).save(
         out / "grid_target_s0_s1.jpg", quality=90)
 
+if args.dump:
+    np.save(out / "rec_u8.npy", (rec * 255).round().to(torch.uint8).numpy())
 from metrics import score  # noqa: E402
 
 per_sample = score(rec, gt)
@@ -248,5 +289,40 @@ info["per_sample"] = per_sample
 info["mean"] = {k: float(np.mean([s[k] for s in per_sample])) for k in per_sample[0]}
 write_json(out / "metrics.json", info)
 mm = info["mean"]
+if args.selvar:
+    info["selvar"] = {}
+    for spec in sv_rec:
+        ps = score(sv_rec[spec].float() / 255, gt)
+        pm = {k: float(np.mean([s_[k] for s_ in ps])) for k in ps[0]}
+        info["selvar"][spec] = pm
+        print(f"{args.name} selvar {spec} | " + " ".join(f"{k} {v:.4f}" for k, v in pm.items()), flush=True)
+    write_json(out / "metrics.json", info)
+if args.post:
+    assert init is not None
+    from torchvision.transforms.functional import gaussian_blur  # noqa: E402
+
+    def lowpass(x, sg):
+        ks = int(6 * sg) | 1
+        return torch.cat([gaussian_blur(x[i:i + 50].to(dev), [ks, ks], [sg, sg]).cpu() for i in range(0, len(x), 50)])
+    info["post"] = {}
+    for spec in args.post.split(";"):
+        out_ = torch.empty_like(rec)
+        if spec.startswith("m"):  # 'm,sigma,beta': shrink the high band (sigma 0: all of it) towards the mean of the K samples of a query
+            sg, beta = (float(v) for v in spec.split(",")[1:])
+            hf = torch.stack([rec[k] - lowpass(rec[k], sg) for k in range(K)]) if sg > 0 else rec
+            hm = hf.mean(0)
+            for k in range(K):
+                out_[k] = (rec[k] - (1 - beta) * (hf[k] - hm)).clamp(0, 1)
+        else:
+            w, sg, beta = (float(v) for v in spec.split(","))
+            ls = lowpass(init, sg)
+            for k in range(K):
+                lg = lowpass(rec[k], sg)
+                out_[k] = ((1 - w) * lg + w * ls + beta * (rec[k] - lg)).clamp(0, 1)
+        ps = score(out_, gt)
+        pm = {k: float(np.mean([s_[k] for s_ in ps])) for k in ps[0]}
+        info["post"][spec] = pm
+        print(f"{args.name} post {spec} | " + " ".join(f"{k} {v:.4f}" for k, v in pm.items()), flush=True)
+    write_json(out / "metrics.json", info)
 print(f"{args.name} | pixcorr {mm['pixcorr']:.4f} ssim {mm['ssim']:.4f} alex2 {mm['alex2']:.4f} alex5 {mm['alex5']:.4f} "
       f"incep {mm['inception']:.4f} clip {mm['clip']:.4f} effnet {mm['effnet']:.4f} clip_top1 {mm['clip_top1']:.4f}", flush=True)

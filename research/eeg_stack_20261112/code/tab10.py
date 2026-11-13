@@ -26,15 +26,37 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "low-level point: strength 0.5 + best of 4": "s{:02d}_ms_e10_ft10in_A1_ord_low_st0.5_sel4",
         "A': shared head + ridge+retrieval start + best of 4": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_sel4",
         "B': ... + amp 2": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel4",
+        "A' best of 8": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_sel8sv",
+        "B' best of 8": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel8sv",
+        "A'': A' best of 8 + HF shrink (16 px, 0.8)": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_sel8sv#post:0,16,0.8",
+        "B'': B' best of 8 + HF shrink (16 px, 0.8)": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel8sv#post:0,16,0.8",
+        "A' best of 8, target = corrected condition": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_sel8sv#selvar:head@8",
+        "B' best of 8, target = corrected condition": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel8sv#selvar:head@8",
+        "A' best of 8, target = kNN training prototype": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_sel8sv#selvar:knn@8",
+        "A' retrieval weight 0.25": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.25_sel4",
+        "A' single draw": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5",
+        "A' single draw, 8 steps strength 0.75": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_8st0.75",
+        "A' single draw, 8 steps strength 0.625": "s{:02d}_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_8st0.625",
+        "A with the 3-pass shared head": "s{:02d}_ms_e10_ft10in_A1_pooled_p3_low_sel4",
+        "B with the 3-pass shared head": "s{:02d}_ms_e10_ft10in_A1_pooled_p3_low_amp2_sel4",
+        "A' with the 3-pass shared head": "s{:02d}_ms_e10_ft10in_A1_pooled_p3_lowrk0.5_sel4",
+        "B' with the 3-pass shared head": "s{:02d}_ms_e10_ft10in_A1_pooled_p3_lowrk0.5_amp2_sel4",
         "calibration + low-level start": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low",
         "+ best of 4 candidates": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low_sel4"}
 PAPER = [0.195, 0.336, 0.843, 0.905, 0.756, 0.808]   # Brain-HIVE Table 2, EEG average (SwAV 0.554 not measured here)
 rows = {}
 for arm, pat in ARMS.items():
     for s in range(1, 11):
-        f = RUNS / "img" / pat.format(s) / "metrics.json"
+        run, _, var = pat.format(s).partition("#")   # '#post:<spec>' / '#selvar:<spec>': a variant scored inside that run
+        f = RUNS / "img" / run / "metrics.json"
         if f.exists():
-            rows[arm, s] = [json.loads(f.read_text())["mean"][k] for k in M]
+            d = json.loads(f.read_text())
+            if var:
+                kind, spec = var.split(":", 1)
+                if spec not in d.get(kind, {}):
+                    continue
+                d = {"mean": d[kind][spec]}
+            rows[arm, s] = [d["mean"][k] for k in M]
 print(f"{'':<53}" + "".join(f"{k:>10}" for k in M))
 for s in range(1, 11):
     for arm in ARMS:
@@ -70,4 +92,16 @@ for x, y in [("joint enc: ordinary head", "joint enc: SHARED head"), ("joint enc
 print("\n===== start image: ridge vs ridge + retrieved training latents (weight 0.5) =====")
 compare("joint enc: shared head + low + best of 4", ["A': shared head + ridge+retrieval start + best of 4"])
 compare("joint enc: shared head + low + amp 2 + best of 4", ["B': ... + amp 2"])
+print("\n===== best of 8, selection target, high-frequency shrinkage =====")
+compare("A': shared head + ridge+retrieval start + best of 4", ["A' best of 8"])
+compare("B': ... + amp 2", ["B' best of 8"])
+compare("A' best of 8", ["A' best of 8, target = corrected condition", "A' best of 8, target = kNN training prototype", "A'': A' best of 8 + HF shrink (16 px, 0.8)"])
+compare("B' best of 8", ["B' best of 8, target = corrected condition", "B'': B' best of 8 + HF shrink (16 px, 0.8)"])
+compare("A'': A' best of 8 + HF shrink (16 px, 0.8)", ["B'': B' best of 8 + HF shrink (16 px, 0.8)"])
+print("\n===== retrieval weight, sampler steps, 3-pass shared head =====")
+compare("joint enc: shared head + low + best of 4", ["A' retrieval weight 0.25"])
+compare("A' single draw", ["A' single draw, 8 steps strength 0.75", "A' single draw, 8 steps strength 0.625"])
+for x, y in [("joint enc: shared head + low + best of 4", "A with the 3-pass shared head"), ("joint enc: shared head + low + amp 2 + best of 4", "B with the 3-pass shared head"),
+             ("A': shared head + ridge+retrieval start + best of 4", "A' with the 3-pass shared head"), ("B': ... + amp 2", "B' with the 3-pass shared head")]:
+    compare(x, [y])
 print(f"\n{'paper Table 2 (10-subject mean)':<48}" + "".join(f"{x:>10.4f}" for x in PAPER))

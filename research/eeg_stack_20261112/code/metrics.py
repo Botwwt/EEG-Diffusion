@@ -21,6 +21,34 @@ def load_gt():
     return ids, torch.stack([tf(Image.open(files[i]).convert("RGB")) for i in ids])
 
 
+_NETS = None
+
+
+def _nets():
+    global _NETS
+    if _NETS is None:
+        import clip
+        from torchvision.models import (AlexNet_Weights, EfficientNet_B1_Weights, Inception_V3_Weights, alexnet,
+                                        efficientnet_b1, inception_v3)
+        from torchvision.models.feature_extraction import create_feature_extractor
+        IMN = T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+
+        def rs(n):
+            return T.Resize(n, interpolation=T.InterpolationMode.BILINEAR)
+        alex = create_feature_extractor(alexnet(weights=AlexNet_Weights.IMAGENET1K_V1), ["features.4", "features.11"]).to(dev).eval()
+        inc = create_feature_extractor(inception_v3(weights=Inception_V3_Weights.DEFAULT), ["avgpool"]).to(dev).eval()
+        eff = create_feature_extractor(efficientnet_b1(weights=EfficientNet_B1_Weights.DEFAULT), ["avgpool"]).to(dev).eval()
+        clip_model, _ = clip.load("ViT-L/14", device=dev, download_root=str(RUNS.parent / "cache/clip"))
+        CLN = T.Normalize(mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+        nets = {
+            "alex2": (alex, T.Compose([rs(256), IMN]), "features.4"), "alex5": (alex, T.Compose([rs(256), IMN]), "features.11"),
+            "inception": (inc, T.Compose([rs(342), IMN]), "avgpool"), "clip": (clip_model.encode_image, T.Compose([rs(224), CLN]), None),
+            "effnet": (eff, T.Compose([rs(255), IMN]), "avgpool"),
+        }
+        _NETS = nets
+    return _NETS
+
+
 def score(rec, gt):
     K, N = rec.shape[:2]
     import clip
@@ -58,16 +86,7 @@ def score(rec, gt):
         return float(np.mean(1 - (rc * pc).sum(1) / (np.linalg.norm(rc, axis=1) * np.linalg.norm(pc, axis=1))))
 
 
-    alex = create_feature_extractor(alexnet(weights=AlexNet_Weights.IMAGENET1K_V1), ["features.4", "features.11"]).to(dev).eval()
-    inc = create_feature_extractor(inception_v3(weights=Inception_V3_Weights.DEFAULT), ["avgpool"]).to(dev).eval()
-    eff = create_feature_extractor(efficientnet_b1(weights=EfficientNet_B1_Weights.DEFAULT), ["avgpool"]).to(dev).eval()
-    clip_model, _ = clip.load("ViT-L/14", device=dev, download_root=str(RUNS.parent / "cache/clip"))
-    CLN = T.Normalize(mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
-    nets = {
-        "alex2": (alex, T.Compose([rs(256), IMN]), "features.4"), "alex5": (alex, T.Compose([rs(256), IMN]), "features.11"),
-        "inception": (inc, T.Compose([rs(342), IMN]), "avgpool"), "clip": (clip_model.encode_image, T.Compose([rs(224), CLN]), None),
-        "effnet": (eff, T.Compose([rs(255), IMN]), "avgpool"),
-    }
+    nets = _nets()
     gt_f = {k: feats(m, pre, gt, layer) for k, (m, pre, layer) in nets.items()}
     gt425 = rs(425)(gt)
     gt_gray = rgb2gray(gt425.permute(0, 2, 3, 1).numpy())

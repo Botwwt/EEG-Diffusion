@@ -1,4 +1,4 @@
-# Stacking on the ordinary head: joint EEG encoder + low-level start image (2026-11-12)
+# Stacking on the ordinary head: joint EEG encoder + low-level start image (2026-11-12, updated 2026-11-13)
 
 This folder adds components on top of the **ordinary bounded condition head**
 (`research/eeg/brainhive_bounded_component_v1.py`, imported unchanged) and reports every arm that was run,
@@ -20,14 +20,17 @@ SwAV is not measured (weights not downloadable here). Every row is the mean over
 | joint encoder + head + low-level start | 0.2513 | 0.3932 | 0.8716 | 0.9221 | 0.7793 | 0.8180 | 0.8510 |
 | … + best of 4 candidates (per-subject heads) | 0.2539 | 0.3920 | 0.8783 | 0.9252 | 0.7801 | 0.8208 | 0.8481 |
 | … + amplification ×2 + best of 4 (per-subject heads) | 0.2477 | 0.3872 | 0.8818 | 0.9279 | 0.7859 | 0.8231 | 0.8494 |
-| **A**: joint encoder + **one shared head** + low-level start + best of 4 | **0.2550** | **0.3937** | 0.8777 | 0.9261 | 0.7827 | 0.8217 | 0.8463 |
-| **B**: … + amplification ×2 | 0.2483 | 0.3891 | 0.8823 | 0.9289 | 0.7862 | **0.8246** | 0.8475 |
-| **A′**: A with the start image blended with retrieved training latents | **0.2665** | 0.3870 | 0.8853 | 0.9271 | 0.7833 | 0.8232 | 0.8480 |
-| **B′**: A′ + amplification ×2 | 0.2580 | 0.3823 | **0.8897** | **0.9301** | **0.7869** | 0.8239 | 0.8478 |
+| **A**: joint encoder + **one shared head** + low-level start + best of 4 | 0.2550 | 0.3937 | 0.8777 | 0.9261 | 0.7827 | 0.8217 | **0.8463** |
+| **B**: … + amplification ×2 | 0.2483 | 0.3891 | 0.8823 | 0.9289 | 0.7862 | 0.8246 | 0.8475 |
+| **A′**: A with the start image blended with retrieved training latents | 0.2665 | 0.3870 | 0.8853 | 0.9271 | 0.7833 | 0.8232 | 0.8480 |
+| **B′**: A′ + amplification ×2 | 0.2580 | 0.3823 | 0.8897 | **0.9301** | **0.7869** | 0.8239 | 0.8478 |
+| B′ with best of 8 instead of 4 | 0.2602 | 0.3823 | **0.8899** | 0.9293 | 0.7864 | **0.8268** | 0.8475 |
+| **A″**: A′ + best of 8 + high-frequency shrinkage | **0.2782** | **0.4043** | 0.8823 | 0.9255 | 0.7837 | 0.8251 | 0.8476 |
+| **B″**: B′ + best of 8 + high-frequency shrinkage | 0.2710 | 0.3995 | 0.8859 | 0.9269 | 0.7863 | 0.8266 | 0.8491 |
 | low-level operating point: img2img strength 0.5 + best of 4 (per-subject heads) | 0.2578 | 0.4263 | 0.8422 | 0.8991 | 0.7744 | 0.7992 | 0.8635 |
 | Brain-HIVE paper, Table 2 (EEG) | 0.195 | 0.336 | 0.843 | 0.905 | 0.756 | 0.808 | – |
 
-A and B improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
+A, B, A′, B′, A″ and B″ improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
 baseline is 0.01–0.02 below the paper's own numbers. The low-level operating point trades semantics for SSIM
 (Alex2 / Alex5 / CLIP fall below A in all ten subjects) and is listed only to show the trade-off. Per-subject rows: `results/table10.txt`;
 every generation run: `results/runs_summary.csv`; every encoder: `results/encoders_summary.csv`.
@@ -47,6 +50,16 @@ Contribution of each component (10-subject means of the differences):
 - start image blended with retrieved training latents (A′ vs A): PixCorr +0.0115 and Alex2 +0.0077 with all ten
   subjects improving, Alex5 / Incep / CLIP +0.001; SSIM −0.0067 in all ten subjects. A trade-off rather than a
   strict gain, hence reported as a second setting.
+- best of 8 over best of 4 (same arm, joint pipeline): CLIP +0.0024 (A′, 9/10 subjects) and +0.0030 (B′, 10/10),
+  other metrics within ±0.002. It doubles the sampling budget again (32 generations per query).
+- high-frequency shrinkage over the same images (A″ vs A′ best of 8, B″ vs B′ best of 8): PixCorr +0.011 and SSIM
+  +0.017 in all ten subjects, Incep / CLIP within ±0.001, Alex2 −0.004 and Alex5 −0.003 (0/10). The setting
+  (Gaussian 16 px, gain 0.8) is the one a leave-one-subject-out rule picks for every held-out subject (largest SSIM
+  gain on the other nine with CLIP loss ≤ 0.001 and Alex2 loss ≤ 0.005, among the 10 settings of the grid below).
+- Against the external numbers quoted under Protocol details, A″ / B″ are above Perceptogram on PixCorr, SSIM, Incep
+  and CLIP, level on Alex5 and below on Alex2 (0.882–0.886 vs 0.910); above ENIGMA on everything except SSIM
+  (0.404 vs 0.423); above CogCapPro on PixCorr, SSIM and Incep, below on CLIP (0.827 vs 0.830). Evaluation details
+  differ between papers.
 
 ## Components
 
@@ -75,9 +88,16 @@ Contribution of each component (10-subject means of the differences):
    test-latent correlation and the image metrics of the ten subjects (a test-set choice).
 4. **Condition amplification** (`gen.py --amp`): c' = |c| · normalize(m + a (c/|c| − m)), m = mean direction of the
    200 test conditions (label-free, transductive).
-5. **Best of N** (`gen.py --nsel 4`): for every output image, 4 candidates with different noise; each is embedded back
+5. **Best of N** (`gen.py --nsel 4`, or 8 in A″ / B″): for every output image, 4 candidates with different noise; each is embedded back
    to F (`code/fenc.py`) and the one with the highest centred cosine to the EEG condition is kept. No label is used,
    but the sampling budget is 4× that of a single draw (16 generations per query instead of 4).
+
+6. **High-frequency shrinkage** (A″, B″; `gen.py --post 0,16,0.8`): every generated image x is replaced by
+   G(x) + 0.8 · (x − G(x)), G = Gaussian blur with σ = 16 px at 512 px. Rationale: the EEG carries little information
+   about fine image detail, so the detail the generator invents is mostly uncorrelated with the true image; shrinking
+   it towards zero is the lower-error estimate (a Wiener-style gain below one), the same argument that makes posterior
+   means blurrier than samples. No label is used and nothing is re-generated (`--post` scores any number of settings on
+   the same images; `--dump 1` + `postoff.py` do it offline).
 
 ## Protocol details
 
@@ -117,11 +137,19 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
 | (earlier, per-subject encoder) cross-fitted ridge prior c → F, kNN snapping to the training gallery | lower discriminability, no image gain |
 | (earlier) seed / time-window condition ensembles, repeat-subset training, absolute cosine loss beyond calibration | no image gain |
 | (earlier) degraded-image targets (NeuroBridge settings) | retrieval 50.5 → 63.5 % in the degraded space, images no better |
-| (earlier) 8 sampler steps, pixel-space start images, pixel blending, best of 8 vs best of 4 | no gain / trades CLIP for SSIM |
+| (earlier) 8 sampler steps, pixel-space start images, pixel blending, best of 8 vs best of 4 (per-subject encoder) | no gain / trades CLIP for SSIM |
+| shared head trained for the original 3 passes (30,996 updates) instead of 1 | A / B / A′ / B′: every metric within ±0.004 of the 1-pass head, mixed signs (10, 10, 10, 9 subjects) |
+| retrieval weight 0.25 instead of 0.5 in the start-image blend | in between A and A′ on every metric (PixCorr 0.2630, SSIM 0.3905) |
+| 8 sampler steps from the start image, strength 0.75 / 0.625 (6 / 5 refinement steps instead of 3), single draw | 0.75: SSIM −0.019, Alex2 −0.011, CLIP −0.003 (0–1/10); 0.625: PixCorr +0.008, SSIM +0.006, Alex2 −0.007, CLIP −0.005 (0/10) |
+| best-of-8 selection target: head-corrected condition (centred on the test mean) instead of the raw EEG direction | CLIP +0.0017 / +0.0007 (A′ / B′), SSIM +0.001 (10/10, 9/10), others ±0.001: within noise, not adopted |
+| best-of-8 selection target: kNN prototype of the training-image embeddings (top 20, T = 0.05), alone or mixed | CLIP +0.0006 / −0.0009, Alex5 −0.001 to −0.002, Incep −0.002 |
+| shrinkage grid, other settings (A′ / B′ best of 8, 10 subjects): gain 0.8 at σ 2 / 4 / 8 px; gain 0.7 / 0.6 at 8 px | smaller σ helps SSIM less at a similar or larger CLIP cost; gain 0.6 at 8 px: SSIM +0.032, PixCorr +0.014, CLIP −0.007 / −0.006, Alex2 −0.010 / −0.009 |
+| replacing the low-frequency band (σ 8 / 16 px) by that of the start image, weight 0.25 / 0.5, with or without shrinkage | PixCorr +0.025 to +0.035, SSIM up to +0.018, but CLIP −0.006 to −0.019 |
+| shrinking the high band towards the mean of the K = 4 samples of a query (full band or above σ 4 / 8 px) | PixCorr +0.003 to +0.027, SSIM +0.008 to +0.023, Incep +0.001 to +0.003, but CLIP −0.002 to −0.014 |
 
 ## Pending
 
-- Shared head with the original 3 passes (30,996 updates), compared with the 1-pass shared head.
+- Best of 16 with larger shrinkage scales (σ 24–48 px) on B′ (running).
 
 ## Running it
 
@@ -138,7 +166,12 @@ ORD_TAG=ms_e10_ft10in ORD_HEAD=pooled_p1 python ordh.py apply <sub>        # -> 
 python low.py <sub>                            # start images, variant vae_rcp_n0.8
 python gen.py --run ms_e10_ft10in/sub-XX/fold-1_seed2025 --cond_file ord_ms_e10_ft10in_pooled_p1/sub-XX.npy \
     --init_file sub-XX/vae_rcp_n0.8.npy --strength 0.75 --amp 2 --nsel 4 --K 4 --name <name>
+# A'' : start image lowrk0.5 (lowsem.py + decode_low.py, see 3b), best of 8, shrinkage scored inside the run
+python gen.py --run ms_e10_ft10in/sub-XX/fold-1_seed2025 --cond_file ord_ms_e10_ft10in_pooled_p1/sub-XX.npy \
+    --init_file sub-XX/lowrk0.5_n0.8.npy --strength 0.75 --nsel 8 --post 0,16,0.8 --K 4 --name <name>
+#   metrics.json: "mean" = images as generated, "post"["0,16,0.8"] = after shrinkage
 python tab10.py                                # ten-subject table
+python runsum.py > runs_summary.csv            # every run and every --post / --selvar variant
 ```
 
 Downloaded `.pt` EEG files are numpy pickles; they are loaded only through the restricted unpickler in
