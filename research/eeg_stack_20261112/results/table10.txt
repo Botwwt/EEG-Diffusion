@@ -43,6 +43,11 @@ sub-01 O3: O2 + fractional-strength re-injection    0.2895    0.4162    0.8786  
 sub-01 O3 with the strength set by subject reliability    0.2873    0.4131    0.8785    0.9163    0.7520    0.7807    0.8729
 sub-01 O4: O3 + test-time-adapted start image      0.2963    0.4183    0.8804    0.9158    0.7521    0.7792    0.8717
 sub-01 O3 + TTA for start and condition            0.2990    0.4257    0.8786    0.9143    0.7580    0.7830    0.8737
+sub-01 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.3020    0.4228    0.8814    0.9108    0.7539    0.7820    0.8748
+sub-01 O4 + adapted 7-seed ensemble condition      0.3019    0.4276    0.8798    0.9217    0.7597    0.7924    0.8725
+sub-01 O4 + adapted 7-seed ensemble condition, PCA 512    0.3007    0.4282    0.8770    0.9212    0.7713    0.7892    0.8707
+sub-01 O4 with retrieval weight 0.75               0.2959    0.4150    0.8803    0.9175    0.7538    0.7842    0.8728
+sub-01 O4 with retrieval weight 1.0                0.2950    0.4124    0.8808    0.9200    0.7576    0.7788    0.8716
 sub-01 O1 + re-injection (no aggregation)          0.2746    0.4137    0.8604    0.8954    0.7342    0.7586    0.8863
 sub-01 calibration + low-level start               0.2500    0.3803    0.8585    0.8907    0.7260    0.7511    0.8863
 sub-01 + best of 4 candidates                      0.2497    0.3808    0.8605    0.8926    0.7291    0.7591    0.8830
@@ -89,6 +94,11 @@ sub-02 O3: O2 + fractional-strength re-injection    0.2515    0.4122    0.8778  
 sub-02 O3 with the strength set by subject reliability    0.2488    0.4061    0.8786    0.9195    0.7554    0.8103    0.8832
 sub-02 O4: O3 + test-time-adapted start image      0.2551    0.4119    0.8772    0.9132    0.7465    0.8124    0.8854
 sub-02 O3 + TTA for start and condition            0.2594    0.4164    0.8873    0.9176    0.7503    0.8126    0.8813
+sub-02 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2587    0.4148    0.8850    0.9225    0.7610    0.8158    0.8768
+sub-02 O4 + adapted 7-seed ensemble condition      0.2603    0.4171    0.8872    0.9218    0.7498    0.8181    0.8829
+sub-02 O4 + adapted 7-seed ensemble condition, PCA 512    0.2588    0.4164    0.8874    0.9227    0.7468    0.8208    0.8812
+sub-02 O4 with retrieval weight 0.75               0.2601    0.4103    0.8813    0.9147    0.7453    0.8118    0.8815
+sub-02 O4 with retrieval weight 1.0                0.2605    0.4109    0.8826    0.9161    0.7513    0.8158    0.8802
 sub-02 O3 + IP weight schedule 1.25 / 1.25 / 1.25    0.2559    0.4122    0.8799    0.9186    0.7432    0.8089    0.8865
 sub-02 O3 + IP weight schedule 1 / 1.25 / 1.25     0.2537    0.4126    0.8791    0.9195    0.7487    0.8090    0.8839
 sub-02 O3 + IP weight schedule 1.25 / 1.25 / 1     0.2550    0.4122    0.8802    0.9192    0.7406    0.8115    0.8869
@@ -155,6 +165,11 @@ sub-03 O3: O2 + fractional-strength re-injection    0.2665    0.3978    0.8773  
 sub-03 O3 with the strength set by subject reliability    0.2729    0.4108    0.8677    0.9028    0.7473    0.8029    0.8662
 sub-03 O4: O3 + test-time-adapted start image      0.2732    0.4010    0.8821    0.9094    0.7526    0.8148    0.8647
 sub-03 O3 + TTA for start and condition            0.2745    0.4052    0.8798    0.9099    0.7603    0.8137    0.8629
+sub-03 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2732    0.4024    0.8851    0.9147    0.7632    0.8208    0.8584
+sub-03 O4 + adapted 7-seed ensemble condition      0.2785    0.4047    0.8847    0.9108    0.7661    0.8143    0.8606
+sub-03 O4 + adapted 7-seed ensemble condition, PCA 512    0.2783    0.4044    0.8844    0.9098    0.7579    0.8157    0.8624
+sub-03 O4 with retrieval weight 0.75               0.2722    0.4012    0.8870    0.9137    0.7549    0.8130    0.8636
+sub-03 O4 with retrieval weight 1.0                0.2712    0.4011    0.8859    0.9148    0.7533    0.8139    0.8641
 sub-03 O1 + re-injection (no aggregation)          0.2664    0.4095    0.8652    0.9034    0.7455    0.8019    0.8708
 sub-03 calibration + low-level start               0.2342    0.3572    0.8805    0.9124    0.7580    0.8217    0.8679
 sub-03 + best of 4 candidates                      0.2402    0.3568    0.8845    0.9156    0.7724    0.8244    0.8662
@@ -201,6 +216,11 @@ sub-04 O3: O2 + fractional-strength re-injection    0.2513    0.4031    0.8532  
 sub-04 O3 with the strength set by subject reliability    0.2505    0.4008    0.8536    0.9143    0.7665    0.8104    0.8583
 sub-04 O4: O3 + test-time-adapted start image      0.2559    0.4049    0.8586    0.9125    0.7651    0.8127    0.8558
 sub-04 O3 + TTA for start and condition            0.2581    0.4099    0.8574    0.9093    0.7742    0.8094    0.8545
+sub-04 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2525    0.4046    0.8641    0.9157    0.7599    0.8182    0.8560
+sub-04 O4 + adapted 7-seed ensemble condition      0.2568    0.4081    0.8624    0.9149    0.7651    0.8092    0.8569
+sub-04 O4 + adapted 7-seed ensemble condition, PCA 512    0.2559    0.4079    0.8615    0.9141    0.7627    0.8063    0.8574
+sub-04 O4 with retrieval weight 0.75               0.2562    0.4055    0.8600    0.9136    0.7593    0.8126    0.8577
+sub-04 O4 with retrieval weight 1.0                0.2549    0.4054    0.8606    0.9104    0.7602    0.8141    0.8586
 sub-04 O1 + re-injection (no aggregation)          0.2507    0.4037    0.8510    0.9075    0.7612    0.8115    0.8595
 sub-04 calibration + low-level start               0.2290    0.3634    0.8471    0.9160    0.7678    0.8147    0.8569
 sub-04 + best of 4 candidates                      0.2261    0.3637    0.8524    0.9145    0.7689    0.8132    0.8547
@@ -247,6 +267,11 @@ sub-05 O3: O2 + fractional-strength re-injection    0.2496    0.3947    0.8589  
 sub-05 O3 with the strength set by subject reliability    0.2464    0.3865    0.8594    0.8895    0.6959    0.7961    0.8894
 sub-05 O4: O3 + test-time-adapted start image      0.2543    0.3971    0.8617    0.8875    0.6911    0.7940    0.8880
 sub-05 O3 + TTA for start and condition            0.2534    0.4036    0.8572    0.8936    0.7004    0.7961    0.8809
+sub-05 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2572    0.3998    0.8680    0.8978    0.6987    0.7989    0.8870
+sub-05 O4 + adapted 7-seed ensemble condition      0.2545    0.4029    0.8614    0.8977    0.7046    0.8022    0.8834
+sub-05 O4 + adapted 7-seed ensemble condition, PCA 512    0.2543    0.4029    0.8613    0.8953    0.7044    0.8000    0.8842
+sub-05 O4 with retrieval weight 0.75               0.2554    0.3936    0.8659    0.8925    0.6962    0.7928    0.8890
+sub-05 O4 with retrieval weight 1.0                0.2557    0.3912    0.8679    0.8949    0.6993    0.7897    0.8876
 sub-05 O3 + IP weight schedule 1.25 / 1.25 / 1.25    0.2519    0.3941    0.8600    0.8931    0.7013    0.7912    0.8895
 sub-05 O3 + IP weight schedule 1 / 1.25 / 1.25     0.2514    0.3948    0.8589    0.8891    0.7039    0.7933    0.8902
 sub-05 O3 + IP weight schedule 1.25 / 1.25 / 1     0.2512    0.3941    0.8610    0.8929    0.7016    0.7917    0.8900
@@ -313,6 +338,11 @@ sub-06 O3: O2 + fractional-strength re-injection    0.2737    0.3924    0.8789  
 sub-06 O3 with the strength set by subject reliability    0.2857    0.4145    0.8631    0.9153    0.7496    0.8090    0.8755
 sub-06 O4: O3 + test-time-adapted start image      0.2797    0.3948    0.8839    0.9287    0.7666    0.8189    0.8661
 sub-06 O3 + TTA for start and condition            0.2800    0.4002    0.8844    0.9273    0.7580    0.8082    0.8677
+sub-06 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2804    0.3975    0.8843    0.9256    0.7455    0.8125    0.8657
+sub-06 O4 + adapted 7-seed ensemble condition      0.2795    0.3997    0.8841    0.9323    0.7491    0.8066    0.8669
+sub-06 O4 + adapted 7-seed ensemble condition, PCA 512    0.2798    0.3994    0.8851    0.9335    0.7463    0.8067    0.8668
+sub-06 O4 with retrieval weight 0.75               0.2826    0.3928    0.8827    0.9239    0.7733    0.8184    0.8638
+sub-06 O4 with retrieval weight 1.0                0.2833    0.3952    0.8841    0.9253    0.7677    0.8228    0.8647
 sub-06 O1 + re-injection (no aggregation)          0.2878    0.4150    0.8593    0.9125    0.7594    0.8042    0.8755
 sub-06 calibration + low-level start               0.2460    0.3505    0.8838    0.9255    0.7548    0.8133    0.8770
 sub-06 + best of 4 candidates                      0.2500    0.3511    0.8882    0.9295    0.7581    0.8127    0.8733
@@ -359,6 +389,11 @@ sub-07 O3: O2 + fractional-strength re-injection    0.2524    0.4090    0.8471  
 sub-07 O3 with the strength set by subject reliability    0.2465    0.3955    0.8488    0.9040    0.7525    0.8084    0.8730
 sub-07 O4: O3 + test-time-adapted start image      0.2555    0.4114    0.8499    0.9027    0.7456    0.8101    0.8726
 sub-07 O3 + TTA for start and condition            0.2559    0.4168    0.8524    0.9023    0.7532    0.8047    0.8718
+sub-07 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2532    0.4114    0.8552    0.9061    0.7480    0.8075    0.8703
+sub-07 O4 + adapted 7-seed ensemble condition      0.2541    0.4153    0.8573    0.9073    0.7538    0.7965    0.8664
+sub-07 O4 + adapted 7-seed ensemble condition, PCA 512    0.2546    0.4150    0.8584    0.9085    0.7555    0.7998    0.8680
+sub-07 O4 with retrieval weight 0.75               0.2542    0.4098    0.8558    0.9033    0.7558    0.8054    0.8736
+sub-07 O4 with retrieval weight 1.0                0.2557    0.4097    0.8574    0.9055    0.7613    0.8085    0.8728
 sub-07 O1 + re-injection (no aggregation)          0.2451    0.3966    0.8545    0.9095    0.7541    0.8089    0.8720
 sub-07 calibration + low-level start               0.2276    0.3757    0.8420    0.9106    0.7543    0.8011    0.8683
 sub-07 + best of 4 candidates                      0.2295    0.3753    0.8474    0.9152    0.7687    0.8018    0.8660
@@ -406,6 +441,11 @@ sub-08 O3: O2 + fractional-strength re-injection    0.2736    0.4141    0.9008  
 sub-08 O3 with the strength set by subject reliability    0.2818    0.4316    0.8930    0.9328    0.7865    0.8250    0.8523
 sub-08 O4: O3 + test-time-adapted start image      0.2796    0.4139    0.9021    0.9388    0.7916    0.8291    0.8470
 sub-08 O3 + TTA for start and condition            0.2820    0.4186    0.9023    0.9396    0.7788    0.8226    0.8444
+sub-08 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2772    0.4154    0.9003    0.9349    0.7902    0.8298    0.8429
+sub-08 O4 + adapted 7-seed ensemble condition      0.2819    0.4188    0.9027    0.9386    0.7830    0.8246    0.8431
+sub-08 O4 + adapted 7-seed ensemble condition, PCA 512    0.2825    0.4189    0.9043    0.9390    0.7780    0.8251    0.8415
+sub-08 O4 with retrieval weight 0.75               0.2785    0.4133    0.9026    0.9358    0.7867    0.8280    0.8500
+sub-08 O4 with retrieval weight 1.0                0.2799    0.4121    0.9022    0.9353    0.7845    0.8252    0.8502
 sub-08 O3 + IP weight schedule 1.25 / 1.25 / 1.25    0.2762    0.4155    0.8998    0.9376    0.7838    0.8232    0.8499
 sub-08 O3 + IP weight schedule 1 / 1.25 / 1.25     0.2757    0.4147    0.9006    0.9381    0.7891    0.8283    0.8475
 sub-08 O3 + IP weight schedule 1.25 / 1.25 / 1     0.2754    0.4153    0.9008    0.9372    0.7842    0.8239    0.8500
@@ -471,6 +511,11 @@ sub-09 O3: O2 + fractional-strength re-injection    0.2663    0.4036    0.8747  
 sub-09 O3 with the strength set by subject reliability    0.2661    0.4031    0.8750    0.9163    0.7511    0.7957    0.8641
 sub-09 O4: O3 + test-time-adapted start image      0.2719    0.4062    0.8787    0.9191    0.7507    0.7941    0.8681
 sub-09 O3 + TTA for start and condition            0.2758    0.4130    0.8838    0.9141    0.7544    0.7920    0.8598
+sub-09 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2710    0.4073    0.8799    0.9205    0.7593    0.7974    0.8666
+sub-09 O4 + adapted 7-seed ensemble condition      0.2753    0.4126    0.8819    0.9153    0.7512    0.7924    0.8591
+sub-09 O4 + adapted 7-seed ensemble condition, PCA 512    0.2754    0.4124    0.8850    0.9167    0.7521    0.7938    0.8599
+sub-09 O4 with retrieval weight 0.75               0.2726    0.4066    0.8809    0.9189    0.7417    0.7981    0.8661
+sub-09 O4 with retrieval weight 1.0                0.2732    0.4078    0.8798    0.9194    0.7379    0.7970    0.8684
 sub-09 O3 + IP weight schedule 1.25 / 1.25 / 1.25    0.2696    0.4052    0.8747    0.9175    0.7520    0.7927    0.8648
 sub-09 O3 + IP weight schedule 1 / 1.25 / 1.25     0.2682    0.4040    0.8759    0.9153    0.7539    0.7944    0.8647
 sub-09 O3 + IP weight schedule 1.25 / 1.25 / 1     0.2687    0.4053    0.8755    0.9178    0.7508    0.7918    0.8651
@@ -530,6 +575,11 @@ sub-10 O3: O2 + fractional-strength re-injection    0.2617    0.4300    0.8795  
 sub-10 O3 with the strength set by subject reliability    0.2571    0.4186    0.8830    0.9320    0.8154    0.8597    0.8369
 sub-10 O4: O3 + test-time-adapted start image      0.2652    0.4305    0.8786    0.9303    0.8114    0.8553    0.8399
 sub-10 O3 + TTA for start and condition            0.2680    0.4328    0.8744    0.9254    0.8021    0.8450    0.8435
+sub-10 O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2668    0.4322    0.8769    0.9271    0.8048    0.8560    0.8431
+sub-10 O4 + adapted 7-seed ensemble condition      0.2705    0.4321    0.8772    0.9238    0.8069    0.8463    0.8417
+sub-10 O4 + adapted 7-seed ensemble condition, PCA 512    0.2697    0.4315    0.8759    0.9234    0.8007    0.8514    0.8426
+sub-10 O4 with retrieval weight 0.75               0.2652    0.4276    0.8747    0.9294    0.8193    0.8521    0.8391
+sub-10 O4 with retrieval weight 1.0                0.2672    0.4259    0.8796    0.9283    0.8209    0.8543    0.8384
 sub-10 O1 + re-injection (no aggregation)          0.2583    0.4196    0.8833    0.9307    0.8120    0.8578    0.8399
 sub-10 calibration + low-level start               0.2401    0.4022    0.8834    0.9363    0.8066    0.8534    0.8369
 sub-10 + best of 4 candidates                      0.2446    0.4028    0.8868    0.9397    0.8182    0.8613    0.8360
@@ -791,6 +841,36 @@ baseline (reproduced)                               0.1828    0.3120    0.8266  
 O3 + TTA for start and condition                    0.2706    0.4142    0.8758    0.9153    0.7590    0.8087    0.8640
 difference (mean)                                  +0.0878   +0.1022   +0.0492   +0.0195   +0.0149   +0.0101   -0.0146
 subjects improved                                    10/10     10/10     10/10     10/10      9/10      9/10     10/10
+
+O5: O4 + 7-seed ensemble with repeat bagging for the condition vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2692    0.4108    0.8780    0.9176    0.7584    0.8139    0.8642
+difference (mean)                                  +0.0864   +0.0988   +0.0514   +0.0217   +0.0144   +0.0153   -0.0145
+subjects improved                                    10/10     10/10     10/10     10/10      9/10     10/10     10/10
+
+O4 + adapted 7-seed ensemble condition vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O4 + adapted 7-seed ensemble condition              0.2713    0.4139    0.8779    0.9184    0.7589    0.8103    0.8634
+difference (mean)                                  +0.0885   +0.1019   +0.0513   +0.0226   +0.0149   +0.0117   -0.0153
+subjects improved                                    10/10     10/10     10/10     10/10      9/10      9/10     10/10
+
+O4 + adapted 7-seed ensemble condition, PCA 512 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O4 + adapted 7-seed ensemble condition, PCA 512     0.2710    0.4137    0.8780    0.9184    0.7576    0.8109    0.8635
+difference (mean)                                  +0.0882   +0.1017   +0.0515   +0.0226   +0.0135   +0.0123   -0.0151
+subjects improved                                    10/10     10/10     10/10     10/10      8/10      8/10     10/10
+
+O4 with retrieval weight 0.75 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O4 with retrieval weight 0.75                       0.2693    0.4076    0.8771    0.9163    0.7586    0.8116    0.8657
+difference (mean)                                  +0.0865   +0.0956   +0.0505   +0.0205   +0.0146   +0.0130   -0.0129
+subjects improved                                    10/10     10/10     10/10     10/10      9/10     10/10     10/10
+
+O4 with retrieval weight 1.0 vs baseline (reproduced), mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+baseline (reproduced)                               0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786
+O4 with retrieval weight 1.0                        0.2697    0.4072    0.8781    0.9170    0.7594    0.8120    0.8657
+difference (mean)                                  +0.0869   +0.0952   +0.0515   +0.0211   +0.0153   +0.0134   -0.0129
+subjects improved                                    10/10     10/10     10/10     10/10      9/10     10/10     10/10
 
 O3 + IP weight schedule 1.25 / 1.25 / 1.25 vs baseline (reproduced), mean over 4 subjects [2, 5, 8, 9]
 baseline (reproduced)                               0.1867    0.3160    0.8289    0.8964    0.7366    0.8003    0.8816
@@ -1201,6 +1281,36 @@ O3: O2 + fractional-strength re-injection           0.2636    0.4073    0.8727  
 O3 + TTA for start and condition                    0.2706    0.4142    0.8758    0.9153    0.7590    0.8087    0.8640
 difference (mean)                                  +0.0070   +0.0069   +0.0031   +0.0002   +0.0009   -0.0031   -0.0023
 subjects improved                                    10/10     10/10      8/10      6/10      6/10      3/10      8/10
+
+O5: O4 + 7-seed ensemble with repeat bagging for the condition vs O4: O3 + test-time-adapted start image, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O4: O3 + test-time-adapted start image              0.2687    0.4090    0.8753    0.9158    0.7573    0.8121    0.8659
+O5: O4 + 7-seed ensemble with repeat bagging for the condition    0.2692    0.4108    0.8780    0.9176    0.7584    0.8139    0.8642
+difference (mean)                                  +0.0005   +0.0018   +0.0027   +0.0018   +0.0011   +0.0018   -0.0018
+subjects improved                                     5/10      9/10      8/10      6/10      6/10      8/10      7/10
+
+O4 + adapted 7-seed ensemble condition vs O4: O3 + test-time-adapted start image, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O4: O3 + test-time-adapted start image              0.2687    0.4090    0.8753    0.9158    0.7573    0.8121    0.8659
+O4 + adapted 7-seed ensemble condition              0.2713    0.4139    0.8779    0.9184    0.7589    0.8103    0.8634
+difference (mean)                                  +0.0027   +0.0049   +0.0025   +0.0026   +0.0016   -0.0018   -0.0026
+subjects improved                                     8/10     10/10      7/10      7/10      6/10      3/10      6/10
+
+O4 + adapted 7-seed ensemble condition, PCA 512 vs O4: O3 + test-time-adapted start image, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O4: O3 + test-time-adapted start image              0.2687    0.4090    0.8753    0.9158    0.7573    0.8121    0.8659
+O4 + adapted 7-seed ensemble condition, PCA 512     0.2710    0.4137    0.8780    0.9184    0.7576    0.8109    0.8635
+difference (mean)                                  +0.0023   +0.0047   +0.0027   +0.0026   +0.0003   -0.0012   -0.0025
+subjects improved                                     8/10     10/10      7/10      8/10      6/10      4/10      7/10
+
+O4 with retrieval weight 0.75 vs O4: O3 + test-time-adapted start image, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O4: O3 + test-time-adapted start image              0.2687    0.4090    0.8753    0.9158    0.7573    0.8121    0.8659
+O4 with retrieval weight 0.75                       0.2693    0.4076    0.8771    0.9163    0.7586    0.8116    0.8657
+difference (mean)                                  +0.0006   -0.0014   +0.0018   +0.0005   +0.0013   -0.0004   -0.0002
+subjects improved                                     5/10      3/10      7/10      6/10      6/10      2/10      5/10
+
+O4 with retrieval weight 1.0 vs O4: O3 + test-time-adapted start image, mean over 10 subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+O4: O3 + test-time-adapted start image              0.2687    0.4090    0.8753    0.9158    0.7573    0.8121    0.8659
+O4 with retrieval weight 1.0                        0.2697    0.4072    0.8781    0.9170    0.7594    0.8120    0.8657
+difference (mean)                                  +0.0010   -0.0018   +0.0028   +0.0012   +0.0021   -0.0001   -0.0003
+subjects improved                                     7/10      4/10     10/10      6/10      7/10      4/10      6/10
 
 ===== IP-adapter weight schedules on O3 (screening, subjects 2, 5, 8, 9) =====
 

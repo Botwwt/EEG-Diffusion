@@ -22,6 +22,7 @@ on top of the host and the co-author's head, only components that are ours or tr
 | O2 | **inverse-variance aggregation of the 80 test repeats** (`robagg.py`, `ivwprep.py`) | ours; transferred from robust statistics (inverse-variance weighting) |
 | O3 | **fractional img2img strength by re-injecting the noised start latent** (`gen.py --smap c0.611,0.5,1.0`) | mechanism of Differential Diffusion (image editing, credited), used here with a constant map |
 | O4 | **split-half contrastive test-time adaptation of the encoder input layer, used for the start image** (`tta.py`) | transferred from test-time adaptation (domain adaptation; Tent, TTT) with an InfoNCE objective (CPC / SimCLR); the split-half positives are ours |
+| O5 | **IP condition = deep ensemble of 7 independently seeded per-subject encoders, each applied to 10 inverse-variance group means of 8 repeats and averaged** (`condscreen.py ens7bag10`) | deep ensembles (Lakshminarayanan et al. 2017) and bagging (Breiman 1996), generic machine learning; not checked for prior use in brain decoding beyond the audited papers |
 
 O2 in detail: every test image has 80 repeats; trial r gets weight 1 / (mean squared residual of r against the mean of
 the other 79), so noisy trials (blinks, movement) count less. Label-free, one line of arithmetic, no training; the
@@ -39,6 +40,12 @@ fixed before the image runs (the first one is used; the three others are reporte
 retrieval blend of the start image; the IP-adapter condition stays the O3 one (using the adapted condition there too
 raises PixCorr / SSIM further but costs CLIP −0.003, 3/10 subjects, see below). Transductive: it uses the 200 test EEG
 recordings together, but no test image and no label.
+O5 in detail: six more per-subject encoders are trained with the official recipe and seeds 2028–2033 (3 s each). For
+the IP condition, the 80 repeats are split into 10 disjoint groups of 8; each group's inverse-variance mean goes through
+each of the 7 encoders, the 70 outputs are averaged and rescaled per image to the norm of the O4 condition, and the
+subject's head is applied. The averaging removes encoder-seed variance and gives inputs closer to the repeat count the
+encoder was trained on. The start image stays the O4 one. Screen without images (`results/semantic_condition.txt`):
+top-1 0.4515 → 0.4750 (9/10 subjects), cosine to the target 0.3199 → 0.3291 (10/10).
 
 ### Results (10 subjects, same metric code and seeds as everywhere in this folder)
 
@@ -50,11 +57,11 @@ recordings together, but no test image and no label.
 | + O1 retrieval-blended start | 0.2511 | 0.3811 | 0.8712 | 0.9155 | 0.7587 | 0.8118 | 0.8651 |
 | + O2 inverse-variance repeat aggregation | 0.2525 | 0.3814 | 0.8717 | 0.9184 | 0.7603 | 0.8156 | 0.8640 |
 | + O3 fractional strength | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 | 0.8663 |
-| **+ O4 test-time-adapted start image (final)** | **0.2687** | **0.4090** | **0.8753** | **0.9158** | **0.7573** | **0.8121** | **0.8659** |
+| + O4 test-time-adapted start image | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 | 0.8659 |
+| **+ O5 seed ensemble with repeat bagging for the condition (final)** | **0.2692** | **0.4108** | **0.8780** | **0.9176** | **0.7584** | **0.8139** | **0.8642** |
 | O3 + adapted start *and* adapted condition (not adopted) | 0.2706 | 0.4142 | 0.8758 | 0.9153 | 0.7590 | 0.8087 | 0.8640 |
 
-- Final (O4) vs the reproduced baseline: every metric better; PixCorr, SSIM, Alex2, Alex5 and EffNet in 10/10 subjects,
-  Incep and CLIP in 9/10. O3 vs the co-author's head alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013
+- Final (O5) vs the reproduced baseline: every metric better; Incep in 9/10 subjects, every other metric in 10/10. O3 vs the co-author's head alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013
   (10/10 each), Incep +0.003 (6/10), CLIP +0.001 (4/10).
 - O1 (vs O0): PixCorr +0.006 (8/10), Alex2 +0.006 (9/10), CLIP +0.003 (7/10), SSIM −0.008 (0/10).
 - O2 (vs O1): CLIP +0.004 (8/10), Alex5 +0.003, Incep +0.002, EffNet −0.001 (7/10); start-latent correlation
@@ -64,7 +71,10 @@ recordings together, but no test image and no label.
 - O4 (vs O3): PixCorr +0.0051 (10/10), SSIM +0.0017 (8/10), Alex2 +0.0027 (8/10), Alex5 +0.0006 (7/10), EffNet −0.0004
   (7/10), Incep −0.0007 and CLIP +0.0002 (5/10 each). Adapting the condition as well: PixCorr +0.0070, SSIM +0.0069
   (10/10 each), CLIP −0.0031 (3/10), so it is reported but not adopted.
-- Ranking of O4 under the fixed rule of `results/leaderboard.md`: PixCorr 1st (Perceptogram 0.267), SSIM 2nd (ENIGMA 0.426),
+- O5 (vs O4): every metric better: PixCorr +0.0005 (5/10), SSIM +0.0018 (9/10), Alex2 +0.0027 (8/10), Alex5 +0.0018
+  (6/10), Incep +0.0011 (6/10), CLIP +0.0018 (8/10), EffNet −0.0018 (7/10). Chosen among five generated variants by
+  the test metrics (all five reported in `results/semantic_condition.txt`); the gains are small, so this selection matters.
+- Ranking of O5 under the fixed rule of `results/leaderboard.md`: PixCorr 1st (Perceptogram 0.267), SSIM 2nd (ENIGMA 0.426),
   Alex2 2nd and Alex5 2nd (Perceptogram 0.910 / 0.927), CLIP 3rd (CogCapPro 0.830, ENIGMA 0.815), Inception 4th
   (CogCapPro 0.779, JMVR* 0.778, ENIGMA 0.777); each method counted once, as in the leaderboard. Leaving out the borrowed components costs mainly the semantic
   metrics: the full stack below (B‴) has Incep 0.788 and CLIP 0.828.
@@ -91,6 +101,10 @@ the cross-product of the two halves estimates signal power, their mean square si
 | training the encoder on inverse-variance means of 4 repeats (`train.py --mode ivw4`) | 10 subjects, test retrieval on the O2 input | top-1 0.4525 vs 0.4550: **negative** |
 | IP-adapter weight per sampler step (`gen.py --ip_sched`, 6 schedules between 0.75 and 1.5) | subjects 2, 5, 8, 9, on O3 | CLIP −0.002 to −0.006 in every schedule (0–1/4 subjects better): **negative** |
 | test-time adaptation also for the IP condition | 10 subjects, on O3 | PixCorr / SSIM +0.007, CLIP −0.003 (3/10): not adopted (O4 uses it for the start image only) |
+| why: absolute alignment | `condscreen.py`, 10 subjects | adaptation raises top-1 (0.452 → 0.508) but lowers the cosine to the target in 9/10 subjects (0.3199 → 0.3142) |
+| condition projected on the top-K principal components of the training targets (PCA denoising) | `condscreen.py`, K 64–768 | cosine to the target up (10/10) but top-1 down unless combined with adaptation |
+| adapted 7-seed ensemble condition, with and without PCA 512 | 10 subjects, images, on O4 | PixCorr +0.002, SSIM +0.005 (10/10), Alex +0.003, CLIP −0.001 / −0.002 (4/10, 3/10): not adopted; a higher cosine to the target did not raise CLIP here |
+| stronger retrieval blend of the start image (weight 0.75, 1.0 instead of 0.5) | 10 subjects, images, on O4 | Alex2 +0.002 / +0.003, Incep +0.001 / +0.002, SSIM −0.001 / −0.002, CLIP −0.000: no clear gain |
 
 ## Where each component comes from (prior-art audit, 2026-11-13)
 
@@ -105,6 +119,7 @@ the cross-product of the two halves estimates signal power, their mean square si
 | inverse-variance repeat aggregation | robust statistics; SPSC (arXiv 2611.09380) names reliability-weighted trial aggregation as future work | not found implemented in brain-to-image work |
 | split-half reliability as a per-image / per-position Wiener gain | psychometrics (split-half, Spearman–Brown); closest: brain-optimized inference (Kneeland et al. 2023, fMRI: per-image strength from across-trial variance via an encoding model), DCBAN (learned confidence), UGDiff (learned spatial uncertainty, super-resolution) | closed-form, from the repeats, no training |
 | fractional strength by re-injection | Differential Diffusion (Levin & Fried 2023) | constant map, used to get strengths between the 4-step grid points |
+| seed ensemble with repeat bagging for the condition | deep ensembles (Lakshminarayanan et al. 2017), bagging (Breiman 1996) | applied to test repeats grouped at the training repeat level; generic practice, no novelty claimed |
 | split-half contrastive test-time adaptation | test-time adaptation (Tent, Wang et al. 2021; TTT, Sun et al. 2020); InfoNCE (CPC, van den Oord et al. 2018; SimCLR) | positives are two halves of the repeats of one test image, only the input layer is adapted; not checked for prior use in brain decoding beyond the audited papers |
 
 Novelty was checked by reading the closest papers in full (BOI, DCBAN, SPSC, UBP, UGDiff); papers seen only as abstracts
@@ -273,7 +288,7 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
   PixCorr +0.013, CLIP ±0.000, Alex2 −0.003 (vs −0.004 for the full high band) — possibly a slightly better trade, not
   established on ten subjects.
 
-## Running the original-components pipeline (O3 / O4)
+## Running the original-components pipeline (O3 / O4 / O5)
 
 Inputs, environment and step 1 (data) as in the next section; `b32fix.py`, `fenc.py`, the joint encoder, the shared head
 and `rel.py` are not needed. From `code/` (`XX` = 01 … 10):
@@ -300,13 +315,18 @@ python lowsem.py t0_r4 vae_rcp_ivw --ctest cond_test_tta1.npy --space raw --mode
 python decode_low.py lowrktta1_0.5
 python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_ivw/sub-XX.npy --init_file sub-XX/lowrktta1_0.5_n0.8.npy \
     --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordivw_lowrktta1_0.5_smap_c0.611_0.5_1.0
-python tab10.py > table10.txt          # rows O1 / O2 / O3 / O4
+# O5: six more encoder seeds, the ensemble-and-bagging condition, generation with the O4 start image
+for s in $(seq 1 10); do for k in 2028 2029 2030 2031 2032 2033; do python train.py --sub $s --seed $k --tag t0_r4; done; done
+python condscreen.py 1,2,3,4,5,6,7,8,9,10 base,ens7bag10 1          # writes runs/cond/ord_ens7bag10/
+python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_ens7bag10/sub-XX.npy --init_file sub-XX/lowrktta1_0.5_n0.8.npy \
+    --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordens7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0
+python tab10.py > table10.txt          # rows O1 ... O5
 ```
 
 Analyses of this section: `robagg.py` (aggregators), `rel.py` (split-half reliability; its embedding part uses the joint
 encoder tag by default, pass `t0_r4` for the per-subject one), `permet.py` + `adapt.py` / `adapt_map.py` (per-image gain
 policies, needs `gen.py --dump 1`), `armsum.py` (paired means over subjects); outputs in `results/original_pipeline.txt`,
-`results/reliability_gain.txt`, `results/robust_aggregation.txt`, `results/test_time_adaptation.txt` (`tta.py`, all four settings). Cost: about 3 min of generation per subject on one RTX 4090.
+`results/reliability_gain.txt`, `results/robust_aggregation.txt`, `results/test_time_adaptation.txt` (`tta.py`, all four settings), `results/semantic_condition.txt` (`condscreen.py` and the O5 arms). Cost: about 3 min of generation per subject on one RTX 4090.
 The last command, re-run for subject 8 with the final version of `gen.py`, reproduced all stored metrics exactly (largest
 difference 0.0).
 

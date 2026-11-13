@@ -4,7 +4,7 @@ positives, the other 199 images negatives (symmetric InfoNCE, temperature tau). 
 updated, with an anchor lam * mean ||c - c_orig||^2 / ||c_orig||^2 to the unadapted output of the full input. No image,
 label or test target is used. Scored by raw 200-way retrieval of F (labels used only for scoring).
 
-python tta.py <tag> <subs> <steps> <lr> <tau> <lam> [save name]
+python tta.py <tag> <subs> <steps> <lr> <tau> <lam> [save name]     (env TTA_SEED: encoder seed, default 2025)
    -> prints top1/top5 before / after (input = inverse-variance weighted mean of the 80 repeats);
       with a save name: runs/enc/<tag>/sub-XX/fold-1_seed2025/cond_test_<name>.npy and the head-corrected conditions
       runs/cond/ord_<name>/sub-XX.npy (per-subject head, as ivwprep.py)
@@ -26,6 +26,7 @@ tag, subs = sys.argv[1], [int(s) for s in sys.argv[2].split(",")]
 steps, lr, tau, lam = int(sys.argv[3]), float(sys.argv[4]), float(sys.argv[5]), float(sys.argv[6])
 name = sys.argv[7] if len(sys.argv) > 7 else ""
 dev = __import__("os").environ.get("TTA_DEV", "cuda")
+SEED = int(__import__("os").environ.get("TTA_SEED", "2025"))   # encoder seed (condscreen.py ensembles several)
 nz = torch.nn.functional.normalize
 GK, BK = "backbone.block.layers.0.norm.weight", "backbone.block.layers.0.norm.bias"
 Fn = nz(torch.from_numpy(np.load(PREP / "F_test.npy")).float(), dim=1).to(dev)
@@ -49,7 +50,7 @@ res = []
 for s in subs:
     x = f"{s:02d}"
     xt = torch.from_numpy(np.load(PREP / f"sub-{x}_test.npy")).float().to(dev)
-    d = RUNS / "enc" / tag / f"sub-{x}" / "fold-1_seed2025"
+    d = RUNS / "enc" / tag / f"sub-{x}" / f"fold-1_seed{SEED}"
     sd = torch.load(d / "brain_model.pt", weights_only=True)
     enc = BrainEncoder(backbone="brain_mlp", brain_channels=17, brain_sequence_length=250, hidden_size=1024, embedding_dim=1440, dropout=0.1)
     enc.load_state_dict(sd)
@@ -84,7 +85,9 @@ for s in subs:
     after = score(c1)
     res.append((before, after))
     msg = f"sub-{x}: top1/top5 {before[0]:.3f}/{before[1]:.3f} -> {after[0]:.3f}/{after[1]:.3f} | anchor {float(anc):.4f} loss {float(loss):.3f}"
-    if name:
+    if name and SEED != 2025:
+        np.save(d / f"cond_test_{name}.npy", c1.cpu().numpy())
+    elif name:
         m = m.cpu()
         with torch.no_grad():
             c1c = c1.cpu()

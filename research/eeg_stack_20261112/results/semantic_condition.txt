@@ -1,0 +1,75 @@
+# IP-condition variants for the semantic metrics (condscreen.py, then gen.py on 10 subjects)
+#
+# Condition screen (no images): per-subject head applied to each variant; 200-way top-1 / top-5 against the CLIP
+# target F and mean cosine to F (cosF). Labels used only for scoring. Variants (condscreen.py docstring):
+#   tta*      test-time-adapted encoder (tta.py); m = keep the base mean, a<alpha> = partial step, tta10 = lam 10
+#   bagG      seed-2025 encoder on G disjoint inverse-variance group means of the 80 repeats, outputs averaged
+#   ensN      mean of N independently seeded encoders (seeds 2025, 2028-2033), norm of base kept
+#   _pK       projection on the training-target mean + top-K principal components of F_train, norm kept
+# Diagnostic: test-time adaptation raises top-1 but lowers cosF in 9/10 subjects, consistent with its CLIP loss in
+# the images; ensembles raise cosF in 10/10 subjects.
+sub-01 base 0.465/0.2992 | tta1 0.510/0.2952 | tta1m 0.510/0.2943 | tta1a0.5 0.495/0.2986 | tta10 0.490/0.3011 | tta10m 0.490/0.2995 | bag2 0.480/0.2993 | bag4 0.460/0.2992 | bag10 0.450/0.2978 | bag20 0.435/0.2945 | ens3 0.490/0.3072 | ens7 0.495/0.3078 | ens7bag10 0.470/0.3065 | base_p64 0.400/0.3165 | base_p128 0.460/0.3148 | base_p256 0.470/0.3102 | base_p512 0.470/0.3050 | tta1_p256 0.530/0.3065 | tta1_p512 0.510/0.3013 | ens7_p256 0.490/0.3133 | ens7_p512 0.485/0.3099 | ens7tta1 0.545/0.3048 | ens7tta1_p512 0.535/0.3069 | ens7tta1_p768 0.545/0.3054
+sub-02 base 0.470/0.3193 | tta1 0.505/0.3169 | tta1m 0.510/0.3136 | tta1a0.5 0.475/0.3197 | tta10 0.480/0.3211 | tta10m 0.485/0.3192 | bag2 0.475/0.3194 | bag4 0.480/0.3197 | bag10 0.455/0.3201 | bag20 0.490/0.3192 | ens3 0.475/0.3263 | ens7 0.465/0.3284 | ens7bag10 0.480/0.3298 | base_p64 0.385/0.3328 | base_p128 0.440/0.3326 | base_p256 0.445/0.3294 | base_p512 0.480/0.3250 | tta1_p256 0.500/0.3270 | tta1_p512 0.510/0.3227 | ens7_p256 0.455/0.3325 | ens7_p512 0.465/0.3302 | ens7tta1 0.530/0.3260 | ens7tta1_p512 0.530/0.3279 | ens7tta1_p768 0.535/0.3267
+sub-03 base 0.480/0.3197 | tta1 0.525/0.3140 | tta1m 0.525/0.3126 | tta1a0.5 0.480/0.3184 | tta10 0.485/0.3191 | tta10m 0.485/0.3191 | bag2 0.485/0.3201 | bag4 0.485/0.3206 | bag10 0.490/0.3220 | bag20 0.515/0.3226 | ens3 0.480/0.3259 | ens7 0.495/0.3278 | ens7bag10 0.505/0.3301 | base_p64 0.400/0.3302 | base_p128 0.450/0.3312 | base_p256 0.465/0.3282 | base_p512 0.480/0.3247 | tta1_p256 0.505/0.3231 | tta1_p512 0.510/0.3193 | ens7_p256 0.475/0.3313 | ens7_p512 0.490/0.3293 | ens7tta1 0.505/0.3235 | ens7tta1_p512 0.505/0.3250 | ens7tta1_p768 0.505/0.3241
+sub-04 base 0.430/0.3157 | tta1 0.460/0.3067 | tta1m 0.460/0.3052 | tta1a0.5 0.430/0.3126 | tta10 0.440/0.3149 | tta10m 0.445/0.3137 | bag2 0.445/0.3160 | bag4 0.435/0.3167 | bag10 0.450/0.3185 | bag20 0.465/0.3196 | ens3 0.440/0.3220 | ens7 0.450/0.3237 | ens7bag10 0.465/0.3267 | base_p64 0.380/0.3281 | base_p128 0.395/0.3288 | base_p256 0.405/0.3258 | base_p512 0.435/0.3211 | tta1_p256 0.435/0.3180 | tta1_p512 0.450/0.3127 | ens7_p256 0.415/0.3282 | ens7_p512 0.435/0.3255 | ens7tta1 0.465/0.3160 | ens7tta1_p512 0.455/0.3179 | ens7tta1_p768 0.460/0.3167
+sub-05 base 0.315/0.3029 | tta1 0.400/0.2975 | tta1m 0.405/0.2973 | tta1a0.5 0.365/0.3021 | tta10 0.360/0.3041 | tta10m 0.360/0.3033 | bag2 0.315/0.3034 | bag4 0.315/0.3042 | bag10 0.345/0.3057 | bag20 0.355/0.3041 | ens3 0.335/0.3105 | ens7 0.335/0.3128 | ens7bag10 0.360/0.3162 | base_p64 0.265/0.3172 | base_p128 0.310/0.3169 | base_p256 0.300/0.3141 | base_p512 0.320/0.3088 | tta1_p256 0.370/0.3082 | tta1_p512 0.395/0.3031 | ens7_p256 0.315/0.3169 | ens7_p512 0.340/0.3145 | ens7tta1 0.390/0.3100 | ens7tta1_p512 0.395/0.3115 | ens7tta1_p768 0.390/0.3105
+sub-06 base 0.470/0.3247 | tta1 0.550/0.3197 | tta1m 0.550/0.3178 | tta1a0.5 0.535/0.3237 | tta10 0.515/0.3254 | tta10m 0.520/0.3241 | bag2 0.465/0.3248 | bag4 0.485/0.3246 | bag10 0.495/0.3243 | bag20 0.490/0.3225 | ens3 0.485/0.3319 | ens7 0.490/0.3336 | ens7bag10 0.510/0.3336 | base_p64 0.380/0.3353 | base_p128 0.420/0.3367 | base_p256 0.445/0.3340 | base_p512 0.460/0.3300 | tta1_p256 0.540/0.3296 | tta1_p512 0.540/0.3253 | ens7_p256 0.465/0.3369 | ens7_p512 0.480/0.3351 | ens7tta1 0.565/0.3305 | ens7tta1_p512 0.560/0.3320 | ens7tta1_p768 0.570/0.3310
+sub-07 base 0.410/0.3095 | tta1 0.470/0.3027 | tta1m 0.465/0.3019 | tta1a0.5 0.460/0.3073 | tta10 0.445/0.3086 | tta10m 0.455/0.3084 | bag2 0.415/0.3096 | bag4 0.420/0.3099 | bag10 0.440/0.3105 | bag20 0.440/0.3098 | ens3 0.405/0.3147 | ens7 0.405/0.3159 | ens7bag10 0.410/0.3166 | base_p64 0.285/0.3200 | base_p128 0.320/0.3202 | base_p256 0.370/0.3179 | base_p512 0.405/0.3139 | tta1_p256 0.475/0.3120 | tta1_p512 0.465/0.3075 | ens7_p256 0.375/0.3198 | ens7_p512 0.390/0.3173 | ens7tta1 0.465/0.3105 | ens7tta1_p512 0.465/0.3121 | ens7tta1_p768 0.465/0.3111
+sub-08 base 0.520/0.3439 | tta1 0.550/0.3341 | tta1m 0.545/0.3339 | tta1a0.5 0.520/0.3405 | tta10 0.530/0.3430 | tta10m 0.530/0.3426 | bag2 0.520/0.3440 | bag4 0.525/0.3439 | bag10 0.525/0.3437 | bag20 0.515/0.3417 | ens3 0.525/0.3497 | ens7 0.525/0.3516 | ens7bag10 0.540/0.3514 | base_p64 0.460/0.3516 | base_p128 0.485/0.3538 | base_p256 0.500/0.3518 | base_p512 0.505/0.3483 | tta1_p256 0.530/0.3424 | tta1_p512 0.535/0.3386 | ens7_p256 0.505/0.3545 | ens7_p512 0.520/0.3529 | ens7tta1 0.570/0.3434 | ens7tta1_p512 0.565/0.3447 | ens7tta1_p768 0.570/0.3439
+sub-09 base 0.435/0.3190 | tta1 0.495/0.3190 | tta1m 0.500/0.3165 | tta1a0.5 0.480/0.3208 | tta10 0.460/0.3185 | tta10m 0.450/0.3198 | bag2 0.435/0.3189 | bag4 0.440/0.3183 | bag10 0.450/0.3165 | bag20 0.440/0.3114 | ens3 0.445/0.3272 | ens7 0.450/0.3291 | ens7bag10 0.480/0.3267 | base_p64 0.400/0.3323 | base_p128 0.410/0.3314 | base_p256 0.435/0.3286 | base_p512 0.430/0.3245 | tta1_p256 0.500/0.3271 | tta1_p512 0.485/0.3236 | ens7_p256 0.435/0.3326 | ens7_p512 0.440/0.3305 | ens7tta1 0.490/0.3282 | ens7tta1_p512 0.500/0.3293 | ens7tta1_p768 0.500/0.3286
+sub-10 base 0.520/0.3456 | tta1 0.615/0.3360 | tta1m 0.615/0.3356 | tta1a0.5 0.555/0.3424 | tta10 0.555/0.3448 | tta10m 0.550/0.3444 | bag2 0.515/0.3455 | bag4 0.520/0.3451 | bag10 0.515/0.3441 | bag20 0.525/0.3406 | ens3 0.550/0.3526 | ens7 0.510/0.3547 | ens7bag10 0.530/0.3529 | base_p64 0.455/0.3566 | base_p128 0.470/0.3564 | base_p256 0.490/0.3548 | base_p512 0.505/0.3507 | tta1_p256 0.555/0.3457 | tta1_p512 0.605/0.3414 | ens7_p256 0.480/0.3587 | ens7_p512 0.495/0.3562 | ens7tta1 0.605/0.3470 | ens7tta1_p512 0.600/0.3486 | ens7tta1_p768 0.610/0.3476
+
+mean over 10 subjects (after the head): top1 top5 cosF cos-to-base, subjects with higher top1 / cosF than base
+base         0.4515 0.7940 0.3199 1.0000   0 / 0
+tta1         0.5080 0.8135 0.3142 0.9753   10 / 1
+tta1m        0.5085 0.8135 0.3129 0.9756   10 / 0
+tta1a0.5     0.4795 0.8120 0.3186 0.9938   7 / 2
+tta10        0.4760 0.8035 0.3201 0.9962   10 / 4
+tta10m       0.4770 0.8020 0.3194 0.9966   10 / 3
+bag2         0.4550 0.8010 0.3201 0.9996   5 / 8
+bag4         0.4565 0.8005 0.3202 0.9986   7 / 6
+bag10        0.4615 0.8145 0.3203 0.9932   7 / 5
+bag20        0.4670 0.8155 0.3186 0.9762   8 / 4
+ens3         0.4630 0.8080 0.3268 0.9727   8 / 10
+ens7         0.4620 0.8055 0.3286 0.9646   7 / 10
+ens7bag10    0.4750 0.8120 0.3291 0.9592   9 / 10
+base_p64     0.3810 0.7335 0.3321 0.8881   0 / 10
+base_p128    0.4160 0.7720 0.3323 0.9237   0 / 10
+base_p256    0.4325 0.7865 0.3295 0.9499   1 / 10
+base_p512    0.4490 0.7905 0.3252 0.9759   4 / 10
+tta1_p256    0.4940 0.8025 0.3240 0.9278   10 / 9
+tta1_p512    0.5005 0.8120 0.3196 0.9528   10 / 5
+ens7_p256    0.4410 0.7950 0.3325 0.9377   1 / 10
+ens7_p512    0.4540 0.8045 0.3301 0.9555   6 / 10
+ens7tta1     0.5130 0.8235 0.3240 0.9435   10 / 9
+ens7tta1_p512 0.5110 0.8155 0.3256 0.9348   10 / 10
+ens7tta1_p768 0.5150 0.8230 0.3246 0.9410   10 / 9
+
+# Image runs. Five arms were generated (all variants that were queued and finished; the settings N = 7, G = 10,
+# K = 512 were fixed from the screen above, before any image of them). O5 was chosen among these five by the test
+# metrics, so its margin over O4 carries that selection; it is the only arm better than O4 on every metric.
+# Condition and start variants on O4 (10 subjects; first arm = O4; armsum.py)
+subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+arm                                 pixcorr     ssim    alex2    alex5  incepti     clip   effnet  strength
+ordivw_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2687   0.4090   0.8753   0.9158   0.7573   0.8121   0.8659  0.694
+ordens7tta1_p512_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2710   0.4137   0.8780   0.9184   0.7576   0.8109   0.8635  0.694
+  delta / wins                      +0.0023  +0.0047  +0.0027  +0.0026  +0.0003  -0.0012  -0.0025  8 10 7 8 6 4 7
+ordens7tta1_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2713   0.4139   0.8779   0.9184   0.7589   0.8103   0.8634  0.694
+  delta / wins                      +0.0027  +0.0049  +0.0025  +0.0026  +0.0016  -0.0018  -0.0026  8 10 7 7 6 3 6
+ordens7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2692   0.4108   0.8780   0.9176   0.7584   0.8139   0.8642  0.694
+  delta / wins                      +0.0005  +0.0018  +0.0027  +0.0018  +0.0011  +0.0018  -0.0018  5 9 8 6 6 8 7
+ordivw_lowrktta1_0.75_smap_c0.611_0.5_1.0   0.2693   0.4076   0.8771   0.9163   0.7586   0.8116   0.8657  0.694
+  delta / wins                      +0.0006  -0.0014  +0.0018  +0.0005  +0.0013  -0.0004  -0.0002  5 3 7 6 6 2 5
+ordivw_lowrktta1_1.0_smap_c0.611_0.5_1.0   0.2697   0.4072   0.8781   0.9170   0.7594   0.8120   0.8657  0.694
+  delta / wins                      +0.0010  -0.0018  +0.0028  +0.0012  +0.0021  -0.0001  -0.0003  7 4 10 6 7 4 6
+
+# The same against the reproduced Brain-HIVE baseline ("" = baseline)
+
+# O5 against the reproduced Brain-HIVE baseline and the co-author head alone ("" = baseline)
+subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+arm                                 pixcorr     ssim    alex2    alex5  incepti     clip   effnet  strength
+base                                 0.1828   0.3120   0.8266   0.8959   0.7440   0.7986   0.8786
+_ord                                 0.2016   0.3360   0.8299   0.9017   0.7551   0.8107   0.8712
+  delta / wins                      +0.0188  +0.0240  +0.0033  +0.0058  +0.0111  +0.0121  -0.0074  10 10 8 9 8 10 10
+_ordens7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2692   0.4108   0.8780   0.9176   0.7584   0.8139   0.8642  0.694
+  delta / wins                      +0.0864  +0.0988  +0.0514  +0.0217  +0.0144  +0.0153  -0.0145  10 10 10 10 9 10 10
