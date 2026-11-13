@@ -61,6 +61,8 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "O5 condition from 0-150 window encoders": "s{:02d}_t0_s2025_A1_ordw1507bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0",
         "0-150 window, 7 seeds, no bagging": "s{:02d}_t0_s2025_A1_ordw1507_lowrktta1_0.5_smap_c0.611_0.5_1.0",
         "three windows, 7 seeds, no bagging": "s{:02d}_t0_s2025_A1_ordmw7_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O6 over all seven windows (0-75 ... 0-250)": "s{:02d}_t0_s2025_A1_ordaw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O6 over windows 0-125, 0-150, 0-175": "s{:02d}_t0_s2025_A1_ordnw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0",
         "O5 with 20 repeat groups": "s{:02d}_t0_s2025_A1_ordens7bag20_lowrktta1_0.5_smap_c0.611_0.5_1.0",
         "O5 with 5 repeat groups": "s{:02d}_t0_s2025_A1_ordens7bag5_lowrktta1_0.5_smap_c0.611_0.5_1.0",
         "O5 without repeat bagging (7-seed ensemble)": "s{:02d}_t0_s2025_A1_ordens7_lowrktta1_0.5_smap_c0.611_0.5_1.0",
@@ -161,6 +163,7 @@ compare("O2: O1 + inverse-variance repeat aggregation", ["O3: O2 + fractional-st
 compare("O3: O2 + fractional-strength re-injection", ["O4: O3 + test-time-adapted start image", "O3 + TTA for start and condition"])
 compare("O4: O3 + test-time-adapted start image", ["O5: O4 + 7-seed ensemble with repeat bagging for the condition", "O4 + adapted 7-seed ensemble condition", "O4 + adapted 7-seed ensemble condition, PCA 512", "O4 with retrieval weight 0.75", "O4 with retrieval weight 1.0"])
 compare("O5: O4 + 7-seed ensemble with repeat bagging for the condition", ["O5 with 20 repeat groups", "O5 with 5 repeat groups", "O5 without repeat bagging (7-seed ensemble)", "O5 with the start retrieved by the adapted 7-seed ensemble", "O4 with the adapted condition, PCA 256", "O4 with the condition projected on PCA 256"])
+compare("O6: O5 over encoders on three input windows", ["O6 over all seven windows (0-75 ... 0-250)", "O6 over windows 0-125, 0-150, 0-175"])
 compare("O5: O4 + 7-seed ensemble with repeat bagging for the condition", ["O6: O5 over encoders on three input windows", "O5 condition from 0-150 window encoders", "0-150 window, 7 seeds, no bagging", "three windows, 7 seeds, no bagging"])
 print("\n===== IP-adapter weight schedules on O3 (screening, subjects 2, 5, 8, 9) =====")
 compare("O3: O2 + fractional-strength re-injection", [a for a in ARMS if a.startswith("O3 + IP weight")])

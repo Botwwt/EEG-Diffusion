@@ -9,6 +9,8 @@ Variants (all label-free; the per-subject ordinary head is applied to every one 
   bagG     seed-2025 encoder on G disjoint IVW group means (80 / G repeats each), outputs averaged, rescaled to base
            norm (test inputs at the noise level the encoder was trained on; bagging over repeats)
   ensNbagG both
+  <v>_jD   temporal-shift test-time augmentation (from crop augmentation in vision): every encoder also sees its input
+           window shifted by -D ... +D samples (edge-padded), outputs averaged; for ens / bag / window variants
   <v>_pK   any variant projected onto the span of the training-target mean and the top-K principal components of
            the training targets F_train (subspace projection / PCA denoising), norm kept
   tta*     conditions saved by tta.py (cond_test_<name>.npy), optionally rescaled to the base norm ('n' suffix)
@@ -17,6 +19,8 @@ Labels are used only for scoring.
 
 python condscreen.py <subs> <variants, comma-separated> [save: 1 writes runs/cond/ord_<variant>/sub-XX.npy and,
    before the head, cond_test_<variant>.npy in the seed-2025 encoder directory]
+env CS_HEAD=<dir under runs, default ord>: use runs/<dir>/sub-XX/head.pt (e.g. ord_mw7 from ORD_ENS=mw7 python ordh.py);
+   saved conditions then go to runs/cond/<dir>_<variant>/
 """
 import sys
 
@@ -33,6 +37,7 @@ from main.models_brain import BrainEncoder  # noqa: E402
 subs = [int(s) for s in sys.argv[1].split(",")]
 VAR = sys.argv[2].split(",")
 save = len(sys.argv) > 3 and sys.argv[3] == "1"
+HD = __import__("os").environ.get("CS_HEAD", "ord")
 GK, BK = "backbone.block.layers.0.norm.weight", "backbone.block.layers.0.norm.bias"
 nz = torch.nn.functional.normalize
 Fn = nz(torch.from_numpy(np.load(PREP / "F_test.npy")).float(), dim=1)
@@ -47,8 +52,11 @@ def ivw(x):
     return ((w / w.sum(1, keepdim=True))[:, :, None, None] * x).sum(1)
 
 
-SETS = {"ens": ["t0_r4"], "w150": ["t0_r4_w150"], "w100": ["t0_r4_w100"],
-        "mw": ["t0_r4", "t0_r4_w150", "t0_r4_w100"]}   # mw: multi-window ensemble (0-250, 0-150, 0-100 samples)
+SETS = {"ens": ["t0_r4"], "w150": ["t0_r4_w150"], "w100": ["t0_r4_w100"], "w75": ["t0_r4_w75"], "w125": ["t0_r4_w125"],
+        "w175": ["t0_r4_w175"], "w200": ["t0_r4_w200"],
+        "mw": ["t0_r4", "t0_r4_w150", "t0_r4_w100"],   # mw: multi-window ensemble (0-250, 0-150, 0-100 samples)
+        "nw": ["t0_r4_w125", "t0_r4_w150", "t0_r4_w175"],   # windows around 150
+        "aw": ["t0_r4", "t0_r4_w200", "t0_r4_w175", "t0_r4_w150", "t0_r4_w125", "t0_r4_w100", "t0_r4_w75"]}   # all windows
 
 
 def load(x, seed, tag="t0_r4"):
@@ -89,28 +97,37 @@ for s in subs:
     enc0, sd0 = load(x, 2025)
     wg, bg = sd0[GK].float(), sd0[BK].float()
     head = BoundedConditionAdapter(predict_risk=False).eval()
-    head.load_state_dict(torch.load(RUNS / "ord" / f"sub-{x}" / "head.pt", weights_only=True))
+    head.load_state_dict(torch.load(RUNS / HD / f"sub-{x}" / "head.pt", weights_only=True))
     d0 = RUNS / "enc" / "t0_r4" / f"sub-{x}" / "fold-1_seed2025"
     cache = {}
 
-    def enc_out(seed, G, tag="t0_r4"):
-        if (seed, G, tag) not in cache:
+    P_ = 10   # edge padding for the shifts
+
+    def win(z, t0_, t1_, d):
+        z = torch.cat([z[..., :1].expand(*z.shape[:-1], P_), z, z[..., -1:].expand(*z.shape[:-1], P_)], -1)
+        return z[..., P_ + t0_ + d:P_ + t1_ + d]
+
+    def enc_out(seed, G, tag="t0_r4", J=0):
+        if (seed, G, tag, J) not in cache:
             m = enc0 if (seed, tag) == (2025, "t0_r4") else load(x, seed, tag)[0]
             t0_, t1_ = m.win
+            if G == 1:
+                ins = [a]
+            else:
+                k = 80 // G
+                perm = torch.randperm(80, generator=torch.Generator().manual_seed(7 + s))
+                ins = [ivw(xt[:, perm[i * k:(i + 1) * k]]) for i in range(G)]
             with torch.no_grad():
-                if G == 1:
-                    cache[(seed, G, tag)] = m.backbone(a[..., t0_:t1_]).float()
-                else:
-                    k = 80 // G
-                    perm = torch.randperm(80, generator=torch.Generator().manual_seed(7 + s))
-                    cache[(seed, G, tag)] = torch.stack([m.backbone(ivw(xt[:, perm[i * k:(i + 1) * k]])[..., t0_:t1_]).float() for i in range(G)]).mean(0)
-        return cache[(seed, G, tag)]
+                cache[(seed, G, tag, J)] = torch.stack([m.backbone(win(z, t0_, t1_, d)).float() for z in ins for d in range(-J, J + 1)]).mean(0)
+        return cache[(seed, G, tag, J)]
 
     base = enc_out(2025, 1)
     with torch.no_grad():
         hb, _ = head(base, wg.expand_as(base), bg.expand_as(base))
     for vfull in VAR:
-        v, _, pk = vfull.partition("_p")
+        v, *opts = vfull.split("_")
+        pk = next((o[1:] for o in opts if o.startswith("p")), "")
+        J = int(next((o[1:] for o in opts if o.startswith("j")), 0))
         if v == "base":
             c = base
         elif v.startswith("ens") and "tta" in v:
@@ -142,7 +159,7 @@ for s in subs:
                 tags, rest = SETS[st], v[len(st):]
                 N = int(rest.split("bag")[0])
                 G = int(rest.split("bag")[1]) if "bag" in rest else 1
-            c = torch.stack([enc_out(sd_, G, tg) for tg in tags for sd_ in SEEDS[:N]]).mean(0)
+            c = torch.stack([enc_out(sd_, G, tg, J) for tg in tags for sd_ in SEEDS[:N]]).mean(0)
             c = c * base.norm(dim=1, keepdim=True) / c.norm(dim=1, keepdim=True)
         if pk:
             c = proj(c, int(pk))
@@ -152,8 +169,8 @@ for s in subs:
         res[vfull].append(r)
         if save and vfull != "base":
             np.save(d0 / f"cond_test_{vfull}.npy", c.numpy())   # before the head: for lowsem.py --ctest (retrieval)
-            (RUNS / "cond" / f"ord_{vfull}").mkdir(parents=True, exist_ok=True)
-            np.save(RUNS / "cond" / f"ord_{vfull}" / f"sub-{x}.npy", h.numpy())
+            (RUNS / "cond" / f"{HD}_{vfull}").mkdir(parents=True, exist_ok=True)
+            np.save(RUNS / "cond" / f"{HD}_{vfull}" / f"sub-{x}.npy", h.numpy())
     print(f"sub-{x} " + " | ".join(f"{v} {res[v][-1][0]:.3f}/{res[v][-1][2]:.4f}" for v in VAR), flush=True)
 print(f"\nmean over {len(subs)} subjects (after the head): top1 top5 cosF cos-to-base, subjects with higher top1 / cosF than base")
 b = np.array(res[VAR[0]])

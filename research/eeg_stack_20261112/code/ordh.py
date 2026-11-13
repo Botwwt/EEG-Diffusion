@@ -13,6 +13,11 @@ Differences from theirs: one head per subject (theirs pooled the ten subjects in
   python ordh.py train all [passes]     -> one head shared by the ten subjects (the co-author's pooled recipe) -> runs/ord*/pooled
   ORD_HEAD=<name> python ordh.py train all / apply <sub>  -> shared head saved as / read from runs/ord*/<name>; conditions -> runs/cond/ord*_<name>/
   ORD_TAG=<encoder tag>                  -> use runs/enc/<tag> encoders; outputs go to runs/ord_<tag>, runs/cond/ord_<tag>
+  ORD_ENS=mw7 python ordh.py train <sub> -> train on the mean of the out-of-fold conditions of the O6 ensemble (windows
+                                            0-250 / 0-150 / 0-100 x seeds 2025, 2028-2033, per fold), rescaled per sample to
+                                            the norm of the seed-2025 full-window fold encoder, with that encoder's affine,
+                                            so that the head sees at training the kind of input it gets at test (O6);
+                                            -> runs/ord_mw7/sub-XX/head.pt (recipe otherwise unchanged)
 """
 import json
 import os
@@ -33,6 +38,10 @@ dev = "cuda"
 SEED = 1729
 TAG = os.environ.get("ORD_TAG", "")   # encoder tag; '' = the original per-subject encoders (t0_r4 / t0_r4f)
 SFX = f"_{TAG}" if TAG else ""
+ENS = os.environ.get("ORD_ENS", "")
+ENS_SETS = {"mw7": (["t0_r4", "t0_r4_w150", "t0_r4_w100"], [2025, 2028, 2029, 2030, 2031, 2032, 2033])}
+if ENS:
+    SFX += f"_{ENS}"
 GK, BK = "backbone.block.layers.0.norm.weight", "backbone.block.layers.0.norm.bias"
 
 
@@ -120,6 +129,16 @@ for j, s_ in enumerate(subs):
         idx = torch.from_numpy(np.load(d / "oof_index.npy"))
         assert (fold[idx] == k).all()
         C[j, idx] = torch.from_numpy(np.load(d / "cond_oof_r4.npy")).float()
+        if ENS:
+            tags, seeds = ENS_SETS[ENS]
+            cs = []
+            for tg in tags:
+                for sd_ in seeds:
+                    e = d if (tg, sd_) == ("t0_r4", 2025) else RUNS / "enc" / tg / f"sub-{s_:02d}" / f"fold{k}_seed{sd_}"
+                    assert (torch.from_numpy(np.load(e / "oof_index.npy")) == idx).all(), e
+                    cs.append(torch.from_numpy(np.load(e / "cond_oof_r4.npy")).float())
+            m_ = torch.stack(cs).mean(0)
+            C[j, idx] = m_ * C[j, idx].norm(dim=1, keepdim=True) / m_.norm(dim=1, keepdim=True)
         W[j * 5 + k], B[j * 5 + k] = affine(d)
 pair_img, pair_sub = torch.arange(S * NI) % NI, torch.arange(S * NI) // NI   # sample n = (subject n // NI, image n % NI)
 data = dict(c=C.view(-1, 1024).to(dev), w=W.to(dev), b=B.to(dev), fold=fold.to(dev), img=pair_img.to(dev), sid=pair_sub.to(dev),
