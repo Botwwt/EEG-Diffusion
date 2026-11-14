@@ -161,6 +161,38 @@ ordaw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2712   0.4113   0.8800   0.918
 ordnw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2708   0.4123   0.8792   0.9180   0.7613   0.8135   0.8637  0.694
   delta / wins                      -0.0003  +0.0007  -0.0003  -0.0007  -0.0003  -0.0007  +0.0003  4 9 5 5 4 4 4
 
-# In progress (not in any table yet): the per-subject head retrained, with its recipe unchanged, on the mean of the
-# out-of-fold training conditions of the 21 O6 encoders (ordh.py, ORD_ENS=mw7), so that its training input matches the
-# O6 test condition; fold encoders for seeds 2028-2033 and the 0-150 / 0-100 windows are being trained.
+# Head retrained on the O6 input (ORD_ENS=mw7 python ordh.py: the co-author's per-subject head, recipe unchanged, trained on
+# the mean of the out-of-fold conditions of the 21 O6 encoders; 5 concept folds x 7 seeds x 3 windows per subject).
+# Screen with the retrained head (CS_HEAD=ord_mw7), mean over 10 subjects: top1 top5 cosF cos-to-base
+#   base         0.4525 0.7925 0.3191 1.0000
+#   ens7bag10    0.4745 0.8110 0.3282 0.9593
+#   mw7bag10     0.5010 0.8220 0.3323 0.9450
+#   aw7bag10     0.5010 0.8280 0.3328 0.9409
+# Images (10 subjects; first arm = O6 with the original head; armsum.py), plus O6 with the later-onset windows added:
+subjects [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+arm                                 pixcorr     ssim    alex2    alex5  incepti     clip   effnet  strength
+ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2711   0.4116   0.8796   0.9188   0.7616   0.8142   0.8634  0.694
+ord_mw7_mw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2712   0.4122   0.8798   0.9189   0.7613   0.8144   0.8634  0.694
+  delta / wins                      +0.0001  +0.0006  +0.0002  +0.0001  -0.0003  +0.0002  +0.0000  8 9 6 5 5 6 4
+ord_mw7_aw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2713   0.4119   0.8797   0.9195   0.7624   0.8142   0.8645  0.694
+  delta / wins                      +0.0002  +0.0004  +0.0001  +0.0007  +0.0008  -0.0000  +0.0011  8 9 5 8 6 4 3
+ordmwo7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2712   0.4119   0.8800   0.9187   0.7614   0.8151   0.8633  0.694
+  delta / wins                      +0.0001  +0.0003  +0.0004  -0.0000  -0.0002  +0.0009  -0.0000  4 7 6 6 4 6 5
+# Every difference is within about +-0.001: none is adopted, O6 stays the final setting.
+
+# Random-subspace encoders (train.py --chkeep K: each seed keeps a different random K of the 17 channels, the rest zeroed
+# at train and test time) and later-onset windows (train.py --t0 10 / 20 --t1 150). condscreen.py, mean over 10 subjects
+# after the original head: top1 top5 cosF cos-to-base
+#   base         0.4515 0.7940 0.3199 1.0000
+#   mw7bag10     0.5010 0.8215 0.3332 0.9449   (O6)
+#   c127         0.4260 0.7800 0.3221 0.9472   (12 of 17 channels, 7 seeds)
+#   c127bag10    0.4415 0.7945 0.3226 0.9436
+#   mwc7bag10    0.4935 0.8225 0.3321 0.9498   (O6 set + 12-channel encoders)
+#   c157         0.4535 0.8045 0.3276 0.9604   (15 of 17 channels)
+#   c157bag10    0.4620 0.8155 0.3280 0.9552   (full-channel ens7bag10: 0.4750)
+#   mwd7bag10    0.4930 0.8200 0.3327 0.9503   (O6 set + 15-channel encoders)
+#   w1507        0.4985 0.8240 0.3334 0.9375
+#   o107         0.4910 0.8200 0.3338 0.9351   (window 10-150)
+#   o207         0.4750 0.8080 0.3311 0.9309   (window 20-150)
+#   mwo7bag10    0.5005 0.8260 0.3338 0.9424   (O6 set + both later-onset windows; imaged above)
+# Channel subsets lower top-1 at both sizes and when added to O6: negative, not imaged.

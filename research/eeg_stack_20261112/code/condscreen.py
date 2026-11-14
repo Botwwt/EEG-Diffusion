@@ -2,6 +2,8 @@
 
 Variants (all label-free; the per-subject ordinary head is applied to every one with the seed-2025 trunk affine):
   base     seed-2025 encoder on the IVW mean of the 80 repeats (= O2 / O3 / O4 condition, ord_ivw)
+  c12N     random-subspace encoders (train.py --chkeep 12: 12 of the 17 channels, a different subset per seed); mwcN adds
+           them to the mw set
   mwN, w150N, w100N   the same over encoders trained on the 0-150 / 0-100 sample windows (w*) or on all three
            windows 0-250, 0-150, 0-100 (mw, multi-window ensemble), N seeds each; combine with bagG as for ens
   ensN     mean of the outputs of N independently seeded encoders (deep ensembles, Lakshminarayanan et al. 2017),
@@ -56,6 +58,7 @@ SETS = {"ens": ["t0_r4"], "w150": ["t0_r4_w150"], "w100": ["t0_r4_w100"], "w75":
         "w175": ["t0_r4_w175"], "w200": ["t0_r4_w200"],
         "mw": ["t0_r4", "t0_r4_w150", "t0_r4_w100"],   # mw: multi-window ensemble (0-250, 0-150, 0-100 samples)
         "nw": ["t0_r4_w125", "t0_r4_w150", "t0_r4_w175"],   # windows around 150
+        "c12": ["t0_r4_c12"], "mwc": ["t0_r4", "t0_r4_w150", "t0_r4_w100", "t0_r4_c12"],   # c12: random channel subsets
         "aw": ["t0_r4", "t0_r4_w200", "t0_r4_w175", "t0_r4_w150", "t0_r4_w125", "t0_r4_w100", "t0_r4_w75"]}   # all windows
 
 
@@ -66,6 +69,8 @@ def load(x, seed, tag="t0_r4"):
     m = BrainEncoder(backbone="brain_mlp", brain_channels=17, brain_sequence_length=a_["t1"] - a_["t0"], hidden_size=1024, embedding_dim=1440, dropout=0.1)
     m.load_state_dict(sd)
     m.win = (a_["t0"], a_["t1"])
+    m.mask = torch.zeros(17)
+    m.mask[a_.get("chlist", list(range(17)))] = 1   # random-subspace encoders (train.py --chkeep)
     return m.eval(), sd
 
 
@@ -103,7 +108,8 @@ for s in subs:
 
     P_ = 10   # edge padding for the shifts
 
-    def win(z, t0_, t1_, d):
+    def win(z, t0_, t1_, d, mk):
+        z = z * mk[:, None]
         z = torch.cat([z[..., :1].expand(*z.shape[:-1], P_), z, z[..., -1:].expand(*z.shape[:-1], P_)], -1)
         return z[..., P_ + t0_ + d:P_ + t1_ + d]
 
@@ -118,7 +124,7 @@ for s in subs:
                 perm = torch.randperm(80, generator=torch.Generator().manual_seed(7 + s))
                 ins = [ivw(xt[:, perm[i * k:(i + 1) * k]]) for i in range(G)]
             with torch.no_grad():
-                cache[(seed, G, tag, J)] = torch.stack([m.backbone(win(z, t0_, t1_, d)).float() for z in ins for d in range(-J, J + 1)]).mean(0)
+                cache[(seed, G, tag, J)] = torch.stack([m.backbone(win(z, t0_, t1_, d, m.mask)).float() for z in ins for d in range(-J, J + 1)]).mean(0)
         return cache[(seed, G, tag, J)]
 
     base = enc_out(2025, 1)

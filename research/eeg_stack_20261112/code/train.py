@@ -39,6 +39,9 @@ p.add_argument("--lr", type=float, default=5e-4)
 p.add_argument("--chan", default="correct", choices=["correct", "typo"])
 p.add_argument("--emb", default="", help="target variant: '' clean images (official), deg4 / blur = degraded-image targets from deg.py")
 p.add_argument("--cos_w", type=float, default=0.0, help="weight of an absolute alignment term 1 - cos(c, F) added to InfoNCE")
+p.add_argument("--chkeep", type=int, default=0,
+               help="k > 0: random-subspace encoder (Ho 1998): only k of the 17 channels, chosen by --seed, are kept; the rest "
+                    "are zeroed at train and test time")
 p.add_argument("--tag", required=True)
 p.add_argument("--save_model", type=int, default=1)
 p.add_argument("--save_cond", type=int, default=1, help="0: keep only metrics.json and the small mean vectors")
@@ -74,6 +77,10 @@ x_te = torch.from_numpy(np.load(PREP / f"sub-{args.sub:02d}_test.npy"))   # [200
 if args.chan == "typo":  # official reconstruction script: Oz listed where POz belongs
     a, b = CH17.index("POz"), CH17.index("Oz")
     x_tr[:, :, a], x_te[:, :, a] = x_tr[:, :, b].clone(), x_te[:, :, b].clone()
+if args.chkeep:  # same subset for every subject and fold of a seed
+    args.chlist = np.sort(np.random.default_rng(args.seed).choice(17, args.chkeep, replace=False)).tolist()
+    drop = [c for c in range(17) if c not in args.chlist]
+    x_tr[:, :, drop], x_te[:, :, drop] = 0, 0
 x_tr = x_tr[..., args.t0:args.t1].contiguous().to(dev)
 x_te = x_te[..., args.t0:args.t1].contiguous().to(dev)
 sfx = f"_{args.emb}" if args.emb else ""
