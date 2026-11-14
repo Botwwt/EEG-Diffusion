@@ -72,6 +72,12 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "O5 with the start retrieved by the adapted 7-seed ensemble": "s{:02d}_t0_s2025_A1_ordens7bag10_lowrkens7tta1_0.5_smap_c0.611_0.5_1.0",
         "O4 with the adapted condition, PCA 256": "s{:02d}_t0_s2025_A1_ordtta1_p256_lowrktta1_0.5_smap_c0.611_0.5_1.0",
         "O4 with the condition projected on PCA 256": "s{:02d}_t0_s2025_A1_ordbase_p256_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O6 + MBR consensus selection (8 candidates)": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8",
+        "O6 + confidence-gated strength": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_sem0.1_0.5_1.0",
+        "O6 + shuffled gated strength (control)": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_semshuf0.1_0.5_1.0",
+        "O6 + reversed gated strength (control)": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_sem-0.1_0.5_1.0",
+        "O6 at strength 0.72": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.56_0.5_1.0",
+        "O6 + gated strength, mean 0.72": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_sem0.1@0.56_0.5_1.0",
         "O3 + IP weight schedule 1.25 / 1.25 / 1.25": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1.25_1.25_1.25",
         "O3 + IP weight schedule 1 / 1.25 / 1.25": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1_1.25_1.25",
         "O3 + IP weight schedule 1.25 / 1.25 / 1": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1.25_1.25_1",
@@ -168,6 +174,9 @@ compare("O4: O3 + test-time-adapted start image", ["O5: O4 + 7-seed ensemble wit
 compare("O5: O4 + 7-seed ensemble with repeat bagging for the condition", ["O5 with 20 repeat groups", "O5 with 5 repeat groups", "O5 without repeat bagging (7-seed ensemble)", "O5 with the start retrieved by the adapted 7-seed ensemble", "O4 with the adapted condition, PCA 256", "O4 with the condition projected on PCA 256"])
 compare("O6: O5 over encoders on three input windows", ["O6 over all seven windows (0-75 ... 0-250)", "O6 over windows 0-125, 0-150, 0-175", "O6 with the head retrained on ensemble conditions", "all seven windows with the retrained head", "O6 + windows 10-150 and 20-150"])
 compare("O5: O4 + 7-seed ensemble with repeat bagging for the condition", ["O6: O5 over encoders on three input windows", "O5 condition from 0-150 window encoders", "0-150 window, 7 seeds, no bagging", "three windows, 7 seeds, no bagging"])
+print("\n===== generator side after O6 (screening, subjects 2, 5, 8, 9) =====")
+compare("O6: O5 over encoders on three input windows", ["O6 + MBR consensus selection (8 candidates)", "O6 + confidence-gated strength", "O6 + shuffled gated strength (control)",
+        "O6 + reversed gated strength (control)", "O6 at strength 0.72", "O6 + gated strength, mean 0.72"])
 print("\n===== IP-adapter weight schedules on O3 (screening, subjects 2, 5, 8, 9) =====")
 compare("O3: O2 + fractional-strength re-injection", [a for a in ARMS if a.startswith("O3 + IP weight")])
 print("\n===== reliability-driven strength maps and ILVR (screening, subjects 2, 5, 8, 9 / 2, 8) =====")

@@ -40,6 +40,9 @@ p.add_argument("--prompt_file", default="", help="200 text prompts (.json list, 
 p.add_argument("--loop", type=float, default=0.0, help="closed-loop correction strength: generate, embed the images back to F, push each condition along the part of its "
                "centred direction the images miss, regenerate with the same noise")
 p.add_argument("--loop_iters", type=int, default=1)
+p.add_argument("--mbr", type=float, default=0.0, help="> 0: minimum-Bayes-risk selection (Kumar & Byrne 2004, machine translation) instead of the EEG-fit score: "
+               "among the nsel candidates of each output keep the one with the highest mean cosine (centred F embeddings) to all other K * nsel "
+               "candidates of the same query (consensus, no EEG target); the value weights an added EEG-fit term by (mbr - 1), so 1 = pure consensus")
 p.add_argument("--sel_low", type=float, default=0.0, help="best-of-N score = semantic fit + sel_low * pixel correlation (64 px grey) with the low-level start image")
 p.add_argument("--proj_ckpt", default="", help="fine-tuned IP projection (ipft.py), path relative to runs/")
 p.add_argument("--post", default="", help="extra scored variants (';'-separated 'w,sigma,beta'): out = (1-w)*LF(gen) + w*LF(start) + beta*(gen - LF(gen)), "
@@ -49,7 +52,8 @@ p.add_argument("--selvar", default="", help="extra best-of-N variants scored in 
                "embeddings), e.g. 'enc+knn0.5@8'; n = candidates used (<= nsel)")
 p.add_argument("--dump", type=int, default=0, help="save the final images as uint8 rec.npy [K, 200, 3, 512, 512] (for offline post-processing)")
 p.add_argument("--amp_mix", default="", help="comma-separated amplification factors cycled over the best-of-N candidates (candidate n uses factor n mod L); overrides --amp")
-p.add_argument("--smap", default="", help="reliability-driven differential img2img: '<kind>,s_rel,s_unrel', kind map / img (controls: const, shuf). The strength at each latent "
+p.add_argument("--smap", default="", help="reliability-driven differential img2img: '<kind>,s_rel,s_unrel', kind map / img (controls: const, shuf); "
+               "sem<d>[@<b>] / semshuf<d>: per-image rho = b - d * z (b default 0.611) from the semantic reliability z of semrel.py (or a fixed permutation of it). The strength at each latent "
                "position is s_unrel - (s_unrel - s_rel) * rho, rho = split-half reliability of the start-image latent (rel.py: map per position, or "
                "one value per image); positions are held at the noised start latent until their own number of steps remains (--strength is ignored)")
 p.add_argument("--ilvr", default="", help="low-band anchoring (ILVR, Choi et al. 2021, transferred): 'f,w,k'. After each of the first k sampler steps "
@@ -217,7 +221,15 @@ if args.smap:
     kind, s_rel, s_unrel = args.smap.split(",")
     s_rel, s_unrel = float(s_rel), float(s_unrel)
     assert 0.25 <= s_rel <= s_unrel <= 1
-    if kind.startswith("c") and kind != "const":  # fixed value: no reliability file needed
+    if kind.startswith("sem"):  # confidence-gated strength: rho = 0.611 - d * z, z = semantic reliability (semrel.py); 'semshuf<d>' = permuted z
+        z_ = torch.from_numpy(np.load(RUNS / "rel" / f"semz_sub-{ea['sub']:02d}.npy")).float()
+        if kind.startswith("semshuf"):
+            z_ = z_[torch.randperm(200, generator=torch.Generator().manual_seed(5))]
+        d_, b_ = (kind.lstrip("semshuf").split("@") + ["0.611"])[:2]
+        d_, b_ = float(d_), float(b_)
+        rz, lm = None, (b_ - d_ * z_).clamp(0.3, 0.9).view(-1, 1, 1, 1).expand(-1, 1, 16, 16).contiguous()
+        info["sem_rho_mean"] = float(lm.mean())
+    elif kind.startswith("c") and kind != "const":  # fixed value: no reliability file needed
         rz, lm = None, torch.zeros(200, 1, 16, 16)
     else:
         rz = np.load(RUNS / "rel" / f"sub-{ea['sub']:02d}.npz")
@@ -230,6 +242,8 @@ if args.smap:
         rho = torch.full_like(lm, float(lm.clamp(0, 1).mean()))
     elif kind == "shuf":     # control: each image gets the map of another image (fixed permutation)
         rho = lm[torch.randperm(200, generator=torch.Generator().manual_seed(5))]
+    elif kind.startswith("sem"):
+        rho = lm
     elif kind.startswith("c"):  # control: one fixed reliability for every subject and position, e.g. 'c0.611'
         rho = torch.full_like(lm, float(kind[1:]))
     else:
@@ -339,6 +353,7 @@ for s in range(0, N, args.bs):
     if args.selvar:
         sv_best = {spec: torch.full((len(q) * K,), -1e9) for spec, _, _ in selvars}
         sv_cur = {spec: torch.empty(len(q) * K, 3, 512, 512, dtype=torch.uint8) for spec, _, _ in selvars}
+    mb_f, mb_s, mb_i = [], [], []
     for n in range(NS):  # candidate 0 is exactly the image a run without selection produces
         img = generate(c if c_mix is None else c_mix[n % len(c_mix)], q, s, n)
         if NS == 1:
@@ -360,12 +375,32 @@ for s in range(0, N, args.bs):
                     sv_sc = (fn_ * v[q].repeat_interleave(K, dim=0)).sum(1)
                     u_ = sv_sc > sv_best[spec]
                     sv_cur[spec][u_], sv_best[spec][u_] = img8[u_], sv_sc[u_]
+        if args.mbr > 0:
+            mb_f.append(nz(nz(f, dim=1) - mu_fn, dim=1))
+            mb_s.append(sc.clone())
+            mb_i.append((img.cpu() * 255).round().to(torch.uint8))
+            continue
         if n == 0:
             sc0_sum += float(sc.sum())
         upd = sc > best
         cur[upd], best[upd] = img.cpu()[upd], sc[upd]
         if n > 0:
             n_changed += int(upd.sum())
+    if args.mbr > 0:
+        Q_ = len(q)
+        Fm = torch.stack(mb_f).view(NS, Q_, K, -1).permute(1, 2, 0, 3).reshape(Q_, K * NS, -1)   # [Q, K*NS, D]
+        Sm = Fm @ Fm.transpose(1, 2)
+        util = ((Sm.sum(-1) - Sm.diagonal(dim1=1, dim2=2)) / (K * NS - 1)).view(Q_, K, NS)
+        eeg = torch.stack(mb_s).view(NS, Q_, K).permute(1, 2, 0)
+        tot = util + (args.mbr - 1) * eeg
+        pick = tot.argmax(-1).flatten()                                           # [Q*K], candidate per output
+        allimg = torch.stack(mb_i)                                                # [NS, Q*K, 3, 512, 512]
+        cur = allimg[pick, torch.arange(Q_ * K)].float() / 255
+        sc0_sum += float(eeg[..., 0].sum())
+        n_changed += int((pick > 0).sum())
+        best = eeg.flatten(0, 1)[torch.arange(Q_ * K), pick]
+        info.setdefault("mbr_util_first", []).append(float(util[..., 0].mean()))
+        info.setdefault("mbr_util_kept", []).append(float(util.flatten(0, 1)[torch.arange(Q_ * K), pick].mean()))
     if NS > 1:
         scb_sum += float(best.sum())
     rec[:, q] = cur.view(len(q), K, 3, 512, 512).transpose(0, 1)

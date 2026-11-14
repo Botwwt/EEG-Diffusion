@@ -1,0 +1,54 @@
+# Generator-side screens after O6 (subjects 2, 5, 8, 9; one RTX 4090 run per subject and arm; first arm = O6; armsum.py,
+# "delta / wins" = mean difference and number of subjects better than O6, lower is better for EffNet).
+# None raises the semantic metrics; nothing is adopted.
+
+# 1. Minimum-Bayes-risk (consensus) selection, gen.py --nsel 8 --mbr 1 (Kumar & Byrne 2004, machine translation).
+#    Per output, 8 candidates (candidate 0 = the O6 image, same noise); keep the one whose centred fused embedding has the
+#    highest mean cosine to all K * 8 candidates of the same test image. No EEG target. selvar enc@8 / enc@4 = EEG-fit
+#    best of 8 / 4 in the same run (borrowed from MindEye; reference only).
+subjects [2, 5, 8, 9]
+arm                                 pixcorr     ssim    alex2    alex5  incepti     clip   effnet  strength
+ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2678   0.4104   0.8852   0.9208   0.7585   0.8110   0.8667  0.694
+ordmw7bag10_lowrktta1_0.5_smap_sem0.1_0.5_1.0   0.2683   0.4131   0.8855   0.9199   0.7584   0.8105   0.8690  0.694
+  delta / wins                      +0.0005  +0.0027  +0.0003  -0.0010  -0.0000  -0.0005  +0.0023  3 4 3 1 2 1 0
+ordmw7bag10_lowrktta1_0.5_smap_semshuf0.1_0.5_1.0   0.2681   0.4115   0.8822   0.9202   0.7569   0.8079   0.8682  0.694
+  delta / wins                      +0.0002  +0.0011  -0.0030  -0.0007  -0.0016  -0.0032  +0.0016  2 4 0 1 2 1 0
+ordmw7bag10_lowrktta1_0.5_smap_sem-0.1_0.5_1.0   0.2687   0.4088   0.8815   0.9184   0.7545   0.8079   0.8679  0.694
+  delta / wins                      +0.0009  -0.0017  -0.0037  -0.0025  -0.0040  -0.0032  +0.0013  3 1 0 0 1 0 1
+ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8   0.2687   0.4116   0.8868   0.9212   0.7531   0.8142   0.8652  0.694
+  delta / wins                      +0.0009  +0.0012  +0.0016  +0.0004  -0.0054  +0.0032  -0.0014  3 4 4 2 2 3 4
+
+[exited with code 0]
+#   s09_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8 selvar enc@8 | pixcorr 0.2747 ssim 0.4056 alex2 0.8832 alex5 0.9216 inception 0.7798 clip 0.8060 clip_top1 0.1413 effnet 0.8565
+#   s09_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8 selvar enc@4 | pixcorr 0.2719 ssim 0.4061 alex2 0.8843 alex5 0.9218 inception 0.7758 clip 0.8021 clip_top1 0.1325 effnet 0.8614
+#   s02_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8 selvar enc@8 | pixcorr 0.2637 ssim 0.4146 alex2 0.8981 alex5 0.9307 inception 0.7633 clip 0.8237 clip_top1 0.1325 effnet 0.8700
+#   s02_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8 selvar enc@4 | pixcorr 0.2629 ssim 0.4145 alex2 0.8952 alex5 0.9303 inception 0.7606 clip 0.8227 clip_top1 0.1225 effnet 0.8702
+#   s05_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8 selvar enc@8 | pixcorr 0.2601 ssim 0.3989 alex2 0.8706 alex5 0.9051 inception 0.7192 clip 0.8043 clip_top1 0.1050 effnet 0.8826
+#   s05_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8 selvar enc@4 | pixcorr 0.2587 ssim 0.3994 alex2 0.8725 alex5 0.9046 inception 0.7183 clip 0.8068 clip_top1 0.1263 effnet 0.8784
+#   s08_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8 selvar enc@8 | pixcorr 0.2808 ssim 0.4164 alex2 0.9038 alex5 0.9386 inception 0.8026 clip 0.8381 clip_top1 0.1638 effnet 0.8333
+#   s08_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0_mbr8 selvar enc@4 | pixcorr 0.2802 ssim 0.4157 alex2 0.9025 alex5 0.9377 inception 0.7981 clip 0.8382 clip_top1 0.1625 effnet 0.8384
+#   02 util first/kept 0.6646613407490859 0.6888919410420887
+#   05 util first/kept 0.6578957563015952 0.6841813103476567
+#   08 util first/kept 0.6689335570406558 0.6943429103538171
+#   09 util first/kept 0.6643619154816243 0.6903444555268359
+#   mean over the 4 subjects: enc@8 0.2698 0.4089 0.8889 0.9240 0.7662 0.8180 0.8606; enc@4 0.2684 0.4089 0.8886 0.9236 0.7632 0.8175 0.8621
+
+# 2. Confidence-gated img2img strength, gen.py --smap sem<d>[@b],0.5,1.0: rho_i = b - d * z_i, strength_i = 1 - 0.5 rho_i,
+#    z = z-scored semantic split-group reliability from semrel.py (label-free). semshuf = the same values permuted across
+#    images (control), sem-0.1 = reversed sign. Diagnostic with labels (not used for any choice): correlation of z with the
+#    cosine of the O6 condition to its target, per subject 1-10:
+#    0.358 0.394 0.295 0.418 0.378 0.393 0.298 0.333 0.395 0.353 (mean 0.361); with -log(1 + retrieval rank): mean 0.255.
+#    The comparison above (sem0.1, semshuf0.1, sem-0.1) and the strength-0.72 follow-up below.
+subjects [2, 5, 8, 9]
+arm                                 pixcorr     ssim    alex2    alex5  incepti     clip   effnet  strength
+ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0   0.2678   0.4104   0.8852   0.9208   0.7585   0.8110   0.8667  0.694
+ordmw7bag10_lowrktta1_0.5_smap_c0.56_0.5_1.0   0.2644   0.4013   0.8871   0.9226   0.7587   0.8139   0.8657  0.720
+  delta / wins                      -0.0034  -0.0091  +0.0019  +0.0018  +0.0002  +0.0028  -0.0010  0 0 4 4 3 3 3
+ordmw7bag10_lowrktta1_0.5_smap_sem0.1@0.56_0.5_1.0   0.2678   0.4092   0.8864   0.9206   0.7567   0.8113   0.8688  0.720
+  delta / wins                      -0.0000  -0.0013  +0.0013  -0.0002  -0.0018  +0.0003  +0.0022  2 0 3 2 2 2 0
+ordmw7bag10_lowrktta1_0.5_smap_sem0.1_0.5_1.0   0.2683   0.4131   0.8855   0.9199   0.7584   0.8105   0.8690  0.694
+  delta / wins                      +0.0005  +0.0027  +0.0003  -0.0010  -0.0000  -0.0005  +0.0023  3 4 3 1 2 1 0
+
+[exited with code 0]
+# The gate trades semantic quality for low-level quality at a fixed mean strength; raising the mean strength to spend the
+# SSIM margin returns the semantic metrics to O6 level. Negative for the semantic metrics.
