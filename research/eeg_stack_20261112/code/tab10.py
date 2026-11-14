@@ -78,6 +78,12 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "O6 + reversed gated strength (control)": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_sem-0.1_0.5_1.0",
         "O6 at strength 0.72": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.56_0.5_1.0",
         "O6 + gated strength, mean 0.72": "s{:02d}_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_sem0.1@0.56_0.5_1.0",
+        "O6 + spectral matching g 1": "s{:02d}_t0_s2025_A1_ordmw7bag10_sm128g1all_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O6 + spectral matching g 0.5": "s{:02d}_t0_s2025_A1_ordmw7bag10_sm128g0.5all_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O6 + spectral matching g 1, shrink only": "s{:02d}_t0_s2025_A1_ordmw7bag10_sm128g1down_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O6 + spectral matching g -0.5": "s{:02d}_t0_s2025_A1_ordmw7bag10_sm128g-0.5all_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O6 + spectral matching g -1": "s{:02d}_t0_s2025_A1_ordmw7bag10_sm128g-1all_lowrktta1_0.5_smap_c0.611_0.5_1.0",
+        "O6 condition from pure noise (no start image)": "s{:02d}_t0_s2025_A1_ordmw7bag10_noise",
         "O3 + IP weight schedule 1.25 / 1.25 / 1.25": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1.25_1.25_1.25",
         "O3 + IP weight schedule 1 / 1.25 / 1.25": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1_1.25_1.25",
         "O3 + IP weight schedule 1.25 / 1.25 / 1": "s{:02d}_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0_ips1_1.25_1.25_1",
@@ -176,7 +182,9 @@ compare("O6: O5 over encoders on three input windows", ["O6 over all seven windo
 compare("O5: O4 + 7-seed ensemble with repeat bagging for the condition", ["O6: O5 over encoders on three input windows", "O5 condition from 0-150 window encoders", "0-150 window, 7 seeds, no bagging", "three windows, 7 seeds, no bagging"])
 print("\n===== generator side after O6 (screening, subjects 2, 5, 8, 9) =====")
 compare("O6: O5 over encoders on three input windows", ["O6 + MBR consensus selection (8 candidates)", "O6 + confidence-gated strength", "O6 + shuffled gated strength (control)",
-        "O6 + reversed gated strength (control)", "O6 at strength 0.72", "O6 + gated strength, mean 0.72"])
+        "O6 + reversed gated strength (control)", "O6 at strength 0.72", "O6 + gated strength, mean 0.72",
+        "O6 + spectral matching g 1", "O6 + spectral matching g 0.5", "O6 + spectral matching g 1, shrink only", "O6 + spectral matching g -0.5", "O6 + spectral matching g -1",
+        "O6 condition from pure noise (no start image)"])
 print("\n===== IP-adapter weight schedules on O3 (screening, subjects 2, 5, 8, 9) =====")
 compare("O3: O2 + fractional-strength re-injection", [a for a in ARMS if a.startswith("O3 + IP weight")])
 print("\n===== reliability-driven strength maps and ILVR (screening, subjects 2, 5, 8, 9 / 2, 8) =====")
