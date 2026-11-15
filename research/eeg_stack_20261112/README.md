@@ -66,9 +66,13 @@ O7a / O7 in detail: three bottlenecks limited O6:
    centred 200-way diagnostic top-1 = 0.5840, `results/o7_b4_stack.txt`). At **`w = 1.00` (O7a)** this restores the exact training
    cone mean and norm without amplifying deviations from the mean direction; **`w > 1` (O7 uses `w = 1.50`)** extrapolates deviations
    from the mean axis, which belongs to the same Perceptogram-style directional amplification class as `--amp`. (In an intermediate
-   4-subject screen before the `ord_mw7` head and 5-window start were combined, raising `w` from `1.00` to `1.40` raised CLIP/Incep
-   by `+0.005 / +0.010` at the cost of `SSIM −0.024`; on the complete 10-subject stack `O7c` vs `O7a`, `w: 1.00 → 1.50` yields
-   `Incep −0.0011` and `CLIP −0.0009`, so **O7a (`w = 1.00`)** is both strictly unborrowed and slightly stronger semantically.)
+   4-subject screen (`{2, 5, 8, 9}`, O6 start image, before the 512 px start), `w = 1.00` gave `Incep +0.0074 / CLIP +0.0034` and `w = 1.40` gave
+   `Incep +0.0101 / CLIP +0.0048 / SSIM −0.0238` over O6; the step from `1.00` to `1.40` itself was only `Incep +0.0027 / CLIP
+   +0.0014 / SSIM −0.0231`, and those two runs also used different TTA condition sets (`cone_mwtta` vs `cone_mw7tta`), so they are not a clean
+   `w` comparison. On the complete 10-subject stack (`O7c` vs `O7a`), `w: 1.00 → 1.50` changes Incep/CLIP by `−0.0011 / −0.0009`
+   (paired t ≈ −0.5 / −0.7, 5/10 subjects each, i.e. no detectable difference), lowers SSIM by `0.0011` in 10/10 subjects and
+   raises Alex2/Alex5 by `+0.0012 / +0.0014` (8/10). **O7a (`w = 1.00`)** is therefore the strictly unborrowed arm at no
+   measurable semantic cost; it is not semantically stronger than O7.)
 2. **Native 512 px 5-window QR-PCA start latent (`lat512_start.py`).** Following the ATM preprocessing (`Preprocessed_data_250Hz_whiten`:
    epoched −200 to 1000 ms at 250 Hz = 4 ms/sample, with the 50 pre-stimulus samples dropped), samples `0..250` span `0–1000 ms`
    post-stimulus under THINGS-EEG2's `200 ms` RSVP SOA (`100 ms` presentation + `100 ms` blank, next onset at sample 50). Instead of
