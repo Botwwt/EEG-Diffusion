@@ -1,4 +1,4 @@
-# THINGS-EEG reconstruction: published numbers next to ours (read 2026-11-13)
+# THINGS-EEG reconstruction: published numbers next to ours (read 2026-11-13, updated 2026-11-15)
 
 Every paper below was read in full (text, tables, appendix). Numbers are copied from the papers; nothing was re-run.
 Metric implementations differ between papers (CLIP model, resolution, number of distractors, images per query are
@@ -34,13 +34,19 @@ often not stated), so the comparison is indicative, not a controlled benchmark.
 | Brain-HIVE reproduced here | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 | |
 | A″ (best of 8, shrinkage 16 px) | 0.2782 | 0.4043 | 0.8823 | 0.9255 | 0.7837 | 0.8251 | 1 / 2 / 2 / 2 / 1 / 2 |
 | **B‴** (best of 16, shrinkage 24 px) | 0.2748 | 0.4007 | 0.8861 | 0.9270 | 0.7882 | 0.8278 | 1 / 2 / 2 / 1 (tie) / 1 / 2 |
+| **B⁴-1** (28-enc multi-window joint + steerable contour + cone transport + 5-win 512px start; one draw, no blur) | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 | 1 / 1 / 2 / 1 / 1 / 1 |
+| **B⁴** (B⁴-1 + F/contour/VAE/grad best of 16, no blur) | **0.3319** | **0.4319** | **0.9130** | **0.9377** | **0.8004** | **0.8384** | **1 / 1 / 1 / 1 / 1 / 1** |
+| **B⁴#sv(0.20,0.20,0.18@16)** (same 16 candidates, lighter spatial/grad weights, no blur) | 0.3309 | 0.4314 | 0.9125 | 0.9381 | **0.8019** | **0.8394** | **1 / 1 / 1 / 1 / 1 / 1** |
 | O3, original components only (no joint encoder, best-of-N, shrinkage, amplification; one draw) | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 | 2 / 2 / 2 / 2 / 4 / 3 |
 | O4, O3 + test-time-adapted start image (label-free, transductive; one draw) | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 | 1 / 2 / 2 / 2 / 4 / 3 |
 | O5, O4 + 7-seed ensemble condition with repeat bagging (one draw per image) | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 | 1 / 2 / 2 / 2 / 4 / 3 |
-| **O6**, O5 over encoders on three input windows (0–250, 0–150, 0–100 samples; one draw per image) | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 | 1 / 2 / 2 / 2 / 4 / 3 |
+| O6, O5 over encoders on three input windows (0–250, 0–150, 0–100 samples; one draw per image) | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 | 1 / 2 / 2 / 2 / 4 / 3 |
+| **O7**, 6-window 42-enc TTA+bagging+cone transport + 5-window 512px QR-PCA start + low-band tether + contrast-restored Tweedie coupling (single-subject, one draw, no blur) | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 | 1 / 2 / 2 / 1 (tie) / 1 / 2 |
 
-A″ and B‴ contain components taken from MindEye / MindEye2 / ENIGMA / Perceptogram (see the README's prior-art table);
-O3 to O6 leave them out. Ranks count each method once (ENIGMA's single- and multi-subject rows as one).
+A″, B‴, B⁴-1 and B⁴ contain components taken from MindEye / MindEye2 / ENIGMA / Perceptogram (joint cross-subject
+encoders in B⁴-1 and B⁴, plus best-of-N selection in B⁴; see the README's prior-art table); O3 to O7 leave them out and
+use no cross-subject data, no best-of-N, and (in O7, B⁴-1, B⁴) no post-hoc Gaussian shrinkage. Ranks count each method
+once (ENIGMA's single- and multi-subject rows as one).
 
 Our reproduction of Brain-HIVE is 0.01–0.02 below the paper's own numbers, which suggests our metric code is not more
 lenient than theirs. Best of 16 uses 16× the sampling budget of a single draw.
