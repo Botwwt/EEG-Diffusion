@@ -24,7 +24,8 @@ on top of the host and the co-author's head, only components that are ours or tr
 | O4 | **split-half contrastive test-time adaptation of the encoder input layer, used for the start image** (`tta.py`) | transferred from test-time adaptation (domain adaptation; Tent, TTT) with an InfoNCE objective (CPC / SimCLR); the split-half positives are ours |
 | O5 | **IP condition = deep ensemble of 7 independently seeded per-subject encoders, each applied to 10 inverse-variance group means of 8 repeats and averaged** (`condscreen.py ens7bag10`) | deep ensembles (Lakshminarayanan et al. 2017) and bagging (Breiman 1996), generic machine learning; not checked for prior use in brain decoding beyond the audited papers |
 | O6 | **the O5 ensemble extended over three input windows: encoders trained on samples 0–250, 0–150 and 0–100 (7 seeds each), 21 encoders × 10 repeat groups averaged** (`condscreen.py mw7bag10`) | multi-scale analysis of time series with an ensemble over the scales (generic); time-window analyses of EEG decoders are common in the field, so the shorter windows themselves are not claimed as new |
-| O7 | **6-window 42-encoder split-half TTA + repeat bagging + `F_train` conical optimal transport (`aw_tta.py`), native 512 px 5-window RSVP QR-PCA start latent with 16 × 16-layout-disambiguated kNN (`lat512_start.py`), step-2/3 low-band tether and spatial-contrast-restored Tweedie coupling (`gen_exp.py`)** | conical marginal transport (optimal transport / domain adaptation), frequency-weighted QR-PCA across RSVP latency windows, selective step-2/3 low-band tether (refined from ILVR, Choi et al. 2021, credited), Tweedie posterior coupling across K = 4 draws (Efron 2011; Chung et al. 2023, credited) with per-channel spatial contrast restoration; no cross-subject data, no best-of-N, no post-hoc blur |
+| **O7a** | **6-window 42-encoder split-half TTA + repeat bagging + pure `F_train` cone restoration (`w = 1.00`, zero directional amplification; `aw_tta.py`), native 512 px 5-window QR-PCA start latent with coarse 16 × 16-layout-disambiguated kNN (`lat512_start.py`), and step-2/3 `8 × 8` low-band tether (`gen_exp.py`, `--tmf` off, strictly independent K = 4 draws)** | training-cone marginal restoration (domain adaptation / cone geometry), frequency-weighted QR-PCA across post-stimulus EEG windows, selective step-2/3 low-band tether (refined from ILVR, Choi et al. 2021, credited); **strict single-subject entry: no cross-subject data, no condition amplification, no K = 4 sample coupling, no best-of-N, no post-hoc blur** |
+| O7 | **O7a + directional cone amplification (`w = 1.50`) + step-1/2 K = 4 Tweedie posterior coupling with spatial contrast restoration (`--tmf 1,0.10,0.10,0 --tmf_cr 1`)** | adds Perceptogram-style directional extrapolation (`w > 1`, credited) and intra-query K = 4 Tweedie coupling (Efron 2011; Chung et al. 2023, credited); reported alongside O7a and full ablations O7b / O7c to isolate both mechanisms |
 
 O2 in detail: every test image has 80 repeats; trial r gets weight 1 / (mean squared residual of r against the mean of
 the other 79), so noisy trials (blinks, movement) count less. Label-free, one line of arithmetic, no training; the
@@ -49,27 +50,41 @@ subject's head is applied. The averaging removes encoder-seed variance and gives
 encoder was trained on. The start image stays the O4 one. Screen without images (`results/semantic_condition.txt`):
 top-1 0.4515 → 0.4750 (9/10 subjects), cosine to the target 0.3199 → 0.3291 (10/10).
 O6 in detail: the same official recipe, trained on the first 150 and the first 100 of the 250 samples (`train.py --t1 150`,
-`--t1 100`), seeds 2025 and 2028–2033, 14 extra encoders per subject (3 s each). The O5 condition is computed for all 21
+`--t1 100`, i.e. 0–600 ms and 0–400 ms at 250 Hz), seeds 2025 and 2028–2033, 14 extra encoders per subject (3 s each). The O5 condition is computed for all 21
 encoders (each on its own window of the 10 group means), the 210 outputs are averaged, rescaled to the base norm and
 passed through the subject's head (trained on the full-window encoder only). The start image stays the O4 one. The shorter
 windows decode better on their own (top-1 after the head 0.4985 for 7 seeds of 0–150 vs 0.4620 for 7 seeds of 0–250) and,
 unlike test-time adaptation, they also raise the cosine to the target (0.3334 vs 0.3286, 10/10).
-O7 in detail: three bottlenecks limited O6: (1) symmetric InfoNCE and split-half TTA centre encoder outputs near zero,
-removing the global cone axis $u_{\mathrm{tr}}$ of $F_{\mathrm{train}}$ ($\alpha_{\mathrm{tr}} = \|\mathbb{E}[\hat F_{\mathrm{train}}]\| = 0.6164$,
-$\beta_{\mathrm{tr}} = \sqrt{1 - \alpha_{\mathrm{tr}}^2} = 0.7874$, $R_{\mathrm{tr}} = 32.01$) so the `0.25 rad` cap of
-`BoundedConditionAdapter` saturates and adapted conditions previously lost CLIP (−0.003 in O4); restoring the training cone
-geometry $c_{\mathrm{cone}}(w) = R_{\mathrm{tr}}\,\mathrm{normalize}(\alpha_{\mathrm{tr}} u_{\mathrm{tr}} + w \beta_{\mathrm{tr}} d_\perp)$
-($w = 1.50$) after each subject's `BoundedConditionAdapter` (`aw_tta.py`) unlocks split-half TTA + 10-group IVW bagging across
-all 42 single-subject encoders (windows 0–250, 0–200, 0–175, 0–150, 0–125, 0–100 × 7 seeds; 10-subject centred 200-way top-1
-= 0.5840, `results/o7_b4_stack.txt`). (2) Instead of `low.py`'s 128 px bicubic round-trip, `lat512_start.py` predicts native
-`4 × 64 × 64` 512 px latents (`lat512_train.npy`), prioritizing 16 × 16 and 32 × 32 retinotopic/contour modes via a
-768-mode frequency-weighted orthonormal QR-PCA basis, fitted across five RSVP latency windows (12–62 pure V1 before the
-250 ms next-stimulus onset, 10–75 V1/V2, 15–90 V2/V4, 10–125 mid-ventral, 0–250 full) weighted per mode by 5-fold
-concept-disjoint out-of-fold $r^2$, and disambiguating the top-30 semantic kNN training latents with the single-subject
-16 × 16 ridge layout (`0.82 sem + 0.18 eeg16`). (3) In `gen_exp.py` (`--smap c0.625,0.5,1.0`), `--low_keep 8,0.22,0.04`
-gently tethers only the 8 × 8 coarse band at steps $i = 2, 3$ after the fractional hold reaches zero (avoiding full-step
-ILVR's CLIP loss), and `--tmf 1,0.10,0.10,0 --tmf_cr 1` couples the Tweedie $\hat z_0$ denoised estimates across the K = 4
-samples on steps 1–2 while restoring each channel's 64 × 64 spatial standard deviation so edges stay sharp without `--post` blur.
+O7a / O7 in detail: three bottlenecks limited O6:
+1. **Training-cone restoration (`w = 1.00` in O7a; `w = 1.50` in O7).** Symmetric InfoNCE and split-half TTA centre encoder outputs near zero,
+   removing the global cone axis $u_{\mathrm{tr}}$ of $F_{\mathrm{train}}$ ($\alpha_{\mathrm{tr}} = \|\mathbb{E}[\hat F_{\mathrm{train}}]\| = 0.6164$,
+   $\beta_{\mathrm{tr}} = \sqrt{1 - \alpha_{\mathrm{tr}}^2} = 0.7874$, $R_{\mathrm{tr}} = 32.01$) so the `0.25 rad` cap of
+   `BoundedConditionAdapter` saturates and adapted conditions previously lost CLIP (−0.003 in O4). Applying
+   $c_{\mathrm{cone}}(w) = R_{\mathrm{tr}}\,\mathrm{normalize}(\alpha_{\mathrm{tr}} u_{\mathrm{tr}} + w \beta_{\mathrm{tr}} d_\perp)$
+   after the multi-window head `ord_mw7` (`aw_tta.py`) unlocks split-half TTA + 10-group IVW bagging across all 42 single-subject
+   encoders (samples 0–250, 0–200, 0–175, 0–150, 0–125, 0–100 = 0–1000, 0–800, 0–700, 0–600, 0–500, 0–400 ms × 7 seeds; 10-subject
+   centred 200-way diagnostic top-1 = 0.5840, `results/o7_b4_stack.txt`). At **`w = 1.00` (O7a)** this restores the exact training
+   cone mean and norm without amplifying deviations from the mean direction; **`w > 1` (O7 uses `w = 1.50`)** extrapolates deviations
+   from the mean axis, which belongs to the same Perceptogram-style directional amplification class as `--amp`. (In an intermediate
+   4-subject screen before the `ord_mw7` head and 5-window start were combined, raising `w` from `1.00` to `1.40` raised CLIP/Incep
+   by `+0.005 / +0.010` at the cost of `SSIM −0.024`; on the complete 10-subject stack `O7c` vs `O7a`, `w: 1.00 → 1.50` yields
+   `Incep −0.0011` and `CLIP −0.0009`, so **O7a (`w = 1.00`)** is both strictly unborrowed and slightly stronger semantically.)
+2. **Native 512 px 5-window QR-PCA start latent (`lat512_start.py`).** Following the ATM preprocessing (`Preprocessed_data_250Hz_whiten`:
+   epoched −200 to 1000 ms at 250 Hz = 4 ms/sample, with the 50 pre-stimulus samples dropped), samples `0..250` span `0–1000 ms`
+   post-stimulus under THINGS-EEG2's `200 ms` RSVP SOA (`100 ms` presentation + `100 ms` blank, next onset at sample 50). Instead of
+   `low.py`'s 128 px bicubic round-trip, `lat512_start.py` predicts native `4 × 64 × 64` 512 px latents (`lat512_train.npy`),
+   up-weighting coarse `16 × 16` and `32 × 32` spatial modes via a 768-mode frequency-weighted orthonormal QR-PCA basis fitted across
+   five post-stimulus scalp windows (`12–62 = 48–248 ms`, `10–75 = 40–300 ms`, `15–90 = 60–360 ms`, `10–125 = 40–500 ms`,
+   `0–250 = 0–1000 ms`), fused per mode strictly by 5-fold concept-disjoint out-of-fold $r^2$, and disambiguating the top-30 semantic
+   kNN training latents with the single-subject `16 × 16` ridge layout (`0.82 sem + 0.18 eeg16`).
+3. **Step-2/3 coarse tether (`O7a`) and optional K = 4 Tweedie coupling (`O7`).** In `gen_exp.py` (`--smap c0.625,0.5,1.0`),
+   `--low_keep 8,0.22,0.04` gently tethers only the `8 × 8` coarse band at steps $i = 2, 3$ after the fractional hold reaches zero
+   (avoiding full-step ILVR's CLIP loss). **O7a** stops there (`K = 4` strictly independent draws per query, no `--tmf`). **O7**
+   additionally enables `--tmf 1,0.10,0.10,0 --tmf_cr 1`, which pulls the `K = 4` trajectories of each query slightly (`g = 0.10`)
+   toward their shared 4-sample Tweedie $\hat z_0$ mean on steps 1–2 while restoring each channel's `64 × 64` spatial SD; per-image
+   UNet NFE (4 steps) is unchanged, but because `metrics.py` averages scores across the `K = 4` images of a query, `--tmf` couples
+   those 4 samples (an intra-query 4-sample ensemble, not independent draws). Across all 10 subjects (`O7b` vs `O7a`), `--tmf`
+   contributes `PixCorr +0.0040` and `SSIM +0.0014` (`Incep −0.0005`, `CLIP −0.0007`).
 
 ### Results (10 subjects, same metric code and seeds as everywhere in this folder)
 
@@ -84,10 +99,25 @@ samples on steps 1–2 while restoring each channel's 64 × 64 spatial standard 
 | + O4 test-time-adapted start image | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 | 0.8659 |
 | + O5 seed ensemble with repeat bagging for the condition | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 | 0.8642 |
 | + O6 multi-window ensemble for the condition | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 | 0.8634 |
-| **+ O7 6-win TTA+cone + 5-win 512px start + tether + Tweedie-CR (final)** | **0.3074** | **0.4259** | **0.8971** | **0.9271** | **0.7812** | **0.8219** | **0.8509** |
+| **+ O7a strict original (`w = 1.00`, independent K = 4 draws, headline)** | **0.3036** | **0.4256** | **0.8953** | **0.9257** | **0.7827** | **0.8224** | **0.8495** |
+| + O7b (`w = 1.00` + K = 4 Tweedie coupling) | 0.3076 | 0.4270 | 0.8959 | 0.9256 | 0.7821 | 0.8217 | 0.8492 |
+| + O7c (`w = 1.50` cone amplification, independent K = 4 draws) | 0.3035 | 0.4246 | 0.8965 | 0.9271 | 0.7815 | 0.8215 | 0.8513 |
+| + O7 (`w = 1.50` cone amplification + K = 4 Tweedie coupling) | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 | 0.8509 |
 | O3 + adapted start *and* adapted condition (not adopted) | 0.2706 | 0.4142 | 0.8758 | 0.9153 | 0.7590 | 0.8087 | 0.8640 |
 
-- Final (O6) vs the reproduced baseline: every metric better (PixCorr +0.088, SSIM +0.100, Alex2 +0.053, Alex5 +0.023,
+#### Screened 4 subjects `{2, 5, 8, 9}` vs untouched held-out 6 subjects `{1, 3, 4, 6, 7, 10}` (paired gain over O6)
+
+| comparison vs O6 | subset | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP | EffNet ↓ |
+|---|---|---|---|---|---|---|---|---|
+| **O7a** (`w = 1.00`, indep K = 4) | screened `{2, 5, 8, 9}` | +0.0360 (4/4) | +0.0177 (4/4) | +0.0145 (4/4) | +0.0049 (4/4) | +0.0193 (4/4) | +0.0089 (4/4) | −0.0128 (4/4) |
+| **O7a** (`w = 1.00`, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | **+0.0303 (6/6)** | **+0.0116 (5/6)** | **+0.0165 (6/6)** | **+0.0083 (5/6)** | **+0.0223 (6/6)** | **+0.0076 (4/6)** | **−0.0146 (6/6)** |
+| O7 (`w = 1.50` + K = 4 tmf) | screened `{2, 5, 8, 9}` | +0.0393 (4/4) | +0.0178 (4/4) | +0.0161 (4/4) | +0.0069 (4/4) | +0.0181 (4/4) | +0.0084 (4/4) | −0.0100 (4/4) |
+| O7 (`w = 1.50` + K = 4 tmf) | held-out `{1, 3, 4, 6, 7, 10}` | +0.0343 (6/6) | +0.0120 (5/6) | +0.0186 (6/6) | +0.0093 (6/6) | +0.0206 (6/6) | +0.0072 (4/6) | −0.0141 (6/6) |
+| **B⁴a** (best of 16, indep K = 4) | screened `{2, 5, 8, 9}` | +0.0621 (4/4) | +0.0228 (4/4) | +0.0284 (4/4) | +0.0172 (4/4) | +0.0343 (4/4) | +0.0263 (4/4) | −0.0241 (4/4) |
+| **B⁴a** (best of 16, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | **+0.0535 (6/6)** | **+0.0164 (6/6)** | **+0.0348 (6/6)** | **+0.0202 (6/6)** | **+0.0411 (6/6)** | **+0.0221 (6/6)** | **−0.0230 (6/6)** |
+| **B⁴** (best of 16 + K = 4 tmf) | held-out `{1, 3, 4, 6, 7, 10}` | +0.0570 (6/6) | +0.0177 (6/6) | +0.0356 (6/6) | +0.0194 (6/6) | +0.0406 (6/6) | +0.0218 (6/6) | −0.0235 (6/6) |
+
+- Final prior row (O6) vs the reproduced baseline: every metric better (PixCorr +0.088, SSIM +0.100, Alex2 +0.053, Alex5 +0.023,
   Incep +0.018, CLIP +0.016, EffNet −0.015); Incep in 9/10 subjects, every other metric in 10/10. O3 vs the co-author's head alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013
   (10/10 each), Incep +0.003 (6/10), CLIP +0.001 (4/10).
 - O1 (vs O0): PixCorr +0.006 (8/10), Alex2 +0.006 (9/10), CLIP +0.003 (7/10), SSIM −0.008 (0/10).
@@ -109,16 +139,18 @@ samples on steps 1–2 while restoring each channel's 64 × 64 spatial standard 
   Alex2 2nd and Alex5 2nd (Perceptogram 0.910 / 0.927), CLIP 3rd (CogCapPro 0.830, ENIGMA 0.815), Inception 4th
   (CogCapPro 0.779, JMVR* 0.778, ENIGMA 0.777); each method counted once, as in the leaderboard. Leaving out the borrowed components costs mainly the semantic
   metrics: the full stack below (B‴) has Incep 0.788 and CLIP 0.828.
-- Cost: no extra training beyond the per-subject window encoders; one SDXL-Turbo pass per image (4 steps), no best-of-N. Re-running O6 with
+- Cost: no extra training beyond the per-subject window encoders and one per-subject `ord_mw7` head; one SDXL-Turbo pass per output image (4 steps), no best-of-N. Re-running O6 with
   `--dump 1` reproduced every metric exactly.
-- O7 (vs O6, 10 subjects, `results/o7_b4_stack.txt`): every metric substantially better: PixCorr +0.0363 (10/10), SSIM +0.0143 (9/10),
-  Alex2 +0.0176 (10/10), Alex5 +0.0083 (10/10), Incep +0.0196 (10/10), CLIP +0.0077 (8/10), EffNet −0.0125 (10/10), 200-way CLIP top-1
-  0.1302 → 0.1537 (8/10); vs the reproduced baseline, 10/10 subjects improve on every metric. Under the leaderboard rule of
-  `results/leaderboard.md`, O7 (single-subject, one draw, no post-hoc blur) ranks 1st on PixCorr (0.3074 vs Perceptogram 0.267) and
-  Inception (0.7812 vs CogCapPro 0.779), ties 1st on Alex5 (0.9271 vs Perceptogram 0.927), and is 2nd on SSIM (0.4259 vs ENIGMA 0.4264;
-  above ENIGMA single-subject 0.4233), Alex2 (0.8971 vs 0.910) and CLIP (0.8219 vs CogCapPro 0.830; above ENIGMA 0.8148). Hyper-parameters
-  of O7 (`w = 1.50`, `--smap c0.625,0.5,1.0`, `--low_keep 8,0.22,0.04`, `--tmf 1,0.10,0.10,0`) were screened on subjects 2, 5, 8, 9
-  (Waves 1–3.5) before running the remaining six subjects untouched in Wave 4.
+- **O7a** (strict unborrowed single-subject, `w = 1.00`, independent `K = 4` draws; vs O6, 10 subjects, `results/o7_b4_stack.txt`):
+  every metric substantially better: `PixCorr +0.0326` (10/10), `SSIM +0.0141` (9/10), `Alex2 +0.0157` (10/10), `Alex5 +0.0069` (9/10),
+  `Incep +0.0211` (10/10), `CLIP +0.0082` (8/10), `EffNet −0.0139` (10/10), 200-way CLIP top-1 `0.1302 → 0.1516` (8/10); vs the
+  reproduced baseline, 10/10 subjects improve on every metric. Under `results/leaderboard.md`, **O7a** ranks 1st on PixCorr (`0.3036`
+  vs Perceptogram `0.267`) and Inception (`0.7827` vs CogCapPro `0.779`), and 2nd on SSIM (`0.4256` vs ENIGMA `0.4264`; above ENIGMA
+  single-subject `0.4233`), Alex2 (`0.8953` vs `0.910`), Alex5 (`0.9257` vs `0.927`) and CLIP (`0.8224` vs CogCapPro `0.830`; above
+  ENIGMA `0.8148`). Isolating the two non-strict options on all 10 subjects: `w: 1.00 → 1.50` (`O7c` vs `O7a`) gives `Alex2 +0.0012,
+  Alex5 +0.0014` but `SSIM −0.0011, Incep −0.0011, CLIP −0.0009`; `K = 4` Tweedie coupling (`O7b` vs `O7a`) gives `PixCorr +0.0040,
+  SSIM +0.0014` (`10/10` each) and `Incep −0.0005, CLIP −0.0007`. Hyper-parameters (`--smap c0.625,0.5,1.0`, `--low_keep 8,0.22,0.04`)
+  were screened on subjects `{2, 5, 8, 9}` before evaluating the 6 untouched held-out subjects `{1, 3, 4, 6, 7, 10}` shown above.
 
 ### Reliability-driven ideas that were tested (ours; novelty check in "Where each component comes from")
 
@@ -180,10 +212,10 @@ the cross-product of the two halves estimates signal power, their mean square si
 | seed ensemble with repeat bagging for the condition | deep ensembles (Lakshminarayanan et al. 2017), bagging (Breiman 1996) | applied to test repeats grouped at the training repeat level; generic practice, no novelty claimed |
 | multi-window encoder ensemble (O6) | multi-scale / multi-resolution time-series analysis, ensembles over input views; time-window analyses of EEG decoding are common in the field | only the averaging of whole encoders trained on nested windows; no novelty claimed |
 | split-half contrastive test-time adaptation | test-time adaptation (Tent, Wang et al. 2021; TTT, Sun et al. 2020); InfoNCE (CPC, van den Oord et al. 2018; SimCLR) | positives are two halves of the repeats of one test image, only the input layer is adapted; not checked for prior use in brain decoding beyond the audited papers |
-| conical optimal transport onto the `F_train` cone (`aw_tta.py`, O7 and B⁴) | marginal matching / optimal transport in domain adaptation; directional cone geometry of CLIP / Mind the Gap (Liang et al. 2022) | restores the exact training cone mean axis $\alpha_{\mathrm{tr}} u_{\mathrm{tr}}$ and norm $R_{\mathrm{tr}}$ after `BoundedConditionAdapter` so split-half TTA and multi-window bagging improve CLIP instead of saturating the 0.25 rad cap |
-| native 512 px 5-window RSVP QR-PCA start latent + retinotopic kNN disambiguation (`lat512_start.py`, O7 and B⁴) | ridge start scaffold from Brain-Diffuser / Perceptogram (credited); latency-resolved V1→ventral decoding in RSVP EEG | orthonormal QR-PCA weighted towards 16 × 16 / 32 × 32 bands on native `4 × 64 × 64` latents, per-mode 5-fold concept-CV $r^2$ fusion over 5 RSVP windows, and retinotopic/steerable-contour disambiguation of semantic kNN neighbours |
-| step-2/3 low-band tether (`--low_keep`) and contrast-restored Tweedie coupling (`--tmf --tmf_cr`, O7 and B⁴) | low-band conditioning from ILVR (Choi et al. 2021, credited); Tweedie posterior mean $\hat z_0$ from Efron (2011) / DPS (Chung et al. 2023, credited) | applied only at steps $i = 2, 3$ after fractional hold ends (`--low_keep`), plus micro K = 4 $\hat z_0$ coupling on steps 1–2 with per-channel 64 × 64 spatial SD restoration (`--tmf_cr 1`), eliminating post-hoc Gaussian blur |
-| 4-orientation steerable retinotopic-contour contrastive `BrainMLP` (`train_ms_spat.py`) — full stack (B⁴-1, B⁴) only | joint cross-subject `BrainMLP` trunk from MindEye2 / ENIGMA / Brain-HIVE (credited); steerable finite-difference filters (Freeman & Adelson 1991) | symmetric InfoNCE against a 1024-dim 0°/45°/90°/135° `4 × 16 × 16` SDXL-VAE contour target (`spat1024.pt`, built strictly from training latents; 10-subject 200-way test contour top-1 = 0.2335, 47× chance), used in both start-latent disambiguation and `--nsel 16` scoring |
+| training-cone restoration (`w = 1.00` in O7a) vs directional cone amplification (`w > 1` in O7, B⁴; `aw_tta.py`) | marginal matching in domain adaptation & CLIP cone geometry (Liang et al. 2022); `w > 1` extrapolates deviations from the mean axis like Perceptogram §2.4.1 (credited) | `w = 1.00` (O7a) restores only $\alpha_{\mathrm{tr}} u_{\mathrm{tr}}$ and $R_{\mathrm{tr}}$ with zero amplification; `w > 1` (O7 `1.50`, B⁴ `1.75`) adds directional amplification |
+| native 512 px 5-window QR-PCA start latent + layout/contour kNN disambiguation (`lat512_start.py`, O7a/O7 and B⁴) | ridge start scaffold from Brain-Diffuser / Perceptogram (credited); multi-window post-stimulus scalp EEG decoding | orthonormal QR-PCA weighted towards coarse 16 × 16 / 32 × 32 bands on native `4 × 64 × 64` latents, per-mode 5-fold concept-CV $r^2$ fusion over 5 post-stimulus windows (`48–248..0–1000 ms`), and 16 × 16 layout / 4-orientation contour disambiguation of semantic kNN neighbours |
+| step-2/3 low-band tether (`--low_keep`, O7a..B⁴) and optional K = 4 Tweedie coupling (`--tmf --tmf_cr`, O7, B⁴-1, B⁴) | low-band conditioning from ILVR (Choi et al. 2021, credited); Tweedie posterior mean $\hat z_0$ from Efron (2011) / DPS (Chung et al. 2023, credited) | `--low_keep` tethers only the 8 × 8 band at steps $i = 2, 3$ after fractional hold ends; `--tmf --tmf_cr` (off in strict O7a, B⁴-1a, B⁴a) couples the K = 4 trajectories of a query on steps 1–2 with per-channel 64 × 64 SD restoration |
+| 4-orientation `16 × 16` contour contrastive `BrainMLP` (`train_ms_spat.py`) — full stack (B⁴-1a, B⁴-1, B⁴a, B⁴) only | joint cross-subject `BrainMLP` trunk from MindEye2 / ENIGMA / Brain-HIVE (credited); oriented finite-difference filters (Freeman & Adelson 1991) | symmetric InfoNCE against a 1024-dim 0°/45°/90°/135° `4 × 16 × 16` SDXL-VAE contour target (`spat1024.pt`, built strictly from training latents; 10-subject 200-way test contour top-1 = 0.2335, 47× chance), used in both start-latent disambiguation and `--nsel 16` scoring |
 
 Novelty was checked by reading the closest papers in full (BOI, DCBAN, SPSC, UBP, UGDiff); papers seen only as abstracts
 were not used to claim novelty. "Not found" means not in the papers read, not proof that nobody has done it.
@@ -213,13 +245,14 @@ SwAV is not measured (weights not downloadable here). Every row is the mean over
 | **B″**: B′ + best of 8 + high-frequency shrinkage | 0.2710 | 0.3995 | 0.8859 | 0.9269 | 0.7863 | 0.8266 | 0.8491 |
 | B′ with best of 16 | 0.2618 | 0.3824 | 0.8902 | 0.9298 | 0.7883 | 0.8284 | 0.8467 |
 | **B‴**: B′ + best of 16 + high-frequency shrinkage (24 px) | 0.2748 | 0.4007 | 0.8861 | 0.9270 | 0.7882 | 0.8278 | 0.8479 |
-| **B⁴-1**: O7 + 28-enc multi-window joint + 8-enc steerable contour (single draw, no blur) | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 | 0.8410 |
-| **B⁴**: B⁴-1 + F/contour/VAE/grad best of 16 (no blur) | **0.3319** | **0.4319** | **0.9130** | **0.9377** | 0.8004 | 0.8384 | 0.8393 |
-| **B⁴#sv(0.20,0.20,0.18@16)**: same 16 candidates, lighter spatial/grad weights (no blur) | 0.3309 | 0.4314 | 0.9125 | **0.9381** | **0.8019** | **0.8394** | **0.8388** |
+| **B⁴-1a**: full stack, `nsel = 1`, independent K = 4 draws (no `--tmf`, no blur) | 0.3184 | 0.4273 | 0.9063 | 0.9340 | 0.7937 | 0.8313 | 0.8411 |
+| **B⁴-1**: B⁴-1a + K = 4 Tweedie coupling (`nsel = 1`, no blur) | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 | 0.8410 |
+| **B⁴a**: B⁴-1a + F/contour/VAE/grad best of 16, independent K = 4 draws (no `--tmf`, no blur) | **0.3280** | **0.4305** | **0.9118** | **0.9377** | **0.8000** | **0.8380** | **0.8399** |
+| **B⁴**: B⁴a + K = 4 Tweedie coupling (best of 16, no blur) | **0.3319** | **0.4319** | **0.9130** | **0.9377** | **0.8004** | **0.8384** | **0.8393** |
 | low-level operating point: img2img strength 0.5 + best of 4 (per-subject heads) | 0.2578 | 0.4263 | 0.8422 | 0.8991 | 0.7744 | 0.7992 | 0.8635 |
 | Brain-HIVE paper, Table 2 (EEG) | 0.195 | 0.336 | 0.843 | 0.905 | 0.756 | 0.808 | – |
 
-A, B, A′, B′, A″, B″, B‴, B⁴-1 and B⁴ improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
+A, B, A′, B′, A″, B″, B‴, B⁴-1a, B⁴-1, B⁴a and B⁴ improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
 baseline is 0.01–0.02 below the paper's own numbers. The low-level operating point trades semantics for SSIM
 (Alex2 / Alex5 / CLIP fall below A in all ten subjects) and is listed only to show the trade-off. Per-subject rows: `results/table10.txt` and `results/o7_b4_stack.txt`;
 every generation run: `results/runs_summary.csv`; every encoder: `results/encoders_summary.csv`.
@@ -257,19 +290,27 @@ Contribution of each component (10-subject means of the differences):
   and CLIP, level on Alex5 and below on Alex2 (0.882–0.886 vs 0.910); above ENIGMA on everything except SSIM
   (0.404 vs 0.423); above CogCapPro on PixCorr, SSIM and Incep, below on CLIP (0.827 vs 0.830). Evaluation details
   differ between papers.
-- B⁴-1 and B⁴ (2026-11-15, `results/o7_b4_stack.txt`): combine the O7 pipeline with (a) 28 multi-window multi-seed joint semantic
-  encoders (`train_ms_win.py`: `ms_e10_ft10in` + `ms_w250, ms_w200, ms_w175, ms_w150, ms_w125, ms_w100, ms_w10_135, ms_w10_185`)
-  adapted with split-half TTA + 10-group IVW bagging through the 1-pass shared `BoundedConditionAdapter`, blended 0.80 / 0.20 with
-  the 42-encoder single-subject direction and transported onto the `F_train` cone (`w = 1.75`; 10-subject centred 200-way top-1 =
-  0.6420), and (b) 8 multi-window joint steerable-contour `BrainMLP` encoders (`train_ms_spat.py`: windows `10–70, 10–105, 0–150, 0–225`
-  × 2 seeds against `spat1024.pt`, 10-subject 200-way test contour top-1 = 0.2335) used both in `lat512_b4_v2` (`0.72 sem + 0.28 spat`
-  kNN disambiguation + 0.25 contour latent readout) and, in B⁴ (`--nsel 16`), to score candidates alongside `FEmbedder` (`F` + `4 × 16 × 16`
-  VAE latent) and 32 × 32 RGB finite-difference gradients (`--sel_spat 0.28 --sel_vae 0.24 --sel_grad 0.22`), with zero evaluation-network
-  weights and zero `--post` Gaussian shrinkage. Even with a single draw (`nsel = 1`, 1/16th sampling budget of B‴), **B⁴-1** beats B‴ on
-  every metric (`+0.0484, +0.0282, +0.0213, +0.0073, +0.0056, +0.0031, −0.0069`) and ranks `1 / 1 / 2 / 1 / 1 / 1`. With best of 16,
-  **B⁴** (`0.3319 / 0.4319 / 0.9130 / 0.9377 / 0.8004 / 0.8384`, EffNet `0.8393`, CLIP top-1 `0.1812`) and **B⁴#sv(0.20,0.20,0.18@16)**
-  (`0.3309 / 0.4314 / 0.9125 / 0.9381 / 0.8019 / 0.8394`, beating B‴ in 10/10 subjects on all seven metrics) rank **`1 / 1 / 1 / 1 / 1 / 1`**
-  across all six published THINGS-EEG metrics.
+- **B⁴-1a, B⁴-1, B⁴a and B⁴** (2026-11-15, `results/o7_b4_stack.txt`): combine the 512 px 5-window start + step-2/3 low-band tether
+  with (a) 28 multi-window multi-seed joint semantic encoders (`train_ms_win.py`: `ms_e10_ft10in` + `ms_w250, ms_w200, ms_w175,
+  ms_w150, ms_w125, ms_w100, ms_w10_135, ms_w10_185` on 250 Hz post-stimulus samples) adapted with split-half TTA + 10-group IVW
+  bagging through the 1-pass shared `BoundedConditionAdapter`, blended 0.80 / 0.20 with the 42-encoder single-subject direction and
+  mapped onto the `F_train` cone (`w = 1.75`; 10-subject centred 200-way diagnostic top-1 = 0.6420), and (b) 8 multi-window joint
+  4-orientation (`0°/45°/90°/135°`) coarse `16 × 16` contour `BrainMLP` encoders (`train_ms_spat.py`: windows `10–70 = 40–280 ms`,
+  `10–105 = 40–420 ms`, `0–150 = 0–600 ms`, `0–225 = 0–900 ms` × 2 seeds against `spat1024.pt`, 10-subject 200-way test contour
+  top-1 = 0.2335) used both in `lat512_b4_v2` (`0.72 sem + 0.28 spat` kNN disambiguation + 0.25 contour latent readout) and, in
+  `--nsel 16`, to score candidates alongside `FEmbedder` (`F` + `4 × 16 × 16` VAE latent) and 32 × 32 RGB finite-difference gradients
+  (`--sel_spat 0.28 --sel_vae 0.24 --sel_grad 0.22`), with zero evaluation-network weights and zero `--post` Gaussian shrinkage.
+  With `nsel = 1` and strictly independent `K = 4` draws (no `--tmf`), **B⁴-1a** (`0.3184 / 0.4273 / 0.9063 / 0.9340 / 0.7937 / 0.8313`)
+  already beats B‴ on every metric (`+0.0436, +0.0266, +0.0202, +0.0070, +0.0056, +0.0034, −0.0068`) and ranks `1 / 1 / 2 / 1 / 1 / 1`
+  (CLIP `0.8313` vs CogCapPro `0.830` is within noise; **B⁴-1** adds `--tmf` K = 4 coupling for `PixCorr +0.0048, SSIM +0.0016`).
+  With best of 16, both **B⁴a** (strictly independent `K = 4` draws: `0.3280 / 0.4305 / 0.9118 / 0.9377 / 0.8000 / 0.8380`, EffNet `0.8399`,
+  beating B‴ by `+0.0532 / +0.0298 / +0.0258 / +0.0107 / +0.0118 / +0.0102 / −0.0080`) and **B⁴** (`+ K = 4` Tweedie coupling:
+  `0.3319 / 0.4319 / 0.9130 / 0.9377 / 0.8004 / 0.8384`, EffNet `0.8393`, CLIP top-1 `0.1812`) rank **`1 / 1 / 1 / 1 / 1 / 1`** across
+  all six published THINGS-EEG metrics (caveat: CLIP margin over CogCapPro `0.830` is `+0.008`, Alex2 margin over Perceptogram `0.910`
+  is `+0.002–0.003`, and metric implementations differ across papers). Three alternative candidate-scoring weight tuples (`--selvar`
+  `0.20,0.20,0.18`, `0.35,0.28,0.25`, `0.45,0.35,0.30`) were also scored inside `sXX_w35_B4_v2b_sel16` (`PixCorr 0.3309–0.3330`,
+  `CLIP 0.8380–0.8394`); because comparing those three tuples uses the 10-subject test metrics post-hoc, they are excluded from the
+  ranked tables and logged only as weight-sensitivity diagnostics in `results/o7_b4_stack.txt` and `results/table10.txt`.
 
 ## Components
 
@@ -367,7 +408,7 @@ Image-level unless stated; "4 subjects" = mean over subjects 1, 2, 4, 8 relative
   PixCorr +0.013, CLIP ±0.000, Alex2 −0.003 (vs −0.004 for the full high band) — possibly a slightly better trade, not
   established on ten subjects.
 
-## Running the original-components pipeline (O3 / O4 / O5 / O6 / O7)
+## Running the original-components pipeline (O3 / O4 / O5 / O6 / O7a / O7)
 
 Inputs, environment and step 1 (data) as in the next section; `b32fix.py`, `fenc.py`, the joint encoder, the shared head
 and `rel.py` are not needed. From `code/` (`XX` = 01 … 10):
@@ -385,7 +426,7 @@ python ivwprep.py t0_r4
 # O1: retrieval blend on the aggregated inputs, decoded to start images
 python lowsem.py t0_r4 vae_rcp_ivw --ctest cond_test_ivw.npy --space raw --mode knn --w 0.5 --save lowrkivw_0.5
 python decode_low.py lowrkivw_0.5
-# O3: generation with fractional strength (one draw per image, K = 4 images per query)
+# O3: generation with fractional strength (nsel = 1, independent K = 4 draws per query)
 python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_ivw/sub-XX.npy --init_file sub-XX/lowrkivw_0.5_n0.8.npy \
     --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordivw_lowrkivw_0.5_smap_c0.611_0.5_1.0
 # O4: split-half contrastive test-time adaptation, then the retrieval blend and the O3 generation with the new start
@@ -405,16 +446,21 @@ for s in $(seq 1 10); do for w in 150 100; do for k in 2025 2028 2029 2030 2031 
 python condscreen.py 1,2,3,4,5,6,7,8,9,10 base,mw7bag10 1           # writes runs/cond/ord_mw7bag10/
 python gen.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file ord_mw7bag10/sub-XX.npy --init_file sub-XX/lowrktta1_0.5_n0.8.npy \
     --smap c0.611,0.5,1.0 --steps 4 --K 4 --bs 3 --save 0 --name sXX_t0_s2025_A1_ordmw7bag10_lowrktta1_0.5_smap_c0.611_0.5_1.0
-# O7: remaining single-subject windows (200, 175, 125; 7 seeds each), TTA+bagging+cone transport, 5-win 512px start, single-draw gen
+# O7a (strict w=1.00, independent K=4 draws) and O7 (w=1.50 + K=4 tmf):
 for s in $(seq 1 10); do for w in 200 175 125; do for k in 2025 2028 2029 2030 2031 2032 2033; do
     python train.py --sub $s --seed $k --t0 0 --t1 $w --tag t0_r4_w$w; done; done; done
 for s in $(seq 1 10); do ORD_ENS=mw7 python ordh.py train $s; done
 python aw_tta.py all                                                # writes runs/cond/cone_mw6tta_w{1.00,1.45,1.50}/sub-XX.npy
 python lat512_start.py all --cond_dirs cone_mw6tta_w1.00 --tag lat512_o7_v2
+# O7a (headline strict unborrowed arm: w=1.00, no --tmf, independent K=4 draws):
+python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_mw6tta_w1.00/sub-XX.npy \
+    --lat_init sub-XX/lat512_o7_v2_n0.80.npy --smap c0.625,0.5,1.0 --low_keep 8,0.22,0.04 \
+    --K 4 --save 0 --name sXX_w4_O7_w1_notmf
+# O7 (with w=1.50 directional cone amplification and --tmf K=4 Tweedie coupling; omit --tmf for O7c, or set w=1.00 + --tmf for O7b):
 python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_mw6tta_w1.50/sub-XX.npy \
     --lat_init sub-XX/lat512_o7_v2_n0.80.npy --smap c0.625,0.5,1.0 --low_keep 8,0.22,0.04 \
     --tmf 1,0.10,0.10,0 --tmf_cr 1 --K 4 --save 0 --name sXX_w35_O7_v2b
-python tab10.py > table10.txt          # rows O1 ... O7
+python tab10.py > table10.txt          # rows O1 ... O7a / O7
 ```
 
 Analyses of this section: `robagg.py` (aggregators), `rel.py` (split-half reliability; its embedding part uses the joint
@@ -424,7 +470,7 @@ policies, needs `gen.py --dump 1`), `armsum.py` (paired means over subjects); ou
 The last command, re-run for subject 8 with the final version of `gen.py`, reproduced all stored metrics exactly (largest
 difference 0.0).
 
-## Running it (reproducing B‴, B⁴-1 and B⁴ from scratch)
+## Running it (reproducing B‴, B⁴-1a, B⁴-1, B⁴a and B⁴ from scratch)
 
 **Inputs** (downloaded once; nothing here is redistributed). Put them under one working directory `$RAD_ROOT`:
 
@@ -465,7 +511,7 @@ python gen.py --run ms_e10_ft10in/sub-XX/fold-1_seed2025 --cond_file ord_ms_e10_
     --post 0,24,0.8 --name sXX_ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16
 #    metrics.json: "mean" = images as generated (B′ best of 16), "post"["0,24,0.8"] = B‴
 #    A″ instead: no --amp, --nsel 8, --post 0,16,0.8
-# 5b. B⁴-1 (single draw) and B⁴ (best of 16, no blur; requires the single-subject window encoders of O7 above):
+# 5b. B⁴-1a / B⁴-1 (nsel = 1) and B⁴a / B⁴ (best of 16, no blur; requires the single-subject window encoders of O7a above):
 for k in 2026 2027 2028; do python train_ms_win.py --tag ms_w250 --t0 0 --t1 250 --seed $k; done
 for w in 200 175 150 125 100; do for k in 2025 2026 2027 2028; do python train_ms_win.py --tag ms_w$w --t0 0 --t1 $w --seed $k; done; done
 for k in 2025 2026; do
@@ -481,9 +527,18 @@ for k in 2025 2026; do
 done
 python aw_tta.py all                                           # -> cone_ms28_mwtta_w{1.00,1.75}/ and spat_ms_mwtta/
 python lat512_start.py all --cond_dirs cone_mw6tta_w1.00 --tag lat512_o7_v2 --also_b4 cone_ms28_mwtta_w1.00:spat_ms_mwtta:lat512_b4_v2
+# B⁴-1a (nsel=1, strictly independent K=4 draws) and B⁴-1 (+ --tmf K=4 coupling):
+python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_ms28_mwtta_w1.75/sub-XX.npy \
+    --lat_init sub-XX/lat512_b4_v2_n0.80.npy --smap c0.628,0.5,1.0 --low_keep 8,0.22,0.04 \
+    --K 4 --save 0 --name sXX_w4_B4_n1_notmf
 python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_ms28_mwtta_w1.75/sub-XX.npy \
     --lat_init sub-XX/lat512_b4_v2_n0.80.npy --smap c0.628,0.5,1.0 --low_keep 8,0.22,0.04 \
     --tmf 1,0.12,0.12,0 --tmf_cr 1 --K 4 --save 0 --name sXX_w35_B4_v2b_n1
+# B⁴a (best of 16, strictly independent K=4 draws) and B⁴ (+ --tmf K=4 coupling):
+python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_ms28_mwtta_w1.75/sub-XX.npy \
+    --sel_cond cone_ms28_mwtta_w1.00/sub-XX.npy --spat_cond spat_ms_mwtta/sub-XX.npy \
+    --lat_init sub-XX/lat512_b4_v2_n0.80.npy --smap c0.628,0.5,1.0 --low_keep 8,0.22,0.04 \
+    --nsel 16 --sel_spat 0.28 --sel_vae 0.24 --sel_grad 0.22 --K 4 --save 0 --name sXX_w4_B4_sel16_notmf
 python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_ms28_mwtta_w1.75/sub-XX.npy \
     --sel_cond cone_ms28_mwtta_w1.00/sub-XX.npy --spat_cond spat_ms_mwtta/sub-XX.npy \
     --lat_init sub-XX/lat512_b4_v2_n0.80.npy --smap c0.628,0.5,1.0 --low_keep 8,0.22,0.04 \

@@ -1,13 +1,14 @@
-"""Native 512px (4x64x64) 5-window RSVP frequency-weighted QR-PCA + contour-disambiguated start latents (lat512_start.py).
+"""Native 512px (4x64x64) 5-window frequency-weighted QR-PCA + layout/contour-disambiguated start latents (lat512_start.py).
 
 Components:
-  1. Frequency-weighted orthonormal QR-PCA basis on lat512_train (prioritizing 16x16 & 32x32 retinotopic/contour modes).
-  2. 5 neurophysiological RSVP windows: (12:62) pure V1, (10:75) V1/V2, (15:90) V2/V4, (10:125) ventral, (0:250) full,
-     weighted per mode strictly by 5-fold concept-disjoint OOF r^2.
-  3. Pose- & contour-disambiguated kNN prototype:
+  1. Frequency-weighted orthonormal QR-PCA basis on lat512_train (up-weighting coarse 16x16 & 32x32 spatial modes).
+  2. 5 post-stimulus EEG windows on 250 Hz (0-1000 ms, 4 ms/sample; THINGS-EEG2 RSVP SOA = 200 ms = 100 ms on + 100 ms blank):
+     (12:62) = 48-248 ms, (10:75) = 40-300 ms, (15:90) = 60-360 ms, (10:125) = 40-500 ms, (0:250) = 0-1000 ms,
+     fused per PCA mode strictly by 5-fold concept-disjoint OOF r^2.
+  3. Layout- & contour-disambiguated kNN prototype:
      - Single-Subject Track (O7): disambiguates semantic kNN exemplars using single-subject 16x16 ridge layout (0.82 sem + 0.18 eeg16).
-     - Full-Stack Track (B4): disambiguates semantic kNN exemplars using the 8-encoder multi-window steerable-contour query
-       spat_ms_mwtta (0.72 sem + 0.28 spat) and blends a 0.25-weight cross-subject steerable-contour latent readout.
+     - Full-Stack Track (B4): disambiguates semantic kNN exemplars using the 8-encoder multi-window spatial-contour query
+       spat_ms_mwtta (0.72 sem + 0.28 spat) and blends a 0.25-weight cross-subject spatial-contour latent readout.
 """
 import argparse
 

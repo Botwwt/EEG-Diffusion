@@ -34,22 +34,24 @@ often not stated), so the comparison is indicative, not a controlled benchmark.
 | Brain-HIVE reproduced here | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 | |
 | A″ (best of 8, shrinkage 16 px) | 0.2782 | 0.4043 | 0.8823 | 0.9255 | 0.7837 | 0.8251 | 1 / 2 / 2 / 2 / 1 / 2 |
 | **B‴** (best of 16, shrinkage 24 px) | 0.2748 | 0.4007 | 0.8861 | 0.9270 | 0.7882 | 0.8278 | 1 / 2 / 2 / 1 (tie) / 1 / 2 |
-| **B⁴-1** (28-enc multi-window joint + steerable contour + cone transport + 5-win 512px start; one draw, no blur) | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 | 1 / 1 / 2 / 1 / 1 / 1 |
-| **B⁴** (B⁴-1 + F/contour/VAE/grad best of 16, no blur) | **0.3319** | **0.4319** | **0.9130** | **0.9377** | **0.8004** | **0.8384** | **1 / 1 / 1 / 1 / 1 / 1** |
-| **B⁴#sv(0.20,0.20,0.18@16)** (same 16 candidates, lighter spatial/grad weights, no blur) | 0.3309 | 0.4314 | 0.9125 | 0.9381 | **0.8019** | **0.8394** | **1 / 1 / 1 / 1 / 1 / 1** |
-| O3, original components only (no joint encoder, best-of-N, shrinkage, amplification; one draw) | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 | 2 / 2 / 2 / 2 / 4 / 3 |
-| O4, O3 + test-time-adapted start image (label-free, transductive; one draw) | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 | 1 / 2 / 2 / 2 / 4 / 3 |
-| O5, O4 + 7-seed ensemble condition with repeat bagging (one draw per image) | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 | 1 / 2 / 2 / 2 / 4 / 3 |
-| O6, O5 over encoders on three input windows (0–250, 0–150, 0–100 samples; one draw per image) | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 | 1 / 2 / 2 / 2 / 4 / 3 |
-| **O7**, 6-window 42-enc TTA+bagging+cone transport + 5-window 512px QR-PCA start + low-band tether + contrast-restored Tweedie coupling (single-subject, one draw, no blur) | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 | 1 / 2 / 2 / 1 (tie) / 1 / 2 |
+| **B⁴-1a** (28-enc multi-window joint + 4-orient contour + cone transport + 5-win 512px start; `nsel = 1`, independent K = 4 draws, no blur) | 0.3184 | 0.4273 | 0.9063 | 0.9340 | 0.7937 | 0.8313 | 1 / 1 / 2 / 1 / 1 / 1 (CLIP ≈ tie) |
+| **B⁴-1** (B⁴-1a + K = 4 Tweedie coupling on steps 1–2; `nsel = 1`, coupled K = 4, no blur) | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 | 1 / 1 / 2 / 1 / 1 / 1 (CLIP ≈ tie) |
+| **B⁴a** (B⁴-1a + F/contour/VAE/grad best of 16; independent K = 4 draws, no blur) | **0.3280** | **0.4305** | **0.9118** | **0.9377** | **0.8000** | **0.8380** | **1 / 1 / 1 / 1 / 1 / 1** |
+| **B⁴** (B⁴a + K = 4 Tweedie coupling on steps 1–2; best of 16, coupled K = 4, no blur) | **0.3319** | **0.4319** | **0.9130** | **0.9377** | **0.8004** | **0.8384** | **1 / 1 / 1 / 1 / 1 / 1** |
+| O3, original components only (no joint encoder, best-of-N, shrinkage, amplification; independent K = 4 draws) | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 | 2 / 2 / 2 / 2 / 4 / 3 |
+| O4, O3 + test-time-adapted start image (label-free, transductive; independent K = 4 draws) | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 | 1 / 2 / 2 / 2 / 4 / 3 |
+| O5, O4 + 7-seed ensemble condition with repeat bagging (independent K = 4 draws) | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 | 1 / 2 / 2 / 2 / 4 / 3 |
+| O6, O5 over encoders on three input windows (0–1000, 0–600, 0–400 ms; independent K = 4 draws) | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 | 1 / 2 / 2 / 2 / 4 / 3 |
+| **O7a**, strict original components: 6-window 42-enc TTA+bagging + pure training-cone restoration (`w = 1.00`) + 5-window 512px QR-PCA start + step-2/3 low-band tether (single-subject, independent K = 4 draws, no amplification, no blur) | **0.3036** | **0.4256** | **0.8953** | **0.9257** | **0.7827** | **0.8224** | 1 / 2 / 2 / 2 / 1 / 2 |
+| O7, O7a + directional cone amplification (`w = 1.50`) + K = 4 Tweedie coupling on steps 1–2 (single-subject, coupled K = 4, no blur) | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 | 1 / 2 / 2 / 1 (tie) / 1 / 2 |
 
-A″, B‴, B⁴-1 and B⁴ contain components taken from MindEye / MindEye2 / ENIGMA / Perceptogram (joint cross-subject
-encoders in B⁴-1 and B⁴, plus best-of-N selection in B⁴; see the README's prior-art table); O3 to O7 leave them out and
-use no cross-subject data, no best-of-N, and (in O7, B⁴-1, B⁴) no post-hoc Gaussian shrinkage. Ranks count each method
-once (ENIGMA's single- and multi-subject rows as one).
+**Component and evaluation notes:**
+- **Original vs borrowed components:** A″, B‴, B⁴-1a, B⁴-1, B⁴a and B⁴ contain components taken from MindEye / MindEye2 / ENIGMA / Perceptogram (joint cross-subject encoders and Perceptogram-style directional cone amplification `w = 1.75` in B⁴-1a..B⁴, plus MindEye-style best-of-16 selection in B⁴a and B⁴; see the README's prior-art table). **O3 to O7a** leave all four out: single-subject training data only, `w = 1.00` pure training-cone restoration without directional amplification, `nsel = 1` (no best-of-N), strictly independent K = 4 draws per query (no `--tmf`), and no post-hoc Gaussian shrinkage. **O7** additionally turns on `w = 1.50` directional cone amplification and `--tmf` K = 4 Tweedie coupling, so **O7a** is the strict unborrowed single-subject entry (and achieves slightly higher Inception `0.7827` and CLIP `0.8224` than O7).
+- **Independent K = 4 draws vs `--tmf` trajectory coupling:** In O7, B⁴-1 and B⁴, `--tmf` pulls the K = 4 trajectories of each query slightly (`g = 0.10–0.12`) toward their shared 4-sample Tweedie $\hat z_0$ mean on steps 1–2 before `metrics.py` averages scores over those K = 4 images. Although per-image UNet NFE (4 steps) is unchanged, the K = 4 samples of a query are coupled (an intra-query 4-sample ensemble) rather than independent draws. **O7a**, **B⁴-1a** and **B⁴a** turn `--tmf` off completely (strictly independent K = 4 draws) and show that `--tmf` contributes `+0.0039` to `+0.0048` on PixCorr and `+0.0014` to `+0.0016` on SSIM while changing semantic metrics by at most `±0.0007`; **B⁴a** already exceeds every published 10-subject row on all six metrics without `--tmf`.
+- **Ranking margins and cross-paper caveats:** Ranks count each external method once (ENIGMA's single- and multi-subject rows as one). Even where **B⁴a** (`0.8380`) and **B⁴** (`0.8384`) rank 1st on all six metrics, the CLIP margin over CognitionCapturerPro (`0.830`) is `+0.008` (**B⁴-1a** `0.8313` and **B⁴-1** `0.8309` are within noise of `0.830`, and Alex2 on **B⁴a** `0.9118` / **B⁴** `0.9130` vs Perceptogram `0.910` is `+0.002–0.003`), while metric implementations (CLIP checkpoint, image resolution, number of draws per query) differ across papers. Post-hoc `--selvar` weight-sensitivity variants scored inside B⁴ are omitted from this ranked table and reported only as diagnostics in `results/o7_b4_stack.txt` and `results/table10.txt`.
 
 Our reproduction of Brain-HIVE is 0.01–0.02 below the paper's own numbers, which suggests our metric code is not more
-lenient than theirs. Best of 16 uses 16× the sampling budget of a single draw.
+lenient than theirs. Best of 16 uses 16× the sampling budget of a single candidate (`nsel = 1`).
 
 ## Listed, not ranked
 

@@ -1,9 +1,11 @@
 """Generator extending gen.py for O7 and B4 (gen_exp.py):
   1. --lat_init <file>: direct [200, 4, 64, 64] native 512px VAE latent start
-  2. --tmf <spec> & --tmf_cr 1: Tweedie-Rao-Blackwellized coupling on z0_hat with per-channel spatial contrast restoration
+  2. --tmf <spec> & --tmf_cr 1: step-1/2 Tweedie z0_hat coupling across the K=4 parallel trajectories of each query
+     (unchanged 4-trajectory NFE per query, but the K=4 output samples of a query are coupled rather than independent draws;
+     omit --tmf for strictly independent K=4 draws) with per-channel 64x64 spatial contrast restoration
   3. --low_keep <f,w2[,w3]>: gentle low-band tether to the noised native start latent at step i=2 (and optionally i=3)
   4. --nsel <N> with --sel_cond, --spat_cond, --sel_spat, --sel_vae, --sel_grad (plus --selvar):
-     scores candidates using Brain-HIVE's own FEmbedder (F + 4x16x16 VAE latent), the 4-orientation steerable contour
+     scores candidates using Brain-HIVE's own FEmbedder (F + 4x16x16 VAE latent), the 4-orientation spatial-contour
      projection S_cand (from spat1024.pt, no evaluation-network weights), and 32x32 finite-difference RGB spatial gradients.
 Random seeds and metrics.py evaluation match gen.py identically.
 """

@@ -1,8 +1,8 @@
-"""Multi-subject multi-window retinotopic-steerable-contour contrastive BrainMLP (train_ms_spat.py).
+"""Multi-subject multi-window 4-orientation VAE spatial-contour contrastive BrainMLP (train_ms_spat.py).
 
 Two modes:
   1. --mode build:
-     Builds a 1024-dim 4-orientation (0, 45, 90, 135 deg) steerable retinotopic contour & layout target S_train [16540, 1024]
+     Builds a 1024-dim coarse 16x16 layout + 4-orientation (0, 45, 90, 135 deg) finite-difference contour target S_train [16540, 1024]
      strictly from training-set 4x16x16 SDXL-VAE latents (emb_train.pt['vae']), saving PCA basis + stats to data/prep/spat1024.pt.
      No evaluation-network weights and no test-image statistics are used in the basis.
 
@@ -27,7 +27,7 @@ nz = F.normalize
 
 
 def steerable_raw_blocks(v16):
-    """Extract 5 retinotopic + 4-orientation steerable contour blocks from [N, 4, 16, 16] SDXL-VAE latents."""
+    """Extract coarse 16x16 layout + 4-orientation finite-difference contour blocks from [N, 4, 16, 16] SDXL-VAE latents."""
     b0 = v16.flatten(1)
     bx = (v16[:, :, :, 1:] - v16[:, :, :, :-1]).flatten(1)
     by = (v16[:, :, 1:, :] - v16[:, :, :-1, :]).flatten(1)

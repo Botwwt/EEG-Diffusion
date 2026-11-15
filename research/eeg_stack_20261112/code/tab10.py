@@ -108,16 +108,21 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "O7 ablation: 4-win start + tmf_cr 0.12": "s{:02d}_w3_O7_cr12",
         "O7 ablation: 4-win start + low_keep + tmf_cr": "s{:02d}_w3_O7_lk8",
         "O7 ablation: 5-win QR-PCA start, cone w 1.45": "s{:02d}_w35_O7_v2a",
-        "O7: 6-win TTA+cone + 5-win 512px start (1 draw)": "s{:02d}_w35_O7_v2b",
-        "B⁴ ablation: 6-enc MS, 4-win start (1 draw)": "s{:02d}_w3_B4_n1",
+        "O7a: strict w 1.00 + 512px start (indep K=4)": "s{:02d}_w4_O7_w1_notmf",
+        "O7b: w 1.00 + 512px start + K=4 tmf": "s{:02d}_w4_O7_w1_tmf",
+        "O7c: w 1.50 + 512px start (indep K=4)": "s{:02d}_w4_O7_w150_notmf",
+        "O7: w 1.50 + 512px start + K=4 tmf": "s{:02d}_w35_O7_v2b",
+        "B⁴ ablation: 6-enc MS, 4-win start (nsel 1)": "s{:02d}_w3_B4_n1",
         "B⁴ ablation: 6-enc MS, best of 12 (no tmf)": "s{:02d}_w3_B4_sel12_sharp",
         "B⁴ ablation: 6-enc MS, best of 12 + tmf_cr": "s{:02d}_w3_B4_sel12_cr10",
         "B⁴ ablation: 28-enc MS + spat, cone w 1.65": "s{:02d}_w35_B4_v2a_sel16",
-        "B⁴-1: full-stack O7 + 28-enc MS + spat (1 draw)": "s{:02d}_w35_B4_v2b_n1",
-        "B⁴: B⁴-1 + F+spat+VAE+grad best of 16": "s{:02d}_w35_B4_v2b_sel16",
-        "B⁴ best of 16, sel weights (0.20, 0.20, 0.18)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.20,0.20,0.18@16",
-        "B⁴ best of 16, sel weights (0.35, 0.28, 0.25)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.35,0.28,0.25@16",
-        "B⁴ best of 16, sel weights (0.45, 0.35, 0.30)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.45,0.35,0.30@16",
+        "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)": "s{:02d}_w4_B4_n1_notmf",
+        "B⁴-1: full-stack nsel 1 (+ K=4 tmf)": "s{:02d}_w35_B4_v2b_n1",
+        "B⁴a: full-stack best of 16 (indep K=4, no tmf)": "s{:02d}_w4_B4_sel16_notmf",
+        "B⁴: full-stack best of 16 (+ K=4 tmf)": "s{:02d}_w35_B4_v2b_sel16",
+        "B⁴ best of 16, selvar (0.20, 0.20, 0.18, post-hoc)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.20,0.20,0.18@16",
+        "B⁴ best of 16, selvar (0.35, 0.28, 0.25, post-hoc)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.35,0.28,0.25@16",
+        "B⁴ best of 16, selvar (0.45, 0.35, 0.30, post-hoc)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.45,0.35,0.30@16",
         "calibration + low-level start": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low",
         "+ best of 4 candidates": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low_sel4"}
 PAPER = [0.195, 0.336, 0.843, 0.905, 0.756, 0.808]   # Brain-HIVE Table 2, EEG average (SwAV 0.554 not measured here)
@@ -205,26 +210,39 @@ print("\n===== reliability-driven strength maps and ILVR (screening, subjects 2,
 compare("O1: per-subject enc + head + retrieval-blended start", [a for a in ARMS if a.startswith("O1 + ") and a != "O1 + re-injection (no aggregation)"])
 compare("O1 + shuffled reliability map (0.5-0.75)", ["O1 + strength map from reliability (0.5-0.75)"])
 compare("O1 + constant strength (0.625-0.75)", ["O1 + strength map (0.625-0.75)"])
-print("\n===== O7 (single-subject 1-draw) and B⁴ (full-stack 1-draw and best of 16) =====")
+print("\n===== O7a / O7 (single-subject) and B⁴a / B⁴ (full-stack) =====")
 compare("O6: O5 over encoders on three input windows", [
     "O7 ablation: 4-win start, sharp (no lk/tmf)",
     "O7 ablation: 4-win start + tmf_cr 0.12",
     "O7 ablation: 4-win start + low_keep + tmf_cr",
     "O7 ablation: 5-win QR-PCA start, cone w 1.45",
-    "O7: 6-win TTA+cone + 5-win 512px start (1 draw)",
-    "B⁴-1: full-stack O7 + 28-enc MS + spat (1 draw)",
-    "B⁴: B⁴-1 + F+spat+VAE+grad best of 16",
+    "O7a: strict w 1.00 + 512px start (indep K=4)",
+    "O7b: w 1.00 + 512px start + K=4 tmf",
+    "O7c: w 1.50 + 512px start (indep K=4)",
+    "O7: w 1.50 + 512px start + K=4 tmf",
+    "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)",
+    "B⁴-1: full-stack nsel 1 (+ K=4 tmf)",
+    "B⁴a: full-stack best of 16 (indep K=4, no tmf)",
+    "B⁴: full-stack best of 16 (+ K=4 tmf)",
+])
+compare("O7a: strict w 1.00 + 512px start (indep K=4)", [
+    "O7b: w 1.00 + 512px start + K=4 tmf",
+    "O7c: w 1.50 + 512px start (indep K=4)",
+    "O7: w 1.50 + 512px start + K=4 tmf",
 ])
 compare("B' best of 16", [
-    "B⁴-1: full-stack O7 + 28-enc MS + spat (1 draw)",
-    "B⁴: B⁴-1 + F+spat+VAE+grad best of 16",
-    "B⁴ best of 16, sel weights (0.20, 0.20, 0.18)",
+    "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)",
+    "B⁴-1: full-stack nsel 1 (+ K=4 tmf)",
+    "B⁴a: full-stack best of 16 (indep K=4, no tmf)",
+    "B⁴: full-stack best of 16 (+ K=4 tmf)",
 ])
 compare("B‴: B' best of 16 + HF shrink (24 px, 0.8)", [
-    "B⁴-1: full-stack O7 + 28-enc MS + spat (1 draw)",
-    "B⁴: B⁴-1 + F+spat+VAE+grad best of 16",
-    "B⁴ best of 16, sel weights (0.20, 0.20, 0.18)",
-    "B⁴ best of 16, sel weights (0.35, 0.28, 0.25)",
-    "B⁴ best of 16, sel weights (0.45, 0.35, 0.30)",
+    "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)",
+    "B⁴-1: full-stack nsel 1 (+ K=4 tmf)",
+    "B⁴a: full-stack best of 16 (indep K=4, no tmf)",
+    "B⁴: full-stack best of 16 (+ K=4 tmf)",
+    "B⁴ best of 16, selvar (0.20, 0.20, 0.18, post-hoc)",
+    "B⁴ best of 16, selvar (0.35, 0.28, 0.25, post-hoc)",
+    "B⁴ best of 16, selvar (0.45, 0.35, 0.30, post-hoc)",
 ])
 print(f"\n{'paper Table 2 (10-subject mean)':<48}" + "".join(f"{x:>10.4f}" for x in PAPER))

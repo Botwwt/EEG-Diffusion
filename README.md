@@ -19,12 +19,14 @@ Model weights, private EEG, large feature arrays and machine credentials are exc
 
 **Original-components pipeline (headline).** A prior-art audit found that the joint encoder, best-of-N selection,
 output shrinkage and condition amplification of the stack below come from same-field papers (MindEye2 / ENIGMA,
-MindEye, MindEye2, Perceptogram). Leaving them out and keeping only components that are ours or transferred from other
-fields — native 512 px 5-window RSVP QR-PCA start latents with retinotopic-layout-disambiguated kNN, inverse-variance
-aggregation of the 80 test repeats (robust statistics), fractional img2img strength by re-injection (Differential
-Diffusion) with a step-2/3 coarse-band tether and spatial-contrast-restored Tweedie coupling, and 6-window 42-encoder
-split-half contrastive test-time adaptation with conical optimal transport onto the training target cone —
-on top of the per-subject Brain-HIVE encoder and the ordinary head (one per subject), one draw per image, no post-hoc blur:
+MindEye, MindEye2, Perceptogram). Leaving all four out — and also keeping the `K = 4` evaluated samples per query strictly
+independent — **O7a** keeps only single-subject components that are ours or transferred from other fields: native 512 px
+5-window (`48–248`, `40–300`, `60–360`, `40–500`, `0–1000 ms` post-stimulus at `250 Hz`; `200 ms` RSVP SOA) frequency-weighted
+QR-PCA start latents with coarse `16 × 16`-layout-disambiguated kNN, inverse-variance aggregation of the 80 test repeats
+(robust statistics), fractional img2img strength by re-injection (Differential Diffusion) with a step-2/3 `8 × 8` low-band
+tether, and 6-window 42-encoder split-half contrastive test-time adaptation with pure training-cone restoration (`w = 1.00`,
+zero directional amplification) on top of the per-subject Brain-HIVE encoder and the per-subject ordinary head, with no
+post-hoc blur:
 
 | setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP |
 |---|---|---|---|---|---|---|
@@ -34,20 +36,29 @@ on top of the per-subject Brain-HIVE encoder and the ordinary head (one per subj
 | O4: + test-time-adapted start image | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 |
 | O5: + seed-ensemble condition with repeat bagging | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 |
 | O6: + multi-window encoder ensemble for the condition | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 |
-| **O7: + 6-win TTA+cone + 5-win 512px start + tether + Tweedie-CR** | **0.3074** | **0.4259** | **0.8971** | **0.9271** | **0.7812** | **0.8219** |
+| **O7a: + 6-win TTA + pure cone (`w = 1.00`) + 5-win 512px start + tether (indep K = 4)** | **0.3036** | **0.4256** | **0.8953** | **0.9257** | **0.7827** | **0.8224** |
+| O7: O7a + directional cone amp (`w = 1.50`) + K = 4 Tweedie coupling | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 |
 
-O7 improves on the reproduced baseline in 10/10 subjects on every metric, beats O6 across the board (PixCorr +0.0363,
-SSIM +0.0143, Alex2 +0.0176, Alex5 +0.0083, Incep +0.0196, CLIP +0.0077; 10/10, 9/10, 10/10, 10/10, 10/10, 8/10 subjects),
-and ranks 1 / 2 / 2 / 1 (tie) / 1 / 2 against published 10-subject EEG-only results with a single draw and zero
-cross-subject data. Reliability-driven strength maps, full-step ILVR, low-pass re-injection and un-restored Tweedie
-averaging were tested with controls and reported alongside the positive components in the folder README.
+**O7a** improves on the reproduced baseline in 10/10 subjects on every metric, beats O6 across the board (`PixCorr +0.0326`,
+`SSIM +0.0141`, `Alex2 +0.0157`, `Alex5 +0.0069`, `Incep +0.0211`, `CLIP +0.0082`; `10/10, 9/10, 10/10, 9/10, 10/10, 8/10`
+subjects), and ranks `1 / 2 / 2 / 2 / 1 / 2` against published 10-subject EEG-only results using single-subject data, `nsel = 1`,
+and strictly independent `K = 4` draws. Hyper-parameters were screened on subjects `{2, 5, 8, 9}`; on the 6 untouched held-out
+subjects `{1, 3, 4, 6, 7, 10}`, **O7a** gains `+0.0303 / +0.0116 / +0.0165 / +0.0083 / +0.0223 / +0.0076` over O6 (vs
+`+0.0360 / +0.0177 / +0.0145 / +0.0049 / +0.0193 / +0.0089` on the 4 screened subjects). **O7** is listed separately because
+`w = 1.50` amplifies deviations from the mean cone axis (same Perceptogram-style class as `--amp`) and `--tmf` couples the
+`K = 4` trajectories of each query toward their shared Tweedie mean on steps 1–2 (`+0.0040` PixCorr, `+0.0014` SSIM;
+`w: 1.00 → 1.50` alone changes Incep/CLIP by `−0.0011 / −0.0009` on the full 10-subject stack). Reliability-driven strength maps,
+full-step ILVR, low-pass re-injection and un-restored Tweedie averaging were tested with controls and reported alongside the
+positive components in the folder README.
 
-**Full stack including the borrowed components (credited):** [`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks a multi-window
-multi-seed joint ten-subject semantic encoder ensemble, an 8-encoder 4-orientation steerable SDXL-VAE contour `BrainMLP`,
-native 512 px 5-window RSVP QR-PCA + contour-disambiguated start latents, and best-of-N candidate selection (using only
-Brain-HIVE's own `FEmbedder`, steerable VAE contours and start-latent gradients; zero evaluation-network weights, zero
-post-hoc blur in B⁴-1 and B⁴) on top of the shared ordinary head. THINGS-EEG test set, R80, 10 subjects, K = 4 images
-per query, Brain-HIVE metrics (SwAV not measured):
+**Full stack including the borrowed components (credited):** [`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks a 28-encoder
+multi-window multi-seed joint ten-subject semantic ensemble, an 8-encoder 4-orientation (`0°/45°/90°/135°`) coarse `16 × 16`
+SDXL-VAE contour `BrainMLP`, directional cone amplification (`w = 1.75`), native 512 px 5-window QR-PCA + contour-disambiguated
+start latents, and best-of-16 candidate selection (scored using only Brain-HIVE's own `FEmbedder`, EEG-predicted VAE contours
+and start-latent gradients; zero evaluation-network weights, zero post-hoc blur in B⁴-1a..B⁴) on top of the shared ordinary head.
+Both strictly independent `K = 4` draws (`--tmf` off: **B⁴-1a**, **B⁴a**) and step-1/2 `K = 4` Tweedie-coupled draws (`--tmf` on:
+**B⁴-1**, **B⁴**) are reported on the THINGS-EEG test set (R80, 10 subjects, `K = 4` images per query, Brain-HIVE metrics;
+SwAV not measured):
 
 | setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP |
 |---|---|---|---|---|---|---|
@@ -56,17 +67,21 @@ per query, Brain-HIVE metrics (SwAV not measured):
 | A″: stack, best of 8, shrinkage | 0.2782 | 0.4043 | 0.8823 | 0.9255 | 0.7837 | 0.8251 |
 | B″: A″ + condition amplification ×2 | 0.2710 | 0.3995 | 0.8859 | 0.9269 | 0.7863 | 0.8266 |
 | B‴: B″ with best of 16, shrinkage 24 px | 0.2748 | 0.4007 | 0.8861 | 0.9270 | 0.7882 | 0.8278 |
-| **B⁴-1: full stack, single draw (`nsel = 1`), no blur** | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 |
-| **B⁴: B⁴-1 + best of 16, no blur** | **0.3319** | **0.4319** | **0.9130** | **0.9377** | 0.8004 | 0.8384 |
-| **B⁴#sv(0.20,0.20,0.18@16): lighter spatial/grad weights, no blur** | 0.3309 | 0.4314 | 0.9125 | **0.9381** | **0.8019** | **0.8394** |
+| **B⁴-1a: full stack, `nsel = 1`, independent K = 4 draws, no blur** | 0.3184 | 0.4273 | 0.9063 | 0.9340 | 0.7937 | 0.8313 |
+| **B⁴-1: B⁴-1a + K = 4 Tweedie coupling (`nsel = 1`), no blur** | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 |
+| **B⁴a: B⁴-1a + best of 16, independent K = 4 draws, no blur** | **0.3280** | **0.4305** | **0.9118** | **0.9377** | **0.8000** | **0.8380** |
+| **B⁴: B⁴a + K = 4 Tweedie coupling (best of 16), no blur** | **0.3319** | **0.4319** | **0.9130** | **0.9377** | **0.8004** | **0.8384** |
 
-A″, B″, B‴, B⁴-1 and B⁴ improve on the reproduced baseline for every metric in every subject; B⁴#sv(0.20,0.20,0.18@16)
-also improves on B‴ for every metric in all 10/10 subjects. Best of 8 / 16 uses 8× / 16× the sampling budget of a single
-draw (whereas B⁴-1 uses a single draw and ranks 1 / 1 / 2 / 1 / 1 / 1). Against published 10-subject EEG-only results
-(inclusion rule and sources in [`results/leaderboard.md`](research/eeg_stack_20261112/results/leaderboard.md)), **B⁴** and **B⁴#sv(0.20,0.20,0.18@16)** rank
-**1 / 1 / 1 / 1 / 1 / 1** (first on all six metrics: PixCorr, SSIM, Alex2, Alex5, Inception and CLIP). Every arm, the
+A″, B″, B‴, B⁴-1a, B⁴-1, B⁴a and B⁴ improve on the reproduced baseline for every metric in every subject; on the 6 untouched
+held-out subjects `{1, 3, 4, 6, 7, 10}`, **B⁴a** gains `+0.0535 / +0.0164 / +0.0348 / +0.0202 / +0.0411 / +0.0221` over O6 (`6/6`
+subjects on every metric). Best of 8 / 16 uses 8× / 16× the candidate budget of `nsel = 1` (whereas **B⁴-1a** uses `nsel = 1`
+with independent `K = 4` draws and ranks `1 / 1 / 2 / 1 / 1 / 1`, with CLIP `0.8313` vs CognitionCapturerPro `0.830` within
+noise). Against published 10-subject EEG-only results (inclusion rule and sources in
+[`results/leaderboard.md`](research/eeg_stack_20261112/results/leaderboard.md)), both **B⁴a** (independent `K = 4` draws) and **B⁴** (`+ K = 4` Tweedie coupling) rank
+**1 / 1 / 1 / 1 / 1 / 1** across all six metrics, though the CLIP margin over CognitionCapturerPro (`0.830`) is `+0.008`, the
+Alex2 margin over Perceptogram (`0.910`) is `+0.002–0.003`, and metric implementations differ across papers. Every arm, the
 per-subject numbers (`results/table10.txt`, `results/o7_b4_stack.txt`), the selection rules and the negative results are in
-the folder's README; external methods are quoted there from their papers (not re-run here, metric implementations differ).
+the folder's README.
 
 ## Overview
 

@@ -1,18 +1,19 @@
-"""All-window split-half TTA + repeat bagging + BoundedConditionAdapter + Conical Optimal Transport (aw_tta.py).
+"""All-window split-half TTA + repeat bagging + BoundedConditionAdapter + F_train Cone Restoration/Amplification (aw_tta.py).
 
 Produces strictly separated condition sets across subjects:
-  1. Single-Subject Original Track (O7):
+  1. Single-Subject Track (O7a / O7):
      42 single-subject encoders (6 windows x 7 seeds) + split-half TTA + 10-group IVW bagging +
-     per-subject BoundedConditionAdapter + F_train Conical Optimal Transport:
-       -> runs/cond/cone_mw6tta_w{1.00, 1.45, 1.50}/sub-XX.npy  (no cross-subject parameters)
+     per-subject BoundedConditionAdapter + F_train cone transport (no cross-subject parameters):
+       - w = 1.00 (cone_mw6tta_w1.00): exact training-cone restoration (no condition amplification; O7a)
+       - w = 1.45, 1.50 (cone_mw6tta_w{1.45,1.50}): adds Perceptogram-style directional cone amplification (O7)
 
   2. Full-Stack Semantic Condition (B4-1 / B4):
      Up to 28 multi-window multi-seed joint semantic encoders + split-half TTA + 10-group IVW bagging +
      shared BoundedConditionAdapter (ord_ms_e10_ft10in/pooled_p1/head.pt) + 0.80/0.20 blend with mw6tta +
-     F_train Conical Optimal Transport:
+     F_train cone transport + amplification:
        -> runs/cond/cone_ms28_mwtta_w{1.00, 1.55, 1.65, 1.75}/sub-XX.npy
 
-  3. Full-Stack Retinotopic-Steerable-Contour Query (B4):
+  3. Full-Stack 4-Orientation Spatial-Contour Query (B4):
      8 multi-window multi-seed joint spatial-contour encoders (ms_spat_*) + split-half TTA + 10-group IVW bagging:
        -> runs/cond/spat_ms_mwtta/sub-XX.npy
 """
@@ -234,7 +235,7 @@ for s in subs:
         ms_msg = (f"ms({len(ms_tta_list)})={cen_acc(R_tr * nz(alpha_tr * u_tr + beta_tr * d_ms_only, dim=1)):.4f}"
                   f" -> full={cen_acc(R_tr * nz(alpha_tr * u_tr + beta_tr * d_full, dim=1)):.4f}")
 
-    # ---------------- Track 3: Full-Stack Retinotopic-Steerable-Contour Query (spat_ms_mwtta) ----------------
+    # ---------------- Track 3: Full-Stack 4-Orientation Spatial-Contour Query (spat_ms_mwtta) ----------------
     sp_tta_list, sp_bag_list = [], []
     for ti, (tg, seeds) in enumerate(MS_SPAT_SPECS):
         for sd_ in seeds:
