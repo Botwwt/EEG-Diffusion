@@ -42,6 +42,9 @@ p.add_argument("--cos_w", type=float, default=0.0, help="weight of an absolute a
 p.add_argument("--chkeep", type=int, default=0,
                help="k > 0: random-subspace encoder (Ho 1998): only k of the 17 channels, chosen by --seed, are kept; the rest "
                     "are zeroed at train and test time")
+p.add_argument("--target", default="fused", choices=["fused", "h14"],
+               help="h14: contrast against the raw CLIP ViT-H/14 image embedding (the input space of the standard IP-Adapter) "
+                    "instead of the Fusion-Prior output F; the image tower is then the identity")
 p.add_argument("--tag", required=True)
 p.add_argument("--save_model", type=int, default=1)
 p.add_argument("--save_cond", type=int, default=1, help="0: keep only metrics.json and the small mean vectors")
@@ -88,6 +91,12 @@ emb_tr = {k: v.float().to(dev) for k, v in torch.load(PREP / f"emb_train{sfx}.pt
 F_tr = torch.from_numpy(np.load(PREP / f"F_train{sfx}.npy")).to(dev)   # the encoder's own target space (candidates for identification)
 F_te = torch.from_numpy(np.load(PREP / f"F_test{sfx}.npy")).to(dev)
 F_te_clean = torch.from_numpy(np.load(PREP / "F_test.npy")).to(dev)
+H14 = "CLIP-ViT-H-14-laion2B-s32B-b79K"
+if args.target == "h14":  # targets = raw ViT-H/14 image embeddings (1024-d, same width as F)
+    assert not args.emb
+    emb_tr = {H14: emb_tr[H14]}
+    F_tr = emb_tr[H14]
+    F_te = F_te_clean = torch.load(PREP / "emb_test.pt", weights_only=True)[H14].float().to(dev)
 concept = torch.from_numpy(np.load(PREP / "train_concept.npy"))
 img_fold = torch.from_numpy(concept_folds(1654, args.nfold))[concept]
 tr_idx = (torch.arange(len(concept)) if args.fold < 0 else torch.nonzero(img_fold != args.fold).squeeze(1)).to(dev)
@@ -141,6 +150,11 @@ model = BrainCLIPModel(CLIPConfig.from_dict(cfg))
 model.vision_model.load_state_dict(
     FusionEncoderModel.from_pretrained(str(PRIOR), subfolder="fusion_encoder").vision_model.state_dict())
 model.vision_model.requires_grad_(False)
+if args.target == "h14":
+    class _Identity(torch.nn.Module):
+        def forward(self, **embs):
+            return embs[H14]
+    model.vision_model = _Identity()
 model.to(dev)
 
 decay, no_decay = [], []

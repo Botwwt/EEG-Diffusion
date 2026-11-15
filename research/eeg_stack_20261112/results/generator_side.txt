@@ -83,3 +83,38 @@ ordmw7bag10_noise                    0.2100   0.3507   0.8466   0.9128   0.7594 
   delta / wins                      -0.0578  -0.0597  -0.0386  -0.0080  +0.0010  +0.0038  +0.0034  0 0 0 0 2 3 0
 # The start image costs at most ~0.004 CLIP and nothing on Incep: the semantic gap to the published leaders is not the
 # img2img start.
+
+# 5. H14-only path: encoders contrasted against the raw CLIP ViT-H/14 image embedding (train.py --target h14, same
+#    recipe otherwise) and images from the standard SDXL IP-Adapter for that space (h94/IP-Adapter
+#    ip-adapter_sdxl_vit-h, the adapter ATM uses with SDXL-Turbo; gen.py --ipa h94, condition rescaled to the mean
+#    training-image ViT-H/14 norm 22.3). Motivation: ENIGMA and CogCapPro align to this space directly. Seed 2025,
+#    no head (the head's loss runs through Brain-HIVE's P and A), same start image and strength map as O6.
+#    Stored ViT-H/14 embeddings checked against transformers' CLIPVisionModelWithProjection: cosine 0.9998.
+#    Retrieval top-1 (200-way, own target space, 80 repeats):  fused F 0.460 / 0.290 / 0.505 / 0.450 (subjects 2/5/8/9),
+#    ViT-H/14 0.245 / 0.250 / 0.345 / 0.295.
+#    A = fused-F encoder through Brain-HIVE (no head), B = ViT-H/14 encoder through h94, C = true ViT-H/14 test
+#    embeddings through h94 (oracle), last = O6. Subjects 2, 5, 8, 9; deltas against A.
+subjects [2, 5, 8, 9]
+arm                                 pixcorr     ssim    alex2    alex5  incepti     clip   effnet  strength
+A fused F, Brain-HIVE                 0.2533   0.3858   0.8867   0.9131   0.7446   0.8021   0.8727  0.694
+B ViT-H/14, h94                       0.2359   0.3993   0.8141   0.7978   0.6378   0.6791   0.9298  0.694
+  delta / wins                      -0.0174  +0.0135  -0.0726  -0.1153  -0.1067  -0.1230  +0.0572  0 4 0 0 0 0 0
+C oracle ViT-H/14, h94                0.2449   0.4071   0.8334   0.8401   0.7829   0.8000   0.7954  0.694
+  delta / wins                      -0.0085  +0.0213  -0.0532  -0.0730  +0.0384  -0.0021  -0.0772  0 4 0 0 3 2 4
+O6                                    0.2678   0.4104   0.8852   0.9208   0.7585   0.8110   0.8667  0.694
+  delta / wins                      +0.0145  +0.0246  -0.0015  +0.0078  +0.0139  +0.0090  -0.0060  4 4 2 4 3 4 4
+#    Oracle diagnostics, subject 8 (true test embeddings, 4 samples per image):
+#                                         pixcorr   ssim  alex2  alex5  incep   clip
+#    h94, start image (as C)               0.2512 0.4084 0.8480 0.8403 0.7788 0.8077
+#    h94, pure noise                       0.1219 0.3424 0.6779 0.7505 0.7523 0.7778
+#    h94, pure noise, IP scale 2           0.1400 0.3846 0.7117 0.7704 0.7589 0.7850
+#    h94, start image, IP scale 2          0.2659 0.4289 0.8360 0.8413 0.7875 0.8022
+#    h94, pure noise, CFG 2 (zero-embedding negative, as ATM)   0.0968 0.3381 0.6850 0.7577 0.7679 0.7779
+#    h94, start image, CFG 2               0.2073 0.3730 0.8255 0.8361 0.7881 0.8064
+#    h94, start image, CFG 3               0.1747 0.3347 0.7949 0.8228 0.7782 0.7914
+#    Brain-HIVE P(A(F)), true F, start image   0.3220 0.4322 0.9430 0.9869 0.9939 0.9979
+#    ViT-H/14 encoder, h94, start image, CFG 2: incep 0.6577, clip 0.6858 (no gain over CFG 1).
+# Two independent losses: (i) the standard adapter's ceiling with the true embedding is CLIP ~0.80 in this 4-step
+# SDXL-Turbo setting, below what our EEG conditions already reach through Brain-HIVE (its oracle: 0.998); (ii) the
+# ViT-H/14 space is harder to predict from EEG than the fused space (top-1 0.28 vs 0.43). Negative; the Brain-HIVE
+# adapter stays. ENIGMA's higher numbers with this adapter therefore cannot come from the target space alone.

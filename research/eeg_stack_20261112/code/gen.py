@@ -34,7 +34,8 @@ p.add_argument("--steps", type=int, default=4, help="sampler steps (official: 4)
 p.add_argument("--blend", type=float, default=0.0, help="final image = (1 - blend) * generated + blend * start image")
 p.add_argument("--cond_file", default="", help="precomputed conditions [200, 1024] .npy, relative to runs/cond")
 p.add_argument("--amp", type=float, default=1.0, help="c' = |c| * normalize(m + amp * (c/|c| - m)), m = mean direction of the 200 test conditions (label-free)")
-p.add_argument("--cfg", type=float, default=1.0, help="classifier-free guidance scale on the IP condition; the negative is the mean test condition")
+p.add_argument("--cfg", type=float, default=1.0, help="classifier-free guidance scale on the IP condition; the negative is the mean test condition "
+               "(with --ipa h94: the zero image embedding, as that adapter was trained with)")
 p.add_argument("--ip_scale", type=float, default=1.0, help="weight of the IP attention branch in every block (official 1)")
 p.add_argument("--prompt_file", default="", help="200 text prompts (.json list, relative to runs/prompt); default: empty prompt")
 p.add_argument("--loop", type=float, default=0.0, help="closed-loop correction strength: generate, embed the images back to F, push each condition along the part of its "
@@ -62,6 +63,11 @@ p.add_argument("--ilvr", default="", help="low-band anchoring (ILVR, Choi et al.
                "EEG decoder predicts; uses --strength as the img2img start")
 p.add_argument("--ip_sched", default="", help="IP-attention weight per sampler step, comma-separated over the steps that are run (e.g. '1,1.5,1,1' with "
                "4 steps); set before each step through the step callback")
+p.add_argument("--ipa", default="hive", choices=["hive", "h94"],
+               help="h94: the standard SDXL IP-Adapter (h94/IP-Adapter sdxl_models/ip-adapter_sdxl_vit-h) fed with a ViT-H/14 "
+                    "image-embedding condition (encoders trained with train.py --target h14) instead of Brain-HIVE's P(A(c))")
+p.add_argument("--cnorm", type=float, default=-1.0, help="rescale every condition to this norm (-1: mean training-image ViT-H/14 norm with --ipa h94, "
+               "otherwise unchanged)")
 p.add_argument("--reps", default="0:80", help="test repeats averaged into the input, start:stop")
 p.add_argument("--K", type=int, default=4, help="images per query")
 p.add_argument("--bs", type=int, default=0, help="queries per batch (0: about 20 images per batch)")
@@ -102,6 +108,12 @@ if args.cond_file:  # precomputed conditions (prior.py); --run only supplies the
     f = Path(args.cond_file)
     c = torch.from_numpy(np.load(f if f.is_absolute() else RUNS / "cond" / f)).float()
     assert c.shape == (200, 1024) and args.alpha == 0
+if args.ipa == "h94":
+    assert ea.get("target") == "h14" and args.nsel == 1 and args.loop == 0 and args.alpha == 0 and not args.ip_sched
+    if args.cnorm < 0:
+        args.cnorm = float(torch.load(PREP / "emb_train.pt", weights_only=True)["CLIP-ViT-H-14-laion2B-s32B-b79K"].float().norm(dim=1).mean())
+if args.cnorm > 0:
+    c = nz(c, dim=1) * args.cnorm
 info = dict(args=vars(args), encoder_args=ea, cond_norm=float(c.norm(dim=1).mean()))
 if args.alpha > 0 or args.nsel > 1:
     F_tr = torch.from_numpy(np.load(PREP / "F_train.npy"))
@@ -155,14 +167,19 @@ from diffusers import StableDiffusionXLPipeline  # noqa: E402
 
 pipe = StableDiffusionXLPipeline.from_pretrained(str(TURBO), torch_dtype=dt, variant="fp16")
 attn = IPAttnAdapterModel.from_pretrained(str(PRIOR), subfolder="attn_adapter")
-attn.bind_unet(pipe.unet)
+if args.ipa == "h94":
+    pipe.load_ip_adapter(str(PRIOR.parent / "IP-Adapter"), subfolder="sdxl_models", weight_name="ip-adapter_sdxl_vit-h.safetensors",
+                         image_encoder_folder=None)
+    pipe.set_ip_adapter_scale(args.ip_scale)
+else:
+    attn.bind_unet(pipe.unet)
 proj = IPProjectionModel.from_pretrained(str(PRIOR), subfolder="proj")
 if args.proj_ckpt:
     proj.load_state_dict(torch.load(RUNS / args.proj_ckpt, weights_only=True))
 proj = proj.to(dev, dt).eval()
 A = FusionEncoderModel.from_pretrained(str(PRIOR), subfolder="fusion_encoder").adapter.to(dev, dt).eval()
 pipe.to(dev, dt)
-if args.ip_scale != 1.0:
+if args.ip_scale != 1.0 and args.ipa == "hive":
     n_ip = 0
     for proc in pipe.unet.attn_processors.values():
         if isinstance(proc, IPAttnProcessor2_0):
@@ -260,7 +277,7 @@ def generate(cv, q, s, n):
                        for i in q for k in range(K)]).to(dev, dt)
     with torch.inference_mode():
         cc = cv[q].to(dev, dt)
-        ips = proj(A(cc) if args.use_A else cc).repeat_interleave(K, dim=0)
+        ips = (cc.unsqueeze(1) if args.ipa == "h94" else proj(A(cc) if args.use_A else cc)).repeat_interleave(K, dim=0)
         m_ = len(ips)
         pe_q = pe.expand(m_, -1, -1) if pe_all is None else pe_all[q].repeat_interleave(K, dim=0)
         ppe_q = ppe.expand(m_, -1) if ppe_all is None else ppe_all[q].repeat_interleave(K, dim=0)
@@ -268,10 +285,13 @@ def generate(cv, q, s, n):
                   num_inference_steps=args.steps, guidance_scale=0.0, output_type="pt")
         if args.cfg > 1:  # the pipeline batches [negative, positive]; the IP tokens must follow the same order
             cn_ = c_neg.to(dev, dt)
-            neg = proj(A(cn_) if args.use_A else cn_).expand(m_, -1, -1)
+            neg = torch.zeros_like(ips) if args.ipa == "h94" else proj(A(cn_) if args.use_A else cn_).expand(m_, -1, -1)  # h94: zero image embedding (its unconditional)
             ips = torch.cat([neg, ips])
             kw.update(guidance_scale=args.cfg, negative_prompt_embeds=pe.expand(m_, -1, -1), negative_pooled_prompt_embeds=ppe.expand(m_, -1))
-        kw["cross_attention_kwargs"] = {"ip_hidden_states": ips}
+        if args.ipa == "h94":
+            kw["ip_adapter_image_embeds"] = [ips]                       # [B, 1, 1024] -> diffusers ImageProjection -> 4 tokens
+        else:
+            kw["cross_attention_kwargs"] = {"ip_hidden_states": ips}
         if init is None:
             img = pipe(height=512, width=512, latents=lat, generator=torch.Generator(dev).manual_seed(777 + s + 100_000 * n), **kw).images
         else:  # start from the noised low-level image; one generator per image keeps the noise tied to (query, sample)
