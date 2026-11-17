@@ -112,6 +112,10 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "O7b: w 1.00 + 512px start + K=4 tmf": "s{:02d}_w4_O7_w1_tmf",
         "O7c: w 1.50 + 512px start (indep K=4)": "s{:02d}_w4_O7_w150_notmf",
         "O7: w 1.50 + 512px start + K=4 tmf": "s{:02d}_w35_O7_v2b",
+        "O8 ablation: R=4-gated w5 start (indep K=4, not adopted)": "s{:02d}_w5_O8_w1_notmf",
+        "O8b ablation: R=4-gated w5 start + K=4 tmf (not adopted)": "s{:02d}_w5_O8_w1_tmf",
+        "O8: strict w 1.00 + Flex + v2 start (indep K=4)": "s{:02d}_o8_w1_notmf",
+        "O8b: w 1.00 + Flex + v2 start + K=4 tmf": "s{:02d}_o8_w1_tmf",
         "B⁴ ablation: 6-enc MS, 4-win start (nsel 1)": "s{:02d}_w3_B4_n1",
         "B⁴ ablation: 6-enc MS, best of 12 (no tmf)": "s{:02d}_w3_B4_sel12_sharp",
         "B⁴ ablation: 6-enc MS, best of 12 + tmf_cr": "s{:02d}_w3_B4_sel12_cr10",
@@ -123,6 +127,12 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "B⁴ best of 16, selvar (0.20, 0.20, 0.18, post-hoc)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.20,0.20,0.18@16",
         "B⁴ best of 16, selvar (0.35, 0.28, 0.25, post-hoc)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.35,0.28,0.25@16",
         "B⁴ best of 16, selvar (0.45, 0.35, 0.30, post-hoc)": "s{:02d}_w35_B4_v2b_sel16#selvar:0.45,0.35,0.30@16",
+        "B⁵-1a ablation: R=4-gated w5 start (indep K=4, not adopted)": "s{:02d}_w5_B5_n1_notmf",
+        "B⁵-1 ablation: R=4-gated w5 start + K=4 tmf (not adopted)": "s{:02d}_w5_B5_n1_tmf",
+        "B⁵-1a: Flex full-stack nsel 1 (indep K=4, no tmf)": "s{:02d}_b5_n1_notmf",
+        "B⁵-1: Flex full-stack nsel 1 (+ K=4 tmf)": "s{:02d}_b5_n1_tmf",
+        "B⁵a: Flex full-stack best of 16 (indep K=4, no tmf)": "s{:02d}_b5_sel16_notmf",
+        "B⁵: Flex full-stack best of 16 (+ K=4 tmf)": "s{:02d}_b5_sel16_tmf",
         "calibration + low-level start": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low",
         "+ best of 4 candidates": "s{:02d}_t0_s" + seed + "_A1_cal0.5_low_sel4"}
 PAPER = [0.195, 0.336, 0.843, 0.905, 0.756, 0.808]   # Brain-HIVE Table 2, EEG average (SwAV 0.554 not measured here)
@@ -139,11 +149,11 @@ for arm, pat in ARMS.items():
                     continue
                 d = {"mean": d[kind][spec]}
             rows[arm, s] = [d["mean"][k] for k in M]
-print(f"{'':<53}" + "".join(f"{k:>10}" for k in M))
+print(f"{'':<61}" + "".join(f"{k:>10}" for k in M))
 for s in range(1, 11):
     for arm in ARMS:
         if (arm, s) in rows:
-            print(f"sub-{s:02d} {arm:<40}" + "".join(f"{v:>10.4f}" for v in rows[arm, s]))
+            print(f"sub-{s:02d} {arm:<54}" + "".join(f"{v:>10.4f}" for v in rows[arm, s]))
 def compare(base, arms):
     for arm in arms:
         both = [s for s in range(1, 11) if (base, s) in rows and (arm, s) in rows]
@@ -151,11 +161,11 @@ def compare(base, arms):
             continue
         a, b = np.array([rows[base, s] for s in both]), np.array([rows[arm, s] for s in both])
         print(f"\n{arm} vs {base}, mean over {len(both)} subjects {both}")
-        print(f"{base:<48}" + "".join(f"{x:>10.4f}" for x in a.mean(0)))
-        print(f"{arm:<48}" + "".join(f"{x:>10.4f}" for x in b.mean(0)))
+        print(f"{base:<56}" + "".join(f"{x:>10.4f}" for x in a.mean(0)))
+        print(f"{arm:<56}" + "".join(f"{x:>10.4f}" for x in b.mean(0)))
         d = b - a
-        print(f"{'difference (mean)':<48}" + "".join(f"{x:>+10.4f}" for x in d.mean(0)))
-        print(f"{'subjects improved':<48}" + "".join(f"{int((d[:, i] < 0).sum() if k == 'effnet' else (d[:, i] > 0).sum()):>7}/{len(both)}" for i, k in enumerate(M)))
+        print(f"{'difference (mean)':<56}" + "".join(f"{x:>+10.4f}" for x in d.mean(0)))
+        print(f"{'subjects improved':<56}" + "".join(f"{int((d[:, i] < 0).sum() if k == 'effnet' else (d[:, i] > 0).sum()):>7}/{len(both)}" for i, k in enumerate(M)))
 
 
 compare("baseline (reproduced)", list(ARMS)[1:])
@@ -210,7 +220,7 @@ print("\n===== reliability-driven strength maps and ILVR (screening, subjects 2,
 compare("O1: per-subject enc + head + retrieval-blended start", [a for a in ARMS if a.startswith("O1 + ") and a != "O1 + re-injection (no aggregation)"])
 compare("O1 + shuffled reliability map (0.5-0.75)", ["O1 + strength map from reliability (0.5-0.75)"])
 compare("O1 + constant strength (0.625-0.75)", ["O1 + strength map (0.625-0.75)"])
-print("\n===== O7a / O7 (single-subject) and B⁴a / B⁴ (full-stack) =====")
+print("\n===== O7a / O7 / O8 (single-subject) and B⁴a / B⁴ / B⁵a / B⁵ (full-stack) =====")
 compare("O6: O5 over encoders on three input windows", [
     "O7 ablation: 4-win start, sharp (no lk/tmf)",
     "O7 ablation: 4-win start + tmf_cr 0.12",
@@ -220,29 +230,54 @@ compare("O6: O5 over encoders on three input windows", [
     "O7b: w 1.00 + 512px start + K=4 tmf",
     "O7c: w 1.50 + 512px start (indep K=4)",
     "O7: w 1.50 + 512px start + K=4 tmf",
+    "O8: strict w 1.00 + Flex + v2 start (indep K=4)",
+    "O8b: w 1.00 + Flex + v2 start + K=4 tmf",
     "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)",
     "B⁴-1: full-stack nsel 1 (+ K=4 tmf)",
     "B⁴a: full-stack best of 16 (indep K=4, no tmf)",
     "B⁴: full-stack best of 16 (+ K=4 tmf)",
+    "B⁵-1a: Flex full-stack nsel 1 (indep K=4, no tmf)",
+    "B⁵-1: Flex full-stack nsel 1 (+ K=4 tmf)",
+    "B⁵a: Flex full-stack best of 16 (indep K=4, no tmf)",
+    "B⁵: Flex full-stack best of 16 (+ K=4 tmf)",
 ])
 compare("O7a: strict w 1.00 + 512px start (indep K=4)", [
     "O7b: w 1.00 + 512px start + K=4 tmf",
     "O7c: w 1.50 + 512px start (indep K=4)",
     "O7: w 1.50 + 512px start + K=4 tmf",
+    "O8: strict w 1.00 + Flex + v2 start (indep K=4)",
+    "O8b: w 1.00 + Flex + v2 start + K=4 tmf",
+])
+compare("O8: strict w 1.00 + Flex + v2 start (indep K=4)", [
+    "O8b: w 1.00 + Flex + v2 start + K=4 tmf",
 ])
 compare("B' best of 16", [
     "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)",
     "B⁴-1: full-stack nsel 1 (+ K=4 tmf)",
     "B⁴a: full-stack best of 16 (indep K=4, no tmf)",
     "B⁴: full-stack best of 16 (+ K=4 tmf)",
+    "B⁵-1a: Flex full-stack nsel 1 (indep K=4, no tmf)",
+    "B⁵-1: Flex full-stack nsel 1 (+ K=4 tmf)",
+    "B⁵a: Flex full-stack best of 16 (indep K=4, no tmf)",
+    "B⁵: Flex full-stack best of 16 (+ K=4 tmf)",
 ])
 compare("B‴: B' best of 16 + HF shrink (24 px, 0.8)", [
     "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)",
     "B⁴-1: full-stack nsel 1 (+ K=4 tmf)",
     "B⁴a: full-stack best of 16 (indep K=4, no tmf)",
     "B⁴: full-stack best of 16 (+ K=4 tmf)",
+    "B⁵-1a: Flex full-stack nsel 1 (indep K=4, no tmf)",
+    "B⁵-1: Flex full-stack nsel 1 (+ K=4 tmf)",
+    "B⁵a: Flex full-stack best of 16 (indep K=4, no tmf)",
+    "B⁵: Flex full-stack best of 16 (+ K=4 tmf)",
     "B⁴ best of 16, selvar (0.20, 0.20, 0.18, post-hoc)",
     "B⁴ best of 16, selvar (0.35, 0.28, 0.25, post-hoc)",
     "B⁴ best of 16, selvar (0.45, 0.35, 0.30, post-hoc)",
 ])
-print(f"\n{'paper Table 2 (10-subject mean)':<48}" + "".join(f"{x:>10.4f}" for x in PAPER))
+compare("B⁴a: full-stack best of 16 (indep K=4, no tmf)", [
+    "B⁵a: Flex full-stack best of 16 (indep K=4, no tmf)",
+])
+compare("B⁴: full-stack best of 16 (+ K=4 tmf)", [
+    "B⁵: Flex full-stack best of 16 (+ K=4 tmf)",
+])
+print(f"\n{'paper Table 2 (10-subject mean)':<56}" + "".join(f"{x:>10.4f}" for x in PAPER))

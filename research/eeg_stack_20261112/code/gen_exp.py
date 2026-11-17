@@ -1,12 +1,13 @@
-"""Generator extending gen.py for O7 and B4 (gen_exp.py):
+"""Generator extending gen.py for O7/O8 and B4/B5 (gen_exp.py):
   1. --lat_init <file>: direct [200, 4, 64, 64] native 512px VAE latent start
   2. --tmf <spec> & --tmf_cr 1: step-1/2 Tweedie z0_hat coupling across the K=4 parallel trajectories of each query
      (unchanged 4-trajectory NFE per query, but the K=4 output samples of a query are coupled rather than independent draws;
-     omit --tmf for strictly independent K=4 draws) with per-channel 64x64 spatial contrast restoration
+     omit --tmf for strictly independent K=4 draws, as in O7a, O8, B4-1a, B4a, B5-1a, B5a)
   3. --low_keep <f,w2[,w3]>: gentle low-band tether to the noised native start latent at step i=2 (and optionally i=3)
-  4. --nsel <N> with --sel_cond, --spat_cond, --sel_spat, --sel_vae, --sel_grad (plus --selvar):
-     scores candidates using Brain-HIVE's own FEmbedder (F + 4x16x16 VAE latent), the 4-orientation spatial-contour
-     projection S_cand (from spat1024.pt, no evaluation-network weights), and 32x32 finite-difference RGB spatial gradients.
+  4. --nsel <N> with --sel_cond, --spat_cond, --spat_pack, --h14_cond, --sel_h14, --sel_spat, --sel_vae, --sel_lat32, --sel_grad:
+     scores candidates using ONLY Brain-HIVE's own FEmbedder (F + LAION H14 + 4x16x16 VAE latent), the training-derived
+     spatial-contour projection S_cand (spat1024.pt or spat_ms512.pt, zero evaluation-network weights), native 32x32
+     denoised VAE latent correlation, and 32x32 finite-difference RGB spatial gradients.
 Random seeds and metrics.py evaluation match gen.py identically.
 """
 import argparse
@@ -33,6 +34,8 @@ p.add_argument("--lat_init", default="", help="Native latent start [200,4,64,64]
 p.add_argument("--cond_file", required=True, help="Condition [200,1024] relative to runs/cond")
 p.add_argument("--sel_cond", default="", help="Semantic condition [200,1024] for --nsel scoring (defaults to --cond_file)")
 p.add_argument("--spat_cond", default="", help="Optional steerable-contour query [200,1024] relative to runs/cond")
+p.add_argument("--spat_pack", default="spat1024.pt", help="Training contour PCA pack under data/prep (spat1024.pt or spat_ms512.pt)")
+p.add_argument("--h14_cond", default="", help="Optional Brain-HIVE LAION-H14 semantic query [200,1024] relative to runs/cond")
 p.add_argument("--smap", default="c0.611,0.5,1.0")
 p.add_argument("--smap_lp", type=int, default=0)
 p.add_argument("--low_keep", default="", help="'f,w2[,w3]': gentle low-band anchor at step i=2 (and optionally i=3)")
@@ -40,8 +43,10 @@ p.add_argument("--mf", default="")
 p.add_argument("--tmf", default="", help="'M,g1,g2,g3[,lp3,mode]': Tweedie-Rao-Blackwellized coupling on z0_hat")
 p.add_argument("--tmf_cr", type=int, default=0, help="1: restore per-channel 64x64 spatial contrast std after Tweedie coupling")
 p.add_argument("--nsel", type=int, default=1)
+p.add_argument("--sel_h14", type=float, default=0.0, help="weight of Brain-HIVE LAION-H14 cosine similarity to --h14_cond")
 p.add_argument("--sel_spat", type=float, default=0.0, help="weight of steerable-contour similarity to --spat_cond")
 p.add_argument("--sel_vae", type=float, default=0.0, help="weight of 4x16x16 VAE latent correlation with start latent")
+p.add_argument("--sel_lat32", type=float, default=0.0, help="weight of 4x32x32 denoised VAE latent correlation with start latent")
 p.add_argument("--sel_grad", type=float, default=0.0, help="weight of 32x32 RGB + finite-diff gradient correlation with start image")
 p.add_argument("--selvar", default="", help="optional ';'-separated '[wspat,]wvae,wgrad@n' extra variants scored in same nsel pass")
 p.add_argument("--post", default="")
@@ -81,15 +86,50 @@ qv = nz(nz(c_sel, dim=1) - nz(c_sel, dim=1).mean(0, keepdim=True), dim=1)
 q_spat = None
 sp_pack = None
 mu_sp = None
+sp_is_ms512 = False
 if args.spat_cond:
     f_sp = Path(args.spat_cond)
     sp_arr = torch.from_numpy(np.load(f_sp if f_sp.is_absolute() else RUNS / "cond" / f_sp)).float()
-    q_spat = nz(sp_arr - sp_arr.mean(0, keepdim=True), dim=1)
-    sp_pack = torch.load(PREP / "spat1024.pt", map_location="cpu", weights_only=True)
-    mu_sp = nz(sp_pack["S_train"].float(), dim=1).mean(0, keepdim=True)
+    q_spat = nz(nz(sp_arr, dim=1) - nz(sp_arr, dim=1).mean(0, keepdim=True), dim=1)
+    sp_pack = torch.load(PREP / args.spat_pack, map_location="cpu", weights_only=True)
+    sp_is_ms512 = "lat_mean" in sp_pack
+    if sp_is_ms512:
+        ok_m = sp_pack["ok"]
+        mu_sp = nz(sp_pack["S_train"][ok_m].float(), dim=1).mean(0, keepdim=True)
+    else:
+        mu_sp = nz(sp_pack["S_train"].float(), dim=1).mean(0, keepdim=True)
+
+q_h14 = None
+mu_h14 = None
+if args.h14_cond and args.sel_h14 > 0:
+    f_h = Path(args.h14_cond)
+    h_arr = torch.from_numpy(np.load(f_h if f_h.is_absolute() else RUNS / "cond" / f_h)).float()
+    q_h14 = nz(nz(h_arr, dim=1) - nz(h_arr, dim=1).mean(0, keepdim=True), dim=1)
+    emb_tr_h14 = torch.load(PREP / "emb_train.pt", map_location="cpu", weights_only=True)[EMB_KEYS[0]].float()
+    mu_h14 = nz(emb_tr_h14, dim=1).mean(0, keepdim=True)
+    del emb_tr_h14
 
 
-def cand_spat_emb(lat16_cpu):
+def cand_spat_emb(lat16_cpu, lat64_cpu=None):
+    if sp_is_ms512:
+        lat_c = lat64_cpu.float() - sp_pack["lat_mean"]
+        v8 = F.avg_pool2d(lat_c, 8)
+        v16 = F.avg_pool2d(lat_c, 4)
+        v32 = F.avg_pool2d(lat_c, 2)
+
+        def ori_e(v):
+            dx = v[:, :, :, 1:] - v[:, :, :, :-1]
+            dy = v[:, :, 1:, :] - v[:, :, :-1, :]
+            d1 = v[:, :, 1:, 1:] - v[:, :, :-1, :-1]
+            d2 = v[:, :, 1:, :-1] - v[:, :, :-1, 1:]
+            en = F.avg_pool2d(dx.abs()[:, :, :-1, :] + dy.abs()[:, :, :, :-1], 2)
+            return [dx.flatten(1), dy.flatten(1), d1.flatten(1), d2.flatten(1), en.flatten(1)]
+
+        blks = [v8.flatten(1), v16.flatten(1)] + ori_e(v16) + ori_e(v32)
+        parts = [w * (b - m) / r for b, m, r, w in zip(blks, sp_pack["mu"], sp_pack["rms"], sp_pack["weights"])]
+        s_raw = torch.cat(parts, dim=1) @ sp_pack["P_spat"]
+        return nz(nz(s_raw, dim=1) - mu_sp, dim=1)
+
     v16 = lat16_cpu.view(-1, 4, 16, 16)
     blks = [
         v16.flatten(1),
@@ -105,7 +145,10 @@ def cand_spat_emb(lat16_cpu):
 
 info = dict(args=vars(args), encoder_args=ea, cond_norm=float(c.norm(dim=1).mean()))
 
+import diffusers  # noqa: E402
 from diffusers import StableDiffusionXLImg2ImgPipeline, StableDiffusionXLPipeline  # noqa: E402
+
+diffusers.utils.logging.set_verbosity_error()
 
 pipe = StableDiffusionXLPipeline.from_pretrained(str(TURBO), torch_dtype=dt, variant="fp16")
 attn = IPAttnAdapterModel.from_pretrained(str(PRIOR), subfolder="attn_adapter")
@@ -146,6 +189,7 @@ else:
                           for j in range(0, 200, 20)])
 
 z16_ref = F.avg_pool2d(z0_all, 4).flatten(1)
+z32_ref = F.avg_pool2d(z0_all, 2).flatten(1)
 
 
 def rgb_grad32(im_cpu):
@@ -204,6 +248,7 @@ else:
     M_part = 1
 
 last_z0 = {"val": None}
+last_lat64 = {"val": None}
 hook_handle = None
 if tmf_cfg is not None:
     def _unet_hook(mod, inp, out_u):
@@ -305,15 +350,18 @@ def gen_candidate(q, n_cand):
                     lt = lt + g_val * (lp_op(lmean, mf_lp_f) - lp_op(lt, mf_lp_f))
                 else:
                     lt = (1.0 - g_val) * lt + g_val * lmean
+            last_lat64["val"] = lt.detach()
             ck["latents"] = lt.to(ck["latents"].dtype)
             return ck
 
         kw.update(callback_on_step_end=cb, callback_on_step_end_tensor_inputs=["latents"])
         img = p2(image=i0, strength=strength, generator=gens, **kw).images
+        lat64_out = last_lat64["val"]
         if M_part > 1:
             img = img.view(Q, K, M_part, 3, 512, 512)[:, :, 0].reshape(Q * K, 3, 512, 512)
+            lat64_out = lat64_out.view(Q, K, M_part, 4, 64, 64)[:, :, 0].reshape(Q * K, 4, 64, 64)
         img = (img.float().clamp(0, 1) * 255).round().div(255)
-        return img
+        return img, lat64_out.cpu()
 
 
 rec = torch.empty(K, N, 3, 512, 512)
@@ -324,7 +372,7 @@ for s in range(0, N, eff_bs):
     q = list(range(s, min(N, s + eff_bs)))
     Q = len(q)
     if NS == 1:
-        img = gen_candidate(q, 0)
+        img, _ = gen_candidate(q, 0)
         rec[:, q] = img.cpu().view(Q, K, 3, 512, 512).transpose(0, 1)
     else:
         best_sc = torch.full((Q * K,), -1e9)
@@ -334,22 +382,28 @@ for s in range(0, N, eff_bs):
 
         qv_qk = qv[q].repeat_interleave(K, dim=0)
         z16_qk = z16_ref[q].repeat_interleave(K, dim=0)
+        z32_qk = z32_ref[q].repeat_interleave(K, dim=0)
         g32_qk = g32_ref[q].repeat_interleave(K, dim=0)
         qsp_qk = q_spat[q].repeat_interleave(K, dim=0) if q_spat is not None else None
+        qh14_qk = q_h14[q].repeat_interleave(K, dim=0) if q_h14 is not None else None
 
         for n_cand in range(NS):
-            img = gen_candidate(q, n_cand)
+            img, lat64_cpu = gen_candidate(q, n_cand)
             img_cpu = img.cpu()
             with torch.no_grad():
                 pts = femb.parts(img)
                 f_emb = femb.fuse(**pts).float().cpu()
+                h14_emb = pts[EMB_KEYS[0]].float().cpu()
                 lat16 = pts[EMB_KEYS[2]].float().cpu()
             sc_sem = (nz(nz(f_emb, dim=1) - mu_fn, dim=1) * qv_qk).sum(1)
-            sc_spat = (cand_spat_emb(lat16) * qsp_qk).sum(1) if qsp_qk is not None else torch.zeros_like(sc_sem)
+            sc_h14 = (nz(nz(h14_emb, dim=1) - mu_h14, dim=1) * qh14_qk).sum(1) if qh14_qk is not None else torch.zeros_like(sc_sem)
+            sc_spat = (cand_spat_emb(lat16, lat64_cpu) * qsp_qk).sum(1) if qsp_qk is not None else torch.zeros_like(sc_sem)
             sc_vae = row_corr(lat16, z16_qk)
+            sc_l32 = row_corr(F.avg_pool2d(lat64_cpu, 2).flatten(1), z32_qk) if args.sel_lat32 > 0 else torch.zeros_like(sc_sem)
             sc_grd = row_corr(rgb_grad32(img_cpu), g32_qk)
 
-            sc = sc_sem + args.sel_spat * sc_spat + args.sel_vae * sc_vae + args.sel_grad * sc_grd
+            sc = (sc_sem + args.sel_h14 * sc_h14 + args.sel_spat * sc_spat
+                  + args.sel_vae * sc_vae + args.sel_lat32 * sc_l32 + args.sel_grad * sc_grd)
             upd = sc > best_sc
             best_img[upd], best_sc[upd] = img_cpu[upd], sc[upd]
 
@@ -357,7 +411,7 @@ for s in range(0, N, eff_bs):
                 img8 = (img_cpu * 255).round().to(torch.uint8)
                 for spec, wsp_, wv_, wg_, n_lim in selvars:
                     if n_cand < n_lim:
-                        sv_s = sc_sem + wsp_ * sc_spat + wv_ * sc_vae + wg_ * sc_grd
+                        sv_s = sc_sem + args.sel_h14 * sc_h14 + wsp_ * sc_spat + wv_ * sc_vae + wg_ * sc_grd
                         u_ = sv_s > sv_best[spec]
                         sv_cur[spec][u_], sv_best[spec][u_] = img8[u_], sv_s[u_]
 

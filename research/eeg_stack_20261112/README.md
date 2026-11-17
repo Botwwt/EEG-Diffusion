@@ -1,4 +1,4 @@
-# Stacking on the ordinary head (2026-11-12, updated 2026-11-15)
+# Stacking on the ordinary head (2026-11-12, updated 2026-11-17)
 
 This folder adds components on top of the **ordinary bounded condition head**
 (`research/eeg/brainhive_bounded_component_v1.py`, imported unchanged) and reports every arm that was run,
@@ -26,6 +26,8 @@ on top of the host and the co-author's head, only components that are ours or tr
 | O6 | **the O5 ensemble extended over three input windows: encoders trained on samples 0–250, 0–150 and 0–100 (7 seeds each), 21 encoders × 10 repeat groups averaged** (`condscreen.py mw7bag10`) | multi-scale analysis of time series with an ensemble over the scales (generic); time-window analyses of EEG decoders are common in the field, so the shorter windows themselves are not claimed as new |
 | **O7a** | **6-window 42-encoder split-half TTA + repeat bagging + pure `F_train` cone restoration (`w = 1.00`, zero directional amplification; `aw_tta.py`), native 512 px 5-window QR-PCA start latent with coarse 16 × 16-layout-disambiguated kNN (`lat512_start.py`), and step-2/3 `8 × 8` low-band tether (`gen_exp.py`, `--tmf` off, strictly independent K = 4 draws)** | training-cone marginal restoration (domain adaptation / cone geometry), frequency-weighted QR-PCA across post-stimulus EEG windows, selective step-2/3 low-band tether (refined from ILVR, Choi et al. 2021, credited); **strict single-subject entry: no cross-subject data, no condition amplification, no K = 4 sample coupling, no best-of-N, no post-hoc blur** |
 | O7 | **O7a + directional cone amplification (`w = 1.50`) + step-1/2 K = 4 Tweedie posterior coupling with spatial contrast restoration (`--tmf 1,0.10,0.10,0 --tmf_cr 1`)** | adds Perceptogram-style directional extrapolation (`w > 1`, credited) and intra-query K = 4 Tweedie coupling (Efron 2011; Chung et al. 2023, credited); reported alongside O7a and full ablations O7b / O7c to isolate both mechanisms |
+| **O8** | **O7a + multi-scale temporal-pyramid single-subject `FlexBrainEncoder` (`train_flex.py`) + 5-fold OOF simplex ensemble (`oof_blend_select.py`, `alpha_o8 = 0.50`) + per-subject `ord_o8_flex` head on the frozen `v2` start latent and sampler (`nsel = 1`, `w = 1.00`, strictly independent `K = 4` draws)** | generic multi-scale temporal-pyramid EEG stem + gated residual trunk trained with cosine & soft-teacher-similarity KL distillation (`train_flex.py`), combined strictly on 5-fold concept-disjoint training OOF (`oof_blend_select.py`); zero cross-subject data, zero amplification, zero test-set tuning |
+| O8b | **O8 + step-1/2 K = 4 Tweedie posterior coupling (`--tmf 1,0.10,0.10,0 --tmf_cr 1`, `w = 1.00` kept)** | intra-query `K = 4` Tweedie coupling (same mechanism as O7, with strict single-subject `w = 1.00`) |
 
 O2 in detail: every test image has 80 repeats; trial r gets weight 1 / (mean squared residual of r against the mean of
 the other 79), so noisy trials (blinks, movement) count less. Label-free, one line of arithmetic, no training; the
@@ -107,6 +109,9 @@ O7a / O7 in detail: three bottlenecks limited O6:
 | + O7b (`w = 1.00` + K = 4 Tweedie coupling) | 0.3076 | 0.4270 | 0.8959 | 0.9256 | 0.7821 | 0.8217 | 0.8492 |
 | + O7c (`w = 1.50` cone amplification, independent K = 4 draws) | 0.3035 | 0.4246 | 0.8965 | 0.9271 | 0.7815 | 0.8215 | 0.8513 |
 | + O7 (`w = 1.50` cone amplification + K = 4 Tweedie coupling) | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 | 0.8509 |
+| **+ O8 strict original (`FlexBrainEncoder` + OOF blend, `w = 1.00`, indep K = 4, headline)** | 0.3025 | 0.4252 | **0.8970** | **0.9281** | **0.7891** | **0.8299** | **0.8434** |
+| **+ O8b (`O8 + K = 4 Tweedie coupling`, `w = 1.00`, no cone amp)** | **0.3064** | **0.4266** | **0.8977** | **0.9280** | **0.7886** | **0.8300** | **0.8433** |
+| O8#w5start (`R = 4`-gated `w5` start ablation, not adopted) | 0.2956 | 0.4241 | 0.8880 | 0.9229 | 0.7859 | 0.8258 | 0.8477 |
 | O3 + adapted start *and* adapted condition (not adopted) | 0.2706 | 0.4142 | 0.8758 | 0.9153 | 0.7590 | 0.8087 | 0.8640 |
 
 #### Screened 4 subjects `{2, 5, 8, 9}` vs untouched held-out 6 subjects `{1, 3, 4, 6, 7, 10}` (paired gain over O6)
@@ -115,11 +120,15 @@ O7a / O7 in detail: three bottlenecks limited O6:
 |---|---|---|---|---|---|---|---|---|
 | **O7a** (`w = 1.00`, indep K = 4) | screened `{2, 5, 8, 9}` | +0.0360 (4/4) | +0.0177 (4/4) | +0.0145 (4/4) | +0.0049 (4/4) | +0.0193 (4/4) | +0.0089 (4/4) | −0.0128 (4/4) |
 | **O7a** (`w = 1.00`, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | **+0.0303 (6/6)** | **+0.0116 (5/6)** | **+0.0165 (6/6)** | **+0.0083 (5/6)** | **+0.0223 (6/6)** | **+0.0076 (4/6)** | **−0.0146 (6/6)** |
+| **O8** (`Flex` + OOF blend, `w = 1.00`, indep K = 4) | screened `{2, 5, 8, 9}` | +0.0344 (4/4) | +0.0174 (4/4) | +0.0170 (4/4) | +0.0093 (4/4) | +0.0263 (4/4) | +0.0200 (4/4) | −0.0205 (4/4) |
+| **O8** (`Flex` + OOF blend, `w = 1.00`, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | **+0.0294 (6/6)** | **+0.0111 (4/6)** | **+0.0177 (6/6)** | **+0.0094 (6/6)** | **+0.0283 (6/6)** | **+0.0128 (6/6)** | **−0.0196 (6/6)** |
 | O7 (`w = 1.50` + K = 4 tmf) | screened `{2, 5, 8, 9}` | +0.0393 (4/4) | +0.0178 (4/4) | +0.0161 (4/4) | +0.0069 (4/4) | +0.0181 (4/4) | +0.0084 (4/4) | −0.0100 (4/4) |
 | O7 (`w = 1.50` + K = 4 tmf) | held-out `{1, 3, 4, 6, 7, 10}` | +0.0343 (6/6) | +0.0120 (5/6) | +0.0186 (6/6) | +0.0093 (6/6) | +0.0206 (6/6) | +0.0072 (4/6) | −0.0141 (6/6) |
 | **B⁴a** (best of 16, indep K = 4) | screened `{2, 5, 8, 9}` | +0.0621 (4/4) | +0.0228 (4/4) | +0.0284 (4/4) | +0.0172 (4/4) | +0.0343 (4/4) | +0.0263 (4/4) | −0.0241 (4/4) |
 | **B⁴a** (best of 16, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | **+0.0535 (6/6)** | **+0.0164 (6/6)** | **+0.0348 (6/6)** | **+0.0202 (6/6)** | **+0.0411 (6/6)** | **+0.0221 (6/6)** | **−0.0230 (6/6)** |
 | **B⁴** (best of 16 + K = 4 tmf) | held-out `{1, 3, 4, 6, 7, 10}` | +0.0570 (6/6) | +0.0177 (6/6) | +0.0356 (6/6) | +0.0194 (6/6) | +0.0406 (6/6) | +0.0218 (6/6) | −0.0235 (6/6) |
+| **B⁵a** (Flex stack vs B⁴a, indep K = 4) | screened `{2, 5, 8, 9}` | −0.0078 (0/4) | −0.0005 (1/4) | −0.0004 (2/4) | −0.0004 (2/4) | +0.0089 (3/4) | +0.0085 (4/4) | −0.0059 (4/4) |
+| **B⁵a** (Flex stack vs B⁴a, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | −0.0063 (0/6) | −0.0015 (0/6) | −0.0041 (1/6) | −0.0002 (3/6) | −0.0011 (2/6) | **+0.0060 (6/6)** | **−0.0022 (4/6)** |
 
 - Final prior row (O6) vs the reproduced baseline: every metric better (PixCorr +0.088, SSIM +0.100, Alex2 +0.053, Alex5 +0.023,
   Incep +0.018, CLIP +0.016, EffNet −0.015); Incep in 9/10 subjects, every other metric in 10/10. O3 vs the co-author's head alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013
@@ -155,6 +164,23 @@ O7a / O7 in detail: three bottlenecks limited O6:
   Alex5 +0.0014` but `SSIM −0.0011, Incep −0.0011, CLIP −0.0009`; `K = 4` Tweedie coupling (`O7b` vs `O7a`) gives `PixCorr +0.0040,
   SSIM +0.0014` (`10/10` each) and `Incep −0.0005, CLIP −0.0007`. Hyper-parameters (`--smap c0.625,0.5,1.0`, `--low_keep 8,0.22,0.04`)
   were screened on subjects `{2, 5, 8, 9}` before evaluating the 6 untouched held-out subjects `{1, 3, 4, 6, 7, 10}` shown above.
+- **O8 and O8b** (strict unborrowed single-subject update, `results/o8_b5_stack.txt`): keep the frozen `O7a` `v2` start latent
+  (`lat512_o7_v2_n0.80.npy`) and sampler flags (`w = 1.00`, `nsel = 1`, zero blur) unchanged (zero test-set tuning), while upgrading
+  the semantic condition with single-subject multi-scale temporal-pyramid `FlexBrainEncoder` models (`train_flex.py`: multi-scale
+  dilated/pooled temporal pyramid stem + `ResNet1DBlock` trained with symmetric InfoNCE, cosine, concept-centroid and soft-teacher KL
+  distillation across 14 window/architecture/seed configurations, `ord_o8_flex` per-subject `BoundedConditionAdapter`), blended
+  strictly via 5-fold concept-disjoint training OOF (`oof_blend_select.py`, `alpha_o8 = 0.50` with `mw6tta` in `aw_tta.py`).
+  Across all 10 subjects, **O8** (strictly independent `K = 4` draws, no `--tmf`) improves over **O7a** on **Alex2 (`+0.0017`, `7/10`),
+  Alex5 (`+0.0024`, `9/10`, #1 above Perceptogram `0.927`), Incep (`+0.0065`, `7/10`, #1), CLIP (`+0.0075`, `9/10`, `0.8299` matching
+  CogCapPro `0.830`), EffNet (`−0.0061`, `10/10`)** and CLIP top-1 (`0.1516 → 0.1581`), with `PixCorr −0.0011` (`0.3025`) and
+  `SSIM −0.0004` (`0.4252`); over O6, **O8** gains across both previously screened `{2, 5, 8, 9}` (`+0.0344 / +0.0174 / +0.0170 /
+  +0.0093 / +0.0263 / +0.0200`, `4/4` every metric) and held-out `{1, 3, 4, 6, 7, 10}` (`+0.0294 / +0.0111 / +0.0177 / +0.0094 /
+  +0.0283 / +0.0128`, `6/6` except SSIM `4/6`). **O8b** enables only step-1/2 `K = 4` Tweedie coupling (`w = 1.00` kept), reaching
+  `PixCorr 0.3064 | SSIM 0.4266 (> ENIGMA 0.4264) | Alex2 0.8977 | Alex5 0.9280 | Incep 0.7886 | CLIP 0.8300`.
+  Negative start-latent ablation (`O8#w5start`, `B5-1a#w5start`, not adopted): calibrating linear `r_4^1.0` QR-PCA gating and
+  `spat_ms512.pt` `lp4_rms` normalization on `R = 4` training repeats under-weighted mid-frequency spatial modes and inflated
+  `32 × 32` high-frequency noise at `R = 80` test repeats ($20\times$ lower trial noise variance), lowering **O8** PixCorr by
+  `−0.0069` (`0.2956` vs `0.3025`, `10/10`) and Alex2 by `−0.0090` (`0.8880` vs `0.8970`, `10/10`), so the frozen `v2` start was kept.
 
 ### Reliability-driven ideas that were tested (ours; novelty check in "Where each component comes from")
 
@@ -251,14 +277,19 @@ SwAV is not measured (weights not downloadable here). Every row is the mean over
 | **B‴**: B′ + best of 16 + high-frequency shrinkage (24 px) | 0.2748 | 0.4007 | 0.8861 | 0.9270 | 0.7882 | 0.8278 | 0.8479 |
 | **B⁴-1a**: full stack, `nsel = 1`, independent K = 4 draws (no `--tmf`, no blur) | 0.3184 | 0.4273 | 0.9063 | 0.9340 | 0.7937 | 0.8313 | 0.8411 |
 | **B⁴-1**: B⁴-1a + K = 4 Tweedie coupling (`nsel = 1`, no blur) | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 | 0.8410 |
-| **B⁴a**: B⁴-1a + F/contour/VAE/grad best of 16, independent K = 4 draws (no `--tmf`, no blur) | **0.3280** | **0.4305** | **0.9118** | **0.9377** | **0.8000** | **0.8380** | **0.8399** |
-| **B⁴**: B⁴a + K = 4 Tweedie coupling (best of 16, no blur) | **0.3319** | **0.4319** | **0.9130** | **0.9377** | **0.8004** | **0.8384** | **0.8393** |
+| **B⁴a**: B⁴-1a + F/contour/VAE/grad best of 16, independent K = 4 draws (no `--tmf`, no blur) | 0.3280 | 0.4305 | **0.9118** | **0.9377** | 0.8000 | 0.8380 | 0.8399 |
+| **B⁴**: B⁴a + K = 4 Tweedie coupling (best of 16, no blur) | **0.3319** | **0.4319** | **0.9130** | **0.9377** | 0.8004 | 0.8384 | 0.8393 |
+| **B⁵-1a**: Flex OOF-simplex full stack, `nsel = 1`, independent K = 4 draws (no `--tmf`, no blur) | 0.3117 | 0.4259 | 0.9048 | 0.9334 | 0.7966 | 0.8399 | 0.8378 |
+| **B⁵-1**: B⁵-1a + K = 4 Tweedie coupling (`nsel = 1`, no blur) | 0.3162 | 0.4274 | 0.9056 | 0.9334 | 0.7965 | 0.8397 | 0.8378 |
+| **B⁵a**: B⁵-1a + best of 16, independent K = 4 draws (no `--tmf`, no blur) | 0.3211 | 0.4294 | 0.9092 | 0.9375 | **0.8029** | **0.8450** | **0.8363** |
+| **B⁵**: B⁵a + K = 4 Tweedie coupling (best of 16, no blur) | 0.3247 | 0.4306 | **0.9101** | **0.9377** | 0.8017 | **0.8449** | 0.8370 |
+| B⁵-1a#w5start (`R = 4`-gated `w5` start ablation, not adopted) | 0.3001 | 0.4247 | 0.8957 | 0.9288 | 0.7955 | 0.8352 | 0.8418 |
 | low-level operating point: img2img strength 0.5 + best of 4 (per-subject heads) | 0.2578 | 0.4263 | 0.8422 | 0.8991 | 0.7744 | 0.7992 | 0.8635 |
 | Brain-HIVE paper, Table 2 (EEG) | 0.195 | 0.336 | 0.843 | 0.905 | 0.756 | 0.808 | – |
 
-A, B, A′, B′, A″, B″, B‴, B⁴-1a, B⁴-1, B⁴a and B⁴ improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
+A, B, A′, B′, A″, B″, B‴, B⁴-1a, B⁴-1, B⁴a, B⁴, B⁵-1a, B⁵-1, B⁵a and B⁵ improve on the reproduced baseline for every metric in every one of the ten subjects. The reproduced
 baseline is 0.01–0.02 below the paper's own numbers. The low-level operating point trades semantics for SSIM
-(Alex2 / Alex5 / CLIP fall below A in all ten subjects) and is listed only to show the trade-off. Per-subject rows: `results/table10.txt` and `results/o7_b4_stack.txt`;
+(Alex2 / Alex5 / CLIP fall below A in all ten subjects) and is listed only to show the trade-off. Per-subject rows: `results/table10.txt`, `results/o7_b4_stack.txt`, and `results/o8_b5_stack.txt`;
 every generation run: `results/runs_summary.csv`; every encoder: `results/encoders_summary.csv`.
 
 Contribution of each component (10-subject means of the differences):
@@ -315,6 +346,20 @@ Contribution of each component (10-subject means of the differences):
   `0.20,0.20,0.18`, `0.35,0.28,0.25`, `0.45,0.35,0.30`) were also scored inside `sXX_w35_B4_v2b_sel16` (`PixCorr 0.3309–0.3330`,
   `CLIP 0.8380–0.8394`); because comparing those three tuples uses the 10-subject test metrics post-hoc, they are excluded from the
   ranked tables and logged only as weight-sensitivity diagnostics in `results/o7_b4_stack.txt` and `results/table10.txt`.
+- **B⁵-1a, B⁵-1, B⁵a and B⁵** (2026-11-17, `results/o8_b5_stack.txt`): keep the frozen `B⁴` `v2` start latent
+  (`lat512_b4_v2_n0.80.npy`) and scoring weights unchanged, while upgrading the joint semantic ensemble with multi-scale
+  temporal-pyramid `FlexBrainEncoder` models (`train_ms_flex.py`, `ord_b5_flex/pooled_p1` 1-pass shared head) combined strictly
+  via 5-fold concept-disjoint training OOF (`oof_blend_select.py`, `w_b5 = (0.65, 0.10, 0.25)` across `b5_flex`, legacy
+  `ms_e10_ft10in`, and single-subject `O8`). Auxiliary contour/H14 encoders (`spat_ms512.py`, `spat_ms512_b5`, `h14_ms_b5`) were
+  trained in `aw_tta.py`, while the final adopted `v2`-start evaluation keeps `B⁴`'s `spat_ms_mwtta` contour condition so start
+  latents and candidate scoring stay fixed. Across all 10 subjects, **B⁵-1a** (`nsel = 1`, indep `K = 4`, no blur) reaches
+  `0.3117 / 0.4259 / 0.9048 / 0.9334 / 0.7966 / 0.8399` (`EffNet 0.8378`, `CLIP +0.0086` over `B⁴-1a` in `10/10` subjects),
+  **B⁵a** (best of 16, indep `K = 4`) reaches `0.3211 / 0.4294 / 0.9092 / 0.9375 / 0.8029 / 0.8450` (`EffNet 0.8363`,
+  `CLIP top-1 0.1862`; `CLIP +0.0070` over `B⁴a` in `10/10` subjects), and **B⁵** (`+ K = 4 tmf`, no blur) reaches
+  `0.3247 / 0.4306 / 0.9101 / 0.9377 / 0.8017 / 0.8449` (`EffNet 0.8370`, `CLIP top-1 0.1884`, `[6/6]` over published SOTA
+  maxima), trading `−0.0067 / −0.0072` PixCorr and `−0.0011 / −0.0015` SSIM relative to `B⁴a / B⁴` for higher semantic alignment
+  and lower `EffNet`. The non-adopted `R = 4`-gated `w5` start ablation (`B5-1a#w5start`) gave `0.3001 / 0.4247 / 0.8957 / 0.9288 /
+  0.7955 / 0.8352 / 0.8418`.
 
 ## Components
 
@@ -474,7 +519,7 @@ policies, needs `gen.py --dump 1`), `armsum.py` (paired means over subjects); ou
 The last command, re-run for subject 8 with the final version of `gen.py`, reproduced all stored metrics exactly (largest
 difference 0.0).
 
-## Running it (reproducing B‴, B⁴-1a, B⁴-1, B⁴a and B⁴ from scratch)
+## Running it (reproducing B‴, B⁴-1a..B⁴, O8/O8b, and B⁵-1a..B⁵ from scratch)
 
 **Inputs** (downloaded once; nothing here is redistributed). Put them under one working directory `$RAD_ROOT`:
 
@@ -489,7 +534,7 @@ difference 0.0).
 | metric weights | torchvision AlexNet / Inception-v3 / EfficientNet-B1 and OpenAI CLIP ViT-L/14 (`pip install git+https://github.com/openai/CLIP`), fetched on first use |
 
 **Environment used for every number here**: Python 3.10.12, torch 2.14.1 (CUDA 13.0), torchvision 0.29.2, diffusers 0.41.0,
-transformers 5.20.2, numpy 2.2.6, scikit-image 0.25.2, clip 1.0; one RTX 4090 (24 GB) per job.
+transformers 5.20.2, numpy 2.2.6, scikit-image 0.25.2, clip 1.0; one RTX 4090 (24 GB) per job (Wave 5 `O8 / B⁵` generation runs also used NVIDIA L4 / T4 GPUs alongside RTX 4090 under the same deterministic per-(query, sample, candidate) seeds).
 
 **Steps** (from this folder's `code/`, `export RAD_ROOT=...`; `XX` = 01 … 10):
 
@@ -548,8 +593,24 @@ python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_ms28_mwtta
     --lat_init sub-XX/lat512_b4_v2_n0.80.npy --smap c0.628,0.5,1.0 --low_keep 8,0.22,0.04 \
     --tmf 1,0.12,0.12,0 --tmf_cr 1 --nsel 16 --sel_spat 0.28 --sel_vae 0.24 --sel_grad 0.22 \
     --selvar "0.20,0.20,0.18@16;0.35,0.28,0.25@16;0.45,0.35,0.30@16" --K 4 --save 0 --name sXX_w35_B4_v2b_sel16
+# 5c. Wave 5 (O8 / O8b single-subject and B⁵-1a / B⁵-1 / B⁵a / B⁵ full-stack):
+python spat_ms512.py                                            # -> data/prep/spat_ms512.pt (training VAE latents only)
+# Train FlexBrainEncoder (train_flex.py -> o8_{pyr2,mlp2,mlp1}_* across 5 folds & full train) and joint Flex (train_ms_flex.py -> msf_*)
+for s in $(seq 1 10); do ORD_ENS=o8_flex python ordh.py train $s; done
+ORD_ENS=b5_flex ORD_HEAD=pooled_p1 python ordh.py train all 1
+python oof_blend_select.py                                      # -> runs/cond/o8_b5_oof_weights.json (5-fold training OOF only)
+python aw_tta.py all                                            # -> cone_o8_w1.00/ and cone_b5_w{1.00,1.75}/
+python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_o8_w1.00/sub-XX.npy \
+    --lat_init sub-XX/lat512_o7_v2_n0.80.npy --smap c0.625,0.5,1.0 --low_keep 8,0.22,0.04 \
+    --K 4 --save 0 --name sXX_o8_w1_notmf                         # add --tmf 1,0.10,0.10,0 --tmf_cr 1 for O8b
+python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_b5_w1.75/sub-XX.npy \
+    --sel_cond cone_b5_w1.00/sub-XX.npy --spat_cond spat_ms_mwtta/sub-XX.npy \
+    --lat_init sub-XX/lat512_b4_v2_n0.80.npy --smap c0.628,0.5,1.0 --low_keep 8,0.22,0.04 \
+    --tmf 1,0.12,0.12,0 --tmf_cr 1 --nsel 16 --sel_spat 0.28 --sel_vae 0.24 --sel_grad 0.22 --K 4 --save 0 --name sXX_b5_sel16_tmf
 # 6. tables
-python tab10.py > table10.txt                  # every arm whose runs exist, per subject and averaged
+python agg.py                                                   # -> runs/enc/summary.csv (results/encoders_summary.csv)
+python tab10.py > table10.txt                                   # every arm including O8 / O8b / B⁵-1a..B⁵
+python build_o8_b5_report.py > o8_b5_stack.txt
 python runsum.py > runs_summary.csv
 python svsum.py _ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16 main   # all --post / --selvar variants of a run
 ```

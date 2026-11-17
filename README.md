@@ -15,18 +15,18 @@ The full ten-subject R80 comparison supports ordinary over native Brain-HIVE (DI
 
 Model weights, private EEG, large feature arrays and machine credentials are excluded from Git. See the [verified storage and recovery record](docs/STORAGE.md). The October proposal below is historical; consult the dated current-state page before interpreting it as an active or completed experiment.
 
-## Stacked results on the ordinary head — 2026-11-15
+## Stacked results on the ordinary head — 2026-11-17
 
 **Original-components pipeline (headline).** A prior-art audit found that the joint encoder, best-of-N selection,
 output shrinkage and condition amplification of the stack below come from same-field papers (MindEye2 / ENIGMA,
 MindEye, MindEye2, Perceptogram). Leaving all four out — and also keeping the `K = 4` evaluated samples per query strictly
-independent — **O7a** keeps only single-subject components that are ours or transferred from other fields: native 512 px
-5-window (`48–248`, `40–300`, `60–360`, `40–500`, `0–1000 ms` post-stimulus at `250 Hz`; `200 ms` RSVP SOA) frequency-weighted
-QR-PCA start latents with coarse `16 × 16`-layout-disambiguated kNN, inverse-variance aggregation of the 80 test repeats
-(robust statistics), fractional img2img strength by re-injection (Differential Diffusion) with a step-2/3 `8 × 8` low-band
-tether, and 6-window 42-encoder split-half contrastive test-time adaptation with pure training-cone restoration (`w = 1.00`,
-zero directional amplification) on top of the per-subject Brain-HIVE encoder and the per-subject ordinary head, with no
-post-hoc blur:
+independent — **O8** extends **O7a** with a single-subject `FlexBrainEncoder` multi-scale temporal-pyramid family
+(`train_flex.py`) combined on the training set via 5-fold concept-disjoint out-of-fold simplex ensembling
+(`oof_blend_select.py`, `alpha_o8 = 0.50`) and a paired per-subject `ord_o8_flex` ordinary head on the same frozen
+**O7a** native 512 px 5-window (`48–248`, `40–300`, `60–360`, `40–500`, `0–1000 ms` post-stimulus at `250 Hz`;
+`200 ms` RSVP SOA) QR-PCA start latents, inverse-variance 80-repeat aggregation, fractional Differential-Diffusion
+re-injection (`smap c0.625,0.5,1.0`) with step-2/3 `8 × 8` low-band tether, split-half contrastive TTA, and pure
+training-cone restoration (`w = 1.00`, zero directional amplification, `nsel = 1`, no post-hoc blur):
 
 | setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP |
 |---|---|---|---|---|---|---|
@@ -36,29 +36,30 @@ post-hoc blur:
 | O4: + test-time-adapted start image | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 |
 | O5: + seed-ensemble condition with repeat bagging | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 |
 | O6: + multi-window encoder ensemble for the condition | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 |
-| **O7a: + 6-win TTA + pure cone (`w = 1.00`) + 5-win 512px start + tether (indep K = 4)** | **0.3036** | **0.4256** | **0.8953** | **0.9257** | **0.7827** | **0.8224** |
+| O7a: + 6-win TTA + pure cone (`w = 1.00`) + 5-win 512px start + tether (indep K = 4) | 0.3036 | 0.4256 | 0.8953 | 0.9257 | 0.7827 | 0.8224 |
 | O7: O7a + directional cone amp (`w = 1.50`) + K = 4 Tweedie coupling | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 |
+| **O8: O7a + single-subject `FlexBrainEncoder` + OOF blend (`w = 1.00`, indep K = 4)** | 0.3025 | 0.4252 | **0.8970** | **0.9281** | **0.7891** | **0.8299** |
+| **O8b: O8 + K = 4 Tweedie coupling (`w = 1.00`, no cone amp)** | **0.3064** | **0.4266** | **0.8977** | **0.9280** | **0.7886** | **0.8300** |
 
-**O7a** improves on the reproduced baseline in 10/10 subjects on every metric, beats O6 across the board (`PixCorr +0.0326`,
-`SSIM +0.0141`, `Alex2 +0.0157`, `Alex5 +0.0069`, `Incep +0.0211`, `CLIP +0.0082`; `10/10, 9/10, 10/10, 9/10, 10/10, 8/10`
-subjects), and ranks `1 / 2 / 2 / 2 / 1 / 2` against published 10-subject EEG-only results using single-subject data, `nsel = 1`,
-and strictly independent `K = 4` draws. Hyper-parameters were screened on subjects `{2, 5, 8, 9}`; on the 6 untouched held-out
-subjects `{1, 3, 4, 6, 7, 10}`, **O7a** gains `+0.0303 / +0.0116 / +0.0165 / +0.0083 / +0.0223 / +0.0076` over O6 (vs
-`+0.0360 / +0.0177 / +0.0145 / +0.0049 / +0.0193 / +0.0089` on the 4 screened subjects). **O7** is listed separately because
-`w = 1.50` amplifies deviations from the mean cone axis (same Perceptogram-style class as `--amp`) and `--tmf` couples the
-`K = 4` trajectories of each query toward their shared Tweedie mean on steps 1–2 (`+0.0040` PixCorr, `+0.0014` SSIM;
-`w: 1.00 → 1.50` alone changes Incep/CLIP by `−0.0011 / −0.0009` on the full 10-subject stack). Reliability-driven strength maps,
-full-step ILVR, low-pass re-injection and un-restored Tweedie averaging were tested with controls and reported alongside the
-positive components in the folder README.
+**O8** improves on O6 across 10/10 subjects on PixCorr, Alex2, Alex5, Incep, CLIP, EffNet (`0.8434`, `−0.0200`) and 200-way
+CLIP top-1 (`0.1302 → 0.1581`) and 8/10 on SSIM; over **O7a**, **O8** lifts **Alex5 `+0.0024` (`9/10`, above Perceptogram
+`0.927`), Incep `+0.0065` (`7/10`), CLIP `+0.0075` (`9/10`, matching CogCapPro `0.830`), EffNet `−0.0061` (`10/10`)** and
+CLIP top-1 `+0.0065` (`0.1516 → 0.1581`), at `−0.0011` PixCorr and `−0.0004` SSIM, using strictly single-subject data, `nsel = 1`,
+and independent `K = 4` draws. Over O6 on the 6 untouched held-out subjects `{1, 3, 4, 6, 7, 10}`, **O8** gains
+`+0.0294 / +0.0111 / +0.0177 / +0.0094 / +0.0283 / +0.0128` (`6/6` on all metrics except SSIM `4/6`; vs
+`+0.0344 / +0.0174 / +0.0170 / +0.0093 / +0.0263 / +0.0200`, `4/4` on `{2, 5, 8, 9}`). **O8b** adds only `--tmf` K = 4
+Tweedie coupling (`w = 1.00` kept), reaching `SSIM 0.4266` (above ENIGMA `0.4264`) and `CLIP 0.8300`. An `R = 4`-gated
+start-latent ablation (`O8#w5start`) lost `PixCorr −0.0069` and `Alex2 −0.0090` (`results/o8_b5_stack.txt`) and was not adopted.
 
-**Full stack including the borrowed components (credited):** [`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks a 28-encoder
-multi-window multi-seed joint ten-subject semantic ensemble, an 8-encoder 4-orientation (`0°/45°/90°/135°`) coarse `16 × 16`
-SDXL-VAE contour `BrainMLP`, directional cone amplification (`w = 1.75`), native 512 px 5-window QR-PCA + contour-disambiguated
-start latents, and best-of-16 candidate selection (scored using only Brain-HIVE's own `FEmbedder`, EEG-predicted VAE contours
-and start-latent gradients; zero evaluation-network weights, zero post-hoc blur in B⁴-1a..B⁴) on top of the shared ordinary head.
-Both strictly independent `K = 4` draws (`--tmf` off: **B⁴-1a**, **B⁴a**) and step-1/2 `K = 4` Tweedie-coupled draws (`--tmf` on:
-**B⁴-1**, **B⁴**) are reported on the THINGS-EEG test set (R80, 10 subjects, `K = 4` images per query, Brain-HIVE metrics;
-SwAV not measured):
+**Full stack including the borrowed components (credited):** [`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks multi-window
+multi-seed joint ten-subject semantic ensembles (`BrainMLP` in B⁴; adding `train_ms_flex.py` `FlexBrainEncoder` +
+5-fold OOF simplex blending `w_b5 = (0.65, 0.10, 0.25)` + `ord_b5_flex` in B⁵), an 8-encoder 4-orientation (`0°/45°/90°/135°`)
+coarse `16 × 16` SDXL-VAE contour `BrainMLP`, directional cone amplification (`w = 1.75`), native 512 px 5-window QR-PCA +
+contour-disambiguated start latents, and best-of-16 candidate selection (scored using only Brain-HIVE's own `FEmbedder`,
+EEG-predicted VAE contours and start-latent gradients; zero evaluation-network weights, zero post-hoc blur in B⁴-1a..B⁵) on
+top of the shared ordinary head. Both strictly independent `K = 4` draws (`--tmf` off: **B⁴-1a**, **B⁴a**, **B⁵-1a**, **B⁵a**)
+and step-1/2 `K = 4` Tweedie-coupled draws (`--tmf` on: **B⁴-1**, **B⁴**, **B⁵-1**, **B⁵**) are reported on the THINGS-EEG test
+set (R80, 10 subjects, `K = 4` images per query, Brain-HIVE metrics; SwAV not measured):
 
 | setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP |
 |---|---|---|---|---|---|---|
@@ -67,21 +68,23 @@ SwAV not measured):
 | A″: stack, best of 8, shrinkage | 0.2782 | 0.4043 | 0.8823 | 0.9255 | 0.7837 | 0.8251 |
 | B″: A″ + condition amplification ×2 | 0.2710 | 0.3995 | 0.8859 | 0.9269 | 0.7863 | 0.8266 |
 | B‴: B″ with best of 16, shrinkage 24 px | 0.2748 | 0.4007 | 0.8861 | 0.9270 | 0.7882 | 0.8278 |
-| **B⁴-1a: full stack, `nsel = 1`, independent K = 4 draws, no blur** | 0.3184 | 0.4273 | 0.9063 | 0.9340 | 0.7937 | 0.8313 |
-| **B⁴-1: B⁴-1a + K = 4 Tweedie coupling (`nsel = 1`), no blur** | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 |
-| **B⁴a: B⁴-1a + best of 16, independent K = 4 draws, no blur** | **0.3280** | **0.4305** | **0.9118** | **0.9377** | **0.8000** | **0.8380** |
-| **B⁴: B⁴a + K = 4 Tweedie coupling (best of 16), no blur** | **0.3319** | **0.4319** | **0.9130** | **0.9377** | **0.8004** | **0.8384** |
+| B⁴-1a: full stack, `nsel = 1`, independent K = 4 draws, no blur | 0.3184 | 0.4273 | 0.9063 | 0.9340 | 0.7937 | 0.8313 |
+| B⁴-1: B⁴-1a + K = 4 Tweedie coupling (`nsel = 1`), no blur | 0.3232 | 0.4289 | 0.9073 | 0.9343 | 0.7938 | 0.8309 |
+| **B⁴a: B⁴-1a + best of 16, independent K = 4 draws, no blur** | 0.3280 | 0.4305 | **0.9118** | **0.9377** | 0.8000 | 0.8380 |
+| **B⁴: B⁴a + K = 4 Tweedie coupling (best of 16), no blur** | **0.3319** | **0.4319** | **0.9130** | **0.9377** | 0.8004 | 0.8384 |
+| B⁵-1a: Flex OOF-simplex stack, `nsel = 1`, indep K = 4 draws, no blur | 0.3117 | 0.4259 | 0.9048 | 0.9334 | 0.7966 | 0.8399 |
+| B⁵-1: B⁵-1a + K = 4 Tweedie coupling (`nsel = 1`), no blur | 0.3162 | 0.4274 | 0.9056 | 0.9334 | 0.7965 | 0.8397 |
+| **B⁵a: B⁵-1a + best of 16, independent K = 4 draws, no blur** | 0.3211 | 0.4294 | 0.9092 | 0.9375 | **0.8029** | **0.8450** |
+| **B⁵: B⁵a + K = 4 Tweedie coupling (best of 16), no blur** | 0.3247 | 0.4306 | **0.9101** | **0.9377** | 0.8017 | **0.8449** |
 
-A″, B″, B‴, B⁴-1a, B⁴-1, B⁴a and B⁴ improve on the reproduced baseline for every metric in every subject; on the 6 untouched
-held-out subjects `{1, 3, 4, 6, 7, 10}`, **B⁴a** gains `+0.0535 / +0.0164 / +0.0348 / +0.0202 / +0.0411 / +0.0221` over O6 (`6/6`
-subjects on every metric). Best of 8 / 16 uses 8× / 16× the candidate budget of `nsel = 1` (whereas **B⁴-1a** uses `nsel = 1`
-with independent `K = 4` draws and ranks `1 / 1 / 2 / 1 / 1 / 1`, with CLIP `0.8313` vs CognitionCapturerPro `0.830` within
-noise). Against published 10-subject EEG-only results (inclusion rule and sources in
-[`results/leaderboard.md`](research/eeg_stack_20261112/results/leaderboard.md)), both **B⁴a** (independent `K = 4` draws) and **B⁴** (`+ K = 4` Tweedie coupling) rank
-**1 / 1 / 1 / 1 / 1 / 1** across all six metrics, though the CLIP margin over CognitionCapturerPro (`0.830`) is `+0.008`, the
-Alex2 margin over Perceptogram (`0.910`) is `+0.002–0.003`, and metric implementations differ across papers. Every arm, the
-per-subject numbers (`results/table10.txt`, `results/o7_b4_stack.txt`), the selection rules and the negative results are in
-the folder's README.
+**B⁵a** (`CLIP 0.8450`, `Incep 0.8029`, `EffNet 0.8363`, `CLIP top-1 0.1862`) and **B⁵** (`CLIP 0.8449`, `Alex2 0.9101`,
+`EffNet 0.8370`, `CLIP top-1 0.1884`) lift semantic CLIP similarity by `+0.0070` (`10/10` subjects over B⁴a) and `+0.0065`
+(`9/10` over B⁴) while trading off `−0.0069 / −0.0072` PixCorr and `−0.0011 / −0.0013` SSIM relative to B⁴a/B⁴ (and **B⁵-1a** at
+`nsel = 1` with independent `K = 4` draws already reaches `CLIP 0.8399`, `+0.0086` over B⁴-1a in `10/10` subjects). Against
+published 10-subject EEG-only results ([`results/leaderboard.md`](research/eeg_stack_20261112/results/leaderboard.md)), B⁴a, B⁴
+and **B⁵** (`Alex2 0.9101` vs Perceptogram `0.910` `+0.0001`) exceed all six published maxima simultaneously (with different
+metric implementations across papers). Every arm, the per-subject numbers (`results/table10.txt`, `results/o7_b4_stack.txt`,
+`results/o8_b5_stack.txt`), the selection rules and the negative results are in the folder's README.
 
 ## Overview
 

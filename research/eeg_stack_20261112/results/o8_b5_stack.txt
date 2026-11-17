@@ -1,0 +1,266 @@
+========================================================================================================================================
+O8 / O8b (SINGLE-SUBJECT) AND B5-1a / B5-1 / B5a / B5 (FULL-STACK) — 10-SUBJECT EVALUATION (2026-11-16)
+========================================================================================================================================
+Dataset : THINGS-EEG2 official test set (Gifford et al. 2022), 10 subjects (sub-01 .. sub-10), 200 test images x 80 repeats
+EEG     : 17 occipito-parietal channels, 0-1000 ms post-stimulus at 250 Hz (4 ms/sample; ATM -200..1000 ms epoch, first 50 dropped);
+          THINGS-EEG2 RSVP SOA = 200 ms (100 ms image presentation + 100 ms blank)
+Protocol: K = 4 samples/query, unchanged metrics.py (Brain-HIVE / MindEye evaluation), zero post-hoc Gaussian blur (--post "")
+Adapter : BoundedConditionAdapter (research/eeg/brainhive_bounded_component_v1.py) imported unchanged in every arm
+5-Fold OOF weights (selected strictly on 16,540 training images, zero test-set tuning): {'alpha_o8': 0.5, 'w_b5_flex': 0.65, 'w_ms_old': 0.1, 'w_ss_o8': 0.25}
+Methodological boundaries & unchanged O7a/B4 start-latent + sampler controls:
+  - O8  (sXX_o8_w1_notmf)   : strict unborrowed single-subject headline — pure F_train cone restoration (w = 1.00, zero
+                              directional amplification), strictly independent K = 4 draws (no --tmf), nsel = 1, single-subject
+                              FlexBrainEncoder + ord_o8_flex (5-fold OOF alpha_o8 = 0.50), exact O7a v2 start-latent & sampler flags.
+  - O8b (sXX_o8_w1_tmf)     : O8 + step-1/2 K = 4 Tweedie coupling (--tmf 1,0.10,0.10,0 --tmf_cr 1; w = 1.00 unchanged).
+  - B5-1a (sXX_b5_n1_notmf) : full-stack nsel = 1, strictly independent K = 4 draws (no --tmf), exact B4-1a v2 start & sampler flags.
+  - B5-1  (sXX_b5_n1_tmf)   : full-stack nsel = 1 + step-1/2 K = 4 Tweedie coupling (--tmf 1,0.12,0.12,0 --tmf_cr 1).
+  - B5a (sXX_b5_sel16_notmf): full-stack best-of-16, strictly independent K = 4 draws (no --tmf), exact B4a scoring weights.
+  - B5  (sXX_b5_sel16_tmf)  : full-stack best-of-16 + step-1/2 K = 4 Tweedie coupling, exact B4 scoring weights, zero blur.
+  - O8#w5start / B5-1a#w5start (not adopted): negative start-latent ablation calibrating linear r_4^1.0 PCA gating & spat_ms512
+                              lp4_rms scaling on R=4 training repeats, which under-weights mid-frequency modes at R=80 test repeats.
+
+========================================================================================================================================
+1. 10-SUBJECT SUMMARY (MEAN & BETWEEN-SUBJECT SD OVER sub-01 .. sub-10)
+========================================================================================================================================
+Arm                                          N   pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top   >SOTA
+[Published SOTA max per metric]             10    0.2670    0.4264    0.9100    0.9270    0.7790    0.8300         -         -
+----------------------------------------------------------------------------------------------------------------------------------------
+O6 (prior original)                         10    0.2711    0.4116    0.8796    0.9188    0.7616    0.8142    0.8634    0.1302   [1/6]
+  (10-subj SD)                                    0.0155    0.0104    0.0134    0.0092    0.0260    0.0196    0.0132    0.0187
+O7a (w=1.00, indep K=4, strict)             10    0.3036    0.4256    0.8953    0.9257    0.7827    0.8224    0.8495    0.1516   [2/6]
+  (10-subj SD)                                    0.0137    0.0051    0.0145    0.0108    0.0175    0.0175    0.0126    0.0284
+O7 (w=1.50, + K=4 tmf)                      10    0.3074    0.4259    0.8971    0.9271    0.7812    0.8219    0.8509    0.1537   [3/6]
+  (10-subj SD)                                    0.0139    0.0052    0.0143    0.0102    0.0202    0.0193    0.0136    0.0298
+O8#w5start (R=4-gated start, not adopted)   10    0.2956    0.4241    0.8880    0.9229    0.7859    0.8258    0.8477    0.1525   [2/6]
+  (10-subj SD)                                    0.0145    0.0056    0.0133    0.0095    0.0196    0.0182    0.0132    0.0247
+O8 (w=1.00, indep K=4, strict NEW)          10    0.3025    0.4252    0.8970    0.9281    0.7891    0.8299    0.8434    0.1581   [3/6]
+  (10-subj SD)                                    0.0135    0.0052    0.0138    0.0094    0.0200    0.0195    0.0143    0.0217
+O8b (w=1.00, + K=4 tmf, NEW)                10    0.3064    0.4266    0.8977    0.9280    0.7886    0.8300    0.8433    0.1588   [5/6]
+  (10-subj SD)                                    0.0138    0.0051    0.0141    0.0096    0.0202    0.0198    0.0141    0.0231
+B''' (prior full-stack)                     10    0.2748    0.4007    0.8861    0.9270    0.7882    0.8278    0.8479    0.1590   [3/6]
+  (10-subj SD)                                    0.0138    0.0105    0.0134    0.0137    0.0227    0.0258    0.0166    0.0238
+B4-1a (indep K=4, no tmf)                   10    0.3184    0.4273    0.9063    0.9340    0.7937    0.8313    0.8411    0.1759   [5/6]
+  (10-subj SD)                                    0.0146    0.0052    0.0119    0.0078    0.0210    0.0210    0.0146    0.0245
+B4-1 (+ K=4 tmf)                            10    0.3232    0.4289    0.9073    0.9343    0.7938    0.8309    0.8410    0.1769   [5/6]
+  (10-subj SD)                                    0.0150    0.0052    0.0121    0.0079    0.0214    0.0210    0.0143    0.0239
+B5-1a#w5start (R=4-gated start, not adopted)  10    0.3001    0.4247    0.8957    0.9288    0.7955    0.8352    0.8418    0.1734   [4/6]
+  (10-subj SD)                                    0.0148    0.0060    0.0117    0.0079    0.0220    0.0219    0.0129    0.0210
+B5-1a (indep K=4, no tmf, NEW)              10    0.3117    0.4259    0.9048    0.9334    0.7966    0.8399    0.8378    0.1786   [4/6]
+  (10-subj SD)                                    0.0148    0.0057    0.0120    0.0079    0.0213    0.0219    0.0124    0.0227
+B5-1 (+ K=4 tmf, NEW)                       10    0.3162    0.4274    0.9056    0.9334    0.7965    0.8397    0.8378    0.1760   [5/6]
+  (10-subj SD)                                    0.0152    0.0057    0.0119    0.0084    0.0202    0.0223    0.0126    0.0225
+B4a (best-of-16, indep K=4)                 10    0.3280    0.4305    0.9118    0.9377    0.8000    0.8380    0.8399    0.1746   [6/6]
+  (10-subj SD)                                    0.0152    0.0050    0.0120    0.0093    0.0216    0.0202    0.0136    0.0301
+B4 (best-of-16, + K=4 tmf)                  10    0.3319    0.4319    0.9130    0.9377    0.8004    0.8384    0.8393    0.1812   [6/6]
+  (10-subj SD)                                    0.0161    0.0050    0.0121    0.0094    0.0223    0.0195    0.0132    0.0276
+B5a (best-of-16, indep K=4, NEW)            10    0.3211    0.4294    0.9092    0.9375    0.8029    0.8450    0.8363    0.1862   [5/6]
+  (10-subj SD)                                    0.0163    0.0056    0.0120    0.0083    0.0177    0.0207    0.0137    0.0233
+B5 (best-of-16, + K=4 tmf, NEW)             10    0.3247    0.4306    0.9101    0.9377    0.8017    0.8449    0.8370    0.1884   [6/6]
+  (10-subj SD)                                    0.0165    0.0057    0.0118    0.0080    0.0177    0.0197    0.0139    0.0273
+
+========================================================================================================================================
+2. PRIOR SCREENED 4 SUBJECTS {2,5,8,9} VS UNTOUCHED HELD-OUT 6 SUBJECTS {1,3,4,6,7,10}
+========================================================================================================================================
+
+Paired (4 subs [screened: 2,5,8,9]): O8 (w=1.00, indep K=4, strict NEW)  vs  O7a (w=1.00, indep K=4, strict)
+  delta : pixcorr=-0.0016 ssim=-0.0003 alex2=+0.0025 alex5=+0.0044 incepti=+0.0071 clip=+0.0111 effnet=-0.0077 clip_to=+0.0131
+  wins  : pixcorr=1/4 ssim=1/4 alex2=4/4 alex5=4/4 incepti=3/4 clip=4/4 effnet=4/4 clip_to=3/4
+  t-stat: pixcorr=-1.41 ssim=-1.34 alex2=+2.37 alex5=+2.59 incepti=+1.55 clip=+5.80 effnet=-7.32 clip_to=+1.76
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): O8 (w=1.00, indep K=4, strict NEW)  vs  O7a (w=1.00, indep K=4, strict)
+  delta : pixcorr=-0.0008 ssim=-0.0005 alex2=+0.0011 alex5=+0.0011 incepti=+0.0061 clip=+0.0051 effnet=-0.0050 clip_to=+0.0021
+  wins  : pixcorr=2/6 ssim=1/6 alex2=3/6 alex5=5/6 incepti=4/6 clip=5/6 effnet=6/6 clip_to=4/6
+  t-stat: pixcorr=-1.52 ssim=-2.36 alex2=+0.62 alex5=+2.18 incepti=+1.63 clip=+2.14 effnet=-2.86 clip_to=+0.44
+
+Paired (4 subs [screened: 2,5,8,9]): O8 (w=1.00, indep K=4, strict NEW)  vs  O6 (prior original)
+  delta : pixcorr=+0.0344 ssim=+0.0174 alex2=+0.0170 alex5=+0.0093 incepti=+0.0263 clip=+0.0200 effnet=-0.0205 clip_to=+0.0209
+  wins  : pixcorr=4/4 ssim=4/4 alex2=4/4 alex5=4/4 incepti=4/4 clip=4/4 effnet=4/4 clip_to=4/4
+  t-stat: pixcorr=+9.01 ssim=+10.26 alex2=+6.19 alex5=+8.08 incepti=+3.46 clip=+4.72 effnet=-6.88 clip_to=+2.90
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): O8 (w=1.00, indep K=4, strict NEW)  vs  O6 (prior original)
+  delta : pixcorr=+0.0294 ssim=+0.0111 alex2=+0.0177 alex5=+0.0094 incepti=+0.0283 clip=+0.0128 effnet=-0.0196 clip_to=+0.0325
+  wins  : pixcorr=6/6 ssim=4/6 alex2=6/6 alex5=6/6 incepti=6/6 clip=6/6 effnet=6/6 clip_to=6/6
+  t-stat: pixcorr=+5.12 ssim=+2.47 alex2=+5.72 alex5=+3.60 incepti=+9.46 clip=+4.51 effnet=-9.52 clip_to=+4.27
+
+Paired (4 subs [screened: 2,5,8,9]): B5-1a (indep K=4, no tmf, NEW)  vs  B4-1a (indep K=4, no tmf)
+  delta : pixcorr=-0.0062 ssim=-0.0008 alex2=-0.0012 alex5=+0.0000 incepti=+0.0006 clip=+0.0081 effnet=-0.0046 clip_to=+0.0188
+  wins  : pixcorr=0/4 ssim=1/4 alex2=2/4 alex5=2/4 incepti=1/4 clip=4/4 effnet=3/4 clip_to=4/4
+  t-stat: pixcorr=-2.48 ssim=-1.82 alex2=-0.86 alex5=+0.02 incepti=+0.20 clip=+3.16 effnet=-2.27 clip_to=+4.13
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): B5-1a (indep K=4, no tmf, NEW)  vs  B4-1a (indep K=4, no tmf)
+  delta : pixcorr=-0.0070 ssim=-0.0019 alex2=-0.0017 alex5=-0.0010 incepti=+0.0044 clip=+0.0090 effnet=-0.0024 clip_to=-0.0079
+  wins  : pixcorr=0/6 ssim=0/6 alex2=2/6 alex5=1/6 incepti=6/6 clip=6/6 effnet=4/6 clip_to=2/6
+  t-stat: pixcorr=-14.38 ssim=-6.72 alex2=-1.65 alex5=-1.46 incepti=+4.23 clip=+4.60 effnet=-1.80 clip_to=-1.24
+
+Paired (4 subs [screened: 2,5,8,9]): B5a (best-of-16, indep K=4, NEW)  vs  B4a (best-of-16, indep K=4)
+  delta : pixcorr=-0.0078 ssim=-0.0005 alex2=-0.0004 alex5=-0.0004 incepti=+0.0089 clip=+0.0085 effnet=-0.0059 clip_to=+0.0272
+  wins  : pixcorr=0/4 ssim=1/4 alex2=2/4 alex5=2/4 incepti=3/4 clip=4/4 effnet=4/4 clip_to=4/4
+  t-stat: pixcorr=-3.45 ssim=-1.24 alex2=-0.14 alex5=-0.21 incepti=+1.60 clip=+4.80 effnet=-3.18 clip_to=+8.71
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): B5a (best-of-16, indep K=4, NEW)  vs  B4a (best-of-16, indep K=4)
+  delta : pixcorr=-0.0063 ssim=-0.0015 alex2=-0.0041 alex5=-0.0002 incepti=-0.0011 clip=+0.0060 effnet=-0.0022 clip_to=+0.0013
+  wins  : pixcorr=0/6 ssim=0/6 alex2=1/6 alex5=3/6 incepti=2/6 clip=6/6 effnet=4/6 clip_to=3/6
+  t-stat: pixcorr=-5.36 ssim=-3.18 alex2=-2.64 alex5=-0.31 incepti=-0.48 clip=+3.91 effnet=-1.31 clip_to=+0.24
+
+Paired (4 subs [screened: 2,5,8,9]): B5 (best-of-16, + K=4 tmf, NEW)  vs  B4 (best-of-16, + K=4 tmf)
+  delta : pixcorr=-0.0081 ssim=-0.0007 alex2=-0.0011 alex5=-0.0009 incepti=+0.0047 clip=+0.0080 effnet=-0.0041 clip_to=+0.0159
+  wins  : pixcorr=0/4 ssim=1/4 alex2=1/4 alex5=1/4 incepti=3/4 clip=4/4 effnet=3/4 clip_to=3/4
+  t-stat: pixcorr=-3.74 ssim=-1.13 alex2=-0.44 alex5=-0.39 incepti=+0.66 clip=+3.72 effnet=-2.36 clip_to=+1.81
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): B5 (best-of-16, + K=4 tmf, NEW)  vs  B4 (best-of-16, + K=4 tmf)
+  delta : pixcorr=-0.0066 ssim=-0.0016 alex2=-0.0041 alex5=+0.0006 incepti=-0.0010 clip=+0.0056 effnet=-0.0010 clip_to=+0.0013
+  wins  : pixcorr=0/6 ssim=0/6 alex2=0/6 alex5=3/6 incepti=3/6 clip=5/6 effnet=3/6 clip_to=2/6
+  t-stat: pixcorr=-7.27 ssim=-4.06 alex2=-3.83 alex5=+0.79 incepti=-0.48 clip=+2.18 effnet=-0.61 clip_to=+0.29
+
+========================================================================================================================================
+3. 10-SUBJECT PAIRED COMPARISONS & COMPONENT ISOLATION
+========================================================================================================================================
+
+Paired (10 subs [all 10 subjects]): O8 (w=1.00, indep K=4, strict NEW)  vs  O6 (prior original)
+  delta : pixcorr=+0.0314 ssim=+0.0136 alex2=+0.0174 alex5=+0.0094 incepti=+0.0275 clip=+0.0157 effnet=-0.0200 clip_to=+0.0279
+  wins  : pixcorr=10/10 ssim=8/10 alex2=10/10 alex5=10/10 incepti=10/10 clip=10/10 effnet=10/10 clip_to=10/10
+  t-stat: pixcorr=+8.51 ssim=+4.76 alex2=+8.49 alex5=+5.98 incepti=+8.37 clip=+6.16 effnet=-12.34 clip_to=+5.11
+
+Paired (10 subs [all 10 subjects]): O8 (w=1.00, indep K=4, strict NEW)  vs  O7a (w=1.00, indep K=4, strict)
+  delta : pixcorr=-0.0011 ssim=-0.0004 alex2=+0.0017 alex5=+0.0024 incepti=+0.0065 clip=+0.0075 effnet=-0.0061 clip_to=+0.0065
+  wins  : pixcorr=3/10 ssim=2/10 alex2=7/10 alex5=9/10 incepti=7/10 clip=9/10 effnet=10/10 clip_to=7/10
+  t-stat: pixcorr=-2.13 ssim=-2.80 alex2=+1.46 alex5=+2.80 incepti=+2.38 clip=+4.11 effnet=-5.21 clip_to=+1.53
+
+Paired (10 subs [all 10 subjects]): O8 (w=1.00, indep K=4, strict NEW)  vs  O7 (w=1.50, + K=4 tmf)
+  delta : pixcorr=-0.0049 ssim=-0.0007 alex2=-0.0002 alex5=+0.0010 incepti=+0.0079 clip=+0.0080 effnet=-0.0075 clip_to=+0.0044
+  wins  : pixcorr=0/10 ssim=1/10 alex2=3/10 alex5=6/10 incepti=9/10 clip=9/10 effnet=9/10 clip_to=4/10
+  t-stat: pixcorr=-9.36 ssim=-3.15 alex2=-0.17 alex5=+1.48 incepti=+3.44 clip=+3.31 effnet=-5.02 clip_to=+0.81
+
+Paired (10 subs [all 10 subjects]): O8b (w=1.00, + K=4 tmf, NEW)  vs  O8 (w=1.00, indep K=4, strict NEW)
+  delta : pixcorr=+0.0038 ssim=+0.0014 alex2=+0.0008 alex5=-0.0001 incepti=-0.0005 clip=+0.0001 effnet=-0.0002 clip_to=+0.0006
+  wins  : pixcorr=10/10 ssim=10/10 alex2=10/10 alex5=5/10 incepti=5/10 clip=6/10 effnet=6/10 clip_to=4/10
+  t-stat: pixcorr=+30.79 ssim=+51.05 alex2=+5.29 alex5=-0.66 incepti=-1.18 clip=+0.42 effnet=-0.85 clip_to=+0.34
+
+Paired (10 subs [all 10 subjects]): O8 (w=1.00, indep K=4, strict NEW)  vs  O8#w5start (R=4-gated start, not adopted)
+  delta : pixcorr=+0.0069 ssim=+0.0011 alex2=+0.0090 alex5=+0.0052 incepti=+0.0032 clip=+0.0041 effnet=-0.0042 clip_to=+0.0056
+  wins  : pixcorr=10/10 ssim=8/10 alex2=10/10 alex5=10/10 incepti=7/10 clip=10/10 effnet=10/10 clip_to=5/10
+  t-stat: pixcorr=+6.37 ssim=+3.13 alex2=+8.26 alex5=+9.82 incepti=+2.39 clip=+4.79 effnet=-5.04 clip_to=+1.70
+
+Paired (10 subs [all 10 subjects]): B5-1a (indep K=4, no tmf, NEW)  vs  B4-1a (indep K=4, no tmf)
+  delta : pixcorr=-0.0067 ssim=-0.0015 alex2=-0.0015 alex5=-0.0006 incepti=+0.0029 clip=+0.0086 effnet=-0.0033 clip_to=+0.0027
+  wins  : pixcorr=0/10 ssim=1/10 alex2=4/10 alex5=3/10 incepti=7/10 clip=10/10 effnet=7/10 clip_to=6/10
+  t-stat: pixcorr=-6.91 ssim=-4.99 alex2=-1.90 alex5=-0.69 incepti=+2.04 clip=+5.86 effnet=-2.91 clip_to=+0.46
+
+Paired (10 subs [all 10 subjects]): B5-1 (+ K=4 tmf, NEW)  vs  B4-1 (+ K=4 tmf)
+  delta : pixcorr=-0.0070 ssim=-0.0015 alex2=-0.0017 alex5=-0.0010 incepti=+0.0027 clip=+0.0088 effnet=-0.0032 clip_to=-0.0009
+  wins  : pixcorr=0/10 ssim=1/10 alex2=3/10 alex5=3/10 incepti=8/10 clip=10/10 effnet=8/10 clip_to=4/10
+  t-stat: pixcorr=-7.08 ssim=-5.13 alex2=-2.43 alex5=-1.02 incepti=+1.49 clip=+7.13 effnet=-2.90 clip_to=-0.16
+
+Paired (10 subs [all 10 subjects]): B5a (best-of-16, indep K=4, NEW)  vs  B4a (best-of-16, indep K=4)
+  delta : pixcorr=-0.0069 ssim=-0.0011 alex2=-0.0026 alex5=-0.0003 incepti=+0.0029 clip=+0.0070 effnet=-0.0037 clip_to=+0.0116
+  wins  : pixcorr=0/10 ssim=1/10 alex2=3/10 alex5=5/10 incepti=5/10 clip=10/10 effnet=8/10 clip_to=7/10
+  t-stat: pixcorr=-6.28 ssim=-3.14 alex2=-1.67 alex5=-0.35 incepti=+1.00 clip=+5.98 effnet=-2.77 clip_to=+2.19
+
+Paired (10 subs [all 10 subjects]): B5a (best-of-16, indep K=4, NEW)  vs  B''' (prior full-stack)
+  delta : pixcorr=+0.0462 ssim=+0.0287 alex2=+0.0232 alex5=+0.0105 incepti=+0.0147 clip=+0.0172 effnet=-0.0116 clip_to=+0.0273
+  wins  : pixcorr=10/10 ssim=10/10 alex2=10/10 alex5=10/10 incepti=10/10 clip=10/10 effnet=10/10 clip_to=9/10
+  t-stat: pixcorr=+15.42 ssim=+9.71 alex2=+7.17 alex5=+4.17 incepti=+5.52 clip=+4.43 effnet=-5.67 clip_to=+6.32
+
+Paired (10 subs [all 10 subjects]): B5 (best-of-16, + K=4 tmf, NEW)  vs  B4 (best-of-16, + K=4 tmf)
+  delta : pixcorr=-0.0072 ssim=-0.0013 alex2=-0.0029 alex5=+0.0000 incepti=+0.0013 clip=+0.0065 effnet=-0.0023 clip_to=+0.0071
+  wins  : pixcorr=0/10 ssim=1/10 alex2=1/10 alex5=4/10 incepti=6/10 clip=9/10 effnet=6/10 clip_to=5/10
+  t-stat: pixcorr=-7.36 ssim=-3.51 alex2=-2.44 alex5=+0.01 incepti=+0.43 clip=+3.81 effnet=-1.79 clip_to=+1.51
+
+Paired (10 subs [all 10 subjects]): B5 (best-of-16, + K=4 tmf, NEW)  vs  B5a (best-of-16, indep K=4, NEW)
+  delta : pixcorr=+0.0036 ssim=+0.0012 alex2=+0.0009 alex5=+0.0002 incepti=-0.0012 clip=-0.0001 effnet=+0.0007 clip_to=+0.0021
+  wins  : pixcorr=10/10 ssim=10/10 alex2=6/10 alex5=7/10 incepti=3/10 clip=3/10 effnet=3/10 clip_to=8/10
+  t-stat: pixcorr=+9.25 ssim=+9.50 alex2=+1.10 alex5=+0.39 incepti=-1.13 clip=-0.18 effnet=+1.53 clip_to=+0.75
+
+========================================================================================================================================
+4. PER-SUBJECT BREAKDOWN (sub-01 .. sub-10)
+========================================================================================================================================
+
+--- O8 (w=1.00, indep K=4, strict NEW) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3084    0.4202    0.8936    0.9257    0.7700    0.7976    0.8596    0.1462
+sub-02      0.2995    0.4287    0.9089    0.9311    0.7844    0.8406    0.8478    0.1300
+sub-03      0.3127    0.4241    0.9057    0.9277    0.7973    0.8364    0.8401    0.1887
+sub-04      0.2789    0.4172    0.8801    0.9188    0.7983    0.8407    0.8402    0.1713
+sub-05      0.2828    0.4214    0.8813    0.9145    0.7516    0.8116    0.8638    0.1525
+sub-06      0.3170    0.4241    0.9129    0.9412    0.7788    0.8259    0.8436    0.1450
+sub-07      0.2962    0.4232    0.8811    0.9186    0.7840    0.8119    0.8478    0.1425
+sub-08      0.3187    0.4333    0.9144    0.9433    0.8043    0.8485    0.8229    0.1850
+sub-09      0.3081    0.4279    0.9041    0.9318    0.7990    0.8236    0.8501    0.1375
+sub-10      0.3028    0.4321    0.8876    0.9284    0.8237    0.8621    0.8182    0.1825
+MEAN        0.3025    0.4252    0.8970    0.9281    0.7891    0.8299    0.8434    0.1581
+SD          0.0135    0.0052    0.0138    0.0094    0.0200    0.0195    0.0143    0.0217
+
+--- O8b (w=1.00, + K=4 tmf, NEW) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3123    0.4217    0.8943    0.9253    0.7715    0.7969    0.8588    0.1425
+sub-02      0.3035    0.4300    0.9094    0.9313    0.7821    0.8407    0.8476    0.1288
+sub-03      0.3169    0.4255    0.9071    0.9270    0.7975    0.8379    0.8389    0.1837
+sub-04      0.2825    0.4186    0.8806    0.9182    0.7988    0.8418    0.8407    0.1838
+sub-05      0.2860    0.4227    0.8816    0.9145    0.7505    0.8110    0.8637    0.1462
+sub-06      0.3210    0.4254    0.9142    0.9420    0.7783    0.8247    0.8429    0.1425
+sub-07      0.2996    0.4247    0.8819    0.9189    0.7809    0.8120    0.8481    0.1450
+sub-08      0.3231    0.4346    0.9155    0.9434    0.8045    0.8492    0.8228    0.1837
+sub-09      0.3123    0.4294    0.9051    0.9313    0.7992    0.8246    0.8501    0.1425
+sub-10      0.3064    0.4334    0.8877    0.9282    0.8229    0.8615    0.8189    0.1887
+MEAN        0.3064    0.4266    0.8977    0.9280    0.7886    0.8300    0.8433    0.1588
+SD          0.0138    0.0051    0.0141    0.0096    0.0202    0.0198    0.0141    0.0231
+
+--- B5-1a (indep K=4, no tmf, NEW) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3216    0.4208    0.9040    0.9234    0.7864    0.8058    0.8524    0.1363
+sub-02      0.3098    0.4303    0.9157    0.9380    0.7983    0.8559    0.8412    0.1762
+sub-03      0.3240    0.4245    0.9104    0.9303    0.8108    0.8502    0.8327    0.1937
+sub-04      0.2863    0.4180    0.8867    0.9302    0.8032    0.8594    0.8349    0.1837
+sub-05      0.2931    0.4219    0.8942    0.9270    0.7491    0.8105    0.8540    0.1688
+sub-06      0.3217    0.4250    0.9166    0.9436    0.7840    0.8366    0.8391    0.1613
+sub-07      0.2967    0.4207    0.8876    0.9251    0.7919    0.8199    0.8439    0.1650
+sub-08      0.3296    0.4344    0.9202    0.9459    0.8175    0.8575    0.8179    0.2075
+sub-09      0.3186    0.4301    0.9097    0.9307    0.7988    0.8349    0.8439    0.1812
+sub-10      0.3158    0.4330    0.9028    0.9402    0.8261    0.8683    0.8179    0.2125
+MEAN        0.3117    0.4259    0.9048    0.9334    0.7966    0.8399    0.8378    0.1786
+SD          0.0148    0.0057    0.0120    0.0079    0.0213    0.0219    0.0124    0.0227
+
+--- B5-1 (+ K=4 tmf, NEW) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3265    0.4224    0.9055    0.9233    0.7851    0.8050    0.8527    0.1325
+sub-02      0.3145    0.4318    0.9161    0.9381    0.7930    0.8567    0.8410    0.1650
+sub-03      0.3291    0.4260    0.9119    0.9313    0.8118    0.8484    0.8318    0.1850
+sub-04      0.2903    0.4196    0.8874    0.9294    0.8083    0.8598    0.8348    0.1812
+sub-05      0.2968    0.4234    0.8952    0.9260    0.7544    0.8106    0.8543    0.1725
+sub-06      0.3265    0.4265    0.9170    0.9435    0.7835    0.8351    0.8391    0.1663
+sub-07      0.3004    0.4222    0.8883    0.9243    0.7901    0.8194    0.8445    0.1638
+sub-08      0.3344    0.4359    0.9206    0.9467    0.8147    0.8600    0.8180    0.2012
+sub-09      0.3236    0.4319    0.9110    0.9301    0.7985    0.8344    0.8441    0.1775
+sub-10      0.3204    0.4346    0.9031    0.9409    0.8258    0.8681    0.8178    0.2150
+MEAN        0.3162    0.4274    0.9056    0.9334    0.7965    0.8397    0.8378    0.1760
+SD          0.0152    0.0057    0.0119    0.0084    0.0202    0.0223    0.0126    0.0225
+
+--- B5a (best-of-16, indep K=4, NEW) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3298    0.4253    0.9101    0.9291    0.7893    0.8146    0.8544    0.1513
+sub-02      0.3182    0.4339    0.9162    0.9382    0.8033    0.8571    0.8394    0.1725
+sub-03      0.3313    0.4265    0.9131    0.9377    0.8092    0.8524    0.8308    0.1937
+sub-04      0.2931    0.4217    0.8891    0.9323    0.8060    0.8653    0.8367    0.1950
+sub-05      0.2987    0.4255    0.8984    0.9273    0.7720    0.8167    0.8528    0.1863
+sub-06      0.3351    0.4288    0.9250    0.9528    0.7951    0.8409    0.8339    0.1788
+sub-07      0.3064    0.4243    0.8929    0.9304    0.7909    0.8234    0.8454    0.1675
+sub-08      0.3399    0.4377    0.9207    0.9483    0.8271    0.8654    0.8139    0.2225
+sub-09      0.3317    0.4338    0.9172    0.9369    0.8041    0.8442    0.8405    0.1713
+sub-10      0.3266    0.4366    0.9096    0.9417    0.8317    0.8700    0.8151    0.2238
+MEAN        0.3211    0.4294    0.9092    0.9375    0.8029    0.8450    0.8363    0.1862
+SD          0.0163    0.0056    0.0120    0.0083    0.0177    0.0207    0.0137    0.0233
+
+--- B5 (best-of-16, + K=4 tmf, NEW) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3344    0.4265    0.9108    0.9270    0.7856    0.8147    0.8560    0.1537
+sub-02      0.3218    0.4348    0.9153    0.9393    0.8045    0.8577    0.8401    0.1562
+sub-03      0.3365    0.4285    0.9177    0.9391    0.8080    0.8520    0.8312    0.1963
+sub-04      0.2960    0.4225    0.8876    0.9346    0.8090    0.8630    0.8348    0.2075
+sub-05      0.3031    0.4263    0.8998    0.9281    0.7697    0.8213    0.8528    0.1763
+sub-06      0.3370    0.4296    0.9214    0.9497    0.7928    0.8408    0.8377    0.1825
+sub-07      0.3093    0.4258    0.8972    0.9314    0.7954    0.8227    0.8460    0.1725
+sub-08      0.3433    0.4390    0.9241    0.9495    0.8252    0.8651    0.8153    0.2250
+sub-09      0.3371    0.4354    0.9179    0.9354    0.7979    0.8430    0.8415    0.1787
+sub-10      0.3287    0.4377    0.9095    0.9427    0.8291    0.8687    0.8147    0.2350
+MEAN        0.3247    0.4306    0.9101    0.9377    0.8017    0.8449    0.8370    0.1884
+SD          0.0165    0.0057    0.0118    0.0080    0.0177    0.0197    0.0139    0.0273
