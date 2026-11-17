@@ -116,6 +116,9 @@ ARMS = {"baseline (reproduced)": "s{:02d}_t0_s" + seed + "_A1",
         "O8b ablation: R=4-gated w5 start + K=4 tmf (not adopted)": "s{:02d}_w5_O8_w1_tmf",
         "O8: strict w 1.00 + Flex + v2 start (indep K=4)": "s{:02d}_o8_w1_notmf",
         "O8b: w 1.00 + Flex + v2 start + K=4 tmf": "s{:02d}_o8_w1_tmf",
+        "O9-0tta: 8-ckpt KVEBPyr+KV (0 TTA, w 1.00, indep K=4)": "s{:02d}_o9_0tta_w1_notmf",
+        "O9: 8-ckpt KVEBPyr+KV + 350 kvTTA (w 1.00, indep K=4)": "s{:02d}_o9_w1_notmf",
+        "O9b: 8-ckpt KVEBPyr+KV + 350 kvTTA + K=4 tmf (w 1.00)": "s{:02d}_o9_w1_tmf",
         "B⁴ ablation: 6-enc MS, 4-win start (nsel 1)": "s{:02d}_w3_B4_n1",
         "B⁴ ablation: 6-enc MS, best of 12 (no tmf)": "s{:02d}_w3_B4_sel12_sharp",
         "B⁴ ablation: 6-enc MS, best of 12 + tmf_cr": "s{:02d}_w3_B4_sel12_cr10",
@@ -232,6 +235,9 @@ compare("O6: O5 over encoders on three input windows", [
     "O7: w 1.50 + 512px start + K=4 tmf",
     "O8: strict w 1.00 + Flex + v2 start (indep K=4)",
     "O8b: w 1.00 + Flex + v2 start + K=4 tmf",
+    "O9-0tta: 8-ckpt KVEBPyr+KV (0 TTA, w 1.00, indep K=4)",
+    "O9: 8-ckpt KVEBPyr+KV + 350 kvTTA (w 1.00, indep K=4)",
+    "O9b: 8-ckpt KVEBPyr+KV + 350 kvTTA + K=4 tmf (w 1.00)",
     "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)",
     "B⁴-1: full-stack nsel 1 (+ K=4 tmf)",
     "B⁴a: full-stack best of 16 (indep K=4, no tmf)",
@@ -247,9 +253,22 @@ compare("O7a: strict w 1.00 + 512px start (indep K=4)", [
     "O7: w 1.50 + 512px start + K=4 tmf",
     "O8: strict w 1.00 + Flex + v2 start (indep K=4)",
     "O8b: w 1.00 + Flex + v2 start + K=4 tmf",
+    "O9-0tta: 8-ckpt KVEBPyr+KV (0 TTA, w 1.00, indep K=4)",
+    "O9: 8-ckpt KVEBPyr+KV + 350 kvTTA (w 1.00, indep K=4)",
+    "O9b: 8-ckpt KVEBPyr+KV + 350 kvTTA + K=4 tmf (w 1.00)",
 ])
 compare("O8: strict w 1.00 + Flex + v2 start (indep K=4)", [
     "O8b: w 1.00 + Flex + v2 start + K=4 tmf",
+    "O9-0tta: 8-ckpt KVEBPyr+KV (0 TTA, w 1.00, indep K=4)",
+    "O9: 8-ckpt KVEBPyr+KV + 350 kvTTA (w 1.00, indep K=4)",
+    "O9b: 8-ckpt KVEBPyr+KV + 350 kvTTA + K=4 tmf (w 1.00)",
+])
+compare("O9-0tta: 8-ckpt KVEBPyr+KV (0 TTA, w 1.00, indep K=4)", [
+    "O9: 8-ckpt KVEBPyr+KV + 350 kvTTA (w 1.00, indep K=4)",
+    "O9b: 8-ckpt KVEBPyr+KV + 350 kvTTA + K=4 tmf (w 1.00)",
+])
+compare("O9: 8-ckpt KVEBPyr+KV + 350 kvTTA (w 1.00, indep K=4)", [
+    "O9b: 8-ckpt KVEBPyr+KV + 350 kvTTA + K=4 tmf (w 1.00)",
 ])
 compare("B' best of 16", [
     "B⁴-1a: full-stack nsel 1 (indep K=4, no tmf)",

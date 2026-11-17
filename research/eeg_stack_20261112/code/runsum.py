@@ -17,7 +17,7 @@ for f in sorted(RUNS.glob("img/*/metrics.json")):
     d = json.loads(f.read_text())
     if "mean" not in d or f.parent.name.startswith("test"):
         continue
-    a = d["args"]
+    a = d.get("args", {})
     base = [a.get(k, "") for k in A]
     w.writerow([f.parent.name] + base + [round(d["mean"].get(k, float("nan")), 5) for k in M])
     for kind in ("selvar", "post", "post_off"):

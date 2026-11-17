@@ -28,6 +28,8 @@ on top of the host and the co-author's head, only components that are ours or tr
 | O7 | **O7a + directional cone amplification (`w = 1.50`) + step-1/2 K = 4 Tweedie posterior coupling with spatial contrast restoration (`--tmf 1,0.10,0.10,0 --tmf_cr 1`)** | adds Perceptogram-style directional extrapolation (`w > 1`, credited) and intra-query K = 4 Tweedie coupling (Efron 2011; Chung et al. 2023, credited); reported alongside O7a and full ablations O7b / O7c to isolate both mechanisms |
 | **O8** | **O7a + multi-scale temporal-pyramid single-subject `FlexBrainEncoder` (`train_flex.py`) + 5-fold OOF simplex ensemble (`oof_blend_select.py`, `alpha_o8 = 0.50`) + per-subject `ord_o8_flex` head on the frozen `v2` start latent and sampler (`nsel = 1`, `w = 1.00`, strictly independent `K = 4` draws)** | generic multi-scale temporal-pyramid EEG stem + gated residual trunk trained with cosine & soft-teacher-similarity KL distillation (`train_flex.py`), combined strictly on 5-fold concept-disjoint training OOF (`oof_blend_select.py`); zero cross-subject data, zero amplification, zero test-set tuning |
 | O8b | **O8 + step-1/2 K = 4 Tweedie posterior coupling (`--tmf 1,0.10,0.10,0 --tmf_cr 1`, `w = 1.00` kept)** | intra-query `K = 4` Tweedie coupling (same mechanism as O7, with strict single-subject `w = 1.00`) |
+| **O9-0tta / O9** | **Streamlined `8`-checkpoint single-subject pipeline (`7 × KVEBPyrEncoder` + `1 × BoundedConditionAdapter`, `o9_streamlined.py`): within-fold Empirical-Bayes spatiotemporal reliability gate & repeat-variance scaler (`TargetSNRGate`), nested multi-horizon stems (`0–1000 / 0–700 / 0–480 ms`), closed-form 70-layer SDXL-Turbo UNet cross-attention Key-Value subspace loss (`CenteredKVLoss`, $L_{\mathrm{KV}}$ `eff_rank = 237.1 / 2048`), plus `0` TTA steps (`O9-0tta`) or `350` centered $L_{\mathrm{KV}}$ split-half TTA steps + `bag10` (`r_eff = 8.0`) on `v2` start (`O9`)** | ours (`kv_metric.py`, `deep_enc.py`, `o9_streamlined.py`): Empirical-Bayes SNR weighting + repeat-variance matching from training $R=4$ to test $R_{\mathrm{eff}} \in \{8, 36, 72\}$, and exact operator-pullback alignment in the diffusion UNet's own Key-Value subspace (`91%` fewer ckpts & TTA steps vs O8; `0` aux heads) |
+| O9b | **O9 + step-1/2 K = 4 Tweedie posterior coupling (`--tmf 1,0.10,0.10,0 --tmf_cr 1`, `w = 1.00` kept)** | intra-query `K = 4` Tweedie coupling (exact counterpart to O8b, with `8` ckpts/subject) |
 
 O2 in detail: every test image has 80 repeats; trial r gets weight 1 / (mean squared residual of r against the mean of
 the other 79), so noisy trials (blinks, movement) count less. Label-free, one line of arithmetic, no training; the
@@ -111,6 +113,9 @@ O7a / O7 in detail: three bottlenecks limited O6:
 | + O7 (`w = 1.50` cone amplification + K = 4 Tweedie coupling) | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 | 0.8509 |
 | **+ O8 strict original (`FlexBrainEncoder` + OOF blend, `w = 1.00`, indep K = 4, headline)** | 0.3025 | 0.4252 | **0.8970** | **0.9281** | **0.7891** | **0.8299** | **0.8434** |
 | **+ O8b (`O8 + K = 4 Tweedie coupling`, `w = 1.00`, no cone amp)** | **0.3064** | **0.4266** | **0.8977** | **0.9280** | **0.7886** | **0.8300** | **0.8433** |
+| **+ O9-0tta (`8` ckpts: `KVEBPyrEncoder` + $L_{\mathrm{KV}}$, `0` TTA, `w = 1.00`, indep K = 4)** | 0.2981 | 0.4256 | 0.8917 | 0.9268 | **0.7901** | **0.8321** | 0.8447 |
+| **+ O9 (`8` ckpts, `350` $L_{\mathrm{KV}}$ TTA + `bag10`, `w = 1.00`, indep K = 4, streamlined headline)** | 0.2997 | **0.4276** | 0.8941 | **0.9284** | **0.7969** | 0.8293 | **0.8422** |
+| **+ O9b (`O9 + K = 4 Tweedie coupling`, `8` ckpts, `w = 1.00`, no cone amp)** | 0.3035 | **0.4290** | 0.8948 | **0.9287** | **0.7973** | 0.8298 | **0.8423** |
 | O8#w5start (`R = 4`-gated `w5` start ablation, not adopted) | 0.2956 | 0.4241 | 0.8880 | 0.9229 | 0.7859 | 0.8258 | 0.8477 |
 | O3 + adapted start *and* adapted condition (not adopted) | 0.2706 | 0.4142 | 0.8758 | 0.9153 | 0.7590 | 0.8087 | 0.8640 |
 
@@ -122,6 +127,8 @@ O7a / O7 in detail: three bottlenecks limited O6:
 | **O7a** (`w = 1.00`, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | **+0.0303 (6/6)** | **+0.0116 (5/6)** | **+0.0165 (6/6)** | **+0.0083 (5/6)** | **+0.0223 (6/6)** | **+0.0076 (4/6)** | **−0.0146 (6/6)** |
 | **O8** (`Flex` + OOF blend, `w = 1.00`, indep K = 4) | screened `{2, 5, 8, 9}` | +0.0344 (4/4) | +0.0174 (4/4) | +0.0170 (4/4) | +0.0093 (4/4) | +0.0263 (4/4) | +0.0200 (4/4) | −0.0205 (4/4) |
 | **O8** (`Flex` + OOF blend, `w = 1.00`, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | **+0.0294 (6/6)** | **+0.0111 (4/6)** | **+0.0177 (6/6)** | **+0.0094 (6/6)** | **+0.0283 (6/6)** | **+0.0128 (6/6)** | **−0.0196 (6/6)** |
+| **O9** (`8` ckpts, `350` $L_{\mathrm{KV}}$ TTA, `w = 1.00`, indep K = 4) | screened `{2, 5, 8, 9}` | +0.0306 (4/4) | +0.0197 (4/4) | +0.0101 (4/4) | +0.0076 (4/4) | +0.0297 (4/4) | +0.0174 (3/4) | −0.0220 (4/4) |
+| **O9** (`8` ckpts, `350` $L_{\mathrm{KV}}$ TTA, `w = 1.00`, indep K = 4) | **held-out `{1, 3, 4, 6, 7, 10}`** | **+0.0273 (5/6)** | **+0.0136 (6/6)** | **+0.0174 (6/6)** | **+0.0111 (6/6)** | **+0.0392 (6/6)** | **+0.0135 (6/6)** | **−0.0207 (6/6)** |
 | O7 (`w = 1.50` + K = 4 tmf) | screened `{2, 5, 8, 9}` | +0.0393 (4/4) | +0.0178 (4/4) | +0.0161 (4/4) | +0.0069 (4/4) | +0.0181 (4/4) | +0.0084 (4/4) | −0.0100 (4/4) |
 | O7 (`w = 1.50` + K = 4 tmf) | held-out `{1, 3, 4, 6, 7, 10}` | +0.0343 (6/6) | +0.0120 (5/6) | +0.0186 (6/6) | +0.0093 (6/6) | +0.0206 (6/6) | +0.0072 (4/6) | −0.0141 (6/6) |
 | **B⁴a** (best of 16, indep K = 4) | screened `{2, 5, 8, 9}` | +0.0621 (4/4) | +0.0228 (4/4) | +0.0284 (4/4) | +0.0172 (4/4) | +0.0343 (4/4) | +0.0263 (4/4) | −0.0241 (4/4) |
@@ -181,6 +188,29 @@ O7a / O7 in detail: three bottlenecks limited O6:
   `spat_ms512.pt` `lp4_rms` normalization on `R = 4` training repeats under-weighted mid-frequency spatial modes and inflated
   `32 × 32` high-frequency noise at `R = 80` test repeats ($20\times$ lower trial noise variance), lowering **O8** PixCorr by
   `−0.0069` (`0.2956` vs `0.3025`, `10/10`) and Alex2 by `−0.0090` (`0.8880` vs `0.8970`, `10/10`), so the frozen `v2` start was kept.
+- **O9-0tta, O9, and O9b** (streamlined lower-level continuation, `results/o9_streamlined.txt`): eliminate `O8`'s `92`-checkpoint
+  multi-window zoo, external `H14/B32/spat` auxiliary heads, concept-centroid loss, soft KL, and cross-family OOF blending in
+  favor of **`8` checkpoints/subject** (`7` seeds of `KVEBPyrEncoder` + `1` unchanged `BoundedConditionAdapter`, `kv_metric.py`,
+  `deep_enc.py`, `o9_streamlined.py`) grounded directly in Brain-HIVE's diffusion UNet operator:
+  1. **Exact 70-layer SDXL-Turbo UNet Key-Value Pullback Metric (`L_kv`)**: closed-form spectral square root of all `70`
+     `IPAttnProcessor2_0` cross-attention `(to_k_ip, to_v_ip)` blocks (`scales = [1.0]`, effective rank `237.1 / 2048`, quadratic
+     identity relative error `3.83e-10`), driving both zero-meaned training alignment (`CenteredKVLoss`) and centered `350`-step
+     split-half TTA (`kvTTA`, down from `3,900` TTA steps in O8).
+  2. **Empirical-Bayes Sensor-Millisecond Precision Gate (`TargetSNRGate`) & Nested Horizons**: within-fold signal/noise gate
+     with analytic repeat-variance matching from training $R = 4$ to test $R_{\mathrm{eff}} \in \{8, 36, 72\}$, feeding nested
+     `0–1000 / 0–700 / 0–480 ms` temporal-pyramid stems inside a single network.
+  Across all `10` subjects (`w = 1.00`, `nsel = 1`, zero blur): **O9-0tta** (`8` ckpts, **`0` TTA steps**) reaches `Inception
+  0.7901` (`+0.0074` vs O7a, `> O8 0.7891`) and `CLIP 0.8321` (`+0.0098` vs O7a `9/10`, above `O8 0.8299` and `CogCapPro 0.830`);
+  **O9** (`8` ckpts, `350` `kvTTA` steps + `bag10`, strictly independent `K = 4` draws) reaches **`SSIM 0.4276` (`10/10` above O8,
+  above ENIGMA `0.4264`), `Alex5 0.9284`, `Inception 0.7969` (`+0.0078` above O8, `8/10`), `EffNet 0.8422` (`8/10`), and `CLIP
+  top-1 0.1584`** (`[4/6]` published SOTA maxima; improvements over O8 on `SSIM / Alex5 / Inception / CLIP / EffNet` generalize
+  directly to the `6` untouched held-out subjects `{1, 3, 4, 6, 7, 10}`: `+0.0025 / +0.0017 / +0.0108 / +0.0008 / −0.0010`),
+  trading `PixCorr −0.0028` and `Alex2 −0.0029` vs O8's `92`-checkpoint ensemble; **O9b** (`+ --tmf`) reaches **`SSIM 0.4290`**,
+  **`Alex5 0.9287`**, and **`Inception 0.7973`**. Controlled negative Stage II ablations on dev `{2, 5, 8, 9}` (`results/o9_streamlined.txt`):
+  active-step UNet denoising-response distillation (`V3` vs `V2`: `CLIP 0.8290` vs `0.8284`, `SSIM −0.0023`), pixel-noise UNet
+  Gauss-Newton pullback (`L_gn` `eff_rank = 62.4 / 8192` + `lf374` + `proto256`, `R1..R4`: `CLIP 0.8144..0.8197`), zero-kNN
+  Gaussian Tweedie-Kalman (`S4/S5`: `PixCorr 0.2805/0.2856`), and decoupled-horizon tangent-KV (`W1/W2`: raised OOF `Perp_200w`
+  to `0.1807` and `Alex5 0.9306` / `CLIP top-1 0.1544`, but traded `CLIP 0.8232` and `SSIM 0.4258`).
 
 ### Reliability-driven ideas that were tested (ours; novelty check in "Where each component comes from")
 
@@ -607,10 +637,14 @@ python gen_exp.py --run t0_r4/sub-XX/fold-1_seed2025 --cond_file cone_b5_w1.75/s
     --sel_cond cone_b5_w1.00/sub-XX.npy --spat_cond spat_ms_mwtta/sub-XX.npy \
     --lat_init sub-XX/lat512_b4_v2_n0.80.npy --smap c0.628,0.5,1.0 --low_keep 8,0.22,0.04 \
     --tmf 1,0.12,0.12,0 --tmf_cr 1 --nsel 16 --sel_spat 0.28 --sel_vae 0.24 --sel_grad 0.22 --K 4 --save 0 --name sXX_b5_sel16_tmf
+# 5d. Wave 6 (O9-0tta / O9 / O9b streamlined 8-checkpoint pipeline):
+python kv_metric.py                                              # -> data/prep/unet_kv_metric.pt (70-layer UNet L_kv)
+python o9_streamlined.py --subs all --mode all                   # trains 7 seeds KVEBPyrEncoder, 1 DDPM head, kvTTA, v2 start, O9-0tta / O9 / O9b
 # 6. tables
 python agg.py                                                   # -> runs/enc/summary.csv (results/encoders_summary.csv)
-python tab10.py > table10.txt                                   # every arm including O8 / O8b / B⁵-1a..B⁵
+python tab10.py > table10.txt                                   # every arm including O8 / O8b / O9-0tta / O9 / O9b / B⁵-1a..B⁵
 python build_o8_b5_report.py > o8_b5_stack.txt
+python build_o9_report.py > o9_streamlined.txt
 python runsum.py > runs_summary.csv
 python svsum.py _ms_e10_ft10in_A1_pooled_p1_lowrk0.5_amp2_sel16 main   # all --post / --selvar variants of a run
 ```

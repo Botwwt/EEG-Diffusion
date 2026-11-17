@@ -40,6 +40,9 @@ training-cone restoration (`w = 1.00`, zero directional amplification, `nsel = 1
 | O7: O7a + directional cone amp (`w = 1.50`) + K = 4 Tweedie coupling | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 |
 | **O8: O7a + single-subject `FlexBrainEncoder` + OOF blend (`w = 1.00`, indep K = 4)** | 0.3025 | 0.4252 | **0.8970** | **0.9281** | **0.7891** | **0.8299** |
 | **O8b: O8 + K = 4 Tweedie coupling (`w = 1.00`, no cone amp)** | **0.3064** | **0.4266** | **0.8977** | **0.9280** | **0.7886** | **0.8300** |
+| **O9-0tta: streamlined 8-ckpt `KVEBPyrEncoder` + 70-layer UNet $L_{\mathrm{KV}}$ pullback (`0` TTA, `w = 1.00`, indep K = 4)** | 0.2981 | 0.4256 | 0.8917 | 0.9268 | **0.7901** | **0.8321** |
+| **O9: O9-0tta + 350-step centered $L_{\mathrm{KV}}$ split-half TTA (`8` ckpts, `w = 1.00`, indep K = 4)** | 0.2997 | **0.4276** | 0.8941 | **0.9284** | **0.7969** | 0.8293 |
+| **O9b: O9 + K = 4 Tweedie coupling (`8` ckpts, `w = 1.00`, no cone amp)** | 0.3035 | **0.4290** | 0.8948 | **0.9287** | **0.7973** | 0.8298 |
 
 **O8** improves on O6 across 10/10 subjects on PixCorr, Alex2, Alex5, Incep, CLIP, EffNet (`0.8434`, `−0.0200`) and 200-way
 CLIP top-1 (`0.1302 → 0.1581`) and 8/10 on SSIM; over **O7a**, **O8** lifts **Alex5 `+0.0024` (`9/10`, above Perceptogram
@@ -50,6 +53,22 @@ and independent `K = 4` draws. Over O6 on the 6 untouched held-out subjects `{1,
 `+0.0344 / +0.0174 / +0.0170 / +0.0093 / +0.0263 / +0.0200`, `4/4` on `{2, 5, 8, 9}`). **O8b** adds only `--tmf` K = 4
 Tweedie coupling (`w = 1.00` kept), reaching `SSIM 0.4266` (above ENIGMA `0.4264`) and `CLIP 0.8300`. An `R = 4`-gated
 start-latent ablation (`O8#w5start`) lost `PixCorr −0.0069` and `Alex2 −0.0090` (`results/o8_b5_stack.txt`) and was not adopted.
+
+**Streamlined lower-level continuation (`O9-0tta`, `O9`, `O9b`, `results/o9_streamlined.txt`).** Compresses `O8`'s `92`
+checkpoints/subject and `3,900` TTA steps down by `91%` to **`8` checkpoints/subject** (`7` seeds of `KVEBPyrEncoder` + `1`
+unchanged `BoundedConditionAdapter`) and **`350` TTA steps** (`0` in `O9-0tta`), removing all external auxiliary heads (`H14`,
+`B32`, `spat_ms512`), multi-window zoos, and cross-family blend tuning (`kv_metric.py`, `deep_enc.py`, `o9_streamlined.py`):
+(1) a within-fold Empirical-Bayes spatiotemporal reliability gate & repeat-variance scaler (`TargetSNRGate`, matching train
+$R = 4$ to test $R_{\mathrm{eff}} \in \{8, 36, 72\}$), (2) nested `0–1000 / 0–700 / 0–480 ms` temporal-pyramid stems inside
+one unified network, and (3) zero-meaned alignment in the closed-form quadratic Key-Value subspace $L_{\mathrm{KV}}$
+(`eff_rank = 237.1 / 2048`, quadratic identity `rel_err = 3.83e-10`) of all `70` SDXL-Turbo UNet `IPAttnProcessor2_0`
+cross-attention layers. At `8` checkpoints (`w = 1.00`, `nsel = 1`, no blur), **O9-0tta** (`0` TTA steps) already reaches
+`Incep 0.7901` and `CLIP 0.8321` (`+0.0098` over O7a in `9/10` subjects, above `O8 0.8299` and `CogCapPro 0.830`); **O9** (`350`
+$L_{\mathrm{KV}}$ TTA steps + `bag10`, indep `K = 4`) reaches **`SSIM 0.4276` (`10/10` over O8, above ENIGMA `0.4264`),
+`Alex5 0.9284`, `Incep 0.7969` (`+0.0078` over O8, `8/10`), `EffNet 0.8422`, and `CLIP top-1 0.1584`** (`[4/6]` published SOTA
+maxima; gains over O8 on `SSIM/Alex5/Incep/CLIP/EffNet` hold on the `6` untouched held-out subjects `{1, 3, 4, 6, 7, 10}`:
+`+0.0025 / +0.0017 / +0.0108 / +0.0008 / −0.0010`), trading `PixCorr −0.0028` and `Alex2 −0.0029` vs O8's `92`-checkpoint
+stack; **O9b** (`+ --tmf`) reaches **`SSIM 0.4290`, `Alex5 0.9287`, and `Incep 0.7973`**.
 
 **Full stack including the borrowed components (credited):** [`research/eeg_stack_20261112/`](research/eeg_stack_20261112/README.md) stacks multi-window
 multi-seed joint ten-subject semantic ensembles (`BrainMLP` in B⁴; adding `train_ms_flex.py` `FlexBrainEncoder` +

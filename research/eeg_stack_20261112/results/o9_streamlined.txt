@@ -1,0 +1,234 @@
+========================================================================================================================================
+O9-0tta / O9 / O9b STREAMLINED SINGLE-SUBJECT BENCHMARK — 10-SUBJECT EVALUATION & STAGE II ABLATIONS
+========================================================================================================================================
+Dataset : THINGS-EEG2 official test set (200 images x 80 repeats, 17 channels, 0-1000 ms @ 250 Hz, 200 ms RSVP SOA)
+Protocol: Strict single-subject training data only, w = 1.00 pure F_train cone restoration, nsel = 1, zero post-hoc blur;
+          indep K = 4 draws in O9-0tta / O9; step-1/2 K = 4 Tweedie coupling (--tmf 1,0.10,0.10,0 --tmf_cr 1) in O9b.
+Adapter : BoundedConditionAdapter (research/eeg/brainhive_bounded_component_v1.py) imported unchanged in every arm.
+UNet KV : 70 IPAttnProcessor2_0 layers (scales=[1.0], eff_rank=237.1/2048, rel_err=3.83e-10).
+
+========================================================================================================================================
+1. ARCHITECTURE & COMPLEXITY COMPARISON
+========================================================================================================================================
+Arm                 Enc Ckpts   Head  Total/Sub  TTA Steps  Aux Heads  Architecture Summary
+----------------------------------------------------------------------------------------------------------------------------------------
+O6                         21      1         22         50          0  3-window BrainMLP ensemble + v1 128px start
+O7a                       42+      1        43+     3,000+          0  6-window 42 BrainMLP + 5-win v2 512px start + cone w=1.00
+O8 / O8b                   90      2         92      3,900 3 (H14/B32/Spat)  42 BrainMLP + 36 Flex + 12 Spat512 + OOF simplex blend
+O9-0tta                     7      1          8          0          0  7x KVEBPyrEncoder (TargetSNRGate + CenteredKVLoss) + DDPM head + v2 start
+O9 / O9b                    7      1          8        350          0  O9-0tta + 350-step centered L_kv split-half TTA + bag10 (r_eff=8.0)
+
+========================================================================================================================================
+2. 10-SUBJECT SUMMARY (MEAN & BETWEEN-SUBJECT SD OVER sub-01 .. sub-10)
+========================================================================================================================================
+Arm                                        N   pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top   >SOTA
+[Published SOTA max per metric]           10    0.2670    0.4264    0.9100    0.9270    0.7790    0.8300         -         -
+----------------------------------------------------------------------------------------------------------------------------------------
+Brain-HIVE (repro)                        10    0.1828    0.3120    0.8266    0.8959    0.7440    0.7986    0.8786    0.1176   [0/6]
+  (10-subj SD)                                  0.0135    0.0174    0.0154    0.0164    0.0276    0.0211    0.0165    0.0204
+ordinary head (per sub)                   10    0.2016    0.3360    0.8299    0.9017    0.7551    0.8107    0.8712    0.1211   [0/6]
+  (10-subj SD)                                  0.0151    0.0169    0.0193    0.0171    0.0336    0.0220    0.0179    0.0237
+O6 (prior original, 21 ckpts)             10    0.2711    0.4116    0.8796    0.9188    0.7616    0.8142    0.8634    0.1302   [1/6]
+  (10-subj SD)                                  0.0155    0.0104    0.0134    0.0092    0.0260    0.0196    0.0132    0.0187
+O7a (w=1.00, indep K=4, 43+ ckpts)        10    0.3036    0.4256    0.8953    0.9257    0.7827    0.8224    0.8495    0.1516   [2/6]
+  (10-subj SD)                                  0.0137    0.0051    0.0145    0.0108    0.0175    0.0175    0.0126    0.0284
+O7 (w=1.50, + K=4 tmf)                    10    0.3074    0.4259    0.8971    0.9271    0.7812    0.8219    0.8509    0.1537   [3/6]
+  (10-subj SD)                                  0.0139    0.0052    0.0143    0.0102    0.0202    0.0193    0.0136    0.0298
+O8 (w=1.00, indep K=4, 92 ckpts)          10    0.3025    0.4252    0.8970    0.9281    0.7891    0.8299    0.8434    0.1581   [3/6]
+  (10-subj SD)                                  0.0135    0.0052    0.0138    0.0094    0.0200    0.0195    0.0143    0.0217
+O8b (O8 + K=4 tmf, 92 ckpts)              10    0.3064    0.4266    0.8977    0.9280    0.7886    0.8300    0.8433    0.1588   [5/6]
+  (10-subj SD)                                  0.0138    0.0051    0.0141    0.0096    0.0202    0.0198    0.0141    0.0231
+O9-0tta (8 ckpts, 0 TTA, w=1.00)          10    0.2981    0.4256    0.8917    0.9268    0.7901    0.8321    0.8447    0.1489   [3/6]
+  (10-subj SD)                                  0.0149    0.0059    0.0122    0.0091    0.0232    0.0212    0.0174    0.0272
+O9 (8 ckpts, 350 kvTTA, w=1.00)           10    0.2997    0.4276    0.8941    0.9284    0.7969    0.8293    0.8422    0.1584   [4/6]
+  (10-subj SD)                                  0.0147    0.0057    0.0130    0.0081    0.0219    0.0230    0.0169    0.0235
+O9b (O9 + K=4 tmf, 8 ckpts, w=1.00)       10    0.3035    0.4290    0.8948    0.9287    0.7973    0.8298    0.8423    0.1584   [4/6]
+  (10-subj SD)                                  0.0151    0.0057    0.0132    0.0083    0.0216    0.0229    0.0169    0.0258
+B5a (full-stack sel16, indep K=4)         10    0.3211    0.4294    0.9092    0.9375    0.8029    0.8450    0.8363    0.1862   [5/6]
+  (10-subj SD)                                  0.0163    0.0056    0.0120    0.0083    0.0177    0.0207    0.0137    0.0233
+B5 (full-stack sel16, + K=4 tmf)          10    0.3247    0.4306    0.9101    0.9377    0.8017    0.8449    0.8370    0.1884   [6/6]
+  (10-subj SD)                                  0.0165    0.0057    0.0118    0.0080    0.0177    0.0197    0.0139    0.0273
+
+========================================================================================================================================
+3. PRIOR SCREENED 4 SUBJECTS {2,5,8,9} VS UNTOUCHED HELD-OUT 6 SUBJECTS {1,3,4,6,7,10}
+========================================================================================================================================
+
+Paired (4 subs [screened: 2,5,8,9]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O6 (prior original, 21 ckpts)
+  delta : pixcorr=+0.0306 ssim=+0.0197 alex2=+0.0101 alex5=+0.0076 incepti=+0.0297 clip=+0.0174 effnet=-0.0220 clip_to=+0.0219
+  wins  : pixcorr=4/4 ssim=4/4 alex2=4/4 alex5=4/4 incepti=4/4 clip=3/4 effnet=4/4 clip_to=4/4
+  t-stat: pixcorr=+5.75 ssim=+8.20 alex2=+3.67 alex5=+2.81 incepti=+2.99 clip=+2.34 effnet=-11.52 clip_to=+3.51
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O6 (prior original, 21 ckpts)
+  delta : pixcorr=+0.0273 ssim=+0.0136 alex2=+0.0174 alex5=+0.0111 incepti=+0.0392 clip=+0.0135 effnet=-0.0207 clip_to=+0.0323
+  wins  : pixcorr=5/6 ssim=6/6 alex2=6/6 alex5=6/6 incepti=6/6 clip=6/6 effnet=6/6 clip_to=6/6
+  t-stat: pixcorr=+3.83 ssim=+2.83 alex2=+5.99 alex5=+9.38 incepti=+6.74 clip=+4.26 effnet=-5.78 clip_to=+12.77
+
+Paired (4 subs [screened: 2,5,8,9]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O7a (w=1.00, indep K=4, 43+ ckpts)
+  delta : pixcorr=-0.0054 ssim=+0.0020 alex2=-0.0044 alex5=+0.0027 incepti=+0.0104 clip=+0.0084 effnet=-0.0092 clip_to=+0.0141
+  wins  : pixcorr=1/4 ssim=3/4 alex2=0/4 alex5=3/4 incepti=3/4 clip=3/4 effnet=4/4 clip_to=3/4
+  t-stat: pixcorr=-1.42 ssim=+2.29 alex2=-2.37 alex5=+0.71 incepti=+1.63 clip=+2.04 effnet=-5.70 clip_to=+1.67
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O7a (w=1.00, indep K=4, 43+ ckpts)
+  delta : pixcorr=-0.0030 ssim=+0.0020 alex2=+0.0009 alex5=+0.0028 incepti=+0.0169 clip=+0.0059 effnet=-0.0060 clip_to=+0.0019
+  wins  : pixcorr=2/6 ssim=5/6 alex2=3/6 alex5=4/6 incepti=4/6 clip=5/6 effnet=5/6 clip_to=4/6
+  t-stat: pixcorr=-1.61 ssim=+2.98 alex2=+0.41 alex5=+1.29 incepti=+2.84 clip=+1.62 effnet=-1.86 clip_to=+0.29
+
+Paired (4 subs [screened: 2,5,8,9]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O8 (w=1.00, indep K=4, 92 ckpts)
+  delta : pixcorr=-0.0038 ssim=+0.0023 alex2=-0.0068 alex5=-0.0017 incepti=+0.0033 clip=-0.0027 effnet=-0.0015 clip_to=+0.0009
+  wins  : pixcorr=1/4 ssim=4/4 alex2=0/4 alex5=2/4 incepti=3/4 clip=2/4 effnet=3/4 clip_to=3/4
+  t-stat: pixcorr=-1.41 ssim=+2.69 alex2=-3.06 alex5=-0.67 incepti=+0.37 clip=-0.65 effnet=-0.61 clip_to=+0.79
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O8 (w=1.00, indep K=4, 92 ckpts)
+  delta : pixcorr=-0.0022 ssim=+0.0025 alex2=-0.0002 alex5=+0.0017 incepti=+0.0108 clip=+0.0008 effnet=-0.0010 clip_to=-0.0002
+  wins  : pixcorr=2/6 ssim=6/6 alex2=2/6 alex5=3/6 incepti=5/6 clip=5/6 effnet=5/6 clip_to=3/6
+  t-stat: pixcorr=-1.35 ssim=+3.76 alex2=-0.11 alex5=+0.90 incepti=+2.29 clip=+0.53 effnet=-0.61 clip_to=-0.03
+
+Paired (4 subs [screened: 2,5,8,9]): O9b (O9 + K=4 tmf, 8 ckpts, w=1.00)  vs  O8b (O8 + K=4 tmf, 92 ckpts)
+  delta : pixcorr=-0.0038 ssim=+0.0024 alex2=-0.0065 alex5=-0.0011 incepti=+0.0043 clip=-0.0017 effnet=-0.0012 clip_to=+0.0003
+  wins  : pixcorr=1/4 ssim=4/4 alex2=0/4 alex5=2/4 incepti=3/4 clip=2/4 effnet=3/4 clip_to=2/4
+  t-stat: pixcorr=-1.35 ssim=+2.89 alex2=-3.04 alex5=-0.47 incepti=+0.54 clip=-0.39 effnet=-0.44 clip_to=+0.13
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): O9b (O9 + K=4 tmf, 8 ckpts, w=1.00)  vs  O8b (O8 + K=4 tmf, 92 ckpts)
+  delta : pixcorr=-0.0022 ssim=+0.0025 alex2=-0.0005 alex5=+0.0019 incepti=+0.0116 clip=+0.0007 effnet=-0.0009 clip_to=-0.0008
+  wins  : pixcorr=2/6 ssim=6/6 alex2=2/6 alex5=3/6 incepti=5/6 clip=3/6 effnet=4/6 clip_to=3/6
+  t-stat: pixcorr=-1.30 ssim=+3.60 alex2=-0.21 alex5=+1.03 incepti=+2.05 clip=+0.37 effnet=-0.48 clip_to=-0.11
+
+Paired (4 subs [screened: 2,5,8,9]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O9-0tta (8 ckpts, 0 TTA, w=1.00)
+  delta : pixcorr=+0.0011 ssim=+0.0027 alex2=+0.0009 alex5=+0.0017 incepti=+0.0067 clip=-0.0026 effnet=-0.0047 clip_to=+0.0044
+  wins  : pixcorr=3/4 ssim=4/4 alex2=2/4 alex5=4/4 incepti=2/4 clip=1/4 effnet=4/4 clip_to=4/4
+  t-stat: pixcorr=+0.56 ssim=+8.08 alex2=+0.56 alex5=+2.24 incepti=+1.11 clip=-1.18 effnet=-5.49 clip_to=+2.65
+
+Paired (6 subs [held-out: 1,3,4,6,7,10]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O9-0tta (8 ckpts, 0 TTA, w=1.00)
+  delta : pixcorr=+0.0019 ssim=+0.0016 alex2=+0.0034 alex5=+0.0015 incepti=+0.0070 clip=-0.0031 effnet=-0.0010 clip_to=+0.0129
+  wins  : pixcorr=5/6 ssim=6/6 alex2=6/6 alex5=5/6 incepti=6/6 clip=1/6 effnet=4/6 clip_to=5/6
+  t-stat: pixcorr=+2.77 ssim=+4.11 alex2=+3.35 alex5=+1.75 incepti=+4.34 clip=-2.87 effnet=-1.30 clip_to=+3.22
+
+========================================================================================================================================
+4. 10-SUBJECT PAIRED COMPARISONS & COMPONENT ISOLATION
+========================================================================================================================================
+
+Paired (10 subs [all 10 subjects]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O6 (prior original, 21 ckpts)
+  delta : pixcorr=+0.0286 ssim=+0.0160 alex2=+0.0145 alex5=+0.0097 incepti=+0.0354 clip=+0.0151 effnet=-0.0212 clip_to=+0.0281
+  wins  : pixcorr=9/10 ssim=10/10 alex2=10/10 alex5=10/10 incepti=10/10 clip=9/10 effnet=10/10 clip_to=10/10
+  t-stat: pixcorr=+6.24 ssim=+5.22 alex2=+6.33 alex5=+7.30 incepti=+6.83 clip=+4.52 effnet=-9.68 clip_to=+8.80
+
+Paired (10 subs [all 10 subjects]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O7a (w=1.00, indep K=4, 43+ ckpts)
+  delta : pixcorr=-0.0040 ssim=+0.0020 alex2=-0.0012 alex5=+0.0028 incepti=+0.0143 clip=+0.0069 effnet=-0.0073 clip_to=+0.0068
+  wins  : pixcorr=3/10 ssim=8/10 alex2=3/10 alex5=7/10 incepti=7/10 clip=8/10 effnet=9/10 clip_to=7/10
+  t-stat: pixcorr=-2.20 ssim=+3.98 alex2=-0.70 alex5=+1.48 incepti=+3.33 clip=+2.63 effnet=-3.59 clip_to=+1.29
+
+Paired (10 subs [all 10 subjects]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O8 (w=1.00, indep K=4, 92 ckpts)
+  delta : pixcorr=-0.0028 ssim=+0.0024 alex2=-0.0029 alex5=+0.0003 incepti=+0.0078 clip=-0.0006 effnet=-0.0012 clip_to=+0.0003
+  wins  : pixcorr=3/10 ssim=10/10 alex2=2/10 alex5=5/10 incepti=8/10 clip=7/10 effnet=8/10 clip_to=6/10
+  t-stat: pixcorr=-2.05 ssim=+4.88 alex2=-1.64 alex5=+0.21 incepti=+1.77 clip=-0.34 effnet=-0.91 clip_to=+0.05
+
+Paired (10 subs [all 10 subjects]): O9b (O9 + K=4 tmf, 8 ckpts, w=1.00)  vs  O8b (O8 + K=4 tmf, 92 ckpts)
+  delta : pixcorr=-0.0028 ssim=+0.0024 alex2=-0.0029 alex5=+0.0007 incepti=+0.0087 clip=-0.0002 effnet=-0.0010 clip_to=-0.0004
+  wins  : pixcorr=3/10 ssim=10/10 alex2=2/10 alex5=5/10 incepti=8/10 clip=5/10 effnet=7/10 clip_to=5/10
+  t-stat: pixcorr=-1.97 ssim=+4.90 alex2=-1.63 alex5=+0.51 incepti=+1.92 clip=-0.13 effnet=-0.69 clip_to=-0.08
+
+Paired (10 subs [all 10 subjects]): O9-0tta (8 ckpts, 0 TTA, w=1.00)  vs  O7a (w=1.00, indep K=4, 43+ ckpts)
+  delta : pixcorr=-0.0056 ssim=-0.0001 alex2=-0.0036 alex5=+0.0011 incepti=+0.0074 clip=+0.0098 effnet=-0.0048 clip_to=-0.0027
+  wins  : pixcorr=2/10 ssim=5/10 alex2=1/10 alex5=6/10 incepti=6/10 clip=9/10 effnet=9/10 clip_to=5/10
+  t-stat: pixcorr=-3.23 ssim=-0.13 alex2=-1.88 alex5=+0.67 incepti=+2.01 clip=+4.30 effnet=-2.53 clip_to=-0.42
+
+Paired (10 subs [all 10 subjects]): O9 (8 ckpts, 350 kvTTA, w=1.00)  vs  O9-0tta (8 ckpts, 0 TTA, w=1.00)
+  delta : pixcorr=+0.0016 ssim=+0.0021 alex2=+0.0024 alex5=+0.0016 incepti=+0.0069 clip=-0.0029 effnet=-0.0025 clip_to=+0.0095
+  wins  : pixcorr=8/10 ssim=10/10 alex2=8/10 alex5=9/10 incepti=8/10 clip=2/10 effnet=8/10 clip_to=9/10
+  t-stat: pixcorr=+1.91 ssim=+6.54 alex2=+2.61 alex5=+2.77 incepti=+2.87 clip=-2.83 effnet=-3.04 clip_to=+3.43
+
+Paired (10 subs [all 10 subjects]): O9b (O9 + K=4 tmf, 8 ckpts, w=1.00)  vs  O9 (8 ckpts, 350 kvTTA, w=1.00)
+  delta : pixcorr=+0.0038 ssim=+0.0014 alex2=+0.0007 alex5=+0.0003 incepti=+0.0004 clip=+0.0005 effnet=+0.0001 clip_to=+0.0000
+  wins  : pixcorr=10/10 ssim=10/10 alex2=9/10 alex5=7/10 incepti=6/10 clip=7/10 effnet=5/10 clip_to=5/10
+  t-stat: pixcorr=+24.36 ssim=+61.69 alex2=+5.43 alex5=+2.07 incepti=+0.58 clip=+0.96 effnet=+0.69 clip_to=+0.00
+
+========================================================================================================================================
+5. PER-SUBJECT BREAKDOWN (sub-01 .. sub-10)
+========================================================================================================================================
+
+--- O8 (w=1.00, indep K=4, 92 ckpts) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3084    0.4202    0.8936    0.9257    0.7700    0.7976    0.8596    0.1462
+sub-02      0.2995    0.4287    0.9089    0.9311    0.7844    0.8406    0.8478    0.1300
+sub-03      0.3127    0.4241    0.9057    0.9277    0.7973    0.8364    0.8401    0.1887
+sub-04      0.2789    0.4172    0.8801    0.9188    0.7983    0.8407    0.8402    0.1713
+sub-05      0.2828    0.4214    0.8813    0.9145    0.7516    0.8116    0.8638    0.1525
+sub-06      0.3170    0.4241    0.9129    0.9412    0.7788    0.8259    0.8436    0.1450
+sub-07      0.2962    0.4232    0.8811    0.9186    0.7840    0.8119    0.8478    0.1425
+sub-08      0.3187    0.4333    0.9144    0.9433    0.8043    0.8485    0.8229    0.1850
+sub-09      0.3081    0.4279    0.9041    0.9318    0.7990    0.8236    0.8501    0.1375
+sub-10      0.3028    0.4321    0.8876    0.9284    0.8237    0.8621    0.8182    0.1825
+MEAN        0.3025    0.4252    0.8970    0.9281    0.7891    0.8299    0.8434    0.1581
+SD          0.0135    0.0052    0.0138    0.0094    0.0200    0.0195    0.0143    0.0217
+
+--- O9-0tta (8 ckpts, 0 TTA, w=1.00) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3014    0.4207    0.8847    0.9229    0.7750    0.7979    0.8660    0.0925
+sub-02      0.2907    0.4263    0.8917    0.9262    0.7978    0.8466    0.8581    0.1300
+sub-03      0.3114    0.4250    0.9008    0.9228    0.7930    0.8366    0.8408    0.1550
+sub-04      0.2711    0.4166    0.8829    0.9264    0.7835    0.8438    0.8383    0.1763
+sub-05      0.2778    0.4196    0.8755    0.9143    0.7436    0.8074    0.8671    0.1500
+sub-06      0.3090    0.4279    0.9040    0.9384    0.7998    0.8379    0.8373    0.1438
+sub-07      0.3000    0.4220    0.8751    0.9171    0.7906    0.8154    0.8502    0.1512
+sub-08      0.3200    0.4339    0.9116    0.9432    0.8064    0.8493    0.8202    0.1812
+sub-09      0.3009    0.4300    0.8991    0.9234    0.7780    0.8206    0.8523    0.1300
+sub-10      0.2984    0.4337    0.8918    0.9336    0.8330    0.8658    0.8165    0.1788
+MEAN        0.2981    0.4256    0.8917    0.9268    0.7901    0.8321    0.8447    0.1489
+SD          0.0149    0.0059    0.0122    0.0091    0.0232    0.0212    0.0174    0.0272
+
+--- O9 (8 ckpts, 350 kvTTA, w=1.00) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3014    0.4230    0.8898    0.9240    0.7757    0.7926    0.8659    0.1175
+sub-02      0.2971    0.4290    0.8966    0.9276    0.7936    0.8460    0.8533    0.1325
+sub-03      0.3128    0.4256    0.9021    0.9241    0.8029    0.8367    0.8390    0.1688
+sub-04      0.2742    0.4179    0.8833    0.9271    0.7918    0.8431    0.8395    0.1713
+sub-05      0.2781    0.4232    0.8743    0.9182    0.7651    0.7995    0.8600    0.1550
+sub-06      0.3134    0.4294    0.9113    0.9398    0.8048    0.8314    0.8380    0.1588
+sub-07      0.3003    0.4253    0.8778    0.9228    0.8025    0.8132    0.8476    0.1638
+sub-08      0.3211    0.4360    0.9130    0.9442    0.8179    0.8516    0.8172    0.1825
+sub-09      0.2975    0.4323    0.8973    0.9238    0.7759    0.8166    0.8482    0.1388
+sub-10      0.3008    0.4345    0.8954    0.9328    0.8393    0.8622    0.8133    0.1950
+MEAN        0.2997    0.4276    0.8941    0.9284    0.7969    0.8293    0.8422    0.1584
+SD          0.0147    0.0057    0.0130    0.0081    0.0219    0.0230    0.0169    0.0235
+
+--- O9b (O9 + K=4 tmf, 8 ckpts, w=1.00) ---
+Sub        pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+sub-01      0.3049    0.4244    0.8902    0.9236    0.7770    0.7926    0.8658    0.1150
+sub-02      0.3016    0.4305    0.8976    0.9284    0.7946    0.8477    0.8540    0.1325
+sub-03      0.3170    0.4270    0.9021    0.9244    0.8043    0.8346    0.8390    0.1700
+sub-04      0.2772    0.4192    0.8840    0.9269    0.7887    0.8434    0.8398    0.1813
+sub-05      0.2812    0.4245    0.8749    0.9182    0.7635    0.8016    0.8600    0.1400
+sub-06      0.3174    0.4308    0.9123    0.9405    0.8066    0.8336    0.8379    0.1700
+sub-07      0.3040    0.4267    0.8783    0.9227    0.8041    0.8139    0.8470    0.1525
+sub-08      0.3256    0.4375    0.9142    0.9448    0.8159    0.8538    0.8171    0.1875
+sub-09      0.3015    0.4338    0.8988    0.9249    0.7796    0.8155    0.8484    0.1425
+sub-10      0.3049    0.4359    0.8960    0.9331    0.8388    0.8608    0.8135    0.1925
+MEAN        0.3035    0.4290    0.8948    0.9287    0.7973    0.8298    0.8423    0.1584
+SD          0.0151    0.0057    0.0132    0.0083    0.0216    0.0229    0.0169    0.0258
+
+========================================================================================================================================
+6. STAGE II DEV {2,5,8,9} CONTROLLED ABLATIONS & NEGATIVE RESULTS (w=1.00, indep K=4, nsel=1, ZERO BLUR)
+========================================================================================================================================
+Dev Arm                                pixcorr      ssim     alex2     alex5  inceptio      clip    effnet  clip_top
+----------------------------------------------------------------------------------------------------------------------------------------
+O6  (21 ckpts, old v1)                  0.2678    0.4104    0.8852    0.9208    0.7585    0.8110    0.8667    0.1303
+O7a (92 ckpts, 3000+ TTA, kNN)          0.3038    0.4282    0.8997    0.9258    0.7778    0.8200    0.8539    0.1381
+O8  (92 ckpts, 3900 TTA, kNN)           0.3023    0.4278    0.9022    0.9302    0.7848    0.8311    0.8462    0.1512
+S1  (3 enc+ddpm, 0 TTA, v2)             0.2986    0.4278    0.8950    0.9272    0.7780    0.8293    0.8496    0.1444
+S2  (3 enc+drd, 0 TTA, v2)              0.2984    0.4264    0.8960    0.9268    0.7781    0.8285    0.8500    0.1472
+S3  (3 enc+drd, 150 TTA, no bag)        0.2989    0.4293    0.8953    0.9257    0.7838    0.8259    0.8463    0.1619
+S4  (S3 + zero-kNN gauss kalman)        0.2805    0.4235    0.8894    0.9249    0.7854    0.8290    0.8468    0.1619
+S5  (S3 + zero-kNN gauss lk)            0.2856    0.4245    0.8912    0.9259    0.7851    0.8282    0.8468    0.1588
+R1  (5 enc+L_gn+gn_ordh, 0 TTA)         0.2933    0.4254    0.8918    0.9219    0.7671    0.8197    0.8573    0.1359
+R2  (R1 + 374-param lead-field)         0.2933    0.4252    0.8934    0.9222    0.7681    0.8179    0.8555    0.1334
+R3  (R2 + 1-win prec1 start)            0.2917    0.4250    0.8929    0.9229    0.7656    0.8158    0.8556    0.1372
+R4  (R3 + 256 proto zero-kNN)           0.2899    0.4195    0.8916    0.9218    0.7626    0.8144    0.8571    0.1297
+V1  (7 enc+kvdrd, 0 TTA+bag10)          0.2963    0.4249    0.8961    0.9277    0.7804    0.8315    0.8506    0.1500
+V2  (7 enc+ddpm, 350 kvTTA -> O9)       0.2985    0.4302    0.8953    0.9285    0.7881    0.8284    0.8447    0.1522
+V3  (7 enc+kvdrd, 350 kvTTA)            0.2977    0.4279    0.8960    0.9290    0.7869    0.8290    0.8458    0.1497
+W1  (v5 dec-hor+ddpmkv, 0 TTA)          0.2963    0.4240    0.8963    0.9287    0.7779    0.8260    0.8529    0.1459
+W2  (v5 dec-hor+ddpmkv, 245 hybTTA)     0.2972    0.4258    0.8981    0.9306    0.7805    0.8232    0.8485    0.1544
+
+5-Fold Concept-Disjoint Encoder OOF Summary:
+  o9_uni KVEBPyr+CenteredKV (all 10, seed 2025)    | n=50 folds | params=29,066,243 | Perp_200w=0.1592 | KVc_200w=0.1366
+  o9_v5 DecoupledHor+TangentKV (dev 4, seed 2025)  | n=20 folds | params=27,046,915 | Perp_200w=0.1807 | KVc_200w=0.1575
