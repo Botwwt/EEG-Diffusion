@@ -15,34 +15,112 @@ The full ten-subject R80 comparison supports ordinary over native Brain-HIVE (DI
 
 Model weights, private EEG, large feature arrays and machine credentials are excluded from Git. See the [verified storage and recovery record](docs/STORAGE.md). The October proposal below is historical; consult the dated current-state page before interpreting it as an active or completed experiment.
 
-## Stacked results on the ordinary head — 2026-11-17
+## Stacked results and O10 forward-operator synthesis — 2026-11-19
 
 **Original-components pipeline (headline).** A prior-art audit found that the joint encoder, best-of-N selection,
-output shrinkage and condition amplification of the stack below come from same-field papers (MindEye2 / ENIGMA,
+output shrinkage and condition amplification of the full stack below come from same-field papers (MindEye2 / ENIGMA,
 MindEye, MindEye2, Perceptogram). Leaving all four out — and also keeping the `K = 4` evaluated samples per query strictly
-independent — **O8** extends **O7a** with a single-subject `FlexBrainEncoder` multi-scale temporal-pyramid family
-(`train_flex.py`) combined on the training set via 5-fold concept-disjoint out-of-fold simplex ensembling
-(`oof_blend_select.py`, `alpha_o8 = 0.50`) and a paired per-subject `ord_o8_flex` ordinary head on the same frozen
-**O7a** native 512 px 5-window (`48–248`, `40–300`, `60–360`, `40–500`, `0–1000 ms` post-stimulus at `250 Hz`;
-`200 ms` RSVP SOA) QR-PCA start latents, inverse-variance 80-repeat aggregation, fractional Differential-Diffusion
-re-injection (`smap c0.625,0.5,1.0`) with step-2/3 `8 × 8` low-band tether, split-half contrastive TTA, and pure
-training-cone restoration (`w = 1.00`, zero directional amplification, `nsel = 1`, no post-hoc blur):
+independent (`nsel = 1`, `4` UNet NFE/img, zero post-hoc blur) — **O8** extends **O7a** with `FlexBrainEncoder` (`train_flex.py`)
++ `ord_o8_flex`; **O9** compresses `92` checkpoints/subject down to `8` (`KVEBPyrEncoder` + `L_KV` pullback + `1` DDPM head);
+and **O10** eliminates both redundant positive-pair alignment weights `(0.35, 0.25 -> 0.0, 0.0)` and the 525,568-param
+`BoundedConditionAdapter` DDPM head completely (`0` DDPM heads), uniting two `(0, 0)` streams on the pure `F_train[ok]` cone (`w = 1.00`):
 
-| setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP |
-|---|---|---|---|---|---|---|
-| Brain-HIVE, reproduced | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 |
-| + ordinary head (per subject) | 0.2016 | 0.3360 | 0.8299 | 0.9017 | 0.7551 | 0.8107 |
-| O3: + original components | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 |
-| O4: + test-time-adapted start image | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 |
-| O5: + seed-ensemble condition with repeat bagging | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 |
-| O6: + multi-window encoder ensemble for the condition | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 |
-| O7a: + 6-win TTA + pure cone (`w = 1.00`) + 5-win 512px start + tether (indep K = 4) | 0.3036 | 0.4256 | 0.8953 | 0.9257 | 0.7827 | 0.8224 |
-| O7: O7a + directional cone amp (`w = 1.50`) + K = 4 Tweedie coupling | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 |
-| **O8: O7a + single-subject `FlexBrainEncoder` + OOF blend (`w = 1.00`, indep K = 4)** | 0.3025 | 0.4252 | **0.8970** | **0.9281** | **0.7891** | **0.8299** |
-| **O8b: O8 + K = 4 Tweedie coupling (`w = 1.00`, no cone amp)** | **0.3064** | **0.4266** | **0.8977** | **0.9280** | **0.7886** | **0.8300** |
-| **O9-0tta: streamlined 8-ckpt `KVEBPyrEncoder` + 70-layer UNet $L_{\mathrm{KV}}$ pullback (`0` TTA, `w = 1.00`, indep K = 4)** | 0.2981 | 0.4256 | 0.8917 | 0.9268 | **0.7901** | **0.8321** |
-| **O9: O9-0tta + 350-step centered $L_{\mathrm{KV}}$ split-half TTA (`8` ckpts, `w = 1.00`, indep K = 4)** | 0.2997 | **0.4276** | 0.8941 | **0.9284** | **0.7969** | 0.8293 |
-| **O9b: O9 + K = 4 Tweedie coupling (`8` ckpts, `w = 1.00`, no cone amp)** | 0.3035 | **0.4290** | 0.8948 | **0.9287** | **0.7973** | 0.8298 |
+| setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP | CLIP top-1 |
+|---|---|---|---|---|---|---|---|
+| Brain-HIVE, reproduced | 0.1828 | 0.3120 | 0.8266 | 0.8959 | 0.7440 | 0.7986 | 0.1176 |
+| + ordinary head (per subject) | 0.2016 | 0.3360 | 0.8299 | 0.9017 | 0.7551 | 0.8107 | 0.1211 |
+| O3: + original components | 0.2636 | 0.4073 | 0.8727 | 0.9152 | 0.7581 | 0.8118 | – |
+| O4: + test-time-adapted start image | 0.2687 | 0.4090 | 0.8753 | 0.9158 | 0.7573 | 0.8121 | – |
+| O5: + seed-ensemble condition with repeat bagging | 0.2692 | 0.4108 | 0.8780 | 0.9176 | 0.7584 | 0.8139 | – |
+| O6: + multi-window encoder ensemble for the condition | 0.2711 | 0.4116 | 0.8796 | 0.9188 | 0.7616 | 0.8142 | 0.1302 |
+| O7a: + 6-win TTA + pure cone (`w = 1.00`) + 5-win 512px start + tether (indep K = 4) | 0.3036 | 0.4256 | 0.8953 | 0.9257 | 0.7827 | 0.8224 | 0.1516 |
+| O7: O7a + directional cone amp (`w = 1.50`) + K = 4 Tweedie coupling | 0.3074 | 0.4259 | 0.8971 | 0.9271 | 0.7812 | 0.8219 | – |
+| **O8: O7a + single-subject `FlexBrainEncoder` + OOF blend (`w = 1.00`, indep K = 4)** | 0.3025 | 0.4252 | **0.8970** | **0.9281** | **0.7891** | **0.8299** | 0.1581 |
+| **O8b: O8 + K = 4 Tweedie coupling (`w = 1.00`, no cone amp)** | **0.3064** | **0.4266** | **0.8977** | **0.9280** | **0.7886** | **0.8300** | – |
+| **O9-0tta: streamlined 8-ckpt `KVEBPyrEncoder` + 70-layer UNet $L_{\mathrm{KV}}$ pullback (`0` TTA, `w = 1.00`)** | 0.2981 | 0.4256 | 0.8917 | 0.9268 | **0.7901** | **0.8321** | 0.1489 |
+| **O9: O9-0tta + 350-step centered $L_{\mathrm{KV}}$ split-half TTA (`8` ckpts, `w = 1.00`, indep K = 4)** | 0.2997 | **0.4276** | 0.8941 | **0.9284** | **0.7969** | 0.8293 | 0.1584 |
+| **O9b: O9 + K = 4 Tweedie coupling (`8` ckpts, `w = 1.00`, no cone amp)** | 0.3035 | **0.4290** | 0.8948 | **0.9287** | **0.7973** | 0.8298 | – |
+| O9-zero00-0head (`η = 0`): `(0.35, 0.25) -> (0, 0)` + `0` DDPM heads (`7` ckpts, `F_train`, `w = 1.00`) | 0.2998 | 0.4262 | 0.8948 | **0.9295** | 0.7952 | 0.8284 | 0.1576 |
+| O10-sem-only (`η = 1`): `(0, 0)` + FN-mask on VAE-marginalized `F_sem` + PhysReSyn (`0` DDPM heads) | 0.2866 | 0.4173 | 0.8804 | 0.9231 | 0.7870 | 0.8300 | 0.1610 |
+| **O10-0tta (`η = 0.50`, `0` TTA, `0` DDPM heads, `w = 1.00`, `nsel = 1`)** | 0.2933 | 0.4203 | 0.8883 | 0.9283 | 0.7920 | **0.8346** | 0.1573 |
+| **O10 (Headline: `η = 0.50` bifurcated, `0` DDPM heads, `w = 1.00`, `nsel = 1`)** | 0.2944 | 0.4217 | 0.8900 | **0.9290** | 0.7958 | **0.8347** | **0.1620** |
+| **O10-sel2 (`η = 0.50`, `nsel = 2`, `8` UNet NFE/img)** | 0.2963 | 0.4225 | 0.8900 | 0.9287 | **0.7985** | **0.8371** | **0.1624** |
+| **O10-sel4 (`η = 0.50`, `nsel = 4`, `16` UNet NFE/img)** | 0.2990 | 0.4235 | 0.8903 | **0.9294** | **0.8009** | **0.8392** | 0.1609 |
+
+## O10: Bottleneck localization, `(0.35, 0.25)` elimination & bifurcated forward-operator synthesis — 2026-11-19
+
+Full methodology, scripts, and paired item-level confusion statistics are recorded in [`research/eeg_stack_20261112/results/o10_factorized.txt`](research/eeg_stack_20261112/results/o10_factorized.txt) and [`research/eeg_stack_20261112/code/o10_factorized.py`](research/eeg_stack_20261112/code/o10_factorized.py).
+
+### 1. Bottleneck localization & Oracle ceilings (`D_dev200`)
+
+Evaluated strictly inside the training set (`D_dev200` = concept fold `0`, subjects `{2, 5, 8, 9}`, 200 images with both single-repeat `r4` and 40-repeat `r40` EEG; zero official test access):
+
+| Arm / Oracle | Regime | Stage A: `F` top-1 | Stage A: `F_sem` top-1 | Stage B: `L_kv` top-1 | Stage C: Gen CLIP top-1 | CLIP 2-way | SSIM |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Brain-HIVE | `r4` / `r40` | 0.1562 / 0.1650 | 0.1050 / 0.1600 | 0.1137 / 0.1512 | 0.0359 / 0.1041 | 0.6838 / 0.8134 | 0.3145 / 0.2951 |
+| ordinary head | `r4` / `r40` | 0.1562 / 0.1650 | 0.1050 / 0.1600 | 0.1300 / 0.1713 | 0.0456 / 0.1153 | 0.6944 / 0.8354 | 0.3455 / 0.3180 |
+| O9-0tta | `r4` / `r40` | 0.2125 / 0.2337 | 0.1237 / 0.2237 | 0.1925 / 0.2425 | 0.0622 / 0.1422 | 0.7345 / 0.8462 | 0.4213 / 0.3985 |
+| O9 | `r4` / `r40` | 0.2188 / 0.2662 | 0.1250 / 0.2562 | 0.1700 / 0.2475 | 0.0575 / 0.1594 | 0.7301 / 0.8485 | 0.4210 / 0.3995 |
+| **Oracle (`F_full`)** | `–` | – | – | – | **0.9038** | **0.9985** | 0.4206 |
+| **Oracle (`F_sem`)** | `–` | – | – | – | **0.9238** | **0.9987** | 0.4139 |
+| **Oracle (`z_vae` only)** | `–` | – | – | – | 0.0075 | 0.5456 | 0.4254 |
+
+- **Diagnosis**: Conditional SDXL-Turbo already achieves **90.38%–92.38%** CLIP 200-way top-1 under true embeddings, whereas random-`z_vae` (`Oracle_F_vae_smap`) sits near chance (**0.75%**) while carrying nearly all structural SSIM (**0.4254**). The `r4 -> r40` jump (**0.0575 -> 0.1594**) and `75.5 percentage points` (`0.9038` vs `0.1594`) gap show that the primary bottleneck is **EEG repeat SNR and target-space entanglement** inside `F = g_FE(e_H14, e_B32, z_vae)`, not the 4-step UNet sampler.
+
+### 2. Eliminating `(0.35, 0.25)` positive-pair losses & the DDPM adapter head
+
+A controlled $2\times 2$ ablation of `CenteredKVLoss(w_kv, w_u)` on `tr14 -> D_dev200` (3 seeds) established that dropping both positive-pair terms preserves or improves OOF discrimination and generated top-1 without needing the 525,568-param `BoundedConditionAdapter`:
+
+| Variant (`tr14 -> D_dev200`) | `w_kv` | `w_u` | OOF Perp 200w | `R40 -> F` | `Gen 0-head R40` top-1 | `Ord-head R40` top-1 |
+|---|---:|---:|---:|---:|---:|---:|
+| `W_35_25` (O9 baseline) | 0.35 | 0.25 | 0.1399 | 0.2275 | 0.1347 | 0.1372 |
+| `W_35_00` | 0.35 | 0.00 | 0.1404 | 0.2300 | 0.1394 | 0.1419 |
+| `W_00_25` | 0.00 | 0.25 | 0.1404 | 0.2287 | 0.1400 | 0.1403 |
+| **`W_00_00` (single-term InfoNCE)** | **0.00** | **0.00** | **0.1408** | **0.2337** | **0.1384** | **0.1378** |
+
+On all 10 official subjects (`O9-zero00-0head` vs `O9`, `nsel = 1`), removing `(0.35, 0.25)` and all `BoundedConditionAdapter` DDPM heads matches `O9` (`0.1576` vs `0.1584`, paired `t = -0.44`; `Alex5 +0.0010`, `t = +3.40`; `SSIM 0.4262` vs `0.4276`) while eliminating two loss coefficients and `~35 min/subject` of DDPM head training.
+
+### 3. Method: Bifurcated Forward-Operator Re-Synthesis (`O10`, $\eta = 0.50$)
+
+1. **Single-term hybrid $L_{\mathrm{KV}}$ InfoNCE** (`0` positive-pair weights `w_kv = w_u = 0`, `0` DDPM heads):
+
+   $$\mathcal{L}_{\mathrm{O10}} = \frac{1}{2}\big[\mathrm{CE}(\tilde{\mathbf{S}}, \mathbf{I}) + \mathrm{CE}(\tilde{\mathbf{S}}^\top, \mathbf{I})\big], \qquad S_{ij} = \frac{\tau}{2}\!\left(\hat u_i^\top u_j + \hat z_{\mathrm{KV},i}^\top y_{\mathrm{KV},j}\right),$$
+
+   - **Stream 1 (`o10_ffull_zero00`, $\eta = 0$)** aligns to instance-specific $F_{\mathrm{train}}$ (preserving retinotopic `z_vae` geometry and `SSIM`).
+   - **Stream 2 (`o10_fsem_fnm`, $\eta = 1$)** aligns to VAE-marginalized semantic expectations $F_{\mathrm{sem}}(x) = \mathbb{E}_{z_{\mathrm{vae}}}[g_{\mathrm{FE}}(e_{\mathrm{H14}}, e_{\mathrm{B32}}, z_{\mathrm{vae}})]$ with same-concept false-negative masking and visual-confuser margin ($\tilde S_{ij} \mathrel{+}= 0.15\,\tau\,\mathrm{ReLU}(S^{\mathrm{img}}_{ij} - \bar S)$, masked $-\infty$ on same-concept pairs), followed by **Factorized Forward Re-Synthesis (`PhysReSyn`)**: inferring Empirical-Bayes semantic prior expectations $(\hat e_{\mathrm{H14}}, \hat e_{\mathrm{B32}})$ and injecting them with the EEG ridge $z_{\mathrm{vae}}$ latent into frozen `FusionEncoder.vision_model` ($\lambda_{\mathrm{phys}} = 0.40$). Under a derangement falsification control (`O10v2_ctrl_shuf` on `D_dev200`), shuffling semantic neighbor indices drops `r40` top-1 from `0.1769` to `0.1160`; on 10 official subjects, `PhysReSyn` lifts `O10-sem-only` over `O10-sem-noPhysReSyn` by `+0.0052` top-1 (`0.1557 -> 0.1610`, `7/10` subjects) in `0.12 s/subject`, while trading `-0.0103` `SSIM` vs `O9` due to marginalizing away instance `z_vae`.
+2. **Tangent-hyperplane bifurcation ($\eta = 0.50$, $w = 1.00$, $0$ extra test parameters)**:
+
+   $$d_{\mathrm{O10}} = \operatorname{normalize}\!\big((1-\eta)\,d_{\mathrm{full}} + \eta\,d_{\mathrm{sem+phys}}\big), \qquad c_{\mathrm{O10}} = R_{\mathrm{tr}}\operatorname{normalize}(\alpha_{\mathrm{tr}} u_{\mathrm{tr}} + \beta_{\mathrm{tr}} d_{\mathrm{O10}}).$$
+
+   Bifurcating at $\eta = 0.50$ (`0.025 s/subject`) recovers `+0.0044` `SSIM` (`10/10`, `t = +20.36`), `+0.0077` `PixCorr` (`10/10`), `+0.0096` `Alex2` (`10/10`), and `+0.0088` `Incep` (`10/10`) over `O10-sem-only` while achieving higher `CLIP 200-way top-1` (**`0.1620`**) and `CLIP 2-way` (**`0.8347`**, `8/10` vs `O9`, `t = +2.91`) than either stream alone.
+
+### 4. Ten-subject official results (`K = 4` independent draws, `R = 80`, OpenAI CLIP ViT-L/14, zero blur)
+
+| Subject | `O9` (`nsel=1`) | **`O10` (`nsel=1`)** | `Δ top-1` | `O9` CLIP 2w | **`O10` CLIP 2w** | `O9` SSIM | `O10` SSIM | `O10-sel4` (`16 NFE`) | `B5a` (`64 NFE`, cross-subj) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `sub-01` | 0.1175 | 0.1125 | -0.0050 | 0.7926 | 0.7887 | 0.4230 | 0.4160 | 0.1050 | 0.1513 |
+| `sub-02` | 0.1325 | **0.1438** | +0.0113 | 0.8460 | 0.8494 | 0.4290 | 0.4249 | 0.1488 | 0.1725 |
+| `sub-03` | 0.1688 | **0.1763** | +0.0075 | 0.8367 | 0.8405 | 0.4256 | 0.4195 | 0.1663 | 0.1937 |
+| `sub-04` | 0.1713 | 0.1663 | -0.0050 | 0.8431 | 0.8503 | 0.4179 | 0.4134 | 0.1638 | 0.1950 |
+| `sub-05` | 0.1550 | **0.1700** | +0.0150 | 0.7995 | 0.8160 | 0.4232 | 0.4161 | 0.1588 | 0.1863 |
+| `sub-06` | 0.1588 | **0.1725** | +0.0137 | 0.8314 | 0.8342 | 0.4294 | 0.4226 | 0.1675 | 0.1788 |
+| `sub-07` | 0.1638 | **0.1650** | +0.0012 | 0.8132 | 0.8219 | 0.4253 | 0.4187 | 0.1638 | 0.1675 |
+| `sub-08` | 0.1825 | **0.1963** | +0.0138 | 0.8516 | 0.8499 | 0.4360 | 0.4310 | 0.1975 | 0.2225 |
+| `sub-09` | 0.1388 | 0.1350 | -0.0038 | 0.8166 | 0.8266 | 0.4323 | 0.4266 | 0.1288 | 0.1713 |
+| `sub-10` | 0.1950 | 0.1825 | -0.0125 | 0.8622 | 0.8695 | 0.4345 | 0.4283 | 0.2087 | 0.2238 |
+| **MEAN** | **0.1584** | **0.1620** | **+0.0036** | **0.8293** | **0.8347** | **0.4276** | **0.4217** | **0.1609** | **0.1862** |
+
+- **Zero-TTA & split generalization**: **O10-0tta** (`0` TTA steps, `290.4 s/sub` eval) reaches `0.1573` vs **O9-0tta** `0.1489` (**`+0.0084`**, **`8/10` subjects, `t = +3.09`**). With `350` TTA steps, **O10** gains `+0.0036` (`6/10` subjects, `t = +1.16` overall; `+0.0091` on screened `{2,5,8,9}` and `-0.0000` top-1 with `+0.0043` CLIP 2-way `5/6`, `t = +2.29` on untouched held-out `{1,3,4,6,7,10}`).
+- **Candidate budget & compute**: At identical **`nsel = 1` (`4` UNet NFE/img)**, **O10** takes `294.8 s/sub` generation/scoring (`158.8 s/sub` encoder training, `22.5 s/sub` kvTTA, `0.145 s/sub` PhysReSyn+bifurcation, saving ~`35 min/sub` vs `O9`'s DDPM heads). Scaling single-subject sampling budget (`O10-sel2` at `8 NFE`: `0.1624` top-1, `CLIP 2w 0.8371`; `O10-sel4` at `16 NFE`, `918.1 s/sub`: `0.1609` top-1, `CLIP 2w 0.8392`, `Incep 0.8009`, `SSIM 0.4235`) still leaves a `-0.0254` gap behind cross-subject + $w=1.75$ + `nsel = 16` (`64` NFE) **B5a** (`0.1862`).
+- **Paired error & confusion transition (`8,000` images = 10 subs × 200 stimuli × 4 seeds)**: Exact rank-1 hits increase `1267 -> 1296` (`881` both #1, **`415` newly solved**, `386` regressed, `6318` both wrong; Top-5 `0.3679 -> 0.3876`, mean rank `34.97 -> 33.90`, median rank `11 -> 10`, hubness $S_{10}: 1.86 -> 1.79$, and **`16` zero-hit `O9` stimuli rescued**). Top newly solved examples include `balance_beam_04s` (`2 -> 8/40`), `pear_01b` (`6 -> 12/40`), `aircraft_carrier_06s` (`2 -> 7/40`), `cat_01b` (`9 -> 14/40`), and `dragonfly_01b` (`1 -> 6/40`), while regressions occur on items where fine local detail matters (`crab_17s 10 -> 2`, `blowtorch_08s 9 -> 2`, `bok_choy_03s 12 -> 5`) and shared coarse-shape / semantic confusers persist (`piglet_02s -> possum_05s`, `minivan_17s -> golf_cart_06s`, `cruise_ship_03s -> ferry_06s`, thin isolated tools `backscratcher_01b` / `baseball_bat_10s` `0/40`).
+
+### 5. Actual Side-by-Side Gallery (`O9` vs `O10`, Pre-Registered `k = 0`)
+
+Each triplet shows **[Original THINGS-EEG2 Stimulus | O9 Reconstruction | O10 Reconstruction]** at identical random seed `k = 0` (`nsel = 1`, `4` UNet steps), deterministically sampled without cherry-picking across solved (`O9 > 1 -> O10 = 1`), shared rank-1, near-miss (`2–10`), regression, and hard-failure strata:
+
+![O9 vs O10 Side-by-Side Comparison](research/eeg_stack_20261112/gallery/readme_overview_o9_vs_o10.jpg)
+
+See [`research/eeg_stack_20261112/gallery/GALLERY.md`](research/eeg_stack_20261112/gallery/GALLERY.md) for all **10 subjects × 4 strata (40 triplets)** (`gallery_sub01_02.jpg` .. `gallery_sub09_10.jpg`) and full 200-way rank annotations, and [`research/eeg_stack_20261112/results/o10_factorized.txt`](research/eeg_stack_20261112/results/o10_factorized.txt) for complete logs.
 
 **O8** improves on O6 across 10/10 subjects on PixCorr, Alex2, Alex5, Incep, CLIP, EffNet (`0.8434`, `−0.0200`) and 200-way
 CLIP top-1 (`0.1302 → 0.1581`) and 8/10 on SSIM; over **O7a**, **O8** lifts **Alex5 `+0.0024` (`9/10`, above Perceptogram
