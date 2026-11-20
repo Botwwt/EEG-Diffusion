@@ -1,3 +1,21 @@
+# Visual Comparison Galleries: O12 / O13 / O14 (`k = 0`) & O9 / O10 / O11 Archive
+
+## O12 / O13 / O14 6-Column Side-by-Side Sheets (`k = 0`, 200-Way CLIP Ranking)
+
+Each 6-column card shows **[Original Stimulus | O12_noBigG (single-sub, 4 NFE) | O13 (x-brain, 4 NFE) | O14 (Tri-Arch + x-brain bigG, 4 NFE) | O14_sel4 (16 NFE, zero ViT-L/14) | O14 Cohort-10 Ceiling (non-single-subject diagnostic, 4 NFE)]** at identical random seed (`k = 0`, `w = 1.00`, `0` DDPM heads, zero blur, `80` repeats). Columns 2–5 use **100% strictly single-subject test EEG**; column 6 is explicitly labeled as a 10-brain diagnostic SNR ceiling (zero test labels).
+
+### Pre-Registered Deterministic 10-Subject Overview (12 Cards: 6 Held-Out Rescues, 2 Shared Hits, 2 Near-Misses, 1 Regression, 1 Hard Failure)
+![O12 vs O13 vs O14 Overview Gallery](readme_overview_o12_o13_o14.jpg)
+
+### Unbiased Sequential Stimuli (`#000–#011` on Held-Out `sub-10` & `#012–#023` on Held-Out `sub-03`, Zero Cherry-Picking)
+![Unbiased Sequential sub-10](gallery_o14_unbiased_seq_sub10.jpg)
+![Unbiased Sequential sub-03](gallery_o14_unbiased_seq_sub03.jpg)
+
+### Held-Out Subjects Recognizability Showcase (`sub-03, sub-04, sub-06, sub-07, sub-10`)
+![Held-Out Showcase](gallery_o14_showcase_heldout.jpg)
+
+---
+
 # Complete 10-Subject Side-by-Side Gallery: O9 vs O10 vs O11 (`k = 0`, 200-Way CLIP Ranking)
 
 Each 4-column card shows **[Original Stimulus | O9 Reconstruction | O10 Reconstruction | O11 Reconstruction]** at identical random seed (`k = 0`, `nsel = 1`, `4` SDXL-Turbo steps, `0` DDPM heads for O10/O11, strictly single-subject EEG, `80` repeats).

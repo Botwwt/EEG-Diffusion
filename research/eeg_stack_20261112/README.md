@@ -128,7 +128,16 @@ O7a / O7 in detail: three bottlenecks limited O6:
 | **+ O10-sel4 (`η = 0.50`, `nsel = 4`, `16` UNet NFE/img)** | 0.2990 | 0.4235 | 0.8903 | 0.9294 | **0.8009** | **0.8392** | **0.8358** |
 | **+ O11-0tta (`0` TTA, built on O10 + Tri-Stream + `bigG`, `0` heads, `4` NFE)** | 0.2910 | 0.4187 | 0.8889 | 0.9299 | 0.7937 | **0.8359** | 0.8417 |
 | **+ O11-noBigG (O10 + Tri-Stream `E123`, zero text, `0` heads, `4` NFE)** | 0.2950 | 0.4227 | 0.8899 | 0.9296 | 0.7977 | 0.8355 | 0.8389 |
-| **+ O11 (O10 + Tri-Stream + `OpenCLIP-bigG/14`, `0` heads, `4` NFE, headline)** | 0.2929 | 0.4206 | **0.8912** | **0.9308** | **0.8000** | **0.8361** | **0.8380** |
+| **+ O11 (O10 + Tri-Stream + `OpenCLIP-bigG/14`, `0` heads, `4` NFE, single-sub)** | 0.2929 | 0.4206 | **0.8912** | **0.9308** | **0.8000** | **0.8361** | **0.8380** |
+| **+ O12_ctrl_enc (3-view `k=4+2+2` compute-matched control, single-sub, `4` NFE, `top-1 = 0.1654`)** | 0.2943 | 0.4214 | 0.8885 | 0.9282 | 0.7998 | 0.8343 | 0.8387 |
+| **+ O12_noBigG (`E3_full_rep` + `0.12 L_split_rep`, single-sub, `4` NFE, `top-1 = 0.1648`)** | 0.2939 | 0.4214 | 0.8883 | 0.9295 | **0.8000** | **0.8363** | **0.8378** |
+| + O12 (+ discrete `train1654` Medoid `bigG`, falsified on single-img test, `top-1 = 0.1609`) | 0.2911 | 0.4205 | 0.8876 | 0.9280 | 0.7947 | 0.8289 | 0.8400 |
+| **+ O13_ctrl_xsub (cross-sub shared trunk, `λ_x=0` compute-matched control, single-sub test, `4` NFE, `top-1 = 0.1762`)** | 0.2967 | 0.4234 | 0.8951 | 0.9310 | 0.8108 | 0.8386 | 0.8314 |
+| **+ O13 (cross-sub shared trunk + `L_xbrain`, single-sub test, `0` heads, `0` text, `4` NFE, `top-1 = 0.1831`)** | 0.2966 | 0.4237 | 0.8953 | 0.9314 | 0.8110 | 0.8387 | **0.8310** |
+| **+ O14_noBigG (Tri-Arch `0.40 XKV + 0.40 O13_xbrain + 0.20 O10`, single-sub test, `0` text, `4` NFE, `top-1 = 0.1846`)** | **0.2966** | **0.4251** | 0.8953 | 0.9308 | 0.8102 | 0.8387 | 0.8329 |
+| **+ O14 (Tri-Arch + continuous x-brain `OpenCLIP-bigG/14`, single-sub test, `4` NFE, `top-1 = 0.1841`)** | 0.2955 | 0.4240 | **0.8961** | **0.9316** | **0.8122** | **0.8391** | 0.8334 |
+| **+ O14_sel4 (higher-budget `16` NFE, `nsel = 4` via `FEmbedder` only, single-sub test, `top-1 = 0.1841`, held-out-6 `0.1904`)** | 0.2933 | 0.4241 | **0.8965** | **0.9343** | **0.8135** | **0.8418** | **0.8314** |
+| *DIAG_COHORT10_O14 (explicit non-single-subject 10-brain diagnostic ceiling, `4` NFE, `top-1 = 0.2925`)* | *0.3363* | *0.4320* | *0.9319* | *0.9620* | *0.8783* | *0.8931* | *0.7833* |
 | O8#w5start (`R = 4`-gated `w5` start ablation, not adopted) | 0.2956 | 0.4241 | 0.8880 | 0.9229 | 0.7859 | 0.8258 | 0.8477 |
 | O3 + adapted start *and* adapted condition (not adopted) | 0.2706 | 0.4142 | 0.8758 | 0.9153 | 0.7590 | 0.8087 | 0.8640 |
 

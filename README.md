@@ -15,18 +15,11 @@ The full ten-subject R80 comparison supports ordinary over native Brain-HIVE (DI
 
 Model weights, private EEG, large feature arrays and machine credentials are excluded from Git. See the [verified storage and recovery record](docs/STORAGE.md). The October proposal below is historical; consult the dated current-state page before interpreting it as an active or completed experiment.
 
-## Stacked results, O10 bifurcated synthesis & O11 tri-stream OpenCLIP-bigG awakening — 2026-11-20
+## Stacked results, Information-Theoretic Ceiling Audit & O12–O14 Cross-Brain Contrastive Synthesis — 2026-11-21
 
 **Original-components pipeline (headline).** A prior-art audit found that the joint encoder, best-of-N selection,
 output shrinkage and condition amplification of the full stack below come from same-field papers (MindEye2 / ENIGMA,
-MindEye, MindEye2, Perceptogram). Leaving all four out — and also keeping the `K = 4` evaluated samples per query strictly
-independent (`nsel = 1`, `4` UNet NFE/img, zero post-hoc blur) — **O8** extends **O7a** with `FlexBrainEncoder` (`train_flex.py`)
-+ `ord_o8_flex`; **O9** compresses `92` checkpoints/subject down to `8` (`KVEBPyrEncoder` + `L_KV` pullback + `1` DDPM head);
-**O10** eliminates both redundant positive-pair alignment weights `(0.35, 0.25 -> 0.0, 0.0)` and the 525,568-param
-`BoundedConditionAdapter` DDPM head completely (`0` DDPM heads), uniting two `(0, 0)` streams on the pure `F_train[ok]` cone (`w = 1.00`);
-and **O11** builds directly on **O10** by fusing a decoupled-horizon compositional Tri-Stream encoder (`E1_ffull + E2_fsem + E3_direct_fe`
-through frozen `FusionEncoder.vision_model`) with **zero-shot awakening of SDXL-Turbo's native `OpenCLIP-ViT-bigG/14` text channel**
-(`text_encoder_2` only; OpenAI `CLIP ViT-L/14` `text_encoder_1` remains strictly empty `""`), still at `0` DDPM heads and `4` UNet NFE/img:
+MindEye, MindEye2, Perceptogram). Leaving all four out — and keeping `K = 4` independent draws (`nsel = 1`, `4` UNet NFE/img, zero blur, `0` DDPM heads for O10–O14) — we strictly separate **Track A1 (single-subject training & testing: O6–O12)**, **Track A2 (cross-subject training with 100% strictly single-subject test inference: O13–O14)**, and **Track B (explicitly labeled 10-brain diagnostic ceiling)**. Full Part I ceiling audit, compute-matched ablations, falsification log, and 8,000-sample paired statistics are in [`research/eeg_stack_20261112/results/o12_o13_o14_info_ceiling_xbrain.txt`](research/eeg_stack_20261112/results/o12_o13_o14_info_ceiling_xbrain.txt).
 
 | setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP | CLIP top-1 |
 |---|---|---|---|---|---|---|---|
@@ -51,7 +44,31 @@ through frozen `FusionEncoder.vision_model`) with **zero-shot awakening of SDXL-
 | **O10-sel4 (`η = 0.50`, `nsel = 4`, `16` UNet NFE/img)** | 0.2990 | 0.4235 | 0.8903 | 0.9294 | **0.8009** | **0.8392** | 0.1609 |
 | **O11-0tta (`0` TTA, `0` DDPM heads, `w = 1.00`, `nsel = 1`, `4` NFE)** | 0.2910 | 0.4187 | 0.8889 | 0.9299 | 0.7937 | **0.8359** | **0.1620** |
 | **O11-noBigG (O10 + Tri-Stream `E123`, zero text, `0` heads, `4` NFE)** | 0.2950 | 0.4227 | 0.8899 | 0.9296 | 0.7977 | 0.8355 | **0.1640** |
-| **O11 (Headline: O10 + Tri-Stream + `OpenCLIP-bigG/14` text, `0` heads, `4` NFE)** | 0.2929 | 0.4206 | **0.8912** | **0.9308** | **0.8000** | **0.8361** | **0.1638** |
+| **O11 (single-sub: O10 + Tri-Stream + `OpenCLIP-bigG/14` text, `0` heads, `4` NFE)** | 0.2929 | 0.4206 | **0.8912** | **0.9308** | **0.8000** | **0.8361** | 0.1638 |
+| **O12_ctrl_enc (single-sub: 3-view `k=4+2+2` compute-matched control, `4` NFE)** | 0.2943 | 0.4214 | 0.8885 | 0.9282 | 0.7998 | 0.8343 | **0.1654** |
+| **O12_noBigG (single-sub: `E3_full_rep` + `0.12 L_split_rep`, `4` NFE)** | 0.2939 | 0.4214 | 0.8883 | 0.9295 | **0.8000** | **0.8363** | 0.1648 |
+| **O13_ctrl_xsub (x-sub train, single-sub test: `λ_x=0` compute-matched control, `4` NFE)** | 0.2967 | 0.4234 | 0.8951 | 0.9310 | 0.8108 | 0.8386 | 0.1762 |
+| **O13 (x-sub train, single-sub test: shared trunk + `L_xbrain`, `0` text, `4` NFE)** | 0.2966 | 0.4237 | 0.8953 | 0.9314 | 0.8110 | 0.8387 | **0.1831** |
+| **O14_noBigG (x-sub train, single-sub test: Tri-Arch `0.40 XKV + 0.40 O13 + 0.20 O10`, `0` text, `4` NFE)** | **0.2966** | **0.4251** | 0.8953 | 0.9308 | 0.8102 | 0.8387 | **0.1846** |
+| **O14 (x-sub train, single-sub test: Tri-Arch + continuous x-brain `OpenCLIP-bigG/14`, `4` NFE)** | 0.2955 | 0.4240 | **0.8961** | **0.9316** | **0.8122** | **0.8391** | **0.1841** |
+| **O14_sel4 (higher-budget `16` NFE, `nsel = 4` via `FEmbedder` only, single-sub test, held-out-6 `0.1904`)** | 0.2933 | 0.4241 | **0.8965** | **0.9343** | **0.8135** | **0.8418** | **0.1841** |
+| *DIAG_COHORT10_O14 (explicit non-single-subject 10-brain diagnostic ceiling, `4` NFE, zero labels)* | *0.3363* | *0.4320* | *0.9319* | *0.9620* | *0.8783* | *0.8931* | *0.2925* |
+
+## O12 / O13 / O14: Information-Theoretic Ceiling Audit & Cross-Brain Contrastive Consistency (`L_xbrain`) — 2026-11-21
+
+Full Part I 10-subject audit, compute-matched ablations, negative/falsified controls, and 8,000-sample paired statistics are archived in [`research/eeg_stack_20261112/results/o12_o13_o14_info_ceiling_xbrain.txt`](research/eeg_stack_20261112/results/o12_o13_o14_info_ceiling_xbrain.txt), with reproducible scripts [`o12_splitrep_medoid_bigg.py`](research/eeg_stack_20261112/code/o12_splitrep_medoid_bigg.py), [`o13_xbrain_shared_trunk.py`](research/eeg_stack_20261112/code/o13_xbrain_shared_trunk.py), and [`o14_triarch_xbrain_bigg.py`](research/eeg_stack_20261112/code/o14_triarch_xbrain_bigg.py).
+
+- **Part I — Why 16.2%–16.4% vs 90.4%–92.4% generator oracle?** Across all 10 subjects (4-block cross-session split `(B0,B1) <-> (B2,B3)`, zero Marchenko–Pastur inflation), raw 17-ch EEG at `R = 80` already achieves **`96.67% ± 2.98%`** cross-session 40v40 200-way identification (model-free Fano lower bound $I(Y;\bar X_{40}) \ge 7.20 \pm 0.36$ bits out of $\log_2 200 = 7.6439$ bits; OOS Gaussian $I_G(R=80) = 85.39 \pm 22.56$ bits), whereas **training-time `R = 4` cross-block ID is only `18.85% ± 10.25%`** (single-trial `SNR = 0.0091`). Noise diagnostics confirm heavy tails ($\kappa_4 = 49.85$, validating O2 IVW), within-block correlation ($\rho_{\mathrm{blk20}} = +0.0077$, 10/10 positive, variance inflation `1.147×`), and near-chance induced FFT power (`0.60%` vs `0.50%`). Thus `R = 80` test EEG is NOT the ceiling; **training-time `R = 4` variance** is the dominant bottleneck.
+- **Part II — Compute-matched disjoint-repeat (`O12`) → cross-brain contrastive consistency (`O13 / O14`)**:
+  - **Strict single-subject train (`O12`)**: 3-view `k = 4+2+2` control `O12_ctrl_enc` reaches **`0.1654`** (best strict single-sub-train 4-NFE Top-1), while adding `0.12 L_split_rep` (`O12_noBigG = 0.1648`, `p = 0.81` vs control) lifts official `H14` retrieval `+1.75%pp` and sets single-sub highs on `CLIP 2w = 0.8363`, `Incep = 0.8000`, `EffNet = 0.8378`. Discrete `train1654` Medoid `bigG` (`O12 = 0.1609 < shuf 0.1618`) is honestly falsified on single-image test.
+  - **Cross-brain shared trunk + `L_xbrain` (`O13`, 100% strictly single-subject test inference)**: Two distinct brains viewing the same training image have strictly independent noise $\mathrm{Cov}(\varepsilon^{(s_a)},\varepsilon^{(s_b)})\equiv 0$ + `10×` training pairs (`165,400`). Under exact matched compute (`150` meta-epochs, `5` seeds, single-sub 50-step `kvTTA`), **`O13_xbrain_standalone = 0.1724`** beats `O13_ctrl_standalone = 0.1605` by **`+1.19%pp` (`9/10`, `p = 0.0272`; `F_200w +2.85%pp`, fine-grained `Hard10 +2.35%pp`)**, and **`O13 = 0.1831`** beats `O13_ctrl_xsub = 0.1762` (`+0.69%pp`, `+55` net hits) and `O10 = 0.1620` by **`+2.11%pp` (`10/10`, `p = 0.0001`; untouched held-out-6 `6/6`, `+2.00%pp`, `p = 0.0119`)**.
+  - **Tri-Arch + Continuous Cross-Brain `OpenCLIP-bigG/14` (`O14`, 100% strictly single-subject test inference)**: **`O14_noBigG`** reaches **`CLIP Top-1 = 0.1846`** (`+2.26%pp` vs O10, `10/10`, `p = 0.0002`; untouched held-out-6 `0.1842`, `6/6`, `p = 0.0081`; `+0.60%pp` above prior cross-sub 4-NFE record `B5-1a = 0.1786`; `F_200w = 58.80%`, `SSIM = 0.4251`, `p = 0.0009` vs O13). Adding continuous cross-brain `OpenCLIP-bigG/14` (`O14 = 0.1841`, `text_encoder_1 = ""`) beats `O14_ctrl_shuf` on `CLIP 2w` (`+0.0030`, `8/10`, `p = 0.0144`) and `EffNet` (`9/10`, `p = 0.0200`) and reaches `Incep = 0.8122`. Higher-budget `O14_sel4` (`16` NFE, `nsel = 4` via `FEmbedder` only, zero OpenAI ViT-L/14) reaches **`held-out-6 Top-1 = 0.1904`** (`6/6`, `p = 0.0024`), **`CLIP 2w = 0.8418`** (`9/10`, `p = 0.0336`), and all-time repo record **`Incep = 0.8135`**. Explicitly labeled 10-brain diagnostic ceiling `DIAG_COHORT10_O14` reaches **`0.2925`** (`Top-5 = 54.13%`, `Median Rank = 5.0`, `F_200w = 86.50%`).
+
+![Orig vs O12nb vs O13 vs O14 vs O14_sel4 vs Cohort10 Overview](research/eeg_stack_20261112/gallery/readme_overview_o12_o13_o14.jpg)
+
+See [`research/eeg_stack_20261112/gallery/GALLERY.md`](research/eeg_stack_20261112/gallery/GALLERY.md) for unbiased sequential sheets (`sub-10`, `sub-03`) and held-out recognizability showcases.
+
+---
 
 ## O11: Tri-Stream Forward-Operator Synthesis & Zero-Shot `OpenCLIP-bigG/14` Text Awakening — 2026-11-20
 
