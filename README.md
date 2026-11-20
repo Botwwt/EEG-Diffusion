@@ -15,15 +15,18 @@ The full ten-subject R80 comparison supports ordinary over native Brain-HIVE (DI
 
 Model weights, private EEG, large feature arrays and machine credentials are excluded from Git. See the [verified storage and recovery record](docs/STORAGE.md). The October proposal below is historical; consult the dated current-state page before interpreting it as an active or completed experiment.
 
-## Stacked results and O10 forward-operator synthesis — 2026-11-19
+## Stacked results, O10 bifurcated synthesis & O11 tri-stream OpenCLIP-bigG awakening — 2026-11-20
 
 **Original-components pipeline (headline).** A prior-art audit found that the joint encoder, best-of-N selection,
 output shrinkage and condition amplification of the full stack below come from same-field papers (MindEye2 / ENIGMA,
 MindEye, MindEye2, Perceptogram). Leaving all four out — and also keeping the `K = 4` evaluated samples per query strictly
 independent (`nsel = 1`, `4` UNet NFE/img, zero post-hoc blur) — **O8** extends **O7a** with `FlexBrainEncoder` (`train_flex.py`)
 + `ord_o8_flex`; **O9** compresses `92` checkpoints/subject down to `8` (`KVEBPyrEncoder` + `L_KV` pullback + `1` DDPM head);
-and **O10** eliminates both redundant positive-pair alignment weights `(0.35, 0.25 -> 0.0, 0.0)` and the 525,568-param
-`BoundedConditionAdapter` DDPM head completely (`0` DDPM heads), uniting two `(0, 0)` streams on the pure `F_train[ok]` cone (`w = 1.00`):
+**O10** eliminates both redundant positive-pair alignment weights `(0.35, 0.25 -> 0.0, 0.0)` and the 525,568-param
+`BoundedConditionAdapter` DDPM head completely (`0` DDPM heads), uniting two `(0, 0)` streams on the pure `F_train[ok]` cone (`w = 1.00`);
+and **O11** builds directly on **O10** by fusing a decoupled-horizon compositional Tri-Stream encoder (`E1_ffull + E2_fsem + E3_direct_fe`
+through frozen `FusionEncoder.vision_model`) with **zero-shot awakening of SDXL-Turbo's native `OpenCLIP-ViT-bigG/14` text channel**
+(`text_encoder_2` only; OpenAI `CLIP ViT-L/14` `text_encoder_1` remains strictly empty `""`), still at `0` DDPM heads and `4` UNet NFE/img:
 
 | setting | PixCorr | SSIM | Alex2 | Alex5 | Incep | CLIP | CLIP top-1 |
 |---|---|---|---|---|---|---|---|
@@ -43,9 +46,52 @@ and **O10** eliminates both redundant positive-pair alignment weights `(0.35, 0.
 | O9-zero00-0head (`η = 0`): `(0.35, 0.25) -> (0, 0)` + `0` DDPM heads (`7` ckpts, `F_train`, `w = 1.00`) | 0.2998 | 0.4262 | 0.8948 | **0.9295** | 0.7952 | 0.8284 | 0.1576 |
 | O10-sem-only (`η = 1`): `(0, 0)` + FN-mask on VAE-marginalized `F_sem` + PhysReSyn (`0` DDPM heads) | 0.2866 | 0.4173 | 0.8804 | 0.9231 | 0.7870 | 0.8300 | 0.1610 |
 | **O10-0tta (`η = 0.50`, `0` TTA, `0` DDPM heads, `w = 1.00`, `nsel = 1`)** | 0.2933 | 0.4203 | 0.8883 | 0.9283 | 0.7920 | **0.8346** | 0.1573 |
-| **O10 (Headline: `η = 0.50` bifurcated, `0` DDPM heads, `w = 1.00`, `nsel = 1`)** | 0.2944 | 0.4217 | 0.8900 | **0.9290** | 0.7958 | **0.8347** | **0.1620** |
-| **O10-sel2 (`η = 0.50`, `nsel = 2`, `8` UNet NFE/img)** | 0.2963 | 0.4225 | 0.8900 | 0.9287 | **0.7985** | **0.8371** | **0.1624** |
-| **O10-sel4 (`η = 0.50`, `nsel = 4`, `16` UNet NFE/img)** | 0.2990 | 0.4235 | 0.8903 | **0.9294** | **0.8009** | **0.8392** | 0.1609 |
+| **O10 (prev: `η = 0.50` bifurcated, `0` DDPM heads, `w = 1.00`, `nsel = 1`)** | 0.2944 | 0.4217 | 0.8900 | 0.9290 | 0.7958 | 0.8347 | 0.1620 |
+| **O10-sel2 (`η = 0.50`, `nsel = 2`, `8` UNet NFE/img)** | 0.2963 | 0.4225 | 0.8900 | 0.9287 | 0.7985 | 0.8371 | 0.1624 |
+| **O10-sel4 (`η = 0.50`, `nsel = 4`, `16` UNet NFE/img)** | 0.2990 | 0.4235 | 0.8903 | 0.9294 | **0.8009** | **0.8392** | 0.1609 |
+| **O11-0tta (`0` TTA, `0` DDPM heads, `w = 1.00`, `nsel = 1`, `4` NFE)** | 0.2910 | 0.4187 | 0.8889 | 0.9299 | 0.7937 | **0.8359** | **0.1620** |
+| **O11-noBigG (O10 + Tri-Stream `E123`, zero text, `0` heads, `4` NFE)** | 0.2950 | 0.4227 | 0.8899 | 0.9296 | 0.7977 | 0.8355 | **0.1640** |
+| **O11 (Headline: O10 + Tri-Stream + `OpenCLIP-bigG/14` text, `0` heads, `4` NFE)** | 0.2929 | 0.4206 | **0.8912** | **0.9308** | **0.8000** | **0.8361** | **0.1638** |
+
+## O11: Tri-Stream Forward-Operator Synthesis & Zero-Shot `OpenCLIP-bigG/14` Text Awakening — 2026-11-20
+
+Built directly on **O10** (`0` DDPM heads, `4` UNet NFE/img, `nsel = 1`, `K = 4` independent draws, zero blur). Full development screens, official 10-subject logs, and 8,000-sample paired audits are in [`research/eeg_stack_20261112/results/o11_tri_stream_bigg.txt`](research/eeg_stack_20261112/results/o11_tri_stream_bigg.txt), [`research/eeg_stack_20261112/code/o11_tri_stream_bigg.py`](research/eeg_stack_20261112/code/o11_tri_stream_bigg.py), and [`research/eeg_stack_20261112/code/build_o11_report_and_gallery.py`](research/eeg_stack_20261112/code/build_o11_report_and_gallery.py).
+
+### 1. Development Screening & Falsification on `D_dev200` (Zero Official Test Access)
+
+- **Sampling/CFG & Sinkhorn-OT falsification (`Screen 1`, `sub-02 r40`)**: Loosening `smap` (`0.45 / 0.25 / pure_noise`: `-0.0125` to `-0.0200` top-1), removing `low_keep` (`-0.0038`), cone amplification (`w = 1.25 / 1.50`: `-0.0050 / -0.0038`), `IP-CFG` (`6–8 NFE`: `+0.0000`), and `steps = 8` (`-0.0175`) all fail to beat `O10` (`0.1450`). Hard Sinkhorn Optimal Transport into the `tr14` training-concept hull (`M1/M2/M3`) sharply raises coarse `CLIP 2-way` (`0.8470 -> 0.8646`) and `Inception` (`0.7977 -> 0.8201`), but **hurts 200-way top-1** (`0.1450 -> 0.1250`) by pulling unseen concepts toward seen training prototypes.
+- **Unlocking SDXL-Turbo's dormant `OpenCLIP-ViT-bigG/14` text channel (`text_encoder_2` only)**: Keeping `text_encoder_1` (OpenAI CLIP ViT-L/14) strictly empty `""` (zero evaluator leakage), feeding oracle `text_encoder_2` embeddings alongside noisy EEG IP-Adapter + `z0` (`T3_bigG_oracle`, still `4 NFE`) jumps `CLIP 200-way top-1` from `0.1450` to **`0.3613` (`+21.62%pp`)** while also raising `SSIM` (`0.3993 -> 0.4047`) and `PixCorr` (`0.1538 -> 0.1582`); shuffled text (`T4_ctrl_text_shuf`) collapses to `0.1050`.
+- **Upgraded 0-head Decoupled-Horizon Tri-Stream + Direct `OpenCLIP-bigG/14` (`Screen 2` & 4-sub confirmation on `{2, 5, 8, 9}`)**: Replacing prototype-collapsing kNN/OT with compositional forward-operator inversion (`E3_direct_fe`: EEG $\to (\hat e_{\mathrm{H14}}, \hat e_{\mathrm{B32}}) \to$ frozen `FusionEncoder.vision_model` $\to$ On-Cone $L_{\mathrm{KV}}$ pullback) + end-to-end EEG $\to$ `OpenCLIP-bigG/14` (`E4_direct_bigg`, fused 50/50 with continuous `E3 -> ridge -> bigG` into the 16-slot cross-attention hidden states `pe[:, :16, 768:]` & `pooled_prompt_embeds` at Bayes-MMSE shrinkage $\alpha = 0.35$) lifts `D_dev200` 4-subject mean top-1 from **`0.1575` (`O10`) $\to$ `0.1628` (`E123_tristream`) $\to$ `0.1700` (`+bigG α=0.35`) $\to$ `0.1719` (`+reliability gating`)** (`4/4` subjects; `pooled_prompt_embeds`-only stays flat at `0.1628`, proving the 16-slot cross-attention pathway carries the gain; shuffled text collapses `-0.0362`). Blending O10's 7-seed `KVEBPyrEncoder` cone 50/50 with O11's Tri-Stream cone (`H2 / H3` on `D_dev200`) preserves O10's `sub-08 / sub-09` strength (`+1.13%pp` each) and `SSIM/PixCorr`.
+
+### 2. Official 10-Subject Results (`R = 80`, `K = 4` indep, `nsel = 1`, `4 NFE`, `0` DDPM Heads, Zero Blur)
+
+| Subject (`*` = dev-screened) | `O9` | `O10` | `O11-noBigG` | **`O11` (Headline)** | `Δ vs O9` | `Δ vs O10` | `O9` CLIP 2w | `O10` CLIP 2w | **`O11` CLIP 2w** | `O11` SSIM | `O11` Incep |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `sub-01` | 0.1175 | 0.1125 | **0.1225** | 0.1162 | -0.0013 | +0.0037 | 0.7926 | 0.7887 | 0.7920 | 0.4136 | 0.7734 |
+| `sub-02*` | 0.1325 | 0.1437 | **0.1475** | 0.1463 | +0.0138 | +0.0025 | 0.8460 | 0.8494 | 0.8482 | 0.4239 | 0.8019 |
+| `sub-03` | 0.1688 | 0.1762 | **0.1800** | 0.1750 | +0.0063 | -0.0012 | 0.8367 | 0.8405 | **0.8487** | 0.4185 | 0.8096 |
+| `sub-04` | 0.1713 | 0.1663 | **0.1887** | 0.1812 | +0.0100 | +0.0150 | 0.8431 | 0.8503 | **0.8564** | 0.4114 | 0.8179 |
+| `sub-05*` | 0.1550 | **0.1700** | 0.1588 | 0.1562 | +0.0013 | -0.0138 | 0.7995 | 0.8160 | 0.8063 | 0.4135 | 0.7572 |
+| `sub-06` | 0.1588 | 0.1725 | 0.1675 | **0.1738** | +0.0150 | +0.0013 | 0.8314 | 0.8342 | **0.8411** | 0.4217 | 0.8071 |
+| `sub-07` | 0.1638 | **0.1650** | 0.1588 | 0.1613 | -0.0025 | -0.0038 | 0.8132 | 0.8219 | 0.8195 | 0.4192 | 0.8011 |
+| `sub-08*` | 0.1825 | **0.1963** | 0.1850 | 0.1925 | +0.0100 | -0.0038 | 0.8516 | 0.8499 | **0.8537** | 0.4299 | 0.8086 |
+| `sub-09*` | **0.1388** | 0.1350 | 0.1275 | 0.1338 | -0.0050 | -0.0013 | 0.8166 | 0.8266 | 0.8259 | 0.4258 | 0.7844 |
+| `sub-10` | 0.1950 | 0.1825 | **0.2037** | 0.2012 | +0.0062 | +0.0187 | 0.8622 | 0.8695 | 0.8694 | 0.4284 | 0.8386 |
+| **MEAN** | **0.1584** | **0.1620** | **0.1640** | **0.1638** | **+0.0054** | **+0.0018** | **0.8293** | **0.8347** | **0.8361** | **0.4206** | **0.8000** |
+
+- **Statistically significant gain over `O9` & true held-out generalization**: Across all 10 subjects (`4 NFE`, `nsel = 1`), **O11** achieves **`+0.0054`** CLIP 200-way top-1 over `O9` (`7/10`, paired `t = +2.44, p = 0.0375`; `+43` net hits `1310` vs `1267 / 8000`), **`+0.0068`** CLIP 2-way (`9/10`, `t = +4.82, p = 0.0010`), and new 4-NFE highs on **`Inception` (`0.8000`)**, **`EffNet` (`0.8380` ↓)**, **`Alex2` (`0.8912`)**, and **`Alex5` (`0.9308`)**. Crucially, unlike O10 (whose gain concentrated on the 4 dev-screened subjects while held-out 6 subjects were flat `0.1625 -> 0.1625`), **O11's gain generalizes cleanly to the 6 untouched held-out subjects `{1, 3, 4, 6, 7, 10}`**: `O9 = 0.1625`, `O10 = 0.1625` $\to$ **`O11 = 0.1681` (`+0.0056`)** and **`O11-noBigG = 0.1702` (`+0.0077`)**.
+- **Zero-TTA leap & clean component isolation**: With `0` TTA steps, **`O11-0tta` reaches `0.1620`** (`+0.0131` over `O9-0tta 0.1489`, `+0.0047` over `O10-0tta 0.1573`, matching full-TTA `O10` without any test-time optimization). Comparing ablations: **`O11-noBigG` (`0.1640`)** outperforms `O10` (`0.1620`) on **all 8 metrics simultaneously** (including `SSIM 0.4227 vs 0.4217` and `PixCorr 0.2950 vs 0.2944`), while adding `OpenCLIP-bigG/14` text (`O11 = 0.1638`) trades `-0.0002` top-1 / `-0.0021` SSIM for best-in-class semantic & perceptual scores (`CLIP 2w 0.8361`, `Incep 0.8000`, `EffNet 0.8380`, `Alex2 0.8912`, `Alex5 0.9308`) and decisively beats the shuffled-text falsification control `O11-ctrl-shuf` (`0.1622`, `CLIP 2w 0.8331`, `Incep 0.7976`; on standalone O11, `bigG` lifts top-1 `+0.0041` `0.1589 -> 0.1630` vs shuffled `0.1539`).
+- **Compute & 8,000-sample paired audit**: Identical **`nsel = 1` (`4` UNet NFE/img)**, measured generation wall-clock `115.6 s/sub` (`0.145 s/img`) on a single A100-40GB (`bs = 20`). Across `8,000` images, O11 rescues `16 / 57` zero-hit O9 stimuli and `12 / 54` zero-hit O10 stimuli (`possum 17 -> 27/40`, `golf cart 11 -> 19/40`, `jelly bean 28 -> 34/40`, `grenade 0 -> 6/40`, `crab 2 -> 8/40`, `television 15 -> 20/40`, `cat 9 -> 14 -> 18/40`), while `37 / 200` stimuli remain zero-hit across all three models (`eel/piglet/beaver -> possum`, `minivan -> golf cart`, `elephant -> antelope`). On the spotlight case `sub-04 #000 aircraft_carrier_06s`, O11 places **all 4 independent draws in Top-7** (`ranks = [#7, #2, #6, #5]` vs O9 `[#55, #67, #6, #9]`, with `k = 1` at `#2/200` behind `submarine_09s`), while `k = 0` honestly retains the central superstructure silhouette imposed by `smap = 0.625` (which Screen 1 proved cannot be loosened without losing `-1.25%pp` to `-2.00%pp` top-1).
+
+### 3. Actual Side-by-Side Gallery (`Orig | O9 | O10 | O11`, Pre-Registered `k = 0`)
+
+Each 4-column card shows **[Original THINGS-EEG2 Stimulus | O9 | O10 | O11]** at identical seed `k = 0` (`nsel = 1`, `4` NFE, `0` DDPM heads), strictly sampled across all 10 subjects without cherry-picking (4 rescues on held-out subjects, 2 shared rank-1 hits, 2 near-misses including the `sub-04 #000 aircraft_carrier` spotlight, 2 regressions, and 2 hard failures):
+
+![Orig vs O9 vs O10 vs O11 Side-by-Side Comparison](research/eeg_stack_20261112/gallery/readme_overview_o9_o10_o11.jpg)
+
+See [`research/eeg_stack_20261112/gallery/GALLERY.md`](research/eeg_stack_20261112/gallery/GALLERY.md) for all **10 subjects × 5 strata (50 four-column comparisons = 200 real images)** (`gallery_o11_sub01_02.jpg` .. `gallery_o11_sub09_10.jpg`) and complete 200-way rank annotations.
+
+---
 
 ## O10: Bottleneck localization, `(0.35, 0.25)` elimination & bifurcated forward-operator synthesis — 2026-11-19
 

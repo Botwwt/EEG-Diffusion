@@ -1,82 +1,93 @@
-# Complete 10-Subject Side-by-Side Gallery: O9 vs O10 (`k = 0`, 200-Way CLIP Ranking)
+# Complete 10-Subject Side-by-Side Gallery: O9 vs O10 vs O11 (`k = 0`, 200-Way CLIP Ranking)
 
-Each triplet shows **[Original Stimulus | O9 Reconstruction | O10 Reconstruction]** at identical random seed (`k = 0`, `nsel = 1`, `4` SDXL-Turbo steps, strictly single-subject EEG, `80` repeats).
+Each 4-column card shows **[Original Stimulus | O9 Reconstruction | O10 Reconstruction | O11 Reconstruction]** at identical random seed (`k = 0`, `nsel = 1`, `4` SDXL-Turbo steps, `0` DDPM heads for O10/O11, strictly single-subject EEG, `80` repeats).
 
-> **Attribution (THINGS-EEG2 Stimuli)**: Reference stimulus thumbnails in the left column come from the THINGS-EEG2 test set (`test_images`, Gifford et al., *NeuroImage* 2022, CC-BY 4.0) for visual verification alongside the corresponding `O9` and `O10` EEG reconstructions.
+> **Attribution (THINGS-EEG2 Stimuli)**: Reference stimulus thumbnails in the left column come from the THINGS-EEG2 test set (`test_images`, Gifford et al., *NeuroImage* 2022, CC-BY 4.0) for visual verification alongside the corresponding `O9`, `O10`, and `O11` EEG reconstructions.
 
 ## Pre-Registered Deterministic Sampling Rule (Zero Cherry-Picking)
 
 - **Seed fixed**: seed index `k = 0` (`gen_exp.py` generator seed `1_000_003 * j + 12345`, latent noise seed `7_000_003 * j + 99`) across all `10` subjects (`200` test stimuli each).
-- **README Overview Grid (`readme_overview_o9_vs_o10.jpg`)**: 8 triplets across 8 distinct subjects: `2` newly solved (`O9 rank > 1 -> O10 rank = 1` at exact 50th and 85th percentiles of `O9` rank), `2` shared rank-1 hits, `2` near-misses (`2 <= O10 rank <= 10`, closest to rank 5), `1` median regression (`O9 = 1 -> O10 > 1`), and `1` persistent hard failure (75th percentile among `O9 >= 100` & `O10 >= 100`).
-- **Per-Subject Sheets (`gallery_sub01_02.jpg` .. `gallery_sub09_10.jpg`)**: For each subject (`sub-01` .. `sub-10`), 4 stratified items: median-`r_O9` **SOLVED (`O9 > 1 -> O10 = 1`)**, median-index **BOTH #1**, exact **50th-percentile (`SUBJECT MEDIAN`)** of `O10` rank, and exact **90th-percentile (`HARD FAILURE`)** of `O10` rank.
+- **Per-Subject Sheets (`gallery_o11_sub01_02.jpg` .. `gallery_o11_sub09_10.jpg`)**: 5 pre-registered strata per subject (50 four-column cards = 200 real images): **RESCUE (O11 #1)** (`O9 > 1 & O10 > 1 & O11 = 1`, 35th percentile by `-(r9 + r10)`), **SHARED HIT (#1)** (`O9 = O10 = O11 = 1`, median index), **NEAR-MISS TOP-10** (`2 <= O11 <= 10`, with `sub-04 #000 aircraft_carrier_06s` explicit spotlight), **REGRESSION** (`(O10 = 1 or O9 = 1) & O11 > 1`, median O11 rank), and **HARD FAILURE** (`O9 > 20 & O10 > 20 & O11 > 20`, median O11 rank).
+- **README Overview Grid (`readme_overview_o9_o10_o11.jpg`)**: 12 cards drawn directly from the 50 pre-registered per-subject cards, covering all 10 subjects (4 rescues on held-out subjects, 2 shared hits, 2 near-misses including the `sub-04 #000 aircraft_carrier_06s` spotlight, 2 regressions, and 2 hard failures).
 
-## Overview Sheet (`O9` vs `O10` Across 4 Rank Strata)
+## Overview Sheet (`Orig | O9 | O10 | O11` Across All 10 Subjects)
 
-![O9 vs O10 Overview Gallery](readme_overview_o9_vs_o10.jpg)
+![O9 vs O10 vs O11 Overview Gallery](readme_overview_o9_o10_o11.jpg)
 
-## Complete 10-Subject Sheets
+## Complete 10-Subject Sheets (50 Four-Column Cards)
 
 ### Subjects sub-01 & sub-02
-
-![Subjects 01 and 02](gallery_sub01_02.jpg)
+![Subjects 01 and 02](gallery_o11_sub01_02.jpg)
 
 ### Subjects sub-03 & sub-04
-
-![Subjects 03 and 04](gallery_sub03_04.jpg)
+![Subjects 03 and 04](gallery_o11_sub03_04.jpg)
 
 ### Subjects sub-05 & sub-06
-
-![Subjects 05 and 06](gallery_sub05_06.jpg)
+![Subjects 05 and 06](gallery_o11_sub05_06.jpg)
 
 ### Subjects sub-07 & sub-08
-
-![Subjects 07 and 08](gallery_sub07_08.jpg)
+![Subjects 07 and 08](gallery_o11_sub07_08.jpg)
 
 ### Subjects sub-09 & sub-10
+![Subjects 09 and 10](gallery_o11_sub09_10.jpg)
 
-![Subjects 09 and 10](gallery_sub09_10.jpg)
+## Index of All 50 Displayed Items (`k = 0`)
 
-## Index of All 40 Displayed Items (`k = 0`)
+| Sheet | Subject | Stim # | Stimulus ID | Stratum | O9 Rank | O10 Rank | O11 Rank | O11 Top-1 Prediction |
+|---|---:|---:|---|---|---:|---:|---:|---|
+| `gallery_o11_sub01_02.jpg` | sub-01 | 054 | `crepe_18s` | RESCUE (O11 #1) | #12/200 | #3/200 | **#1/200** | **exact** |
+| `gallery_o11_sub01_02.jpg` | sub-01 | 101 | `jukebox_01n` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub01_02.jpg` | sub-01 | 063 | `dessert_01b` | NEAR-MISS TOP-10 | #2/200 | #3/200 | #3/200 | `jelly_bean_06s` |
+| `gallery_o11_sub01_02.jpg` | sub-01 | 141 | `possum_05s` | REGRESSION | #1/200 | #2/200 | #3/200 | `antelope_01b` |
+| `gallery_o11_sub01_02.jpg` | sub-01 | 095 | `hoodie_08s` | HARD FAILURE | #169/200 | #156/200 | #89/200 | `pocket_04s` |
+| `gallery_o11_sub01_02.jpg` | sub-02 | 021 | `bread_19s` | RESCUE (O11 #1) | #2/200 | #5/200 | **#1/200** | **exact** |
+| `gallery_o11_sub01_02.jpg` | sub-02 | 122 | `omelet_10s` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub01_02.jpg` | sub-02 | 014 | `birthday_cake_01b` | NEAR-MISS TOP-10 | #18/200 | #4/200 | #4/200 | `jelly_bean_06s` |
+| `gallery_o11_sub01_02.jpg` | sub-02 | 187 | `treadmill_11s` | REGRESSION | #1/200 | #1/200 | #3/200 | `candlestick_04s` |
+| `gallery_o11_sub01_02.jpg` | sub-02 | 194 | `walnut_02s` | HARD FAILURE | #42/200 | #41/200 | #63/200 | `candlestick_04s` |
+| `gallery_o11_sub03_04.jpg` | sub-03 | 180 | `television_12s` | RESCUE (O11 #1) | #4/200 | #5/200 | **#1/200** | **exact** |
+| `gallery_o11_sub03_04.jpg` | sub-03 | 072 | `espresso_01b` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub03_04.jpg` | sub-03 | 135 | `pigeon_05s` | NEAR-MISS TOP-10 | #62/200 | #8/200 | #4/200 | `eel_02s` |
+| `gallery_o11_sub03_04.jpg` | sub-03 | 109 | `lightning_bug_11s` | REGRESSION | #1/200 | #6/200 | #4/200 | `eagle_06s` |
+| `gallery_o11_sub03_04.jpg` | sub-03 | 143 | `pug_09s` | HARD FAILURE | #70/200 | #44/200 | #84/200 | `possum_05s` |
+| `gallery_o11_sub03_04.jpg` | sub-04 | 094 | `highchair_04s` | RESCUE (O11 #1) | #2/200 | #7/200 | **#1/200** | **exact** |
+| `gallery_o11_sub03_04.jpg` | sub-04 | 100 | `jelly_bean_06s` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub03_04.jpg` | sub-04 | 000 | `aircraft_carrier_06s` | SPOTLIGHT (TOP-10) | #55/200 | #5/200 | #7/200 | `ferry_06s` |
+| `gallery_o11_sub03_04.jpg` | sub-04 | 184 | `tongs_12s` | REGRESSION | #1/200 | #2/200 | #3/200 | `chopsticks_11s` |
+| `gallery_o11_sub03_04.jpg` | sub-04 | 002 | `backscratcher_01b` | HARD FAILURE | #141/200 | #36/200 | #71/200 | `sandpaper_08s` |
+| `gallery_o11_sub05_06.jpg` | sub-05 | 151 | `rooster_03s` | RESCUE (O11 #1) | #6/200 | #5/200 | **#1/200** | **exact** |
+| `gallery_o11_sub05_06.jpg` | sub-05 | 063 | `dessert_01b` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub05_06.jpg` | sub-05 | 036 | `chaps_18s` | NEAR-MISS TOP-10 | #3/200 | #2/200 | #3/200 | `coverall_06s` |
+| `gallery_o11_sub05_06.jpg` | sub-05 | 104 | `ladle_13s` | REGRESSION | #1/200 | #1/200 | #3/200 | `wok_12s` |
+| `gallery_o11_sub05_06.jpg` | sub-05 | 055 | `crib_14n` | HARD FAILURE | #48/200 | #57/200 | #85/200 | `bench_01b` |
+| `gallery_o11_sub05_06.jpg` | sub-06 | 061 | `dagger_06s` | RESCUE (O11 #1) | #2/200 | #6/200 | **#1/200** | **exact** |
+| `gallery_o11_sub05_06.jpg` | sub-06 | 051 | `coverall_06s` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub05_06.jpg` | sub-06 | 057 | `crow_11s` | NEAR-MISS TOP-10 | #4/200 | #19/200 | #3/200 | `coverall_06s` |
+| `gallery_o11_sub05_06.jpg` | sub-06 | 097 | `ice_cube_11s` | REGRESSION | #1/200 | #13/200 | #3/200 | `sandpaper_08s` |
+| `gallery_o11_sub05_06.jpg` | sub-06 | 153 | `sailboat_05s` | HARD FAILURE | #38/200 | #44/200 | #73/200 | `ladle_13s` |
+| `gallery_o11_sub07_08.jpg` | sub-07 | 063 | `dessert_01b` | RESCUE (O11 #1) | #7/200 | #3/200 | **#1/200** | **exact** |
+| `gallery_o11_sub07_08.jpg` | sub-07 | 083 | `golf_cart_06s` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub07_08.jpg` | sub-07 | 172 | `stethoscope_11s` | NEAR-MISS TOP-10 | #7/200 | #6/200 | #4/200 | `chopsticks_11s` |
+| `gallery_o11_sub07_08.jpg` | sub-07 | 138 | `pocketknife_01b` | REGRESSION | #1/200 | #4/200 | #3/200 | `bullet_01s` |
+| `gallery_o11_sub07_08.jpg` | sub-07 | 178 | `taillight_08s` | HARD FAILURE | #43/200 | #114/200 | #86/200 | `aircraft_carrier_06s` |
+| `gallery_o11_sub07_08.jpg` | sub-08 | 049 | `cookie_09s` | RESCUE (O11 #1) | #5/200 | #2/200 | **#1/200** | **exact** |
+| `gallery_o11_sub07_08.jpg` | sub-08 | 100 | `jelly_bean_06s` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub07_08.jpg` | sub-08 | 149 | `rhinoceros_09s` | NEAR-MISS TOP-10 | #5/200 | #2/200 | #4/200 | `antelope_01b` |
+| `gallery_o11_sub07_08.jpg` | sub-08 | 196 | `wheelchair_02s` | REGRESSION | #2/200 | #1/200 | #4/200 | `brace_08s` |
+| `gallery_o11_sub07_08.jpg` | sub-08 | 191 | `vise_11s` | HARD FAILURE | #41/200 | #73/200 | #79/200 | `candlestick_04s` |
+| `gallery_o11_sub09_10.jpg` | sub-09 | 090 | `hamburger_01s` | RESCUE (O11 #1) | #2/200 | #14/200 | **#1/200** | **exact** |
+| `gallery_o11_sub09_10.jpg` | sub-09 | 141 | `possum_05s` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub09_10.jpg` | sub-09 | 127 | `pajamas_13s` | NEAR-MISS TOP-10 | #3/200 | #1/200 | #3/200 | `coverall_06s` |
+| `gallery_o11_sub09_10.jpg` | sub-09 | 001 | `antelope_01b` | REGRESSION | #1/200 | #1/200 | #4/200 | `lamb_01b` |
+| `gallery_o11_sub09_10.jpg` | sub-09 | 002 | `backscratcher_01b` | HARD FAILURE | #82/200 | #87/200 | #94/200 | `chaps_18s` |
+| `gallery_o11_sub09_10.jpg` | sub-10 | 180 | `television_12s` | RESCUE (O11 #1) | #4/200 | #8/200 | **#1/200** | **exact** |
+| `gallery_o11_sub09_10.jpg` | sub-10 | 120 | `nightstand_05s` | SHARED HIT (#1) | #1/200 | #1/200 | **#1/200** | **exact** |
+| `gallery_o11_sub09_10.jpg` | sub-10 | 137 | `pocket_04s` | NEAR-MISS TOP-10 | #1/200 | #2/200 | #3/200 | `coat_01b` |
+| `gallery_o11_sub09_10.jpg` | sub-10 | 037 | `cheese_06s` | REGRESSION | #15/200 | #1/200 | #4/200 | `bun_01b` |
+| `gallery_o11_sub09_10.jpg` | sub-10 | 098 | `ice_pack_01b` | HARD FAILURE | #42/200 | #140/200 | #73/200 | `coverall_06s` |
 
-| Sheet | Subject | Stim # | Stimulus ID | Stratum | O9 Rank | O9 Top-1 Prediction | O10 Rank | O10 Top-1 Prediction |
-|---|---:|---:|---|---|---:|---|---:|---|
-| `gallery_sub01_02.jpg` | sub-01 | 167 | `slingshot_07s` | SOLVED (O10 #1) | #3/200 | `brace_08s` | **#1/200** | **exact** |
-| `gallery_sub01_02.jpg` | sub-01 | 101 | `jukebox_01n` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub01_02.jpg` | sub-01 | 146 | `radish_10s` | SUBJECT MEDIAN | #8/200 | `chopsticks_11s` | **#15/200** | `candlestick_04s` |
-| `gallery_sub01_02.jpg` | sub-01 | 143 | `pug_09s` | HARD FAILURE (p90) | #121/200 | `cat_01b` | **#131/200** | `possum_05s` |
-| `gallery_sub01_02.jpg` | sub-02 | 022 | `breadbox_01b` | SOLVED (O10 #1) | #4/200 | `sandpaper_08s` | **#1/200** | **exact** |
-| `gallery_sub01_02.jpg` | sub-02 | 120 | `nightstand_05s` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub01_02.jpg` | sub-02 | 149 | `rhinoceros_09s` | SUBJECT MEDIAN | #10/200 | `seagull_09s` | **#10/200** | `seagull_09s` |
-| `gallery_sub01_02.jpg` | sub-02 | 114 | `minivan_17s` | HARD FAILURE (p90) | #196/200 | `suit_13s` | **#103/200** | `gondola_11s` |
-| `gallery_sub03_04.jpg` | sub-03 | 187 | `treadmill_11s` | SOLVED (O10 #1) | #3/200 | `music_box_06s` | **#1/200** | **exact** |
-| `gallery_sub03_04.jpg` | sub-03 | 072 | `espresso_01b` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub03_04.jpg` | sub-03 | 136 | `piglet_02s` | SUBJECT MEDIAN | #16/200 | `possum_05s` | **#11/200** | `possum_05s` |
-| `gallery_sub03_04.jpg` | sub-03 | 117 | `muff_12s` | HARD FAILURE (p90) | #8/200 | `pocket_04s` | **#118/200** | `coverall_06s` |
-| `gallery_sub03_04.jpg` | sub-04 | 118 | `music_box_06s` | SOLVED (O10 #1) | #6/200 | `candlestick_04s` | **#1/200** | **exact** |
-| `gallery_sub03_04.jpg` | sub-04 | 120 | `nightstand_05s` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub03_04.jpg` | sub-04 | 158 | `scallop_02s` | SUBJECT MEDIAN | #6/200 | `cookie_09s` | **#7/200** | `hamburger_01s` |
-| `gallery_sub03_04.jpg` | sub-04 | 123 | `onion_10s` | HARD FAILURE (p90) | #101/200 | `stethoscope_11s` | **#108/200** | `stethoscope_11s` |
-| `gallery_sub05_06.jpg` | sub-05 | 062 | `dalmatian_12s` | SOLVED (O10 #1) | #5/200 | `orchid_05s` | **#1/200** | **exact** |
-| `gallery_sub05_06.jpg` | sub-05 | 101 | `jukebox_01n` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub05_06.jpg` | sub-05 | 134 | `pie_18s` | SUBJECT MEDIAN | #5/200 | `croissant_06s` | **#13/200** | `bread_19s` |
-| `gallery_sub05_06.jpg` | sub-05 | 074 | `ferry_06s` | HARD FAILURE (p90) | #145/200 | `stethoscope_11s` | **#131/200** | `candlestick_04s` |
-| `gallery_sub05_06.jpg` | sub-06 | 183 | `tomato_sauce_02s` | SOLVED (O10 #1) | #3/200 | `creme_brulee_01b` | **#1/200** | **exact** |
-| `gallery_sub05_06.jpg` | sub-06 | 063 | `dessert_01b` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub05_06.jpg` | sub-06 | 152 | `rug_09s` | SUBJECT MEDIAN | #10/200 | `hammer_08s` | **#10/200** | `wine_05s` |
-| `gallery_sub05_06.jpg` | sub-06 | 002 | `backscratcher_01b` | HARD FAILURE (p90) | #136/200 | `wallpaper_01b` | **#116/200** | `wallpaper_01b` |
-| `gallery_sub07_08.jpg` | sub-07 | 139 | `popcorn_07s` | SOLVED (O10 #1) | #4/200 | `calamari_01b` | **#1/200** | **exact** |
-| `gallery_sub07_08.jpg` | sub-07 | 086 | `gopher_09s` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub07_08.jpg` | sub-07 | 158 | `scallop_02s` | SUBJECT MEDIAN | #12/200 | `cashew_01b` | **#12/200** | `cashew_01b` |
-| `gallery_sub07_08.jpg` | sub-07 | 033 | `caterpillar_03s` | HARD FAILURE (p90) | #146/200 | `blowtorch_08s` | **#137/200** | `brace_08s` |
-| `gallery_sub07_08.jpg` | sub-08 | 157 | `scallion_04s` | SOLVED (O10 #1) | #2/200 | `okra_14n` | **#1/200** | **exact** |
-| `gallery_sub07_08.jpg` | sub-08 | 093 | `headscarf_03s` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub07_08.jpg` | sub-08 | 038 | `cheetah_05s` | SUBJECT MEDIAN | #5/200 | `cat_01b` | **#8/200** | `possum_05s` |
-| `gallery_sub07_08.jpg` | sub-08 | 073 | `face_mask_12s` | HARD FAILURE (p90) | #7/200 | `ladle_13s` | **#98/200** | `sandpaper_08s` |
-| `gallery_sub09_10.jpg` | sub-09 | 099 | `jeep_05s` | SOLVED (O10 #1) | #6/200 | `golf_cart_06s` | **#1/200** | **exact** |
-| `gallery_sub09_10.jpg` | sub-09 | 118 | `music_box_06s` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub09_10.jpg` | sub-09 | 014 | `birthday_cake_01b` | SUBJECT MEDIAN | #66/200 | `pocket_04s` | **#10/200** | `pocket_04s` |
-| `gallery_sub09_10.jpg` | sub-09 | 159 | `scooter_07s` | HARD FAILURE (p90) | #59/200 | `wok_12s` | **#130/200** | `wallpaper_01b` |
-| `gallery_sub09_10.jpg` | sub-10 | 175 | `suit_13s` | SOLVED (O10 #1) | #2/200 | `fork_07s` | **#1/200** | **exact** |
-| `gallery_sub09_10.jpg` | sub-10 | 108 | `lettuce_05n` | BOTH RANK #1 | #1/200 | **exact** | **#1/200** | **exact** |
-| `gallery_sub09_10.jpg` | sub-10 | 028 | `calamari_01b` | SUBJECT MEDIAN | #7/200 | `cashew_01b` | **#8/200** | `cashew_01b` |
-| `gallery_sub09_10.jpg` | sub-10 | 163 | `skateboard_01b` | HARD FAILURE (p90) | #144/200 | `ladle_13s` | **#89/200** | `ladle_13s` |
+---
+
+## Previous Round Archive (`O9` vs `O10`, 40 Triplets)
+
+The prior O9-vs-O10 gallery sheets remain preserved in this directory: `readme_overview_o9_vs_o10.jpg` and `gallery_sub01_02.jpg` .. `gallery_sub09_10.jpg`.

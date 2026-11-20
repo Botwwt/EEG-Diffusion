@@ -1,4 +1,4 @@
-# Stacking on the ordinary head (2026-11-12, updated 2026-11-19)
+# Stacking on the ordinary head (2026-11-12, updated 2026-11-20)
 
 This folder adds components on top of the **ordinary bounded condition head**
 (`research/eeg/brainhive_bounded_component_v1.py`, imported unchanged) and reports every arm that was run,
@@ -31,6 +31,7 @@ on top of the host and the co-author's head, only components that are ours or tr
 | **O9-0tta / O9** | **Streamlined `8`-checkpoint single-subject pipeline (`7 × KVEBPyrEncoder` + `1 × BoundedConditionAdapter`, `o9_streamlined.py`): within-fold Empirical-Bayes spatiotemporal reliability gate & repeat-variance scaler (`TargetSNRGate`), nested multi-horizon stems (`0–1000 / 0–700 / 0–480 ms`), closed-form 70-layer SDXL-Turbo UNet cross-attention Key-Value subspace loss (`CenteredKVLoss`, $L_{\mathrm{KV}}$ `eff_rank = 237.1 / 2048`), plus `0` TTA steps (`O9-0tta`) or `350` centered $L_{\mathrm{KV}}$ split-half TTA steps + `bag10` (`r_eff = 8.0`) on `v2` start (`O9`)** | ours (`kv_metric.py`, `deep_enc.py`, `o9_streamlined.py`): Empirical-Bayes SNR weighting + repeat-variance matching from training $R=4$ to test $R_{\mathrm{eff}} \in \{8, 36, 72\}$, and exact operator-pullback alignment in the diffusion UNet's own Key-Value subspace (`91%` fewer ckpts & TTA steps vs O8; `0` aux heads) |
 | O9b | **O9 + step-1/2 K = 4 Tweedie posterior coupling (`--tmf 1,0.10,0.10,0 --tmf_cr 1`, `w = 1.00` kept)** | intra-query `K = 4` Tweedie coupling (exact counterpart to O8b, with `8` ckpts/subject) |
 | **O10-0tta / O10** | **Bifurcated forward-operator synthesis (`o10_factorized.py`): drops both `(0.35, 0.25)` positive-pair alignment terms (`w_kv = w_u = 0`) and removes `BoundedConditionAdapter` completely (`0` DDPM heads); combines Stream 1 (`7 × KVEBPyrEncoder` on `F_train`) and Stream 2 (`7 × KVEBPyrEncoder` on VAE-marginalized `F_sem` with same-concept FN-masking, visual-confuser margin `beta_conf = 0.15`, and frozen `FusionEncoder` `PhysReSyn` combining semantic `(e_H14, e_B32)` expectations + ridge `z_vae`) via `eta = 0.50` orthogonal tangent bifurcation onto the pure `F_train[ok]` cone (`w = 1.00`, indep `K = 4`, `nsel = 1`; plus `O10-sel2/4` budget curve)** | ours (`o10_factorized.py`, `build_o10_report_and_gallery.py`): $2\times 2$ InfoNCE term reduction + forward-operator marginalization (`F_sem`), `FusionEncoder` physical re-synthesis (`PhysReSyn`), and two-stream tangent bifurcation solving the semantic/SSIM Pareto trade-off with `0` DDPM heads |
+| **O11-0tta / O11-noBigG / O11** | **Tri-Stream forward-operator synthesis built on O10 + zero-shot `OpenCLIP-ViT-bigG/14` text awakening (`o11_tri_stream_bigg.py`): trains 4 upgraded 0-head `DecoupledHorizonKVEncoder` streams (`E1_ffull`, `E2_fsem`, compositional `E3_direct_fe` through frozen `FusionEncoder.vision_model`, and direct EEG-to-`text_encoder_2` `E4_direct_bigg` with `sample_sub_repeats` + On-Cone `(0, 0)` $L_{\mathrm{KV}}$), blends 50/50 tangent-wise with O10's bifurcated cone onto `F_train[ok]` (`w = 1.00`, `O11-noBigG`), and awakens ONLY SDXL-Turbo's `OpenCLIP-ViT-bigG/14` `text_encoder_2` (16-slot cross-attention hidden states + pooled embeds at Bayes-MMSE shrinkage $\alpha = 0.35$, keeping OpenAI CLIP ViT-L/14 `text_encoder_1` strictly empty `""`; `0` DDPM heads, `4` UNet NFE/img, `nsel = 1`, indep `K = 4`)** | ours (`o11_tri_stream_bigg.py`, `build_o11_report_and_gallery.py`, `results/o11_tri_stream_bigg.txt`): compositional forward-operator inversion eliminating kNN/OT prototype collapse + zero-shot cross-modal awakening of SDXL-Turbo's dormant `OpenCLIP-bigG/14` text encoder (strictly zero OpenAI ViT-L/14 leakage) |
 
 O2 in detail: every test image has 80 repeats; trial r gets weight 1 / (mean squared residual of r against the mean of
 the other 79), so noisy trials (blinks, movement) count less. Label-free, one line of arithmetic, no training; the
@@ -122,9 +123,12 @@ O7a / O7 in detail: three bottlenecks limited O6:
 | + O10-sem-noPhysReSyn (`η = 1`, `F_sem` + `kvTTA`, no PhysReSyn, `0` DDPM heads) | 0.2856 | 0.4201 | 0.8792 | 0.9221 | 0.7936 | 0.8332 | 0.8444 |
 | + O10-sem-only (`η = 1`, `F_sem` + `kvTTA` + PhysReSyn, `0` DDPM heads) | 0.2866 | 0.4173 | 0.8804 | 0.9231 | 0.7870 | 0.8300 | **0.8396** |
 | **+ O10-0tta (`η = 0.50` bifurcated, `0` TTA, `0` DDPM heads, `w = 1.00`, `nsel = 1`)** | 0.2933 | 0.4203 | 0.8883 | 0.9283 | 0.7920 | **0.8346** | **0.8393** |
-| **+ O10 (`η = 0.50` bifurcated, `0` DDPM heads, `w = 1.00`, `nsel = 1`, headline)** | 0.2944 | 0.4217 | 0.8900 | **0.9290** | 0.7958 | **0.8347** | **0.8381** |
-| **+ O10-sel2 (`η = 0.50`, `nsel = 2`, `8` UNet NFE/img)** | 0.2963 | 0.4225 | 0.8900 | 0.9287 | **0.7985** | **0.8371** | **0.8367** |
-| **+ O10-sel4 (`η = 0.50`, `nsel = 4`, `16` UNet NFE/img)** | 0.2990 | 0.4235 | 0.8903 | **0.9294** | **0.8009** | **0.8392** | **0.8358** |
+| **+ O10 (`η = 0.50` bifurcated, `0` DDPM heads, `w = 1.00`, `nsel = 1`)** | 0.2944 | 0.4217 | 0.8900 | 0.9290 | 0.7958 | 0.8347 | 0.8381 |
+| **+ O10-sel2 (`η = 0.50`, `nsel = 2`, `8` UNet NFE/img)** | 0.2963 | 0.4225 | 0.8900 | 0.9287 | 0.7985 | 0.8371 | 0.8367 |
+| **+ O10-sel4 (`η = 0.50`, `nsel = 4`, `16` UNet NFE/img)** | 0.2990 | 0.4235 | 0.8903 | 0.9294 | **0.8009** | **0.8392** | **0.8358** |
+| **+ O11-0tta (`0` TTA, built on O10 + Tri-Stream + `bigG`, `0` heads, `4` NFE)** | 0.2910 | 0.4187 | 0.8889 | 0.9299 | 0.7937 | **0.8359** | 0.8417 |
+| **+ O11-noBigG (O10 + Tri-Stream `E123`, zero text, `0` heads, `4` NFE)** | 0.2950 | 0.4227 | 0.8899 | 0.9296 | 0.7977 | 0.8355 | 0.8389 |
+| **+ O11 (O10 + Tri-Stream + `OpenCLIP-bigG/14`, `0` heads, `4` NFE, headline)** | 0.2929 | 0.4206 | **0.8912** | **0.9308** | **0.8000** | **0.8361** | **0.8380** |
 | O8#w5start (`R = 4`-gated `w5` start ablation, not adopted) | 0.2956 | 0.4241 | 0.8880 | 0.9229 | 0.7859 | 0.8258 | 0.8477 |
 | O3 + adapted start *and* adapted condition (not adopted) | 0.2706 | 0.4142 | 0.8758 | 0.9153 | 0.7590 | 0.8087 | 0.8640 |
 
@@ -148,6 +152,9 @@ O7a / O7 in detail: three bottlenecks limited O6:
 | **O10** (`η = 0.50`, `0` heads, vs O9) | screened `{2, 5, 8, 9}` | −0.0058 (0/4) | −0.0055 (0/4) | −0.0015 (1/4) | −0.0005 (1/4) | −0.0054 (2/4) | **+0.0071 (3/4)** | −0.0003 (3/4) |
 | **O10** (`η = 0.50`, `0` heads, vs O9) | **held-out `{1, 3, 4, 6, 7, 10}`** | −0.0050 (0/6) | −0.0062 (0/6) | −0.0059 (1/6) | +0.0013 (4/6) | +0.0017 (2/6) | **+0.0043 (5/6)** | **−0.0067 (6/6)** |
 | **O10** (`η = 0.50`, `0` heads, vs O9) | all `10` subjects (`top-1: +0.0036, 6/10`) | −0.0053 (0/10) | −0.0059 (0/10) | −0.0041 (2/10) | +0.0006 (5/10) | −0.0012 (4/10) | **+0.0054 (8/10)** | **−0.0041 (9/10)** |
+| **O11** (on O10 + `bigG`, `0` heads, vs O9) | screened `{2, 5, 8, 9}` (`top-1: +0.0050, 3/4`) | −0.0076 (0/4) | −0.0067 (0/4) | +0.0014 (3/4) | +0.0014 (3/4) | −0.0005 (2/4) | **+0.0051 (4/4)** | **−0.0029 (3/4)** |
+| **O11** (on O10 + `bigG`, `0` heads, vs O9) | **held-out `{1, 3, 4, 6, 7, 10}` (`top-1: +0.0056, 4/6`)** | −0.0063 (0/6) | −0.0072 (0/6) | **+0.0034 (5/6)** | **+0.0025 (5/6)** | **+0.0055 (5/6)** | **+0.0079 (5/6)** | **−0.0051 (6/6)** |
+| **O11** (on O10 + `bigG`, `0` heads, vs O9) | **all `10` subjects (`top-1: +0.0054, 7/10, p=0.0375`)** | −0.0068 (0/10) | −0.0070 (0/10) | **+0.0026 (8/10)** | **+0.0020 (8/10)** | **+0.0031 (7/10)** | **+0.0068 (9/10)** | **−0.0042 (9/10)** |
 
 - Final prior row (O6) vs the reproduced baseline: every metric better (PixCorr +0.088, SSIM +0.100, Alex2 +0.053, Alex5 +0.023,
   Incep +0.018, CLIP +0.016, EffNet −0.015); Incep in 9/10 subjects, every other metric in 10/10. O3 vs the co-author's head alone: PixCorr +0.062, SSIM +0.071, Alex2 +0.043, Alex5 +0.013
