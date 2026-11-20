@@ -1,4 +1,6 @@
-# Stacking on the ordinary head (2026-11-12, updated 2026-11-20)
+# Stacking on the ordinary head (2026-11-12, updated 2026-11-21)
+
+> **Latest Standalone Report (O12 / O13 / O14 — Part I Information-Theoretic Ceiling Audit & Part II Cross-Brain Contrastive Consistency `L_xbrain`)**: see **[`O12_O13_O14_REPORT.md`](O12_O13_O14_REPORT.md)** and raw log [`results/o12_o13_o14_info_ceiling_xbrain.txt`](results/o12_o13_o14_info_ceiling_xbrain.txt).
 
 This folder adds components on top of the **ordinary bounded condition head**
 (`research/eeg/brainhive_bounded_component_v1.py`, imported unchanged) and reports every arm that was run,
