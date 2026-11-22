@@ -1,8 +1,8 @@
 # Job scripts (as run for this folder's experiments)
 
 Shell wrappers that queued the experiments on 8-GPU nodes without a scheduler (tmux sessions, one or two jobs per
-card). They are kept for the record; none of them is needed to reproduce the results (the commands in `../README.md`
-are enough). They assume the working layout used here:
+card). Use the [GPU replay guide](../README.md#gpu-replay) and the [original environment recipes](../EXPERIMENT_HISTORY.md)
+to run a specific experiment. These wrappers assume the original working layout.
 
 ```text
 $RAD_ROOT/code/rad/     = ../code/        (scripts)

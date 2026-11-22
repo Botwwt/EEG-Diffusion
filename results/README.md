@@ -1,4 +1,6 @@
-# Released evidence
+# October release evidence
+
+The files here back the CPU verification and the October report. For the November benchmark, see the [current results](../docs/CURRENT_RESEARCH.md) and [stack experiment logs](../research/eeg_stack_20261112/results/). Run `python -m eeg_diffusion verify-stack` from the project root to check November Top-1 arithmetic.
 
 - `retrieval.json`: selected original aggregate fields and training summaries, with source hash. Checkpoint file descriptors were omitted.
 - `image_pairing.json`: original aggregate image metrics, paired intervals, query IDs and limitations, with source hash.

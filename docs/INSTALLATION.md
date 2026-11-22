@@ -28,12 +28,13 @@ Keep pip's default build isolation, which installs the declared build backend. A
 ## Demo and expected result
 
 ```bash
-eeg-diffusion reference-demo --out outputs/demo.json
-eeg-diffusion verify
+python -m eeg_diffusion reference-demo --out outputs/demo.json
+python -m eeg_diffusion verify
+python -m eeg_diffusion verify-stack
 python -m pytest -q
 ```
 
-The demo conditions a scalar Gaussian variable on two distinct correlated observations. The expected posterior mean is 0.4 and covariance 0.5, up to floating-point precision; the output marks the data as synthetic and reports two unique trials. `verify` should check 72 frozen source/assets and three aggregate evidence files. The current test suite has 32 tests.
+The demo conditions a scalar Gaussian variable on two distinct correlated observations. It reports a posterior mean of 0.4 and covariance of 0.5 up to floating-point precision. `verify` checks the October evidence manifests. `verify-stack` checks the November participant table against the published totals and recomputes descriptive paired Top-1 intervals.
 
 Measured once on the recorded Windows/Python 3.11.9 host:
 
@@ -51,6 +52,7 @@ These timings do not include a fresh dependency download and are not performance
 python -m ruff check src scripts tests
 python -m ruff format --check src scripts tests
 python -m pytest --cov=eeg_diffusion --cov-report=term
+python scripts/verify_research_snapshot.py
 python scripts/build_report.py --check
 python scripts/build_figures.py --check
 ```

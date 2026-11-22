@@ -69,8 +69,12 @@ Inputs have equal shape `(d,)` or `(n, d)` and finite values; `alpha` lies in `[
 `verify_release(root)` checks both the frozen-source manifest and hashes of released aggregate evidence. It then checks summary consistency and displayed arithmetic. Path traversal, duplicate manifest entries, missing files and changed hashes are explicit failures. No historical confidence interval is reconstructed from aggregates.
 
 ```bash
-eeg-diffusion verify --root /path/to/EEG-Diffusion
-eeg-diffusion reference-demo --out outputs/synthetic-reference.json
+python -m eeg_diffusion verify --root /path/to/EEG-Diffusion
+python -m eeg_diffusion reference-demo --out outputs/synthetic-reference.json
+python -m eeg_diffusion verify-stack
+python -m eeg_diffusion check-o13-inputs --rad-root /path/to/rad
 ```
 
-CLI success returns exit code 0; invalid artifacts return 2 with a concise error. The demo uses synthetic data and should report mean `[0.4]`, covariance `[[0.5]]`, and `unique_trials: 2`.
+The demo reports mean `[0.4]`, covariance `[[0.5]]` and `unique_trials: 2` from synthetic data. `verify-stack` derives integer hit counts from rounded November participant rows and checks them against the published totals. Its paired t intervals use ten participant-level differences and keep the gallery and fitted models fixed.
+
+The O13 preflight checks paths and NumPy array shapes and emits structured results. Success returns exit code 0. Invalid artifacts or missing inputs return 2. The `eeg-diffusion` console command remains available after installation.
