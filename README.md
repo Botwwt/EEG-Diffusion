@@ -2,10 +2,23 @@
 
 Reconstructing viewed images from EEG with Brain-HIVE and SDXL-Turbo. This research repository publishes the experiment source, reconstruction examples and tools for checking the reported results.
 
-[Reconstruction gallery](research/eeg_stack_20261112/gallery/GALLERY.md) · [Experiment report](research/eeg_stack_20261112/O12_O13_O14_REPORT.md) · [Reproduction guide](docs/REPRODUCIBILITY.md) · [研究进展](docs/CURRENT_RESEARCH.md)
+[Reconstruction gallery](research/eeg_stack_20261112/gallery/GALLERY.md) · [SwapDiff report (2026-11-23)](research/eeg_stack_20261112/SWAPDIFF_REPORT.md) · [O12–O14 report](research/eeg_stack_20261112/O12_O13_O14_REPORT.md) · [Reproduction guide](docs/REPRODUCIBILITY.md) · [研究进展](docs/CURRENT_RESEARCH.md)
 
 [![checks](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml/badge.svg)](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml)
 [![Code license: MIT](https://img.shields.io/badge/code-MIT-35677c.svg)](LICENSE)
+
+## SwapDiff-EEG: Within-Concept 2×2 EEG-Swap Denoising Contrast (`R = 4`, All-10 & Held-Out-6)
+
+Demoting shared-trunk `O13/O14` to the baseline, we backpropagate a doubly-balanced within-concept **2×2 EEG-swap denoising contrast** $d(A, E_A) + d(B, E_B) < d(A, E_B) + d(B, E_A)$ directly through the frozen 4-step SDXL-Turbo UNet (`t ∈ {999, 749, 499, 249}`) into the EEG encoder and a zero-initialized low-rank IP conditioning residual (`4 × 2048`). See the full standalone report and all 10-subject / untouched Held-Out-6 paired statistics in [`research/eeg_stack_20261112/SWAPDIFF_REPORT.md`](research/eeg_stack_20261112/SWAPDIFF_REPORT.md).
+
+- Across all 10 subjects (`22,500` same-concept photo pairs on sealed unseen `fold 0` concepts, **`R = 4` real EEG**, `4-NFE nsel = 1`), **`Arm3b_RepRawSwap_CondLyr`** beats the **100% architecture- and parameter-matched linear-`L_KV` representation control `Arm1b_RepIntra_CondLyr`** on frozen-UNet denoising swap (**`+9.36%pp`**, `83.88% vs 74.52%`, `10/10`, `p < 0.0001`; untouched Held-Out-6 `6/6`, `p = 0.0001`), fixed-`z0`/fixed-seed controlled swap (**`CLIP +1.57%pp`** `p = 0.0027`, **`Alex5 Intra10 +3.20%pp`** `9/10 p = 0.0019`, **`Alex5 Swap +2.96%pp`** `10/10 p < 0.0001`, **`PixCorr Swap +2.76%pp`** `10/10 p = 0.0003`; Held-Out-6 `6/6` on Alex5 & PixCorr), and free-EEG generation (**`CLIP Swap +1.23%pp`** `8/10 p = 0.0140`, **`Alex5 Intra10 +1.28%pp`** `9/10 p = 0.0351`, **`SSIM +0.020`** `10/10 p < 0.0001`, inter-concept `g500 = 3.54%`).
+
+<details>
+<summary>View Held-Out 2×2 EEG-Swap comparison gallery (R = 4 EEG, fixed z0 & seed)</summary>
+
+![Held-Out 2x2 EEG Swap Gallery](research/eeg_stack_20261112/gallery/swap_gallery_heldout.jpg)
+
+</details>
 
 ## Overview
 

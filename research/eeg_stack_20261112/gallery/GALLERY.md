@@ -1,4 +1,12 @@
-# Visual Comparison Galleries: O12 / O13 / O14 (`k = 0`) & O9 / O10 / O11 Archive
+# Visual Comparison Galleries: SwapDiff (`R = 4` 2×2 Swap), O12 / O13 / O14 & O9 / O10 / O11 Archive
+
+## SwapDiff-EEG: Held-Out Subjects `R = 4` 2×2 Within-Concept EEG-Swap Gallery (2026-11-23)
+
+Each 8-column row shows a real same-concept photo pair `(A, B)` from sealed unseen `fold 0` concepts on untouched held-out subjects (`sub-10, 03, 04, 06, 07`) under **identical fixed start latent `z0` & random seed** (`4-step SDXL-Turbo`, `nsel = 1`, `R = 4` real EEG): **[GT Photo A | GT Photo B | Arm0(E_A) | Arm0(E_B) | Arm1b Rep(E_A) | Arm1b Rep(E_B) | Arm3b SwapDiff(E_A) | Arm3b SwapDiff(E_B)]**. See [`../SWAPDIFF_REPORT.md`](../SWAPDIFF_REPORT.md).
+
+![Held-Out 2x2 EEG Swap Gallery](swap_gallery_heldout.jpg)
+
+---
 
 ## O12 / O13 / O14 6-Column Side-by-Side Sheets (`k = 0`, 200-Way CLIP Ranking)
 

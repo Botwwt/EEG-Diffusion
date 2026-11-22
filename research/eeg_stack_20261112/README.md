@@ -1,9 +1,10 @@
 # November EEG reconstruction experiments
 
-This directory contains the Brain-HIVE / SDXL-Turbo experiments from November 12–21, 2026. See the [current results and limits](../../docs/CURRENT_RESEARCH.md) for the protocol and claims used on the project homepage.
+This directory contains the Brain-HIVE / SDXL-Turbo experiments from November 12–23, 2026. See the [current results and limits](../../docs/CURRENT_RESEARCH.md) for the protocol and claims used on the project homepage.
 
 | What to read | Where to look |
 | --- | --- |
+| **SwapDiff-EEG (2026-11-23)**: within-concept `2×2` EEG-swap denoising contrast (`R = 4`, All-10 & Held-Out-6) | **[SwapDiff report](SWAPDIFF_REPORT.md)** · [10-sub JSON](results/swapdiff_10sub_results.json) · [Swap gallery](gallery/swap_gallery_heldout.jpg) |
 | O12–O14 experiment design, controls and figures | [Experiment report](O12_O13_O14_REPORT.md) |
 | Participant-level Top-1 and paired statistics | [Released result log](results/o12_o13_o14_info_ceiling_xbrain.txt) |
 | Sequential examples, failure cases and condition labels | [Reconstruction gallery](gallery/GALLERY.md) |
