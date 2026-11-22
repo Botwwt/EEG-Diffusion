@@ -1,7 +1,11 @@
 # EEG-to-Image 信息论上界审计与跨脑对比一致性研究报告（O12 / O13 / O14）
 
-> **日期**：2026-11-21  
-> **官方协议**：THINGS-EEG2 官方测试集（Gifford et al., 2022），10 名受试者（`sub-01`–`sub-10`），200 张未见测试图 × 80 次重复试次（`R = 80`），17 导枕顶叶通道（`0–1000 ms @ 250 Hz`），纯净 `F_train[ok]` 锥面（`w = 1.00`），沿用冻结 `lat512_start.py`（`--mode_v v2`），SDXL-Turbo `smap c=0.625`、`low_keep=(8, 0.22, 0.04)`、`0` 个 DDPM 条件头、`K = 4` 独立随机采样、零后处理模糊、未改动 `metrics.py`，且**全链路零 OpenAI CLIP ViT-L/14 权重泄露**（`text_encoder_1 = ""`）。  
+> **2026-11-22 阅读说明**　O13/O14 训练覆盖全部十名受试者，测试时按人使用同一测试批次的 200 组 EEG 做无标签适配。下文的六人子集来自该轮开发筛选之外。跨会话模板识别、高斯估计和生成器 oracle 分别对应不同任务及假设。训练期重复数的因果贡献仍需控制实验。逐受试者复算、对照和可复现范围见[当前结果与投稿评估](../../docs/CURRENT_RESEARCH.md)。
+
+> **日期**：2026-11-21
+>
+> **官方协议**：THINGS-EEG2 官方测试集（Gifford et al., 2022），10 名受试者（`sub-01`–`sub-10`），200 张未见测试图 × 80 次重复试次（`R = 80`），17 导枕顶叶通道（`0–1000 ms @ 250 Hz`），纯净 `F_train[ok]` 锥面（`w = 1.00`），沿用冻结 `lat512_start.py`（`--mode_v v2`），SDXL-Turbo `smap c=0.625`、`low_keep=(8, 0.22, 0.04)`、`0` 个 DDPM 条件头、`K = 4` 独立随机采样、零后处理模糊。`text_encoder_1` 固定使用空提示词，`metrics.py` 使用 OpenAI CLIP ViT-L/14 的视觉分支评分。
+>
 > **关联归档**：原始统计日志 [`results/o12_o13_o14_info_ceiling_xbrain.txt`](results/o12_o13_o14_info_ceiling_xbrain.txt) · 视觉长廊 [`gallery/GALLERY.md`](gallery/GALLERY.md) · 核心代码 [`code/o12_splitrep_medoid_bigg.py`](code/o12_splitrep_medoid_bigg.py) / [`code/o13_xbrain_shared_trunk.py`](code/o13_xbrain_shared_trunk.py) / [`code/o14_triarch_xbrain_bigg.py`](code/o14_triarch_xbrain_bigg.py)
 
 ---
@@ -294,7 +298,7 @@ Part I 与 O12 共同揭示了一个深刻的结构事实：同受试者 `2+2` �
 
 ## 第五部分：归档资产与复现入口
 
-所有代码、数值日志与图像均已归档在 `research/eeg_stack_20261112/` 下，不含任何私有机器路径或凭证：
+核心训练和评价脚本、汇总统计与部分图像归档在 `research/eeg_stack_20261112/`。运行需要外部数据、权重和预计算缓存。详见[复现说明](../../docs/REPRODUCIBILITY.md)。
 
 - **完整数值日志与统计表**：[`results/o12_o13_o14_info_ceiling_xbrain.txt`](results/o12_o13_o14_info_ceiling_xbrain.txt)
 - **可复现训练与官方评估脚本**：
@@ -304,8 +308,8 @@ Part I 与 O12 共同揭示了一个深刻的结构事实：同受试者 `2+2` �
 - **视觉对比长廊索引**：[`gallery/GALLERY.md`](gallery/GALLERY.md)
 
 ```bash
-# 运行 O12 / O13 / O14 官方 10 受试者全流程（需配置好 THINGS-EEG2 预处理数据与 SDXL-Turbo 权重）
-python research/eeg_stack_20261112/code/o12_splitrep_medoid_bigg.py --stage all
-python research/eeg_stack_20261112/code/o13_xbrain_shared_trunk.py --stage all
-python research/eeg_stack_20261112/code/o14_triarch_xbrain_bigg.py --stage all
+# 在已配置 RAD_ROOT 并准备 O10 条件和起始潜变量后，运行归档入口
+python research/eeg_stack_20261112/code/o12_splitrep_medoid_bigg.py --phase all
+python research/eeg_stack_20261112/code/o13_xbrain_shared_trunk.py --phase all
+python research/eeg_stack_20261112/code/o14_triarch_xbrain_bigg.py --phase all
 ```

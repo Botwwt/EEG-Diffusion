@@ -11,6 +11,8 @@ import numpy as np
 
 from .audit import verify_release
 from .gaussian_reference import posterior_reference
+from .stack_audit import verify_stack_results
+from .stack_inputs import check_o13_inputs
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -19,15 +21,25 @@ def main(argv: list[str] | None = None) -> int:
     subparsers = parser.add_subparsers(dest="command", required=True)
     verify = subparsers.add_parser("verify", help="Verify frozen hashes and aggregate arithmetic")
     verify.add_argument("--root", type=Path, default=Path.cwd())
+    stack = subparsers.add_parser("verify-stack", help="Recompute November stack Top-1 statistics")
+    stack.add_argument("--root", type=Path, default=Path.cwd())
+    preflight = subparsers.add_parser("check-o13-inputs", help="Inspect prepared O13 replay inputs")
+    preflight.add_argument("--rad-root", type=Path, required=True)
     demo = subparsers.add_parser(
         "reference-demo", help="Synthetic Gaussian example; no EEG inference"
     )
     demo.add_argument("--out", type=Path)
     args = parser.parse_args(argv)
 
+    status = 0
     try:
         if args.command == "verify":
             result = verify_release(args.root)
+        elif args.command == "verify-stack":
+            result = verify_stack_results(args.root)
+        elif args.command == "check-o13-inputs":
+            result = check_o13_inputs(args.rad_root)
+            status = 2 if result["missing"] or result["invalid_arrays"] else 0
         else:
             reference = posterior_reference(
                 np.array([[0.8], [0.8]]),
@@ -53,7 +65,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"eeg-diffusion: {error}", file=sys.stderr)
         return 2
     print(json.dumps(result, indent=2))
-    return 0
+    return status
 
 
 if __name__ == "__main__":

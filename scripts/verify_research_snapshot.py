@@ -63,6 +63,12 @@ def main():
                 raise ValueError("Escaping existing release path")
             if hashlib.sha256(path.read_bytes()).hexdigest() != row["sha256"]:
                 raise ValueError("Existing release changed: " + row["path"])
+    additional_sources = [
+        *sorted((root / "experiments/archive").rglob("*.py")),
+        *sorted((root / "research/eeg_stack_20261112/code").rglob("*.py")),
+    ]
+    for path in additional_sources:
+        ast.parse(path.read_text(encoding="utf-8-sig"), filename=path.relative_to(root).as_posix())
     print(
         json.dumps(
             {
@@ -70,6 +76,7 @@ def main():
                 "snapshot_files": len(seen),
                 "source_bytes": manifest["bytes"],
                 "python_files_parsed": parsed,
+                "additional_archive_python_files_parsed": len(additional_sources),
                 "binary_weights_or_EEG_included": False,
                 "scope": "File integrity, syntax, size and secret-format checks; no scientific replay.",
             }
