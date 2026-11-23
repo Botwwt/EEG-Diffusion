@@ -4,6 +4,7 @@ This directory contains the Brain-HIVE / SDXL-Turbo experiments from November 12
 
 | What to read | Where to look |
 | --- | --- |
+| **`z0 × cond` `2×2` Diagnostics & 4-Step `DRaFT-Intra4` (2026-11-24)**: anchoring (`s375`), 4-way full-chain competition, All-10 & Held-Out-6 | **[DRaFT-Intra4 report](DRAFT_INTRA4_REPORT.md)** · [All-10/HO-6 JSON](results/exp7_heldout6_and_all10_results.json) · [Held-Out gallery](gallery/draft_heldout_sub01_s375_gallery.jpg) |
 | **SwapDiff-EEG (2026-11-23)**: within-concept `2×2` EEG-swap denoising contrast (`R = 4`, All-10 & Held-Out-6) | **[SwapDiff report](SWAPDIFF_REPORT.md)** · [10-sub JSON](results/swapdiff_10sub_results.json) · [Swap gallery](gallery/swap_gallery_heldout.jpg) |
 | O12–O14 experiment design, controls and figures | [Experiment report](O12_O13_O14_REPORT.md) |
 | Participant-level Top-1 and paired statistics | [Released result log](results/o12_o13_o14_info_ceiling_xbrain.txt) |

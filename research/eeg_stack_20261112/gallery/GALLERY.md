@@ -1,4 +1,12 @@
-# Visual Comparison Galleries: SwapDiff (`R = 4` 2×2 Swap), O12 / O13 / O14 & O9 / O10 / O11 Archive
+# Visual Comparison Galleries: DRaFT-Intra4 & `s375` (`R = 4`), SwapDiff (`2×2` Swap), O12 / O13 / O14 & O9 / O10 / O11 Archive
+
+## DRaFT-Intra4 & `s375` Anchoring: Uncherry-Picked Held-Out `sub-01` FreeGen Gallery (2026-11-24)
+
+Each row pair shows Photo A and Photo B from the first 6 sealed unseen `fold 0` concepts (`#00–#05`, zero cherry-picking) on untouched held-out `sub-01` under **`R = 4` real EEG free generation** at **`s375`** (`4-step SDXL-Turbo`, `nsel = 1`): **[GT Photo | Arm1b (RepIntra) | SwapDiff (Arm3b) | D1 (SimOnly) | D2 (Compete4) | D4 (UnfEnc+Z0)]**. See [`../DRAFT_INTRA4_REPORT.md`](../DRAFT_INTRA4_REPORT.md).
+
+![Held-Out sub-01 s375 Uncherry-Picked Gallery](draft_heldout_sub01_s375_gallery.jpg)
+
+---
 
 ## SwapDiff-EEG: Held-Out Subjects `R = 4` 2×2 Within-Concept EEG-Swap Gallery (2026-11-23)
 
