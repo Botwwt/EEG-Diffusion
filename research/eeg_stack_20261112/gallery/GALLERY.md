@@ -1,4 +1,12 @@
-# Visual Comparison Galleries: DRaFT-Intra4 & `s375` (`R = 4`), SwapDiff (`2×2` Swap), O12 / O13 / O14 & O9 / O10 / O11 Archive
+# Visual Comparison Galleries: Trial-Precision (`M1`) & `DINOv2` (`M2`), DRaFT-Intra4 (`R = 4`), SwapDiff (`2×2` Swap), O12–O14 & O9–O11 Archive
+
+## Trial-Precision Dual-Stream (`M1a`) & `DINOv2` Geometric DRaFT (`M2a`): Uncherry-Picked Held-Out `sub-01` 7-Column Gallery (2026-11-24)
+
+Each row pair shows Photo A and Photo B from the first 6 sealed unseen `fold 0` concepts (`#00–#05`, zero cherry-picking) on untouched held-out `sub-01` under **`R = 4` real EEG free generation** at **`s375`** (`4-step SDXL-Turbo`, `nsel = 1`): **[GT Photo | Naive Arm1b | M1a + Arm1b | Naive SwapDiff | M1a + SwapDiff | M1a + D2_Comp4 | M1a + M2a_DINO]**. See [`../TRIAL_PREC_DINOV2_REPORT.md`](../TRIAL_PREC_DINOV2_REPORT.md).
+
+![Held-Out sub-01 s375 M1 & M2 7-Column Gallery](m1_m2_heldout_sub01_s375_gallery.jpg)
+
+---
 
 ## DRaFT-Intra4 & `s375` Anchoring: Uncherry-Picked Held-Out `sub-01` FreeGen Gallery (2026-11-24)
 
