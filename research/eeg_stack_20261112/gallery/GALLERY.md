@@ -1,5 +1,9 @@
 # EEG reconstruction galleries
 
+## Twelve additional objects
+
+The same three participants viewed 120 new photographs. These panels show the generated image for the lowest archive row of each object, including mistakes. The two labels identify the viewed object and the EEG prediction used for generation. [Sub-01](photo_angle_sub01_fresh.jpg) · [Sub-04](photo_angle_sub04_fresh.jpg) · [Sub-05](photo_angle_sub05_fresh.jpg) · [Reproduce the original-versus-generated comparison locally](../../../docs/FRESH_PHOTO_VALIDATION.md#reproduce-the-saved-image-comparison)
+
 ## Calibrated objects from four EEG trials
 
 Each panel shows the first archive photograph of each of its twelve objects. Every tile is a generated image, labeled with the viewed object and the word decoded from EEG. Sub-01 is the first participant in the locked seven-person confirmation. Sub-05 provided the earlier single-person check. Use the replay script with the stimulus archive for private side-by-side comparisons. [How to read the results](../../../docs/OBJECT_FIDELITY.md) · [Build a comparison](../code/compare_personal_renders.py)

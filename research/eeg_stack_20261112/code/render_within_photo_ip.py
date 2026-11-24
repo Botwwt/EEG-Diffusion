@@ -4,6 +4,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 from pathlib import Path
 from types import MethodType
 
@@ -36,6 +37,23 @@ def save(path, obj):
 def check(v, msg):
     if not v:
         raise ValueError(msg)
+
+
+def panel_names(design, requested=None):
+    panels = design.get("panels", PANELS)
+    check(
+        isinstance(panels, (list, tuple))
+        and panels
+        and all(isinstance(p, str) and re.fullmatch(r"[a-z0-9][a-z0-9_-]*", p) for p in panels)
+        and len(panels) == len(set(panels)),
+        "Invalid panel names in the frozen design",
+    )
+    use = list(panels if requested is None else requested)
+    check(
+        use and len(set(use)) == len(use) and set(use) <= set(panels),
+        "A requested panel is missing from the design or appears twice",
+    )
+    return use
 
 
 def packet(root, subject, panel):
@@ -94,7 +112,8 @@ def packet(root, subject, panel):
 
 
 def run_render(args):
-    packets = {p: packet(args.root, args.subject, p) for p in PANELS}
+    panels = panel_names(read(args.root / "design.json"), getattr(args, "panels", None))
+    packets = {p: packet(args.root, args.subject, p) for p in panels}
     if args.check_only:
         return
     import torch
@@ -232,6 +251,7 @@ def run_render(args):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--root", type=Path, required=True)
+    p.add_argument("--panels", nargs="+", help="Defaults to all panels in the frozen design")
     p.add_argument("--archive", type=Path)
     p.add_argument("--adapter", type=Path)
     p.add_argument("--dictionary", type=Path)

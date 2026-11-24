@@ -1,0 +1,503 @@
+{
+  "generic": {
+    "selection": {
+      "subject": "sub-04",
+      "selection": {
+        "training_domain": "external generic objects",
+        "heldout_objects": 384,
+        "distinct_queries": 3840,
+        "episodic_decisions": 34560,
+        "hits": [
+          21930,
+          22120,
+          21486,
+          22151,
+          21623,
+          22088,
+          21667,
+          22144,
+          20663,
+          22126,
+          20898,
+          21823,
+          20770,
+          21965,
+          18132,
+          21673,
+          18380,
+          20587,
+          17916
+        ],
+        "chosen_minus_measured": {
+          "delta": 0.006394675925925926,
+          "class_bootstrap_ci95": [
+            0.0035300925925925925,
+            0.009317853009259249
+          ]
+        },
+        "candidates_in_order": [
+          [
+            "cosine",
+            0.0,
+            0.0
+          ],
+          [
+            "isotropic",
+            0.0,
+            0.25
+          ],
+          [
+            "generic",
+            0.0,
+            0.25
+          ],
+          [
+            "isotropic",
+            0.25,
+            0.25
+          ],
+          [
+            "generic",
+            0.25,
+            0.25
+          ],
+          [
+            "isotropic",
+            0.5,
+            0.25
+          ],
+          [
+            "generic",
+            0.5,
+            0.25
+          ],
+          [
+            "isotropic",
+            0.0,
+            0.5
+          ],
+          [
+            "generic",
+            0.0,
+            0.5
+          ],
+          [
+            "isotropic",
+            0.25,
+            0.5
+          ],
+          [
+            "generic",
+            0.25,
+            0.5
+          ],
+          [
+            "isotropic",
+            0.5,
+            0.5
+          ],
+          [
+            "generic",
+            0.5,
+            0.5
+          ],
+          [
+            "isotropic",
+            0.0,
+            1.0
+          ],
+          [
+            "generic",
+            0.0,
+            1.0
+          ],
+          [
+            "isotropic",
+            0.25,
+            1.0
+          ],
+          [
+            "generic",
+            0.25,
+            1.0
+          ],
+          [
+            "isotropic",
+            0.5,
+            1.0
+          ],
+          [
+            "generic",
+            0.5,
+            1.0
+          ]
+        ],
+        "chosen": [
+          "isotropic",
+          0.25,
+          0.25
+        ]
+      },
+      "candidate_fields": [
+        "covariance_prior",
+        "support_covariance_weight",
+        "distance_score_weight"
+      ],
+      "rule": "Most OOF hits on 384 sub-04 generic objects; ties favor the earliest candidate. Check the chosen method once on 128 separate generic objects. Continue only for strictly more correct decisions than the original cosine model.",
+      "seed": 260511,
+      "grid": [
+        [
+          "cosine",
+          0.0,
+          0.0
+        ],
+        [
+          "isotropic",
+          0.0,
+          0.25
+        ],
+        [
+          "generic",
+          0.0,
+          0.25
+        ],
+        [
+          "isotropic",
+          0.25,
+          0.25
+        ],
+        [
+          "generic",
+          0.25,
+          0.25
+        ],
+        [
+          "isotropic",
+          0.5,
+          0.25
+        ],
+        [
+          "generic",
+          0.5,
+          0.25
+        ],
+        [
+          "isotropic",
+          0.0,
+          0.5
+        ],
+        [
+          "generic",
+          0.0,
+          0.5
+        ],
+        [
+          "isotropic",
+          0.25,
+          0.5
+        ],
+        [
+          "generic",
+          0.25,
+          0.5
+        ],
+        [
+          "isotropic",
+          0.5,
+          0.5
+        ],
+        [
+          "generic",
+          0.5,
+          0.5
+        ],
+        [
+          "isotropic",
+          0.0,
+          1.0
+        ],
+        [
+          "generic",
+          0.0,
+          1.0
+        ],
+        [
+          "isotropic",
+          0.25,
+          1.0
+        ],
+        [
+          "generic",
+          0.25,
+          1.0
+        ],
+        [
+          "isotropic",
+          0.5,
+          1.0
+        ],
+        [
+          "generic",
+          0.5,
+          1.0
+        ]
+      ],
+      "generic_split_lf_sha256": "7e111b28554eacfe248ec4a94f9633e6cfb0e64c8f3e87d54e8aaec56f4dda15",
+      "source_sha256": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+      "code_sha256": "aea32aec08b7d56f81d67b7c9a6c1872afb78c961ee330dc81fb64e0f9ce96a9"
+    },
+    "selection_sha256": "61743c5301d723b77f39e1fde610272c6d09fe44b8eadc148b81d0a6835c4c43",
+    "generic_check": {
+      "training_domain": "external generic objects",
+      "heldout_objects": 128,
+      "distinct_queries": 1280,
+      "episodic_decisions": 11520,
+      "hits": [
+        7506,
+        7553
+      ],
+      "chosen_minus_measured": {
+        "delta": 0.004079861111111111,
+        "class_bootstrap_ci95": [
+          -0.0008680555555555555,
+          0.009027777777777777
+        ]
+      },
+      "candidates_in_order": [
+        [
+          "cosine",
+          0.0,
+          0.0
+        ],
+        [
+          "isotropic",
+          0.25,
+          0.25
+        ]
+      ],
+      "chosen": [
+        "isotropic",
+        0.25,
+        0.25
+      ]
+    },
+    "proceed": true,
+    "definition": "Four-repeat EEG, 96 Fisher directions fitted on external classes only. The episode covariance uses within-object deviations of 12\u00d78 support EEGs (84 residual degrees of freedom), with a trace-matched isotropic or external within-class prior. A 1e-6 trace-relative diagonal ridge stabilizes factorization. Class-score vectors are centered and rescaled separately for each query before mixing. No target image or query EEG is used to estimate covariance."
+  },
+  "cases": {
+    "sub-04": {
+      "generic_check": {
+        "training_domain": "external generic objects",
+        "heldout_objects": 128,
+        "distinct_queries": 1280,
+        "episodic_decisions": 11520,
+        "hits": [
+          7506,
+          7553
+        ],
+        "chosen_minus_measured": {
+          "delta": 0.004079861111111111,
+          "class_bootstrap_ci95": [
+            -0.0008680555555555555,
+            0.009027777777777777
+          ]
+        },
+        "candidates_in_order": [
+          [
+            "cosine",
+            0.0,
+            0.0
+          ],
+          [
+            "isotropic",
+            0.25,
+            0.25
+          ]
+        ],
+        "chosen": [
+          "isotropic",
+          0.25,
+          0.25
+        ]
+      },
+      "panels": {
+        "registered": {
+          "n": 120,
+          "hits": [
+            86,
+            83
+          ],
+          "own_minus_cosine_ci95": [
+            -0.06666666666666667,
+            0.0
+          ]
+        },
+        "replicate": {
+          "n": 120,
+          "hits": [
+            94,
+            96
+          ],
+          "own_minus_cosine_ci95": [
+            0.0,
+            0.041666666666666664
+          ]
+        },
+        "fresh": {
+          "n": 120,
+          "hits": [
+            85,
+            87
+          ],
+          "own_minus_cosine_ci95": [
+            -0.016666666666666666,
+            0.05833333333333334
+          ]
+        }
+      }
+    },
+    "sub-05": {
+      "generic_check": {
+        "training_domain": "external generic objects",
+        "heldout_objects": 128,
+        "distinct_queries": 1280,
+        "episodic_decisions": 11520,
+        "hits": [
+          6557,
+          6611
+        ],
+        "chosen_minus_measured": {
+          "delta": 0.0046875,
+          "class_bootstrap_ci95": [
+            -0.0004361979166666647,
+            0.009722222222222222
+          ]
+        },
+        "candidates_in_order": [
+          [
+            "cosine",
+            0.0,
+            0.0
+          ],
+          [
+            "isotropic",
+            0.25,
+            0.25
+          ]
+        ],
+        "chosen": [
+          "isotropic",
+          0.25,
+          0.25
+        ]
+      },
+      "panels": {
+        "registered": {
+          "n": 120,
+          "hits": [
+            75,
+            78
+          ],
+          "own_minus_cosine_ci95": [
+            -0.025000000000000005,
+            0.075
+          ]
+        },
+        "replicate": {
+          "n": 120,
+          "hits": [
+            72,
+            70
+          ],
+          "own_minus_cosine_ci95": [
+            -0.041666666666666664,
+            0.0
+          ]
+        },
+        "fresh": {
+          "n": 120,
+          "hits": [
+            60,
+            58
+          ],
+          "own_minus_cosine_ci95": [
+            -0.06666666666666667,
+            0.025000000000000005
+          ]
+        }
+      }
+    },
+    "sub-01": {
+      "generic_check": {
+        "training_domain": "external generic objects",
+        "heldout_objects": 128,
+        "distinct_queries": 1280,
+        "episodic_decisions": 11520,
+        "hits": [
+          6968,
+          7054
+        ],
+        "chosen_minus_measured": {
+          "delta": 0.007465277777777778,
+          "class_bootstrap_ci95": [
+            0.0020833333333333333,
+            0.01310763888888889
+          ]
+        },
+        "candidates_in_order": [
+          [
+            "cosine",
+            0.0,
+            0.0
+          ],
+          [
+            "isotropic",
+            0.25,
+            0.25
+          ]
+        ],
+        "chosen": [
+          "isotropic",
+          0.25,
+          0.25
+        ]
+      },
+      "panels": {
+        "registered": {
+          "n": 120,
+          "hits": [
+            67,
+            61
+          ],
+          "own_minus_cosine_ci95": [
+            -0.10833333333333334,
+            0.0
+          ]
+        },
+        "replicate": {
+          "n": 120,
+          "hits": [
+            76,
+            77
+          ],
+          "own_minus_cosine_ci95": [
+            -0.025000000000000005,
+            0.041666666666666664
+          ]
+        },
+        "fresh": {
+          "n": 120,
+          "hits": [
+            64,
+            65
+          ],
+          "own_minus_cosine_ci95": [
+            -0.03333333333333333,
+            0.06666666666666667
+          ]
+        }
+      }
+    }
+  },
+  "scope": "All three already observed target panels are developmental. The fixed readout needs separate confirmation before any image claim."
+}

@@ -1,0 +1,25 @@
+{
+  "panel": "fresh",
+  "registration_sha256": "bb2bca550a032190e834053f0f7afaf6579b14047330ac6ff0204b9f8b48f4dd",
+  "clip_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+  "dictionary_sha256": "1aebc7a2c35edcfcfffc63934754440c90534ccc46df0537db41dc6197450132",
+  "image_manifest_sha256": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+  "targets": 120,
+  "full1854_credit": 71.0,
+  "closed12_credit": 119.0,
+  "class_full1854_credit": {
+    "hot_chocolate": 10.0,
+    "goblet": 1.0,
+    "navel": 8.0,
+    "rice": 10.0,
+    "payphone": 10.0,
+    "can_opener": 7.0,
+    "telegraph": 6.0,
+    "trumpet": 8.0,
+    "bow2": 0.0,
+    "lock": 0.0,
+    "lid": 1.0,
+    "margarita": 10.0
+  },
+  "scorer_sha256": "acc026e65dbe2fcb80f446e4039729282d89c986c547de5d2a2bafd38bc4efd7"
+}

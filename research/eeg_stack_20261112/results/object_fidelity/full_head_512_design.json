@@ -1,0 +1,37 @@
+{
+  "subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "panels": [
+    "registered",
+    "replicate",
+    "fresh"
+  ],
+  "distinct_objects": 36,
+  "distinct_target_photos": 360,
+  "preexisting_exposure": "All three panels and participants had prior posterior-only or 128-class-model results. No image outcome establishes a benefit for the new combination.",
+  "training_classes": 512,
+  "training_photos_per_person": 5120,
+  "classifier_weights": {
+    "posterior": 1,
+    "full": 0.25,
+    "cross": 0.25
+  },
+  "feature_design": "Four true trials; released 63-channel order; two float32 two-trial means using stored slots [1,3] and [0,2]; fourteen successive signed 40-ms means over 40 to 600 ms, end-exclusive. Same four physical trials as posterior-only.",
+  "model": "Unchanged 96-D posterior Fisher, 96-D full-head Fisher, and 32-D cross-session/different-photo Fisher, using the same historical train-only whitening, session-mean subtraction, per-query score normalization and 8-shot splits.",
+  "comparison": "Primary comparison: 512 full-head mixture versus 512 posterior-only on the same rows and class supports; report each panel, individual and acquisition-session-conditioned null. Any generated-image comparison is separate.",
+  "gate": "First run sub-04 alone. Process sub-05 and sub-01 only if pooled correct counts on the three 120-query panels strictly exceed the unchanged 512-class posterior baseline. No further weight, window, rank or participant selection.",
+  "previous_weight_selection_sha256": "c60295652887a4d108c167d5dbc0277f63a68413b0425d452e3324347dce8d0c",
+  "training_receipts_sha256": {
+    "sub-04": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+    "sub-05": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f",
+    "sub-01": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9"
+  },
+  "registrations_sha256": {
+    "registered": "f623b24d73d0024c23642ffa0309ba05078f591b2d723770ac12a93459de327a",
+    "replicate": "d7646f9fcd7958818a26d6d82483316d75c42ee295dc77f545e48258741d452b",
+    "fresh": "bb2bca550a032190e834053f0f7afaf6579b14047330ac6ff0204b9f8b48f4dd"
+  }
+}

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image
-from render_within_photo_ip import ARMS, PANELS, check, packet, read, save, sha
+from render_within_photo_ip import ARMS, check, packet, panel_names, read, save, sha
 from score_object_panel import score_object_panel
 from score_official_objects import load_dictionary, load_tokenizer, text_bank, topk_credit, unit
 from score_personal_photo_layout import original_records
@@ -130,7 +130,8 @@ def run(args):
     from eval_instance_starts import load_visual_scorer
 
     torch.set_grad_enabled(False)
-    records_by_panel = {p: registered(args.reference_dir, p) for p in PANELS}
+    panels = panel_names(read(args.root / "design.json"), getattr(args, "panels", None))
+    records_by_panel = {p: registered(args.reference_dir, p) for p in panels}
     # Require every JPEG run requested in this evaluation to be frozen before reading original pixels.
     registered_cases = {}
     for sub in args.subjects:
@@ -217,5 +218,6 @@ if __name__ == "__main__":
         default=["sub-04", "sub-05"],
     )
     p.add_argument("--batch-size", type=int, default=32)
+    p.add_argument("--panels", nargs="+", help="Defaults to all panels in the frozen design")
     args = p.parse_args()
     run(args)
