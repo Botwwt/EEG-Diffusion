@@ -1,0 +1,10 @@
+{
+  "reference": "Personal R4 on 128 other objects, eight support photos per registered object and fold, four physical query trials",
+  "participants": ["sub-04", "sub-05"],
+  "panels": ["registered", "replicate"],
+  "motivation": "Before expanding the generic set, ten disjoint twelve-object tasks within the original generic pool yielded 370, 542, and 623 of 1200 for sub-04, and 426, 503, and 605 of 1200 for sub-05, at 24, 60, and 116 training classes. The effective projection rank is capped by the available classes.",
+  "primary_candidate": "Keep the original 17-channel four-trial design, regularization, 96 directions, cosine prototypes, generator conditions and query-specific seeds. Add 384 classes to the original 128 using NumPy default_rng(260508) on the sorted remaining eligible class IDs. Exclude both target panels.",
+  "equal_data_comparison": "Keep 128 generic classes, adding full-scalp multiscale EEG views. Select any mixing weights on sub-04 generic classes only and freeze the configuration for sub-05.",
+  "primary_evaluation": "Report both photo panels and participants separately. Compare generated RGB full-1854 naming credit with the archived personal R4 under unchanged sampler and seeds. Also report twelve-way EEG decisions, session-pair-conditional excess, and same-object ten-photo identification.",
+  "scope": "The previous 128-class four-outcome results for these two participants were already known. Expanded training and full-head model target outcomes had not been examined when these candidate definitions were set. Extra calibration presents 3840 additional distinct photos, four times each, per participant."
+}
