@@ -28,7 +28,7 @@ The full-scalp readout did not improve either preregistered image endpoint. Both
 
 The uniform arm uses the mean visual direction of the eight support photos for the predicted word. The wrong arm uses a donor EEG from the same predicted word and fold, retaining the original query's seed. On the twelve-label naming test, every JPEG's correct/incorrect outcome matched the EEG word's correct/incorrect outcome across both readouts and all three arms. The independent 1,854-label test gives the generator more ways to name the wrong object.
 
-The two readouts predicted the same word on 293 queries. All 293 matched JPEGs were byte-identical. The other 67 predictions comprised 23 corrections, 27 losses and 17 changes between two wrong words. Both readouts predicted both words correctly on 20, 16 and 28 pairs for sub-04, sub-05 and sub-01 respectively. The 64 common pairs therefore compare identical matched JPEGs. Wrong-EEG JPEGs can differ if other predictions change the donor pool. Intervals resample participants and shared true-object classes separately, retaining paired images and folds within each sampled cell.
+The two readouts predicted the same word on 293 queries. All 293 matched JPEGs were byte-identical. The other 67 predictions comprised 23 corrections, 27 losses and 17 changes between two wrong words. Changing the EEG word recovered 21 correct full-dictionary image names and lost 21 others. Both readouts predicted both words correctly on 20, 16 and 28 pairs for sub-04, sub-05 and sub-01 respectively. The 64 common pairs therefore compare identical matched JPEGs. Wrong-EEG JPEGs can differ if other predictions change the donor pool. Intervals resample participants and shared true-object classes separately, retaining paired images and folds within each sampled cell.
 
 ## Physical EEG and model
 
@@ -73,8 +73,21 @@ P=outputs/prospective-photo
 for m in expanded_r4 full_head_512; do
   R="$P/render_inputs/$m"
   "$PY" "$C/score_within_photo_ip.py" --root "$R" --archive "$ARCHIVE" \
-    --dictionary "$DICTIONARY" --reference-dir "$P/references" --panels prospective --out "$R/clip.json"
+    --dictionary "$DICTIONARY" --reference-dir "$P/references" --panels prospective \
+    --subjects sub-04 sub-05 sub-01 --out "$R/clip.json"
 done
 "$PY" "$C/score_prospective_readouts.py" all \
   --release research/eeg_stack_20261112/results/object_fidelity/prospective_paired_images.json
+```
+
+## Later H/14 direction experiments on the same photographs
+
+Two generator experiments use the posterior readout's words on this already examined panel. One estimates a component of the EEG signal that recurs across physical presentations. The other estimates a component shared across participants. The methods passed their own held-out generic-object tests before their directions were used for image generation. The fourth panel provides development evidence for these two methods. The prospective full-scalp readout comparison above used the earlier frozen generator. [Repeat-based fit](../research/eeg_stack_20261112/code/fit_repeat_photo_subspace.py) · [Shared-response fit](../research/eeg_stack_20261112/code/fit_shared_photo_eeg.py)
+
+Each candidate preserves the posterior word, the eight support photos, the magnitude of the recipient's original angular deviation and the same image seed. Its wrong arm rotates the recipient vector by that same angle in a donor's direction. The matched comparisons use the original posterior JPEG, its uniform JPEG and the candidate's wrong JPEG for each query. The evaluator also counts how many regenerated uniform JPEGs match the originals byte for byte. Confidence intervals for these development comparisons resample the twelve true object classes together for all three participants and all arms. They are conditional on the three observed participants.
+
+After the original posterior DINO scores and all candidate JPEGs are available, save each candidate's independent CLIP report as `outputs/prospective-photo/refinements/METHOD/clip.json` using the same CLIP command and participant list above with `R="$P/refinements/$m"` for `m=repeat` and `m=shared`. Then run the following command to compute the paired DINO and CLIP comparisons on identical registered queries. [Scoring implementation](../research/eeg_stack_20261112/code/score_prospective_candidates.py)
+
+```sh
+"$PY" "$C/score_prospective_candidates.py" all
 ```
