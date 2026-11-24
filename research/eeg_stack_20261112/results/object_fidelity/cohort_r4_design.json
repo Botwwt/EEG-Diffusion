@@ -1,0 +1,58 @@
+{
+  "protocol": "Same-stimulus cohort-3, three participants with four measured presentations each, one decision per photograph. Optional higher acquisition budget. The participants and all four development panels were previously studied.",
+  "contributing_subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "physical_trials_per_photo": 12,
+  "individual_trials_per_photo": 4,
+  "panels": [
+    "registered",
+    "replicate",
+    "fresh",
+    "prospective"
+  ],
+  "object": "Each participant uses their frozen 512-generic-object posterior 17-channel Fisher96 model. For each query, cosine to each object's eight-support EEG mean, subtract across the 12 scores and divide by their population SD. Sum standardized scores equally across people observing the identical original row; largest wins, first class on a tie.",
+  "controls": "Compare paired on identical stimuli to the mean correctness of the three individual R4 predictions and to fixed sub-04. Additional negative control holds sub-04 aligned and shifts sub-05 and sub-01 score vectors by two distinct nonzero cyclic offsets within each of five folds. Row order is sorted by original stimulus ID; offsets fixed by seed 260531 before scoring. This preserves supports/fold/marginals and breaks photo alignment, sometimes retaining an object by chance.",
+  "visual": "Use the fused predicted word and its eight shared support image/EEG IDs. Recompute each participant's original 512-generic H14 direction and generically calibrated angle for that fused word. Normalize the three tangents independently and normalize their equal-weight sum. The output angular amplitude is the arithmetic mean of those same three angles. Uniform equals their common eight-support prior. Wrong rotates the entire fused direction including its own amplitude from the preceding query within identical fold and predicted word, singleton uses own. Verify per-subject projections and individual-baseline target-word predictions.",
+  "seed": "Previously used four-step Turbo, native IP-Adapter radius, same word and seed 923761 + global row. Cohort produces one image per query and arm; prospective panel would have 360 outputs total.",
+  "metrics": "Each of the four panels contains 120 stimuli (12 objects). Report overall 480 stimulus-level decisions and same-row paired hit differences vs mean individual R4 and sub-04. Resample 12 objects within panel, or all 48 objects together, 10000 times seed 260532; participants fixed. Descriptive shuffled co-viewers control.",
+  "gate": "Prepare fourth-panel cohort image experiment only if cohort has at least 5 more correct words than sub-04 on the prospective panel and strictly more than sub-04 over all four panels. This is development evidence, not separate confirmation.",
+  "generic_inputs": {
+    "sub-04": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+    "sub-05": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f",
+    "sub-01": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9"
+  },
+  "visual_sha256": "b8156300f59d058600fc9a2c9e1586c5fbd4a113f236031acc64c6511d56b432",
+  "selection_sha256": "914c9a527049783f23e25d1bdd2c3137e5fdd4ed69d18b1ce617853f9d53e79a",
+  "angle_sha256": "06e8f4d5c34554dd0e076347c519aa24a2b0f5bd89d785cce9632b0721dcd60d",
+  "source_registration_sha256": {
+    "registered": "f623b24d73d0024c23642ffa0309ba05078f591b2d723770ac12a93459de327a",
+    "replicate": "d7646f9fcd7958818a26d6d82483316d75c42ee295dc77f545e48258741d452b",
+    "fresh": "bb2bca550a032190e834053f0f7afaf6579b14047330ac6ff0204b9f8b48f4dd",
+    "prospective": "980ac28dcb7b67861b4d83f4f965e836e6c6c4d1d4e475559c7b615a4d0b9b7a"
+  },
+  "frozen_single_conditions_sha256": {
+    "registered": {
+      "sub-04": "eb9555f55cce9e398ae8b8dfd0296b435d684989269bf96598603f14d4a6d909",
+      "sub-05": "a3628eb3ed1532912e77855e7676f08f8d9c6206920d78b05bba0944106a03b3",
+      "sub-01": "4c47dc29a37719c03ef665451da9aa3d10f820177a557b0dd1ddcb4e3b797053"
+    },
+    "replicate": {
+      "sub-04": "d6e134b65c43c9f7ff37518ad92823281ba6a97f3014361ee713022807c56078",
+      "sub-05": "87887e4956fada5c96cafdbf277bea04d559b6ac5cb23f76cf52045434c5bb50",
+      "sub-01": "bd01d9b290a9035bd5cfff35f0af6fcdb98d9a38a314beb405c96437bfbe1e62"
+    },
+    "fresh": {
+      "sub-04": "1b9833b56752633b0e6b823e8e0831d047e7da952adf04cc9a0f429d00e18edc",
+      "sub-05": "6ecd645650f148d913c10856e3cd691e5e81d39b5715e782febc72760be1df32",
+      "sub-01": "7c1db9e06d2b335231b2c7c85a5788b7a049775466163a0d14313b6c42bdd7e2"
+    },
+    "prospective": {
+      "sub-04": "4dcb811d9b0b004a1a3b0971f22c31151027e7886682349f0b08cb890014d92b",
+      "sub-05": "5384664764be72ed609472a8eab7ec93422505246dc4bb5db2c3d40a863e84a9",
+      "sub-01": "b008c5051d55fd38404851bf086be69b908b8bec57e75ba9958e979ffea39d04"
+    }
+  }
+}

@@ -12,6 +12,8 @@ import numpy as np
 
 ARMS = ("own", "uniform", "wrong")
 PANELS = ("registered", "replicate")
+PARTICIPANTS = ("sub-01", "sub-04", "sub-05")
+READOUTS = (*PARTICIPANTS, "cohort-3")
 ADAPTER_SHA = "ebf05d918348aec7abb02a5e9ecef77e0aaea6914a5c4ea13f50d45eb1681831"
 
 
@@ -82,6 +84,12 @@ def check_donor_geometry(vectors, donor, angles=None):
 
 def packet(root, subject, panel):
     design = read(root / "design.json")
+    if subject == "cohort-3":
+        check(
+            sorted(design.get("contributing_subjects", [])) == sorted(PARTICIPANTS)
+            and design.get("physical_trials_per_photo") == 12,
+            "Cohort generation needs three named participants and twelve physical observations",
+        )
     radius = read(root / "radius.json")
     file = root / "conditions" / subject / panel / "conditions_512.npz"
     check(
@@ -292,7 +300,7 @@ def main():
     p.add_argument("--archive", type=Path)
     p.add_argument("--adapter", type=Path)
     p.add_argument("--dictionary", type=Path)
-    p.add_argument("--subject", choices=("sub-01", "sub-04", "sub-05"), required=True)
+    p.add_argument("--subject", choices=READOUTS, required=True)
     p.add_argument("--batch-size", type=int, default=8)
     p.add_argument("--check-only", action="store_true")
     args = p.parse_args()
