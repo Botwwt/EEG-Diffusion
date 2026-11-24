@@ -1,0 +1,122 @@
+{
+  "protocol": {
+    "source": "After the uncentered single-query H/14 check; before residual-cosine or amplified RGB results. The previous H/14 and native category results are known.",
+    "participants": [
+      "sub-04",
+      "sub-05",
+      "sub-01"
+    ],
+    "selection": "Use only the original 128 non-panel objects and frozen four-fold leave-object-out EEG predictor on sub-04. Match the median observed versus predicted support-relative angle on five exhaustive disjoint two-photo folds per generic class. Clip predicted test angles at the 90th percentile of observed generic angles. Use one global gain for every participant and both panels.",
+    "independent_query": "For the same eligible pairs compare each query separately with each candidate after subtracting the identical eight-support unit centroid from the predicted H/14 vector and the gallery candidate. Count larger residual cosine, tie=0.5; no partner EEG used for the decision.",
+    "synthesis": "Fixed expanded object word, same three IP-adapter arms, weights, per-row seeds and four SDXL steps as the unit-gain experiment. Regenerate using the expanded angle for own and same-word/fold wrong EEG. Evaluate all 120 names per case, strict two-photo assignment, individual same-class photo matching and byte identity of uniform arm. Two participants in image pilot.",
+    "scope": "Experimental sensitivity of the transfer from EEG to individual photographs. Validate on 05, then report separate 01 CPU result."
+  },
+  "generic_scale": {
+    "n": 1280,
+    "generic_observed_median": 0.5821751254811456,
+    "eeg_predicted_median": 0.1651847201338773,
+    "gain": 3.524388484657116,
+    "max_angle": 0.7888140197141664,
+    "selection_sha256": "914c9a527049783f23e25d1bdd2c3137e5fdd4ed69d18b1ce617853f9d53e79a",
+    "units": "radians"
+  },
+  "individual_query_H14": {
+    "sub-04": {
+      "own": {
+        "n_queries": 144,
+        "credit": 98.0,
+        "rate": 0.6805555555555556,
+        "ci95": [
+          0.6133333333333333,
+          0.7536231884057971
+        ],
+        "p": 2.999970000299997e-05
+      },
+      "wrong": {
+        "n_queries": 144,
+        "credit": 50.0,
+        "rate": 0.3472222222222222,
+        "ci95": [
+          0.2846153846153846,
+          0.40541519780650204
+        ],
+        "p": 1.0
+      },
+      "uniform": {
+        "n_queries": 144,
+        "credit": 72.0,
+        "rate": 0.5,
+        "ci95": [
+          0.5,
+          0.5
+        ],
+        "p": 1.0
+      }
+    },
+    "sub-05": {
+      "own": {
+        "n_queries": 102,
+        "credit": 64.0,
+        "rate": 0.6274509803921569,
+        "ci95": [
+          0.5348837209302325,
+          0.7019230769230769
+        ],
+        "p": 0.016629833701662985
+      },
+      "wrong": {
+        "n_queries": 102,
+        "credit": 35.0,
+        "rate": 0.3431372549019608,
+        "ci95": [
+          0.2638888888888889,
+          0.4270880681818181
+        ],
+        "p": 0.999170008299917
+      },
+      "uniform": {
+        "n_queries": 102,
+        "credit": 51.0,
+        "rate": 0.5,
+        "ci95": [
+          0.5,
+          0.5
+        ],
+        "p": 1.0
+      }
+    },
+    "sub-01": {
+      "own": {
+        "n_queries": 94,
+        "credit": 70.0,
+        "rate": 0.7446808510638298,
+        "ci95": [
+          0.6777777777777778,
+          0.8214285714285714
+        ],
+        "p": 2.999970000299997e-05
+      },
+      "wrong": {
+        "n_queries": 94,
+        "credit": 25.0,
+        "rate": 0.26595744680851063,
+        "ci95": [
+          0.18888888888888888,
+          0.33653846153846156
+        ],
+        "p": 1.0
+      },
+      "uniform": {
+        "n_queries": 94,
+        "credit": 47.0,
+        "rate": 0.5,
+        "ci95": [
+          0.5,
+          0.5
+        ],
+        "p": 1.0
+      }
+    }
+  },
+  "scope": "Both target photos of each eligible, correctly named pair are provided only as alternatives at scoring. Each EEG response makes its own decision without accessing its partner EEG. Independent targets total 2 times the eligible pairs per person; subjects viewed the same two panels."
+}

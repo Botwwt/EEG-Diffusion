@@ -10,13 +10,15 @@ Reconstructing viewed photographs from EEG with Brain-HIVE and SDXL-Turbo. We me
 
 The primary task is to draw a new photograph of **one of twelve calibrated objects** from one person's EEG. Each query averages four physical presentations of the photograph. In each fold, eight other photos per object and their EEG recordings are available for calibration. The generator gets one predicted word and produces one image.
 
-### Selected model
+### Selected personal object readout
 
-1. **Learn what distinguishes objects for this person.** On 128 other objects with ten photos each, a regularized Fisher projection weights EEG directions by how strongly they separate objects relative to the variation between photos of the same object. It keeps 96 directions from 17 posterior electrodes.
+We use the 512-object personal R4 readout for object reconstruction. The original 128-object version has the broadest confirmation set. Every query generates an image using its predicted word, including incorrect predictions. The two-photo evaluator later selects pairs for which both words were correct. [Model sizes and photo-level evidence](docs/PHOTO_STRUCTURE.md)
+
+1. **Learn what distinguishes objects for this person.** On 512 other objects with ten photos each (128 in the seven-person confirmation), a regularized Fisher projection weights EEG directions by how strongly they separate objects relative to the variation between photos of the same object. It keeps 96 directions from 17 posterior electrodes.
 2. **Decode the object.** Map the query and the eight calibration recordings per object into that space. The closest category mean by cosine similarity supplies the predicted word.
-3. **Draw the prediction.** Use that word, the visual prototype of its eight calibration photos, an EEG-predicted visual adjustment and an EEG-predicted 8×8 starting latent. Brain-HIVE and SDXL-Turbo generate one image in four steps. The original query photo is used for scoring. [Fit the personal decoder](research/eeg_stack_20261112/code/fit_personal_session_metric.py) · [Prepare generator inputs](research/eeg_stack_20261112/code/condition_registered_predictions.py)
+3. **Draw one image per query.** The Brain-HIVE object baseline uses the predicted word, an eight-photo visual prototype, an EEG-predicted adjustment and an 8×8 starting latent in four SDXL-Turbo steps. The preferred route for testing individual photographs uses the same 512-object readout, the H/14 mean of the eight photos, and a query EEG residual whose angle was calibrated on other objects. An IP-Adapter conditions four SDXL-Turbo steps on this visual prediction. Held-out query photos enter evaluation. [Object generator inputs](research/eeg_stack_20261112/code/condition_registered_predictions.py) · [Direct photo generator](research/eeg_stack_20261112/code/render_within_photo_ip.py)
 
-### Held-out participants
+### Seven-participant confirmation at 128 calibration objects
 
 We selected the readout on sub-04 and checked it on sub-05. We then fixed the seven remaining participants, both photo panels and the primary endpoint before inspecting their personal-model predictions. The frozen comparison uses the sub-03 decoder and each target participant's eight supports per object. The personal system uses an additional 1,280 calibration photos per participant. A separate OpenAI CLIP-L/14 names each generated image against all 1,854 THINGS concepts. [Locked confirmation design](research/eeg_stack_20261112/results/object_fidelity/personal_confirmation_design.json)
 
@@ -38,6 +40,18 @@ The gallery shows the first participant in the confirmation set and the lowest a
 ### Color and composition
 
 We also predicted a photograph's 4×4 color deviation from the mean of the eight calibration photos for its predicted object. On sub-05 the low-frequency RGB error decreased from 0.2872 to 0.2776 with the category mean alone and to 0.2762 with the EEG correction on the first panel. The corresponding second-panel values were 0.2855, 0.2765 and 0.2750. On both participants tested, the intervals for the EEG correction included zero when restricted to correctly decoded objects. The primary model uses the original generator output. [Color residuals and matched EEG swaps](docs/OBJECT_FIDELITY.md#平均误差和一张照片自己的误差)
+
+Two further experiments held the predicted word fixed. One weighted eight support photos using EEG, and the other adjusted foreground location and size. A strict test paired two held-out photos of the same object, fold and predicted word and asked which generated JPEG belonged with which original. Across the 97 eligible pairs on sub-04/05, EEG-weighted supports scored **54/97**, versus **58/97** with equal weights. The EEG-guided geometry adjustment scored **52/97**, versus **50/97** with the calibrated class geometry. All four participant-by-panel intervals for each of these paired differences included zero. [Image-level measurements, controls and replay](docs/PHOTO_STRUCTURE.md)
+
+### Personal calibration size and scalp coverage
+
+Increasing personal calibration from 128 to 512 outside objects raised full-vocabulary naming of the generated RGB from **321.5/720 (44.7%) to 406.5/720 (56.5%)** across sub-04, sub-05 and the separately locked sub-01. The same-object photo score fell from 81/720 to 71/720. Each person supplied 5,120 distinct outside calibration photos for the 512-object readout and 1,280 for the original readout. At the original budget, adding full-scalp measurements raised naming from 228.5/480 to 245.5/480 in the two participants tested. Each target panel still used eight calibration photos per object. [Readouts, scoring and locked comparisons](docs/PHOTO_STRUCTURE.md#personal-calibration-size-and-scalp-coverage) · [Generated gallery for sub-01](research/eeg_stack_20261112/gallery/expanded_sub01_replicate.jpg)
+
+### Does the image identify the photograph within its object?
+
+In H/14 feature space, sub-01 scored **39/47** when both EEG object words were correct and the evaluator had to assign two responses to two original photos. Choosing independently for each query gave **48/94**. A post-hoc analysis subtracted the class prototype before choosing and scored **70/94**. [Embedding and single-query evaluations](docs/PHOTO_STRUCTURE.md#photo-specific-h14-embeddings)
+
+Across three people, the direct H/14 route drew 720 own-EEG images. CLIP-L/14 named **433/720 (60.1%)** correctly and assigned **115/170** eligible pairs to the correct original photos, versus **89/170** for the shared prior and **64/170** for wrong EEG. DINOv2 scored 103/170, 90/170 and 61/170. On the additional sub-01, CLIP scored 31/47 versus 22/47 for the prior and DINOv2 scored 25/47 versus 24/47. The paired intervals against the prior included zero. Identifying the specific original among ten photos of its object on all queries scored **65/720** with CLIP and **78/720** with DINOv2 (10% chance). [Independent scores and controls](docs/PHOTO_STRUCTURE.md#calibrating-the-residual-angle-before-generation) · [Sub-01 generated gallery](research/eeg_stack_20261112/gallery/photo_angle_sub01_registered.jpg)
 
 ### Other inference settings
 

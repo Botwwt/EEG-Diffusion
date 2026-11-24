@@ -1,6 +1,9 @@
 * text=auto eol=lf
 /experiments/archive/** -text
 /docs/paper_sources.json -text
+/research/eeg_stack_20261112/results/object_fidelity/generated_bank_inputs.json -text whitespace=cr-at-eol
+/research/eeg_stack_20261112/results/object_fidelity/within_photo_confirmation_design.json -text whitespace=cr-at-eol
+/research/eeg_stack_20261112/results/object_fidelity/within_photo_render_radius.json -text whitespace=cr-at-eol
 /LICENSE -text
 *.png binary
 *.pdf binary

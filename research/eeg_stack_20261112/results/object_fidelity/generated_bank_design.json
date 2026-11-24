@@ -1,0 +1,13 @@
+{
+  "object_decoder": "Frozen 512-class participant-specific Fisher readout. Two registered 12-object panels; five fixed folds, eight support photos per object and fold. One query averages four physical EEG recordings.",
+  "motivation": "With direct IP-Adapter guidance at unit gain, DINO representations of generated images did not preserve the within-object pairing advantage found before diffusion. An individual within-object EEG residual direction discriminated between held-out photos with a support-centered score.",
+  "generator": "For each of 24 objects and five folds, use one prompt and only the eight permitted calibration images to construct a generic visual prototype. Draw eight SDXL-Turbo candidates from this prototype and eight fixed seeds independent of query row and EEG. Reuse the 960 generated images across participants. All arms use the identical bank.",
+  "selection": "Use the decoded word and fold to access eight candidate renders. Own and same-word/fold wrong EEG select the largest cosine between the EEG H14 deviation from the unit support centroid and candidate H14 deviation from that same centroid. Prior-only chooses the largest raw cosine to the support centroid. A fixed first candidate measures the generator alone. Ties in selection use the lowest seed index. No original query photographs or their image embeddings enter selection.",
+  "participants": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "evaluation": "Use the entire 120 images in each person-panel case. Report generated full-1854 true-word credit, raw DINOv2-S/14 and CLIP two-photo correspondence when both EEG words were correct, independent same-class ten-photo identification, and paired own-minus-prior and own-minus-wrong changes. Same folds/people/stimuli as earlier experiments. This is an adaptive follow-up, and adds an eight-candidate generation budget.",
+  "assessment": "A candidate selection advantage should reach final RGB under an independent visual scorer, with retained object naming, on the validation and separate participant. No post hoc candidate-count/temperature tuning."
+}

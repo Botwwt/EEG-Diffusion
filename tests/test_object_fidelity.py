@@ -89,3 +89,78 @@ def test_confirmation_totals_match_the_locked_people_and_paired_render_records()
                 pair["paired_personal_minus_frozen"]["mean"],
                 pair["personal"]["mean"] - pair["frozen"]["mean"],
             )
+
+
+def test_expanded_readout_pairs_use_the_original_budget_and_registered_photos():
+    root = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    design = json.loads((root / "expanded_calibration_design.json").read_bytes())
+    confirmation = json.loads((root / "expanded_confirmation_design.json").read_bytes())
+    data = json.loads((root / "readout_scale.json").read_bytes())
+    people = [*design["participants"], confirmation["participant"]]
+    assert len(set(people)) == 3
+    assert set(data["cases"]) == set(people)
+    for sub in people:
+        for panel in design["panels"]:
+            result = data["cases"][sub][panel]
+            baseline = result["personal_r4"]["credit"]
+            candidate = result["expanded_r4"]
+            for metric, pair in candidate["paired_vs_personal_r4"].items():
+                delta = candidate["credit"][metric] - baseline[metric]
+                assert np.isclose(delta, pair["credit_change"])
+                assert np.isclose(delta / data["photos_per_case"], pair["rate_change"])
+                assert np.isclose(np.mean(pair["rate_change_by_object"]), pair["rate_change"])
+            assert ("full_head" in result) == (sub in design["participants"])
+
+
+def test_within_photo_prior_ties_only_count_as_half_a_correct_pair():
+    root = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    result = json.loads((root / "within_photo_embedding.json").read_bytes())
+    for subject in result["participants"].values():
+        panels, combined = subject["panels"].values(), subject["combined"]
+        n = sum(panel["eligible_pairs"] for panel in panels)
+        assert n == combined["eligible_pairs"]
+        for arm, credit in combined["paired_top1_credit"].items():
+            assert credit == sum(panel["paired_top1_credit"][arm] for panel in panels)
+        assert combined["paired_top1_credit"]["512_uniform"] == n / 2
+        assert combined["paired_top1_credit"]["512_paired_swap"] == (
+            n - combined["paired_top1_credit"]["512_own"]
+        )
+
+
+def test_angle_renders_use_frozen_conditions_and_report_actual_image_counts():
+    root = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    for report, design in (
+        ("within_photo_render.json", "within_photo_render_design.json"),
+        ("photo_angle_render.json", "photo_angle_render_design.json"),
+    ):
+        scores = json.loads((root / report).read_bytes())
+        source = (root / design).read_bytes()
+        spec = json.loads(source)
+        assert scores["design_sha256"] == hashlib.sha256(source).hexdigest()
+        assert (
+            scores["radius_sha256"]
+            == hashlib.sha256((root / "within_photo_render_radius.json").read_bytes()).hexdigest()
+        )
+        assert scores["participant_photo_queries"] == 240 * len(spec["cohort"])
+        assert scores["generated_jpegs"] == scores["participant_photo_queries"] * 3
+        for key, case in scores["cases"].items():
+            panel, subject = key.split("/")
+            assert case["condition_packet_sha256"] == spec["packets_sha256"][f"{subject}/{panel}"]
+
+
+def test_generated_bank_shared_controls_tie_on_pairs_and_keep_calibration_cost_separate():
+    root = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    for filename in ("generated_bank_clip.json", "generated_bank_dino.json"):
+        scores = json.loads((root / filename).read_bytes())
+        assert scores["unique_generated_candidates"] == 2 * 12 * 5 * scores["generator_budget"]
+        for person in scores["subjects"].values():
+            arms = person["both_panels"]["paired_assignment"]["arms"]
+            assert arms["uniform"]["credit"] == arms["fixed0"]["credit"] == arms["own"]["n"] / 2

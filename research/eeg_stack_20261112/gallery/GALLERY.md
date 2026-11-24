@@ -4,10 +4,19 @@
 
 Each panel shows the first archive photograph of each of its twelve objects. Every tile is a generated image, labeled with the viewed object and the word decoded from EEG. Sub-01 is the first participant in the locked seven-person confirmation. Sub-05 provided the earlier single-person check. Use the replay script with the stimulus archive for private side-by-side comparisons. [How to read the results](../../../docs/OBJECT_FIDELITY.md) · [Build a comparison](../code/compare_personal_renders.py)
 
-| Participant | First panel | Second panel |
+| Participant and generic calibration budget | First panel | Second panel |
 | --- | --- | --- |
-| sub-01 | [Twelve generated objects](personal_sub01_registered.jpg) | [Twelve generated objects](personal_sub01_replicate.jpg) |
-| sub-05 | [Twelve generated objects](personal_sub05_registered.jpg) | [Twelve generated objects](personal_sub05_replicate.jpg) |
+| sub-01, 128 other objects | [Twelve generated objects](personal_sub01_registered.jpg) | [Twelve generated objects](personal_sub01_replicate.jpg) |
+| sub-01, 512 other objects | [Same twelve queries](expanded_sub01_registered.jpg) | [Same twelve queries](expanded_sub01_replicate.jpg) |
+| sub-05, 128 other objects | [Twelve generated objects](personal_sub05_registered.jpg) | [Twelve generated objects](personal_sub05_replicate.jpg) |
+| sub-05, 512 other objects | [Same twelve queries](expanded_sub05_registered.jpg) | [Same twelve queries](expanded_sub05_replicate.jpg) |
+
+The photograph-level experiment keeps the 512-object readout and gives SDXL-Turbo an H/14 image condition through the ViT-H IP-Adapter. Its displacement from the eight support photos is scaled using separate training objects. These grids show the same fixed stimuli as the tables above. [Image and control scores](../../../docs/PHOTO_STRUCTURE.md)
+
+| Participant | Common objects | Random objects |
+| --- | --- | --- |
+| sub-01, additional confirmation | [Generated images](photo_angle_sub01_registered.jpg) | [Generated images](photo_angle_sub01_replicate.jpg) |
+| sub-05, validation | [Generated images](photo_angle_sub05_registered.jpg) | [Generated images](photo_angle_sub05_replicate.jpg) |
 
 ## Trial-Precision Dual-Stream (`M1a`) & `DINOv2` Geometric DRaFT (`M2a`): Uncherry-Picked Held-Out `sub-01` 7-Column Gallery (2026-11-24)
 

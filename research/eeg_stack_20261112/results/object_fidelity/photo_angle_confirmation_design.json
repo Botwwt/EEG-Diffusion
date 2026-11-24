@@ -1,0 +1,11 @@
+{
+  "participant": "sub-01",
+  "selection": "The same previously designated lowest-numbered participant, after observing the 04 and 05 rendered results. No angle-guided image had been generated for this participant at lock. Earlier 01 category, pre-diffusion residual and native generator results were known.",
+  "method": "Use the same once-fitted generic angular gain, projected directions, 32-photo radius, 512-class object readout, three arms, prompt, four SDXL steps and per-row seeds from the 04/05 image experiment. One generated output per query and arm. No refits.",
+  "primary": "Report CLIP-L/14 full-vocabulary naming, CLIP and DINOv2-S/14 paired assignment on the correctly named same-object, same-fold pairs against both the prior and wrong EEG, with all 240 queries in the within-class ten-photo test. Report positive and negative outcomes.",
+  "condition_sha256": {
+    "registered": "4c47dc29a37719c03ef665451da9aa3d10f820177a557b0dd1ddcb4e3b797053",
+    "replicate": "bd01d9b290a9035bd5cfff35f0af6fcdb98d9a38a314beb405c96437bfbe1e62"
+  },
+  "generic_scale_sha256": "06e8f4d5c34554dd0e076347c519aa24a2b0f5bd89d785cce9632b0721dcd60d"
+}
