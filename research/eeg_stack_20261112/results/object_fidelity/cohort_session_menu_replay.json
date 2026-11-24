@@ -1,0 +1,53 @@
+{
+  "menu_sha256": "a17f1d8058b59cbe85edc60119fb9cba8bf0da8e124176a63ea7eb5a7cc5fc30",
+  "original_design_sha256": "ebe8c6ec8710ec8a4886e095b89a87ce479bc42b38ad484d5c829aa0137b6599",
+  "as_run_driver_sha256": "af13b7bf933bbe249c256aad85043a6c0851475c575871a56d9e59b321b7783b",
+  "replay_driver_sha256": "7d5e22d60124d614fea6a22f05bf4e638bd1268edb750758bf7ea2ad827f819f",
+  "checked_panels": {
+    "stress12": {
+      "predictions_sha256": "431b0b3af72458e5505e3eb829d0a7fe24cead10618576c01d503d16f3811973",
+      "as_run_result_sha256": "4d8f29d270941189d47e613615a1245ed92e5b8ed07ef82ea363c78ae11636af",
+      "comparisons": {
+        "ordinary_12way": {
+          "candidates": 12,
+          "n": 120,
+          "exact_arrays": [
+            "cohort",
+            "misaligned",
+            "sub-04",
+            "sub-05",
+            "sub-01"
+          ]
+        }
+      }
+    },
+    "new_three4": {
+      "predictions_sha256": "ad93eda49b3e9899b6ae6ed889a76d6d4204a43b0f57733a2ec9b4295335dc61",
+      "as_run_result_sha256": "e45b3caa700824fc30ba0744afebee3feccafd1e81cba24c24dc16a64805b040",
+      "comparisons": {
+        "ordinary_12way": {
+          "candidates": 12,
+          "n": 120,
+          "exact_arrays": [
+            "cohort",
+            "misaligned",
+            "sub-04",
+            "sub-05",
+            "sub-01"
+          ]
+        },
+        "within_matched_four": {
+          "candidates": 4,
+          "n": 120,
+          "exact_arrays": [
+            "cohort",
+            "misaligned",
+            "sub-04",
+            "sub-05",
+            "sub-01"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -34,6 +34,8 @@ The original 512-class participant model supplied every score. The one-cell 12-w
 
 The conservative pool for the newer calibration experiment contained 88 objects outside its 1,024 training classes. After protecting its separate twelve-object fifth panel, the other 76 had a largest joint-session cell of five. We registered three cells and sampled four new objects from each before acquiring their EEG. Telling the decoder the block leaves four equiprobable choices. The cohort gained 11.7 points (2.5 to 21.7) over sub-04 and 12.8 points (7.8 to 18.3) over the individual mean. The additional unrestricted 12-way measure on these same photos has 8.3% uniform chance but a 25% session-only baseline because the tuple identifies the block. The study did not use the protected fifth-panel EEG. Intervals resample twelve complete object categories and condition on these participants and chosen session cells. [Frozen selection rules, identities and folds](../research/eeg_stack_20261112/results/object_fidelity/cohort_session_matched_design.json)
 
+The four-word menu is an additional input supplied to the decoder for every restricted query. The frozen registration places 24 queries in each fold. Ordinals 0–7 within a fold receive the first menu, 8–15 the second and 16–23 the third. Each menu lists four alternatives. The original scoring script recovered the supplied menu via the class-coded stimulus ID. The replay below assigns the same menu directly by ordinal, so the classifier receives query EEG, support EEG and candidate indices independent of the within-menu answer. The replay reproduced the complete prediction files byte for byte for all three individuals, the cohort and the shifted control, including the separate unrestricted 12-way analysis. The recorded source hash identifies the original scoring script. [Explicit menus and registration hashes](../research/eeg_stack_20261112/results/object_fidelity/cohort_session_menus.json) · [Exact replay and original source hashes](../research/eeg_stack_20261112/results/object_fidelity/cohort_session_menu_replay.json)
+
 ## Measurements and generated-image inputs
 
 Each participant had a separately fitted Fisher readout on 512 generic objects using 17 posterior electrodes. For each candidate object the classifier compared the query EEG to that person's eight support EEGs. It centered and standardized the candidate scores across the available alternatives before summing them equally across people. The negative control kept sub-04 aligned and cyclically shifted the two other people's score vectors among held-out queries in the same block and fold. The same stimulus and experimental design can produce common effects across participants. The analysis makes no assumption of independent neural noise.
@@ -54,8 +56,29 @@ python "$C/fuse_same_stimulus_r4.py" run
 python "$C/audit_cohort_r4_sessions.py"
 python "$C/test_cohort_session_matched.py" register
 python "$C/test_cohort_session_matched.py" fetch
-python "$C/test_cohort_session_matched.py" score
+python "$C/replay_cohort_candidate_menus.py" menus
+python "$C/replay_cohort_candidate_menus.py" replay
 python "$C/package_session_matched_cohort.py"
 ```
 
 The image-input root is `outputs/session-matched-cohort/render_inputs`. Score each of `sub-04` and `cohort-3` separately with its matching `references/{panel}_{readout}_lock.json` file. The private per-query choices precede the aggregate calculations.
+
+Generate the four registered cases and save one CLIP report per panel. `ARCHIVE`, `ADAPTER` and `DICTIONARY` refer to the SDXL-Turbo research archive, the frozen ViT-H IP-Adapter weights and the official 1,854-name CSV. Copy each completed render tree, including its JPEGs and metadata, and both CLIP reports back to the same study directory if the GPU runs elsewhere.
+
+```sh
+S=outputs/session-matched-cohort
+R="$S/render_inputs"
+for p in stress12 new_three4; do
+  for mode in sub-04 cohort-3; do
+    python "$C/render_within_photo_ip.py" --root "$R" --panels "$p" --subject "$mode" \
+      --archive "$ARCHIVE" --adapter "$ADAPTER" --dictionary "$DICTIONARY"
+  done
+  python "$C/score_within_photo_ip.py" --root "$R" --panels "$p" --subjects sub-04 cohort-3 \
+    --archive "$ARCHIVE" --dictionary "$DICTIONARY" --reference-dir "$S/references" --out "$S/$p-clip.json"
+  python "$C/score_reference_names.py" --panel "$p" --references "$S/references" \
+    --archive "$ARCHIVE" --dictionary "$DICTIONARY" --out "$S/$p-refnames.json"
+done
+python "$C/score_session_matched_images.py" all
+```
+
+The [paired image evaluator](../research/eeg_stack_20261112/code/score_session_matched_images.py) writes one DINOv2 and pixel report for each panel and acquisition mode, then joins the records by original photo, fold and object. Its local galleries show the lowest original row of each of the twelve objects alongside the same-seed single-person and cohort JPEGs. This includes wrongly decoded words. The private three-column contact sheets are under `outputs/session-matched-cohort/pixel-scores/galleries/`.
