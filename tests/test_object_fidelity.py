@@ -1,5 +1,6 @@
 """Regression checks for the scoring protocol used by the object reconstruction experiments."""
 
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -57,3 +58,34 @@ def test_cross_participant_release_excludes_the_person_used_to_fit_the_source_mo
             hits = sum(v[i] for v in held_out)
             assert row["hits"] == hits
             assert np.isclose(row["mean"], hits / (len(held_out) * 120))
+
+
+def test_confirmation_totals_match_the_locked_people_and_paired_render_records():
+    results = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    design_bytes = (results / "personal_confirmation_design.json").read_bytes()
+    design = json.loads(design_bytes)
+    report = json.loads((results / "personal_confirmation.json").read_text())
+    assert report["preregistered_protocol_sha256"] == hashlib.sha256(design_bytes).hexdigest()
+    assert report["people"] == design["additional_participants"]
+    assert set(report["people"]).isdisjoint(design["excluded_from_confirmation_mean"])
+    assert report["unique_stimuli"] == 240
+    assert report["participant_photo_queries"] == 1680
+    for panel in report["panels"].values():
+        assert set(panel["people"]) == set(report["people"])
+        assert panel["n_queries"] == 7 * 120
+        for record in panel["people"].values():
+            for arm in ("frozen", "personal"):
+                by_object = record[arm]["full1854_credit_by_object"]
+                assert len(by_object) == len(panel["words"]) == 12
+                assert np.isclose(sum(by_object), record[arm]["generated_full1854"])
+        for metric, pair in panel["metrics"].items():
+            for arm in ("frozen", "personal"):
+                credit = sum(person[arm][metric] for person in panel["people"].values())
+                assert credit == pair[arm]["credit"]
+                assert np.isclose(pair[arm]["mean"], credit / panel["n_queries"])
+            assert np.isclose(
+                pair["paired_personal_minus_frozen"]["mean"],
+                pair["personal"]["mean"] - pair["frozen"]["mean"],
+            )

@@ -1,0 +1,1263 @@
+{
+  "preregistered_protocol_sha256": "76913d398e21e81ef267ccd09a9475494042e7c3f49ec800255e1d970ba4975c",
+  "frozen_model_commit": "e8c8870e331dc23b64a3cd4eb77788ed348930fa",
+  "people": [
+    "sub-01",
+    "sub-02",
+    "sub-06",
+    "sub-07",
+    "sub-08",
+    "sub-09",
+    "sub-10"
+  ],
+  "unique_stimuli": 240,
+  "participant_photo_queries": 1680,
+  "calibration_packet_sha256": {
+    "sub-01": {
+      "generic_sha256": "d650ba95226213081fd22055e55e8b9d1df9cef73de8a966833976a0fb3601bd",
+      "target_sha256": "2fcbdc21b83e75752c7435400591a4f1e2cb246a5326efb5c322beebdf668b4f"
+    },
+    "sub-02": {
+      "generic_sha256": "7ae92ba2bdd539c9143476fdf153df0b603bebd0ae8984037b535a2b07d7c253",
+      "target_sha256": "801bc70a6d3f2b50de5182425110e84f008f4341ae8e917467df754038425987"
+    },
+    "sub-06": {
+      "generic_sha256": "d7f9b6dc37afce1ba2a400c08b2c19638a89b7f796faab5de68dfd7e4ebccda3",
+      "target_sha256": "278fe6cfbea9aa37f0f4d268be21b0c51bfa0c3162e49e0b68736160e211e7b2"
+    },
+    "sub-07": {
+      "generic_sha256": "592ae2fc570f26cebf6182ba3fbf59fa1823cace82f362a8f9a2011900d4f9b8",
+      "target_sha256": "706f3cc2ba78bc39427235b2443a11004cc664af35765079a55a8cec477945ab"
+    },
+    "sub-08": {
+      "generic_sha256": "f1c3ea82d66876259ff18a5fc4e26db2d1bcd711f48a05a88dceefdf514e16b9",
+      "target_sha256": "b0f3a5e41ab901d250026b6056742e8ad60fa8f4cf0a1f573b37d198fd09c9a4"
+    },
+    "sub-09": {
+      "generic_sha256": "effaf802ae12b3e95258e30c6f928dd55bef28e20fb71ca6a136cf6f609753f4",
+      "target_sha256": "03fd16cc37f411d83f2dca9fb8a1871874d003917f31f9f47c40ac461df77588"
+    },
+    "sub-10": {
+      "generic_sha256": "b76890c3ba831476558b3e6eba9391889b0fae1837fcf75263ad006e9e3e2c1c",
+      "target_sha256": "12cf5321ea1a729ad62efc7148f1cdf7bacb1614aa8cef728c249b46424fad7d"
+    }
+  },
+  "primary": "Top-1 full 1854-name credit on one generated image per participant and photo",
+  "uncertainty": "10000 paired crossed participant/class percentile bootstrap samples per panel. Each object contributes ten photos. Intervals are fractions.",
+  "descriptive_combined": {
+    "frozen": {
+      "eeg_object": 568.0,
+      "generated_full1854": 503.0,
+      "generated_closed12": 568.0,
+      "within_class_photo": 200.0
+    },
+    "personal": {
+      "eeg_object": 790.0,
+      "generated_full1854": 678.5,
+      "generated_closed12": 790.0,
+      "within_class_photo": 164.0
+    }
+  },
+  "panels": {
+    "registered": {
+      "words": [
+        "airplane",
+        "apple",
+        "car",
+        "chair",
+        "clock",
+        "dog",
+        "guitar",
+        "mug",
+        "scissors",
+        "shoe",
+        "toothbrush",
+        "umbrella"
+      ],
+      "clip_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+      "original_full1854_credit_per_120": 99.0,
+      "people": {
+        "sub-01": {
+          "frozen": {
+            "eeg_object": 35.0,
+            "generated_full1854": 30.0,
+            "generated_closed12": 35.0,
+            "within_class_photo": 20.0,
+            "full1854_credit_by_object": [
+              5.0,
+              6.0,
+              1.0,
+              4.0,
+              2.0,
+              6.0,
+              1.0,
+              2.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0
+            ],
+            "condition_sha256": "05abfe772f3281cf8bf74ca68782322efcb9ddf884686c51343ac213548f2b03"
+          },
+          "personal": {
+            "eeg_object": 41.0,
+            "generated_full1854": 35.0,
+            "generated_closed12": 41.0,
+            "within_class_photo": 13.0,
+            "full1854_credit_by_object": [
+              3.0,
+              3.0,
+              3.0,
+              10.0,
+              2.0,
+              1.0,
+              4.0,
+              2.0,
+              0.0,
+              4.0,
+              1.0,
+              2.0
+            ],
+            "condition_sha256": "a6f44061943df9c7928213340205a2646e9d31af4edce76de9738fbc09bed540"
+          }
+        },
+        "sub-02": {
+          "frozen": {
+            "eeg_object": 35.0,
+            "generated_full1854": 31.0,
+            "generated_closed12": 35.0,
+            "within_class_photo": 12.0,
+            "full1854_credit_by_object": [
+              2.0,
+              2.0,
+              1.0,
+              1.0,
+              2.0,
+              8.0,
+              2.0,
+              6.0,
+              1.0,
+              0.0,
+              5.0,
+              1.0
+            ],
+            "condition_sha256": "60d90f8d87d5bbc89b368ccbea6b0773d3c157b2b2d3d0a14af7f6c3ef6236af"
+          },
+          "personal": {
+            "eeg_object": 51.0,
+            "generated_full1854": 39.0,
+            "generated_closed12": 51.0,
+            "within_class_photo": 12.0,
+            "full1854_credit_by_object": [
+              1.0,
+              5.0,
+              2.0,
+              4.0,
+              3.0,
+              10.0,
+              2.0,
+              1.0,
+              1.0,
+              1.0,
+              5.0,
+              4.0
+            ],
+            "condition_sha256": "61b273b4ccf975253fbd0bf14a169af7ae821eb9a77b30c18a37fcf3b84ef79d"
+          }
+        },
+        "sub-06": {
+          "frozen": {
+            "eeg_object": 26.0,
+            "generated_full1854": 24.0,
+            "generated_closed12": 26.0,
+            "within_class_photo": 14.0,
+            "full1854_credit_by_object": [
+              0.0,
+              2.0,
+              4.0,
+              0.0,
+              3.0,
+              8.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              1.0
+            ],
+            "condition_sha256": "4272776c2eb21d29190aa360e149c62b5a25039d031cfc8074d15b932cdd062b"
+          },
+          "personal": {
+            "eeg_object": 68.0,
+            "generated_full1854": 57.0,
+            "generated_closed12": 68.0,
+            "within_class_photo": 9.0,
+            "full1854_credit_by_object": [
+              3.0,
+              5.0,
+              7.0,
+              4.0,
+              6.0,
+              9.0,
+              7.0,
+              3.0,
+              1.0,
+              1.0,
+              3.0,
+              8.0
+            ],
+            "condition_sha256": "8b528f628eb7b2a4eba6536d11f231bf267c950236c9a0d4c8d42511403d4c81"
+          }
+        },
+        "sub-07": {
+          "frozen": {
+            "eeg_object": 25.0,
+            "generated_full1854": 20.0,
+            "generated_closed12": 25.0,
+            "within_class_photo": 17.0,
+            "full1854_credit_by_object": [
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              8.0,
+              1.0,
+              2.0,
+              1.0,
+              0.0,
+              0.0,
+              4.0
+            ],
+            "condition_sha256": "99343a5799d25de7cf3e464796299d8de586320ee00b546c16af42064a3c19ab"
+          },
+          "personal": {
+            "eeg_object": 61.0,
+            "generated_full1854": 46.0,
+            "generated_closed12": 61.0,
+            "within_class_photo": 9.0,
+            "full1854_credit_by_object": [
+              4.0,
+              2.0,
+              2.0,
+              3.0,
+              5.0,
+              9.0,
+              4.0,
+              4.0,
+              0.0,
+              1.0,
+              3.0,
+              9.0
+            ],
+            "condition_sha256": "83df2d648295c84e6dac551963198c096ff1ff4864e9659810a8453bdeb5fa9a"
+          }
+        },
+        "sub-08": {
+          "frozen": {
+            "eeg_object": 40.0,
+            "generated_full1854": 34.0,
+            "generated_closed12": 40.0,
+            "within_class_photo": 10.0,
+            "full1854_credit_by_object": [
+              1.0,
+              5.0,
+              4.0,
+              2.0,
+              1.0,
+              10.0,
+              4.0,
+              1.0,
+              0.0,
+              2.0,
+              3.0,
+              1.0
+            ],
+            "condition_sha256": "5f261bcfe3f31fbc924093c0f4fe32ac2b5c1cfe8a5d9a413b8542945bd3a679"
+          },
+          "personal": {
+            "eeg_object": 47.0,
+            "generated_full1854": 38.0,
+            "generated_closed12": 47.0,
+            "within_class_photo": 21.0,
+            "full1854_credit_by_object": [
+              2.0,
+              5.0,
+              5.0,
+              2.0,
+              5.0,
+              9.0,
+              4.0,
+              3.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "condition_sha256": "f86b7bf9724a5d6dc9857af91a32317a6d5e6c6091d5bd51deeab27b862e3d3b"
+          }
+        },
+        "sub-09": {
+          "frozen": {
+            "eeg_object": 16.0,
+            "generated_full1854": 12.0,
+            "generated_closed12": 16.0,
+            "within_class_photo": 16.0,
+            "full1854_credit_by_object": [
+              3.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              5.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            "condition_sha256": "797d94369bfefc55e4eca71e3330dd0dd8c14e04559e9f7211ef2ecbee54a95f"
+          },
+          "personal": {
+            "eeg_object": 27.0,
+            "generated_full1854": 21.0,
+            "generated_closed12": 27.0,
+            "within_class_photo": 13.0,
+            "full1854_credit_by_object": [
+              2.0,
+              1.0,
+              1.0,
+              2.0,
+              3.0,
+              3.0,
+              3.0,
+              3.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0
+            ],
+            "condition_sha256": "f204197a7d6a5d8630f66f95fa920e177d13f752a4a763833af90e8688b898e7"
+          }
+        },
+        "sub-10": {
+          "frozen": {
+            "eeg_object": 52.0,
+            "generated_full1854": 39.0,
+            "generated_closed12": 52.0,
+            "within_class_photo": 15.0,
+            "full1854_credit_by_object": [
+              2.0,
+              5.0,
+              3.0,
+              3.0,
+              6.0,
+              9.0,
+              0.0,
+              4.0,
+              0.0,
+              2.0,
+              4.0,
+              1.0
+            ],
+            "condition_sha256": "2642ee1851cb3a5960832421ded4a3823af3019c827b3a12f977555c00ebc54c"
+          },
+          "personal": {
+            "eeg_object": 56.0,
+            "generated_full1854": 41.0,
+            "generated_closed12": 56.0,
+            "within_class_photo": 11.0,
+            "full1854_credit_by_object": [
+              1.0,
+              4.0,
+              5.0,
+              6.0,
+              8.0,
+              7.0,
+              1.0,
+              2.0,
+              0.0,
+              4.0,
+              1.0,
+              2.0
+            ],
+            "condition_sha256": "4df9fbdc20c874f95ae456a1ee1b3ebaf9047108940d60a27cf261b73c2a3f75"
+          }
+        }
+      },
+      "n_queries": 840,
+      "metrics": {
+        "eeg_object": {
+          "frozen": {
+            "credit": 229.0,
+            "mean": 0.27261904761904765,
+            "ci95": [
+              0.17258928571428572,
+              0.40119047619047615
+            ]
+          },
+          "personal": {
+            "credit": 351.0,
+            "mean": 0.41785714285714287,
+            "ci95": [
+              0.2976190476190476,
+              0.55
+            ]
+          },
+          "paired_personal_minus_frozen": {
+            "mean": 0.14523809523809522,
+            "ci95": [
+              0.027380952380952377,
+              0.27142857142857146
+            ]
+          }
+        },
+        "generated_full1854": {
+          "frozen": {
+            "credit": 190.0,
+            "mean": 0.2261904761904762,
+            "ci95": [
+              0.13214285714285717,
+              0.35238095238095246
+            ]
+          },
+          "personal": {
+            "credit": 277.0,
+            "mean": 0.3297619047619048,
+            "ci95": [
+              0.22258928571428574,
+              0.45357142857142857
+            ]
+          },
+          "paired_personal_minus_frozen": {
+            "mean": 0.10357142857142854,
+            "ci95": [
+              0.004761904761904769,
+              0.20595238095238091
+            ]
+          }
+        },
+        "generated_closed12": {
+          "frozen": {
+            "credit": 229.0,
+            "mean": 0.27261904761904765,
+            "ci95": [
+              0.17258928571428572,
+              0.40119047619047615
+            ]
+          },
+          "personal": {
+            "credit": 351.0,
+            "mean": 0.41785714285714287,
+            "ci95": [
+              0.2976190476190476,
+              0.55
+            ]
+          },
+          "paired_personal_minus_frozen": {
+            "mean": 0.14523809523809522,
+            "ci95": [
+              0.027380952380952377,
+              0.27142857142857146
+            ]
+          }
+        },
+        "within_class_photo": {
+          "frozen": {
+            "credit": 104.0,
+            "mean": 0.12380952380952381,
+            "ci95": [
+              0.08928571428571429,
+              0.1619047619047619
+            ]
+          },
+          "personal": {
+            "credit": 88.0,
+            "mean": 0.10476190476190475,
+            "ci95": [
+              0.07261904761904761,
+              0.14166666666666666
+            ]
+          },
+          "paired_personal_minus_frozen": {
+            "mean": -0.019047619047619046,
+            "ci95": [
+              -0.06904761904761902,
+              0.03214285714285715
+            ]
+          }
+        }
+      }
+    },
+    "replicate": {
+      "words": [
+        "bed",
+        "gearshift",
+        "gramophone",
+        "poppy",
+        "spacesuit",
+        "tongue",
+        "punching_bag",
+        "stove1",
+        "bedpan",
+        "donkey",
+        "paint",
+        "gold"
+      ],
+      "clip_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+      "original_full1854_credit_per_120": 104.0,
+      "people": {
+        "sub-01": {
+          "frozen": {
+            "eeg_object": 47.0,
+            "generated_full1854": 44.0,
+            "generated_closed12": 47.0,
+            "within_class_photo": 11.0,
+            "full1854_credit_by_object": [
+              4.0,
+              1.0,
+              1.0,
+              6.0,
+              4.0,
+              2.0,
+              3.0,
+              2.0,
+              5.0,
+              7.0,
+              2.0,
+              7.0
+            ],
+            "condition_sha256": "55340c2d3e4616b462709c6d956fe6ba15868d2da8b76b4156ae673b5689eb7e"
+          },
+          "personal": {
+            "eeg_object": 65.0,
+            "generated_full1854": 58.0,
+            "generated_closed12": 65.0,
+            "within_class_photo": 14.0,
+            "full1854_credit_by_object": [
+              3.0,
+              2.0,
+              3.0,
+              8.0,
+              9.0,
+              6.0,
+              1.0,
+              4.0,
+              4.0,
+              6.0,
+              2.0,
+              10.0
+            ],
+            "condition_sha256": "f479cef98563a7faeb17a9b4173c7e7eb49fcc56a21e224094baf2ceb11c31df"
+          }
+        },
+        "sub-02": {
+          "frozen": {
+            "eeg_object": 51.0,
+            "generated_full1854": 45.0,
+            "generated_closed12": 51.0,
+            "within_class_photo": 15.0,
+            "full1854_credit_by_object": [
+              5.0,
+              1.0,
+              2.0,
+              2.0,
+              5.0,
+              9.0,
+              0.0,
+              2.0,
+              5.0,
+              8.0,
+              0.0,
+              6.0
+            ],
+            "condition_sha256": "9ae9824d27c6c45a9dc5046b10507c2e32c045fb644ed286d5f4d43fae063041"
+          },
+          "personal": {
+            "eeg_object": 57.0,
+            "generated_full1854": 52.0,
+            "generated_closed12": 57.0,
+            "within_class_photo": 8.0,
+            "full1854_credit_by_object": [
+              4.0,
+              1.0,
+              2.0,
+              1.0,
+              9.0,
+              9.0,
+              5.0,
+              0.0,
+              6.0,
+              5.0,
+              1.0,
+              9.0
+            ],
+            "condition_sha256": "c41a5efc447c2f678aa24c7304177e258405096c0be5e2e427dbf1581a564a58"
+          }
+        },
+        "sub-06": {
+          "frozen": {
+            "eeg_object": 50.0,
+            "generated_full1854": 45.5,
+            "generated_closed12": 50.0,
+            "within_class_photo": 12.0,
+            "full1854_credit_by_object": [
+              4.0,
+              4.0,
+              1.0,
+              6.0,
+              3.0,
+              9.0,
+              4.0,
+              1.5,
+              3.0,
+              6.0,
+              0.0,
+              4.0
+            ],
+            "condition_sha256": "4884158901960f75fe2d80c4adbf8eb7a897d71472c04cda36e49583ee3a47da"
+          },
+          "personal": {
+            "eeg_object": 82.0,
+            "generated_full1854": 75.0,
+            "generated_closed12": 82.0,
+            "within_class_photo": 11.0,
+            "full1854_credit_by_object": [
+              7.0,
+              10.0,
+              5.0,
+              8.0,
+              7.0,
+              9.0,
+              7.0,
+              2.0,
+              4.0,
+              7.0,
+              1.0,
+              8.0
+            ],
+            "condition_sha256": "7138604465184a53c9e9d43247d169feadd3c7a1f549656938ef395f1ee46f6c"
+          }
+        },
+        "sub-07": {
+          "frozen": {
+            "eeg_object": 54.0,
+            "generated_full1854": 50.5,
+            "generated_closed12": 54.0,
+            "within_class_photo": 15.0,
+            "full1854_credit_by_object": [
+              6.0,
+              1.0,
+              1.0,
+              8.0,
+              2.0,
+              9.0,
+              1.0,
+              0.5,
+              7.0,
+              8.0,
+              1.0,
+              6.0
+            ],
+            "condition_sha256": "a87806e58a514b1b89d2694f7a354d31fe6617617ab21561e81acda1b9554a4f"
+          },
+          "personal": {
+            "eeg_object": 67.0,
+            "generated_full1854": 60.5,
+            "generated_closed12": 67.0,
+            "within_class_photo": 9.0,
+            "full1854_credit_by_object": [
+              8.0,
+              4.0,
+              1.0,
+              6.0,
+              5.0,
+              10.0,
+              3.0,
+              2.5,
+              6.0,
+              7.0,
+              0.0,
+              8.0
+            ],
+            "condition_sha256": "0cbf74246a9a83bc93e0ce5aa4f9766a28252d1ff302c73eaaec95cccf1a31e3"
+          }
+        },
+        "sub-08": {
+          "frozen": {
+            "eeg_object": 48.0,
+            "generated_full1854": 43.0,
+            "generated_closed12": 48.0,
+            "within_class_photo": 14.0,
+            "full1854_credit_by_object": [
+              2.0,
+              3.0,
+              1.0,
+              6.0,
+              7.0,
+              9.0,
+              2.0,
+              0.0,
+              5.0,
+              6.0,
+              1.0,
+              1.0
+            ],
+            "condition_sha256": "36d893b4a0ef1edd35c25fbbedb58597ac1ef75b2b7683b54c24a2f984d8b5c5"
+          },
+          "personal": {
+            "eeg_object": 58.0,
+            "generated_full1854": 53.5,
+            "generated_closed12": 58.0,
+            "within_class_photo": 11.0,
+            "full1854_credit_by_object": [
+              8.0,
+              2.0,
+              1.0,
+              2.0,
+              7.0,
+              10.0,
+              7.0,
+              1.5,
+              3.0,
+              4.0,
+              0.0,
+              8.0
+            ],
+            "condition_sha256": "6f9320f92f25f9afaa88bec71f35b9e5267a443509fced2acd96557f0f8bf208"
+          }
+        },
+        "sub-09": {
+          "frozen": {
+            "eeg_object": 36.0,
+            "generated_full1854": 33.5,
+            "generated_closed12": 36.0,
+            "within_class_photo": 15.0,
+            "full1854_credit_by_object": [
+              5.0,
+              6.0,
+              0.0,
+              2.0,
+              1.0,
+              8.0,
+              3.0,
+              1.5,
+              3.0,
+              3.0,
+              1.0,
+              0.0
+            ],
+            "condition_sha256": "e1228d196a056b157cc11b0042bbdf57e3194661239c874a6078f899139b80ca"
+          },
+          "personal": {
+            "eeg_object": 45.0,
+            "generated_full1854": 44.5,
+            "generated_closed12": 45.0,
+            "within_class_photo": 17.0,
+            "full1854_credit_by_object": [
+              4.0,
+              7.0,
+              1.0,
+              3.0,
+              5.0,
+              10.0,
+              2.0,
+              0.5,
+              2.0,
+              4.0,
+              0.0,
+              6.0
+            ],
+            "condition_sha256": "768404fa24f42f1383fdd0dbf1552c480921a7dd0e2f2ace3f2dd81b135113e8"
+          }
+        },
+        "sub-10": {
+          "frozen": {
+            "eeg_object": 53.0,
+            "generated_full1854": 51.5,
+            "generated_closed12": 53.0,
+            "within_class_photo": 14.0,
+            "full1854_credit_by_object": [
+              6.0,
+              0.0,
+              1.0,
+              8.0,
+              2.0,
+              10.0,
+              3.0,
+              1.5,
+              6.0,
+              9.0,
+              0.0,
+              5.0
+            ],
+            "condition_sha256": "2578289f30fce9281deed7f818188fb5b5ab68d94ffb52d8ffb3bb6f62b9c09c"
+          },
+          "personal": {
+            "eeg_object": 65.0,
+            "generated_full1854": 58.0,
+            "generated_closed12": 65.0,
+            "within_class_photo": 6.0,
+            "full1854_credit_by_object": [
+              6.0,
+              0.0,
+              0.0,
+              6.0,
+              10.0,
+              10.0,
+              0.0,
+              4.0,
+              6.0,
+              9.0,
+              3.0,
+              4.0
+            ],
+            "condition_sha256": "c123d54c76a508e19af75bd44b41775529188bc04672d58a3986a1ad4c8a0f98"
+          }
+        }
+      },
+      "n_queries": 840,
+      "metrics": {
+        "eeg_object": {
+          "frozen": {
+            "credit": 339.0,
+            "mean": 0.4035714285714286,
+            "ci95": [
+              0.2892857142857143,
+              0.5333333333333333
+            ]
+          },
+          "personal": {
+            "credit": 439.0,
+            "mean": 0.5226190476190476,
+            "ci95": [
+              0.3857142857142858,
+              0.6571428571428571
+            ]
+          },
+          "paired_personal_minus_frozen": {
+            "mean": 0.11904761904761907,
+            "ci95": [
+              0.017857142857142846,
+              0.22142857142857145
+            ]
+          }
+        },
+        "generated_full1854": {
+          "frozen": {
+            "credit": 313.0,
+            "mean": 0.37261904761904757,
+            "ci95": [
+              0.24345238095238098,
+              0.5142857142857145
+            ]
+          },
+          "personal": {
+            "credit": 401.5,
+            "mean": 0.47797619047619044,
+            "ci95": [
+              0.325,
+              0.6291815476190473
+            ]
+          },
+          "paired_personal_minus_frozen": {
+            "mean": 0.10535714285714287,
+            "ci95": [
+              0.009523809523809526,
+              0.2089285714285714
+            ]
+          }
+        },
+        "generated_closed12": {
+          "frozen": {
+            "credit": 339.0,
+            "mean": 0.4035714285714286,
+            "ci95": [
+              0.2892857142857143,
+              0.5333333333333333
+            ]
+          },
+          "personal": {
+            "credit": 439.0,
+            "mean": 0.5226190476190476,
+            "ci95": [
+              0.3857142857142858,
+              0.6571428571428571
+            ]
+          },
+          "paired_personal_minus_frozen": {
+            "mean": 0.11904761904761907,
+            "ci95": [
+              0.017857142857142846,
+              0.22142857142857145
+            ]
+          }
+        },
+        "within_class_photo": {
+          "frozen": {
+            "credit": 96.0,
+            "mean": 0.11428571428571425,
+            "ci95": [
+              0.07857142857142857,
+              0.15
+            ]
+          },
+          "personal": {
+            "credit": 76.0,
+            "mean": 0.09047619047619047,
+            "ci95": [
+              0.05952380952380952,
+              0.12738095238095237
+            ]
+          },
+          "paired_personal_minus_frozen": {
+            "mean": -0.023809523809523815,
+            "ci95": [
+              -0.06071428571428571,
+              0.021458333333332906
+            ]
+          }
+        }
+      }
+    }
+  },
+  "eeg_session_control": {
+    "schedule_revision": "101997d4f14c41b615bcaf8c0907740106d260c5",
+    "sessions_sha256": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+    "role": "Additional EEG-only confound diagnostic. Both readouts use the participant's eight calibration photos per object.",
+    "null": "Freeze both readouts. Within each participant and panel, exchange whole class identities within their planned session pair, keeping all ten photos and five folds together. The expectation counts chance matches; an out-of-pair prediction contributes zero.",
+    "uncertainty": "Crossed participant/object bootstrap of observed minus exact expected rates. The oracle uses only the known session pair. Session labels are used only for evaluation.",
+    "panels": {
+      "registered": {
+        "n_queries": 840,
+        "uniform_expected_hits": 70.0,
+        "pair_only_oracle_expected_hits": 280,
+        "people": {
+          "sub-01": {
+            "frozen": {
+              "observed_hits": 35,
+              "expected_hits": 20.333333333333332,
+              "excess_hits": 14.666666666666668
+            },
+            "personal": {
+              "observed_hits": 41,
+              "expected_hits": 37.66666666666667,
+              "excess_hits": 3.3333333333333286
+            }
+          },
+          "sub-02": {
+            "frozen": {
+              "observed_hits": 35,
+              "expected_hits": 19.233333333333334,
+              "excess_hits": 15.766666666666666
+            },
+            "personal": {
+              "observed_hits": 51,
+              "expected_hits": 32.03333333333334,
+              "excess_hits": 18.96666666666666
+            }
+          },
+          "sub-06": {
+            "frozen": {
+              "observed_hits": 26,
+              "expected_hits": 14.666666666666664,
+              "excess_hits": 11.333333333333336
+            },
+            "personal": {
+              "observed_hits": 68,
+              "expected_hits": 37.60000000000001,
+              "excess_hits": 30.39999999999999
+            }
+          },
+          "sub-07": {
+            "frozen": {
+              "observed_hits": 25,
+              "expected_hits": 18.0,
+              "excess_hits": 7.0
+            },
+            "personal": {
+              "observed_hits": 61,
+              "expected_hits": 35.333333333333336,
+              "excess_hits": 25.666666666666664
+            }
+          },
+          "sub-08": {
+            "frozen": {
+              "observed_hits": 40,
+              "expected_hits": 21.8,
+              "excess_hits": 18.2
+            },
+            "personal": {
+              "observed_hits": 47,
+              "expected_hits": 28.6,
+              "excess_hits": 18.4
+            }
+          },
+          "sub-09": {
+            "frozen": {
+              "observed_hits": 16,
+              "expected_hits": 12.933333333333334,
+              "excess_hits": 3.0666666666666664
+            },
+            "personal": {
+              "observed_hits": 27,
+              "expected_hits": 22.2,
+              "excess_hits": 4.800000000000001
+            }
+          },
+          "sub-10": {
+            "frozen": {
+              "observed_hits": 52,
+              "expected_hits": 21.0,
+              "excess_hits": 31.0
+            },
+            "personal": {
+              "observed_hits": 56,
+              "expected_hits": 24.333333333333332,
+              "excess_hits": 31.666666666666668
+            }
+          }
+        },
+        "cohort": {
+          "frozen": {
+            "observed_hits": 229,
+            "expected_hits": 127.96666666666667,
+            "excess_hits": 101.03333333333333,
+            "observed_rate": 0.2726190476190476,
+            "expected_rate": 0.15234126984126983,
+            "excess_rate": {
+              "mean": 0.1202777777777778,
+              "ci95": [
+                0.04067261904761906,
+                0.22135367063492056
+              ]
+            }
+          },
+          "personal": {
+            "observed_hits": 351,
+            "expected_hits": 217.76666666666668,
+            "excess_hits": 133.23333333333332,
+            "observed_rate": 0.41785714285714287,
+            "expected_rate": 0.2592460317460318,
+            "excess_rate": {
+              "mean": 0.15861111111111117,
+              "ci95": [
+                0.06279613095238097,
+                0.2730188492063492
+              ]
+            }
+          }
+        },
+        "paired_personal_minus_frozen_excess_rate": {
+          "mean": 0.03833333333333334,
+          "ci95": [
+            -0.04722470238095238,
+            0.12910714285714284
+          ]
+        }
+      },
+      "replicate": {
+        "n_queries": 840,
+        "uniform_expected_hits": 70.0,
+        "pair_only_oracle_expected_hits": 270,
+        "people": {
+          "sub-01": {
+            "frozen": {
+              "observed_hits": 47,
+              "expected_hits": 26.133333333333333,
+              "excess_hits": 20.866666666666667
+            },
+            "personal": {
+              "observed_hits": 65,
+              "expected_hits": 37.46666666666667,
+              "excess_hits": 27.53333333333333
+            }
+          },
+          "sub-02": {
+            "frozen": {
+              "observed_hits": 51,
+              "expected_hits": 22.0,
+              "excess_hits": 29.0
+            },
+            "personal": {
+              "observed_hits": 57,
+              "expected_hits": 25.5,
+              "excess_hits": 31.5
+            }
+          },
+          "sub-06": {
+            "frozen": {
+              "observed_hits": 50,
+              "expected_hits": 20.78571428571428,
+              "excess_hits": 29.21428571428572
+            },
+            "personal": {
+              "observed_hits": 82,
+              "expected_hits": 36.92857142857142,
+              "excess_hits": 45.07142857142858
+            }
+          },
+          "sub-07": {
+            "frozen": {
+              "observed_hits": 54,
+              "expected_hits": 18.833333333333336,
+              "excess_hits": 35.166666666666664
+            },
+            "personal": {
+              "observed_hits": 67,
+              "expected_hits": 26.0,
+              "excess_hits": 41.0
+            }
+          },
+          "sub-08": {
+            "frozen": {
+              "observed_hits": 48,
+              "expected_hits": 22.4,
+              "excess_hits": 25.6
+            },
+            "personal": {
+              "observed_hits": 58,
+              "expected_hits": 22.733333333333334,
+              "excess_hits": 35.266666666666666
+            }
+          },
+          "sub-09": {
+            "frozen": {
+              "observed_hits": 36,
+              "expected_hits": 21.25,
+              "excess_hits": 14.75
+            },
+            "personal": {
+              "observed_hits": 45,
+              "expected_hits": 26.666666666666664,
+              "excess_hits": 18.333333333333336
+            }
+          },
+          "sub-10": {
+            "frozen": {
+              "observed_hits": 53,
+              "expected_hits": 24.76666666666667,
+              "excess_hits": 28.23333333333333
+            },
+            "personal": {
+              "observed_hits": 65,
+              "expected_hits": 28.266666666666666,
+              "excess_hits": 36.733333333333334
+            }
+          }
+        },
+        "cohort": {
+          "frozen": {
+            "observed_hits": 339,
+            "expected_hits": 156.1690476190476,
+            "excess_hits": 182.8309523809524,
+            "observed_rate": 0.4035714285714286,
+            "expected_rate": 0.18591553287981857,
+            "excess_rate": {
+              "mean": 0.21765589569160998,
+              "ci95": [
+                0.12878443877551024,
+                0.32637755102040805
+              ]
+            }
+          },
+          "personal": {
+            "observed_hits": 439,
+            "expected_hits": 203.56190476190477,
+            "excess_hits": 235.43809523809523,
+            "observed_rate": 0.5226190476190476,
+            "expected_rate": 0.2423356009070295,
+            "excess_rate": {
+              "mean": 0.2802834467120182,
+              "ci95": [
+                0.17626169217687077,
+                0.3959184382086168
+              ]
+            }
+          }
+        },
+        "paired_personal_minus_frozen_excess_rate": {
+          "mean": 0.06262755102040816,
+          "ci95": [
+            -0.013593395691609974,
+            0.1460842545351474
+          ]
+        }
+      }
+    }
+  },
+  "evaluation_file_sha256": {
+    "sessions.json": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+    "transfer/registered/sub-01/evaluation.json": "266defbf2c2026b112760a7d70ab25158924acacfaf6989a8f7c06f68e3a358f",
+    "personal/registered/sub-01/evaluation.json": "5301eb4f72139dc8e1c7366096b05f819dad38b937448212968f3f4590c8ecf9",
+    "transfer/registered/sub-02/evaluation.json": "c3af906b70e038dc81d28c4a672ddcc45c007d9a07bba006e6352c8e7b8bb362",
+    "personal/registered/sub-02/evaluation.json": "0aa0d1e94ac6479daf4c7fde9630645a9661444c1da457a34888afafcc3ae14b",
+    "transfer/registered/sub-06/evaluation.json": "b8f3879f95610e991de05b56eb01233596578c49ac8f2f2d347598a71d87ac27",
+    "personal/registered/sub-06/evaluation.json": "ac6754eb99929b7609c78bc54d0d35fed141ccda479d11de7fe5955758802877",
+    "transfer/registered/sub-07/evaluation.json": "bbc4a3dbb515ed09aa90521ddb99abd290b82ae1e47a2926fb1a34a2202a3714",
+    "personal/registered/sub-07/evaluation.json": "c53dfe81c2c75ee8e34407a1c1bc4a39a7b229a84a5762fda388dbcfe2eb0fa8",
+    "transfer/registered/sub-08/evaluation.json": "3f9d1945a61a57def31013234b85df702145194ac201dcd069f0360d491a1843",
+    "personal/registered/sub-08/evaluation.json": "849ef9edbc47e4fe51a89860cb8b532d10d6a4ed8e8eb1cf7c6aa428e6cf0590",
+    "transfer/registered/sub-09/evaluation.json": "d0221cc3496a5fefb1ced93b6fe322fa84902b883a1c5acaea6c197c47b78d29",
+    "personal/registered/sub-09/evaluation.json": "05d05862b4ba600b21749ce54ff72b3e9e1ba7ff79d13ae0b20aabed7d386719",
+    "transfer/registered/sub-10/evaluation.json": "8e59fff84aa295d5fabd7b7b0e7dfea6394e2bb2588adb7834de5779b800ef26",
+    "personal/registered/sub-10/evaluation.json": "ea9530060e718d21beae227c68aa0c3f004db048feb8a5f5b63b4e2cf70aab71",
+    "transfer/replicate/sub-01/evaluation.json": "94fc0b34e0efb163c7fd10a3316ba85b1186fe91d07d0b60783e494b28a8ee3b",
+    "personal/replicate/sub-01/evaluation.json": "8322412612dcc3d1296b425be0dcc2101883acebfe1d8f5c47c3037623a26410",
+    "transfer/replicate/sub-02/evaluation.json": "d150cc89eeb4fc16882d8733ade95dca0b8d9517099e2bfea22803904bb6aae2",
+    "personal/replicate/sub-02/evaluation.json": "765055b054fabb8a95909a56829af5f341b3f26f7ee04075ba118021fa3af273",
+    "transfer/replicate/sub-06/evaluation.json": "05af2ac093faf431111a12de012146ac64981fd96b3432b1678dded762069f5f",
+    "personal/replicate/sub-06/evaluation.json": "5c02cb5bc4013f4349013c22351be95eb64ef4d2369ef3bf0c007311e7152ff3",
+    "transfer/replicate/sub-07/evaluation.json": "a54623fd7096c989a6c3d7d654da5fcdb82d2738aca125d7e8f4884fe551836d",
+    "personal/replicate/sub-07/evaluation.json": "28669c252500f1d3c6e97e0c174cfaac2a93495a932781b1a83a96577d9b39f1",
+    "transfer/replicate/sub-08/evaluation.json": "9e93fcafbfb3d285a68cdb4ef5603107209215b1d2306f1f0979b5c7db39456f",
+    "personal/replicate/sub-08/evaluation.json": "716e2622f78072c1729af6f6c418ac7b0cbec08cc6f7d35db01ac2036b0adc72",
+    "transfer/replicate/sub-09/evaluation.json": "75671e05bd332a8efe0e69f0ad8227ab2e5addae30211990d06f7afefdd3ea30",
+    "personal/replicate/sub-09/evaluation.json": "bac0a82a2b3e5ab983dd448c0ae29e2ee260678f1a1d3d2192e09cc2c2f5cb33",
+    "transfer/replicate/sub-10/evaluation.json": "6dd68901722eb19e5fa9c9d47d256861173b5ef2c4ec05193d9f8d64c1b1be6a",
+    "personal/replicate/sub-10/evaluation.json": "ba102ca6c696e70b017ff3d42e8fd2e1bb29d9c22c4deaa520be513c4cdffbf9",
+    "personal_conditions/registered/sub-01/evaluation.json": "31fb3ff9c7845862da490c51cdb5102d9e6b2c5540d822d5b2de277b02bd392f",
+    "confirm_render/frozen/registered/sub-01/results.json": "c45114c4f4249ccea03e7ffa1782933f78c5404c2fc23f5c47883b3b40191fd1",
+    "confirm_render/personal/registered/sub-01/results.json": "394d23cddc333b376d516c6890d799e760ae56c1674fe90c29bd980c90d24647",
+    "personal_conditions/registered/sub-02/evaluation.json": "44f6a6e637247762c7449553b99eda965bfacea24a5a9a86b632d1642d21278c",
+    "confirm_render/frozen/registered/sub-02/results.json": "8c48b0454948fe70fd4c63d4814ba02abd79ee4f5d4f391daeff00523108b01d",
+    "confirm_render/personal/registered/sub-02/results.json": "74df90c2004cdba8447eaa18b09c8f50b313da717567727482b1584b9f944027",
+    "personal_conditions/registered/sub-06/evaluation.json": "61a9b375b95eccda91674ca496e5d39a309289b1a6b7ba8936c6854b8e761490",
+    "confirm_render/frozen/registered/sub-06/results.json": "133b9e4da393585a2db12ee703b1673c84e24eb070e153606604ccec8f4b051b",
+    "confirm_render/personal/registered/sub-06/results.json": "aff2c26e73dec402190a4f177dde90efb8baa1928a480f8548bb94b6dc7aad64",
+    "personal_conditions/registered/sub-07/evaluation.json": "7cc9951851fbb35dedea10b705e805e46a66cdeb2640e2bc73bb96249bf1723d",
+    "confirm_render/frozen/registered/sub-07/results.json": "31b40602ef455d1c26f62b5e2e6fd3e8dc6b3b7b8b4dccb8fab0bb2e61b558ce",
+    "confirm_render/personal/registered/sub-07/results.json": "3d5fbaf2ff3bd21f0e50403dc24e4fbeaeebea8110d7d16dfc54de8d0d564d49",
+    "personal_conditions/registered/sub-08/evaluation.json": "e1f0819d0e9866314cbcdb2a69edbfdf1db8408183eeb1ee37ea2d4789b8fb53",
+    "confirm_render/frozen/registered/sub-08/results.json": "7deb894a77a39b9c2fbd2897d9a0c20349181b59ad33cd2be96220cf743ac7f0",
+    "confirm_render/personal/registered/sub-08/results.json": "20caffb35cffadb33f6763c3144a7303e9e9ba9e4339f8944c95a567e6dd1f98",
+    "personal_conditions/registered/sub-09/evaluation.json": "13f6c38c9b4c647f8a3cff8aa7659566d8ff58b5cad465dabc3bbe34b6b4a2c3",
+    "confirm_render/frozen/registered/sub-09/results.json": "1b804306e7fd7934e5bac2b9483444f3a4986b2b6e94c3b0f38b4b1507a9b584",
+    "confirm_render/personal/registered/sub-09/results.json": "b7ed0afdebaf59b397a64484c539ec3be2b65f52dc9e00a68136b428214c437c",
+    "personal_conditions/registered/sub-10/evaluation.json": "00cb2525f2fc21cd6e3595a92f39fa8ccf0f2befb6031ce556b0262bce98df98",
+    "confirm_render/frozen/registered/sub-10/results.json": "34dd2ee04e1f6dfdf106d906b3633bdfdc5480df2baa6999b24733c63d3462a3",
+    "confirm_render/personal/registered/sub-10/results.json": "1a6062a43b32abde6bea36ba99529173834657a9464cb89f6e341cdedd0f0d52",
+    "personal_conditions/replicate/sub-01/evaluation.json": "22c59e612ae899cbd83cd4ccc3cf11c3ca90e6b14829a5302251cbec55caba96",
+    "confirm_render/frozen/replicate/sub-01/results.json": "cbd14e8b0be34bac5473e710ef9d9e8eaa354cfd6b8e588515f5daaf7b903d58",
+    "confirm_render/personal/replicate/sub-01/results.json": "6c208a8e77c133b7002aa998f493c6bc196fb0e45106f97648921631dcffccfb",
+    "personal_conditions/replicate/sub-02/evaluation.json": "54b16efd015cf603d4415c84d80bd5b96a8ea44e5b1336a472313e2357bac72a",
+    "confirm_render/frozen/replicate/sub-02/results.json": "beec27b379a45b3cbe4ff80399085bc156d49492974f54e06b761ba7d28f143f",
+    "confirm_render/personal/replicate/sub-02/results.json": "2d10a1f38d5073eaf07efec148d4cdc2b5f59a120693ec569dc6a1b4d78e9e71",
+    "personal_conditions/replicate/sub-06/evaluation.json": "b8db1757c40c3bd3f4fde0a9240ab8d925e98bf28a5aa07142b7028b8d7e4330",
+    "confirm_render/frozen/replicate/sub-06/results.json": "dc1042c9bd3ed78ce0b4d888972d827e4e61e41729b93f3692a70a32113c7b75",
+    "confirm_render/personal/replicate/sub-06/results.json": "fb2c54f05b1c2b87ed5c2400373fb98616f7b82ba786b2c757a66fb941ed05d8",
+    "personal_conditions/replicate/sub-07/evaluation.json": "47c4967e1236c1e40d33116e8f85d9417298dda215c14b99348a67971e5cb7a8",
+    "confirm_render/frozen/replicate/sub-07/results.json": "c7eb735ac4ebdc619ad1cf71718660341ff316a8b71623bcdcb096d0c9cd83d0",
+    "confirm_render/personal/replicate/sub-07/results.json": "908fa78da30d26e158526b34e4455f94c1b694dfdab1c94209f1b5701fa19b8b",
+    "personal_conditions/replicate/sub-08/evaluation.json": "2eaddab559470b362c97448b767575900504e6228d6e57e7da5409fa17186af2",
+    "confirm_render/frozen/replicate/sub-08/results.json": "962de9a5a85c3257db26b96444333b1eac24fa39ff31398da77ae44c60ee868b",
+    "confirm_render/personal/replicate/sub-08/results.json": "2c6ffbbbfc8cace265d765c3dfde61cccbd67b226465c92729d7fbad32cc4e73",
+    "personal_conditions/replicate/sub-09/evaluation.json": "89343e06d1659cddbea88b932f79563aaa3f86f7cf3c71927b844afe1c945d21",
+    "confirm_render/frozen/replicate/sub-09/results.json": "f5a03f54362d61c6967a0c9600c972e9bc58e141e812f21fb3de7196beeb9124",
+    "confirm_render/personal/replicate/sub-09/results.json": "b05463c1218a2efebf4385db81c98f37984eed4781e52ed133756f9a2decf6a1",
+    "personal_conditions/replicate/sub-10/evaluation.json": "df238d33a95d7b8aa2107a762c88db0bba5cef9bbf61f7e2caa3b5da96917a24",
+    "confirm_render/frozen/replicate/sub-10/results.json": "29cbf4e260431c2025da4ced97dde8b7c1d5558da1e219ca1c85481c133350a9",
+    "confirm_render/personal/replicate/sub-10/results.json": "60e2068c3e7a3e72cb40260d4e9883491d75947a1294025813a27c49e1d65437"
+  }
+}

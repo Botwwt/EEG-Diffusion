@@ -2,13 +2,18 @@
 
 import argparse
 import csv
+import hashlib
+import importlib.util
+import io
+import json
+import sys
 from pathlib import Path
 from types import SimpleNamespace
 from zipfile import ZipFile
 
 import numpy as np
-from eval_instance_starts import clip_features, load_visual_scorer, write_json
-from PIL import Image
+from eval_instance_starts import clip_features, load_visual_scorer, relocated, write_json
+from PIL import Image, JpegImagePlugin
 from render_official_words import crop512, file_sha, ordered, read_csv, reference, score_generated
 
 TEMPLATES = ("a photo of the {}.", "a close-up photo of the {}.", "an image of the {}.")
@@ -59,7 +64,7 @@ def unit(x):
     return x / n
 
 
-def text_bank(model, tok, unique_words, size):
+def text_bank(model, tok, unique_words, size, device="cuda"):
     import torch
 
     if model.context_length != 77 or model.token_embedding.num_embeddings != 49408:
@@ -79,13 +84,13 @@ def text_bank(model, tok, unique_words, size):
                     raise ValueError(f"Invalid CLIP sequence for {texts[j]}")
                 tokens[j, : len(seq)] = seq
             features.append(
-                model.encode_text(torch.from_numpy(tokens).cuda()).float().cpu().numpy()
+                model.encode_text(torch.from_numpy(tokens).to(device)).float().cpu().numpy()
             )
         encoded.append(unit(np.concatenate(features)))
     return unit(np.mean(encoded, axis=0))
 
 
-def image_features(model, getter, n, size):
+def image_features(model, getter, n, size, device="cuda"):
     import torch
 
     all_features = []
@@ -96,7 +101,17 @@ def image_features(model, getter, n, size):
         if pixels.shape[1:] != (512, 512, 3):
             raise ValueError("Expected a 512-square RGB image after preprocessing")
         x = torch.from_numpy(pixels).permute(0, 3, 1, 2).float().div_(255)
-        all_features.append(clip_features(model, x))
+        if device == "cpu":
+            # Same 224-pixel tensor transform as eval_instance_starts.clip_features.
+            x = torch.nn.functional.interpolate(
+                x, (224, 224), mode="bilinear", align_corners=False, antialias=True
+            )
+            mean = x.new_tensor([0.48145466, 0.4578275, 0.40821073])[None, :, None, None]
+            std = x.new_tensor([0.26862954, 0.26130258, 0.27577711])[None, :, None, None]
+            x = (x - mean) / std
+            all_features.append(model.encode_image(x).float().numpy())
+        else:
+            all_features.append(clip_features(model, x))
     return unit(np.concatenate(all_features))
 
 
@@ -250,6 +265,253 @@ def score_photos(paths, archive, size, manifest, zipped):
         score_generated(args, arms, manifest, zipped)
 
 
+RESIDUAL_ARMS = {
+    "baseline": "frozen_reencoded",
+    "category_prior": "zero",
+    "own_residual": "corrected",
+    "swap": "swapped",
+}
+
+
+def personal_registration(folder):
+    settings = json.loads((folder / "settings.json").read_text(encoding="utf8"))
+    rows, labels, words, folds, donors = (
+        np.asarray(settings[k])
+        for k in ("rows", "true_labels", "predicted_words", "folds", "donor_rows")
+    )
+    if (
+        any(x.shape != (120,) for x in (rows, labels, words, folds, donors))
+        or not all(x.dtype.kind in "iu" for x in (rows, folds, donors))
+        or len(np.unique(rows)) != 120
+        or np.any((rows < 0) | (rows >= 16540))
+        or set(donors) != set(rows)
+        or len(np.unique(labels)) != 12
+        or set(words) - set(labels)
+        or set(folds) != set(range(5))
+        or any(np.sum((folds == f) & (labels == c)) != 2 for f in range(5) for c in set(labels))
+    ):
+        raise ValueError(f"Invalid registered rows, concepts, donors or folds in {folder}")
+    positions = {r: i for i, r in enumerate(rows)}
+    donor_index = np.array([positions[r] for r in donors])
+    if np.any(folds != folds[donor_index]) or np.any(words != words[donor_index]):
+        raise ValueError(f"Donor word/fold mismatch in {folder}")
+    if any(
+        (donors[i] == rows[i]) != (np.sum((folds == f) & (words == w)) == 1)
+        for i, (f, w) in enumerate(zip(folds, words, strict=True))
+    ):
+        raise ValueError(f"Invalid singleton donor mask in {folder}")
+    files = {f"{i:03d}.jpg" for i in range(120)}
+    for arm in RESIDUAL_ARMS.values():
+        images = folder / "images" / arm
+        if (
+            len(settings["jpeg_sha256"][arm]) != 120
+            or {p.name for p in images.glob("*.jpg")} != files
+        ):
+            raise ValueError(f"Incomplete JPEG set in {images}")
+    return settings
+
+
+def personal_jpeg(folder, index, digest, reference_encoding):
+    path = folder / f"{index:03d}.jpg"
+    raw = path.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != digest:
+        raise ValueError(f"JPEG SHA-256 mismatch at {path}")
+    with Image.open(io.BytesIO(raw)) as im:
+        if im.format != "JPEG" or im.mode != "RGB" or im.size != (512, 512):
+            raise ValueError(f"Expected an RGB 512-square JPEG at {path}")
+        encoding = (JpegImagePlugin.get_sampling(im), im.quantization)
+        if not reference_encoding:
+            reference_encoding.append(encoding)
+        elif encoding != reference_encoding[0]:
+            raise ValueError(
+                f"JPEG quantization or chroma sampling differs from baseline at {path}"
+            )
+        return im.copy()
+
+
+def personal_credits(logits, ids, truth):
+    if not np.isfinite(logits).all():
+        raise ValueError("Nonfinite object logits")
+    result = {}
+    for name, subset in (("full1854", np.arange(len(ids))), ("closed12", np.unique(truth))):
+        scores = logits[:, subset]
+        tied = scores == scores.max(1, keepdims=True)
+        credit = topk_credit(scores, 1)[np.arange(len(truth)), np.searchsorted(subset, truth)]
+        result[name] = (credit, ["|".join(ids[subset[row]]) for row in tied])
+    return result
+
+
+def personal_delta(a, b, labels):
+    delta = a - b
+    if not len(delta):
+        return {"n": 0}
+    classes, inverse = np.unique(labels, return_inverse=True)
+    total = np.bincount(inverse, weights=delta)
+    counts = np.bincount(inverse)
+    draws = np.random.default_rng(SEED).integers(len(classes), size=(N_RESAMPLES, len(classes)))
+    rates = total[draws].sum(1) / counts[draws].sum(1)
+    return {
+        "n": len(a),
+        "n_concepts": len(classes),
+        "delta_credit": float(delta.sum()),
+        "delta_rate": float(delta.mean()),
+        "delta_rate_ci95": np.quantile(rates, [0.025, 0.975]).tolist(),
+        "gained_credit": float(np.maximum(delta, 0).sum()),
+        "lost_credit": float(np.maximum(-delta, 0).sum()),
+        "retained_credit": float(np.minimum(a, b).sum()),
+    }
+
+
+def personal_clip(archive, device):
+    if device == "cuda":
+        return load_visual_scorer(archive)
+    import torch
+
+    receipt = json.loads((archive / "assets/evaluation_v272/completion.json").read_text())
+    (asset,) = [r for r in receipt["assets"] if r["name"] == "CLIP_L14"]
+    path = relocated(asset["path"], archive)
+    if file_sha(path) != asset["sha256"]:
+        raise ValueError("CLIP-L/14 checkpoint differs from archive receipt")
+    spec = importlib.util.spec_from_file_location(
+        "personal_cpu_clip", archive / "code/metric_sources_v272/openai_clip_model.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    jit = torch.jit.load(str(path), map_location="cpu")
+    return module.build_model(jit.state_dict()).float().eval().requires_grad_(False), asset[
+        "sha256"
+    ]
+
+
+def score_personal_case(folder, settings, ids, inverse, bank, model, size, device):
+    lookup = {k: i for i, k in enumerate(ids)}
+    labels = np.asarray(settings["true_labels"])
+    truth = np.array([lookup[k] for k in labels])
+    rows = np.asarray(settings["rows"])
+    swap_mask = rows != settings["donor_rows"]
+    per_row = [
+        {
+            "index": i,
+            "row": int(row),
+            "fold": settings["folds"][i],
+            "truth": labels[i],
+            "predicted_word": settings["predicted_words"][i],
+            "donor_row": settings["donor_rows"][i],
+            "eligible_swap": bool(swap_mask[i]),
+        }
+        for i, row in enumerate(rows)
+    ]
+    methods, vectors = {}, {}
+    reference_encoding = []
+    for name, arm in RESIDUAL_ARMS.items():
+
+        def get(i, arm=arm):
+            return personal_jpeg(
+                folder / "images" / arm, i, settings["jpeg_sha256"][arm][i], reference_encoding
+            )
+
+        features = image_features(model, get, len(truth), size, device)
+        output = personal_credits((features @ bank.T)[:, inverse], ids, truth)
+        eligible = swap_mask if name == "swap" else np.ones(len(truth), dtype=bool)
+        methods[name] = {"n": int(sum(eligible))}
+        vectors[name] = {}
+        for key, (credit, tied_ids) in output.items():
+            methods[name][key] = {"top1_credit": float(credit[eligible].sum())}
+            vectors[name][key] = credit
+            for i, rec in enumerate(per_row):
+                rec[f"{name}_{key}_credit"] = float(credit[i])
+                rec[f"{name}_{key}_tied_top_ids"] = tied_ids[i]
+    paired = {}
+    for a, b in (
+        ("category_prior", "baseline"),
+        ("own_residual", "baseline"),
+        ("own_residual", "category_prior"),
+        ("own_residual", "swap"),
+    ):
+        use = swap_mask if b == "swap" else np.ones(len(truth), dtype=bool)
+        tag = f"{a}_minus_{b}"
+        paired[tag] = {}
+        for key in vectors[a]:
+            x, y = vectors[a][key], vectors[b][key]
+            paired[tag][key] = personal_delta(x[use], y[use], labels[use])
+            for i, rec in enumerate(per_row):
+                rec[f"{tag}_{key}"] = float(x[i] - y[i]) if use[i] else ""
+    return {
+        "settings_sha256": file_sha(folder / "settings.json"),
+        "source_results_sha256": settings["source_results_sha256"],
+        "source_condition_sha256": settings["source_condition_sha256"],
+        "methods": methods,
+        "paired": paired,
+    }, per_row
+
+
+def personal_main(argv):
+    p = argparse.ArgumentParser(
+        description="Name registered residual JPEGs for both panels and participants with one offline CLIP-L/14."
+    )
+    for name in ("archive", "dictionary", "renders", "out"):
+        p.add_argument("--" + name, type=Path, required=True)
+    p.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
+    p.add_argument("--batch-size", default=32, type=int)
+    p.add_argument("--tokenizer", type=Path)
+    args = p.parse_args(argv)
+    if args.batch_size <= 0:
+        p.error("Positive --batch-size required")
+    cases = {}
+    id_sets = []
+    for panel in ("registered", "replicate"):
+        first = None
+        for subject in ("sub-04", "sub-05"):
+            folder = args.renders / panel / subject
+            settings = personal_registration(folder)
+            if any(settings.get(k, v) != v for k, v in (("subject", subject), ("panel", panel))):
+                raise ValueError(f"Incorrect subject or panel in {folder}")
+            alignment = {k: settings[k] for k in ("rows", "true_labels", "folds")}
+            if first is not None and alignment != first:
+                raise ValueError(f"Participants have different query registrations in {panel}")
+            first = alignment
+            cases[(panel, subject)] = (folder, settings)
+        id_sets.append(set(first["rows"]))
+    if id_sets[0] & id_sets[1]:
+        raise ValueError("The two registered panels share query rows")
+    ids, unique, inverse, _, _ = load_dictionary(args.dictionary)
+    import torch
+
+    tok = load_tokenizer(
+        args.tokenizer or args.archive / "assets/native_generator_v243/turbo/tokenizer"
+    )
+    with torch.inference_mode():
+        model, weights_sha = personal_clip(args.archive, args.device)
+        bank = text_bank(model, tok, unique, args.batch_size, args.device)
+        report, per_row = {}, []
+        for (panel, subject), (folder, settings) in cases.items():
+            key = f"{panel}/{subject}"
+            report[key], records = score_personal_case(
+                folder, settings, ids, inverse, bank, model, args.batch_size, args.device
+            )
+            per_row.extend({"panel": panel, "subject": subject, **r} for r in records)
+            print(key, report[key]["methods"], flush=True)
+    args.out.mkdir(exist_ok=True, parents=True)
+    headers = list(per_row[0])
+    save_csv(args.out / "per_row.csv", headers, ([r[k] for k in headers] for r in per_row))
+    write_json(
+        args.out / "naming.json",
+        {
+            "model": "OpenAI CLIP-L/14",
+            "checkpoint_sha256": weights_sha,
+            "dictionary_sha256": file_sha(args.dictionary),
+            "templates": TEMPLATES,
+            "device": args.device,
+            "arm_directories": RESIDUAL_ARMS,
+            "units": "Top-1 credit split equally among tied concept IDs. full1854 uses all dictionary IDs; closed12 restricts re-naming to registered panel IDs. Divide credit by n for the rate.",
+            "pairing": "Same row. Percentile 95% intervals on rate differences resample true concepts with replacement within each panel and participant. Own minus swap excludes singleton donors.",
+            "bootstrap_seed": SEED,
+            "bootstrap_draws": N_RESAMPLES,
+            "cases": report,
+        },
+    )
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     for flag in ("archive", "dictionary", "images", "manifest", "out"):
@@ -397,4 +659,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:2] == ["personal-residuals"]:
+        personal_main(sys.argv[2:])
+    else:
+        main()

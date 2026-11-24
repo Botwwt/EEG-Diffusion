@@ -2,6 +2,7 @@
 
 | Task | Participant and query | Recognition problem |
 | --- | --- | --- |
+| Personal R4, primary | Seven additional participants, four repeats per query, 120 distinct photos in each of two panels | Learn from 128 other objects per participant plus eight calibration photos for each of twelve target objects. Compare the same generator and noise under frozen and personal EEG readouts. |
 | Registered R4 | Sub-03, four EEG repeats per photo, 120 queries per panel | Choose among 12 registered objects. Eight other photos per object supply calibration in each fold. |
 | Registered R4 transfer | Source sub-03 and new participants viewing the same 120 photos per panel | Fit the generic decoder on sub-03. Measure recognition for each new participant using the same eight labeled calibration photos per object and fold. |
 | Unseen R4 | Sub-03, four repeats, 200 queries per panel | Decode previously unseen concepts from EEG. Distinguish the 20-class photo-prototype score, 10-way within-object identification and 1,854-word decoding. |
@@ -183,6 +184,77 @@ done
 
 When a predicted class changes, the conditioning script looks up its calibration prototype and recomputes the continuous condition for that class. It checks the original fold, waveform, model and starting-latent identities. Each render writes `results.json` and 120 JPEGs per arm under `images/{category,aligned,shuffled}`. Read `full_top1` for generated-image naming against all 1,854 words and `original_photo` for the original-photo gallery scores.
 
+#### Locked confirmation on seven additional participants
+
+The frozen comparison pairs the personal `personal_r4` readout with the sub-03 `fused` readout for sub-01, 02, 06, 07, 08, 09 and 10. Both use the same 12 registered objects, eight calibration photos per object per fold, generator and per-row seeds. The personal method also fits each participant's 1,280 photos from 128 other objects. The seven participants' frozen-source scores were already available when the design was fixed. Their personal predictions and renders were still unseen. Sub-03 supplied the source model, sub-04 selected the method and sub-05 provided an earlier check. [Frozen design and endpoint definitions](../research/eeg_stack_20261112/results/object_fidelity/personal_confirmation_design.json)
+
+Run the following blocks in the same shell after the transfer, recording-session and sub-04/05 recipes above. Start with a fresh `Q`. Its `transfer` directory points to the fitted source models, evaluations and frozen generator conditions from the transfer recipe.
+
+```sh
+set -eu
+Q="$W/personal-confirmation"
+subjects="sub-01 sub-02 sub-06 sub-07 sub-08 sub-09 sub-10"
+mkdir -p "$Q/reference-driver"
+ln -s "$(cd "$W/participant-fit" && pwd)" "$Q/transfer"
+cp "$W/session-audit/sessions.json" "$Q/sessions.json"
+pin=e8c8870e331dc23b64a3cd4eb77788ed348930fa
+git show "$pin:$C/render_registered_objects.py" > "$Q/reference-driver/render_registered_objects.py"
+render_aligned () {
+  "$GPU" "$C/render_registered_objects.py" --archive "$A" --dictionary "$BASE/dictionary.csv" \
+    --aligned-only --batch-size 8 "$@"
+}
+```
+
+First replay the four historical comparisons on the same GPU type and software stack. The formal A40 check matched all 480 JPEGs byte for byte, including both readouts on sub-04 registered and sub-05 replicate. The following loop uses prior three-arm renders under `OLD3/{frozen,personal}/PANEL/SUBJECT/`. With a fresh output root it rebuilds those references using the pinned driver. Each new `replay_check.json` compares all 120 aligned JPEG digests, per-photo naming credit, retrieval totals, condition and evaluator hashes.
+
+```sh
+OLD3="$Q/three-arm"
+for pair in registered/sub-04 replicate/sub-05; do
+  frozen="$Q/transfer/$pair/conditions.npz"
+  personal="$P/conditions/$pair/conditions.npz"
+  for arm in frozen personal; do
+    ref="$OLD3/$arm/$pair"
+    packet="$frozen"
+    if [ "$arm" = personal ]; then packet="$personal"; fi
+    if [ ! -f "$ref/results.json" ]; then
+      PYTHONPATH="$C${PYTHONPATH:+:$PYTHONPATH}" "$GPU" "$Q/reference-driver/render_registered_objects.py" \
+        --archive "$A" --dictionary "$BASE/dictionary.csv" --conditions "$packet" --out "$ref" --batch-size 8
+    fi
+  done
+  render_aligned --case "$frozen" "$Q/parity/frozen/$pair" \
+    --case "$personal" "$Q/parity/personal/$pair" \
+    --verify-against "$OLD3/frozen/$pair" "$OLD3/personal/$pair"
+done
+```
+
+Fetch the seven personal calibration sets from the same fixed draw and apply the selected readout. The fit also computes the original session control. The packaging command explicitly selects `personal_r4` for every participant and panel. For each predicted word it recomputes the continuous condition using that fold's calibration prototype and preserves the original R4 starting latent.
+
+```sh
+"$PY" "$C/prepare_generic_subjects.py" --root "$W/participant-eeg" --train-rows "$BASE/atm_train_rows.csv" \
+  --registered "$W/panels/registered/evaluation.json" --replication "$W/panels/replicate/evaluation.json" \
+  --subjects 1 2 6 7 8 9 10
+"$PY" "$C/fit_personal_session_metric.py" --generic "$W/participant-eeg/generic" \
+  --halves "$W/participant-eeg/halves" --references "$W/panels" --out "$Q/personal" --subjects $subjects
+"$PY" "$C/condition_registered_predictions.py" --archive "$A" --transfer "$Q/transfer" \
+  --subjects-dir "$W/participant-eeg" --panel-dirs "$W/panels/registered" "$W/panels/replicate" \
+  --prediction-runs "$Q/personal" --prediction-method personal_r4 --subjects $subjects --out "$Q/personal_conditions"
+```
+
+One GPU process per participant loads the generator and independent OpenAI CLIP-L/14 once for all four cases. It renders one matched JPEG per query with four denoising steps and noise seed `923761 + array_row`. It opens the original photos for scoring after all four cases have generated their images. The loop runs participants sequentially.
+
+```sh
+for s in $subjects; do
+  render_aligned \
+    --case "$Q/transfer/registered/$s/conditions.npz" "$Q/confirm_render/frozen/registered/$s" \
+    --case "$Q/personal_conditions/registered/$s/conditions.npz" "$Q/confirm_render/personal/registered/$s" \
+    --case "$Q/transfer/replicate/$s/conditions.npz" "$Q/confirm_render/frozen/replicate/$s" \
+    --case "$Q/personal_conditions/replicate/$s/conditions.npz" "$Q/confirm_render/personal/replicate/$s"
+done
+"$PY" "$C/summarize_personal_confirmation.py" --root "$Q" --out "$Q/personal_confirmation.json"
+```
+
+Each of the 28 case directories contains 120 files under `images/aligned/` and a `results.json` with per-query credit. The primary endpoint is top-1 naming credit among 1,854 concepts on the generator's RGB output before JPEG compression, with fractional credit for tied names. Each panel contributes 840 paired participant–photo queries from 120 distinct photos. The summary also reports 12-way EEG recognition, 12-way generated-image naming and identification among the ten original photos of the true object. Panel-specific 95% intervals use 10,000 paired bootstrap draws over participants and concepts, keeping each concept's ten photos together. The combined totals are descriptive. The supplementary EEG analysis compares each decoder with its recording-session-pair conditional expectation using the archived acquisition schedules. [Confirmation summary script](../research/eeg_stack_20261112/code/summarize_personal_confirmation.py)
+
 ### 2. Unseen R4
 
 The fit uses 13,230 training photos in 1,323 concepts. Development uses 20 other concepts. Confirmation selects 20 disjoint concepts from historical V. Each concept supplies ten original photos. The archived EEG row indices in both layout bundles define every downstream comparison.
@@ -305,7 +377,26 @@ For the personal render comparisons, point `OLD` and `NEW` at the matched frozen
 "$PY" "$C/score_personal_photo_layout.py" --archive "$A" --baseline "$OLD" --personal "$NEW" --out "$W/gallery/photo_layout.json"
 ```
 
-### Papers and author releases
+### Within-object color residuals
+
+For the within-object color experiment, `INPUTS` contains the mean EEG packets, `generic/` packets and the frozen `registered/ablation.json` and `replicate/ablation.json`. Set `PERSONAL` to the render root whose next component is the panel. Use a separate output root for the color branches. The CPU stage reads the subset of calibration photos allowed by each fold. Query photographs enter RGB scoring after JPEG generation has finished.
+
+```sh
+R="$W/photo_residual"
+for s in sub-04 sub-05; do
+  "$PY" "$C/refine_personal_photo_residual.py" fit --archive "$A" --inputs "$INPUTS" \
+    --subject "$s" --model "$R/models/$s.npz"
+  for p in registered replicate; do
+    "$PY" "$C/refine_personal_photo_residual.py" render --archive "$A" --inputs "$INPUTS" \
+      --subject "$s" --panel "$p" --model "$R/models/$s.npz" --render "$PERSONAL/$p/$s" --out "$R/$p/$s"
+  done
+done
+"$GPU" "$C/score_official_objects.py" personal-residuals --archive "$A" --dictionary "$BASE/dictionary.csv" \
+  --renders "$R" --out "$W/residual_naming" --device cuda
+"$PY" "$C/summarize_personal_residual.py" --root "$W" --out "$W/personal_photo_residual.json"
+```
+
+### References
 
 - Li et al., *Visual Decoding and Reconstruction via EEG Embeddings with Guided Diffusion*. [ATM author code](https://github.com/dongyangli-del/EEG_Image_decode/tree/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d) · [Pinned authors' feature release](https://huggingface.co/datasets/LidongYang/EEG_Image_decode/tree/dbe34bb2407164f70883c661c76664f0d596e522)
 - Gifford et al., *A large and rich EEG dataset for modeling human visual object recognition*. [THINGS-EEG2 paper](https://doi.org/10.1016/j.neuroimage.2022.119754)

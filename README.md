@@ -8,15 +8,40 @@ Reconstructing viewed photographs from EEG with Brain-HIVE and SDXL-Turbo. We me
 
 ## Object reconstruction from four EEG trials
 
-**For a participant who can provide calibration EEG, use the personal four-trial object decoder.** It learns from 1,280 photos of other objects and eight calibration photos per registered class in each fold. We selected the decoder on sub-04, then ran it unchanged on sub-05. The same generator and independent 1,854-name evaluator went from **29 to 46 correct** on the first 120 photos and **45.5 to 62.5** on 120 more (ties split credit). The ten-photo within-class identification on sub-05 was **12/120 on both panels**, equal to chance. [Personal model, controls and photo-level scores](docs/OBJECT_FIDELITY.md#用其他物体学出这个人的脑电读出) · [All twelve fixed examples from the second panel](research/eeg_stack_20261112/gallery/personal_sub05_replicate.jpg)
+The primary task is to draw a new photograph of **one of twelve calibrated objects** from one person's EEG. Each query averages four physical presentations of the photograph. In each fold, eight other photos per object and their EEG recordings are available for calibration. The generator gets one predicted word and produces one image.
 
-With twelve registered objects, sub-03's EEG identified the object in **85/120 unseen photographs**. Eight other photos per object provided calibration in each fold. A separate CLIP-L/14 evaluator named the generated object correctly **71/120** times from the full 1,854-name THINGS vocabulary. The same evaluator named **99/120** originals correctly. On a second, uniformly sampled set of twelve objects, the frozen method gave **92/120** EEG classifications and **82/120** correct names for generated images.
+### Selected model
 
-How much carries over to a new person? Across the other **nine participants**, the same source models with each person's own eight-example calibration identified **304/1,080** and **450/1,080** objects from EEG on the two panels. Requiring every EEG prototype comparison to cross acquisition sessions gave **233/1,080** and **324/1,080** with the visual branch retained. For sub-04, chosen before scoring, the independent evaluator named **34/120** and **57.5/120** generated objects with the original frozen system (tied names split credit). Participants viewed the same photos. [Transfer, rendering and session controls](docs/OBJECT_FIDELITY.md#换一个被试再画一遍)
+1. **Learn what distinguishes objects for this person.** On 128 other objects with ten photos each, a regularized Fisher projection weights EEG directions by how strongly they separate objects relative to the variation between photos of the same object. It keeps 96 directions from 17 posterior electrodes.
+2. **Decode the object.** Map the query and the eight calibration recordings per object into that space. The closest category mean by cosine similarity supplies the predicted word.
+3. **Draw the prediction.** Use that word, the visual prototype of its eight calibration photos, an EEG-predicted visual adjustment and an EEG-predicted 8×8 starting latent. Brain-HIVE and SDXL-Turbo generate one image in four steps. The original query photo is used for scoring. [Fit the personal decoder](research/eeg_stack_20261112/code/fit_personal_session_metric.py) · [Prepare generator inputs](research/eeg_stack_20261112/code/condition_registered_predictions.py)
 
-![EEG-generated photographs for the first stimulus of each registered object, including wrong predictions](research/eeg_stack_20261112/gallery/registered_objects_sub03.jpg)
+### Held-out participants
 
-Each tile shows the first stimulus by archive row for its registered object. The first label names what the participant saw, and the second gives the EEG decoder's prediction. The generator receives the predicted name, a visual prototype built from calibration photos, and continuous EEG features. The two labels also show where recognition failed. [Object-level results and controls](docs/OBJECT_FIDELITY.md) · [Run the three protocols](docs/OBJECT_FIDELITY_REPLAY.md)
+We selected the readout on sub-04 and checked it on sub-05. We then fixed the seven remaining participants, both photo panels and the primary endpoint before inspecting their personal-model predictions. The frozen comparison uses the sub-03 decoder and each target participant's eight supports per object. The personal system uses an additional 1,280 calibration photos per participant. A separate OpenAI CLIP-L/14 names each generated image against all 1,854 THINGS concepts. [Locked confirmation design](research/eeg_stack_20261112/results/object_fidelity/personal_confirmation_design.json)
+
+**On the seven participants, naming credit rose from 29.9% to 40.4%** (503 to 678.5 of 1,680 participant–photo queries). The same 240 photographs were used across participants. The primary evaluator scores the generated RGB before JPEG compression. It named 99/120 and 104/120 original photos correctly on the two panels.
+
+| Outcome | First 12 objects, frozen → personal | Second 12 objects, frozen → personal |
+| --- | ---: | ---: |
+| Generated image, true name ranked first among 1,854 | 190/840 → **277/840** | 313/840 → **401.5/840** |
+| Paired gain above, percentage points [95% interval] | +10.4 [+0.5, +20.6] | +10.5 [+1.0, +20.9] |
+| EEG, correct object among twelve | 229/840 → **351/840** | 339/840 → **439/840** |
+| Generated image, matching photograph among ten of the same object | 104/840 → **88/840** | 96/840 → **76/840** |
+
+Intervals resample participants and object classes together. On the photo-identification measure, picking a random same-object photo gives 10%. The two panels use distinct classes. The full-vocabulary score measures recognition of output images from a generator whose predicted word is drawn from the twelve known objects. [Per-person and per-object records](research/eeg_stack_20261112/results/object_fidelity/personal_confirmation.json)
+
+![EEG-generated images for the first photograph of every object on the second panel in sub-01](research/eeg_stack_20261112/gallery/personal_sub01_replicate.jpg)
+
+The gallery shows the first participant in the confirmation set and the lowest archive row for each object. “Viewed” is the object's true label. “EEG” is the predicted word sent to the generator. Every image, including wrong predictions, follows the same selection rule. [First panel, same participant](research/eeg_stack_20261112/gallery/personal_sub01_registered.jpg) · [Personal model, controls and photo-level scores](docs/OBJECT_FIDELITY.md) · [Reproduce the experiments](docs/OBJECT_FIDELITY_REPLAY.md)
+
+### Color and composition
+
+We also predicted a photograph's 4×4 color deviation from the mean of the eight calibration photos for its predicted object. On sub-05 the low-frequency RGB error decreased from 0.2872 to 0.2776 with the category mean alone and to 0.2762 with the EEG correction on the first panel. The corresponding second-panel values were 0.2855, 0.2765 and 0.2750. On both participants tested, the intervals for the EEG correction included zero when restricted to correctly decoded objects. The primary model uses the original generator output. [Color residuals and matched EEG swaps](docs/OBJECT_FIDELITY.md#平均误差和一张照片自己的误差)
+
+### Other inference settings
+
+In the sub-03 source participant, the frozen decoder with eight supports per object identified 85/120 and 92/120 objects from EEG, with generated-image naming credit of 71/120 and 82/120. Applying that decoder to nine other participants who supplied their own eight supports gave 304/1,080 and 450/1,080 EEG hits. Requiring each EEG prototype comparison to cross acquisition sessions gave 233/1,080 and 324/1,080. [Source, transfer and recording-session controls](docs/OBJECT_FIDELITY.md#换一个被试再画一遍)
 
 For **unregistered objects**, a separate sub-03 R4 confirmation panel used 20 held-out concepts and ten photos per concept. Independent visual scoring assigned **60/200** generated images to the correct concept, compared with **25/200** for the matched native baseline and **7/200** after shuffling EEG. The 20 candidates are used only by the evaluator. This experiment and the twelve-object calibration study have different inference conditions.
 
