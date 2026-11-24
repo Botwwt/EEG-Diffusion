@@ -1,12 +1,22 @@
-# EEG 图像重建｜当前结果与投稿评估
+# EEG 图像重建｜当前模型与证据
+
+2026-11-24 按单人四次 EEG、四步生成、同概念十选一收敛。默认模型 **M1a + D2 @ s375** 命中 **982/5,000（19.64%）**。图库由 50 个概念各 10 张照片组成，每位被试评价同一组刺激。换成全部 500 张一起检索，命中 190/5,000（3.80%）。[实验分类、模型谱系和各协议](EXPERIMENT_REGISTRY.md)
+
+最接近的是 **M1a + SwapDiff**，命中 973/5,000（19.46%）。两者相差 9 次命中，按被试配对的 95% 区间为 −0.58 至 +0.94 个百分点。**M1a + Arm1b** 保留相同的输入处理和起始潜变量，用于比较生成器监督与表征监督，相差 +0.86 个百分点（95% 区间 +0.11 至 +1.61）。六位开发组以外的被试在其他概念上参加过训练，在这个对照上相差 +1.00 个百分点（−0.25 至 +2.25）。[逐被试结果](../research/eeg_stack_20261112/results/exp8c_m1a_heldout6_and_all10_results.json) · [匹配对照](../research/eeg_stack_20261112/results/exp8d_m1a_arm1b_symmetric_results.json)
+
+新做的单被试实验检查了照片中“周围内容预测不出的部分”。EEG 能从同概念照片中识别一部分局部残差，但显式预测残差在原始视觉特征图库只多认对一张。进一步在训练集以外的 200 张照片上实际生成 800 张图，同类照片差异修正将命中数从 27 提到 28，95% 区间仍跨零。保留为机制诊断，默认模型继续使用 M1a + D2。[实验设计、数据和结论](CONTEXT_RESIDUAL.md)
+
+11 月 25 日补做了逐图细节筛选。按两段 EEG 的预测一致性决定保留多少方向细节，均方误差略降，但在相同的 16×16 视觉特征图库上命中 571/2,640，低于直接预测的 581/2,640。这一版本没有进入图像生成。[逐概念筛选结果](../research/eeg_stack_20261112/results/spatial_detail_sub03_mean4.json)
+
+## 2026-11-22 的 R80 评估
 
 审阅日期 2026-11-22。依据 11 月 21 日 O12–O14 实验归档、公开实现和相关原始论文。下表为归档结果。部分 Top-1 统计已按公开逐被试数据复算，模型训练和图像生成尚待独立复跑。
 
-## 结论
+### R80 结论
 
 **已有写成技术预印本或探索型 workshop 短稿的材料。完整方法论文仍需一次锁定协议的确认实验。** O14 无文本分支在仓库的四步、每张输出单候选设置下从 O10 的 16.20% 提升到 18.46%，10 名被试均有提升。O13 的跨被试同刺激损失在完整系统中相对同预算对照增 0.69 个百分点，区间跨零。当前最值得检验的是同刺激配对能保留多少刺激特异性，以及这种增益在低重复数和独立测试中是否维持。
 
-## 实验结果
+### 实验结果
 
 THINGS-EEG2 官方测试集包含 10 名被试、200 幅测试刺激，每人每刺激 80 次物理重复。训练图像 16,540 幅，每人每图 4 次重复。堆叠实验使用 17 个枕顶电极和 0–1000 ms、250 Hz 数据。下表的单脑行按 10 名被试汇总，每刺激输出 4 张图。诊断行先对齐并融合 10 人看到同一刺激时的 EEG 条件及起始潜变量，评价 200 × 4 张图。[数据集原论文](https://doi.org/10.1016/j.neuroimage.2022.119754) · [实验日志，Section C](../research/eeg_stack_20261112/results/o12_o13_o14_info_ceiling_xbrain.txt)
 
@@ -26,7 +36,7 @@ THINGS-EEG2 官方测试集包含 10 名被试、200 幅测试刺激，每人每
 
 CLIP 200 选 1 以生成图为查询，检查相似度最高的真图是否为实际刺激，随机命中率为 0.5%。CLIP 2AFC 统计实际刺激排在单个干扰项之前的比例，SSIM 度量图像结构相似性。O14 无文本的 18.46% 对应 1,477/8,000 张生成图中真图排第一。顺序图版中的 O14 文本版大致还原了羚羊轮廓，也把香蕉画成拖鞋形状、把航母画成塔状物。部分动物图在库内排第一，仍明显改变物种外观。人类辨认率尚未实测。[评价实现](../research/eeg_stack_20261112/code/metrics.py) · [sub-10 顺序图版](../research/eeg_stack_20261112/gallery/gallery_o14_unbiased_seq_sub10.jpg)
 
-### 改进有多稳
+#### 改进有多稳
 
 | 对照 | CLIP 200 选 1 变化 | 证据解读 |
 | --- | ---: | --- |
@@ -41,7 +51,7 @@ CLIP 200 选 1 以生成图为查询，检查相似度最高的真图是否为�
 
 早期 ordinary 约束适配器在其固定 R80 协议中，DINO 2AFC 从 0.872769 升到 0.891198，SSIM 从 0.328023 升到 0.353494。强 F-only 与训练公共方向对照下，逐查询适配的额外主语义增量尚未确认。该组每查询一张图，使用独立的生成和评分协议。[ordinary 十被试报告](../research/eeg/reports/BRAINHIVE_FULL1654_ORIGINAL_ORDINARY_R80_RESULTS_20261101_v1.md) · [训练公共方向对照](../research/eeg/reports/HIVE_TRAIN_ONLY_MEAN_FIELD_R80_RESULTS_20261101_v1.md)
 
-## 创新性
+### 创新性
 
 | 候选贡献 | 与已有研究的关系 | 当前判断 |
 | --- | --- | --- |
@@ -52,7 +62,7 @@ CLIP 200 选 1 以生成图为查询，检查相似度最高的真图是否为�
 
 相关原始研究。[ATM，NeurIPS 2024](https://proceedings.neurips.cc/paper_files/paper/2024/hash/ba5f1233efa77787ff9ec015877dbd1f-Abstract-Conference.html) · [Brain-HIVE](https://arxiv.org/abs/2602.07495) · [ENIGMA](https://arxiv.org/html/2602.10361) · [CL-SSTER，NeuroImage 2024](https://pubmed.ncbi.nlm.nih.gov/39419424/) · [CHORUS，2026 预印本](https://arxiv.org/abs/2611.24364) · [NVOL](https://arxiv.org/abs/2609.02582) · [D²-FOSA，CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/papers/Yu_D2-FOSA_Dual-Diffusion_Guided_EEG-to-Image_Reconstruction_with_Frequency-Oriented_Semantic_Alignment_CVPR_2026_paper.pdf)
 
-## 投稿前会被问到的问题
+### 投稿前会被问到的问题
 
 1. **测试协议。** O13/O14 使用了全部 10 人的训练集。文中 6 人是该轮开发筛选之外的子集。代码对测试者的 200 组已知重复对应关系做成批优化，并用批次统计构造视觉条件。应报告为单被试输入、无真图标签的转导式测试时适配，并加报只用训练统计、逐查询运行的版本。跨到新被试需留一被试，适配集与最终评分集另外冻结。[O13 适配与条件实现](../research/eeg_stack_20261112/code/o13_xbrain_shared_trunk.py) · [O14 条件实现](../research/eeg_stack_20261112/code/o14_triarch_xbrain_bigg.py)
 2. **外部可比性。** Brain-HIVE 论文原报 SSIM 0.336、CLIP 相似评价 0.808，本库复现为 0.3120 和 0.7986。ENIGMA 多被试原报 SSIM 0.4264，有 10 次生成、不同通道与评分方向。先用同一套输入、重建预算和评价器重跑正式对照，再判断能否主张领先。直接用 EEG 表征检索图库的 Top-1 单独报告。[Brain-HIVE Table 2](https://arxiv.org/html/2602.07495#S4) · [ENIGMA Table 1 与评估定义](https://arxiv.org/html/2602.10361#S4)
