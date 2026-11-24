@@ -42,6 +42,6 @@ The EEG training and evaluation photos are separated by concept in the published
 
 ## Availability
 
-The follow-up [signed local prediction error experiment](CONTEXT_RESIDUAL.md) used an older mean-of-four EEG archive and measures retrieval in VAE space. Its scores have their own protocol.
+The follow-up [signed local prediction error study](CONTEXT_RESIDUAL.md) used an older sub-03 mean-of-four EEG archive. It covers two VAE retrieval experiments and a four-arm, 800-image generation comparison. Its strongest generation arm identified 28 of 200 photographs against 27 for direct prediction. The ten-participant R4 selection above uses a different checkpoint and stimulus panel.
 
 The release contains source, participant summaries and selected images. GPU replay requires separately obtained THINGS-EEG2 trials and stimuli, prepared EEG/visual caches, Brain-HIVE and SDXL-Turbo assets, evaluator weights and the trained Arm3b and D2 states. The selected evaluator loads `arm3b_rep_rawswap_condlyr_st600_s2025.pt` and `d2_compete4_cond_st120_s2025.pt` from the research workspace. The public Git tree contains neither checkpoint. [Replay requirements](REPRODUCIBILITY.md) · [Checkpoint loading](../research/eeg_stack_20261112/code/exp8c_m1a_heldout6_confirm.py) · [Held-out example gallery](../research/eeg_stack_20261112/gallery/m1_m2_heldout_sub01_s375_gallery.jpg)

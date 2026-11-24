@@ -1,4 +1,5 @@
 """Compare four sub-03 EEG starting latents with a frozen native Brain-HIVE/Turbo generator."""
+
 from __future__ import annotations
 
 import argparse
@@ -51,7 +52,7 @@ def load_visual_scorer(root):
 
     archive = root / "assets/evaluation_v272"
     receipt = read_json(archive / "completion.json")
-    row, = [item for item in receipt["assets"] if item["name"] == "CLIP_L14"]
+    (row,) = [item for item in receipt["assets"] if item["name"] == "CLIP_L14"]
     weights = relocated(row["path"], root)
     if sha(weights) != row["sha256"]:
         raise ValueError("CLIP-L/14 checkpoint digest differs from its archive receipt")
@@ -66,7 +67,7 @@ def load_visual_scorer(root):
 
 def clip_features(model, x):
     import torch
-    from torchvision.transforms import Normalize, Resize, InterpolationMode
+    from torchvision.transforms import InterpolationMode, Normalize, Resize
 
     x = Resize(224, interpolation=InterpolationMode.BILINEAR, antialias=True)(x.float())
     x = Normalize([0.48145466, 0.4578275, 0.40821073], [0.26862954, 0.26130258, 0.27577711])(x)
@@ -112,12 +113,18 @@ def rollout(pipe, prompts, tokens, start, noise):
     prompt, pooled, timeids = prompts
     n = len(z)
     for i, timestep in enumerate(pipe.scheduler.timesteps):
-        sigma, nxt = sigmas[i:i + 2]
+        sigma, nxt = sigmas[i : i + 2]
         inp = (z / math.sqrt(1.0 + sigma**2)).to(pipe.unet.dtype)
         pred = pipe.unet(
-            inp, timestep.expand(n), encoder_hidden_states=prompt.expand(n, -1, -1),
-            added_cond_kwargs={"text_embeds": pooled.expand(n, -1), "time_ids": timeids.expand(n, -1)},
-            cross_attention_kwargs={"ip_hidden_states": tokens}, return_dict=False,
+            inp,
+            timestep.expand(n),
+            encoder_hidden_states=prompt.expand(n, -1, -1),
+            added_cond_kwargs={
+                "text_embeds": pooled.expand(n, -1),
+                "time_ids": timeids.expand(n, -1),
+            },
+            cross_attention_kwargs={"ip_hidden_states": tokens},
+            return_dict=False,
         )[0].float()
         up = min(nxt, math.sqrt(nxt**2 * (sigma**2 - nxt**2) / sigma**2))
         down = math.sqrt(max(0.0, nxt**2 - up**2))
@@ -126,8 +133,9 @@ def rollout(pipe, prompts, tokens, start, noise):
         if i == 0:
             z = 0.75 * anchor + 0.25 * z
         if i in (2, 3):
-            low = F.interpolate(F.avg_pool2d(anchor - z, 8), size=(64, 64), mode="bilinear",
-                                align_corners=False)
+            low = F.interpolate(
+                F.avg_pool2d(anchor - z, 8), size=(64, 64), mode="bilinear", align_corners=False
+            )
             z = z + (0.11 if i == 2 else 0.02) * low
     return z
 
@@ -150,21 +158,39 @@ def summarize(gallery, generated, groups, rows):
         sub = scores[np.ix_(indices, indices)]
         correct = sub.diagonal()
         winners = sub.argmax(axis=1)
-        ranks = np.argsort(np.argsort(-sub, axis=1, kind="stable"), axis=1, kind="stable").diagonal() + 1
+        ranks = (
+            np.argsort(np.argsort(-sub, axis=1, kind="stable"), axis=1, kind="stable").diagonal()
+            + 1
+        )
         competitors = sub.copy()
         np.fill_diagonal(competitors, -np.inf)
         margin = correct - competitors.max(axis=1)
         a, b = np.triu_indices(len(indices), 1)
-        swap = correct[a] + correct[b] - sub[a,b] - sub[b,a]
+        swap = correct[a] + correct[b] - sub[a, b] - sub[b, a]
         hits = winners == np.arange(len(indices))
-        concept_rows.append(dict(concept=concept, top1=float(hits.mean()),
-                                 swap=float((swap > 0).mean()), margin=float(margin.mean()),
-                                 swap_margin=float(swap.mean())))
+        concept_rows.append(
+            dict(
+                concept=concept,
+                top1=float(hits.mean()),
+                swap=float((swap > 0).mean()),
+                margin=float(margin.mean()),
+                swap_margin=float(swap.mean()),
+            )
+        )
         for i, index in enumerate(indices):
-            photo_rows.append(dict(row=int(rows[index]), concept=concept, rank=int(ranks[i]),
-                                   hit=bool(hits[i]), margin=float(margin[i])))
-    mean = {key: float(np.mean([item[key] for item in concept_rows]))
-            for key in ("top1", "swap", "margin", "swap_margin")}
+            photo_rows.append(
+                dict(
+                    row=int(rows[index]),
+                    concept=concept,
+                    rank=int(ranks[i]),
+                    hit=bool(hits[i]),
+                    margin=float(margin[i]),
+                )
+            )
+    mean = {
+        key: float(np.mean([item[key] for item in concept_rows]))
+        for key in ("top1", "swap", "margin", "swap_margin")
+    }
     return dict(mean=mean, concepts=concept_rows, photos=photo_rows), scores
 
 
@@ -173,18 +199,20 @@ def write_preview(out, indices, rows, identities):
 
     arms = ("original",) + ARMS
     tile, gap, left, top = 152, 5, 132, 30
-    canvas = Image.new("RGB", (left + len(arms)*(tile+gap), top+len(indices)*(tile+gap)), "white")
+    canvas = Image.new(
+        "RGB", (left + len(arms) * (tile + gap), top + len(indices) * (tile + gap)), "white"
+    )
     draw = ImageDraw.Draw(canvas)
     for col, name in enumerate(arms):
-        x = left+col*(tile+gap)
+        x = left + col * (tile + gap)
         draw.text((x, 8), name, fill="black")
         for row_index, i in enumerate(indices):
-            y = top+row_index*(tile+gap)
+            y = top + row_index * (tile + gap)
             if col == 0:
-                caption = "row %s\nconcept %s" % (rows[i], identities[int(rows[i])]["concept_id"])
-                draw.multiline_text((4,y+tile//2), caption, fill="black")
+                caption = f"row {rows[i]}\nconcept {identities[int(rows[i])]['concept_id']}"
+                draw.multiline_text((4, y + tile // 2), caption, fill="black")
             with Image.open(out / "preview_cache" / f"{name}_{i}.png") as im:
-                canvas.paste(im, (x,y))
+                canvas.paste(im, (x, y))
     temp = out / "preview.tmp"
     canvas.save(temp, format="JPEG", quality=92)
     os.replace(temp, out / "preview.jpg")
@@ -209,12 +237,16 @@ def run(args):
         starts = {arm: data[arm].copy() for arm in ARMS}
     if any(x.shape != (len(rows), 4, 4, 4) or not np.isfinite(x).all() for x in starts.values()):
         raise ValueError("Expected finite N x 4 x 4 x 4 scaled latent grids")
-    split = read_json(root / "data/recovery_20261108_v236/current_split_manifest.json")["image_rows"]
+    split = read_json(root / "data/recovery_20261108_v236/current_split_manifest.json")[
+        "image_rows"
+    ]
     if set(rows) & set(split["T"]) or not set(rows) <= set(split["D"] + split["V"]):
         raise ValueError("Pilot rows must be outside encoder training T")
     manifest = root / "data/full_T_recovery_20261108_v238/image_manifest.csv"
     with manifest.open(encoding="utf-8-sig", newline="") as stream:
-        identities = {int(d["array_row"]): d for d in csv.DictReader(stream) if d["dataset_split"] == "train"}
+        identities = {
+            int(d["array_row"]): d for d in csv.DictReader(stream) if d["dataset_split"] == "train"
+        }
     groups = {}
     for i, row in enumerate(rows):
         groups.setdefault(identities[int(row)]["concept_id"], []).append(i)
@@ -225,22 +257,35 @@ def run(args):
     preview_indices = [i for group in list(groups.values())[:2] for i in group[:2]]
     preview_dir = out / "preview_cache"
     preview_dir.mkdir(exist_ok=True)
+
     def thumbnail(x, name, i):
-        picture = T.ToPILImage()(x.detach().float().cpu().clamp(0, 1)).resize((152,152), Image.BICUBIC)
+        picture = T.ToPILImage()(x.detach().float().cpu().clamp(0, 1)).resize(
+            (152, 152), Image.BICUBIC
+        )
         destination = preview_dir / f"{name}_{i}.png"
         temp = destination.with_suffix(".tmp")
         picture.save(temp, format="PNG")
         os.replace(temp, destination)
-    cfg = dict(starts_sha256=sha(args.starts), script_sha256=sha(Path(__file__)),
-               archive=str(root), checkpoint_sha256=PARENT_SHA, rows=rows.tolist(),
-               batch_size=args.batch_size, seed=args.seed, arms=list(ARMS), s375=True)
+
+    cfg = dict(
+        starts_sha256=sha(args.starts),
+        script_sha256=sha(Path(__file__)),
+        archive=str(root),
+        checkpoint_sha256=PARENT_SHA,
+        rows=rows.tolist(),
+        batch_size=args.batch_size,
+        seed=args.seed,
+        arms=list(ARMS),
+        s375=True,
+    )
     config_path = out / "settings.json"
     if config_path.exists() and read_json(config_path) != cfg:
         raise ValueError("Existing output settings differ; choose a separate output directory")
     write_json(config_path, cfg)
     start_time = time.monotonic()
+
     def progress(stage, **details):
-        report = dict(stage=stage, seconds=round(time.monotonic()-start_time, 2), **details)
+        report = dict(stage=stage, seconds=round(time.monotonic() - start_time, 2), **details)
         write_json(out / "progress.json", report)
         print(json.dumps(report), flush=True)
 
@@ -263,7 +308,7 @@ def run(args):
         if tuple(tokens.shape) != (len(rows), 4, 2048) or not torch.isfinite(tokens).all():
             raise ValueError("Unexpected native condition tokens")
         pipe.scheduler.set_timesteps(4, device="cuda")
-        if pipe.scheduler.timesteps.tolist() != [999,749,499,249]:
+        if pipe.scheduler.timesteps.tolist() != [999, 749, 499, 249]:
             raise ValueError("Unexpected SDXL-Turbo timesteps")
         del adapter, projector, conditions
         pipe.text_encoder = pipe.text_encoder_2 = None
@@ -271,18 +316,25 @@ def run(args):
         torch.cuda.empty_cache()
         model, clip_sha = load_visual_scorer(root)
         progress("models_ready", gpu=torch.cuda.get_device_name(), ip_layers=host["IP_layers"])
-        noise = torch.empty((len(rows),5,4,64,64))
+        noise = torch.empty((len(rows), 5, 4, 64, 64))
         for concept, indices in groups.items():
-            seed = int(hashlib.sha256(f"{args.seed}|{concept}".encode()).hexdigest()[:16], 16) % (2**63-1)
+            seed = int(hashlib.sha256(f"{args.seed}|{concept}".encode()).hexdigest()[:16], 16) % (
+                2**63 - 1
+            )
             gen = torch.Generator(device="cpu").manual_seed(seed)
-            noise[indices] = torch.randn(5,4,64,64,generator=gen)
+            noise[indices] = torch.randn(5, 4, 64, 64, generator=gen)
         gt = []
-        pre = T.Compose([T.Resize(512, interpolation=T.InterpolationMode.BILINEAR),
-                         T.CenterCrop(512), T.ToTensor()])
+        pre = T.Compose(
+            [
+                T.Resize(512, interpolation=T.InterpolationMode.BILINEAR),
+                T.CenterCrop(512),
+                T.ToTensor(),
+            ]
+        )
         with zipfile.ZipFile(root / "assets/things_images_v254/training_images.zip") as zipped:
             for lo in range(0, len(rows), args.batch_size):
                 rgb = []
-                for i, row in enumerate(rows[lo:lo+args.batch_size], start=lo):
+                for i, row in enumerate(rows[lo : lo + args.batch_size], start=lo):
                     identity = identities[int(row)]
                     raw = zipped.read(identity["image_member"])
                     if hashlib.sha256(raw).hexdigest() != identity["image_sha256"]:
@@ -297,16 +349,20 @@ def run(args):
         for arm in ARMS:
             embeddings = []
             for lo in range(0, len(rows), args.batch_size):
-                hi = min(lo+args.batch_size, len(rows))
+                hi = min(lo + args.batch_size, len(rows))
                 cache = out / f"{arm}_{lo:04d}_{hi:04d}.npy"
                 examples = [i for i in preview_indices if lo <= i < hi]
-                if not cache.exists() or any(not (preview_dir / f"{arm}_{i}.png").exists() for i in examples):
+                if not cache.exists() or any(
+                    not (preview_dir / f"{arm}_{i}.png").exists() for i in examples
+                ):
                     grid = torch.as_tensor(starts[arm][lo:hi], dtype=torch.float32, device="cuda")
-                    z0 = F.interpolate(grid, size=(64,64), mode="bilinear", align_corners=False)
+                    z0 = F.interpolate(grid, size=(64, 64), mode="bilinear", align_corners=False)
                     z = rollout(pipe, prompts, tokens[lo:hi], z0, noise[lo:hi].cuda())
-                    rgb = (pipe.vae.decode(z/pipe.vae.config.scaling_factor).sample * .5 + .5).clamp(0,1)
+                    rgb = (
+                        pipe.vae.decode(z / pipe.vae.config.scaling_factor).sample * 0.5 + 0.5
+                    ).clamp(0, 1)
                     for i in examples:
-                        thumbnail(rgb[i-lo], arm, i)
+                        thumbnail(rgb[i - lo], arm, i)
                     # Score decoded floating-point RGB as in the R4 evaluation.
                     features = clip_features(model, rgb)
                     temp = cache.with_suffix(".tmp")
@@ -314,7 +370,7 @@ def run(args):
                         np.save(stream, features, allow_pickle=False)
                     os.replace(temp, cache)
                 block = np.load(cache, allow_pickle=False)
-                if block.shape != (hi-lo, gt.shape[1]) or not np.isfinite(block).all():
+                if block.shape != (hi - lo, gt.shape[1]) or not np.isfinite(block).all():
                     raise ValueError(f"Invalid cached CLIP features in {cache}")
                 embeddings.append(block)
                 progress("scoring_generated_images", arm=arm, images=hi, total=len(rows))
@@ -325,19 +381,40 @@ def run(args):
     write_preview(out, preview_indices, rows, identities)
     paired = {}
     rng = np.random.default_rng(20261124)
-    bootstrap = rng.integers(len(groups), size=(10000,len(groups)))
-    for a, b in (("residual_head","raw_baseline"), ("within_residual","within_raw"),
-                 ("within_residual", "raw_baseline")):
+    bootstrap = rng.integers(len(groups), size=(10000, len(groups)))
+    for a, b in (
+        ("residual_head", "raw_baseline"),
+        ("within_residual", "within_raw"),
+        ("within_residual", "raw_baseline"),
+    ):
         measures = {}
         for k in ("top1", "swap", "margin", "swap_margin"):
-            differences = np.array([u[k]-v[k] for u,v in zip(merged[a]["concepts"],merged[b]["concepts"])])
-            measures[k] = dict(delta=float(differences.mean()), ci95=np.quantile(
-                differences[bootstrap].mean(axis=1), [.025,.975]).tolist())
-        paired[a+" minus "+b] = measures
-    write_json(out / "result.json", dict(arms={s:r["mean"] for s,r in merged.items()},
-               paired=paired, unit="20 paired concepts, fixed sub-03, percentile bootstrap",
-               subject="sub-03", photos=len(rows), clip_sha256=clip_sha, generated_per_arm=len(rows),
-               nfe=4, nsel=1, original_rgb_targets=True))
+            differences = np.array(
+                [
+                    u[k] - v[k]
+                    for u, v in zip(merged[a]["concepts"], merged[b]["concepts"], strict=True)
+                ]
+            )
+            measures[k] = dict(
+                delta=float(differences.mean()),
+                ci95=np.quantile(differences[bootstrap].mean(axis=1), [0.025, 0.975]).tolist(),
+            )
+        paired[a + " minus " + b] = measures
+    write_json(
+        out / "result.json",
+        dict(
+            arms={s: r["mean"] for s, r in merged.items()},
+            paired=paired,
+            unit="20 paired concepts, fixed sub-03, percentile bootstrap",
+            subject="sub-03",
+            photos=len(rows),
+            clip_sha256=clip_sha,
+            generated_per_arm=len(rows),
+            nfe=4,
+            nsel=1,
+            original_rgb_targets=True,
+        ),
+    )
     progress("complete", arms=len(ARMS), photos_per_arm=len(rows))
 
 

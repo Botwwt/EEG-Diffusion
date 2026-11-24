@@ -13,10 +13,17 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import numpy as np
-
-from probe_context_residual import CHUNK, CONTEXT_RIDGE, EEG_RIDGE, GRID, TIME_BIN
-from probe_context_residual import apply_context, eeg_features, fit_context, read_latents
-
+from probe_context_residual import (
+    CHUNK,
+    CONTEXT_RIDGE,
+    EEG_RIDGE,
+    GRID,
+    TIME_BIN,
+    apply_context,
+    eeg_features,
+    fit_context,
+    read_latents,
+)
 
 SEED = 20261126
 CHANNELS = "P7 P5 P3 P1 Pz P2 P4 P6 P8 PO7 PO3 POz PO4 PO8 O1 Oz O2".split()
@@ -34,13 +41,18 @@ def read_registration(archive):
     visual = data / "native_T_latents_v256"
     manifest = data / "full_T_recovery_20261108_v238/image_manifest.csv"
     with manifest.open(encoding="utf-8-sig", newline="") as f:
-        stimuli = sorted((r for r in csv.DictReader(f) if r["dataset_split"] == "train"),
-                         key=lambda r: int(r["array_row"]))
+        stimuli = sorted(
+            (r for r in csv.DictReader(f) if r["dataset_split"] == "train"),
+            key=lambda r: int(r["array_row"]),
+        )
     image_ids = json.loads((data / "native_training_v239/train_image_ids.json").read_text())
     layout = json.loads((eeg_dir / "sub-03_layout.json").read_text())
-    if ([int(r["array_row"]) for r in stimuli] != list(range(16540))
-            or [Path(r["stimulus_id"]).stem for r in stimuli] != image_ids
-            or len(set(image_ids)) != 16540 or layout["selected_image_indices"] != list(range(16540))):
+    if (
+        [int(r["array_row"]) for r in stimuli] != list(range(16540))
+        or [Path(r["stimulus_id"]).stem for r in stimuli] != image_ids
+        or len(set(image_ids)) != 16540
+        or layout["selected_image_indices"] != list(range(16540))
+    ):
         raise ValueError("Image manifest, stimulus IDs, and EEG row identities disagree")
     labels = [r["concept_id"] for r in stimuli]
     lookup = {label: i for i, label in enumerate(dict.fromkeys(labels))}
@@ -53,9 +65,15 @@ def read_registration(archive):
     registration = json.loads((visual / "registration.json").read_text())
     parts = json.loads((eeg_dir / "current_split_manifest.json").read_text())["image_rows"]
     t = np.asarray(parts["T"])
-    if (not np.issubdtype(t.dtype, np.integer) or t.shape != (13230,) or len(np.unique(t)) != len(t)
-            or t.min() < 0 or t.max() >= len(concept) or t.tolist() != registration["array_rows"]
-            or np.intersect1d(t, parts["D"] + parts["V"]).size):
+    if (
+        not np.issubdtype(t.dtype, np.integer)
+        or t.shape != (13230,)
+        or len(np.unique(t)) != len(t)
+        or t.min() < 0
+        or t.max() >= len(concept)
+        or t.tolist() != registration["array_rows"]
+        or np.intersect1d(t, parts["D"] + parts["V"]).size
+    ):
         raise ValueError("Historical T rows disagree with visual registration or split manifest")
     counts = np.bincount(concept[t], minlength=1654)
     if not np.isin(counts, (0, 10)).all():
@@ -85,14 +103,16 @@ def read_signals(prep, eeg_path, t, rows, channels):
     if archive.shape != (16540, 63, 250) or prepared.shape != (len(t), 17, 250):
         raise ValueError("Expected archived 63-channel and prepared 17-channel four-trial means")
     for start in range(0, len(t), CHUNK):
-        idx = t[start:start + CHUNK]
-        if not np.array_equal(prepared[start:start + len(idx)], archive[idx][:, channels, :]):
-            raise ValueError(f"Prepared EEG disagrees with original row/channel mapping at position {start}")
+        idx = t[start : start + CHUNK]
+        if not np.array_equal(prepared[start : start + len(idx)], archive[idx][:, channels, :]):
+            raise ValueError(
+                f"Prepared EEG disagrees with original row/channel mapping at position {start}"
+            )
     train_x = eeg_features(prepared, np.arange(len(t)), "mean4")
     selected = np.empty((len(rows), 17, 250), dtype=np.float32)
     for start in range(0, len(rows), CHUNK):
-        idx = rows[start:start + CHUNK]
-        selected[start:start + len(idx)] = archive[idx][:, channels, :]
+        idx = rows[start : start + CHUNK]
+        selected[start : start + len(idx)] = archive[idx][:, channels, :]
     return train_x, eeg_features(selected, np.arange(len(rows)), "mean4")
 
 
@@ -110,13 +130,13 @@ def global_and_within_predictions(train_x, eval_x, y, concept):
     target_mean = y.mean(axis=0, dtype=np.float64)
     ridge = EEG_RIDGE * len(x)
     gram = x.T @ x
-    gram.flat[::len(gram)+1] += ridge
+    gram.flat[:: len(gram) + 1] += ridge
     base = np.linalg.solve(gram, x.T @ (y - target_mean))
     _, groups, counts = np.unique(concept, return_inverse=True, return_counts=True)
     xw = group_center(x, groups, counts)
     yw = group_center(y, groups, counts)
     within_gram = xw.T @ xw
-    within_gram.flat[::len(within_gram)+1] += ridge
+    within_gram.flat[:: len(within_gram) + 1] += ridge
     delta = np.linalg.solve(within_gram, xw.T @ (yw - xw @ base))
     xe = (eval_x - mean) / std
     base_pred = target_mean + xe @ base
@@ -128,15 +148,21 @@ def main():
     parser.add_argument("--prep", type=Path, required=True)
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--n-concepts", type=int, default=20,
-                        help="Number of concepts to predict. The fixed generation comparison uses 20.")
+    parser.add_argument(
+        "--n-concepts",
+        type=int,
+        default=20,
+        help="Number of concepts to predict. The fixed generation comparison uses 20.",
+    )
     args = parser.parse_args()
     data = args.archive / "data"
     t, concept, image_ids, labels, channels, scale = read_registration(args.archive)
     chosen, rows = choose_eval_rows(t, concept, args.n_concepts)
     prep_labels = np.load(args.prep / "train_concept.npy")
     valid = np.load(args.prep / "lat512_train_ok.npy")
-    if not np.array_equal(prep_labels, concept[t]) or not np.array_equal(valid, np.ones(len(t), bool)):
+    if not np.array_equal(prep_labels, concept[t]) or not np.array_equal(
+        valid, np.ones(len(t), bool)
+    ):
         raise ValueError("Prepared training concept/validity arrays disagree with historical T")
     latent_file = args.prep / "lat512_train.npy"
     original = data / "native_T_latents_v256/native_VAE_T_modes.npy"
@@ -148,10 +174,11 @@ def main():
         if bank.shape != source.shape or bank.dtype != source.dtype:
             raise ValueError("Prepared VAE bank shape or dtype differs from original")
         for start in range(0, len(t), CHUNK):
-            if not np.array_equal(bank[start:start+CHUNK], source[start:start+CHUNK]):
+            if not np.array_equal(bank[start : start + CHUNK], source[start : start + CHUNK]):
                 raise ValueError(f"Prepared VAE bank differs from the original at position {start}")
-    train_x, eval_x = read_signals(args.prep, data / "recovery_20261108_v236/sub-03_train_mean4.pt",
-                                   t, rows, channels)
+    train_x, eval_x = read_signals(
+        args.prep, data / "recovery_20261108_v236/sub-03_train_mean4.pt", t, rows, channels
+    )
     raw = read_latents(bank, np.arange(len(t)))
     model = fit_context(raw)
     residual = raw - apply_context(raw, model)
@@ -161,31 +188,61 @@ def main():
     raw_base, res_base = [p.reshape(shape) for p in np.hsplit(global_pred, 2)]
     raw_within, res_within = [p.reshape(shape) for p in np.hsplit(within_pred, 2)]
     fixed_context = apply_context(raw_base, model)
-    arms = dict(zip(ARMS, (raw_base, fixed_context + res_base, raw_within, fixed_context + res_within)))
+    arms = dict(
+        zip(
+            ARMS,
+            (raw_base, fixed_context + res_base, raw_within, fixed_context + res_within),
+            strict=True,
+        )
+    )
     starts = {k: np.ascontiguousarray(v.transpose(0, 3, 1, 2)) for k, v in arms.items()}
     if not all(np.isfinite(v).all() for v in starts.values()):
         raise ValueError("Nonfinite EEG-predicted VAE starts")
     metadata = {
-        "subject": "sub-03", "eeg": "archived four-physical-trial voltage mean", "channels": CHANNELS,
-        "train_partition": "all historical T", "train_images": len(t), "train_concepts": len(np.unique(concept[t])),
-        "selection_seed": SEED, "selection": "Sorted sample without replacement from full concept complement of T",
-        "selected_concepts": chosen.tolist(), "selected_concept_labels": [labels[r] for r in rows[::10]],
-        "rows": rows.tolist(), "image_ids": [image_ids[i] for i in rows], "arm_names": list(ARMS),
-        "arm_definitions": ARMS, "grid": GRID, "axis_order": "NCHW", "units": "native VAE mode times scaling factor",
-        "archive_vae_scaling_factor": scale, "additional_scaling_applied": False, "eeg_features": train_x.shape[1],
-        "eeg_time_bin_samples": TIME_BIN, "ridge_per_train_image_global_and_anchored": EEG_RIDGE,
+        "subject": "sub-03",
+        "eeg": "archived four-physical-trial voltage mean",
+        "channels": CHANNELS,
+        "train_partition": "all historical T",
+        "train_images": len(t),
+        "train_concepts": len(np.unique(concept[t])),
+        "selection_seed": SEED,
+        "selection": "Sorted sample without replacement from full concept complement of T",
+        "selected_concepts": chosen.tolist(),
+        "selected_concept_labels": [labels[r] for r in rows[::10]],
+        "rows": rows.tolist(),
+        "image_ids": [image_ids[i] for i in rows],
+        "arm_names": list(ARMS),
+        "arm_definitions": ARMS,
+        "grid": GRID,
+        "axis_order": "NCHW",
+        "units": "native VAE mode times scaling factor",
+        "archive_vae_scaling_factor": scale,
+        "additional_scaling_applied": False,
+        "eeg_features": train_x.shape[1],
+        "eeg_time_bin_samples": TIME_BIN,
+        "ridge_per_train_image_global_and_anchored": EEG_RIDGE,
         "within_intercept": "Fixed global target mean, centered global train EEG features at application",
         "context_ridge_per_train_cell": CONTEXT_RIDGE,
     }
     args.out.mkdir(parents=True, exist_ok=True)
     with TemporaryDirectory(dir=args.out) as tmp:
         staging = Path(tmp)
-        np.savez(staging / "instance_starts.npz", rows=rows, concept_ids=concept[rows],
-                 arm_names=np.asarray(list(ARMS)), **starts)
-        (staging / "metadata.json").write_text(json.dumps(metadata, indent=2, allow_nan=False) + "\n", encoding="utf8")
+        np.savez(
+            staging / "instance_starts.npz",
+            rows=rows,
+            concept_ids=concept[rows],
+            arm_names=np.asarray(list(ARMS)),
+            **starts,
+        )
+        (staging / "metadata.json").write_text(
+            json.dumps(metadata, indent=2, allow_nan=False) + "\n", encoding="utf8"
+        )
         for name in ("metadata.json", "instance_starts.npz"):
             (staging / name).replace(args.out / name)
-    print(f"Saved four aligned sets of {len(rows)} sub-03 starts from {len(t)} training rows.", flush=True)
+    print(
+        f"Saved four aligned sets of {len(rows)} sub-03 starts from {len(t)} training rows.",
+        flush=True,
+    )
 
 
 if __name__ == "__main__":

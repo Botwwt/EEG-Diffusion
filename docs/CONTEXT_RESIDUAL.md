@@ -41,3 +41,41 @@ The follow-up changes the starting latent while holding the participant's Brain-
 Four EEG readouts supply the starting grids. The two controls are a direct visual-grid readout and the explicit context-residual readout from the first pilot. The other two emphasize the within-concept visual differences during fitting, using a fixed penalty toward the original ridge head. Fit one to raw targets and one to signed residual targets. Test EEG is used individually. Concept labels group training examples and define the evaluation gallery and shared noise.
 
 The primary comparison is the within-concept residual head versus the original raw head on OpenAI CLIP ViT-L/14 ten-photo Top-1 of actual generated images. To attribute an advantage to context residuals, compare the within-concept residual head with the corresponding within-concept raw head. Use the original stimulus RGB as reference, report all four arms and paired concept intervals, and retain a pairwise swap metric as secondary evidence. This native sub-03 pipeline has a different EEG checkpoint and starting-latent resolution from M1a + D2.
+
+| Starting latent, fixed native conditioning | Intra10 hits | Intra10 Top-1 | Pairwise swap |
+| --- | ---: | ---: | ---: |
+| Direct raw-grid ridge | 27/200 | 13.50% | 61.56% |
+| Context + global residual ridge | 27/200 | 13.50% | 61.78% |
+| Within-concept correction on the raw grid | 27/200 | 13.50% | 61.00% |
+| Context + within-concept correction on the residual | 28/200 | 14.00% | 62.67% |
+
+The last arm corrected six previous misses and lost five previous hits. Relative to the direct model, the primary difference was **+0.50 percentage points** (95% concept-paired interval −2.50 to +3.50). Against the matched within-concept raw-grid correction it was **+0.50** (−3.00 to +4.00). Across the four preselected example photos, all arms made broadly similar objects, including generating a plate of food for a bagpipe. This experiment produced 800 reconstructions. Its uncertainty and narrow scope support retaining the existing default. The published JSON includes all 80 arm–concept scores and the 12 paired intervals. [Generation results](../research/eeg_stack_20261112/results/context_residual_sub03_generation.json)
+
+With the aligned pilot data, run the first command on a CPU compute node and the second on one GPU. The renderer uses the legacy archive's fitted EEG encoder, pinned generator, CLIP weights and training image ZIP. It writes a contact sheet, per-photo ranks and per-concept scores.
+
+```bash
+python "$code/predict_instance_starts.py" --archive "$EEG_ARCHIVE" --prep "$WORK/prep" --out "$WORK/starts"
+python "$code/eval_instance_starts.py" --archive "$EEG_ARCHIVE" \
+  --starts "$WORK/starts/instance_starts.npz" --out "$WORK/render" --batch-size 8
+```
+
+[Readout fitting and held-out selection](../research/eeg_stack_20261112/code/predict_instance_starts.py) · [Generation and scoring](../research/eeg_stack_20261112/code/eval_instance_starts.py) · [Exact renderer used for the archived run](https://github.com/Botwwt/EEG-Diffusion/blob/2df65717d446e28e89057ac7c2ec8c0c88bd9486/research/eeg_stack_20261112/code/eval_instance_starts.py)
+
+## Does photo-specific EEG agreement recover finer details?
+
+A separate CPU experiment on the 264 evaluation concepts kept a common 16×16 VAE reference gallery. Each EEG prediction was split into a 4×4 low-frequency component and six oriented detail bands at 8×8 and 16×16. The candidate estimates whether to retain each band's detail from agreement between two EEG windows, 80–160 and 160–320 ms. The readouts, agreement thresholds and gain parameters used only the 1,059 training concepts. Four internal concept folds supplied out-of-fold calibration predictions. Earlier work in the repository had already studied repeat-based spatial reliability. [Earlier reliability controls](../research/eeg_stack_20261112/results/reliability_gain.txt)
+
+| Detail estimator | Intra10 hits, same 16×16 gallery | Mean squared error |
+| --- | ---: | ---: |
+| 4×4 projection | 570/2,640 | 0.355882 |
+| Direct 16×16 prediction | **581/2,640** | 0.357445 |
+| One common gain | 572/2,640 | 0.355753 |
+| Fixed gain by orientation and scale | 571/2,640 | 0.355717 |
+| Gain from the two EEG windows for each photo | 571/2,640 | **0.355716** |
+| Gate values drawn from the training distribution | 571/2,640 | 0.355718 |
+
+The rule for advancing to image generation required higher identification and lower squared error than both direct prediction and fixed per-band gains, with a positive lower 95% bound for the identification gain over direct prediction. Photo-specific gating reduced squared error but lost ten hits against direct prediction, **−0.38 percentage points** (concept-paired 95% interval −0.87 to +0.11). It tied the static gate on identification. The GPU comparison above remains the only generation run for these ideas. [Complete evidence](../research/eeg_stack_20261112/results/spatial_detail_sub03_mean4.json) · [CPU screening code and decision rule](../research/eeg_stack_20261112/code/probe_spatial_detail.py)
+
+```bash
+python "$code/probe_spatial_detail.py" --prep "$WORK/prep" --out "$WORK/detail.json"
+```

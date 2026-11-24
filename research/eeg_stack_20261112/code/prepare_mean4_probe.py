@@ -30,9 +30,11 @@ def prepare(archive: Path, output: Path) -> None:
             key=lambda item: int(item["array_row"]),
         )
     image_ids = json.loads((data / "native_training_v239/train_image_ids.json").read_text())
-    if ([int(item["array_row"]) for item in stimuli] != list(range(16540))
-            or [Path(item["stimulus_id"]).stem for item in stimuli] != image_ids
-            or layout["selected_image_indices"] != list(range(len(stimuli)))):
+    if (
+        [int(item["array_row"]) for item in stimuli] != list(range(16540))
+        or [Path(item["stimulus_id"]).stem for item in stimuli] != image_ids
+        or layout["selected_image_indices"] != list(range(len(stimuli)))
+    ):
         raise ValueError("Original EEG and visual stimulus row manifests disagree")
     labels = [item["concept_id"] for item in stimuli]
     unique = list(dict.fromkeys(labels))
@@ -42,9 +44,16 @@ def prepare(archive: Path, output: Path) -> None:
         raise ValueError("Expected ten ordered photos per original training concept")
     ch17 = "P7 P5 P3 P1 Pz P2 P4 P6 P8 PO7 PO3 POz PO4 PO8 O1 Oz O2".split()
     channels = [layout["channels"].index(name) for name in ch17]
-    raw = torch.load(eeg / "sub-03_train_mean4.pt", weights_only=True, map_location="cpu", mmap=True)
+    raw = torch.load(
+        eeg / "sub-03_train_mean4.pt", weights_only=True, map_location="cpu", mmap=True
+    )
     latent_path = (visual / "native_VAE_T_modes.npy").resolve()
-    if tuple(raw.shape) != (16540, 63, 250) or np.load(latent_path, mmap_mode="r").shape != (len(rows), 4, 64, 64):
+    if tuple(raw.shape) != (16540, 63, 250) or np.load(latent_path, mmap_mode="r").shape != (
+        len(rows),
+        4,
+        64,
+        64,
+    ):
         raise ValueError("Unexpected archive array shapes")
     # Each invocation gets a new directory. Publish the four-file view only when complete.
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -57,8 +66,8 @@ def prepare(archive: Path, output: Path) -> None:
             temp / "sub-03_train.npy", mode="w+", dtype=np.float32, shape=(len(rows), 17, 250)
         )
         for start in range(0, len(rows), 128):
-            batch = rows[start:start + 128]
-            signal[start:start + len(batch)] = raw[batch][:, channels, :].numpy()
+            batch = rows[start : start + 128]
+            signal[start : start + len(batch)] = raw[batch][:, channels, :].numpy()
         del signal
         np.save(temp / "train_concept.npy", concepts[rows])
         np.save(temp / "lat512_train_ok.npy", np.ones(len(rows), dtype=bool))
@@ -71,7 +80,9 @@ def prepare(archive: Path, output: Path) -> None:
             except OSError:
                 shutil.copyfile(latent_path, target)
         temp.rename(output)
-    print(f"Aligned {len(rows)} four-repeat means with VAE modes across {len(set(concepts[rows]))} concepts.")
+    print(
+        f"Aligned {len(rows)} four-repeat means with VAE modes across {len(set(concepts[rows]))} concepts."
+    )
 
 
 if __name__ == "__main__":
