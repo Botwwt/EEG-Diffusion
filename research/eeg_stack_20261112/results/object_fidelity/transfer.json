@@ -1,0 +1,354 @@
+{
+  "source": "sub-03",
+  "calibration_photos_per_class": 8,
+  "repeat_count": 4,
+  "uncertainty": "10000 crossed bootstrap resamples of held-out people and object classes; photos retained together",
+  "panels": {
+    "registered": {
+      "words": [
+        "airplane",
+        "apple",
+        "car",
+        "chair",
+        "clock",
+        "dog",
+        "guitar",
+        "mug",
+        "scissors",
+        "shoe",
+        "toothbrush",
+        "umbrella"
+      ],
+      "people": {
+        "sub-01": {
+          "hits": {
+            "raw_eeg": 17,
+            "projected_eeg": 32,
+            "visual_h14": 15,
+            "fused": 35
+          },
+          "rows": 120,
+          "source_sha256": "266defbf2c2026b112760a7d70ab25158924acacfaf6989a8f7c06f68e3a358f"
+        },
+        "sub-02": {
+          "hits": {
+            "raw_eeg": 10,
+            "projected_eeg": 41,
+            "visual_h14": 16,
+            "fused": 35
+          },
+          "rows": 120,
+          "source_sha256": "c3af906b70e038dc81d28c4a672ddcc45c007d9a07bba006e6352c8e7b8bb362"
+        },
+        "sub-03": {
+          "hits": {
+            "raw_eeg": 20,
+            "projected_eeg": 83,
+            "visual_h14": 34,
+            "fused": 85
+          },
+          "rows": 120,
+          "source_sha256": "0e1c35c1187e6280ad448d85f239fb001f7f1526516a1bcceb227bfabfad6f44"
+        },
+        "sub-04": {
+          "hits": {
+            "raw_eeg": 16,
+            "projected_eeg": 38,
+            "visual_h14": 29,
+            "fused": 39
+          },
+          "rows": 120,
+          "source_sha256": "20b1bc107e3ed9e835a8faefa20ed04f8944d0ca0bdb35697066182544f4c699"
+        },
+        "sub-05": {
+          "hits": {
+            "raw_eeg": 14,
+            "projected_eeg": 36,
+            "visual_h14": 26,
+            "fused": 36
+          },
+          "rows": 120,
+          "source_sha256": "7a8e6677f714993406bf1b0d6ddea7b7ae26a56988c5612cb3bc7ada387742fd"
+        },
+        "sub-06": {
+          "hits": {
+            "raw_eeg": 18,
+            "projected_eeg": 32,
+            "visual_h14": 16,
+            "fused": 26
+          },
+          "rows": 120,
+          "source_sha256": "b8f3879f95610e991de05b56eb01233596578c49ac8f2f2d347598a71d87ac27"
+        },
+        "sub-07": {
+          "hits": {
+            "raw_eeg": 15,
+            "projected_eeg": 27,
+            "visual_h14": 17,
+            "fused": 25
+          },
+          "rows": 120,
+          "source_sha256": "bbc4a3dbb515ed09aa90521ddb99abd290b82ae1e47a2926fb1a34a2202a3714"
+        },
+        "sub-08": {
+          "hits": {
+            "raw_eeg": 24,
+            "projected_eeg": 34,
+            "visual_h14": 23,
+            "fused": 40
+          },
+          "rows": 120,
+          "source_sha256": "3f9d1945a61a57def31013234b85df702145194ac201dcd069f0360d491a1843"
+        },
+        "sub-09": {
+          "hits": {
+            "raw_eeg": 11,
+            "projected_eeg": 22,
+            "visual_h14": 4,
+            "fused": 16
+          },
+          "rows": 120,
+          "source_sha256": "d0221cc3496a5fefb1ced93b6fe322fa84902b883a1c5acaea6c197c47b78d29"
+        },
+        "sub-10": {
+          "hits": {
+            "raw_eeg": 23,
+            "projected_eeg": 54,
+            "visual_h14": 21,
+            "fused": 52
+          },
+          "rows": 120,
+          "source_sha256": "8e59fff84aa295d5fabd7b7b0e7dfea6394e2bb2588adb7834de5779b800ef26"
+        }
+      },
+      "new_people": 9,
+      "denominator_per_person": 120,
+      "new_participant_performance": {
+        "raw_eeg": {
+          "mean": 0.13703703703703704,
+          "ci95": [
+            0.09259259259259257,
+            0.18796296296296297
+          ]
+        },
+        "projected_eeg": {
+          "mean": 0.29259259259259257,
+          "ci95": [
+            0.21018518518518517,
+            0.387037037037037
+          ]
+        },
+        "visual_h14": {
+          "mean": 0.15462962962962964,
+          "ci95": [
+            0.06574074074074074,
+            0.27499999999999997
+          ]
+        },
+        "fused": {
+          "mean": 0.28148148148148144,
+          "ci95": [
+            0.19164351851851852,
+            0.3981481481481482
+          ]
+        }
+      },
+      "new_participant_fused_minus": {
+        "raw_eeg": {
+          "mean": 0.14444444444444446,
+          "ci95": [
+            0.06481481481481483,
+            0.2388888888888889
+          ]
+        },
+        "projected_eeg": {
+          "mean": -0.011111111111111108,
+          "ci95": [
+            -0.07037037037037036,
+            0.05185185185185185
+          ]
+        },
+        "visual_h14": {
+          "mean": 0.12685185185185185,
+          "ci95": [
+            0.0611111111111111,
+            0.19444444444444448
+          ]
+        }
+      }
+    },
+    "replicate": {
+      "words": [
+        "bed",
+        "gearshift",
+        "gramophone",
+        "poppy",
+        "spacesuit",
+        "tongue",
+        "punching_bag",
+        "stove1",
+        "bedpan",
+        "donkey",
+        "paint",
+        "gold"
+      ],
+      "people": {
+        "sub-01": {
+          "hits": {
+            "raw_eeg": 25,
+            "projected_eeg": 49,
+            "visual_h14": 17,
+            "fused": 47
+          },
+          "rows": 120,
+          "source_sha256": "94fc0b34e0efb163c7fd10a3316ba85b1186fe91d07d0b60783e494b28a8ee3b"
+        },
+        "sub-02": {
+          "hits": {
+            "raw_eeg": 21,
+            "projected_eeg": 51,
+            "visual_h14": 30,
+            "fused": 51
+          },
+          "rows": 120,
+          "source_sha256": "d150cc89eeb4fc16882d8733ade95dca0b8d9517099e2bfea22803904bb6aae2"
+        },
+        "sub-03": {
+          "hits": {
+            "raw_eeg": 27,
+            "projected_eeg": 96,
+            "visual_h14": 47,
+            "fused": 92
+          },
+          "rows": 120,
+          "source_sha256": "971a9dc45c965265213205181fac9e7dd8e6edcaf744b0a37d3e40c3b32a92bb"
+        },
+        "sub-04": {
+          "hits": {
+            "raw_eeg": 21,
+            "projected_eeg": 62,
+            "visual_h14": 17,
+            "fused": 63
+          },
+          "rows": 120,
+          "source_sha256": "2f03dae91cd4781aa8118c9398e186111d42f88a15fd510d9cf61b93d6e53faa"
+        },
+        "sub-05": {
+          "hits": {
+            "raw_eeg": 13,
+            "projected_eeg": 55,
+            "visual_h14": 30,
+            "fused": 48
+          },
+          "rows": 120,
+          "source_sha256": "9d91013e1dd0199b43198f68d5073f9e9e2d8b2d1a09842f3bbcd5638bd451c6"
+        },
+        "sub-06": {
+          "hits": {
+            "raw_eeg": 9,
+            "projected_eeg": 51,
+            "visual_h14": 24,
+            "fused": 50
+          },
+          "rows": 120,
+          "source_sha256": "05af2ac093faf431111a12de012146ac64981fd96b3432b1678dded762069f5f"
+        },
+        "sub-07": {
+          "hits": {
+            "raw_eeg": 20,
+            "projected_eeg": 54,
+            "visual_h14": 13,
+            "fused": 54
+          },
+          "rows": 120,
+          "source_sha256": "a54623fd7096c989a6c3d7d654da5fcdb82d2738aca125d7e8f4884fe551836d"
+        },
+        "sub-08": {
+          "hits": {
+            "raw_eeg": 29,
+            "projected_eeg": 50,
+            "visual_h14": 23,
+            "fused": 48
+          },
+          "rows": 120,
+          "source_sha256": "9e93fcafbfb3d285a68cdb4ef5603107209215b1d2306f1f0979b5c7db39456f"
+        },
+        "sub-09": {
+          "hits": {
+            "raw_eeg": 25,
+            "projected_eeg": 41,
+            "visual_h14": 19,
+            "fused": 36
+          },
+          "rows": 120,
+          "source_sha256": "75671e05bd332a8efe0e69f0ad8227ab2e5addae30211990d06f7afefdd3ea30"
+        },
+        "sub-10": {
+          "hits": {
+            "raw_eeg": 30,
+            "projected_eeg": 55,
+            "visual_h14": 24,
+            "fused": 53
+          },
+          "rows": 120,
+          "source_sha256": "6dd68901722eb19e5fa9c9d47d256861173b5ef2c4ec05193d9f8d64c1b1be6a"
+        }
+      },
+      "new_people": 9,
+      "denominator_per_person": 120,
+      "new_participant_performance": {
+        "raw_eeg": {
+          "mean": 0.1787037037037037,
+          "ci95": [
+            0.1287037037037037,
+            0.2342592592592593
+          ]
+        },
+        "projected_eeg": {
+          "mean": 0.4333333333333333,
+          "ci95": [
+            0.3388888888888889,
+            0.5416666666666666
+          ]
+        },
+        "visual_h14": {
+          "mean": 0.18240740740740743,
+          "ci95": [
+            0.08148148148148147,
+            0.312962962962963
+          ]
+        },
+        "fused": {
+          "mean": 0.4166666666666667,
+          "ci95": [
+            0.30185185185185187,
+            0.5435185185185185
+          ]
+        }
+      },
+      "new_participant_fused_minus": {
+        "raw_eeg": {
+          "mean": 0.23796296296296301,
+          "ci95": [
+            0.11944444444444445,
+            0.3638888888888889
+          ]
+        },
+        "projected_eeg": {
+          "mean": -0.016666666666666666,
+          "ci95": [
+            -0.08425925925925926,
+            0.05277777777777778
+          ]
+        },
+        "visual_h14": {
+          "mean": 0.23425925925925922,
+          "ci95": [
+            0.14351851851851852,
+            0.3342592592592592
+          ]
+        }
+      }
+    }
+  }
+}

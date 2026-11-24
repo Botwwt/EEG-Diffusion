@@ -1,0 +1,247 @@
+{
+  "subject": "sub-03",
+  "repeats": 4,
+  "train_photos": 13230,
+  "train_classes": 1323,
+  "vocabulary": 1854,
+  "primary": "text_bidirectional",
+  "rule": "Prespecified before inspecting R4 query scores. Equal per-query standardized forward + reverse scores.",
+  "forward": "Training photo H14 (external-assisted family) or class text (text family) to 17-channel multiscale EEG. Cosine after generalized Fisher within-class whitening.",
+  "reverse": "Training EEG Fisher features to H14. Centered cosine to all 1854 text or external-photo prototypes.",
+  "ridge_per_training_example": 0.3,
+  "fisher_dimensions": 96,
+  "source_waveform_sha256": "85a25128f6b94e3739478c60e089d33f437a8dcbeb31cf136ce9772d2cc1615d",
+  "training_rows_sha256": "1e043405ce068f55491adfc738834840549a76a53531f6b40f08b954f2c4e094",
+  "dictionary_sha256": "fd0ce66cc61bc27dc573e4b27ab78edf14ac3300a18e45d3f5af3a6e0e60695e",
+  "dictionary_encoder": {
+    "model": "ViT-H-14",
+    "pretrained": "laion2b_s32b_b79k"
+  },
+  "train_visual_axis_check": {
+    "expected_image_key": "CLIP-ViT-H-14-laion2B-s32B-b79K",
+    "test": "True T photographs ranked against all 1854 uncentered text embeddings; require Top-1 >= 0.05 and Top-5 >= 0.10.",
+    "enabled": true,
+    "image_to_text_in_T": {
+      "top1": 0.7664399092970522,
+      "top5": 0.9133030990173847,
+      "mrr": 0.8330681444207917,
+      "median_rank": 1.0
+    }
+  },
+  "external_source": {
+    "source_sha256": "ed86912f6848ac5cf8b405a727f875295cc081cdd64271e80ae4d607b7d447e3",
+    "model_sha256": "036e6e2bd49697511f4f8b8cb5ee465f93025f7a69a145eadeb9a881ace9b18d"
+  },
+  "external_bank_sha256": "62cc538188db35e8f5df6640d58fd8bc0087cae766e6475b85cb2fc95150c69a",
+  "external_reference_scope": "THINGSplus one photo per candidate. An existing pixel collision audit compared these anchors to the official 200 R80 photos; R4 panel near-duplicates have not been ruled out.",
+  "external_r4_exact_file_audit": {
+    "source_manifest_sha256": "bc695e5f774b32a35f50e4f80c6f72dae3f72a684c45a350ec0ce1603bc8357f",
+    "method": "Exact file SHA-256 only, evaluated after predictions. Re-encodings, altered crops and near-duplicates remain unresolved for R4.",
+    "exact_matching_photo_rows": {
+      "all_archive_train_split": 0,
+      "historical_T": 0,
+      "dev": 0,
+      "confirm": 0
+    }
+  },
+  "chance_full1854": 0.0005393743257820927,
+  "chance_restricted20": 0.05,
+  "results": {
+    "dev": {
+      "text_to_neural": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 0,
+          "top5_hits": 3,
+          "median_rank": 819.5,
+          "mrr": 0.010256338198619961
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 24,
+          "top5_hits": 78,
+          "median_rank": 9.0,
+          "mrr": 0.2578221215489018
+        }
+      },
+      "neural_to_text": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 2,
+          "top5_hits": 5,
+          "median_rank": 423.5,
+          "mrr": 0.021030890680025914
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 42,
+          "top5_hits": 116,
+          "median_rank": 5.0,
+          "mrr": 0.3739005980689417
+        }
+      },
+      "text_bidirectional": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 3,
+          "top5_hits": 5,
+          "median_rank": 549.0,
+          "mrr": 0.02564476096270374
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 38,
+          "top5_hits": 99,
+          "median_rank": 6.0,
+          "mrr": 0.3453866575461003
+        }
+      },
+      "external_photo_to_neural": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 0,
+          "top5_hits": 2,
+          "median_rank": 628.0,
+          "mrr": 0.010291446264971709
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 23,
+          "top5_hits": 84,
+          "median_rank": 8.0,
+          "mrr": 0.2784799421210025
+        }
+      },
+      "neural_to_external_photo": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 0,
+          "top5_hits": 0,
+          "median_rank": 306.0,
+          "mrr": 0.009685476734341019
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 52,
+          "top5_hits": 137,
+          "median_rank": 3.0,
+          "mrr": 0.441507523006749
+        }
+      },
+      "external_photo_bidirectional": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 0,
+          "top5_hits": 5,
+          "median_rank": 388.5,
+          "mrr": 0.01995990202740511
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 46,
+          "top5_hits": 111,
+          "median_rank": 4.0,
+          "mrr": 0.39410720067686017
+        }
+      }
+    },
+    "confirm": {
+      "text_to_neural": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 0,
+          "top5_hits": 2,
+          "median_rank": 579.5,
+          "mrr": 0.00853772275142421
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 21,
+          "top5_hits": 92,
+          "median_rank": 6.0,
+          "mrr": 0.2701304291468765
+        }
+      },
+      "neural_to_text": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 3,
+          "top5_hits": 5,
+          "median_rank": 250.0,
+          "mrr": 0.028422509453843826
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 53,
+          "top5_hits": 124,
+          "median_rank": 4.0,
+          "mrr": 0.4307449158168973
+        }
+      },
+      "text_bidirectional": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 2,
+          "top5_hits": 4,
+          "median_rank": 348.5,
+          "mrr": 0.024310457812686034
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 34,
+          "top5_hits": 125,
+          "median_rank": 4.0,
+          "mrr": 0.3622375343095158
+        }
+      },
+      "external_photo_to_neural": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 0,
+          "top5_hits": 3,
+          "median_rank": 565.5,
+          "mrr": 0.011567438070849532
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 22,
+          "top5_hits": 77,
+          "median_rank": 7.0,
+          "mrr": 0.25848838635564647
+        }
+      },
+      "neural_to_external_photo": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 1,
+          "top5_hits": 4,
+          "median_rank": 214.0,
+          "mrr": 0.020647411662018725
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 45,
+          "top5_hits": 149,
+          "median_rank": 3.0,
+          "mrr": 0.4324505113909139
+        }
+      },
+      "external_photo_bidirectional": {
+        "full1854": {
+          "n": 200,
+          "top1_hits": 0,
+          "top5_hits": 3,
+          "median_rank": 290.0,
+          "mrr": 0.014100136427309548
+        },
+        "restricted20_evaluation_only": {
+          "n": 200,
+          "top1_hits": 29,
+          "top5_hits": 123,
+          "median_rank": 5.0,
+          "mrr": 0.34277050359770955
+        }
+      }
+    }
+  }
+}
