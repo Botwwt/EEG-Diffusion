@@ -1,6 +1,6 @@
 # November EEG reconstruction experiments
 
-This directory contains the Brain-HIVE / SDXL-Turbo experiments from November 12–23, 2026. See the [current results and limits](../../docs/CURRENT_RESEARCH.md) for the protocol and claims used on the project homepage.
+This directory contains the November Brain-HIVE / SDXL-Turbo studies. The selected R4 reconstruction model is **M1a + D2 at s375**. The [experiment registry](../../docs/EXPERIMENT_REGISTRY.md) connects each scientific question to its evidence and controls. The [selected-model evaluator](code/eval_m1a_d2.py) runs one configuration. The [context-residual pilot](../../docs/CONTEXT_RESIDUAL.md) records the subsequent CPU experiment.
 
 | What to read | Where to look |
 | --- | --- |

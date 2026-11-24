@@ -21,6 +21,28 @@ The single-participant reconstruction arms take EEG grouped by stimulus repetiti
 
 The historical source assumes some author EEG–image array ordering. Independence of upstream multivariate noise normalization was not fully resolved in the archived retrieval study. Do not imply that hash checks establish those upstream assumptions.
 
+## Selected R4 model on GPU
+
+From the repository root, point `RAD_ROOT` at the prepared Linux GPU workspace and run the selected model on all ten participants. To evaluate a subset, add e.g. `--subjects 1 3`. Each participant contributes 500 reconstructions at s375. The output JSON contains the concept IDs, participant scores and their mean. [Selected-model runner](../research/eeg_stack_20261112/code/eval_m1a_d2.py)
+
+```bash
+export RAD_ROOT=/path/to/rad
+python research/eeg_stack_20261112/code/eval_m1a_d2.py \
+  --output "$RAD_ROOT/runs/swap_diff/m1a_d2_all10_replay.json"
+```
+
+For a replay comparison, match the output's `per_sub` by participant ID to `m1a_d2_all10.s375` in the [archived scores](../research/eeg_stack_20261112/results/exp8c_m1a_heldout6_and_all10_results.json). The primary measure in each record is `clip.top1` on a 0–1 scale. The runner uses the experiment scripts shipped with this checkout even when the workspace contains older copies.
+
+| Required input | Location under `RAD_ROOT` |
+| --- | --- |
+| Arm3b encoder and D2 conditioning layer (training seed 2025) | `runs/swap_diff/arm3b_rep_rawswap_condlyr_st600_s2025.pt` and `runs/swap_diff/draft_intra4/d2_compete4_cond_st120_s2025.pt`. Use `--backbone-checkpoint` and `--d2-checkpoint` for relocated files. The release omits trained weights. |
+| THINGS-EEG2 R4 arrays and matching latents in stimulus order | `data/prep/sub-XX_train.npy` for each selected participant (four trials × 17 channels × 250 samples per photo), `train_concept.npy`, `lat512_train.npy` and `lat512_train_ok.npy` in the same directory. |
+| Generator and evaluators | Brain-HIVE source in `code/Brain-HIVE`, Fusion Prior in `models/Fusion-Prior-H14_B32_VAE` and SDXL-Turbo in `models/sdxl-turbo`. The archived evaluator loader uses OpenAI CLIP ViT-L/14 and Torchvision AlexNet, Inception-v3 and EfficientNet-B1 weights. See the [archived runtime](../research/eeg_stack_20261112/EXPERIMENT_HISTORY.md) and [evaluator loader](../research/eeg_stack_20261112/code/metrics.py). |
+
+To rebuild checkpoints in the original training environment, follow the [Arm0 backbone](../research/eeg_stack_20261112/code/exp0_intra10_swap_gate.py), [Arm1 representation training](../research/eeg_stack_20261112/code/exp1_swapdiff_3arm.py) and [Arm3b training](../research/eeg_stack_20261112/code/exp3_swapdiff_v3.py), then use [exp6](../research/eeg_stack_20261112/code/exp6_draft_intra4.py) with `--modes d2_compete4_cond --steps 120`. Training has additional visual-target and K/V cache requirements.
+
+M1a uses the training folds to fit a participant-specific ridge estimator for the starting latent. It calibrates the output scale across that participant's 500 evaluation predictions and reuses saved latents under `runs/swap_diff/method1_trial_prec/`. Use a fresh workspace or caches from the same split, preprocessing and ordering. All ten participants contributed training EEG on other concepts. The six-person subset was withheld from development. The evaluator reuses noise per concept and compares reconstructions with references decoded by the local SDXL VAE. The [released participant scores](../research/eeg_stack_20261112/results/exp8c_m1a_heldout6_and_all10_results.json) are archived evidence. The selected-only GPU entry point awaits an end-to-end run with the external assets. [Ridge estimator](../research/eeg_stack_20261112/code/exp8_trial_precision_swapdiff.py) · [Archived evaluation](../research/eeg_stack_20261112/code/exp8c_m1a_heldout6_confirm.py)
+
 ## November GPU replay
 
 Use `RAD_ROOT` for the Linux GPU working directory expected by `code/common.py`. Follow the archive's environment and asset instructions for THINGS-EEG2, the Brain-HIVE source and Fusion Prior, SDXL-Turbo and the evaluator weights. Preserve the exact 17 EEG channels, train/test identities, alignment between subjects and the provenance of the upstream whitened arrays. [Runtime layout and external assets](../research/eeg_stack_20261112/EXPERIMENT_HISTORY.md)
