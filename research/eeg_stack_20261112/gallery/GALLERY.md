@@ -1,4 +1,13 @@
-# Visual Comparison Galleries: Trial-Precision (`M1`) & `DINOv2` (`M2`), DRaFT-Intra4 (`R = 4`), SwapDiff (`2×2` Swap), O12–O14 & O9–O11 Archive
+# EEG reconstruction galleries
+
+## Calibrated objects from four EEG trials
+
+Each panel shows the first archive photograph of each of its twelve objects. Every tile is a generated image, labeled with the viewed object and the word decoded from EEG. Sub-01 is the first participant in the locked seven-person confirmation. Sub-05 provided the earlier single-person check. Use the replay script with the stimulus archive for private side-by-side comparisons. [How to read the results](../../../docs/OBJECT_FIDELITY.md) · [Build a comparison](../code/compare_personal_renders.py)
+
+| Participant | First panel | Second panel |
+| --- | --- | --- |
+| sub-01 | [Twelve generated objects](personal_sub01_registered.jpg) | [Twelve generated objects](personal_sub01_replicate.jpg) |
+| sub-05 | [Twelve generated objects](personal_sub05_registered.jpg) | [Twelve generated objects](personal_sub05_replicate.jpg) |
 
 ## Trial-Precision Dual-Stream (`M1a`) & `DINOv2` Geometric DRaFT (`M2a`): Uncherry-Picked Held-Out `sub-01` 7-Column Gallery (2026-11-24)
 

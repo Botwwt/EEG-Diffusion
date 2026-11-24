@@ -1,6 +1,13 @@
 # EEG reconstruction experiment registry
 
-For object identity, the registered-object experiment, the unregistered R4 confirmation and the official R80 full-vocabulary evaluation have their own [results and controls](OBJECT_FIDELITY.md) and [replay instructions](OBJECT_FIDELITY_REPLAY.md). The ten-participant photo-level benchmark follows below.
+| Intended use | Selected model or experiment | Evidence |
+| --- | --- | --- |
+| Draw the right object from a new photo of a calibrated category | **Personal R4** with 128 other calibration classes and eight support photos per target class | [Seven-person confirmation](../research/eeg_stack_20261112/results/object_fidelity/personal_confirmation.json) · [Acquisition-session controls](OBJECT_FIDELITY.md) |
+| Identify which of ten photos of the same object was viewed | **M1a + D2** at s375 in the 50-concept, ten-participant benchmark | [Model and comparisons](#how-the-selected-model-was-built) |
+| Draw unfamiliar objects without examples from those categories | Continuous EEG-to-visual conditioning, assessed separately on one participant | [Unregistered R4 and official R80](OBJECT_FIDELITY.md) |
+| Estimate the viewed photo's deviation from its object's typical appearance | Contextual feature prediction and within-object color residual experiments | [Local feature residuals](CONTEXT_RESIDUAL.md) · [Rendered-image residuals](../research/eeg_stack_20261112/results/object_fidelity/personal_photo_residual.json) |
+
+The [replay guide](OBJECT_FIDELITY_REPLAY.md) gives the inference inputs and scoring rule for each object study. The ten-participant photograph-identification benchmark follows below.
 
 **Selected model: M1a + D2_Compete4 at s375.** Among the reported R4 free-generation arms, it has the highest mean OpenAI CLIP ViT-L/14 Intra10 Top-1. Given a reconstruction and the ten photographs of the same concept, CLIP ranks the matching photograph first **19.64%** of the time across ten participants (chance 10%). The corresponding 500-way score is **3.80%** (chance 0.20%). [Trial-precision report](../research/eeg_stack_20261112/TRIAL_PREC_DINOV2_REPORT.md) · [Per-participant results](../research/eeg_stack_20261112/results/exp8c_m1a_heldout6_and_all10_results.json)
 

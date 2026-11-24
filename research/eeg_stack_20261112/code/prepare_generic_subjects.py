@@ -1,4 +1,4 @@
-"""Fetch a fixed disjoint training panel for sub-04 and sub-05 from public ATM EEG.
+"""Fetch a fixed disjoint training panel for selected participants from public ATM EEG.
 
 Requires the subject's audited registered-panel packet, frozen presentation
 schedule and common public training-row export. Writes only to generic/ and
@@ -201,7 +201,7 @@ if __name__ == "__main__":
     )
     p.add_argument("--registered", type=Path)
     p.add_argument("--replication", type=Path)
-    p.add_argument("--subjects", type=int, nargs="+", choices=(4, 5), default=[4, 5])
+    p.add_argument("--subjects", type=int, nargs="+", choices=range(1, 11), default=[4, 5])
     p.add_argument("--workers", type=int, choices=range(1, 9), default=4)
     args = p.parse_args()
     chosen = select(args)

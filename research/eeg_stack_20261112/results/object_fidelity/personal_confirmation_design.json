@@ -1,0 +1,14 @@
+{
+  "phase": "Additional participant confirmation after selecting the personal readout on sub-04 and checking sub-05",
+  "frozen_model_commit": "e8c8870e331dc23b64a3cd4eb77788ed348930fa",
+  "additional_participants": ["sub-01", "sub-02", "sub-06", "sub-07", "sub-08", "sub-09", "sub-10"],
+  "excluded_from_confirmation_mean": {"sub-03": "source participant", "sub-04": "development", "sub-05": "earlier confirmation"},
+  "registration": "Both established 12-object panels, same 120 distinct photos per panel for all participants, five folds with eight other photos of each object for calibration",
+  "additional_calibration": "The same 128 non-panel classes as sub-04/05, all ten photos, four physical trials per photo, class draw seed 260431",
+  "candidate": "personal_r4 as released; fit independently per participant, no model or rank selection",
+  "comparison": "Frozen sub-03 fused readout with the same eight target participant calibration photos per object, same generator and per-row seeds",
+  "primary": "Generated image top-one credit among 1854 names using the existing independent OpenAI CLIP-L/14 evaluator",
+  "secondary": ["EEG object accuracy among 12 classes", "Generated image credit among 12 classes", "Exact photograph identification among ten photos of the same object"],
+  "analysis": "Report each panel and every enrolled participant. Paired uncertainty resamples participants and object classes and keeps each class's ten photos together.",
+  "scope": "Earlier frozen-source readout outcomes were already available for these participants. Their personal-model predictions and generated images had not been inspected when this design was fixed."
+}
