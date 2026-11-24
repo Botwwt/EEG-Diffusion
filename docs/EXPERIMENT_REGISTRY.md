@@ -1,5 +1,7 @@
 # EEG reconstruction experiment registry
 
+For object identity, the registered-object experiment, the unregistered R4 confirmation and the official R80 full-vocabulary evaluation have their own [results and controls](OBJECT_FIDELITY.md) and [replay instructions](OBJECT_FIDELITY_REPLAY.md). The ten-participant photo-level benchmark follows below.
+
 **Selected model: M1a + D2_Compete4 at s375.** Among the reported R4 free-generation arms, it has the highest mean OpenAI CLIP ViT-L/14 Intra10 Top-1. Given a reconstruction and the ten photographs of the same concept, CLIP ranks the matching photograph first **19.64%** of the time across ten participants (chance 10%). The corresponding 500-way score is **3.80%** (chance 0.20%). [Trial-precision report](../research/eeg_stack_20261112/TRIAL_PREC_DINOV2_REPORT.md) · [Per-participant results](../research/eeg_stack_20261112/results/exp8c_m1a_heldout6_and_all10_results.json)
 
 | R4 at s375 | M1a + D2 | M1a + Arm1b | Paired difference on Intra10 | Participants improving |

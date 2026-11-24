@@ -1,12 +1,22 @@
 # EEG-Diffusion
 
-Reconstructing viewed photographs from EEG with Brain-HIVE and SDXL-Turbo. The main research question is whether four EEG recordings carry enough information to tell one photograph from nine others depicting the same concept.
+Reconstructing viewed photographs from EEG with Brain-HIVE and SDXL-Turbo. We measure both whether a generated image depicts the correct object and whether EEG preserves features of the particular photograph.
 
 [Experiment registry](docs/EXPERIMENT_REGISTRY.md) · [中文研究摘要](docs/CURRENT_RESEARCH.md) · [Reproduction guide](docs/REPRODUCIBILITY.md) · [Reconstruction gallery](research/eeg_stack_20261112/gallery/GALLERY.md)
 
 [![checks](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml/badge.svg)](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml)
 
-## Selected R4 model
+## Object reconstruction from four EEG trials
+
+With twelve registered objects, sub-03's EEG identified the object in **85/120 unseen photographs**. Eight other photos per object provided calibration in each fold. A separate CLIP-L/14 evaluator named the generated object correctly **71/120** times from the full 1,854-name THINGS vocabulary. The same evaluator named **99/120** originals correctly. On a second, uniformly sampled set of twelve objects, the frozen method gave **92/120** EEG classifications and **82/120** correct names for generated images. Both panels come from the same participant.
+
+![EEG-generated photographs for the first stimulus of each registered object, including wrong predictions](research/eeg_stack_20261112/gallery/registered_objects_sub03.jpg)
+
+Each tile shows the first stimulus by archive row for its registered object. The first label names what the participant saw, and the second gives the EEG decoder's prediction. The generator receives the predicted name, a visual prototype built from calibration photos, and continuous EEG features. The two labels also show where recognition failed. [Object-level results and controls](docs/OBJECT_FIDELITY.md) · [Run the three protocols](docs/OBJECT_FIDELITY_REPLAY.md)
+
+For **unregistered objects**, a separate sub-03 R4 confirmation panel used 20 held-out concepts and ten photos per concept. Independent visual scoring assigned **60/200** generated images to the correct concept, compared with **25/200** for the matched native baseline and **7/200** after shuffling EEG. The 20 candidates are used only by the evaluator. This experiment and the twelve-object calibration study have different inference conditions.
+
+## Ten-participant R4 photograph benchmark
 
 **M1a + D2 at s375** achieves **19.64%** within-concept Top-1 across ten participants. Each output uses four EEG trials from one participant, four U-Net evaluations and one generated candidate. The benchmark contains the same 500 stimulus photographs for each participant. An independent OpenAI CLIP ViT-L/14 image encoder ranks the VAE-decoded references. Chance is 10% within concept and 0.20% across all 500 photos. [Participant records](research/eeg_stack_20261112/results/exp8c_m1a_heldout6_and_all10_results.json)
 
