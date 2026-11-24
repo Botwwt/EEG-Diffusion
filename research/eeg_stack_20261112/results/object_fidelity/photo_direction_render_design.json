@@ -1,0 +1,14 @@
+{
+  "panel_registration_sha256": "980ac28dcb7b67861b4d83f4f965e836e6c6c4d1d4e475559c7b615a4d0b9b7a",
+  "stage": "Developmental translation of two generic photo-pair feature gains into saved images. The fourth panel's object readout and model comparison have already been run. This is a new use of the same photos.",
+  "baseline_readout": "expanded_r4",
+  "models": ["repeat", "shared"],
+  "participants": ["sub-04", "sub-05", "sub-01"],
+  "target_queries": 360,
+  "unique_photos": 120,
+  "candidate_training": "Refit the two prespecified architectures using all 512 generic objects. Only each participant's own four trials per target and their own permitted fold supports enter inference.",
+  "controls": "Freeze the original 17-channel posterior predicted word, original H/14 eight-photo prior, native query-specific angle, native feature norm, row seed and four-step generator. Each candidate changes only the tangent direction. Its wrong-direction control receives a same-fold and same-word donor direction at the original recipient angle. Singletons retain their own donor. The uniform uses the unchanged prior.",
+  "primary": "DINOv2 identification of the original viewed photograph among the ten true-class originals for every registered query. Compare the own-EEG candidate to native posterior own, native uniform, and candidate wrong. Retain participant counts. Resample the 12 object classes jointly across the same three people for percentile paired intervals.",
+  "secondary": "OpenAI CLIP-L/14 naming among all 1854 labels and within-object ten-photo identification, plus raw two-photo assignment when both EEG words are correct. Verify unchanged uniform controls on actual JPEGs.",
+  "promotion": "Only promote a candidate toward independent object-panel confirmation if all three primary paired gains have lower 95% bounds above zero and full-vocabulary naming does not fall. Report both candidates regardless of outcome. The feature and generated-image endpoints are distinct."
+}
