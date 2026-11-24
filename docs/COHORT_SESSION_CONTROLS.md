@@ -44,6 +44,38 @@ For a cohort-generated image, each person's frozen EEG-to-H14 head recomputes th
 
 The two matched panels each have a single-person and a three-person condition with three image arms, totaling 1,440 registered JPEG outputs. Downstream image scores evaluate a separate question from word recognition. Earlier O14 work already combined the conditions and starting latents of ten people observing identical official test photographs with 80 repeats per person. The present task uses three four-repeat measurements, an eight-support closed vocabulary and one output per row and arm. Its recognition measure and acquisition cost differ from the O14 official 200-image CLIP retrieval measure. [Image input receipts](../research/eeg_stack_20261112/results/object_fidelity/cohort_session_render_inputs.json) · [Prior O14 cohort protocol](../research/eeg_stack_20261112/O12_O13_O14_REPORT.md)
 
+## Generated objects and photographs under session matching
+
+Pooling three people's EEG increased full-dictionary object naming on both panels. On the twelve-choice stress test, CLIP named 48 of 120 matched single-person JPEGs correctly and awarded 59.5 credits to the cohort JPEGs. The paired gain was 9.6 percentage points [2.9, 16.7]. On the new four-choice EEG task, the corresponding totals were 64 and 74.5 of 120, a gain of 8.8 points [−3.8, 22.5]. Tied labels share credit. Intervals resample the twelve true objects with all their photos and both acquisition modes, conditional on these three people. [Paired JPEG, pixel and EEG results](../research/eeg_stack_20261112/results/object_fidelity/cohort_session_images.json)
+
+Each triple below gives matched EEG, the eight-support visual mean, and exchanged EEG, in that order. Each cell has 120 matched original-photo identities. Each output uses four presentations for sub-04 and twelve for the cohort.
+
+| EEG task | Acquisition | CLIP name among 1,854 | CLIP name among twelve | DINOv2 exact original among ten |
+|---|---|---:|---:|---:|
+| Stress, 12 choices | Sub-04 | 48 / 48 / 50 | 55 / 55 / 55 | 15 / 12 / 13 |
+| Stress, 12 choices | Cohort | 59.5 / 60 / 59.5 | 69 / 69 / 69 | 15 / 11 / 10 |
+| New, one supplied four-word menu per query | Sub-04 | 64 / 62 / 64 | 79 / 79 / 79 | 14 / 11 / 12 |
+| New, one supplied four-word menu per query | Cohort | 74.5 / 73.5 / 72.5 | 93 / 93 / 93 | 14 / 10 / 6 |
+
+The same independent CLIP evaluator named 96/120 *original* stress photographs and 94/120 *original* new-panel photographs correctly in the full dictionary. It named 120/120 original photographs on each panel when restricted to the twelve labels.
+
+On each panel, the cohort corrected 21 EEG words and lost seven. The 21 corrections recovered 18 full-dictionary naming credits in each panel. The seven losses cost 6 credits on the stress panel and 6.5 on the new panel. Rows with unchanged words contributed −0.5 and −1 net credit respectively. The prompt and the visual support set both follow the word, so this breakdown describes where the gain occurred. On all 1,440 JPEGs the twelve-label CLIP correct/incorrect outcome followed whether the EEG word was correct. The new panel's EEG decision had four alternatives for every query.
+
+Exact-photo identification among ten originals gave 15/120 for each mode on the stress panel and 14/120 for each mode on the new panel. The paired difference intervals were [−7.5, +8.3] and [−5.0, +4.2] percentage points. Eleven stress pairs and 21 new-panel pairs had two correct words under both modes. DINOv2 assigned 10/11 to the correct originals for each mode on the stress panel, and 12/21 versus 11/21 on the new panel. CLIP assigned 7/11 versus 9/11 and 14/21 versus 12/21. Each pair contributes one decision.
+
+| EEG task | Acquisition | RGB error, matched / mean / exchanged | Luminance correlation, matched / mean / exchanged |
+|---|---|---:|---:|
+| Stress, 12 choices | Sub-04 | .2964 / .2987 / .3052 | .0459 / .0489 / .0382 |
+| Stress, 12 choices | Cohort | .2841 / .2922 / .2911 | .0528 / .0484 / .0555 |
+| New, four choices | Sub-04 | .2943 / .2989 / .2965 | .0328 / .0463 / .0543 |
+| New, four choices | Cohort | .2837 / .2941 / .2946 | .0757 / .0589 / .0432 |
+
+At 32 × 32 pixels, the matched cohort JPEGs reduced RGB root-mean-square error by .0123 [.0065, .0186] on the stress panel and .0106 [.0061, .0158] on the new panel. Spatial luminance correlation changed by +.0068 [−.0065, +.0203] and +.0429 [+.0174, +.0684]. The exact-photo and pixel tests measure different properties of the same JPEGs.
+
+On the 68 stress queries where the two modes selected the same word, the cohort-minus-single RGB error difference was −.0029 [−.0082, +.0019]. On the 86 same-word queries of the new panel, RGB error fell by .0089 [.0046, .0134] and luminance correlation increased by .0290 [.0056, .0580]. These descriptive subsets keep the supplied prompt and eight visual support photographs fixed.
+
+Each generated-only contact sheet shows the lowest original row for every object, including wrong predictions. [Stress, sub-04](../research/eeg_stack_20261112/gallery/photo_angle_sub04_stress12.jpg) · [Stress, cohort](../research/eeg_stack_20261112/gallery/photo_angle_cohort3_stress12.jpg) · [New panel, sub-04](../research/eeg_stack_20261112/gallery/photo_angle_sub04_new_three4.jpg) · [New panel, cohort](../research/eeg_stack_20261112/gallery/photo_angle_cohort3_new_three4.jpg)
+
 ## Replay
 
 Use the [posterior feature and stimulus archive](PHOTO_STRUCTURE.md#replay), the frozen first four panel registrations, the original public session-order schedule, and the [1,024-class acquisition registration](../research/eeg_stack_20261112/results/object_fidelity/double_calibration_design.json). The 12-choice stress test reads the three participants' existing verified compact feature stores from the separate calibration project. The four-choice panel fetches 36 pinned byte ranges of 5,040,000 bytes each and records SHA-256 hashes. The compact features average all four original slots in float32 for each photograph.
@@ -78,7 +110,9 @@ for p in stress12 new_three4; do
   python "$C/score_reference_names.py" --panel "$p" --references "$S/references" \
     --archive "$ARCHIVE" --dictionary "$DICTIONARY" --out "$S/$p-refnames.json"
 done
-python "$C/score_session_matched_images.py" all
+python "$C/score_session_matched_images.py" all \
+  --release research/eeg_stack_20261112/results/object_fidelity/cohort_session_images.json \
+  --gallery-release research/eeg_stack_20261112/gallery
 ```
 
 The [paired image evaluator](../research/eeg_stack_20261112/code/score_session_matched_images.py) writes one DINOv2 and pixel report for each panel and acquisition mode, then joins the records by original photo, fold and object. Its local galleries show the lowest original row of each of the twelve objects alongside the same-seed single-person and cohort JPEGs. This includes wrongly decoded words. The private three-column contact sheets are under `outputs/session-matched-cohort/pixel-scores/galleries/`.

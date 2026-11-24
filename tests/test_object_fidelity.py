@@ -100,6 +100,26 @@ def test_fourth_panel_scores_and_generated_galleries_use_the_frozen_registration
             assert all(0 <= value <= evidence["participant_queries"] for value in counts.values())
 
 
+def test_session_matched_images_keep_candidate_menus_and_acquisition_budgets_distinct():
+    research = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112"
+    results = research / "results/object_fidelity"
+    report = json.loads((results / "cohort_session_images.json").read_bytes())
+    menus = json.loads((results / "cohort_session_menus.json").read_bytes())["panels"]
+    for panel, choices in (("stress12", 12), ("new_three4", 4)):
+        study = report["panels"][panel]
+        assert study["eeg_choices"] == choices
+        assert study["registration_sha256"] == menus[panel]["registration_sha256"]
+        assert study["n_unique_photos"] == study["original_names"]["targets"] == 120
+        assert study["generated_jpegs"] == 2 * 120 * 3
+        for mode, observations in (("sub-04", 4), ("cohort-3", 12)):
+            source = study["inputs"][mode]
+            assert source["physical_trials_per_photo"] == observations
+            image = research / "gallery" / source["generated_gallery_filename"]
+            assert (
+                hashlib.sha256(image.read_bytes()).hexdigest() == source["generated_gallery_sha256"]
+            )
+
+
 def test_fresh_reports_score_the_registered_subjects_photographs_and_controls():
     release = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112"
     results = release / "results/object_fidelity"
