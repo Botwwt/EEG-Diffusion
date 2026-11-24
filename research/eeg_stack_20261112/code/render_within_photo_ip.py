@@ -116,6 +116,11 @@ def run_render(args):
     packets = {p: packet(args.root, args.subject, p) for p in panels}
     if args.check_only:
         return
+    draw_packets(args, packets)
+
+
+def draw_packets(args, packets):
+    """Draw the supplied word and unit H/14 direction using the frozen four-step pipeline."""
     import torch
     from diffusers import StableDiffusionXLPipeline
     from render_official_ip_adapter import batched_embeddings
@@ -193,7 +198,7 @@ def run_render(args):
                 check(read(lockfile) == lock, "Different render in output directory")
             else:
                 save(lockfile, lock)
-            hashes = {a: [] for a in ARMS}
+            hashes = {arm: [] for arm in items}
             for arm, matrix in items.items():
                 folder = dest / "images" / arm
                 folder.mkdir(exist_ok=True, parents=True)
