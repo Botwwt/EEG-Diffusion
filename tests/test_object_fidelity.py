@@ -1,6 +1,7 @@
 """Regression checks for the scoring protocol used by the object reconstruction experiments."""
 
 import importlib.util
+import json
 from pathlib import Path
 
 import numpy as np
@@ -40,3 +41,19 @@ def test_paired_class_scores_are_invariant_to_joint_query_and_gallery_reordering
     for contrast in paired.values():
         assert contrast["delta"] == 0
         assert contrast["ci95"] == [0.0, 0.0]
+
+
+def test_cross_participant_release_excludes_the_person_used_to_fit_the_source_model():
+    results = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    controls = json.loads((results / "session_controls.json").read_text())
+    source = controls["source_replay_excluded_from_averages"]
+    for panel in controls["panels"].values():
+        held_out = [v for k, v in panel["per_person_hits"].items() if k != source]
+        assert len(held_out) == controls["heldout_people"] == 9
+        for i, name in enumerate(panel["method_order"]):
+            row = panel["heldout_performance"][name]
+            hits = sum(v[i] for v in held_out)
+            assert row["hits"] == hits
+            assert np.isclose(row["mean"], hits / (len(held_out) * 120))

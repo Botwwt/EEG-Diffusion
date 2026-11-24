@@ -3,6 +3,7 @@
 | Task | Participant and query | Recognition problem |
 | --- | --- | --- |
 | Registered R4 | Sub-03, four EEG repeats per photo, 120 queries per panel | Choose among 12 registered objects. Eight other photos per object supply calibration in each fold. |
+| Registered R4 transfer | Source sub-03 and new participants viewing the same 120 photos per panel | Fit the generic decoder on sub-03. Measure recognition for each new participant using the same eight labeled calibration photos per object and fold. |
 | Unseen R4 | Sub-03, four repeats, 200 queries per panel | Decode previously unseen concepts from EEG. Distinguish the 20-class photo-prototype score, 10-way within-object identification and 1,854-word decoding. |
 | Official R80 | Sub-03, released ATM embeddings of 80-repeat means, 200 queries | Predict from all 1,854 words or generate for one held-out photo per object. The 200-way original-photo gallery measures identification. |
 
@@ -32,20 +33,20 @@ Each query photograph is held out once across five folds. The classifier may use
 
 ```sh
 registered () {
-  dest="$W/registered/$1"
+  dest="$W/panels/$1"
   shift
   "$PY" "$C/fit_registered_objects.py" --archive "$A" --out "$dest" "$@"
   "$GPU" "$C/render_registered_objects.py" --archive "$A" --conditions "$dest/conditions.npz" \
     --dictionary "$BASE/dictionary.csv" --out "$dest/render"
 }
-registered familiar
-registered replication --replication
+registered registered
+registered replicate --replication
 ```
 
 Inspect `evaluation.json` for the EEG word decisions and `render/results.json` for object scores from the generated images. Each `render/images/` contains 120 JPEGs per arm. To check the photo-specific component, rerun the render command with `--swap-check` in the same output directory. The swap operates within fold and predicted word. Report the eligible number of photos. For the coarse-color experiment, run the following on the panel of interest.
 
 ```sh
-dest="$W/registered/familiar"
+dest="$W/panels/registered"
 color () {
   "$1" "$C/refine_registered_color.py" --archive "$A" --conditions "$dest/conditions.npz" \
     --images "$dest/render/images" --out "$dest/color" --dictionary "$BASE/dictionary.csv" --stage "$2"
@@ -54,6 +55,133 @@ color "$PY" fit
 color "$PY" assess
 color "$GPU" score-objects
 ```
+
+#### Transfer to new participants
+
+Each panel has its own source model. Generic sub-03 training uses 1,522 concepts (15,220 photos), excluding that panel's 12 registered objects and 120 development concepts. The two panels share a procedure and the frozen 75% projected-EEG / 25% visual-score mixture. The primary model includes ten of the second panel's concepts in generic training. The second model includes all twelve of the primary panel's concepts. Each source model therefore tests transfer on its own excluded concepts.
+
+For each fold, the raw and projected EEG classifiers use the new participant's EEG for eight labeled calibration photos per object (96 photos). The fused classifier also uses H/14 embeddings of these calibration images. The visual-only classifier requires zero labeled calibration EEG from the new participant. It compares the source-trained EEG-to-H/14 prediction against the same twelve image prototypes. All four classifiers receive a closed vocabulary of registered objects. The generator also uses the new participant's calibration EEG to center its predicted continuous feature.
+
+The authors applied prestimulus baseline correction, resampled to 250 Hz and saved the 250 poststimulus samples with a 300-element time vector. Use `source_times[50:]` for the time axis. Waveform indices 49 and 50 already represent 196 and 200 ms, and the last sample represents 996 ms. Convert the four physical trials to float32 before taking their arithmetic mean. The decoder selects 17 posterior channels by electrode name. The authors estimated session-specific multivariate noise normalization (MVNN) from each participant's official training partition, which includes the newly defined panel queries. Zero labeled target EEG for the visual branch describes the decoder stage on these released waveforms. A prospective first-recording experiment would also need an independently available preprocessing transform. [Author preprocessing](https://github.com/dongyangli-del/EEG_Image_decode/blob/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/EEG-preprocessing/preprocessing_utils.py#L74-L193) · [Author time-axis loader](https://github.com/dongyangli-del/EEG_Image_decode/blob/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/Retrieval/eegdatasets_leaveone.py#L156-L162)
+
+The registered fits above assemble `$W/panels/{registered,replicate}/ablation.json` alongside each panel's `evaluation.json`. The ablation contains the source predictions for all four classifiers and all 5 × 12 × 8 calibration row IDs. For an older export missing this file, rerun the CPU fit in that panel directory with the same flags. The extractor reads 120.96 MB of waveform bytes per participant for the 240 selected photos. Its receipts record the pinned source revision, upstream full-file identifier, exact HTTP byte ranges and downloaded-block hashes. [Public EEG release](https://huggingface.co/datasets/LidongYang/EEG_Image_decode/tree/dbe34bb2407164f70883c661c76664f0d596e522/Preprocessed_data_250Hz)
+
+If you already have the four flat PKU result exports, restore their panel layout with the following commands.
+
+```sh
+R=outputs/object-fidelity
+for panel in registered replicate; do
+  mkdir -p "$W/panels/$panel"
+  cp "$R/${panel}_eeg.json" "$W/panels/$panel/evaluation.json"
+  cp "$R/${panel}_ablation.json" "$W/panels/$panel/ablation.json"
+done
+```
+
+Fetch the EEG packets, fit the source models and summarize participant-level results.
+
+```sh
+"$PY" "$C/fit_official_eeg_anchors.py" --base "$BASE" --export-only
+"$PY" "$C/prepare_registered_subjects.py" --train-rows "$BASE/atm_train_rows.csv" \
+  --registered "$W/panels/registered/evaluation.json" --replication "$W/panels/replicate/evaluation.json" \
+  --out "$W/participant-eeg" --subjects 3 4 1 2 5 6 7 8 9 10
+"$PY" "$C/prepare_registered_subjects.py" --train-rows "$BASE/atm_train_rows.csv" \
+  --out "$W/participant-eeg" --subjects 1 2 3 4 5 6 7 8 9 10 --check-only "$W/participant-eeg/verification.json"
+"$PY" "$C/fit_registered_transfer.py" --archive "$A" --subjects-dir "$W/participant-eeg" \
+  --panel-dirs "$W/panels/registered" "$W/panels/replicate" --out "$W/participant-fit"
+cp "$W/panels/registered/evaluation.json" "$W/panels/registered_eeg.json"
+cp "$W/panels/replicate/evaluation.json" "$W/panels/replicate_eeg.json"
+"$PY" "$C/summarize_registered_transfer.py" --runs "$W/participant-fit" --references "$W/panels" \
+  --out "$W/participant-fit/summary.json"
+```
+
+Check `participant-fit/source_verification.json` for the comparison of extracted and native sub-03 waveforms, including exact equality and maximum absolute difference. The transfer code replays the four source predictions before evaluating another participant. Each panel's per-participant `evaluation.json` records predictions and row IDs. The summary excludes sub-03 from the transfer estimates and uses 10,000 crossed bootstrap samples of new participants and registered concepts, keeping a concept's ten photos together. Report 120 photos per person and panel alongside the number of new participants. The same photos repeat across participants. These scores measure 12-way EEG object recognition. Claims about the exact photograph require independent evaluation of generated images.
+
+**Recording-session control.** Acquisition assigned all ten images of each object to the same two recording sessions within a participant. Thus a query and its same-object calibration examples share a session pair even though the photographs differ. The following evaluator reconstructs the photo-to-session mapping from the 40 archived presentation-order files and checks that every photo was assigned to exactly two sessions. Session identities enter after the classifier predictions are frozen. [Original stimulus-order code](https://github.com/gifale95/eeg_encoding/blob/101997d4f14c41b615bcaf8c0907740106d260c5/00_data_collection/train/defineStimuliOrder.m#L31-L50) · [Forty original session schedules](https://github.com/gifale95/eeg_encoding/tree/101997d4f14c41b615bcaf8c0907740106d260c5/00_data_collection/train/train_order)
+
+```sh
+"$PY" "$C/audit_registered_sessions.py" --runs "$W/participant-fit" --out "$W/session-audit"
+"$PY" "$C/prepare_registered_subjects.py" --train-rows "$BASE/atm_train_rows.csv" \
+  --registered "$W/panels/registered/evaluation.json" --replication "$W/panels/replicate/evaluation.json" \
+  --out "$W/participant-eeg" --subjects 1 2 3 4 5 6 7 8 9 10 \
+  --session-halves --sessions "$W/session-audit/sessions.json"
+```
+
+`sessions.json` lists the two sessions per concept and the source-file hashes. For each frozen classifier, `registered_session_audit.json` reports observed accuracy and the exact chance expectation obtained by permuting whole category identities within each session pair. If a classifier's predicted object belongs to the query's pair, chance credit is one divided by the number of registered objects in that pair. A prediction outside the pair receives zero. The session-only oracle reports the best expected performance available from the pair identity alone. The gap above conditional chance describes discrimination among objects after accounting for this grouping. Separating visual responses from other acquisition effects requires additional controls.
+
+The second command reads the cached four trials and writes `participant-eeg/halves/sub-XX.npz`. The authors concatenated each photo's two trials from its earlier session and two from its later session before shuffling the four slots with seed 20200220. In the stored data, zero-based slots 1 and 3 come from the earlier session and slots 0 and 2 from the later session. Each packet records both two-trial means and the original session numbers for each photo in `session_ids`. The earlier session is 1 or 2 and the later session is 3 or 4, depending on participant and object. Use those absolute IDs when reporting separate-session calibration and query results. [Author trial merge and shuffle](https://github.com/dongyangli-del/EEG_Image_decode/blob/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/EEG-preprocessing/preprocessing_utils.py#L262-L299) · [Author shuffle seed](https://github.com/dongyangli-del/EEG_Image_decode/blob/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/EEG-preprocessing/preprocessing.py#L52)
+
+**Source prototypes, cross-session matching and an ERP baseline.** Replay these CPU comparisons using the frozen transfer weights and the same five folds.
+
+```sh
+"$PY" "$C/score_source_prototypes.py" --archive "$A" --subjects-dir "$W/participant-eeg" \
+  --panel-dirs "$W/panels/registered" "$W/panels/replicate" --transfer "$W/participant-fit" \
+  --out "$W/source-prototypes"
+"$PY" "$C/score_cross_session_objects.py" --archive "$A" --subjects-dir "$W/participant-eeg" \
+  --panel-dirs "$W/panels/registered" "$W/panels/replicate" --transfer "$W/participant-fit" \
+  --halves-dir "$W/participant-eeg/halves" --sessions "$W/session-audit/sessions.json" \
+  --out "$W/cross-session"
+cp "$W/panels/registered/ablation.json" "$W/panels/registered_ablation.json"
+cp "$W/panels/replicate/ablation.json" "$W/panels/replicate_ablation.json"
+"$PY" "$C/score_cross_session_erp.py" --halves "$W/participant-eeg/halves" \
+  --references "$W/panels" --out "$W/erp"
+for run in participant-fit source-prototypes cross-session erp; do
+  "$PY" "$C/audit_registered_sessions.py" --runs "$W/$run" --out "$W/session-audit" \
+    --report "$W/session-audit/$run.json"
+done
+```
+
+| Comparison | What the target participant supplies | Interpretation |
+| --- | --- | --- |
+| Source EEG prototypes | A four-trial query. Sub-03 supplies the eight labeled calibration EEG exemplars per class. | Source and target share the same registered photo sets and visual reference bank. This measures transfer with zero labeled target EEG after the authors' preprocessing. |
+| Cross-session projected EEG | Early and late two-trial averages for each query and each target calibration photo. | Match early queries to late support, reverse the direction, then average scores. Compare with matching early to early and late to late on the same four trials. In the fused variants, H/14 always uses the full four-trial query. All twelve classes remain candidates in every direction. |
+| Cross-session ERP | The same target calibration and query halves, restricted to 17 electrodes and fifteen 20-ms bins from 60 to 360 ms (end exclusive). | The 255-feature classifier estimates a shrinkage discriminant using the fold's calibration data. Compare crossed, same-session, and mean-four predictions. This is a participant-calibrated EEG-only baseline with no external visual decoder. |
+
+For single-direction outputs, both scorers name the query half first (`early_to_late` means early query, late support). The bidirectional metrics are `crossed_fused` for the frozen projected/visual model and `cross` for the ERP classifier. Each audit report retains the participant's frozen prediction-file SHA, conditional chance, the equal-weight average across occupied session pairs, and exact permutation probabilities. The new-participant summary reports a crossed participant-and-concept interval for the mean excess over conditional chance. Comparisons of image fidelity require separate rendering and scoring of the saved conditions.
+
+#### Personal calibration on 128 additional objects
+
+Each of sub-04 and sub-05 contributed **1,280 additional labeled calibration photos** with four EEG trials per photo. Both participants saw the same 128 objects. The extractor excludes the 24 registered objects, draws 128 of the remaining 1,630 with NumPy seed 260431, sorts the selected indices and keeps all ten photos of each. The five evaluation folds still use eight other labeled calibration photos for each of the 12 registered objects. These results therefore describe a personally calibrated decoder.
+
+```sh
+P="$W/personal"
+cp "$W/session-audit/sessions.json" "$W/participant-eeg/sessions.json"
+"$PY" "$C/prepare_generic_subjects.py" --root "$W/participant-eeg" --train-rows "$BASE/atm_train_rows.csv" \
+  --registered "$W/panels/registered/evaluation.json" --replication "$W/panels/replicate/evaluation.json" \
+  --subjects 4 5
+for panel in registered replicate; do
+  cp "$W/panels/$panel/ablation.json" "$W/panels/${panel}_ablation.json"
+done
+personal_fit () {
+  "$PY" "$C/fit_personal_session_metric.py" --generic "$W/participant-eeg/generic" \
+    --halves "$W/participant-eeg/halves" --references "$W/panels" --out "$P/fits" --subjects "$1"
+}
+personal_fit sub-04
+```
+
+Select the method by its combined number of correct 12-way EEG decisions on sub-04. The personal R4 projection scored **68 + 72 = 140/240** across the registered and replication panels. The cross-photo, cross-session projection scored **47 + 53 = 100/240**. Freeze that choice before running the sub-05 fit. Sub-05 fits its own projection from its own 1,280 additional photos.
+
+```sh
+method=personal_r4
+printf '%s\n' "$method" > "$P/selected_method.txt"
+personal_fit sub-05
+```
+
+On sub-05 the frozen choice scored **60/120** on the registered panel and **67/120** on the replication panel, for **127/240**. The cross-session alternative scored 22/120 and 45/120. Read the row-level decisions in `$P/fits/{registered,replicate}/sub-05/evaluation.json`. These counts measure EEG object recognition. To evaluate generated images, combine the selected decisions with each participant's existing R4 generator inputs.
+
+```sh
+"$PY" "$C/condition_registered_predictions.py" --archive "$A" --transfer "$W/participant-fit" \
+  --subjects-dir "$W/participant-eeg" --panel-dirs "$W/panels/registered" "$W/panels/replicate" \
+  --prediction-runs "$P/fits" --prediction-method "$(cat "$P/selected_method.txt")" \
+  --subjects sub-04 sub-05 --out "$P/conditions"
+for subject in sub-04 sub-05; do
+  for panel in registered replicate; do
+    "$GPU" "$C/render_registered_objects.py" --archive "$A" --dictionary "$BASE/dictionary.csv" \
+      --conditions "$P/conditions/$panel/$subject/conditions.npz" --out "$P/render/$panel/$subject"
+  done
+done
+```
+
+When a predicted class changes, the conditioning script looks up its calibration prototype and recomputes the continuous condition for that class. It checks the original fold, waveform, model and starting-latent identities. Each render writes `results.json` and 120 JPEGs per arm under `images/{category,aligned,shuffled}`. Read `full_top1` for generated-image naming against all 1,854 words and `original_photo` for the original-photo gallery scores.
 
 ### 2. Unseen R4
 
@@ -160,7 +288,24 @@ The continuous fit checks the 16,540 training photo stems and uses the historica
 
 The release aggregator reads the named score exports listed in `generate()`, checks paired row identities where available, and records the SHA-256 of each input. With that export layout restored, run `"$PY" "$C/aggregate_object_fidelity.py" --inputs outputs --out "$W/summary.json"` to rebuild the cross-task table. The unrestricted public ATM stages above can be replayed independently of this full aggregate. [Aggregation source](../research/eeg_stack_20261112/code/aggregate_object_fidelity.py)
 
-### Original sources
+### Open-vocabulary EEG readout and photo-level comparisons
+
+The R4 full-vocabulary EEG readout uses the same historical T photos and fixed dev/confirmation panels as the unregistered generator. It writes the unconditional 1,854-way prediction CSV before scoring against the 20 panel objects. Supply the optional THINGSplus bank to reproduce the separate external-reference analysis.
+
+```sh
+"$PY" "$C/fit_visual_to_neural_objects.py" --archive "$A" --dictionary "$BASE/dictionary.npz" \
+  --external "$W/external/external_anchors.npz" --external-manifest "$W/external/external_manifest.csv" \
+  --out "$W/open-neural"
+```
+
+For the personal render comparisons, point `OLD` and `NEW` at the matched frozen and personal render folders for the same participant and panel. The first command writes a generated-only gallery and a separate private original-versus-output comparison. The second scores every saved JPEG, with additional subsets for correct object predictions. Append `--controls` to the personal fit above and use a separate output directory to reproduce the post-hoc covariance comparisons.
+
+```sh
+"$PY" "$C/compare_personal_renders.py" --archive "$A" --baseline "$OLD" --personal "$NEW" --out "$W/gallery"
+"$PY" "$C/score_personal_photo_layout.py" --archive "$A" --baseline "$OLD" --personal "$NEW" --out "$W/gallery/photo_layout.json"
+```
+
+### Papers and author releases
 
 - Li et al., *Visual Decoding and Reconstruction via EEG Embeddings with Guided Diffusion*. [ATM author code](https://github.com/dongyangli-del/EEG_Image_decode/tree/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d) · [Pinned authors' feature release](https://huggingface.co/datasets/LidongYang/EEG_Image_decode/tree/dbe34bb2407164f70883c661c76664f0d596e522)
 - Gifford et al., *A large and rich EEG dataset for modeling human visual object recognition*. [THINGS-EEG2 paper](https://doi.org/10.1016/j.neuroimage.2022.119754)
