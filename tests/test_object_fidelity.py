@@ -75,6 +75,31 @@ def test_repeat_and_cross_subject_feature_gains_share_the_same_held_out_objects(
         )
 
 
+def test_fourth_panel_scores_and_generated_galleries_use_the_frozen_registration():
+    research = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112"
+    results = research / "results/object_fidelity"
+    panel = json.loads((results / "prospective_panel_design.json").read_bytes())
+    evidence = json.loads((results / "prospective_paired_images.json").read_bytes())
+    names = json.loads((results / "prospective_reference_names.json").read_bytes())
+    gallery = json.loads((results / "prospective_gallery.json").read_bytes())
+    assert (
+        evidence["inputs"]["registration_sha256"]
+        == names["registration_sha256"]
+        == panel["registration_sha256"]
+    )
+    assert names["targets"] == evidence["unique_original_photos"] == 120
+    assert evidence["participant_queries"] == 120 * len(panel["participants"]) == 360
+    for sub in panel["participants"]:
+        entry = gallery["cases"][sub]["public"]
+        image = research / "gallery" / entry["file"]
+        assert hashlib.sha256(image.read_bytes()).hexdigest() == entry["sha256"]
+    for method in evidence["models"]:
+        for endpoint in ("clip_closed12", "clip_full1854", "dino_intra10"):
+            counts = evidence["pooled"][endpoint]["credits"][method]
+            assert set(counts) == {"own", "wrong", "uniform"}
+            assert all(0 <= value <= evidence["participant_queries"] for value in counts.values())
+
+
 def test_fresh_reports_score_the_registered_subjects_photographs_and_controls():
     release = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112"
     results = release / "results/object_fidelity"

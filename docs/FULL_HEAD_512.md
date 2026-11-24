@@ -28,6 +28,8 @@ The full-scalp readout did not improve either preregistered image endpoint. Both
 
 The uniform arm uses the mean visual direction of the eight support photos for the predicted word. The wrong arm uses a donor EEG from the same predicted word and fold, retaining the original query's seed. On the twelve-label naming test, every JPEG's correct/incorrect outcome matched the EEG word's correct/incorrect outcome across both readouts and all three arms. The independent 1,854-label test gives the generator more ways to name the wrong object.
 
+Applied to the 120 distinct original stimulus photographs, the same CLIP weights and dictionary named 83/120 originals correctly among 1,854 labels and 119/120 among twelve. Full-dictionary recognition ranged from 2/10 for `sifter` to 10/10 for four objects. These reference counts describe the naming evaluator on actual photographs. [Original-photo naming results](../research/eeg_stack_20261112/results/object_fidelity/prospective_reference_names.json)
+
 The two readouts predicted the same word on 293 queries. All 293 matched JPEGs were byte-identical. The other 67 predictions comprised 23 corrections, 27 losses and 17 changes between two wrong words. Changing the EEG word recovered 21 correct full-dictionary image names and lost 21 others. Both readouts predicted both words correctly on 20, 16 and 28 pairs for sub-04, sub-05 and sub-01 respectively. The 64 common pairs therefore compare identical matched JPEGs. Wrong-EEG JPEGs can differ if other predictions change the donor pool. Intervals resample participants and shared true-object classes separately, retaining paired images and folds within each sampled cell.
 
 ## Physical EEG and model
@@ -85,6 +87,15 @@ done
 Two generator experiments use the posterior readout's words on this already examined panel. One estimates a component of the EEG signal that recurs across physical presentations. The other estimates a component shared across participants. The methods passed their own held-out generic-object tests before their directions were used for image generation. The fourth panel provides development evidence for these two methods. The prospective full-scalp readout comparison above used the earlier frozen generator. [Repeat-based fit](../research/eeg_stack_20261112/code/fit_repeat_photo_subspace.py) · [Shared-response fit](../research/eeg_stack_20261112/code/fit_shared_photo_eeg.py)
 
 Each candidate preserves the posterior word, the eight support photos, the magnitude of the recipient's original angular deviation and the same image seed. Its wrong arm rotates the recipient vector by that same angle in a donor's direction. The matched comparisons use the original posterior JPEG, its uniform JPEG and the candidate's wrong JPEG for each query. The evaluator also counts how many regenerated uniform JPEGs match the originals byte for byte. Confidence intervals for these development comparisons resample the twelve true object classes together for all three participants and all arms. They are conditional on the three observed participants.
+
+| Test | Original posterior, own | Repeat-based, own / wrong | Shared-response, own / wrong | Uniform |
+|---|---:|---:|---:|---:|
+| DINOv2 exact original among ten, 360 queries | 42 | 40 / 33 | 37 / 31 | 31 |
+| CLIP name among 1,854, 360 queries | 199 | 182 / 184 | 192 / 189 | 181 |
+| DINOv2 two-photo assignment, 78 correct-word pairs | 46 | 47 / 39 | 47 / 39 | 37 |
+| CLIP two-photo assignment, same 78 pairs | 46 | 49 / 37 | 51 / 39 | 42 |
+
+Both candidates scored below the original posterior direction on the primary exact-photo test. The paired differences were −0.6 percentage points [−3.1, +2.2] for the repeat-based direction and −1.4 [−3.6, +0.6] for the shared-response direction. Both scored one additional correct DINOv2 assignment on the restricted two-photo task. All 720 uniform JPEGs matched the original uniform JPEGs byte for byte. [Paired development results](../research/eeg_stack_20261112/results/object_fidelity/prospective_generator_candidates.json)
 
 After the original posterior DINO scores and all candidate JPEGs are available, save each candidate's independent CLIP report as `outputs/prospective-photo/refinements/METHOD/clip.json` using the same CLIP command and participant list above with `R="$P/refinements/$m"` for `m=repeat` and `m=shared`. Then run the following command to compute the paired DINO and CLIP comparisons on identical registered queries. [Scoring implementation](../research/eeg_stack_20261112/code/score_prospective_candidates.py)
 

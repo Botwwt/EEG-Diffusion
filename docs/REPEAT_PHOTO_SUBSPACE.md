@@ -20,3 +20,16 @@ After preparing the [full-scalp training blocks](FULL_HEAD_512.md) and the [H/14
 ```sh
 python research/eeg_stack_20261112/code/fit_repeat_photo_subspace.py
 ```
+
+## Translation to saved images
+
+Each candidate then produced 1,080 JPEGs on the fourth object panel. The three participants supplied 360 queries in total, with own EEG, an unchanged eight-photo mean and a same-word, same-fold donor for each query. All 720 regenerated mean-control images across the two candidates have the same JPEG bytes as the previously scored baseline. Correct-word pairs use the same 78 eligible pairs across the three readouts. [Matched output analysis and class-resampled intervals](../research/eeg_stack_20261112/results/object_fidelity/prospective_generator_candidates.json)
+
+| Independent measure | Native posterior | Matched-repeat subspace | Cross-person photo teacher |
+| --- | ---: | ---: | ---: |
+| Viewed photo recognized among ten of the same object, DINOv2 | **42/360** | 40/360 | 37/360 |
+| Object named among 1,854 labels, CLIP-L/14 | **199/360** | 182/360 | 192/360 |
+| Two correctly named photos jointly assigned, DINOv2 | 46/78 | 47/78 | 47/78 |
+| Two correctly named photos jointly assigned, CLIP-L/14 | 46/78 | 49/78 | 51/78 |
+
+The matched-repeat condition lost two ten-photo hits relative to native (−0.56 percentage points, paired 95% interval −3.06 to +2.22). The cross-person condition lost five (−1.39 points, −3.61 to +0.56). The earlier feature-level improvements did not pass the registered image-level promotion rule. The selected single-person generator retains its native visual condition. [Independent JPEG scorer](../research/eeg_stack_20261112/code/score_prospective_candidates.py)

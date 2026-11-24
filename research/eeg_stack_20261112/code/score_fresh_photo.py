@@ -134,7 +134,7 @@ def add_pixel_scores(shots, settings, folder, ref):
             rec["luma_intra10"][arm] = rank_credit(scores[:, 1], j, higher=True)
 
 
-def gallery(folder, dest, shots, original_photos=None):
+def gallery(folder, dest, shots, original_photos=None, eeg_label="EEG"):
     labels = sorted({s["object"] for s in shots})
     chosen = [min((s for s in shots if s["object"] == w), key=lambda s: s["row"]) for w in labels]
     ordinal = {s["row"]: i for i, s in enumerate(shots)}
@@ -152,7 +152,9 @@ def gallery(folder, dest, shots, original_photos=None):
         with Image.open(folder / "images/own" / f"{ordinal[s['row']]:03d}.jpg") as im:
             sheet.paste(im.resize((tile, tile), Image.Resampling.LANCZOS), (left, top))
         draw.text((left, top + tile + 1), "Viewed: " + s["object"].replace("_", " "), fill="black")
-        draw.text((left, top + tile + 16), "EEG: " + s["word"].replace("_", " "), fill="black")
+        draw.text(
+            (left, top + tile + 16), eeg_label + ": " + s["word"].replace("_", " "), fill="black"
+        )
     dest.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(dest, "JPEG", quality=94)
     return {"rows": [s["row"] for s in chosen], "sha256": sha(dest)}
@@ -235,6 +237,18 @@ def run(args):
 
     if len(set(args.subjects)) != len(args.subjects) or args.batch_size < 1:
         raise ValueError("Specify each subject once and a positive batch size")
+    is_cohort = "cohort-3" in args.subjects
+    if is_cohort:
+        design = read(args.conditions.parent / "design.json")
+        if (
+            args.subjects != ["cohort-3"]
+            or sorted(design.get("contributing_subjects", [])) != ["sub-01", "sub-04", "sub-05"]
+            or design.get("physical_trials_per_photo") != 12
+        ):
+            raise ValueError(
+                "Cohort scores require one registered three-person, twelve-observation output"
+            )
+    eeg_label = "3-person EEG" if is_cohort else "EEG"
     if args.private_gallery and not args.out.resolve().is_relative_to(Path("outputs").resolve()):
         raise ValueError("Private original-versus-render comparisons must be under outputs/")
     reg = registered(args.references, args.panel)
@@ -280,6 +294,7 @@ def run(args):
                 folder,
                 args.gallery_dir / f"photo_angle_{subject.replace('-', '')}_{args.panel}.jpg",
                 shots,
+                eeg_label=eeg_label,
             ),
         }
         if args.private_gallery:
@@ -288,6 +303,7 @@ def run(args):
                 args.out / args.panel / subject / "private_comparison.jpg",
                 shots,
                 selected_originals,
+                eeg_label=eeg_label,
             )
         print(subject, len(shots), "queries,", len(pairs), "eligible pairs", flush=True)
     report = dict(
@@ -321,6 +337,16 @@ def run(args):
         cases=cases,
         pooled=pooled_summary(by_subject, sorted(reg["vocab"])),
     )
+    if is_cohort:
+        report["acquisition"] = dict(
+            contributing_subjects=design["contributing_subjects"],
+            physical_trials_per_photo=12,
+            output_unit="One joint reconstruction of one stimulus from three people per arm",
+        )
+        report["methods"]["uncertainty"] = (
+            "Each image has one three-person prediction. Paired intervals resample the twelve "
+            "shared stimulus classes. They describe uncertainty over objects in this cohort."
+        )
     save(args.release or args.out / "summary.json", report)
 
 

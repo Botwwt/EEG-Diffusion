@@ -91,3 +91,21 @@ done
 The gallery uses the lowest stimulus row in every object class for all three participants. Run `"$PY" "$C/gallery_prospective_readouts.py" plan` to verify the fixed twelve rows and `"$PY" "$C/gallery_prospective_readouts.py" build` after both JPEG sets are in place. The public comparisons contain the two generated images and decoded words. The corresponding original-photo comparisons stay under `outputs/prospective-photo/gallery/`. [Frozen gallery rows](../research/eeg_stack_20261112/results/object_fidelity/prospective_gallery_plan.json)
 
 The public sheets show all twelve object classes for [sub-04](../research/eeg_stack_20261112/gallery/prospective_sub04.jpg), [sub-05](../research/eeg_stack_20261112/gallery/prospective_sub05.jpg) and [sub-01](../research/eeg_stack_20261112/gallery/prospective_sub01.jpg). The release records the SHA-256 of each source JPEG and each finished sheet. [Gallery verification record](../research/eeg_stack_20261112/results/object_fidelity/prospective_gallery.json)
+
+## Doubling personal object calibration
+
+The registered comparison keeps the personal 17-channel EEG features, 96 Fisher dimensions and eight labeled supports per target class. The larger fit adds 512 classes, each with ten photos and four physical trials. Of the 600 classes eligible after earlier exclusions, 88 remain reserved. The fifth panel uses twelve of those reserved classes. The earlier four panels serve as development evidence. [Training classes, exclusion hashes, advancement criterion and fifth-panel folds](../research/eeg_stack_20261112/results/object_fidelity/double_calibration_design.json)
+
+```sh
+export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4
+"$PY" "$C/prepare_double_calibration.py" register
+for sub in sub-04 sub-05 sub-01; do
+  "$PY" "$C/prepare_double_calibration.py" fetch --subject "$sub" || exit 1
+  "$PY" "$C/fit_double_calibration.py" evaluate --subject "$sub" || exit 1
+done
+"$PY" "$C/fit_double_calibration.py" summary
+```
+
+The fetcher checks the pinned author's source, streams each 5,040,000-byte range into the original posterior waveform feature extractor and saves compact training blocks under `outputs/double-calibration/features/`. It needs up to 2.58 GB of additional transfer per participant. The evaluator verifies every original 512-class panel prediction. Its pooled 95% interval resamples participants and shared stimulus objects, retaining the paired predictions for each draw. After the registered criterion passes, `"$PY" "$C/fit_double_calibration.py" fifth` acquires the fifth panel and freezes its separate `posterior_512` and `posterior_1024` render inputs under `outputs/double-calibration/fifth/render_inputs/`. Both word decoders use the original 512-class H/14 visual model. [Source and EEG extraction](../research/eeg_stack_20261112/code/prepare_double_calibration.py) · [Word comparison and render packaging](../research/eeg_stack_20261112/code/fit_double_calibration.py)
+
+The 512-class decoder reproduced every baseline word. Doubling calibration yielded 920/1,440 correct versus 911/1,440, a gain of 0.63 percentage points (95% interval −2.36 to +3.26). Across the original, replicate, fresh and fourth panels, the changes were +7, +2, −1 and +1 words. The participant totals changed by +11 for sub-04, +1 for sub-05 and −3 for sub-01. The registered criterion failed, so work stopped with the fifth panel’s metadata frozen. [Per-participant, per-object and per-panel results](../research/eeg_stack_20261112/results/object_fidelity/double_calibration.json)

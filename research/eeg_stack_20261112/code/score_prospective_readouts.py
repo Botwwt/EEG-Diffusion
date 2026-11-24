@@ -1,4 +1,4 @@
-"""Compare frozen posterior and full-scalp JPEG reconstructions on the same prospective photographs."""
+"""Compare two frozen R4 word decoders on the same saved fourth- or fifth-panel JPEGs."""
 
 import argparse
 from pathlib import Path
@@ -26,28 +26,61 @@ METHODS = ("expanded_r4", "full_head_512")
 SUBS = ("sub-04", "sub-05", "sub-01")
 PANEL = "prospective"
 SEED = 260509
+FIFTH_METHODS = ("posterior_512", "posterior_1024")
+PUBLIC = Path(__file__).resolve().parents[1] / "results" / "object_fidelity"
 
 
-def load_cases(a):
-    reg = registered(a.root / "references", PANEL)
+def load_cases(a, panel=PANEL, methods=METHODS):
+    if panel == "fifth":
+        protocol_path = PUBLIC / "double_calibration_design.json"
+        gate_path = PUBLIC / "double_calibration.json"
+        check(gate_path.is_file(), "The registered four-panel calibration gate has no result yet")
+        gate = read(gate_path)
+        check(
+            gate["advance_to_fifth"] is True and gate["design_sha256"] == sha(protocol_path),
+            "The registered development gate did not advance to fifth-panel EEG or JPEGs",
+        )
+    reg = registered(a.root / "references", panel)
     protocol = read(a.root / "panel_lock.json")
-    stamp = read(a.root / "render_packets.json")
+    if panel == "fifth":
+        public = read(protocol_path)
+        stamp = read(PUBLIC / "double_calibration_fifth_inputs.json")
+        check(
+            gate["design_sha256"]
+            == stamp["design_sha256"]
+            == protocol["source_design_sha256"]
+            == sha(protocol_path)
+            and public["fifth_registration_sha256"] == reg["sha"]
+            and public["participants"] == list(SUBS)
+            and public["fifth_registration"]["rows"] == reg["rows"].tolist()
+            and len(set(public["old_objects"])) == len(set(public["extra_objects"])) == 512
+            and not (set(public["old_objects"]) & set(public["extra_objects"]))
+            and not (set(public["old_objects"] + public["extra_objects"]) & set(reg["rows"] // 10)),
+            "Fifth-panel gate, calibration set or published registration differs",
+        )
+    else:
+        stamp = read(a.root / "render_packets.json")
+        check(stamp["public_lock_sha256"] == sha(a.root / "panel_lock.json"), "Changed panel lock")
     check(
         protocol["participants"] == list(SUBS)
         and protocol["registration_sha256"] == reg["sha"]
-        and protocol["words"] == reg["vocab"].tolist()
-        and stamp["public_lock_sha256"] == sha(a.root / "panel_lock.json"),
-        "Different prospective registration",
+        and protocol["words"] == reg["vocab"].tolist(),
+        "Different photo registration",
     )
     cases = {}
-    for m in METHODS:
+    for m in methods:
         bundle = a.root / "render_inputs" / m
-        for sub in SUBS:
-            folder = bundle / "renders" / PANEL / sub
-            settings = read(folder / "settings.json")
-            rows, folds, words, donors, support, _, _, signature = packet(bundle, sub, PANEL)
+        if panel == "fifth":
             check(
-                signature == stamp["packets"][m][f"{sub}/{PANEL}"]
+                sha(bundle / "design.json") == stamp["render_designs_sha256"][m],
+                "Fifth-panel generation inputs differ from published release",
+            )
+        for sub in SUBS:
+            folder = bundle / "renders" / panel / sub
+            settings = read(folder / "settings.json")
+            rows, folds, words, donors, support, _, _, signature = packet(bundle, sub, panel)
+            check(
+                signature == stamp["packets"][m][f"{sub}/{panel}"]
                 and settings["design_sha256"] == sha(bundle / "design.json")
                 and np.array_equal(settings["seeds"], 923761 + rows)
                 and np.array_equal(rows, reg["rows"])
@@ -58,10 +91,20 @@ def load_cases(a):
                 and np.array_equal(settings["support_rows"], support),
                 "JPEG registration differs from a frozen readout",
             )
+            if panel == "fifth":
+                locked = bundle / "conditions" / sub / panel / "conditions_512.npz"
+                with np.load(locked, allow_pickle=False) as c:
+                    check(
+                        set(c["training_classes"]) == set(public["old_objects"])
+                        and int(c["visual_calibration_count"]) == 512
+                        and str(c["classifier_design_sha256"]) == sha(protocol_path)
+                        and str(c["target_eeg_sha256"]) == sha(a.root / "eeg" / (sub + ".npz")),
+                        "Visual training sample or target EEG changed",
+                    )
             validate_packet(
                 SimpleNamespace(
                     conditions=bundle / "conditions",
-                    panel=PANEL,
+                    panel=panel,
                     evaluations=bundle / "evaluations",
                 ),
                 sub,
@@ -76,11 +119,11 @@ def load_cases(a):
                 settings_sha=sha(folder / "settings.json"),
             )
     for sub in SUBS:
-        old, new = (cases[m, sub]["settings"] for m in METHODS)
+        old, new = (cases[m, sub]["settings"] for m in methods)
         same = np.asarray(old["predicted_words"]) == np.asarray(new["predicted_words"])
         paths = [
-            a.root / "render_inputs" / m / "conditions" / sub / PANEL / "conditions_512.npz"
-            for m in METHODS
+            a.root / "render_inputs" / m / "conditions" / sub / panel / "conditions_512.npz"
+            for m in methods
         ]
         with np.load(paths[0], allow_pickle=False) as x, np.load(paths[1], allow_pickle=False) as y:
             check(
@@ -110,14 +153,14 @@ def load_cases(a):
     return reg, cases
 
 
-def dino(a, cases):
+def dino(a, cases, panel=PANEL, methods=METHODS):
     # All six frozen render manifests have been validated before opening an original.
     opts = SimpleNamespace(**(vars(a) | dict(out=a.work, references=a.root / "references")))
     encode = encoder(opts)
     table = reference(opts)
     with ZipFile(a.originals) as z:
-        ref = originals(opts, encode, table, z, PANEL)
-    for m in METHODS:
+        ref = originals(opts, encode, table, z, panel)
+    for m in methods:
         root = a.root / "render_inputs" / m
         for sub in SUBS:
             folder = cases[m, sub]["folder"]
@@ -129,7 +172,7 @@ def dino(a, cases):
                     pairs=pairs,
                     **inputs,
                     model_sha256=FILES["model.safetensors"],
-                    reference_gallery_sha256=sha(a.work / "original_cls" / (PANEL + ".npz")),
+                    reference_gallery_sha256=sha(a.work / "original_cls" / (panel + ".npz")),
                 ),
             )
             print(
@@ -146,7 +189,11 @@ def arm_vector(v):
     return np.array([v[arm] for arm in ARMS], dtype=float)
 
 
-def estimate(entries, people):
+def difference_key(methods):
+    return "1024_minus_512_own" if tuple(methods) == FIFTH_METHODS else "full_minus_posterior_own"
+
+
+def estimate(entries, people, methods=METHODS, seed=SEED):
     """One row/pair contributes once per arm. Resample participants and their shared object classes."""
     chosen = [r for r in entries if r[0] in people]
     if not chosen:
@@ -157,7 +204,7 @@ def estimate(entries, people):
         i = people.index(s)
         num[i, c] += 1
         sums[i, c] += both
-    rng = np.random.default_rng(SEED)
+    rng = np.random.default_rng(seed)
     si = rng.integers(len(people), size=(10000, len(people), 1))
     ci = rng.integers(12, size=(10000, 1, 12))
     n = num.sum()
@@ -176,17 +223,19 @@ def estimate(entries, people):
         n=int(n),
         credits={
             m: {arm: float(totals[i, k]) for k, arm in enumerate(ARMS)}
-            for i, m in enumerate(METHODS)
+            for i, m in enumerate(methods)
         },
-        full_minus_posterior_own=delta(
-            totals[1, 0] - totals[0, 0], draws[:, 1, 0] - draws[:, 0, 0]
-        ),
+        **{
+            difference_key(methods): delta(
+                totals[1, 0] - totals[0, 0], draws[:, 1, 0] - draws[:, 0, 0]
+            )
+        },
         own_minus_control={
             m: {
                 ARMS[k]: delta(totals[i, 0] - totals[i, k], draws[:, i, 0] - draws[:, i, k])
                 for k in (1, 2)
             }
-            for i, m in enumerate(METHODS)
+            for i, m in enumerate(methods)
         },
     )
 
@@ -212,12 +261,20 @@ def strict(d, c, truth, folds, rows, words):
     return expected, dino, clip
 
 
-def join(a, reg, cases):
-    clip_paths = {m: a.root / "render_inputs" / m / "clip.json" for m in METHODS}
+def join(a, reg, cases, panel=PANEL, methods=METHODS):
+    fifth = panel == "fifth"
+    seed = 260538 if fifth else SEED
+    left_label, right_label = methods if fifth else ("posterior", "full_head")
+
+    def statistics(entries, participants):
+        return estimate(entries, participants, methods, seed)
+
+    contrast = difference_key(methods)
+    clip_paths = {m: a.root / "render_inputs" / m / "clip.json" for m in methods}
     if a.posterior_clip:
-        clip_paths[METHODS[0]] = a.posterior_clip
+        clip_paths[methods[0]] = a.posterior_clip
     if a.full_clip:
-        clip_paths[METHODS[1]] = a.full_clip
+        clip_paths[methods[1]] = a.full_clip
     clips = {m: read(f) for m, f in clip_paths.items()}
     left, right = clips.values()
     check(
@@ -249,9 +306,9 @@ def join(a, reg, cases):
     eeg = []
     for sub in SUBS:
         per_model = {}
-        for m in METHODS:
+        for m in methods:
             case = cases[m, sub]
-            c = clips[m]["cases"][PANEL + "/" + sub]
+            c = clips[m]["cases"][panel + "/" + sub]
             file = a.work / m / sub / "per_query.json"
             d = read(file)
             check(
@@ -317,8 +374,10 @@ def join(a, reg, cases):
                 identical_own_jpegs=int(jpeg_equal[mask].sum()),
                 **{
                     metric: dict(
-                        posterior=float(bd[metric][mask, 0].sum()),
-                        full_head=float(hd[metric][mask, 0].sum()),
+                        **{
+                            left_label: float(bd[metric][mask, 0].sum()),
+                            right_label: float(hd[metric][mask, 0].sum()),
+                        },
                     )
                     for metric in bd
                 },
@@ -330,13 +389,15 @@ def join(a, reg, cases):
                     row=int(r),
                     fold=int(folds[j]),
                     truth=truth[j],
-                    posterior_word=b["words"][j],
-                    full_word=h["words"][j],
+                    **{
+                        left_label + "_word": b["words"][j],
+                        (right_label if fifth else "full") + "_word": h["words"][j],
+                    },
                     same_own_jpeg=bool(jpeg_equal[j]),
                     measures={
                         metric: {
-                            METHODS[0]: bd[metric][j].tolist(),
-                            METHODS[1]: hd[metric][j].tolist(),
+                            methods[0]: bd[metric][j].tolist(),
+                            methods[1]: hd[metric][j].tolist(),
                         }
                         for metric in bd
                     },
@@ -356,31 +417,33 @@ def join(a, reg, cases):
             )
         individual[sub] = dict(
             eeg_n=120,
-            posterior_eeg_hits=int(correct0.sum()),
-            full_head_eeg_hits=int(correct1.sum()),
+            **{
+                left_label + "_eeg_hits": int(correct0.sum()),
+                right_label + "_eeg_hits": int(correct1.sum()),
+            },
             common_strict_n=len(common),
-            own_strict_eligibility={m: own_counts[m, sub] for m in METHODS},
+            own_strict_eligibility={m: own_counts[m, sub] for m in methods},
         )
     for sub in SUBS:
         individual[sub]["matched_image_scores"] = {
-            k: estimate(v, [sub]) for k, v in endpoints.items()
+            k: statistics(v, [sub]) for k, v in endpoints.items()
         }
-        individual[sub]["paired_eeg_difference"] = estimate(eeg, [sub])["full_minus_posterior_own"]
+        individual[sub]["paired_eeg_difference"] = statistics(eeg, [sub])[contrast]
     raw = a.work / "paired_rows.json"
     save(raw, dict(arm_order=list(ARMS), rows=per_rows))
     result = dict(
-        panel=PANEL,
+        panel=panel,
         subjects=list(SUBS),
         unique_original_photos=120,
         participant_queries=360,
-        models=list(METHODS),
+        models=list(methods),
         primary="DINOv2-S/14 top-1 original photograph among ten pictures of the true object, for all queries including incorrect predicted words.",
         object_endpoint="Independent OpenAI CLIP-L/14 recognition of all saved JPEGs against 1,854 object labels. Closed-12 scores restrict the same similarities to the twelve registered object labels. Tied names share top-1 credit.",
         strict="Compare readouts only on the intersection of correctly worded pairs matched by both original row IDs, class and fold. Separate readout-specific counts are descriptive.",
-        uncertainty="Paired whole-object percentile intervals within each subject. The pooled bootstrap resamples the three people and twelve shared objects independently with replacement, 10,000 draws, seed 260509. Rates and intervals are fractions.",
+        uncertainty=f"Paired whole-object percentile intervals within each subject. The pooled bootstrap resamples the three people and twelve shared objects independently with replacement, 10,000 draws, seed {seed}. Rates and intervals are fractions.",
         individual=individual,
-        pooled_eeg_difference=estimate(eeg, list(SUBS))["full_minus_posterior_own"],
-        pooled={k: estimate(v, list(SUBS)) for k, v in endpoints.items()},
+        pooled_eeg_difference=statistics(eeg, list(SUBS))[contrast],
+        pooled={k: statistics(v, list(SUBS)) for k, v in endpoints.items()},
         word_change_groups=subsets,
         inputs=dict(
             panel_lock_sha256=sha(a.root / "panel_lock.json"),
@@ -396,19 +459,30 @@ def join(a, reg, cases):
             script_sha256=sha(Path(__file__)),
         ),
     )
+    if fifth:
+        result["calibration"] = dict(
+            word_classifier_objects=[512, 1024],
+            image_condition_objects=[512, 512],
+            presentations_per_query_per_person=4,
+            labeled_support_photos_per_object=8,
+            study_design_sha256=sha(PUBLIC / "double_calibration_design.json"),
+            development_gate_sha256=sha(PUBLIC / "double_calibration.json"),
+            frozen_inputs_sha256=sha(PUBLIC / "double_calibration_fifth_inputs.json"),
+        )
     save(a.work / "paired_summary.json", result)
     if a.release:
         save(a.release, result)
     for k, v in result["pooled"].items():
-        print(k, v["n"], v.get("credits"), v.get("full_minus_posterior_own"), flush=True)
+        print(k, v["n"], v.get("credits"), v.get(contrast), flush=True)
 
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("stage", choices=("dino", "join", "all"))
+    p.add_argument("--study", choices=("prospective", "fifth"), default="prospective")
+    p.add_argument("--root", type=Path)
+    p.add_argument("--work", type=Path)
     for k, d in dict(
-        root="outputs/prospective-photo",
-        work="outputs/prospective-photo/paired_scores",
         model="outputs/photo-structure/dino/facebook-dinov2-small",
         originals="outputs/photo-structure/training_images.zip",
         manifest="outputs/official-object-readout/sub-03/atm_train_rows.csv",
@@ -417,11 +491,16 @@ if __name__ == "__main__":
     p.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
     p.add_argument("--batch-size", type=int, default=16)
     p.add_argument("--release", type=Path)
-    p.add_argument("--posterior-clip", type=Path)
-    p.add_argument("--full-clip", type=Path)
+    p.add_argument("--posterior-clip", "--baseline-clip", type=Path)
+    p.add_argument("--full-clip", "--candidate-clip", type=Path)
     a = p.parse_args()
-    reg, cases = load_cases(a)
+    a.root = a.root or Path(
+        "outputs/double-calibration/fifth" if a.study == "fifth" else "outputs/prospective-photo"
+    )
+    a.work = a.work or a.root / "paired_scores"
+    methods = FIFTH_METHODS if a.study == "fifth" else METHODS
+    reg, cases = load_cases(a, a.study, methods)
     if a.stage in ("dino", "all"):
-        dino(a, cases)
+        dino(a, cases, a.study, methods)
     if a.stage in ("join", "all"):
-        join(a, reg, cases)
+        join(a, reg, cases, a.study, methods)
