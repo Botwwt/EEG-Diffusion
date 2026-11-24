@@ -41,3 +41,21 @@ All paths below are relative to `outputs/fresh-photo/`. The row key is the origi
 | `design.json` and `radius.json` | The render contract records the three condition digests and the frozen generic image radius. Pass the fresh root and panel `fresh` to the renderer. |
 
 `verify` recomputes all 361,080 compact feature values from the three source packets, checks the independent registration, condition, donor and word identities, then recounts each participant's classifications from the saved word indices. It calculates participant-specific 95% intervals by resampling whole concepts and checks a secondary null that permutes object labels only within their acquisition-session pairs. [Aggregate EEG results and file hashes](../research/eeg_stack_20261112/results/object_fidelity/fresh_panel_eeg.json)
+
+## Two candidate EEG object readouts
+
+Both candidates used the original personal 96-direction Fisher space. Sub-04 selected each method on 384 of the 512 external calibration objects, using four object-disjoint folds and 12-way episodes with eight supports and two held-out queries per class. A further 128 generic objects checked the frozen choice. Each of their 1,280 photos was evaluated in nine fixed sets of competing objects, giving 11,520 decisions per participant. The three target panels had already been evaluated during development. Every zero-weight prediction on those panels reproduced the original cosine readout.
+
+| Candidate | Sub-04 selection, out of 34,560 | Generic check, baseline → candidate, out of 11,520 each (sub-04 / sub-05 / sub-01) | Three target panels, out of 1,080 | Fresh panel alone, out of 360 |
+| --- | ---: | --- | ---: | ---: |
+| Blend a visual prediction of the class EEG prototype with its measured EEG prototype (10% visual) | 21,930 → 22,249 | 7,506 → 7,560 / 6,557 → 6,642 / 6,968 → 7,105 | 679 → 680 | 209 → 212 |
+| Estimate shared noise from the 96 labeled EEG supports (25% sample covariance, 75% isotropic prior), then mix 25% Mahalanobis score with 75% cosine | 21,930 → 22,151 | 7,506 → 7,553 / 6,557 → 6,611 / 6,968 → 7,054 | 679 → 675 | 209 → 210 |
+
+The modest generic gains yielded one additional correct word for the visual prototype and four fewer for the covariance readout across the 1,080 target queries. The selected object decoder keeps the original cosine rule. These tests scored decoded words. [Visual-to-EEG prototype results](../research/eeg_stack_20261112/results/object_fidelity/visual_eeg_prototypes.json) · [Support covariance results](../research/eeg_stack_20261112/results/object_fidelity/support_covariance.json)
+
+Run each `generic` stage before its `evaluate` stage. The former locks the sub-04 choice before checking the additional 128 objects. The latter verifies that lock and baseline predictions before scoring the three participants. The covariance script defaults to the generic class split in the released visual-prototype JSON. Its split checksum normalizes CRLF to LF. Local output directories are `outputs/visual-eeg-prototypes/` and `outputs/support-covariance/`.
+
+```sh
+for stage in generic evaluate; do "$PY" "$C/fit_visual_eeg_prototypes.py" "$stage"; done
+for stage in generic evaluate; do "$PY" "$C/fit_support_covariance.py" "$stage"; done
+```

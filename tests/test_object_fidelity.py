@@ -34,6 +34,40 @@ def test_rendering_uses_the_panel_list_in_the_frozen_design():
         renderer.panel_names({"panels": ["../fresh"]})
 
 
+def test_fresh_reports_score_the_registered_subjects_photographs_and_controls():
+    release = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112"
+    results = release / "results/object_fidelity"
+    design = json.loads((results / "fresh_panel_design.json").read_bytes())
+    eeg = json.loads((results / "fresh_panel_eeg.json").read_bytes())
+    dino = json.loads((results / "fresh_photo_dino_pixels.json").read_bytes())
+    clip = json.loads((results / "fresh_photo_clip.json").read_bytes())
+    people = design["participants"]
+    assert set(eeg["participants"]) == set(dino["cases"]) == set(people)
+    assert dino["subjects"] == people
+    assert (
+        design["registration_sha256"] == eeg["registration_sha256"] == dino["registration_sha256"]
+    )
+    assert clip["generated_jpegs"] == dino["generated_jpegs"] == 3 * len(people) * 120
+    assert dino["unique_stimuli"] == clip["unique_originals"] == design["distinct_photos"] == 120
+    for subject in people:
+        case = dino["cases"][subject]
+        photo = clip["cases"]["fresh/" + subject]
+        assert photo["reg_sha256"] == eeg["registration_sha256"]
+        assert photo["condition_packet_sha256"] == eeg["participants"][subject]["condition_sha256"]
+        assert (
+            case["metrics"]["dino_strict_pair"]["n"]
+            == eeg["participants"][subject]["strict_pairs_both_words_correct"]
+        )
+        gallery = release / "gallery" / f"photo_angle_{subject.replace('-', '')}_fresh.jpg"
+        assert hashlib.sha256(gallery.read_bytes()).hexdigest() == case["gallery"]["sha256"]
+    for metric in ("dino_intra10", "dino_strict_pair"):
+        pooled = dino["pooled"][metric]
+        for arm in ("own", "uniform", "wrong"):
+            credit = sum(dino["cases"][s]["metrics"][metric]["arms"][arm]["credit"] for s in people)
+            assert credit == pooled["arms"][arm]["credit"]
+            assert np.isclose(credit / pooled["n"], pooled["arms"][arm]["mean"])
+
+
 def test_photo_identity_cannot_identify_an_object_through_the_held_out_ordinal():
     scorer = load_scorer()
     rows = np.arange(30)

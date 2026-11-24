@@ -1,0 +1,116 @@
+{
+  "method": "Current EEG H/14, class support VAE prior and identical two-step suffix in the three spatial arms. The four-step historical arm uses the same H/14 and noise seed, with a full noise start.",
+  "scope": "Development on the complete first registered fold of one previously studied participant; 24 unique queries, 12 objects. Additional panels and participants are outside this experiment.",
+  "arms": [
+    "own",
+    "uniform",
+    "wrong",
+    "old_four_step"
+  ],
+  "uncertainty": "Whole-object percentile bootstrap with 10,000 draws in one participant. Rates in fractions; ties split.",
+  "generic_object_held_out": {
+    "objects": 512,
+    "photos": 5120,
+    "folds": 4,
+    "selected_ridge": 8.0,
+    "generation_gain": 2.320943877538307,
+    "selected_oof": {
+      "pairs": 2560,
+      "pair_credit": 1440.0,
+      "pair_rate": 0.5625,
+      "r2_vs_support_prior": -0.0008419143492848578,
+      "pooled_residual_cosine": 0.035230252959003075,
+      "mse_optimal_gain": 0.43563475416858904,
+      "amplitude_matching_gain": 12.365359813780808,
+      "pair_concept_ci95": [
+        0.5417968750000001,
+        0.5828125
+      ]
+    },
+    "r2_at_generation_gain": -0.022005010646491192
+  },
+  "queries": 24,
+  "strict_pair_count": 7,
+  "fold": 0,
+  "participant": "sub-04",
+  "panel": "registered",
+  "counts": {
+    "dino_intra10": {
+      "own": 4.0,
+      "uniform": 4.0,
+      "wrong": 3.0,
+      "old_four_step": 4.0
+    },
+    "all_pairs": {
+      "own": 6.0,
+      "uniform": 7.0,
+      "wrong": 6.0,
+      "old_four_step": 10.0
+    },
+    "strict_pairs": {
+      "own": 2.0,
+      "uniform": 3.0,
+      "wrong": 2.0,
+      "old_four_step": 6.0
+    }
+  },
+  "means": {
+    "rgb_rmse32": {
+      "own": 0.2529494930058718,
+      "uniform": 0.25283697930475074,
+      "wrong": 0.2538580472270648,
+      "old_four_step": 0.2866822990278403
+    },
+    "luminance_layout_corr32": {
+      "own": 0.1639847467961723,
+      "uniform": 0.1767820152315125,
+      "wrong": 0.16335608005206412,
+      "old_four_step": 0.04430830151131635
+    },
+    "dino_rank10": {
+      "own": 5.458333333333333,
+      "uniform": 5.125,
+      "wrong": 5.208333333333333,
+      "old_four_step": 4.25
+    },
+    "dino_target_cosine": {
+      "own": 0.46798886213133056,
+      "uniform": 0.47675302620113325,
+      "wrong": 0.46673489378280236,
+      "old_four_step": 0.5073032800274516
+    }
+  },
+  "dino_intra10_own_minus": {
+    "uniform": {
+      "mean": 0.0,
+      "concept_cluster_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "wrong": {
+      "mean": 0.041666666666666664,
+      "concept_cluster_ci95": [
+        0.0,
+        0.125
+      ]
+    },
+    "old_four_step": {
+      "mean": 0.0,
+      "concept_cluster_ci95": [
+        -0.20833333333333334,
+        0.20833333333333334
+      ]
+    }
+  },
+  "inputs_sha256": {
+    "summary": "b5ab0b9e597c1ba05111469ffee40b887f24c86a67c3092869e84a5edeb4d7ba",
+    "per_query": "2d78275cf1b3d2b1ff7729bf439378103919f85f8cfec57247e118e3fe9aec16",
+    "renderer_settings": "9f0b5676712fd916a6142e13c411f08ee80781e14039bfbef176d966d2337c50",
+    "original_four_step_settings": "2b4640fa1c3d5b5e34a8071b3025d4ac592a82ea88e8d24d75c4df942d6807a2",
+    "spatial_packet": "6859e3f239b80cfcc55867f88b355022387cb509834642d5d03a8f153079101e",
+    "selection": "e851179758f0c123abc09ef45de4511bdf3c9efac8715cde8e1e95ed6562db9e",
+    "dino_checkpoint": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+    "registration": "f623b24d73d0024c23642ffa0309ba05078f591b2d723770ac12a93459de327a"
+  }
+}
