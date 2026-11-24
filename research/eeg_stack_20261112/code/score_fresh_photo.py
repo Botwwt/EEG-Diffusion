@@ -10,6 +10,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from refine_registered_color import metrics, thumbnail
 from render_official_words import crop512
+from render_within_photo_ip import check_donor_geometry
 from score_reconstruction_jpegs import registered
 from score_within_photo_dino import (
     ARMS,
@@ -74,12 +75,19 @@ def validate_packet(args, subject, reg, settings):
         own, prior, wrong = [data[k] for k in ARMS]
         row_map = {row: i for i, row in enumerate(reg["rows"])}
         donor = np.array([row_map[row] for row in data["donor_rows"]])
-        if (
-            any(x.shape != (120, 1024) or not np.isfinite(x).all() for x in (own, prior, wrong))
-            or not np.array_equal(wrong, own[donor])
-            or not np.array_equal(prior, prior[donor])
-        ):
+        if any(
+            x.shape != (120, 1024) or not np.isfinite(x).all() for x in (own, prior, wrong)
+        ) or not np.array_equal(prior, prior[donor]):
             raise ValueError("Wrong-EEG conditions do not follow the frozen donor map")
+        angles = data["recipient_angle_radians"] if "recipient_angle_radians" in data else None
+        if angles is not None:
+            design_file = args.conditions.parent / "design.json"
+            if (
+                read(design_file).get("wrong_direction_mode") != "recipient_native_angle"
+                or sha(design_file) != settings["design_sha256"]
+            ):
+                raise ValueError("Generated images use a different donor-angle design")
+        check_donor_geometry(dict(own=own, uniform=prior, wrong=wrong), donor, angles)
 
 
 def reference_pixels(table, bank, rows, checks, gallery_rows):

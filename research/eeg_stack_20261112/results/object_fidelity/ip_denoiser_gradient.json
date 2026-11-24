@@ -1,0 +1,177 @@
+{
+  "protocol": "Same-object common-noise raw epsilon assay on historical training-image VAE modes; one independent pair per held-out generic concept, one participant.",
+  "input_receipts": {
+    "design_sha256": "bca91b9be737b32a79a929d0ac01919b345a8391966aca9a07a56d1cb79d67aa",
+    "packet_sha256": "1c35e1e4396dd47bd69b2f9099d52a39727d4c95e6576d55502719016599c8c8"
+  },
+  "study_subject": "sub-04",
+  "n_generic_in_historical_T": 415,
+  "n_adaptation_classes": 128,
+  "n_generic_evaluation_classes": 48,
+  "n_evaluation_photos": 96,
+  "evaluator": "48 paired object units; 10000 percentile bootstrap replicates, seed 260525. Positive epsilon contrast favors pairing EEG with its own true photo.",
+  "arms": {
+    "native": {
+      "matched_mse": {
+        "mean": 0.10301140754017979,
+        "ci95": [
+          0.08558561355263616,
+          0.12025113739315807
+        ]
+      },
+      "swapped_minus_matched": {
+        "mean": 0.0009518263201850156,
+        "ci95": [
+          0.00036838425536795213,
+          0.0015739522588167649
+        ]
+      },
+      "positive_classes": 32,
+      "ties": 0,
+      "sign_credit": 0.6666666666666666
+    },
+    "learned": {
+      "matched_mse": {
+        "mean": 0.10402306790153186,
+        "ci95": [
+          0.0864513634548833,
+          0.12105203970568254
+        ]
+      },
+      "swapped_minus_matched": {
+        "mean": 0.0012033281188147764,
+        "ci95": [
+          -0.00011023393599316474,
+          0.0025297364996125296
+        ]
+      },
+      "positive_classes": 32,
+      "ties": 0,
+      "sign_credit": 0.6666666666666666
+    },
+    "sham": {
+      "matched_mse": {
+        "mean": 0.10369715193519369,
+        "ci95": [
+          0.08621197243192001,
+          0.12078068277235919
+        ]
+      },
+      "swapped_minus_matched": {
+        "mean": 0.00048012385377660394,
+        "ci95": [
+          -0.00044091736878423636,
+          0.0013476324485964138
+        ]
+      },
+      "positive_classes": 29,
+      "ties": 0,
+      "sign_credit": 0.6041666666666666
+    },
+    "oracle": {
+      "matched_mse": {
+        "mean": 0.10025057328554492,
+        "ci95": [
+          0.08266792580883096,
+          0.11755236528842943
+        ]
+      },
+      "swapped_minus_matched": {
+        "mean": 0.0034984303056262434,
+        "ci95": [
+          0.0027637081031571145,
+          0.00431337116897339
+        ]
+      },
+      "positive_classes": 47,
+      "ties": 0,
+      "sign_credit": 0.9791666666666666
+    }
+  },
+  "paired_learned_contrast_advantage": {
+    "native": {
+      "mean": 0.00025150179862976074,
+      "ci95": [
+        -0.0007483164382089551,
+        0.001228115988487843
+      ]
+    },
+    "sham": {
+      "mean": 0.0007232042650381724,
+      "ci95": [
+        -0.000344541716913227,
+        0.0018516598109272306
+      ]
+    }
+  },
+  "native_minus_learned_matched_epsilon_mse": {
+    "mean": -0.0010116603613520663,
+    "ci95": [
+      -0.001994519266978993,
+      -2.6276917196810344e-05
+    ]
+  },
+  "passed_advance_gate": false,
+  "secondary_h14_embedding_match": {
+    "native": {
+      "correct": 33,
+      "ties": 0,
+      "pairs": 48,
+      "matched_minus_swapped_cosine": {
+        "mean": 0.005346414643362769,
+        "ci95": [
+          0.001638029424106455,
+          0.009477410277141184
+        ]
+      }
+    },
+    "learned": {
+      "correct": 31,
+      "ties": 0,
+      "pairs": 48,
+      "matched_minus_swapped_cosine": {
+        "mean": 0.004600069348992433,
+        "ci95": [
+          0.0013245489744774328,
+          0.00820188321700418
+        ]
+      }
+    },
+    "sham": {
+      "correct": 29,
+      "ties": 0,
+      "pairs": 48,
+      "matched_minus_swapped_cosine": {
+        "mean": 0.0043931327960850175,
+        "ci95": [
+          0.0008650527043454126,
+          0.008412408196554196
+        ]
+      }
+    }
+  },
+  "secondary_h14_definition": "Mean matched cosine minus exchanged cosine for the two original image embeddings, using the fixed per-query condition. H14 is the training representation. This descriptive check has no role in the generation gate.",
+  "scope": "Generic, known matched word, eight available visual supports, real noised image modes. This measures local denoising sensitivity. It supplies no independent generated-image or target-object score.",
+  "runtime": {
+    "torch": "2.3.0+cu121",
+    "diffusers": "0.36.0",
+    "gpu": "NVIDIA A40",
+    "dtype": "float16 denoiser; float32 physical error",
+    "sigmas": {
+      "999.0": 14.614646911621094,
+      "749.0": 4.081730842590332,
+      "499.0": 1.6128870248794556,
+      "249.0": 0.6932054162025452
+    }
+  },
+  "elapsed_seconds": 127.42691736482084,
+  "peak_cuda_reserved_bytes": 8910798848,
+  "result_sha256": {
+    "report.json": "895e6cda96893b83d63e0649864691f8e4db2fe6414011d2f320e8a1e954ee39",
+    "heldout.json": "a726becd302ea1d97ac6c60f495e73dc32f215b25c79f54c3447f1699b5b1940",
+    "fit.json": "e33b4193cf5371d52a142c4c985be5c8d1c74001f5f17cbdb50cf8abac81e3c9",
+    "head.npz": "515f5af585638e27653974effd100d359cf9675889ce5468f9cd397d0e7df6b2"
+  },
+  "driver_sha256": "04b35b320138ab4c96b58949b5a835cb5ae18e9aaa441f85cd70471de7539d0a",
+  "summary_driver_sha256": "c507bcac7cbf78bea41d9a71c5be7a85b6d8e15f4f24796fc6e4867db3219a19"
+}

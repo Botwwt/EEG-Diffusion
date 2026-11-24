@@ -1,0 +1,44 @@
+{
+  "protocol": "Fourth-panel development comparison after the panel EEG object-word readout; no independent panel confirmation.",
+  "intervention": "Keep each recipient's frozen expanded_r4 predicted word, eight eligible support rows, support direction, original angular amplitude, noise seed, Turbo/IP settings and visual radius. Replace the tangent with the new EEG direction. For the wrong condition use the donor's new tangent at the recipient's original amplitude. Within a word/fold the eight supports and center are identical; singleton uses own. Uniform is copied unchanged from the baseline.",
+  "generic_design_sha256": "1f4b52f0295fd5033e0d78b5182cfafc56e40224050de3fed1635a94f3cdc882",
+  "generic_result_sha256": "8db8cfb3988f169ba2dc84320110a17e77feae933b0bd8a5f1d334fd8a95892a",
+  "input_lock_sha256": "88d6afd4beff3c637020305d24dc5ae112755a561d92c9e9451f0b2417b0fda7",
+  "refit_driver_sha256": "7d5c52b180e1ecadb45554ef04baad6089372a68500dc548cb299056442cdedf",
+  "model_sha256": {
+    "sub-01": "79b5d80e095167c5e4fb3b69457d7e34537827cbe9fa6707d258b994fd8ce79a",
+    "sub-04": "ce4d15abe28075775032e9a5ba842d207d717f95ef921587273041058f9b783f",
+    "sub-05": "e732b082c56069d78b1ddb4708d3151965ef5a45a246b7b6c23e90d0aea52a7f"
+  },
+  "condition_packets_sha256": {
+    "sub-04/prospective": "570a6c717a20928bb421710e3bd05615f2e8cb125d63ce69481680a6f5f66c37",
+    "sub-05/prospective": "b38d88f9b95e7e794b1e22abde47c7d025df4d44bb0d078380638185c307cf68",
+    "sub-01/prospective": "2e29fe91c11487ab66e7f03554490ab30fa38ccb7055cad44d1ca0985e9491da"
+  },
+  "renderer_input_design_sha256": "dd34a2a9a4b1f7d811ba5bf746eb14c418970ca8babeea3957b63910d12d1662",
+  "baseline_design_sha256": "8c1eb216b5475be6bb643fc82f9ab4c0def9d694c7a116b809cc04fb58a2075f",
+  "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+  "per_subject": {
+    "sub-01": {
+      "historical_replay_bit_exact": true,
+      "direct_ridge_max_abs_replay_error": 0.0,
+      "uniform_bit_exact": true,
+      "baseline_packet_sha256": "b008c5051d55fd38404851bf086be69b908b8bec57e75ba9958e979ffea39d04",
+      "target_packet_sha256": "79d67a4f14ff5707d0401ae56304c4f7dc57d56ed7b3b48c91204aad04110cda"
+    },
+    "sub-04": {
+      "historical_replay_bit_exact": true,
+      "direct_ridge_max_abs_replay_error": 0.0,
+      "uniform_bit_exact": true,
+      "baseline_packet_sha256": "4dcb811d9b0b004a1a3b0971f22c31151027e7886682349f0b08cb890014d92b",
+      "target_packet_sha256": "d1b2377782d558e0baa4206973b6dbd514402d9b64ed77187e9bd7907123a18b"
+    },
+    "sub-05": {
+      "historical_replay_bit_exact": true,
+      "direct_ridge_max_abs_replay_error": 0.0,
+      "uniform_bit_exact": true,
+      "baseline_packet_sha256": "5384664764be72ed609472a8eab7ec93422505246dc4bb5db2c3d40a863e84a9",
+      "target_packet_sha256": "825d734698163973cf95f6f87a32fd44a28ac9798976c412f792b5057ae096e5"
+    }
+  }
+}
