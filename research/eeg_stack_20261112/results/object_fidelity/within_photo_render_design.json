@@ -1,0 +1,64 @@
+{
+  "locked_utc": "2026-11-24T18:43:58.271494+00:00",
+  "cohort": [
+    "sub-04",
+    "sub-05"
+  ],
+  "panels": [
+    "registered",
+    "replicate"
+  ],
+  "packets_sha256": {
+    "sub-04/registered": "a7537b197614fb71cba1ccbae19d76d96d9231bde9d26b144022ffbc5fa2a3a0",
+    "sub-04/replicate": "0626a56496dbdbeaec251318fd9eacffbc0bb1f7809ae61833adee5580726192",
+    "sub-05/registered": "4a1c89ba61090f546d85491395f8374000470d0fc96681ec8618ada0fc1f4f05",
+    "sub-05/replicate": "ab3b7e0be188af14727309e161f8f56c22e87aee65ceba2419caca8f6f8cd95f"
+  },
+  "protocol": "One saved JPEG per EEG row per arm; use the same expanded-512 predicted object word in 'A photo of {word}.' and the same SDXL random trajectory for own, uniform and wrong.",
+  "visual": "Direct pooled projected OpenCLIP ViT-H-14 LAION2B-s32B-b79K direction to base Tencent SDXL ViT-H IP-Adapter. Restore a single native image-encoder magnitude by median unnormalized H14 norm of the 32 fixed generic training images below. No per-query norm, targets or fitting to generated images.",
+  "generic_radius_rows": [
+    1144,
+    2507,
+    3663,
+    4159,
+    4195,
+    4352,
+    4963,
+    5247,
+    5259,
+    5323,
+    5899,
+    6014,
+    6061,
+    6178,
+    6246,
+    7210,
+    7763,
+    9483,
+    9533,
+    9761,
+    10509,
+    11356,
+    12158,
+    12390,
+    12662,
+    12858,
+    13441,
+    13825,
+    13849,
+    15324,
+    15696,
+    16038
+  ],
+  "radius_seed": 260509,
+  "space_check": "Verify median cosine >0.95 to released training directions on these 32 non-panel images before rendering.",
+  "model": "SDXL-Turbo 512x512 four Euler ancestral steps 999,749,499,249; no CFG, IP scale 1.0, per-row CUDA generator seeded 923761 + original row; JPEG quality 95 subsampling 0.",
+  "arms": {
+    "own": "unit(support centroid + own EEG residual) from packet",
+    "uniform": "unit(mean of eight predicted-class calibration images), no residual",
+    "wrong": "same support centroid and residual from predeclared cyclic donor in the same predicted word and fold"
+  },
+  "endpoints": "Post-generation independent OpenAI CLIP-L/14, uncentered normalized cosine for strict two-original assignment among pairs with same true object, fold and correctly predicted word; compare own with uniform on all such pairs and with wrong on pairs for which both donors are the other member. Also report wider same-word pairs and distinct same-truth donor rows; report full 1854, closed12, and intra10. Ties split. Separate panels and subjects. No target photographs or true names are used during image generation.",
+  "adapter_sha256": "ebf05d918348aec7abb02a5e9ecef77e0aaea6914a5c4ea13f50d45eb1681831",
+  "visual_sha256": "b8156300f59d058600fc9a2c9e1586c5fbd4a113f236031acc64c6511d56b432"
+}

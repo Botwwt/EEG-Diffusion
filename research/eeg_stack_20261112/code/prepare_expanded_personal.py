@@ -344,7 +344,10 @@ if __name__ == "__main__":
         default=Path("outputs/official-object-readout/sub-03/atm_train_rows.csv"),
     )
     p.add_argument(
-        "--subjects", nargs="+", choices=("sub-04", "sub-05"), default=["sub-04", "sub-05"]
+        "--subjects",
+        nargs="+",
+        choices=("sub-01", "sub-04", "sub-05"),
+        default=["sub-04", "sub-05"],
     )
     p.add_argument("--workers", type=int, choices=range(1, 6), default=5)
     a = p.parse_args()

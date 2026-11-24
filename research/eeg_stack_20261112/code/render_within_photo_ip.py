@@ -235,7 +235,7 @@ def main():
     p.add_argument("--archive", type=Path)
     p.add_argument("--adapter", type=Path)
     p.add_argument("--dictionary", type=Path)
-    p.add_argument("--subject", choices=("sub-04", "sub-05"), required=True)
+    p.add_argument("--subject", choices=("sub-01", "sub-04", "sub-05"), required=True)
     p.add_argument("--batch-size", type=int, default=8)
     p.add_argument("--check-only", action="store_true")
     args = p.parse_args()

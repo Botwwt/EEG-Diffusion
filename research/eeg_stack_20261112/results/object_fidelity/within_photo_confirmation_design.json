@@ -1,0 +1,8 @@
+{
+  "subject": "sub-01",
+  "role": "additional confirmation after the sub-05 embedding endpoint",
+  "frozen_utc": "2026-11-24T18:43:34.574653+00:00",
+  "selection_sha256": "914c9a527049783f23e25d1bdd2c3137e5fdd4ed69d18b1ce617853f9d53e79a",
+  "script_sha256": "f2b39d76bfd5f15fb7dfabf24833a46dcc2c3540ecae6b4d99c1c4f57326873f",
+  "design": "Reuse sub-04 generic-only choice, shared EEG feature design, original 128 and nested 512-class refits, fixed expanded_r4 predicted words, eight allowed support photos. Require both test photos have the correct predicted word and share true object and fold. Score signed H/14 cosine assignment versus uniform and pre-frozen wrong EEG; preserve all four 05 comparisons. No new hyperparameters or fitting on panel scores."
+}

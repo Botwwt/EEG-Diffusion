@@ -396,6 +396,10 @@ done
 "$PY" "$C/summarize_personal_residual.py" --root "$W" --out "$W/personal_photo_residual.json"
 ```
 
+### Registered R4 extensions and the additional sub-01 confirmation
+
+The photo-structure replay starts from the 128-object personal readout, its paired JPEGs and its eight authorized supports per fold. It includes the original-photo hash check, support-guided generation, foreground warp and separate JPEG scoring. The calibration-size replay uses the same two 12-object panels and adds the 512-object posterior readout and the 128-object full-scalp readout. Sub-01 supplies an additional confirmation for the 512-object readout and the H/14 embedding experiment. The direct one-image H/14 route, independent DINOv2 scoring and separate eight-candidate selection budget each have execution commands. [Commands, inputs and output layout](PHOTO_STRUCTURE.md#replay)
+
 ### References
 
 - Li et al., *Visual Decoding and Reconstruction via EEG Embeddings with Guided Diffusion*. [ATM author code](https://github.com/dongyangli-del/EEG_Image_decode/tree/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d) · [Pinned authors' feature release](https://huggingface.co/datasets/LidongYang/EEG_Image_decode/tree/dbe34bb2407164f70883c661c76664f0d596e522)

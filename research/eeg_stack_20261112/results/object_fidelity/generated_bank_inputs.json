@@ -1,0 +1,37 @@
+{
+  "cohort": [
+    "shared"
+  ],
+  "panels": [
+    "registered",
+    "replicate"
+  ],
+  "folds": 5,
+  "categories_per_panel": 12,
+  "candidates_per_cell": 8,
+  "seeds": [
+    740291,
+    740292,
+    740293,
+    740294,
+    740295,
+    740296,
+    740297,
+    740298
+  ],
+  "n_saved": 960,
+  "individual_inputs": false,
+  "condition": "For each of the five folds, use the normalized mean of the eight unit H14 images of each registered calibration object; a query can access only its own fold and predicted object. Verify that the two held-out photos per object per fold do not enter its centroid. All individuals share this generated library.",
+  "prompt": "A photo of {word}.",
+  "adapter_sha256": "ebf05d918348aec7abb02a5e9ecef77e0aaea6914a5c4ea13f50d45eb1681831",
+  "turbo_sha256": "e869ac7d6942cb327d68d5ed83a40447aadf20e0c3358d98b2cc9e270db0da26",
+  "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+  "dictionary_sha256": "1aebc7a2c35edcfcfffc63934754440c90534ccc46df0537db41dc6197450132",
+  "visual_sha256": "b8156300f59d058600fc9a2c9e1586c5fbd4a113f236031acc64c6511d56b432",
+  "registration_sha256": {
+    "registered": "f623b24d73d0024c23642ffa0309ba05078f591b2d723770ac12a93459de327a",
+    "replicate": "d7646f9fcd7958818a26d6d82483316d75c42ee295dc77f545e48258741d452b"
+  },
+  "generator": "Base Tencent SDXL ViT-H IP-Adapter, SDXL-Turbo 512, 4 Euler ancestral steps [999,749,499,249], CFG 0, IP scale 1.0, native image-embedding radius from previous fixed generic-only calibration. One JPEG95 4:4:4 per cell per candidate, no redraw. The eight distinct seeds are common to every cell and participant.",
+  "created_utc": "2026-11-24T18:54:08.579334+00:00"
+}

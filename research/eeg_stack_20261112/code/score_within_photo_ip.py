@@ -211,7 +211,10 @@ if __name__ == "__main__":
     for k in ("root", "archive", "dictionary", "reference-dir", "out"):
         p.add_argument("--" + k, type=Path, required=True)
     p.add_argument(
-        "--subjects", nargs="+", choices=("sub-04", "sub-05"), default=["sub-04", "sub-05"]
+        "--subjects",
+        nargs="+",
+        choices=("sub-01", "sub-04", "sub-05"),
+        default=["sub-04", "sub-05"],
     )
     p.add_argument("--batch-size", type=int, default=32)
     args = p.parse_args()
