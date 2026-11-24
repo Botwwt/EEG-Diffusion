@@ -11,6 +11,13 @@ Each panel shows the first archive photograph of each of its twelve objects. Eve
 | sub-05, 128 other objects | [Twelve generated objects](personal_sub05_registered.jpg) | [Twelve generated objects](personal_sub05_replicate.jpg) |
 | sub-05, 512 other objects | [Same twelve queries](expanded_sub05_registered.jpg) | [Same twelve queries](expanded_sub05_replicate.jpg) |
 
+The photograph-level experiment keeps the 512-object readout and gives SDXL-Turbo an H/14 image condition through the ViT-H IP-Adapter. Its displacement from the eight support photos is scaled using separate training objects. These grids show the same fixed stimuli as the tables above. [Image and control scores](../../../docs/PHOTO_STRUCTURE.md)
+
+| Participant | Common objects | Random objects |
+| --- | --- | --- |
+| sub-01, additional confirmation | [Generated images](photo_angle_sub01_registered.jpg) | [Generated images](photo_angle_sub01_replicate.jpg) |
+| sub-05, validation | [Generated images](photo_angle_sub05_registered.jpg) | [Generated images](photo_angle_sub05_replicate.jpg) |
+
 ## Trial-Precision Dual-Stream (`M1a`) & `DINOv2` Geometric DRaFT (`M2a`): Uncherry-Picked Held-Out `sub-01` 7-Column Gallery (2026-11-24)
 
 Each row pair shows Photo A and Photo B from the first 6 sealed unseen `fold 0` concepts (`#00–#05`, zero cherry-picking) on untouched held-out `sub-01` under **`R = 4` real EEG free generation** at **`s375`** (`4-step SDXL-Turbo`, `nsel = 1`): **[GT Photo | Naive Arm1b | M1a + Arm1b | Naive SwapDiff | M1a + SwapDiff | M1a + D2_Comp4 | M1a + M2a_DINO]**. See [`../TRIAL_PREC_DINOV2_REPORT.md`](../TRIAL_PREC_DINOV2_REPORT.md).

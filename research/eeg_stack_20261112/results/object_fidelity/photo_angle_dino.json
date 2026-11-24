@@ -1144,6 +1144,570 @@
           }
         }
       }
+    },
+    "sub-01": {
+      "panels": {
+        "registered": {
+          "case": {
+            "settings_sha256": "2b638e2a61b89e495e5479754c6f223db969904640cc1fe5f384a8213a451991",
+            "condition_sha256": "4c47dc29a37719c03ef665451da9aa3d10f820177a557b0dd1ddcb4e3b797053",
+            "original_jpeg_sha256_in_row_order": "dbb4292699c8a7abf0c4547e80ea60410d03867cc68ca22af6a48f1f70d15b73"
+          },
+          "n_queries": 120,
+          "n_strict_pairs": 20,
+          "intra10": {
+            "own": {
+              "correct_credit": 13.0,
+              "n": 120,
+              "rate": 0.10833333333333334,
+              "rate_ci95": [
+                0.058333333333333334,
+                0.15833333333333333
+              ]
+            },
+            "uniform": {
+              "correct_credit": 8.0,
+              "n": 120,
+              "rate": 0.06666666666666667,
+              "rate_ci95": [
+                0.025,
+                0.10833333333333334
+              ]
+            },
+            "wrong": {
+              "correct_credit": 8.0,
+              "n": 120,
+              "rate": 0.06666666666666667,
+              "rate_ci95": [
+                0.03333333333333333,
+                0.1
+              ]
+            },
+            "own_minus_uniform": {
+              "delta_rate": 0.041666666666666664,
+              "ci95": [
+                -0.025,
+                0.1
+              ],
+              "class_signflip_one_sided_p": 0.171875
+            },
+            "own_minus_wrong": {
+              "delta_rate": 0.041666666666666664,
+              "ci95": [
+                -0.016666666666666666,
+                0.09166666666666666
+              ],
+              "class_signflip_one_sided_p": 0.13671875
+            }
+          },
+          "object12": {
+            "own": {
+              "correct_credit": 67.0,
+              "n": 120,
+              "rate": 0.5583333333333333,
+              "rate_ci95": [
+                0.425,
+                0.7
+              ]
+            },
+            "uniform": {
+              "correct_credit": 67.0,
+              "n": 120,
+              "rate": 0.5583333333333333,
+              "rate_ci95": [
+                0.425,
+                0.7
+              ]
+            },
+            "wrong": {
+              "correct_credit": 67.0,
+              "n": 120,
+              "rate": 0.5583333333333333,
+              "rate_ci95": [
+                0.425,
+                0.7
+              ]
+            },
+            "own_minus_uniform": {
+              "delta_rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "class_signflip_one_sided_p": 1.0
+            },
+            "own_minus_wrong": {
+              "delta_rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "class_signflip_one_sided_p": 1.0
+            }
+          },
+          "strict_pair": {
+            "own": {
+              "correct_credit": 8.0,
+              "n": 20,
+              "rate": 0.4,
+              "rate_ci95": [
+                0.21739130434782608,
+                0.6666666666666666
+              ]
+            },
+            "uniform": {
+              "correct_credit": 9.0,
+              "n": 20,
+              "rate": 0.45,
+              "rate_ci95": [
+                0.23809523809523808,
+                0.6666666666666666
+              ]
+            },
+            "wrong": {
+              "correct_credit": 10.0,
+              "n": 20,
+              "rate": 0.5,
+              "rate_ci95": [
+                0.23809523809523808,
+                0.75
+              ]
+            },
+            "own_minus_uniform": {
+              "delta_rate": -0.05,
+              "ci95": [
+                -0.38095238095238093,
+                0.3684210526315789
+              ],
+              "class_signflip_one_sided_p": 0.703125
+            },
+            "own_minus_wrong": {
+              "delta_rate": -0.1,
+              "ci95": [
+                -0.4444444444444444,
+                0.3333333333333333
+              ],
+              "class_signflip_one_sided_p": 0.765625
+            }
+          },
+          "strict_independent_two": {
+            "own": {
+              "correct_credit": 11.0,
+              "n": 20,
+              "rate": 0.55,
+              "rate_ci95": [
+                0.4523809523809524,
+                0.6875
+              ]
+            },
+            "uniform": {
+              "correct_credit": 11.0,
+              "n": 20,
+              "rate": 0.55,
+              "rate_ci95": [
+                0.5,
+                0.6153846153846154
+              ]
+            },
+            "wrong": {
+              "correct_credit": 10.0,
+              "n": 20,
+              "rate": 0.5,
+              "rate_ci95": [
+                0.3888888888888889,
+                0.604194078947368
+              ]
+            },
+            "own_minus_uniform": {
+              "delta_rate": 0.0,
+              "ci95": [
+                -0.11538461538461539,
+                0.16666666666666666
+              ],
+              "class_signflip_one_sided_p": 0.625
+            },
+            "own_minus_wrong": {
+              "delta_rate": 0.05,
+              "ci95": [
+                -0.08695652173913043,
+                0.2631578947368421
+              ],
+              "class_signflip_one_sided_p": 0.4375
+            }
+          }
+        },
+        "replicate": {
+          "case": {
+            "settings_sha256": "11ba5c95ecf922fdc38eea8a5170069677e260cf9c2f871bef341ea4ec3e4de7",
+            "condition_sha256": "bd01d9b290a9035bd5cfff35f0af6fcdb98d9a38a314beb405c96437bfbe1e62",
+            "original_jpeg_sha256_in_row_order": "6673cde9fc50d9d1541ab656b64d14bdc2ba479a39b401317a542c2fca430324"
+          },
+          "n_queries": 120,
+          "n_strict_pairs": 27,
+          "intra10": {
+            "own": {
+              "correct_credit": 12.0,
+              "n": 120,
+              "rate": 0.1,
+              "rate_ci95": [
+                0.06666666666666667,
+                0.13333333333333333
+              ]
+            },
+            "uniform": {
+              "correct_credit": 11.0,
+              "n": 120,
+              "rate": 0.09166666666666666,
+              "rate_ci95": [
+                0.058333333333333334,
+                0.125
+              ]
+            },
+            "wrong": {
+              "correct_credit": 10.0,
+              "n": 120,
+              "rate": 0.08333333333333333,
+              "rate_ci95": [
+                0.041666666666666664,
+                0.125
+              ]
+            },
+            "own_minus_uniform": {
+              "delta_rate": 0.008333333333333333,
+              "ci95": [
+                -0.03333333333333333,
+                0.058333333333333334
+              ],
+              "class_signflip_one_sided_p": 0.5
+            },
+            "own_minus_wrong": {
+              "delta_rate": 0.016666666666666666,
+              "ci95": [
+                -0.025,
+                0.05
+              ],
+              "class_signflip_one_sided_p": 0.34375
+            }
+          },
+          "object12": {
+            "own": {
+              "correct_credit": 76.0,
+              "n": 120,
+              "rate": 0.6333333333333333,
+              "rate_ci95": [
+                0.49166666666666664,
+                0.7666666666666667
+              ]
+            },
+            "uniform": {
+              "correct_credit": 76.0,
+              "n": 120,
+              "rate": 0.6333333333333333,
+              "rate_ci95": [
+                0.49166666666666664,
+                0.7666666666666667
+              ]
+            },
+            "wrong": {
+              "correct_credit": 76.0,
+              "n": 120,
+              "rate": 0.6333333333333333,
+              "rate_ci95": [
+                0.49166666666666664,
+                0.7666666666666667
+              ]
+            },
+            "own_minus_uniform": {
+              "delta_rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "class_signflip_one_sided_p": 1.0
+            },
+            "own_minus_wrong": {
+              "delta_rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "class_signflip_one_sided_p": 1.0
+            }
+          },
+          "strict_pair": {
+            "own": {
+              "correct_credit": 17.0,
+              "n": 27,
+              "rate": 0.6296296296296297,
+              "rate_ci95": [
+                0.4,
+                0.8
+              ]
+            },
+            "uniform": {
+              "correct_credit": 15.0,
+              "n": 27,
+              "rate": 0.5555555555555556,
+              "rate_ci95": [
+                0.3076923076923077,
+                0.7600476190476184
+              ]
+            },
+            "wrong": {
+              "correct_credit": 7.0,
+              "n": 27,
+              "rate": 0.25925925925925924,
+              "rate_ci95": [
+                0.0967741935483871,
+                0.4230769230769231
+              ]
+            },
+            "own_minus_uniform": {
+              "delta_rate": 0.07407407407407407,
+              "ci95": [
+                -0.09375,
+                0.2692307692307692
+              ],
+              "class_signflip_one_sided_p": 0.34375
+            },
+            "own_minus_wrong": {
+              "delta_rate": 0.37037037037037035,
+              "ci95": [
+                0.15789473684210525,
+                0.5833333333333334
+              ],
+              "class_signflip_one_sided_p": 0.015625
+            }
+          },
+          "strict_independent_two": {
+            "own": {
+              "correct_credit": 15.5,
+              "n": 27,
+              "rate": 0.5740740740740741,
+              "rate_ci95": [
+                0.5192307692307693,
+                0.6428571428571429
+              ]
+            },
+            "uniform": {
+              "correct_credit": 11.0,
+              "n": 27,
+              "rate": 0.4074074074074074,
+              "rate_ci95": [
+                0.3333333333333333,
+                0.47619047619047616
+              ]
+            },
+            "wrong": {
+              "correct_credit": 11.0,
+              "n": 27,
+              "rate": 0.4074074074074074,
+              "rate_ci95": [
+                0.3387096774193548,
+                0.5
+              ]
+            },
+            "own_minus_uniform": {
+              "delta_rate": 0.16666666666666666,
+              "ci95": [
+                0.0967741935483871,
+                0.24075670498084267
+              ],
+              "class_signflip_one_sided_p": 0.0078125
+            },
+            "own_minus_wrong": {
+              "delta_rate": 0.16666666666666666,
+              "ci95": [
+                0.06666666666666667,
+                0.26785714285714285
+              ],
+              "class_signflip_one_sided_p": 0.03125
+            }
+          }
+        }
+      },
+      "combined": {
+        "strict_pair": {
+          "own": {
+            "correct_credit": 25.0,
+            "n": 47,
+            "rate": 0.5319148936170213,
+            "rate_ci95": [
+              0.36363636363636365,
+              0.6969873150105707
+            ]
+          },
+          "uniform": {
+            "correct_credit": 24.0,
+            "n": 47,
+            "rate": 0.5106382978723404,
+            "rate_ci95": [
+              0.34285714285714286,
+              0.6666666666666666
+            ]
+          },
+          "wrong": {
+            "correct_credit": 17.0,
+            "n": 47,
+            "rate": 0.3617021276595745,
+            "rate_ci95": [
+              0.20754716981132076,
+              0.5192307692307693
+            ]
+          },
+          "own_minus_uniform": {
+            "delta_rate": 0.02127659574468085,
+            "ci95": [
+              -0.15555555555555556,
+              0.22727272727272727
+            ],
+            "class_signflip_one_sided_p": 0.4982550174498255
+          },
+          "own_minus_wrong": {
+            "delta_rate": 0.1702127659574468,
+            "ci95": [
+              -0.0851063829787234,
+              0.4186046511627907
+            ],
+            "class_signflip_one_sided_p": 0.14158858411415887
+          }
+        },
+        "intra10": {
+          "own": {
+            "correct_credit": 25.0,
+            "n": 240,
+            "rate": 0.10416666666666667,
+            "rate_ci95": [
+              0.075,
+              0.13333333333333333
+            ]
+          },
+          "uniform": {
+            "correct_credit": 19.0,
+            "n": 240,
+            "rate": 0.07916666666666666,
+            "rate_ci95": [
+              0.05416666666666667,
+              0.10833333333333334
+            ]
+          },
+          "wrong": {
+            "correct_credit": 18.0,
+            "n": 240,
+            "rate": 0.075,
+            "rate_ci95": [
+              0.05,
+              0.1
+            ]
+          },
+          "own_minus_uniform": {
+            "delta_rate": 0.025,
+            "ci95": [
+              -0.0125,
+              0.0625
+            ],
+            "class_signflip_one_sided_p": 0.15857841421585783
+          },
+          "own_minus_wrong": {
+            "delta_rate": 0.029166666666666667,
+            "ci95": [
+              -0.004166666666666667,
+              0.0625
+            ],
+            "class_signflip_one_sided_p": 0.08480915190848091
+          }
+        },
+        "object12": {
+          "own": {
+            "correct_credit": 143.0,
+            "n": 240,
+            "rate": 0.5958333333333333,
+            "rate_ci95": [
+              0.49583333333333335,
+              0.6958333333333333
+            ]
+          },
+          "uniform": {
+            "correct_credit": 143.0,
+            "n": 240,
+            "rate": 0.5958333333333333,
+            "rate_ci95": [
+              0.49583333333333335,
+              0.6958333333333333
+            ]
+          },
+          "wrong": {
+            "correct_credit": 143.0,
+            "n": 240,
+            "rate": 0.5958333333333333,
+            "rate_ci95": [
+              0.49583333333333335,
+              0.6958333333333333
+            ]
+          },
+          "own_minus_uniform": {
+            "delta_rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "class_signflip_one_sided_p": 1.0
+          },
+          "own_minus_wrong": {
+            "delta_rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "class_signflip_one_sided_p": 1.0
+          }
+        },
+        "strict_independent_two": {
+          "own": {
+            "correct_credit": 26.5,
+            "n": 47,
+            "rate": 0.5638297872340425,
+            "rate_ci95": [
+              0.5092592592592593,
+              0.631578947368421
+            ]
+          },
+          "uniform": {
+            "correct_credit": 22.0,
+            "n": 47,
+            "rate": 0.46808510638297873,
+            "rate_ci95": [
+              0.4069767441860465,
+              0.527027027027027
+            ]
+          },
+          "wrong": {
+            "correct_credit": 21.0,
+            "n": 47,
+            "rate": 0.44680851063829785,
+            "rate_ci95": [
+              0.3829787234042553,
+              0.5227272727272727
+            ]
+          },
+          "own_minus_uniform": {
+            "delta_rate": 0.09574468085106383,
+            "ci95": [
+              0.010869565217391304,
+              0.18056294326241124
+            ],
+            "class_signflip_one_sided_p": 0.03968960310396896
+          },
+          "own_minus_wrong": {
+            "delta_rate": 0.11702127659574468,
+            "ci95": [
+              0.02,
+              0.21794871794871795
+            ],
+            "class_signflip_one_sided_p": 0.035149648503514964
+          }
+        }
+      }
     }
   }
 }

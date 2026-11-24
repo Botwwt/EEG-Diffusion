@@ -12,11 +12,11 @@ The primary task is to draw a new photograph of **one of twelve calibrated objec
 
 ### Selected personal object readout
 
-We use the 512-object personal R4 readout for object reconstruction. The original 128-object version has the broadest confirmation set. With a correctly predicted object, our direct photo experiment uses a training-calibrated H/14 residual to condition one image. The separate eight-candidate experiment tests selection among generated images. [Model sizes and photo-level evidence](docs/PHOTO_STRUCTURE.md)
+We use the 512-object personal R4 readout for object reconstruction. The original 128-object version has the broadest confirmation set. Every query generates an image using its predicted word, including incorrect predictions. The two-photo evaluator later selects pairs for which both words were correct. [Model sizes and photo-level evidence](docs/PHOTO_STRUCTURE.md)
 
 1. **Learn what distinguishes objects for this person.** On 512 other objects with ten photos each (128 in the seven-person confirmation), a regularized Fisher projection weights EEG directions by how strongly they separate objects relative to the variation between photos of the same object. It keeps 96 directions from 17 posterior electrodes.
 2. **Decode the object.** Map the query and the eight calibration recordings per object into that space. The closest category mean by cosine similarity supplies the predicted word.
-3. **Draw the prediction.** Use that word, the visual prototype of its eight calibration photos, an EEG-predicted visual adjustment and an EEG-predicted 8×8 starting latent. Brain-HIVE and SDXL-Turbo generate one image in four steps. The original query photo is used for scoring. [Fit the personal decoder](research/eeg_stack_20261112/code/fit_personal_session_metric.py) · [Prepare generator inputs](research/eeg_stack_20261112/code/condition_registered_predictions.py)
+3. **Draw one image per query.** The Brain-HIVE object baseline uses the predicted word, an eight-photo visual prototype, an EEG-predicted adjustment and an 8×8 starting latent in four SDXL-Turbo steps. The preferred route for testing individual photographs uses the same 512-object readout, the H/14 mean of the eight photos, and a query EEG residual whose angle was calibrated on other objects. An IP-Adapter conditions four SDXL-Turbo steps on this visual prediction. Held-out query photos enter evaluation. [Object generator inputs](research/eeg_stack_20261112/code/condition_registered_predictions.py) · [Direct photo generator](research/eeg_stack_20261112/code/render_within_photo_ip.py)
 
 ### Seven-participant confirmation at 128 calibration objects
 
@@ -51,7 +51,7 @@ Increasing personal calibration from 128 to 512 outside objects raised full-voca
 
 In H/14 feature space, sub-01 scored **39/47** when both EEG object words were correct and the evaluator had to assign two responses to two original photos. Choosing independently for each query gave **48/94**. A post-hoc analysis subtracted the class prototype before choosing and scored **70/94**. [Embedding and single-query evaluations](docs/PHOTO_STRUCTURE.md#photo-specific-h14-embeddings)
 
-In generated JPEGs, the training-calibrated H/14 angle gave **78/123** correct DINOv2 assignments on sub-04/05, versus **66/123** using the shared visual prior and **44/123** with the wrong EEG. Both participant-level intervals favored own over wrong EEG and included zero against the shared prior. On the full ten-photo task, own and prior scored 30/240 versus 17/240 on sub-04 and 23/240 each on sub-05. [Independent JPEG scores and paired controls](docs/PHOTO_STRUCTURE.md#calibrating-the-residual-angle-before-generation)
+Across three people, the direct H/14 route drew 720 own-EEG images. CLIP-L/14 named **433/720 (60.1%)** correctly and assigned **115/170** eligible pairs to the correct original photos, versus **89/170** for the shared prior and **64/170** for wrong EEG. DINOv2 scored 103/170, 90/170 and 61/170. On the additional sub-01, CLIP scored 31/47 versus 22/47 for the prior and DINOv2 scored 25/47 versus 24/47. The paired intervals against the prior included zero. Identifying the specific original among ten photos of its object on all queries scored **65/720** with CLIP and **78/720** with DINOv2 (10% chance). [Independent scores and controls](docs/PHOTO_STRUCTURE.md#calibrating-the-residual-angle-before-generation) · [Sub-01 generated gallery](research/eeg_stack_20261112/gallery/photo_angle_sub01_registered.jpg)
 
 ### Other inference settings
 

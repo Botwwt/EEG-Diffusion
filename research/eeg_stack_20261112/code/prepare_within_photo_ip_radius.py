@@ -87,7 +87,8 @@ def run(args):
         model_sha256=MODEL_SHA,
     )
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(json.dumps(result, indent=2) + "\n", encoding="utf8")
+    # The published generator and bank designs record the original Windows receipt's digest.
+    args.out.write_text(json.dumps(result, indent=2) + "\n", encoding="utf8", newline="\r\n")
     print("Training-image radius", result["median_norm"], "median cosine", np.median(cosines))
 
 

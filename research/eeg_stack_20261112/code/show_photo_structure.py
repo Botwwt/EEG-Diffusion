@@ -13,6 +13,24 @@ from PIL import Image, ImageDraw
 from render_official_words import crop512
 
 
+def overview(args, rows, labels, indices, folder, arm, manifest):
+    public = Image.new("RGB", (4 * 147, 3 * 167), "#faf9f5")
+    draw = ImageDraw.Draw(public)
+    for k, i in enumerate(indices):
+        x, y = k % 4 * 147, k // 4 * 167
+        draw.text((x + 3, y + 1), "Viewed: " + labels[i], fill="black")
+        draw.text((x + 3, y + 14), "EEG: " + manifest["predicted_words"][i], fill="black")
+        blob = (folder / "images" / arm / f"{i:03d}.jpg").read_bytes()
+        if hashlib.sha256(blob).hexdigest() != manifest["jpeg_sha256"][arm][i]:
+            raise ValueError(f"Image digest mismatch at original row {rows[i]}")
+        with Image.open(io.BytesIO(blob)) as im:
+            public.paste(
+                im.convert("RGB").resize((134, 134), Image.Resampling.LANCZOS), (x + 3, y + 28)
+            )
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    public.save(args.out, quality=93)
+
+
 def run(args):
     panel = json.loads(args.registration.read_bytes())
     columns = args.case or [
@@ -28,6 +46,10 @@ def run(args):
     ):
         raise ValueError("Gallery runs must share the registered queries and EEG words")
     which = [min(np.flatnonzero(labels == c), key=lambda i: rows[i]) for c in sorted(set(labels))]
+    if args.overview:
+        if len(columns) != 1 or len(which) != 12 or args.images or args.private:
+            raise ValueError("A generated-only overview needs one --case and twelve objects")
+        return overview(args, rows, labels, which, roots[0], columns[0][2], manifests[0])
     tile = 148
     public = Image.new("RGB", (len(columns) * (tile + 5), len(which) * (tile + 21) + 23), "white")
     draws = ImageDraw.Draw(public)
@@ -82,6 +104,7 @@ if __name__ == "__main__":
     for name in ("images", "manifest", "private", "support", "warp"):
         p.add_argument("--" + name, type=Path)
     p.add_argument("--case", action="append", nargs=3, metavar=("LABEL", "RUN_DIR", "ARM"))
+    p.add_argument("--overview", action="store_true", help="Generated-only 4×3 grid for one arm")
     args = p.parse_args()
     if (args.case and (args.support or args.warp)) or (
         not args.case and not (args.support and args.warp)

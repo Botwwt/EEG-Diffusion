@@ -31,7 +31,11 @@ def read(path):
 
 def save(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, allow_nan=False) + "\n", encoding="utf8")
+    # The selection digest is embedded in generator conditions and the confirmation design.
+    ending = "\r\n" if path.name in ("selection.json", "strict_pairs.json") else "\n"
+    path.write_text(
+        json.dumps(data, indent=2, allow_nan=False) + "\n", encoding="utf8", newline=ending
+    )
 
 
 def images(source):

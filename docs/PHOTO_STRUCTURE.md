@@ -100,6 +100,24 @@ The original H/14 prediction rotated only 0.165 radians from the class prototype
 
 On DINOv2's two-photo assignment, the participant-level paired intervals for own versus wrong EEG were +16.4 to +44.4 percentage points on sub-04 and +4.3 to +44.3 on sub-05. Both intervals for own versus the uniform prior included zero. The four per-panel CLIP-L/14 intervals for own versus uniform also included zero. The ten-photo endpoint gave a gain over uniform on sub-04 and equal credit on sub-05. [CLIP-L/14 per-panel results](../research/eeg_stack_20261112/results/object_fidelity/photo_angle_render.json) · [DINOv2 results and paired intervals](../research/eeg_stack_20261112/results/object_fidelity/photo_angle_dino.json)
 
+Sub-01 was designated for a separate angle-calibrated image confirmation after the sub-04/05 image results were known. The team already knew this person's object-decoding, earlier rendering and embedding results. The confirmation fixed both condition-packet hashes, the training-derived gain, adapter radius and row seeds before producing the angle-calibrated images. [Additional-participant image protocol](../research/eeg_stack_20261112/results/object_fidelity/photo_angle_confirmation_design.json)
+
+On sub-01, DINOv2 scored **25/47** strict pairs for own EEG, **24/47** for the prior and **17/47** for wrong EEG. The own-minus-prior interval was −15.6 to +22.7 percentage points, and the own-minus-wrong interval was −8.5 to +41.9. Independent choices between the two originals scored 53, 44 and 42 out of 94 queries. Ten-photo identification across all 240 queries gave 25, 19 and 18. Across all three participants the own-EEG images had 103/170 correct joint assignments and 78/720 ten-photo identifications. Under DINOv2, both primary paired contrasts on the additional person remained uncertain. [Three-person DINOv2 evaluation](../research/eeg_stack_20261112/results/object_fidelity/photo_angle_dino.json)
+
+CLIP-L/14 assigned **31/47** strict pairs on sub-01 using own EEG, **22/47** using the shared prior and **12/47** using wrong EEG. The own-minus-wrong interval was positive in each panel. The own-minus-prior intervals reached or crossed zero. On the ten-photo test the scores were 21, 25 and 24 of 240. Full-vocabulary naming gave 129.5, 128.5 and 132.5 credits. [Per-panel paired intervals and scoring inputs](../research/eeg_stack_20261112/results/object_fidelity/photo_angle_render.json)
+
+| Direct angle-calibrated JPEGs, all three participants | Own EEG | Uniform prior | Wrong EEG |
+| --- | ---: | ---: | ---: |
+| CLIP-L/14 naming among 1,854, all queries | **433/720** | 432/720 | 436/720 |
+| CLIP-L/14 two-photo assignment, both object words correct | **115/170** | 89/170 | 64/170 |
+| DINOv2 two-photo assignment, same eligible pairs | **103/170** | 90/170 | 61/170 |
+| CLIP-L/14 same-object ten-photo identification, all queries | **65/720** | 59/720 | 62/720 |
+| DINOv2 same-object ten-photo identification, all queries | **78/720** | 59/720 | 53/720 |
+
+These are descriptive totals from **2,160 JPEGs** (three arms × 720 participant–photo queries). The two-photo assignment requires correct decoded objects for both queries. Comparing a single generated image to ten originals includes every query and has 10% chance accuracy. The Brain-HIVE 128→512 object-readout comparison above scored RGB before JPEG compression. Here the independent models reopened the saved JPEGs, so 406.5/720 from the original 512-object pipeline and 433/720 from this one are descriptive results under different scoring inputs.
+
+The generated-only galleries use the lowest original row in each object class. [Sub-01 registered](../research/eeg_stack_20261112/gallery/photo_angle_sub01_registered.jpg) · [Sub-01 replication](../research/eeg_stack_20261112/gallery/photo_angle_sub01_replicate.jpg) · [Sub-05 registered](../research/eeg_stack_20261112/gallery/photo_angle_sub05_registered.jpg) · [Sub-05 replication](../research/eeg_stack_20261112/gallery/photo_angle_sub05_replicate.jpg)
+
 ### Selecting among eight generated images
 
 A separate experiment gave every arm eight candidates. For each panel, fold and registered object, the generator saw the object's word and the pooled visual features of its eight calibration photos. Eight fixed seeds produced eight JPEGs per cell. The two panels contain 5 folds × 12 objects × 8 images each, for **960 generated JPEGs** shared across participants. The frozen 512-object readout supplies the query's word. Its EEG residual ranks those eight candidates by support-centered H/14 cosine. The controls use another EEG residual from the same fold and predicted word, proximity to the calibration-photo mean, or the first fixed seed. The selected JPEG is copied unchanged. The held-out original enters the independent scorers after selection. [Experiment design](../research/eeg_stack_20261112/results/object_fidelity/generated_bank_design.json) · [Frozen generator inputs, seeds and weights](../research/eeg_stack_20261112/results/object_fidelity/generated_bank_inputs.json)
@@ -285,6 +303,20 @@ done
 "$H14_PY" "$C/score_within_photo_dino.py" --model "$DINO" --originals "$S/training_images.zip" \
   --manifest "$BASE/atm_train_rows.csv" --references "$REF" --conditions "$G/conditions" \
   --renders "$G/renders" --subjects sub-04 sub-05 --out "$S/dino/angle_scoring"
+```
+
+To replay the additional participant, keep the packaged gain, condition packets and generator settings. The last command evaluates DINOv2 on all three people using the same originals and saved images.
+
+```sh
+"$GPU" "$C/render_within_photo_ip.py" --root "$G" --archive "$A" --dictionary "$BASE/dictionary.csv" \
+  --adapter "$ADAPTER" --subject sub-01
+"$GPU" "$C/score_within_photo_ip.py" --root "$G" --archive "$A" --dictionary "$BASE/dictionary.csv" \
+  --reference-dir "$REF" --subjects sub-01 --out "$G/clip-sub-01.json"
+"$PY" "$C/summarize_within_photo_ip.py" --root "$G" --references "$REF" \
+  --scores "$G/clip-sub-04-sub-05.json" "$G/clip-sub-01.json" --out "$S/photo_angle_render.json"
+"$H14_PY" "$C/score_within_photo_dino.py" --model "$DINO" --originals "$S/training_images.zip" \
+  --manifest "$BASE/atm_train_rows.csv" --references "$REF" --conditions "$G/conditions" \
+  --renders "$G/renders" --subjects sub-04 sub-05 sub-01 --out "$S/dino/angle_scoring_three"
 ```
 
 For the separate eight-candidate experiment, use the original unit-gain EEG packets and the exact machine-readable design. H/14 ranks the bank after generation. The two visual scorers each encode the 960 bank JPEGs once. Use the offline archive Python for CLIP and the modern Transformers environment for H/14 and DINO.

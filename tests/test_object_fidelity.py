@@ -129,3 +129,38 @@ def test_within_photo_prior_ties_only_count_as_half_a_correct_pair():
         assert combined["paired_top1_credit"]["512_paired_swap"] == (
             n - combined["paired_top1_credit"]["512_own"]
         )
+
+
+def test_angle_renders_use_frozen_conditions_and_report_actual_image_counts():
+    root = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    for report, design in (
+        ("within_photo_render.json", "within_photo_render_design.json"),
+        ("photo_angle_render.json", "photo_angle_render_design.json"),
+    ):
+        scores = json.loads((root / report).read_bytes())
+        source = (root / design).read_bytes()
+        spec = json.loads(source)
+        assert scores["design_sha256"] == hashlib.sha256(source).hexdigest()
+        assert (
+            scores["radius_sha256"]
+            == hashlib.sha256((root / "within_photo_render_radius.json").read_bytes()).hexdigest()
+        )
+        assert scores["participant_photo_queries"] == 240 * len(spec["cohort"])
+        assert scores["generated_jpegs"] == scores["participant_photo_queries"] * 3
+        for key, case in scores["cases"].items():
+            panel, subject = key.split("/")
+            assert case["condition_packet_sha256"] == spec["packets_sha256"][f"{subject}/{panel}"]
+
+
+def test_generated_bank_shared_controls_tie_on_pairs_and_keep_calibration_cost_separate():
+    root = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    for filename in ("generated_bank_clip.json", "generated_bank_dino.json"):
+        scores = json.loads((root / filename).read_bytes())
+        assert scores["unique_generated_candidates"] == 2 * 12 * 5 * scores["generator_budget"]
+        for person in scores["subjects"].values():
+            arms = person["both_panels"]["paired_assignment"]["arms"]
+            assert arms["uniform"]["credit"] == arms["fixed0"]["credit"] == arms["own"]["n"] / 2

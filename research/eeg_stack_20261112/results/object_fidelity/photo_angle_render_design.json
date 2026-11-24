@@ -1,0 +1,77 @@
+{
+  "locked_utc": "2026-11-24T18:43:58.271494+00:00",
+  "cohort": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "panels": [
+    "registered",
+    "replicate"
+  ],
+  "packets_sha256": {
+    "sub-04/registered": "eb9555f55cce9e398ae8b8dfd0296b435d684989269bf96598603f14d4a6d909",
+    "sub-04/replicate": "d6e134b65c43c9f7ff37518ad92823281ba6a97f3014361ee713022807c56078",
+    "sub-05/registered": "a3628eb3ed1532912e77855e7676f08f8d9c6206920d78b05bba0944106a03b3",
+    "sub-05/replicate": "87887e4956fada5c96cafdbf277bea04d559b6ac5cb23f76cf52045434c5bb50",
+    "sub-01/registered": "4c47dc29a37719c03ef665451da9aa3d10f820177a557b0dd1ddcb4e3b797053",
+    "sub-01/replicate": "bd01d9b290a9035bd5cfff35f0af6fcdb98d9a38a314beb405c96437bfbe1e62"
+  },
+  "protocol": "One saved JPEG per EEG row per arm; use the same expanded-512 predicted object word in 'A photo of {word}.' and the same SDXL random trajectory for own, uniform and wrong.",
+  "visual": "Direct pooled projected OpenCLIP ViT-H-14 LAION2B-s32B-b79K direction to base Tencent SDXL ViT-H IP-Adapter. Restore a single native image-encoder magnitude by median unnormalized H14 norm of the 32 fixed generic training images below. No per-query norm, targets or fitting to generated images.",
+  "generic_radius_rows": [
+    1144,
+    2507,
+    3663,
+    4159,
+    4195,
+    4352,
+    4963,
+    5247,
+    5259,
+    5323,
+    5899,
+    6014,
+    6061,
+    6178,
+    6246,
+    7210,
+    7763,
+    9483,
+    9533,
+    9761,
+    10509,
+    11356,
+    12158,
+    12390,
+    12662,
+    12858,
+    13441,
+    13825,
+    13849,
+    15324,
+    15696,
+    16038
+  ],
+  "radius_seed": 260509,
+  "space_check": "Verify median cosine >0.95 to released training directions on these 32 non-panel images before rendering.",
+  "model": "SDXL-Turbo 512x512 four Euler ancestral steps 999,749,499,249; no CFG, IP scale 1.0, per-row CUDA generator seeded 923761 + original row; JPEG quality 95 subsampling 0.",
+  "arms": {
+    "own": "Generic-calibrated angle from support prior along current EEG direction",
+    "uniform": "Original eight-support prior",
+    "wrong": "Same fold/word donor direction"
+  },
+  "endpoints": "Post-generation independent OpenAI CLIP-L/14, uncentered normalized cosine for strict two-original assignment among pairs with same true object, fold and correctly predicted word; compare own with uniform on all such pairs and with wrong on pairs for which both donors are the other member. Also report wider same-word pairs and distinct same-truth donor rows; report full 1854, closed12, and intra10. Ties split. Separate panels and subjects. No target photographs or true names are used during image generation.",
+  "adapter_sha256": "ebf05d918348aec7abb02a5e9ecef77e0aaea6914a5c4ea13f50d45eb1681831",
+  "visual_sha256": "b8156300f59d058600fc9a2c9e1586c5fbd4a113f236031acc64c6511d56b432",
+  "original_design_sha256": "76e60477de7a823665998b4c3dcfbd6fac59f615449fa7e4be67563697fa69d8",
+  "angular_calibration": {
+    "n": 1280,
+    "generic_observed_median": 0.5821751254811456,
+    "eeg_predicted_median": 0.1651847201338773,
+    "gain": 3.524388484657116,
+    "max_angle": 0.7888140197141664,
+    "selection_sha256": "914c9a527049783f23e25d1bdd2c3137e5fdd4ed69d18b1ce617853f9d53e79a",
+    "units": "radians"
+  }
+}
