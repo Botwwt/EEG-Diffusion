@@ -1,0 +1,88 @@
+{
+  "registration_sha256": "980ac28dcb7b67861b4d83f4f965e836e6c6c4d1d4e475559c7b615a4d0b9b7a",
+  "panel_lock_sha256": "55e2a8eac1b51a91913ea9ab510b15d3141281bc5b238831d49fb1d160d9cea4",
+  "rule": "Take the lowest original row for each registered object, in alphabetical object order, for every participant. Display the own-EEG arm of each frozen readout.",
+  "participants": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "methods": [
+    "expanded_r4",
+    "full_head_512"
+  ],
+  "shown": [
+    {
+      "object": "bologna",
+      "row": 1400,
+      "ordinal": 48,
+      "fold": 2
+    },
+    {
+      "object": "cereal",
+      "row": 2620,
+      "ordinal": 114,
+      "fold": 4
+    },
+    {
+      "object": "cream_cheese",
+      "row": 3840,
+      "ordinal": 78,
+      "fold": 3
+    },
+    {
+      "object": "dishrag",
+      "row": 4260,
+      "ordinal": 111,
+      "fold": 4
+    },
+    {
+      "object": "fast_food",
+      "row": 4980,
+      "ordinal": 8,
+      "fold": 0
+    },
+    {
+      "object": "gingerbread_man",
+      "row": 5920,
+      "ordinal": 13,
+      "fold": 0
+    },
+    {
+      "object": "hotdog",
+      "row": 7090,
+      "ordinal": 71,
+      "fold": 2
+    },
+    {
+      "object": "outfit",
+      "row": 9600,
+      "ordinal": 106,
+      "fold": 4
+    },
+    {
+      "object": "shopping_cart",
+      "row": 12650,
+      "ordinal": 26,
+      "fold": 1
+    },
+    {
+      "object": "sifter",
+      "row": 12800,
+      "ordinal": 17,
+      "fold": 0
+    },
+    {
+      "object": "vase",
+      "row": 15620,
+      "ordinal": 68,
+      "fold": 2
+    },
+    {
+      "object": "wax_paper",
+      "row": 16010,
+      "ordinal": 76,
+      "fold": 3
+    }
+  ]
+}

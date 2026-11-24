@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image
-from render_within_photo_ip import ARMS, check, packet, panel_names, read, save, sha
+from render_within_photo_ip import ARMS, READOUTS, check, packet, panel_names, read, save, sha
 from score_object_panel import score_object_panel
 from score_official_objects import load_dictionary, load_tokenizer, text_bank, topk_credit, unit
 from score_personal_photo_layout import original_records
@@ -214,7 +214,7 @@ if __name__ == "__main__":
     p.add_argument(
         "--subjects",
         nargs="+",
-        choices=("sub-01", "sub-04", "sub-05"),
+        choices=READOUTS,
         default=["sub-04", "sub-05"],
     )
     p.add_argument("--batch-size", type=int, default=32)

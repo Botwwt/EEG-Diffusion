@@ -1,0 +1,1917 @@
+{
+  "study": "Three participants' same-photo R4 data. Session-only classifier has the query's three session pairs and each registered label's permitted supports. Uniform ties imply 10 hits per occupied joint session cell in a balanced 12x10 panel.",
+  "conditional_null": "Hold all EEG predictions fixed and permute whole class names within the exact joint tuple across all ten exemplars. This uses a different null from the session-only classifier. Singleton cells contain no contrast for object information beyond sessions.",
+  "source_schedule_sha256": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+  "source_revision": "101997d4f14c41b615bcaf8c0907740106d260c5",
+  "recorded_packet_session_ids_equal_source": true,
+  "cohort_result_sha256": "671205d1f9dd42dedb207e59f636c20cdfd1959b7f63562f61847cd4c80cef23",
+  "panels": {
+    "registered": {
+      "words": [
+        "airplane",
+        "apple",
+        "car",
+        "chair",
+        "clock",
+        "dog",
+        "guitar",
+        "mug",
+        "scissors",
+        "shoe",
+        "toothbrush",
+        "umbrella"
+      ],
+      "individuals": {
+        "sub-04": {
+          "group_sizes": [
+            5,
+            4,
+            2,
+            1
+          ],
+          "groups_per_size": {
+            "1": 1,
+            "2": 1,
+            "4": 1,
+            "5": 1
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 86,
+          "eeg_minus_session_only": 46.0,
+          "fixed_predictions_conditional_expected_hits": 38.1,
+          "excess_over_label_permutation": 47.9,
+          "exact_permutations": 5760,
+          "one_sided_exact_p": 0.00017361111111111112,
+          "nonsingleton_original_12way": {
+            "n": 110,
+            "correct": 77,
+            "conditional_expected_hits": 29.1
+          },
+          "nonsingleton_restricted": {
+            "n": 110,
+            "correct": 80,
+            "session_only_expected_hits": 30.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                1,
+                7
+              ],
+              "n": 20,
+              "original_12way_correct": 18
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                0,
+                2,
+                4,
+                6,
+                10
+              ],
+              "n": 50,
+              "original_12way_correct": 35
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                11
+              ],
+              "n": 10,
+              "original_12way_correct": 9
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                3,
+                5,
+                8,
+                9
+              ],
+              "n": 40,
+              "original_12way_correct": 24
+            }
+          ]
+        },
+        "sub-05": {
+          "group_sizes": [
+            4,
+            4,
+            2,
+            2
+          ],
+          "groups_per_size": {
+            "2": 2,
+            "4": 2
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 75,
+          "eeg_minus_session_only": 35.0,
+          "fixed_predictions_conditional_expected_hits": 37.25,
+          "excess_over_label_permutation": 37.75,
+          "exact_permutations": 2304,
+          "one_sided_exact_p": 0.00043402777777777775,
+          "nonsingleton_original_12way": {
+            "n": 120,
+            "correct": 75,
+            "conditional_expected_hits": 37.25
+          },
+          "nonsingleton_restricted": {
+            "n": 120,
+            "correct": 78,
+            "session_only_expected_hits": 40.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                1,
+                4,
+                7,
+                11
+              ],
+              "n": 40,
+              "original_12way_correct": 22
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                6,
+                10
+              ],
+              "n": 20,
+              "original_12way_correct": 13
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                2,
+                3
+              ],
+              "n": 20,
+              "original_12way_correct": 19
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                0,
+                5,
+                8,
+                9
+              ],
+              "n": 40,
+              "original_12way_correct": 21
+            }
+          ]
+        },
+        "sub-01": {
+          "group_sizes": [
+            6,
+            3,
+            2,
+            1
+          ],
+          "groups_per_size": {
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "6": 1
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 67,
+          "eeg_minus_session_only": 27.0,
+          "fixed_predictions_conditional_expected_hits": 38.83333333333333,
+          "excess_over_label_permutation": 28.16666666666667,
+          "exact_permutations": 8640,
+          "one_sided_exact_p": 0.00034722222222222224,
+          "nonsingleton_original_12way": {
+            "n": 110,
+            "correct": 57,
+            "conditional_expected_hits": 28.833333333333336
+          },
+          "nonsingleton_restricted": {
+            "n": 110,
+            "correct": 60,
+            "session_only_expected_hits": 30.000000000000007
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                0,
+                8
+              ],
+              "n": 20,
+              "original_12way_correct": 14
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                1,
+                5,
+                7,
+                9,
+                10,
+                11
+              ],
+              "n": 60,
+              "original_12way_correct": 30
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                3
+              ],
+              "n": 10,
+              "original_12way_correct": 10
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                2,
+                4,
+                6
+              ],
+              "n": 30,
+              "original_12way_correct": 13
+            }
+          ]
+        }
+      },
+      "cohort": {
+        "group_sizes": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "groups_per_size": {
+          "1": 8,
+          "2": 2
+        },
+        "session_only_expected_hits": 100,
+        "observed_hits": 112,
+        "eeg_minus_session_only": 12.0,
+        "fixed_predictions_conditional_expected_hits": 94.5,
+        "excess_over_label_permutation": 17.5,
+        "exact_permutations": 4,
+        "one_sided_exact_p": 0.25,
+        "nonsingleton_original_12way": {
+          "n": 40,
+          "correct": 37,
+          "conditional_expected_hits": 19.5
+        },
+        "nonsingleton_restricted": {
+          "n": 40,
+          "correct": 38,
+          "session_only_expected_hits": 20.0
+        },
+        "groups": [
+          {
+            "tuple": [
+              1,
+              3,
+              1,
+              3,
+              1,
+              4
+            ],
+            "word_indices": [
+              1,
+              7
+            ],
+            "n": 20,
+            "original_12way_correct": 18
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              1,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              4
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              1,
+              4,
+              1,
+              4
+            ],
+            "word_indices": [
+              10
+            ],
+            "n": 10,
+            "original_12way_correct": 9
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              1,
+              4,
+              2,
+              4
+            ],
+            "word_indices": [
+              6
+            ],
+            "n": 10,
+            "original_12way_correct": 7
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              2
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              4,
+              1,
+              3
+            ],
+            "word_indices": [
+              0
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              1,
+              3,
+              1,
+              4
+            ],
+            "word_indices": [
+              11
+            ],
+            "n": 10,
+            "original_12way_correct": 9
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              3,
+              2,
+              3
+            ],
+            "word_indices": [
+              3
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              4,
+              1,
+              3
+            ],
+            "word_indices": [
+              8
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              4,
+              1,
+              4
+            ],
+            "word_indices": [
+              5,
+              9
+            ],
+            "n": 20,
+            "original_12way_correct": 19
+          }
+        ]
+      }
+    },
+    "replicate": {
+      "words": [
+        "bed",
+        "gearshift",
+        "gramophone",
+        "poppy",
+        "spacesuit",
+        "tongue",
+        "punching_bag",
+        "stove1",
+        "bedpan",
+        "donkey",
+        "paint",
+        "gold"
+      ],
+      "individuals": {
+        "sub-04": {
+          "group_sizes": [
+            5,
+            4,
+            2,
+            1
+          ],
+          "groups_per_size": {
+            "1": 1,
+            "2": 1,
+            "4": 1,
+            "5": 1
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 94,
+          "eeg_minus_session_only": 54.0,
+          "fixed_predictions_conditional_expected_hits": 39.10000000000001,
+          "excess_over_label_permutation": 54.89999999999999,
+          "exact_permutations": 5760,
+          "one_sided_exact_p": 0.00017361111111111112,
+          "nonsingleton_original_12way": {
+            "n": 110,
+            "correct": 84,
+            "conditional_expected_hits": 29.1
+          },
+          "nonsingleton_restricted": {
+            "n": 110,
+            "correct": 86,
+            "session_only_expected_hits": 30.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                0
+              ],
+              "n": 10,
+              "original_12way_correct": 10
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                2,
+                4,
+                9,
+                11
+              ],
+              "n": 40,
+              "original_12way_correct": 36
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                1,
+                5,
+                6,
+                7,
+                10
+              ],
+              "n": 50,
+              "original_12way_correct": 29
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                3,
+                8
+              ],
+              "n": 20,
+              "original_12way_correct": 19
+            }
+          ]
+        },
+        "sub-05": {
+          "group_sizes": [
+            7,
+            3,
+            1,
+            1
+          ],
+          "groups_per_size": {
+            "1": 2,
+            "3": 1,
+            "7": 1
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 72,
+          "eeg_minus_session_only": 32.0,
+          "fixed_predictions_conditional_expected_hits": 39.04761904761905,
+          "excess_over_label_permutation": 32.95238095238095,
+          "exact_permutations": 30240,
+          "one_sided_exact_p": 6.613756613756614e-05,
+          "nonsingleton_original_12way": {
+            "n": 100,
+            "correct": 52,
+            "conditional_expected_hits": 19.047619047619044
+          },
+          "nonsingleton_restricted": {
+            "n": 100,
+            "correct": 54,
+            "session_only_expected_hits": 19.999999999999993
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                6
+              ],
+              "n": 10,
+              "original_12way_correct": 10
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                5
+              ],
+              "n": 10,
+              "original_12way_correct": 10
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                1,
+                2,
+                3
+              ],
+              "n": 30,
+              "original_12way_correct": 13
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                0,
+                4,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "n": 70,
+              "original_12way_correct": 39
+            }
+          ]
+        },
+        "sub-01": {
+          "group_sizes": [
+            5,
+            3,
+            3,
+            1
+          ],
+          "groups_per_size": {
+            "1": 1,
+            "3": 2,
+            "5": 1
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 76,
+          "eeg_minus_session_only": 36.0,
+          "fixed_predictions_conditional_expected_hits": 38.33333333333333,
+          "excess_over_label_permutation": 37.66666666666667,
+          "exact_permutations": 4320,
+          "one_sided_exact_p": 0.000925925925925926,
+          "nonsingleton_original_12way": {
+            "n": 110,
+            "correct": 66,
+            "conditional_expected_hits": 28.33333333333333
+          },
+          "nonsingleton_restricted": {
+            "n": 110,
+            "correct": 69,
+            "session_only_expected_hits": 30.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                11
+              ],
+              "n": 10,
+              "original_12way_correct": 10
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                3,
+                7,
+                10
+              ],
+              "n": 30,
+              "original_12way_correct": 22
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                2,
+                4,
+                8
+              ],
+              "n": 30,
+              "original_12way_correct": 17
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                0,
+                1,
+                5,
+                6,
+                9
+              ],
+              "n": 50,
+              "original_12way_correct": 27
+            }
+          ]
+        }
+      },
+      "cohort": {
+        "group_sizes": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "groups_per_size": {
+          "1": 10,
+          "2": 1
+        },
+        "session_only_expected_hits": 110,
+        "observed_hits": 116,
+        "eeg_minus_session_only": 6.0,
+        "fixed_predictions_conditional_expected_hits": 108.0,
+        "excess_over_label_permutation": 8.0,
+        "exact_permutations": 2,
+        "one_sided_exact_p": 0.5,
+        "nonsingleton_original_12way": {
+          "n": 20,
+          "correct": 18,
+          "conditional_expected_hits": 10.0
+        },
+        "nonsingleton_restricted": {
+          "n": 20,
+          "correct": 18,
+          "session_only_expected_hits": 10.0
+        },
+        "groups": [
+          {
+            "tuple": [
+              1,
+              3,
+              2,
+              4,
+              2,
+              4
+            ],
+            "word_indices": [
+              0
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              3,
+              2,
+              3
+            ],
+            "word_indices": [
+              2
+            ],
+            "n": 10,
+            "original_12way_correct": 9
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              4,
+              1,
+              3
+            ],
+            "word_indices": [
+              11
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              4,
+              2,
+              3
+            ],
+            "word_indices": [
+              4
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              4,
+              2,
+              4
+            ],
+            "word_indices": [
+              9
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              1,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              6
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              1,
+              4,
+              2,
+              4
+            ],
+            "word_indices": [
+              5
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              2,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              1
+            ],
+            "n": 10,
+            "original_12way_correct": 9
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              2,
+              4,
+              1,
+              4
+            ],
+            "word_indices": [
+              7,
+              10
+            ],
+            "n": 20,
+            "original_12way_correct": 18
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              3,
+              1,
+              4
+            ],
+            "word_indices": [
+              3
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              4,
+              2,
+              3
+            ],
+            "word_indices": [
+              8
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          }
+        ]
+      }
+    },
+    "fresh": {
+      "words": [
+        "hot_chocolate",
+        "goblet",
+        "navel",
+        "rice",
+        "payphone",
+        "can_opener",
+        "telegraph",
+        "trumpet",
+        "bow2",
+        "lock",
+        "lid",
+        "margarita"
+      ],
+      "individuals": {
+        "sub-04": {
+          "group_sizes": [
+            4,
+            3,
+            3,
+            2
+          ],
+          "groups_per_size": {
+            "2": 1,
+            "3": 2,
+            "4": 1
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 85,
+          "eeg_minus_session_only": 45.0,
+          "fixed_predictions_conditional_expected_hits": 37.41666666666666,
+          "excess_over_label_permutation": 47.58333333333334,
+          "exact_permutations": 1728,
+          "one_sided_exact_p": 0.0005787037037037037,
+          "nonsingleton_original_12way": {
+            "n": 120,
+            "correct": 85,
+            "conditional_expected_hits": 37.41666666666666
+          },
+          "nonsingleton_restricted": {
+            "n": 120,
+            "correct": 90,
+            "session_only_expected_hits": 39.99999999999999
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                5,
+                7,
+                11
+              ],
+              "n": 30,
+              "original_12way_correct": 19
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                2,
+                6,
+                9,
+                10
+              ],
+              "n": 40,
+              "original_12way_correct": 26
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                1,
+                3
+              ],
+              "n": 20,
+              "original_12way_correct": 13
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                0,
+                4,
+                8
+              ],
+              "n": 30,
+              "original_12way_correct": 27
+            }
+          ]
+        },
+        "sub-05": {
+          "group_sizes": [
+            4,
+            3,
+            3,
+            2
+          ],
+          "groups_per_size": {
+            "2": 1,
+            "3": 2,
+            "4": 1
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 60,
+          "eeg_minus_session_only": 20.0,
+          "fixed_predictions_conditional_expected_hits": 38.08333333333333,
+          "excess_over_label_permutation": 21.91666666666667,
+          "exact_permutations": 1728,
+          "one_sided_exact_p": 0.011574074074074073,
+          "nonsingleton_original_12way": {
+            "n": 120,
+            "correct": 60,
+            "conditional_expected_hits": 38.08333333333333
+          },
+          "nonsingleton_restricted": {
+            "n": 120,
+            "correct": 64,
+            "session_only_expected_hits": 40.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                0,
+                3,
+                7,
+                10
+              ],
+              "n": 40,
+              "original_12way_correct": 19
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                2,
+                11
+              ],
+              "n": 20,
+              "original_12way_correct": 18
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                1,
+                4,
+                6
+              ],
+              "n": 30,
+              "original_12way_correct": 12
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                5,
+                8,
+                9
+              ],
+              "n": 30,
+              "original_12way_correct": 11
+            }
+          ]
+        },
+        "sub-01": {
+          "group_sizes": [
+            6,
+            3,
+            3
+          ],
+          "groups_per_size": {
+            "3": 2,
+            "6": 1
+          },
+          "session_only_expected_hits": 30,
+          "observed_hits": 64,
+          "eeg_minus_session_only": 34.0,
+          "fixed_predictions_conditional_expected_hits": 28.666666666666668,
+          "excess_over_label_permutation": 35.33333333333333,
+          "exact_permutations": 25920,
+          "one_sided_exact_p": 0.0033950617283950617,
+          "nonsingleton_original_12way": {
+            "n": 120,
+            "correct": 64,
+            "conditional_expected_hits": 28.666666666666668
+          },
+          "nonsingleton_restricted": {
+            "n": 120,
+            "correct": 66,
+            "session_only_expected_hits": 30.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                0,
+                1,
+                5,
+                6,
+                7,
+                9
+              ],
+              "n": 60,
+              "original_12way_correct": 15
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                8,
+                10,
+                11
+              ],
+              "n": 30,
+              "original_12way_correct": 20
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                2,
+                3,
+                4
+              ],
+              "n": 30,
+              "original_12way_correct": 29
+            }
+          ]
+        }
+      },
+      "cohort": {
+        "group_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "groups_per_size": {
+          "1": 12
+        },
+        "session_only_expected_hits": 120,
+        "observed_hits": 117,
+        "eeg_minus_session_only": -3.0,
+        "fixed_predictions_conditional_expected_hits": 117.0,
+        "excess_over_label_permutation": 0.0,
+        "exact_permutations": 1,
+        "one_sided_exact_p": 1.0,
+        "nonsingleton_original_12way": {
+          "n": 0,
+          "correct": 0,
+          "conditional_expected_hits": 0.0
+        },
+        "nonsingleton_restricted": {
+          "n": 0,
+          "correct": 0,
+          "session_only_expected_hits": 0.0
+        },
+        "groups": [
+          {
+            "tuple": [
+              1,
+              3,
+              1,
+              3,
+              1,
+              3
+            ],
+            "word_indices": [
+              7
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              3,
+              1,
+              4,
+              1,
+              4
+            ],
+            "word_indices": [
+              11
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              3,
+              2,
+              4,
+              1,
+              3
+            ],
+            "word_indices": [
+              5
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              1,
+              3,
+              1,
+              4
+            ],
+            "word_indices": [
+              10
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              1,
+              4,
+              2,
+              4
+            ],
+            "word_indices": [
+              2
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              3,
+              1,
+              3
+            ],
+            "word_indices": [
+              6
+            ],
+            "n": 10,
+            "original_12way_correct": 9
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              4,
+              1,
+              3
+            ],
+            "word_indices": [
+              9
+            ],
+            "n": 10,
+            "original_12way_correct": 8
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              1,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              3
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              2,
+              3,
+              1,
+              3
+            ],
+            "word_indices": [
+              1
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              1,
+              3,
+              1,
+              3
+            ],
+            "word_indices": [
+              0
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              4
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              4,
+              1,
+              4
+            ],
+            "word_indices": [
+              8
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          }
+        ]
+      }
+    },
+    "prospective": {
+      "words": [
+        "bologna",
+        "shopping_cart",
+        "wax_paper",
+        "cream_cheese",
+        "fast_food",
+        "outfit",
+        "gingerbread_man",
+        "dishrag",
+        "sifter",
+        "cereal",
+        "vase",
+        "hotdog"
+      ],
+      "individuals": {
+        "sub-04": {
+          "group_sizes": [
+            4,
+            4,
+            3,
+            1
+          ],
+          "groups_per_size": {
+            "1": 1,
+            "3": 1,
+            "4": 2
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 81,
+          "eeg_minus_session_only": 41.0,
+          "fixed_predictions_conditional_expected_hits": 38.66666666666667,
+          "excess_over_label_permutation": 42.33333333333333,
+          "exact_permutations": 3456,
+          "one_sided_exact_p": 0.0005787037037037037,
+          "nonsingleton_original_12way": {
+            "n": 110,
+            "correct": 71,
+            "conditional_expected_hits": 28.666666666666668
+          },
+          "nonsingleton_restricted": {
+            "n": 110,
+            "correct": 74,
+            "session_only_expected_hits": 30.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                0,
+                2,
+                6
+              ],
+              "n": 30,
+              "original_12way_correct": 24
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                1
+              ],
+              "n": 10,
+              "original_12way_correct": 10
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                4,
+                8,
+                9,
+                10
+              ],
+              "n": 40,
+              "original_12way_correct": 22
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                3,
+                5,
+                7,
+                11
+              ],
+              "n": 40,
+              "original_12way_correct": 25
+            }
+          ]
+        },
+        "sub-05": {
+          "group_sizes": [
+            4,
+            4,
+            3,
+            1
+          ],
+          "groups_per_size": {
+            "1": 1,
+            "3": 1,
+            "4": 2
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 69,
+          "eeg_minus_session_only": 29.0,
+          "fixed_predictions_conditional_expected_hits": 36.75,
+          "excess_over_label_permutation": 32.25,
+          "exact_permutations": 3456,
+          "one_sided_exact_p": 0.00028935185185185184,
+          "nonsingleton_original_12way": {
+            "n": 110,
+            "correct": 61,
+            "conditional_expected_hits": 28.75
+          },
+          "nonsingleton_restricted": {
+            "n": 110,
+            "correct": 65,
+            "session_only_expected_hits": 30.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                0,
+                2,
+                5,
+                9
+              ],
+              "n": 40,
+              "original_12way_correct": 22
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                7
+              ],
+              "n": 10,
+              "original_12way_correct": 8
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                4,
+                6,
+                8,
+                11
+              ],
+              "n": 40,
+              "original_12way_correct": 21
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                1,
+                3,
+                10
+              ],
+              "n": 30,
+              "original_12way_correct": 18
+            }
+          ]
+        },
+        "sub-01": {
+          "group_sizes": [
+            4,
+            3,
+            3,
+            2
+          ],
+          "groups_per_size": {
+            "2": 1,
+            "3": 2,
+            "4": 1
+          },
+          "session_only_expected_hits": 40,
+          "observed_hits": 82,
+          "eeg_minus_session_only": 42.0,
+          "fixed_predictions_conditional_expected_hits": 38.25,
+          "excess_over_label_permutation": 43.75,
+          "exact_permutations": 1728,
+          "one_sided_exact_p": 0.0011574074074074073,
+          "nonsingleton_original_12way": {
+            "n": 120,
+            "correct": 82,
+            "conditional_expected_hits": 38.25
+          },
+          "nonsingleton_restricted": {
+            "n": 120,
+            "correct": 84,
+            "session_only_expected_hits": 40.0
+          },
+          "groups": [
+            {
+              "tuple": [
+                1,
+                3
+              ],
+              "word_indices": [
+                2,
+                3,
+                8
+              ],
+              "n": 30,
+              "original_12way_correct": 27
+            },
+            {
+              "tuple": [
+                1,
+                4
+              ],
+              "word_indices": [
+                7,
+                10
+              ],
+              "n": 20,
+              "original_12way_correct": 11
+            },
+            {
+              "tuple": [
+                2,
+                3
+              ],
+              "word_indices": [
+                1,
+                5,
+                11
+              ],
+              "n": 30,
+              "original_12way_correct": 21
+            },
+            {
+              "tuple": [
+                2,
+                4
+              ],
+              "word_indices": [
+                0,
+                4,
+                6,
+                9
+              ],
+              "n": 40,
+              "original_12way_correct": 23
+            }
+          ]
+        }
+      },
+      "cohort": {
+        "group_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "groups_per_size": {
+          "1": 12
+        },
+        "session_only_expected_hits": 120,
+        "observed_hits": 116,
+        "eeg_minus_session_only": -4.0,
+        "fixed_predictions_conditional_expected_hits": 116.0,
+        "excess_over_label_permutation": 0.0,
+        "exact_permutations": 1,
+        "one_sided_exact_p": 1.0,
+        "nonsingleton_original_12way": {
+          "n": 0,
+          "correct": 0,
+          "conditional_expected_hits": 0.0
+        },
+        "nonsingleton_restricted": {
+          "n": 0,
+          "correct": 0,
+          "session_only_expected_hits": 0.0
+        },
+        "groups": [
+          {
+            "tuple": [
+              1,
+              3,
+              1,
+              3,
+              1,
+              3
+            ],
+            "word_indices": [
+              2
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              3,
+              1,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              0
+            ],
+            "n": 10,
+            "original_12way_correct": 9
+          },
+          {
+            "tuple": [
+              1,
+              3,
+              2,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              6
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              1,
+              4,
+              2,
+              4,
+              2,
+              3
+            ],
+            "word_indices": [
+              1
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              1,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              9
+            ],
+            "n": 10,
+            "original_12way_correct": 9
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              2,
+              3,
+              1,
+              3
+            ],
+            "word_indices": [
+              8
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              2,
+              3,
+              2,
+              4
+            ],
+            "word_indices": [
+              4
+            ],
+            "n": 10,
+            "original_12way_correct": 8
+          },
+          {
+            "tuple": [
+              2,
+              3,
+              2,
+              4,
+              1,
+              4
+            ],
+            "word_indices": [
+              10
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              1,
+              3,
+              2,
+              3
+            ],
+            "word_indices": [
+              5
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              1,
+              4,
+              1,
+              4
+            ],
+            "word_indices": [
+              7
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              3,
+              2,
+              3
+            ],
+            "word_indices": [
+              11
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          },
+          {
+            "tuple": [
+              2,
+              4,
+              2,
+              4,
+              1,
+              3
+            ],
+            "word_indices": [
+              3
+            ],
+            "n": 10,
+            "original_12way_correct": 10
+          }
+        ]
+      }
+    }
+  },
+  "combined": {
+    "observed_hits": 461,
+    "session_only_expected_hits": 450,
+    "fixed_predictions_conditional_expected_hits": 435.5,
+    "excess_over_label_permutation": 25.5,
+    "exact_permutations": 8,
+    "joint_one_sided_exact_p": 0.125
+  }
+}

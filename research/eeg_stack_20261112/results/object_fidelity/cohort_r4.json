@@ -1,0 +1,235 @@
+{
+  "subject": "cohort-3",
+  "contributing_subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "physical_trials_per_photo": 12,
+  "individual_trials_per_photo": 4,
+  "design_sha256": "a940ada12710ddb60ae62c2e99a953ecf332a512f0356f1dccec3744c4542fed",
+  "driver_sha256": "fd3a033ecb153af16bac931fffd2f18238edd242197d82f2c6d6e1ed1a78279d",
+  "panels": {
+    "registered": {
+      "n": 120,
+      "objects": 12,
+      "hits": {
+        "cohort": 112.0,
+        "sub-04": 86.0,
+        "sub-05": 75.0,
+        "sub-01": 67.0,
+        "misaligned": 32.0,
+        "mean_single": 76.0
+      },
+      "cohort_minus_sub04": {
+        "delta_hits": 26.0,
+        "difference": 0.21666666666666667,
+        "ci95": [
+          0.10833333333333334,
+          0.3333333333333333
+        ]
+      },
+      "cohort_minus_mean_individual": {
+        "delta_hits": 36.0,
+        "difference": 0.3,
+        "ci95": [
+          0.22222222222222224,
+          0.3833333333333334
+        ]
+      },
+      "cohort_minus_misaligned": {
+        "delta_hits": 80.0,
+        "difference": 0.6666666666666666,
+        "ci95": [
+          0.5583333333333333,
+          0.7666666666666667
+        ]
+      },
+      "predictions_sha256": "b971fb0b7392e55f5e3606ceae741a2b3a5ff329b2f2b4f7e3fba1fd4e378bd5"
+    },
+    "replicate": {
+      "n": 120,
+      "objects": 12,
+      "hits": {
+        "cohort": 116.0,
+        "sub-04": 94.0,
+        "sub-05": 72.0,
+        "sub-01": 76.0,
+        "misaligned": 28.0,
+        "mean_single": 80.66666666666671
+      },
+      "cohort_minus_sub04": {
+        "delta_hits": 22.0,
+        "difference": 0.18333333333333332,
+        "ci95": [
+          0.06666666666666667,
+          0.30833333333333335
+        ]
+      },
+      "cohort_minus_mean_individual": {
+        "delta_hits": 35.33333333333333,
+        "difference": 0.2944444444444444,
+        "ci95": [
+          0.21111111111111114,
+          0.3777777777777777
+        ]
+      },
+      "cohort_minus_misaligned": {
+        "delta_hits": 88.0,
+        "difference": 0.7333333333333333,
+        "ci95": [
+          0.6166666666666667,
+          0.8416666666666667
+        ]
+      },
+      "predictions_sha256": "5bc8250c0fbab891d5d2f40f395b9e7787cb726bf14ca2e08575630291709cd1"
+    },
+    "fresh": {
+      "n": 120,
+      "objects": 12,
+      "hits": {
+        "cohort": 117.0,
+        "sub-04": 85.0,
+        "sub-05": 60.0,
+        "sub-01": 64.0,
+        "misaligned": 27.0,
+        "mean_single": 69.66666666666666
+      },
+      "cohort_minus_sub04": {
+        "delta_hits": 32.0,
+        "difference": 0.26666666666666666,
+        "ci95": [
+          0.14166666666666666,
+          0.4083333333333333
+        ]
+      },
+      "cohort_minus_mean_individual": {
+        "delta_hits": 47.333333333333336,
+        "difference": 0.3944444444444445,
+        "ci95": [
+          0.2916666666666667,
+          0.49166666666666664
+        ]
+      },
+      "cohort_minus_misaligned": {
+        "delta_hits": 90.0,
+        "difference": 0.75,
+        "ci95": [
+          0.7,
+          0.8083333333333333
+        ]
+      },
+      "predictions_sha256": "9431c2d8aa93c4e88f018167b3fdf18fdfa316ed377cc135bfb67c1bff9d713c"
+    },
+    "prospective": {
+      "n": 120,
+      "objects": 12,
+      "hits": {
+        "cohort": 116.0,
+        "sub-04": 81.0,
+        "sub-05": 69.0,
+        "sub-01": 82.0,
+        "misaligned": 30.0,
+        "mean_single": 77.33333333333331
+      },
+      "cohort_minus_sub04": {
+        "delta_hits": 35.0,
+        "difference": 0.2916666666666667,
+        "ci95": [
+          0.18333333333333332,
+          0.4
+        ]
+      },
+      "cohort_minus_mean_individual": {
+        "delta_hits": 38.666666666666664,
+        "difference": 0.3222222222222222,
+        "ci95": [
+          0.24166666666666675,
+          0.4027777777777778
+        ]
+      },
+      "cohort_minus_misaligned": {
+        "delta_hits": 86.0,
+        "difference": 0.7166666666666667,
+        "ci95": [
+          0.5916666666666667,
+          0.8333333333333334
+        ]
+      },
+      "predictions_sha256": "867e30edb85f9372d6b6fd4b51ce38dab9865412fe8b2103b987490f6a52a1b6"
+    }
+  },
+  "within_person_h14_replay_max_abs": {
+    "registered": {
+      "sub-04": 0.0,
+      "sub-05": 1.6298145055770874e-09,
+      "sub-01": 0.0
+    },
+    "replicate": {
+      "sub-04": 0.0,
+      "sub-05": 0.0,
+      "sub-01": 0.0
+    },
+    "fresh": {
+      "sub-04": 0.0,
+      "sub-05": 0.0,
+      "sub-01": 0.0
+    },
+    "prospective": {
+      "sub-04": 0.0,
+      "sub-05": 0.0,
+      "sub-01": 0.0
+    }
+  },
+  "combined": {
+    "n": 480,
+    "objects": 48,
+    "hits": {
+      "cohort": 461.0,
+      "sub-04": 346.0,
+      "sub-05": 276.0,
+      "sub-01": 289.0,
+      "misaligned": 117.0,
+      "mean_single": 303.6666666666666
+    },
+    "cohort_minus_sub04": {
+      "delta_hits": 115.0,
+      "difference": 0.23958333333333334,
+      "ci95": [
+        0.18125,
+        0.3
+      ]
+    },
+    "cohort_minus_mean_individual": {
+      "delta_hits": 157.33333333333334,
+      "difference": 0.3277777777777778,
+      "ci95": [
+        0.2840277777777777,
+        0.3729166666666667
+      ]
+    },
+    "cohort_minus_misaligned": {
+      "delta_hits": 344.0,
+      "difference": 0.7166666666666667,
+      "ci95": [
+        0.6666666666666666,
+        0.7666666666666667
+      ]
+    }
+  },
+  "passed_render_gate": true,
+  "render_packet": {
+    "subject": "cohort-3",
+    "physical_trials_per_photo": 12,
+    "contributing_subjects": [
+      "sub-04",
+      "sub-05",
+      "sub-01"
+    ],
+    "packet_sha256": "9ab7f3028280d3b5d4f1dbbd0060c15587f0f8451def77735d0e802bf1747333",
+    "design_sha256": "e5e5545c4d510018cecd783139022bc39f4dd202c86ac3843ae29f6b815a8b19",
+    "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+    "word_predictions_sha256": "67b7ffc66af8172d7aeb6c5b01a5796ca6f78a8fbc05fd2cff6fbd24090c458d",
+    "source_eeg_receipt_sha256": "530c76241bc4a43028627074b3fdfc9900cacf1d078d13501d44003550f9dddf"
+  }
+}

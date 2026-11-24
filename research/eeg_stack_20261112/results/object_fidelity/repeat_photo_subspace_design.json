@@ -1,0 +1,9 @@
+{
+  "split_source_sha256": "1f4b52f0295fd5033e0d78b5182cfafc56e40224050de3fed1635a94f3cdc882",
+  "population": "Use the frozen 416-object training and 96-object verification groups from shared_photo_eeg_design.json, disjoint from all 48 panel objects. Same three participants and original training-photo rows. Each model uses EEG from its own participant only.",
+  "input": "Within each training object, center each of two physically separate two-trial means. The 63-channel, 14-bin full-scalp features have 882 coordinates per early or late recording. Use the four-trial mean at inference.",
+  "architecture": "Learn 64 generalized eigenvectors of symmetric cross-session same-photo covariance relative to the average individual-session covariance plus diagonal regularization of 0.5 after feature standardization. Fit ridge=2 in standardized projected coordinates to within-object H/14 differences. Average that visual residual and the 17-channel ridge=2 residual at equal weight.",
+  "controls": "17-channel posterior ridge alone, the same mixture using full-scalp mean ridge, and the same 64-mode estimator after a nonzero random shift of late-session photo rows inside each training object (seed 260528). Never permute test EEG.",
+  "endpoint": "All 45 pairs per held-out class, with eight other same-class supports, use normalized sum of support H/14 mean and predicted residual from support mean. Correct joint cosine assignment is primary. The independent unit is the object. Use 10000 paired bootstrap draws of the 96 objects shared by three people, seed 260528. Compare participant totals as descriptive.",
+  "advance": "Render only if the lower 95 percent bound for the primary joint assignment gain is positive over all three controls and the candidate improves over the original posterior readout in at least two people."
+}

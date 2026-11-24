@@ -34,6 +34,92 @@ def test_rendering_uses_the_panel_list_in_the_frozen_design():
         renderer.panel_names({"panels": ["../fresh"]})
 
 
+def test_donor_control_preserves_the_registered_recipients_angle():
+    path = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/code"
+    spec = importlib.util.spec_from_file_location("renderer", path / "render_within_photo_ip.py")
+    renderer = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(renderer)
+    angle = np.array([0.2, 0.7])
+    prior = np.tile([1.0, 0, 0], (2, 1))
+    direction = np.array([[0, 1, 0], [0, 0, 1]])
+    donor = np.array([1, 0])
+    own = np.cos(angle[:, None]) * prior + np.sin(angle[:, None]) * direction
+    wrong = np.cos(angle[:, None]) * prior + np.sin(angle[:, None]) * direction[donor]
+    vectors = {"own": own, "wrong": wrong, "uniform": prior}
+    renderer.check_donor_geometry(vectors, donor, angle)
+    with pytest.raises(ValueError):
+        renderer.check_donor_geometry(vectors, donor)
+    vectors["wrong"] = own[donor]
+    renderer.check_donor_geometry(vectors, donor)
+    with pytest.raises(ValueError):
+        renderer.check_donor_geometry(vectors, donor, angle)
+
+
+def test_repeat_and_cross_subject_feature_gains_share_the_same_held_out_objects():
+    results = (
+        Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/results/object_fidelity"
+    )
+    split = json.loads((results / "shared_photo_eeg_design.json").read_bytes())
+    repeat = json.loads((results / "repeat_photo_subspace.json").read_bytes())
+    shared = json.loads((results / "shared_photo_eeg.json").read_bytes())
+    assert repeat["split_sha256"] == shared["design_sha256"]
+    assert set(split["train_classes"]).isdisjoint(split["test_classes"])
+    assert repeat["evaluation_objects"] == split["test_classes"]
+    for subject in split["subjects"]:
+        scores = repeat["class_pair_hits"][subject]
+        assert len(scores["repeat"]) == len(split["test_classes"]) == 96
+        assert sum(scores["repeat"]) == repeat["correct_pair_assignments"][subject]["repeat"]
+        assert (
+            sum(scores["posterior"])
+            == shared["arms"]["direct"]["per_subject"][subject]["correct_equivalent"]
+        )
+
+
+def test_fourth_panel_scores_and_generated_galleries_use_the_frozen_registration():
+    research = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112"
+    results = research / "results/object_fidelity"
+    panel = json.loads((results / "prospective_panel_design.json").read_bytes())
+    evidence = json.loads((results / "prospective_paired_images.json").read_bytes())
+    names = json.loads((results / "prospective_reference_names.json").read_bytes())
+    gallery = json.loads((results / "prospective_gallery.json").read_bytes())
+    assert (
+        evidence["inputs"]["registration_sha256"]
+        == names["registration_sha256"]
+        == panel["registration_sha256"]
+    )
+    assert names["targets"] == evidence["unique_original_photos"] == 120
+    assert evidence["participant_queries"] == 120 * len(panel["participants"]) == 360
+    for sub in panel["participants"]:
+        entry = gallery["cases"][sub]["public"]
+        image = research / "gallery" / entry["file"]
+        assert hashlib.sha256(image.read_bytes()).hexdigest() == entry["sha256"]
+    for method in evidence["models"]:
+        for endpoint in ("clip_closed12", "clip_full1854", "dino_intra10"):
+            counts = evidence["pooled"][endpoint]["credits"][method]
+            assert set(counts) == {"own", "wrong", "uniform"}
+            assert all(0 <= value <= evidence["participant_queries"] for value in counts.values())
+
+
+def test_session_matched_images_keep_candidate_menus_and_acquisition_budgets_distinct():
+    research = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112"
+    results = research / "results/object_fidelity"
+    report = json.loads((results / "cohort_session_images.json").read_bytes())
+    menus = json.loads((results / "cohort_session_menus.json").read_bytes())["panels"]
+    for panel, choices in (("stress12", 12), ("new_three4", 4)):
+        study = report["panels"][panel]
+        assert study["eeg_choices"] == choices
+        assert study["registration_sha256"] == menus[panel]["registration_sha256"]
+        assert study["n_unique_photos"] == study["original_names"]["targets"] == 120
+        assert study["generated_jpegs"] == 2 * 120 * 3
+        for mode, observations in (("sub-04", 4), ("cohort-3", 12)):
+            source = study["inputs"][mode]
+            assert source["physical_trials_per_photo"] == observations
+            image = research / "gallery" / source["generated_gallery_filename"]
+            assert (
+                hashlib.sha256(image.read_bytes()).hexdigest() == source["generated_gallery_sha256"]
+            )
+
+
 def test_fresh_reports_score_the_registered_subjects_photographs_and_controls():
     release = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112"
     results = release / "results/object_fidelity"

@@ -53,11 +53,18 @@ def verify_lock(a):
     return lock
 
 
-def physical(a, sub, rows, replay):
+def physical(a, sub, rows, replay, registration=None):
     """Read the two original stored trials for each half, preserving legacy float32 averaging."""
     concepts = np.unique(rows // 10)
     sorted_rows = (concepts[:, None] * 10 + np.arange(10)).ravel()
     require(np.array_equal(sorted_rows, np.sort(rows)), "Expected complete source blocks")
+    if registration is not None:
+        require(
+            np.array_equal(read(registration)["rows"], rows),
+            "Requested rows differ from registration",
+        )
+    else:
+        registration = a.out / "references/fresh_ablation.json"
     source = read(a.inputs / (sub + ".json"))
     url = f"{REPO}/resolve/{REV}/Preprocessed_data_250Hz/{sub}/preprocessed_eeg_training.npy"
     require(
@@ -177,7 +184,7 @@ def physical(a, sub, rows, replay):
         receipt
         | dict(
             packet_sha256=sha(dest),
-            registration_sha256=sha(a.out / "references/fresh_ablation.json"),
+            registration_sha256=sha(registration),
         ),
     )
     compact = a.out / "target" / (sub + ".npz")
@@ -193,7 +200,7 @@ def physical(a, sub, rows, replay):
         features=features,
         feature_sha=digest(features.tobytes()),
         source_sha256=sha(dest),
-        registration_sha256=sha(a.out / "references/fresh_ablation.json"),
+        registration_sha256=sha(registration),
         subject=sub,
     )
     return sorted_rows, mean, receipt

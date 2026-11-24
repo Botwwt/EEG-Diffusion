@@ -1,0 +1,28 @@
+{
+  "protocol": "Post-hoc development test on the two previous generated-image banks, fixed before new selection or scoring.",
+  "subjects": [
+    "sub-01",
+    "sub-04",
+    "sub-05"
+  ],
+  "panels": [
+    "registered",
+    "replicate"
+  ],
+  "generator": "Same existing eight generated JPEGs per object and fold. 960 candidates shared by all three people. Each query can use only its frozen prospective-at-the-time predicted object, fold, eight supports and registered donor.",
+  "model": "One encoder per participant. Train on 512 generic objects / 5120 photos. For unit H14 training image directions and the 1003 posterior 17-channel personal R4 EEG design, subtract each object's ten-photo average. Scale each feature by its training residual SD (floor 1e-6). Fit image to EEG ridge with penalty 2*n. Estimate the covariance of the training EEG residuals about the fitted encoder; use one half empirical covariance and one half its diagonal. No candidate or evaluation photo, word, EEG or metric selects a parameter.",
+  "selection": "For each synthetic candidate, subtract the unnormalized mean of the eight permitted unit support H14 directions, apply train-only scaling and fitted encoder. Subtract mean EEG of those same eight supports from the participant's query EEG and scale with their train-only SD. Select the maximum Gaussian log score (common shrinkage covariance): score=e'P*mu-0.5*mu'P*mu. Smallest index wins ties. No EEG from another participant.",
+  "controls": "Same eight JPEGs and allowed supports for every arm: wrong_eeg uses the registered same-word/same-fold donor; mean_eeg sets residual EEG e=0, holding the scoring rule fixed. old_h14 and old_uniform exactly replay the previously frozen H14 residual and support-mean picks; fixed0 always chooses index zero.",
+  "evaluation": "Freeze all 720 choices per arm before opening evaluation-only DINO scores. Raw unit DINOv2-S/14 cosine ten-photo Top1, full registered denominators; secondary own-original versus best other margin, per-query own-vs-same-fold sibling, correct-word subset and distinct same-truth-and-word donor subgroup. The two panels and subjects are fixed. Pool all 24 object means and resample those classes synchronously with all subjects, 10000 times, seed 260530.",
+  "gate": "Further investigation only if the lower paired 95% bootstrap bound for DINO ten-photo Top1 is positive against EACH of wrong_eeg, mean_eeg, and old_h14 on all 720 decisions. No tuning on the development panels; do not call this external confirmation.",
+  "old_bank_receipt_sha256": "69d76b700de91c68cc42c675f64c26ca7791aab7e934dec561c8b8e8f84d0c7a",
+  "bank_design_sha256": "69d76b700de91c68cc42c675f64c26ca7791aab7e934dec561c8b8e8f84d0c7a",
+  "historical_dino_report_sha256": "5d0afcde6c3ffcaedf5f308216f695e3014b13bbfe4b8be545825bc31a20f52f",
+  "dino_cache_sha256": "4dc8db1549ddc408e1be7a704168b9af522771774aa66fbc1127beb4216611ab",
+  "generic_h14_sha256": "b8156300f59d058600fc9a2c9e1586c5fbd4a113f236031acc64c6511d56b432",
+  "generic_training_receipts": {
+    "sub-01": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9",
+    "sub-04": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+    "sub-05": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f"
+  }
+}

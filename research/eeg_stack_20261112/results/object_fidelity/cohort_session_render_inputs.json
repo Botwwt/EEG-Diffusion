@@ -1,0 +1,28 @@
+{
+  "design_sha256": "7128f9d7f0784207511c0be7faaebbd9bc7173fa413bb3eccfb73de64c5467ff",
+  "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+  "reference_sha256": {
+    "stress12": "f4ec5a20a1c4886c3d9ef83f03293b048b117a68796b367f8e74f0b9660b2b10",
+    "new_three4": "5fbe9e2a6f8c6874803d61c7d6ca5da8ec675bde0b979bbe8174c17a9522b77c"
+  },
+  "packets_sha256": {
+    "cohort-3/stress12": "55acbd06633f94dfb6a3aa55683abf16561b4411dfd7395ec2b5dfb06812ea6f",
+    "sub-04/stress12": "a6704cd601f7c7055817677aae0be91252ca40bf9b239511413e960802e22dc3",
+    "cohort-3/new_three4": "3ad4867fd4898b53bd972ca8cb16277e7c0a151eb1acab3d5d6868b181123338",
+    "sub-04/new_three4": "0513e2aa90b88332e6a7256a0b818b4b8e2cd1b4bb552e6d08fa1db8b12373de"
+  },
+  "comparisons": {
+    "stress12": {
+      "n": 120,
+      "matched_predicted_words": 68,
+      "candidates_per_primary_word": 12,
+      "source_result_sha256": "4d8f29d270941189d47e613615a1245ed92e5b8ed07ef82ea363c78ae11636af"
+    },
+    "new_three4": {
+      "n": 120,
+      "matched_predicted_words": 86,
+      "candidates_per_primary_word": 4,
+      "source_result_sha256": "e45b3caa700824fc30ba0744afebee3feccafd1e81cba24c24dc16a64805b040"
+    }
+  }
+}

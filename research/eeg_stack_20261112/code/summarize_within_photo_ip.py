@@ -221,7 +221,7 @@ def run(args):
         if len(cohort) == 2
         else "The audited participant panels use the same registered photographic identities."
     )
-    return dict(
+    result = dict(
         design_sha256=sha(args.root / "design.json"),
         **({"rendered_subjects": list(cohort)} if set(cohort) != set(design["cohort"]) else {}),
         radius_sha256=sha(args.root / "radius.json"),
@@ -241,6 +241,20 @@ def run(args):
         units="Credit counts split ties; cosine margin is per pair. Paired percentile 95% intervals resample represented true object classes within each panel and participant. Intra10 follows the prior separately centered panel gallery; pair decisions use raw unit CLIP vectors. The recipient's row seed is held fixed across arms, so a uniform condition can distinguish pairs by chance.",
         cases=cases,
     )
+    if list(cohort) == ["cohort-3"]:
+        result["cohort_photo_queries"] = result.pop("participant_photo_queries")
+        result["contributing_subjects"] = design["contributing_subjects"]
+        result["physical_trials_per_photo"] = design["physical_trials_per_photo"]
+        result["comparison"] = (
+            "Each registered photograph contributes one combined query from three participants, "
+            "four physical presentations each. All arms use the same fused word and per-photo seed. "
+            "Strict pairs require two correctly named photos from the same object and fold."
+        )
+        result["units"] = (
+            "Credits split ties. Intervals resample the represented objects in this cohort. "
+            "Intra10 uses centered CLIP vectors and pair assignments use raw unit vectors."
+        )
+    return result
 
 
 if __name__ == "__main__":

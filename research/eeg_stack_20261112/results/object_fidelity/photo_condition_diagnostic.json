@@ -1,0 +1,367 @@
+{
+  "subject": "sub-04",
+  "design": {
+    "subject": "sub-04",
+    "study": "Developmental capability check on the 120 already scored fresh-panel queries. Every new arm deliberately supplies a reference label, the H/14 embedding of the exact viewed picture, or both. None is an EEG reconstruction.",
+    "arms": [
+      "reference_word",
+      "reference_image",
+      "reference_both"
+    ],
+    "radius": 21.945598602294922,
+    "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+    "registration_sha256": "bb2bca550a032190e834053f0f7afaf6579b14047330ac6ff0204b9f8b48f4dd",
+    "eeg_packet_sha256": "1b9833b56752633b0e6b823e8e0831d047e7da952adf04cc9a0f429d00e18edc",
+    "input_sha256": "e99e9e6519765a619033f9b40384e5a12eda2d141d33df389a703572008d5a69",
+    "driver_sha256": "e8dfff5023867bb751f5483a30d4a744b173a9df82966e9201ed94f8fb821e5f"
+  },
+  "settings_sha256": {
+    "eeg_only": "5fbc4e072b4ff4ed4fb4039d328e955d921757684ba8eda2e4a63d2f7f81ff9e",
+    "reference_word": "e2fdc390e20f0a085fe1c5e0f130df9422f558a069a23af79d450cc4dd674250",
+    "reference_image": "54a326eddeee29f9faef4ee7ce5656ed73c1c5516eb61c28e357ff7e74c405a7",
+    "reference_both": "548beda9febd7d9d975564508f935bd181ab1d2d87a2a555c27a549b78984a1d"
+  },
+  "dino_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+  "groups": {
+    "all": {
+      "n": 120,
+      "arms": {
+        "eeg_only": {
+          "intra10": {
+            "mean": 0.11666666666666667,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ],
+            "credit": 14.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.28616210420926413,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.05767661654135837,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "reference_word": {
+          "intra10": {
+            "mean": 0.10833333333333334,
+            "delta": -0.008333333333333333,
+            "paired_ci95": [
+              -0.03333333333333333,
+              0.016666666666666666
+            ],
+            "credit": 13.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.2849765781313181,
+            "delta": -0.0011855260779460271,
+            "paired_ci95": [
+              -0.002576283514499664,
+              7.944994295636798e-05
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.061330241108701986,
+            "delta": 0.0036536245673436094,
+            "paired_ci95": [
+              -0.005559180064232641,
+              0.012954152003064457
+            ]
+          }
+        },
+        "reference_image": {
+          "intra10": {
+            "mean": 0.6166666666666667,
+            "delta": 0.5,
+            "paired_ci95": [
+              0.38333333333333336,
+              0.6166666666666667
+            ],
+            "credit": 74.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.25671909414231775,
+            "delta": -0.029443010066946346,
+            "paired_ci95": [
+              -0.03825795596155027,
+              -0.020981925033653776
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.14103238955656028,
+            "delta": 0.0833557730152019,
+            "paired_ci95": [
+              0.04024356723215458,
+              0.1311578248210871
+            ]
+          }
+        },
+        "reference_both": {
+          "intra10": {
+            "mean": 0.6,
+            "delta": 0.48333333333333334,
+            "paired_ci95": [
+              0.34979166666666683,
+              0.6166666666666667
+            ],
+            "credit": 72.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.2567574594169855,
+            "delta": -0.029404644792278608,
+            "paired_ci95": [
+              -0.03843358764735361,
+              -0.02074245479578773
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.1439933101502647,
+            "delta": 0.08631669360890633,
+            "paired_ci95": [
+              0.042463223306489696,
+              0.13487631285180168
+            ]
+          }
+        }
+      }
+    },
+    "eeg_word_correct": {
+      "n": 85,
+      "arms": {
+        "eeg_only": {
+          "intra10": {
+            "mean": 0.058823529411764705,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ],
+            "credit": 5.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.2773656755685806,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.09397003676037181,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "reference_word": {
+          "intra10": {
+            "mean": 0.058823529411764705,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ],
+            "credit": 5.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.2773656755685806,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.09397003676037181,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "reference_image": {
+          "intra10": {
+            "mean": 0.5764705882352941,
+            "delta": 0.5176470588235295,
+            "paired_ci95": [
+              0.3877551020408163,
+              0.6588235294117647
+            ],
+            "credit": 49.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.2572822209666757,
+            "delta": -0.020083454601904926,
+            "paired_ci95": [
+              -0.027336073168553413,
+              -0.01403745213375678
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.151327588658613,
+            "delta": 0.05735755189824119,
+            "paired_ci95": [
+              0.02982827377365109,
+              0.09560788404319918
+            ]
+          }
+        },
+        "reference_both": {
+          "intra10": {
+            "mean": 0.5764705882352941,
+            "delta": 0.5176470588235295,
+            "paired_ci95": [
+              0.3877551020408163,
+              0.6588235294117647
+            ],
+            "credit": 49.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.2572822209666757,
+            "delta": -0.020083454601904926,
+            "paired_ci95": [
+              -0.027336073168553413,
+              -0.01403745213375678
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.151327588658613,
+            "delta": 0.05735755189824119,
+            "paired_ci95": [
+              0.02982827377365109,
+              0.09560788404319918
+            ]
+          }
+        }
+      }
+    },
+    "eeg_word_wrong": {
+      "n": 35,
+      "arms": {
+        "eeg_only": {
+          "intra10": {
+            "mean": 0.2571428571428571,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ],
+            "credit": 9.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.3075248594794955,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "luma_pearson32": {
+            "mean": -0.03046454684767425,
+            "delta": 0.0,
+            "paired_ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "reference_word": {
+          "intra10": {
+            "mean": 0.22857142857142856,
+            "delta": -0.02857142857142857,
+            "paired_ci95": [
+              -0.14285714285714285,
+              0.06896551724137931
+            ],
+            "credit": 8.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.30346019864082335,
+            "delta": -0.004064660838672093,
+            "paired_ci95": [
+              -0.011144785203039645,
+              0.00022987003733472127
+            ]
+          },
+          "luma_pearson32": {
+            "mean": -0.017937834045353297,
+            "delta": 0.012526712802320943,
+            "paired_ci95": [
+              -0.020382289873225743,
+              0.04628158849818586
+            ]
+          }
+        },
+        "reference_image": {
+          "intra10": {
+            "mean": 0.7142857142857143,
+            "delta": 0.45714285714285713,
+            "paired_ci95": [
+              0.18518518518518517,
+              0.627906976744186
+            ],
+            "credit": 25.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.25535150042601995,
+            "delta": -0.05217335905347552,
+            "paired_ci95": [
+              -0.0671285476155427,
+              -0.03881409512622054
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.11602976316586082,
+            "delta": 0.14649431001353508,
+            "paired_ci95": [
+              0.06230027402915905,
+              0.211400153909562
+            ]
+          }
+        },
+        "reference_both": {
+          "intra10": {
+            "mean": 0.6571428571428571,
+            "delta": 0.4,
+            "paired_ci95": [
+              0.06896551724137931,
+              0.6363636363636364
+            ],
+            "credit": 23.0
+          },
+          "rgb_rmse32": {
+            "mean": 0.25548303851059506,
+            "delta": -0.05204182096890041,
+            "paired_ci95": [
+              -0.06656187511537047,
+              -0.038261702238255514
+            ]
+          },
+          "luma_pearson32": {
+            "mean": 0.12618149091570455,
+            "delta": 0.15664603776337885,
+            "paired_ci95": [
+              0.07432666995822164,
+              0.22615877323103187
+            ]
+          }
+        }
+      }
+    }
+  },
+  "interpretation": "Only eeg_only reconstructs from EEG and permitted calibration. The remaining three use information about the held-out photo solely to localize loss of identity in this frozen pipeline. Intervals resample the represented objects within one participant."
+}

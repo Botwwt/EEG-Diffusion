@@ -1,0 +1,269 @@
+{
+  "subject": "cohort-3",
+  "contributing_subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "physical_trials_per_photo": 12,
+  "individual_trials_per_photo": 4,
+  "panel": "new_three4",
+  "scope": "Strict leftover generic frame: 76 outside all 1024 training objects, all four older panels and all 12 fixed fifth-panel objects. No new EEG was read before this registration.",
+  "primary": "within_matched_four",
+  "n_unique_photos": 120,
+  "session_cells": [
+    {
+      "joint_session_ids": [
+        2,
+        4,
+        2,
+        3,
+        2,
+        4
+      ],
+      "source_cell_size": 5,
+      "selected_concepts": [
+        117,
+        833,
+        1359,
+        1391
+      ]
+    },
+    {
+      "joint_session_ids": [
+        1,
+        4,
+        1,
+        3,
+        2,
+        4
+      ],
+      "source_cell_size": 4,
+      "selected_concepts": [
+        76,
+        543,
+        1036,
+        1072
+      ]
+    },
+    {
+      "joint_session_ids": [
+        1,
+        4,
+        1,
+        4,
+        1,
+        3
+      ],
+      "source_cell_size": 4,
+      "selected_concepts": [
+        60,
+        274,
+        348,
+        930
+      ]
+    }
+  ],
+  "design_sha256": "ebe8c6ec8710ec8a4886e095b89a87ce479bc42b38ad484d5c829aa0137b6599",
+  "target_feature_receipts": {
+    "sub-04": "32f971485143b1f84ac492e6434068be926e88be56368c5a73034e0e4558ed18",
+    "sub-05": "964fe63aef2f64a2d3429fde2d68438c4298e62286c8f851d6484d9e73a57d6c",
+    "sub-01": "e9cd111d730cee17269a7a40562ade510845c7906a8aa72469a1b904341cede7"
+  },
+  "predictions_sha256": "ad93eda49b3e9899b6ae6ed889a76d6d4204a43b0f57733a2ec9b4295335dc61",
+  "driver_sha256": "af13b7bf933bbe249c256aad85043a6c0851475c575871a56d9e59b321b7783b",
+  "decisions": {
+    "ordinary_12way": {
+      "n": 120,
+      "candidates": 12,
+      "uniform_chance": 0.08333333333333333,
+      "session_classifier_expected_hits": 30,
+      "observed": {
+        "cohort": {
+          "hits": 92.0,
+          "accuracy": 0.7666666666666667,
+          "object_bootstrap_ci95": [
+            0.6416666666666668,
+            0.875
+          ]
+        },
+        "misaligned": {
+          "hits": 41.0,
+          "accuracy": 0.3416666666666667,
+          "object_bootstrap_ci95": [
+            0.2416666666666667,
+            0.43333333333333335
+          ]
+        },
+        "sub-04": {
+          "hits": 67.0,
+          "accuracy": 0.5583333333333333,
+          "object_bootstrap_ci95": [
+            0.45,
+            0.6583333333333333
+          ]
+        },
+        "sub-05": {
+          "hits": 64.0,
+          "accuracy": 0.5333333333333333,
+          "object_bootstrap_ci95": [
+            0.4083333333333334,
+            0.6666666666666666
+          ]
+        },
+        "sub-01": {
+          "hits": 70.0,
+          "accuracy": 0.5833333333333334,
+          "object_bootstrap_ci95": [
+            0.4249999999999999,
+            0.7333333333333334
+          ]
+        },
+        "mean_single": {
+          "hits": 67.0,
+          "accuracy": 0.5583333333333333,
+          "object_bootstrap_ci95": [
+            0.44722222222222224,
+            0.6639583333333324
+          ]
+        }
+      },
+      "cohort_minus": {
+        "sub-04": {
+          "delta_hits": 25.0,
+          "mean": 0.20833333333333334,
+          "object_bootstrap_ci95": [
+            0.10833333333333334,
+            0.3083333333333334
+          ]
+        },
+        "mean_single": {
+          "delta_hits": 25.0,
+          "mean": 0.20833333333333334,
+          "object_bootstrap_ci95": [
+            0.1277777777777778,
+            0.3028472222222213
+          ]
+        },
+        "misaligned": {
+          "delta_hits": 51.0,
+          "mean": 0.425,
+          "object_bootstrap_ci95": [
+            0.35000000000000003,
+            0.5166666666666666
+          ]
+        }
+      },
+      "correct_by_true_object": [
+        6,
+        10,
+        4,
+        4,
+        10,
+        7,
+        7,
+        9,
+        9,
+        9,
+        9,
+        8
+      ]
+    },
+    "within_matched_four": {
+      "n": 120,
+      "candidates": 4,
+      "uniform_chance": 0.25,
+      "session_classifier_expected_hits": 30,
+      "observed": {
+        "cohort": {
+          "hits": 93.0,
+          "accuracy": 0.775,
+          "object_bootstrap_ci95": [
+            0.6833333333333332,
+            0.8666666666666667
+          ]
+        },
+        "misaligned": {
+          "hits": 53.0,
+          "accuracy": 0.44166666666666665,
+          "object_bootstrap_ci95": [
+            0.30833333333333335,
+            0.575
+          ]
+        },
+        "sub-04": {
+          "hits": 79.0,
+          "accuracy": 0.6583333333333333,
+          "object_bootstrap_ci95": [
+            0.5416666666666666,
+            0.7583333333333333
+          ]
+        },
+        "sub-05": {
+          "hits": 67.0,
+          "accuracy": 0.5583333333333333,
+          "object_bootstrap_ci95": [
+            0.42500000000000004,
+            0.6833333333333335
+          ]
+        },
+        "sub-01": {
+          "hits": 87.0,
+          "accuracy": 0.725,
+          "object_bootstrap_ci95": [
+            0.6250000000000001,
+            0.8166666666666668
+          ]
+        },
+        "mean_single": {
+          "hits": 77.66666666666666,
+          "accuracy": 0.6472222222222221,
+          "object_bootstrap_ci95": [
+            0.5555555555555555,
+            0.736111111111111
+          ]
+        }
+      },
+      "cohort_minus": {
+        "sub-04": {
+          "delta_hits": 14.0,
+          "mean": 0.11666666666666667,
+          "object_bootstrap_ci95": [
+            0.024999999999999998,
+            0.2166666666666667
+          ]
+        },
+        "mean_single": {
+          "delta_hits": 15.333333333333336,
+          "mean": 0.1277777777777778,
+          "object_bootstrap_ci95": [
+            0.07777777777777778,
+            0.18333333333333338
+          ]
+        },
+        "misaligned": {
+          "delta_hits": 40.0,
+          "mean": 0.3333333333333333,
+          "object_bootstrap_ci95": [
+            0.225,
+            0.4333333333333334
+          ]
+        }
+      },
+      "correct_by_true_object": [
+        5,
+        9,
+        7,
+        5,
+        8,
+        8,
+        6,
+        10,
+        10,
+        9,
+        8,
+        8
+      ]
+    }
+  }
+}

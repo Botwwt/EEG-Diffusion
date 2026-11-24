@@ -12,6 +12,8 @@ import numpy as np
 
 ARMS = ("own", "uniform", "wrong")
 PANELS = ("registered", "replicate")
+PARTICIPANTS = ("sub-01", "sub-04", "sub-05")
+READOUTS = (*PARTICIPANTS, "cohort-3")
 ADAPTER_SHA = "ebf05d918348aec7abb02a5e9ecef77e0aaea6914a5c4ea13f50d45eb1681831"
 
 
@@ -56,8 +58,38 @@ def panel_names(design, requested=None):
     return use
 
 
+def check_donor_geometry(vectors, donor, angles=None):
+    if angles is None:
+        check(np.array_equal(vectors["wrong"], vectors["own"][donor]), "Incorrect donor vector")
+        return
+    prior, own, wrong = (vectors[k].astype(np.float64) for k in ("uniform", "own", "wrong"))
+    check(np.array_equal(prior, prior[donor]), "Donor and recipient need identical class supports")
+    prior /= np.linalg.norm(prior, axis=1, keepdims=True)
+    check(
+        angles.shape == (len(prior),)
+        and np.isfinite(angles).all()
+        and np.all((angles > 0) & (angles < np.pi)),
+        "Malformed native recipient angle",
+    )
+    tangent = own - (own * prior).sum(1, keepdims=True) * prior
+    norms = np.linalg.norm(tangent, axis=1, keepdims=True)
+    check(np.all(norms > 1e-10), "Undefined visual residual orientation")
+    theta = np.arctan2(norms[:, 0], (own * prior).sum(1))
+    expected = np.cos(angles[:, None]) * prior + np.sin(angles[:, None]) * (tangent / norms)[donor]
+    check(
+        np.max(np.abs(theta - angles)) < 2e-6 and np.max(np.abs(expected - wrong)) < 2e-6,
+        "Wrong donor orientation or native recipient angle",
+    )
+
+
 def packet(root, subject, panel):
     design = read(root / "design.json")
+    if subject == "cohort-3":
+        check(
+            sorted(design.get("contributing_subjects", [])) == sorted(PARTICIPANTS)
+            and design.get("physical_trials_per_photo") == 12,
+            "Cohort generation needs three named participants and twelve physical observations",
+        )
     radius = read(root / "radius.json")
     file = root / "conditions" / subject / panel / "conditions_512.npz"
     check(
@@ -71,6 +103,14 @@ def packet(root, subject, panel):
             d[k] for k in ("rows", "folds", "predicted_words", "donor_rows", "support_rows")
         )
         vectors = {a: d[a] for a in ARMS}
+        mode = design.get("wrong_direction_mode", "donor_own")
+        check(mode in ("donor_own", "recipient_native_angle"), "Unknown donor direction protocol")
+        is_new = mode == "recipient_native_angle"
+        check(
+            ("recipient_angle_radians" in d) == is_new,
+            "Recipient angle metadata disagrees with design",
+        )
+        angles = d["recipient_angle_radians"] if is_new else None
         check(
             str(d["visual_sha256"]) == design["visual_sha256"]
             and len(d["training_classes"]) == 512
@@ -87,10 +127,10 @@ def packet(root, subject, panel):
     )
     ix = {x: i for i, x in enumerate(rows)}
     j = np.array([ix[x] for x in donors])
+    check_donor_geometry(vectors, j, angles)
     check(
         np.array_equal(words, words[j])
         and np.array_equal(folds, folds[j])
-        and np.array_equal(vectors["wrong"], vectors["own"][j])
         and all(
             len(set(s)) == 8 and set(s) <= set(rows[folds != folds[i]])
             for i, s in enumerate(support)
@@ -116,6 +156,11 @@ def run_render(args):
     packets = {p: packet(args.root, args.subject, p) for p in panels}
     if args.check_only:
         return
+    draw_packets(args, packets)
+
+
+def draw_packets(args, packets):
+    """Draw the supplied word and unit H/14 direction using the frozen four-step pipeline."""
     import torch
     from diffusers import StableDiffusionXLPipeline
     from render_official_ip_adapter import batched_embeddings
@@ -193,7 +238,7 @@ def run_render(args):
                 check(read(lockfile) == lock, "Different render in output directory")
             else:
                 save(lockfile, lock)
-            hashes = {a: [] for a in ARMS}
+            hashes = {arm: [] for arm in items}
             for arm, matrix in items.items():
                 folder = dest / "images" / arm
                 folder.mkdir(exist_ok=True, parents=True)
@@ -255,7 +300,7 @@ def main():
     p.add_argument("--archive", type=Path)
     p.add_argument("--adapter", type=Path)
     p.add_argument("--dictionary", type=Path)
-    p.add_argument("--subject", choices=("sub-01", "sub-04", "sub-05"), required=True)
+    p.add_argument("--subject", choices=READOUTS, required=True)
     p.add_argument("--batch-size", type=int, default=8)
     p.add_argument("--check-only", action="store_true")
     args = p.parse_args()

@@ -1,0 +1,281 @@
+{
+  "protocol": "Shared photograph-response supervision in generic calibration only",
+  "design_sha256": "1f4b52f0295fd5033e0d78b5182cfafc56e40224050de3fed1635a94f3cdc882",
+  "script_sha256": "7d5c52b180e1ecadb45554ef04baad6089372a68500dc548cb299056442cdedf",
+  "n_train_classes": 416,
+  "n_test_classes": 96,
+  "n_test_unique_photos": 960,
+  "subjects": [
+    "sub-01",
+    "sub-04",
+    "sub-05"
+  ],
+  "pairs_per_class": 45,
+  "n_distinct_pairs": 4320,
+  "n_participant_pair_assignments": 12960,
+  "bootstrap_unit": "96 shared object IDs, synchronously across the 3 fixed participants; 45 overlapping pairs per object",
+  "arms": {
+    "direct": {
+      "paired_assignment": {
+        "mean": 0.723070987654321,
+        "ci95": [
+          0.7037037037037037,
+          0.7423611111111111
+        ]
+      },
+      "cosine_margin": {
+        "mean": 0.0025836395413287973,
+        "ci95": [
+          0.002277349812597241,
+          0.0029051224181385494
+        ]
+      },
+      "per_subject": {
+        "sub-01": {
+          "correct_equivalent": 3121.0,
+          "ties": 0,
+          "n": 4320
+        },
+        "sub-04": {
+          "correct_equivalent": 3168.0,
+          "ties": 0,
+          "n": 4320
+        },
+        "sub-05": {
+          "correct_equivalent": 3082.0,
+          "ties": 0,
+          "n": 4320
+        }
+      }
+    },
+    "shared": {
+      "paired_assignment": {
+        "mean": 0.7398919753086419,
+        "ci95": [
+          0.7201388888888888,
+          0.7591840277777778
+        ]
+      },
+      "cosine_margin": {
+        "mean": 0.001862632346852958,
+        "ci95": [
+          0.0016489005583721144,
+          0.002089551133649783
+        ]
+      },
+      "per_subject": {
+        "sub-01": {
+          "correct_equivalent": 3215.0,
+          "ties": 0,
+          "n": 4320
+        },
+        "sub-04": {
+          "correct_equivalent": 3225.0,
+          "ties": 0,
+          "n": 4320
+        },
+        "sub-05": {
+          "correct_equivalent": 3149.0,
+          "ties": 0,
+          "n": 4320
+        }
+      }
+    },
+    "sham": {
+      "paired_assignment": {
+        "mean": 0.7145833333333332,
+        "ci95": [
+          0.6950578703703703,
+          0.7340297067901235
+        ]
+      },
+      "cosine_margin": {
+        "mean": 0.0014902876043974389,
+        "ci95": [
+          0.0013077353785381374,
+          0.001682498687390716
+        ]
+      },
+      "per_subject": {
+        "sub-01": {
+          "correct_equivalent": 3088.0,
+          "ties": 0,
+          "n": 4320
+        },
+        "sub-04": {
+          "correct_equivalent": 3115.0,
+          "ties": 0,
+          "n": 4320
+        },
+        "sub-05": {
+          "correct_equivalent": 3058.0,
+          "ties": 0,
+          "n": 4320
+        }
+      }
+    },
+    "visual_rank": {
+      "paired_assignment": {
+        "mean": 0.7243827160493828,
+        "ci95": [
+          0.7050925925925927,
+          0.7430555555555555
+        ]
+      },
+      "cosine_margin": {
+        "mean": 0.002102342743786226,
+        "ci95": [
+          0.0018588024196822673,
+          0.0023556313174308515
+        ]
+      },
+      "per_subject": {
+        "sub-01": {
+          "correct_equivalent": 3142.0,
+          "ties": 0,
+          "n": 4320
+        },
+        "sub-04": {
+          "correct_equivalent": 3173.0,
+          "ties": 0,
+          "n": 4320
+        },
+        "sub-05": {
+          "correct_equivalent": 3073.0,
+          "ties": 0,
+          "n": 4320
+        }
+      }
+    }
+  },
+  "shared_minus_control": {
+    "direct": {
+      "assignment": {
+        "mean": 0.016820987654320985,
+        "ci95": [
+          0.011188271604938273,
+          0.022376543209876542
+        ]
+      },
+      "margin": {
+        "mean": -0.0007210071944758395,
+        "ci95": [
+          -0.0008197738168957642,
+          -0.0006270792466757106
+        ]
+      },
+      "per_subject_assignment": {
+        "sub-01": {
+          "mean": 0.02175925925925926,
+          "ci95": [
+            0.012037037037037035,
+            0.03194444444444444
+          ]
+        },
+        "sub-04": {
+          "mean": 0.013194444444444444,
+          "ci95": [
+            0.004398148148148148,
+            0.02199074074074074
+          ]
+        },
+        "sub-05": {
+          "mean": 0.015509259259259259,
+          "ci95": [
+            0.006944444444444445,
+            0.02361111111111111
+          ]
+        }
+      }
+    },
+    "sham": {
+      "assignment": {
+        "mean": 0.025308641975308643,
+        "ci95": [
+          0.01890432098765432,
+          0.03179205246913578
+        ]
+      },
+      "margin": {
+        "mean": 0.0003723447424555193,
+        "ci95": [
+          0.0003249002080881011,
+          0.00042182930168837006
+        ]
+      },
+      "per_subject_assignment": {
+        "sub-01": {
+          "mean": 0.029398148148148145,
+          "ci95": [
+            0.017824074074074072,
+            0.040740740740740744
+          ]
+        },
+        "sub-04": {
+          "mean": 0.025462962962962965,
+          "ci95": [
+            0.014814814814814814,
+            0.03680555555555556
+          ]
+        },
+        "sub-05": {
+          "mean": 0.021064814814814814,
+          "ci95": [
+            0.009490740740740739,
+            0.032407407407407406
+          ]
+        }
+      }
+    },
+    "visual_rank": {
+      "assignment": {
+        "mean": 0.015509259259259259,
+        "ci95": [
+          0.009259259259259259,
+          0.021604938271604937
+        ]
+      },
+      "margin": {
+        "mean": -0.00023971039693326799,
+        "ci95": [
+          -0.0002864688991469309,
+          -0.0001949149374229748
+        ]
+      },
+      "per_subject_assignment": {
+        "sub-01": {
+          "mean": 0.016898148148148148,
+          "ci95": [
+            0.006018518518518518,
+            0.028009259259259258
+          ]
+        },
+        "sub-04": {
+          "mean": 0.012037037037037035,
+          "ci95": [
+            0.0023148148148148147,
+            0.021759259259259256
+          ]
+        },
+        "sub-05": {
+          "mean": 0.017592592592592594,
+          "ci95": [
+            0.006944444444444444,
+            0.02777777777777778
+          ]
+        }
+      }
+    }
+  },
+  "passed_generation_gate": true,
+  "head_sha256": {
+    "sub-01": "a1dbfc1f00b3388260baab102b54369f7d41720312b6ac64a2828cc518999905",
+    "sub-04": "fc182786bc0dcaa78637c2b557bf84e0c03e5443878c99d651c9bcd3df4ef30a",
+    "sub-05": "12423185be2f0308ebc483dca1bcfd18e2eaaa52e077f011cd229509f7ca3d91"
+  },
+  "pairwise_sha256": {
+    "sub-01": "3495e352495b25d4d01799a637d404398f0b97940d51ecfa97390ea1afa81535",
+    "sub-04": "2040ab5defc85bd9b434019d0a16c2d6f7556a7c33c4df47d6a92190bd0e8a96",
+    "sub-05": "a5b25b58846ceedd7a0ec08471daaa77dbe9fe66aa6b77c2ca5e97f0029ba1d7"
+  }
+}

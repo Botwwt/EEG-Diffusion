@@ -1,0 +1,25 @@
+{
+  "panel": "prospective",
+  "registration_sha256": "980ac28dcb7b67861b4d83f4f965e836e6c6c4d1d4e475559c7b615a4d0b9b7a",
+  "clip_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+  "dictionary_sha256": "1aebc7a2c35edcfcfffc63934754440c90534ccc46df0537db41dc6197450132",
+  "image_manifest_sha256": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+  "targets": 120,
+  "full1854_credit": 83.0,
+  "closed12_credit": 119.0,
+  "class_full1854_credit": {
+    "bologna": 10.0,
+    "shopping_cart": 10.0,
+    "wax_paper": 7.0,
+    "cream_cheese": 6.0,
+    "fast_food": 9.0,
+    "outfit": 3.0,
+    "gingerbread_man": 10.0,
+    "dishrag": 3.0,
+    "sifter": 2.0,
+    "cereal": 5.0,
+    "vase": 8.0,
+    "hotdog": 10.0
+  },
+  "scorer_sha256": "acc026e65dbe2fcb80f446e4039729282d89c986c547de5d2a2bafd38bc4efd7"
+}

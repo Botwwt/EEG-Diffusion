@@ -1,0 +1,263 @@
+{
+  "protocol_sha256": "acd568691ccd1af1f52cb2ade36c3037d6761e8fcc301e335c5be830e339a000",
+  "weights": {
+    "posterior": 1,
+    "full": 0.25,
+    "cross": 0.25
+  },
+  "training_objects": 512,
+  "training_photos_per_person": 5120,
+  "unique_target_photos": 360,
+  "unique_target_objects": 36,
+  "classification_choices": 12,
+  "development_subject": "sub-04",
+  "passed_development_gate": true,
+  "scope": "Closed 12-way EEG word readout. All 360 physical query images are shared across participants. These objects were previously used to evaluate other models. Image naming is a separate measurement.",
+  "baseline": "The 512-class posterior-only comparator reproduces every saved old prediction. The combination adds two frozen full-scalp vote scores with weights originally selected in sub-04's 128 generic objects.",
+  "uncertainty": "Per participant, paired differences are fractions. Percentile 95% intervals resample entire objects 10,000 times within each 12-object panel or across all 36 panel-specific objects. Recorded-session baselines use within-session-pair permutations of object labels.",
+  "participants": {
+    "sub-04": {
+      "panels": {
+        "registered": {
+          "n": 120,
+          "posterior_hits": 86,
+          "combined_hits": 86,
+          "full_mean4_only_hits": 69,
+          "cross_session_only_hits": 48,
+          "changed_predictions": 26,
+          "gains": 9,
+          "losses": 9,
+          "paired_delta": 0.0,
+          "delta_ci95": [
+            -0.09166666666666666,
+            0.08333333333333333
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 33.900000000000006,
+            "expanded_r4": 38.1
+          },
+          "paired_delta_session_excess_hits": 4.199999999999996,
+          "sha256": "9fd42d6bb54ceb8da381ed6fa6b0638d133f8fbc4be1e171673931c7731f8c12"
+        },
+        "replicate": {
+          "n": 120,
+          "posterior_hits": 94,
+          "combined_hits": 96,
+          "full_mean4_only_hits": 83,
+          "cross_session_only_hits": 65,
+          "changed_predictions": 5,
+          "gains": 3,
+          "losses": 1,
+          "paired_delta": 0.016666666666666666,
+          "delta_ci95": [
+            -0.016666666666666666,
+            0.05833333333333333
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 39.10000000000001,
+            "expanded_r4": 39.10000000000001
+          },
+          "paired_delta_session_excess_hits": 2.0,
+          "sha256": "8d9f9f504e4996098fb882f62a2b6ad7ab0185d81c9b9ff590ef5f77e323b15f"
+        },
+        "fresh": {
+          "n": 120,
+          "posterior_hits": 85,
+          "combined_hits": 85,
+          "full_mean4_only_hits": 76,
+          "cross_session_only_hits": 48,
+          "changed_predictions": 19,
+          "gains": 9,
+          "losses": 9,
+          "paired_delta": 0.0,
+          "delta_ci95": [
+            -0.06666666666666668,
+            0.08333333333333333
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 37.08333333333333,
+            "expanded_r4": 37.41666666666666
+          },
+          "paired_delta_session_excess_hits": 0.3333333333333286,
+          "sha256": "02cfcc06bf35f4acb08d363278ddbbf441fa60e66808e9ba6906f4c151c513e8"
+        }
+      },
+      "combined": {
+        "n": 360,
+        "posterior_hits": 265,
+        "combined_hits": 267,
+        "delta_hits": 2,
+        "gains": 21,
+        "losses": 19,
+        "paired_delta": 0.005555555555555556,
+        "delta_ci95": [
+          -0.03333333333333334,
+          0.044444444444444446
+        ],
+        "paired_delta_session_excess_hits": 6.533333333333324
+      }
+    },
+    "sub-05": {
+      "panels": {
+        "registered": {
+          "n": 120,
+          "posterior_hits": 75,
+          "combined_hits": 73,
+          "full_mean4_only_hits": 43,
+          "cross_session_only_hits": 26,
+          "changed_predictions": 27,
+          "gains": 10,
+          "losses": 12,
+          "paired_delta": -0.016666666666666666,
+          "delta_ci95": [
+            -0.09166666666666667,
+            0.06666666666666667
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 35.75,
+            "expanded_r4": 37.25
+          },
+          "paired_delta_session_excess_hits": -0.5,
+          "sha256": "72ef1b2856bacf6fbb94b51aee8a6371189dffeb608f4aeedfcdfb2d36ab5e71"
+        },
+        "replicate": {
+          "n": 120,
+          "posterior_hits": 72,
+          "combined_hits": 77,
+          "full_mean4_only_hits": 57,
+          "cross_session_only_hits": 45,
+          "changed_predictions": 22,
+          "gains": 7,
+          "losses": 2,
+          "paired_delta": 0.041666666666666664,
+          "delta_ci95": [
+            -0.008333333333333333,
+            0.09166666666666667
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 38.38095238095238,
+            "expanded_r4": 39.04761904761905
+          },
+          "paired_delta_session_excess_hits": 5.666666666666671,
+          "sha256": "b613bec85ad39bcd048da733d1e098e39333be05d506daa2c75a57ef3b2ed0e4"
+        },
+        "fresh": {
+          "n": 120,
+          "posterior_hits": 60,
+          "combined_hits": 58,
+          "full_mean4_only_hits": 37,
+          "cross_session_only_hits": 18,
+          "changed_predictions": 40,
+          "gains": 12,
+          "losses": 14,
+          "paired_delta": -0.016666666666666666,
+          "delta_ci95": [
+            -0.09166666666666667,
+            0.05833333333333334
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 35.666666666666664,
+            "expanded_r4": 38.08333333333333
+          },
+          "paired_delta_session_excess_hits": 0.4166666666666643,
+          "sha256": "89897dbc48dc79f23efae7e70a1178f53759333ca5f54c96c1098849913f4aa8"
+        }
+      },
+      "combined": {
+        "n": 360,
+        "posterior_hits": 207,
+        "combined_hits": 208,
+        "delta_hits": 1,
+        "gains": 29,
+        "losses": 28,
+        "paired_delta": 0.002777777777777778,
+        "delta_ci95": [
+          -0.03888888888888889,
+          0.04166666666666667
+        ],
+        "paired_delta_session_excess_hits": 5.583333333333336
+      }
+    },
+    "sub-01": {
+      "panels": {
+        "registered": {
+          "n": 120,
+          "posterior_hits": 67,
+          "combined_hits": 68,
+          "full_mean4_only_hits": 58,
+          "cross_session_only_hits": 33,
+          "changed_predictions": 28,
+          "gains": 11,
+          "losses": 10,
+          "paired_delta": 0.008333333333333333,
+          "delta_ci95": [
+            -0.10000000000000002,
+            0.09166666666666667
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 38.833333333333336,
+            "expanded_r4": 38.83333333333333
+          },
+          "paired_delta_session_excess_hits": 0.9999999999999929,
+          "sha256": "66704bf1b711c2881e3d0cbdae17e064e85caf87eea3ed0e84f1fe15da7b9574"
+        },
+        "replicate": {
+          "n": 120,
+          "posterior_hits": 76,
+          "combined_hits": 77,
+          "full_mean4_only_hits": 69,
+          "cross_session_only_hits": 44,
+          "changed_predictions": 23,
+          "gains": 9,
+          "losses": 8,
+          "paired_delta": 0.008333333333333333,
+          "delta_ci95": [
+            -0.06666666666666667,
+            0.08333333333333333
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 38.333333333333336,
+            "expanded_r4": 38.33333333333333
+          },
+          "paired_delta_session_excess_hits": 0.9999999999999929,
+          "sha256": "a82b0e1d5857e002e54b6637104610a61d58e20d864f91f4af8ca2b5e660bf04"
+        },
+        "fresh": {
+          "n": 120,
+          "posterior_hits": 64,
+          "combined_hits": 70,
+          "full_mean4_only_hits": 55,
+          "cross_session_only_hits": 38,
+          "changed_predictions": 35,
+          "gains": 15,
+          "losses": 9,
+          "paired_delta": 0.05,
+          "delta_ci95": [
+            -0.05000000000000001,
+            0.17500000000000002
+          ],
+          "conditional_expected_hits": {
+            "full_head_512": 29.0,
+            "expanded_r4": 28.666666666666668
+          },
+          "paired_delta_session_excess_hits": 5.666666666666668,
+          "sha256": "7fd0ff48b16d75cb7cedf66e3253f06dc5321de42795cdc4b7651bca6f5344cd"
+        }
+      },
+      "combined": {
+        "n": 360,
+        "posterior_hits": 207,
+        "combined_hits": 215,
+        "delta_hits": 8,
+        "gains": 35,
+        "losses": 27,
+        "paired_delta": 0.022222222222222223,
+        "delta_ci95": [
+          -0.03333333333333333,
+          0.07777777777777778
+        ],
+        "paired_delta_session_excess_hits": 7.666666666666654
+      }
+    }
+  }
+}

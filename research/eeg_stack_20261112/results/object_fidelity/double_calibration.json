@@ -1,0 +1,1399 @@
+{
+  "design_sha256": "f30831aab67d1b735985876710c51eddc3bd60729c0ccc72e803c02f7f34088d",
+  "subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "arms": [
+    "posterior_512",
+    "posterior_1024"
+  ],
+  "panels": {
+    "registered": {
+      "hits": [
+        228,
+        235
+      ],
+      "n": 360,
+      "delta": 0.019444444444444445,
+      "people_and_object_ci95": [
+        -0.036111111111111115,
+        0.07500000000000001
+      ],
+      "object_only_ci95": [
+        -0.022222222222222223,
+        0.0638888888888889
+      ],
+      "gain": 26,
+      "loss": 19,
+      "by_subject": {
+        "sub-04": {
+          "hits": [
+            86,
+            92
+          ],
+          "n": 120,
+          "delta": 0.05000000000000001,
+          "object_ci95": [
+            0.008333333333333333,
+            0.09999999999999999
+          ]
+        },
+        "sub-05": {
+          "hits": [
+            75,
+            75
+          ],
+          "n": 120,
+          "delta": 0.0,
+          "object_ci95": [
+            -0.041666666666666664,
+            0.041666666666666664
+          ]
+        },
+        "sub-01": {
+          "hits": [
+            67,
+            68
+          ],
+          "n": 120,
+          "delta": 0.008333333333333337,
+          "object_ci95": [
+            -0.06666666666666667,
+            0.09999999999999999
+          ]
+        }
+      }
+    },
+    "replicate": {
+      "hits": [
+        242,
+        244
+      ],
+      "n": 360,
+      "delta": 0.005555555555555556,
+      "people_and_object_ci95": [
+        -0.044444444444444446,
+        0.04722222222222222
+      ],
+      "object_only_ci95": [
+        -0.022222222222222223,
+        0.03333333333333335
+      ],
+      "gain": 19,
+      "loss": 17,
+      "by_subject": {
+        "sub-04": {
+          "hits": [
+            94,
+            96
+          ],
+          "n": 120,
+          "delta": 0.01666666666666667,
+          "object_ci95": [
+            -0.016666666666666666,
+            0.049999999999999996
+          ]
+        },
+        "sub-05": {
+          "hits": [
+            72,
+            70
+          ],
+          "n": 120,
+          "delta": -0.016666666666666666,
+          "object_ci95": [
+            -0.09166666666666667,
+            0.05833333333333334
+          ]
+        },
+        "sub-01": {
+          "hits": [
+            76,
+            78
+          ],
+          "n": 120,
+          "delta": 0.016666666666666666,
+          "object_ci95": [
+            -0.041666666666666664,
+            0.075
+          ]
+        }
+      }
+    },
+    "fresh": {
+      "hits": [
+        209,
+        208
+      ],
+      "n": 360,
+      "delta": -0.002777777777777778,
+      "people_and_object_ci95": [
+        -0.052847222222222164,
+        0.052777777777777785
+      ],
+      "object_only_ci95": [
+        -0.038888888888888896,
+        0.03888888888888889
+      ],
+      "gain": 28,
+      "loss": 29,
+      "by_subject": {
+        "sub-04": {
+          "hits": [
+            85,
+            86
+          ],
+          "n": 120,
+          "delta": 0.008333333333333333,
+          "object_ci95": [
+            -0.05000000000000001,
+            0.06666666666666667
+          ]
+        },
+        "sub-05": {
+          "hits": [
+            60,
+            62
+          ],
+          "n": 120,
+          "delta": 0.01666666666666667,
+          "object_ci95": [
+            -0.049999999999999996,
+            0.08333333333333336
+          ]
+        },
+        "sub-01": {
+          "hits": [
+            64,
+            60
+          ],
+          "n": 120,
+          "delta": -0.03333333333333333,
+          "object_ci95": [
+            -0.09166666666666666,
+            0.016666666666666666
+          ]
+        }
+      }
+    },
+    "prospective": {
+      "hits": [
+        232,
+        233
+      ],
+      "n": 360,
+      "delta": 0.002777777777777778,
+      "people_and_object_ci95": [
+        -0.058333333333333334,
+        0.05
+      ],
+      "object_only_ci95": [
+        -0.044444444444444446,
+        0.04444444444444445
+      ],
+      "gain": 26,
+      "loss": 25,
+      "by_subject": {
+        "sub-04": {
+          "hits": [
+            81,
+            83
+          ],
+          "n": 120,
+          "delta": 0.016666666666666666,
+          "object_ci95": [
+            -0.025000000000000005,
+            0.05000000000000001
+          ]
+        },
+        "sub-05": {
+          "hits": [
+            69,
+            70
+          ],
+          "n": 120,
+          "delta": 0.008333333333333333,
+          "object_ci95": [
+            -0.049999999999999996,
+            0.05833333333333334
+          ]
+        },
+        "sub-01": {
+          "hits": [
+            82,
+            80
+          ],
+          "n": 120,
+          "delta": -0.016666666666666677,
+          "object_ci95": [
+            -0.10833333333333334,
+            0.05833333333333334
+          ]
+        }
+      }
+    }
+  },
+  "pooled": {
+    "hits": [
+      911,
+      920
+    ],
+    "n": 1440,
+    "delta": 0.00625,
+    "people_and_object_ci95": [
+      -0.02362847222222221,
+      0.03263888888888889
+    ],
+    "object_only_ci95": [
+      -0.013888888888888888,
+      0.026388888888888892
+    ],
+    "gain": 99,
+    "loss": 90,
+    "by_subject": {
+      "sub-04": {
+        "hits": [
+          346,
+          357
+        ],
+        "n": 480,
+        "delta": 0.02291666666666667,
+        "object_ci95": [
+          5.782411586589357e-19,
+          0.04583333333333334
+        ]
+      },
+      "sub-05": {
+        "hits": [
+          276,
+          277
+        ],
+        "n": 480,
+        "delta": 0.0020833333333333316,
+        "object_ci95": [
+          -0.02916666666666667,
+          0.03333333333333333
+        ]
+      },
+      "sub-01": {
+        "hits": [
+          289,
+          286
+        ],
+        "n": 480,
+        "delta": -0.006250000000000001,
+        "object_ci95": [
+          -0.041666666666666664,
+          0.029166666666666664
+        ]
+      }
+    }
+  },
+  "class_results": {
+    "airplane": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          8,
+          8
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.26666666666666666,
+        0.1
+      ]
+    },
+    "apple": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "delta": -0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.0
+      ]
+    },
+    "car": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          7,
+          9
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "delta": 0.1,
+      "people_and_photo_ci95": [
+        0.0,
+        0.3
+      ]
+    },
+    "chair": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          7,
+          8
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "delta": 0.03333333333333333,
+      "people_and_photo_ci95": [
+        0.0,
+        0.2
+      ]
+    },
+    "clock": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          6,
+          7
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          2,
+          6
+        ]
+      ],
+      "delta": 0.16666666666666666,
+      "people_and_photo_ci95": [
+        -0.13333333333333333,
+        0.4666666666666667
+      ]
+    },
+    "dog": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          8,
+          8
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.0
+      ]
+    },
+    "guitar": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          7,
+          7
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "delta": 0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.06666666666666667,
+        0.26666666666666666
+      ]
+    },
+    "mug": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          8,
+          8
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "delta": 0.0,
+      "people_and_photo_ci95": [
+        -0.13333333333333333,
+        0.16666666666666666
+      ]
+    },
+    "scissors": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          5,
+          5
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "delta": -0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.26666666666666666,
+        0.2
+      ]
+    },
+    "shoe": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "delta": 0.13333333333333333,
+      "people_and_photo_ci95": [
+        -0.06666666666666667,
+        0.3333333333333333
+      ]
+    },
+    "toothbrush": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          7,
+          7
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "delta": 0.0,
+      "people_and_photo_ci95": [
+        -0.13333333333333333,
+        0.13333333333333333
+      ]
+    },
+    "umbrella": {
+      "panel": "registered",
+      "by_person_hits": [
+        [
+          9,
+          9
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.26666666666666666,
+        0.06749999999998788
+      ]
+    },
+    "bed": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "delta": 0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.3
+      ]
+    },
+    "gearshift": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "delta": 0.1,
+      "people_and_photo_ci95": [
+        0.0,
+        0.3
+      ]
+    },
+    "gramophone": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          9,
+          10
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.3333333333333333,
+        0.2
+      ]
+    },
+    "poppy": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "delta": 0.06666666666666667,
+      "people_and_photo_ci95": [
+        0.0,
+        0.2
+      ]
+    },
+    "spacesuit": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          7,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          8,
+          8
+        ]
+      ],
+      "delta": 0.03333333333333333,
+      "people_and_photo_ci95": [
+        0.0,
+        0.2
+      ]
+    },
+    "tongue": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          8,
+          7
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.0
+      ]
+    },
+    "punching_bag": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          5,
+          6
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "delta": 0.03333333333333333,
+      "people_and_photo_ci95": [
+        0.0,
+        0.13333333333333333
+      ]
+    },
+    "stove1": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          6,
+          7
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "delta": -0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.23333333333333334,
+        0.16666666666666666
+      ]
+    },
+    "bedpan": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          9,
+          9
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "delta": -0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.26666666666666666,
+        0.13333333333333333
+      ]
+    },
+    "donkey": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          10,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "delta": 0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.13333333333333333,
+        0.2
+      ]
+    },
+    "paint": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          5,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "delta": -0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.26666666666666666,
+        0.13333333333333333
+      ]
+    },
+    "gold": {
+      "panel": "replicate",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "delta": 0.0,
+      "people_and_photo_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "hot_chocolate": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "delta": -0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.0
+      ]
+    },
+    "goblet": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          6,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "delta": 0.1,
+      "people_and_photo_ci95": [
+        -0.13333333333333333,
+        0.3333333333333333
+      ]
+    },
+    "navel": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "delta": 0.0,
+      "people_and_photo_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "rice": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          7,
+          7
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.3333333333333333,
+        0.06666666666666667
+      ]
+    },
+    "payphone": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          8,
+          8
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          9,
+          9
+        ]
+      ],
+      "delta": -0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.1
+      ]
+    },
+    "can_opener": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "delta": 0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.36666666666666664
+      ]
+    },
+    "telegraph": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          6,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "delta": 0.13333333333333333,
+      "people_and_photo_ci95": [
+        -0.06666666666666667,
+        0.3333333333333333
+      ]
+    },
+    "trumpet": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          8,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "delta": -0.1,
+      "people_and_photo_ci95": [
+        -0.4,
+        0.16666666666666666
+      ]
+    },
+    "bow2": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          9,
+          8
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          8,
+          8
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.26666666666666666,
+        0.06666666666666667
+      ]
+    },
+    "lock": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          8,
+          7
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.0
+      ]
+    },
+    "lid": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "delta": 0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.3
+      ]
+    },
+    "margarita": {
+      "panel": "fresh",
+      "by_person_hits": [
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "delta": 0.0,
+      "people_and_photo_ci95": [
+        -0.30083333333333256,
+        0.26666666666666666
+      ]
+    },
+    "bologna": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          6,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "delta": -0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.0
+      ]
+    },
+    "shopping_cart": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "delta": 0.06666666666666667,
+      "people_and_photo_ci95": [
+        0.0,
+        0.2
+      ]
+    },
+    "wax_paper": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          8,
+          8
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "delta": -0.03333333333333333,
+      "people_and_photo_ci95": [
+        -0.26666666666666666,
+        0.13333333333333333
+      ]
+    },
+    "cream_cheese": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          8,
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "delta": 0.1,
+      "people_and_photo_ci95": [
+        -0.06666666666666667,
+        0.3333333333333333
+      ]
+    },
+    "fast_food": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          5,
+          5
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "delta": -0.1,
+      "people_and_photo_ci95": [
+        -0.36666666666666664,
+        0.13333333333333333
+      ]
+    },
+    "outfit": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          7,
+          8
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "delta": 0.0,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.26666666666666666
+      ]
+    },
+    "gingerbread_man": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          10,
+          10
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "delta": 0.03333333333333333,
+      "people_and_photo_ci95": [
+        0.0,
+        0.2
+      ]
+    },
+    "dishrag": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          5,
+          4
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "delta": -0.16666666666666666,
+      "people_and_photo_ci95": [
+        -0.5,
+        0.13333333333333333
+      ]
+    },
+    "sifter": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          7,
+          8
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "delta": 0.03333333333333333,
+      "people_and_photo_ci95": [
+        0.0,
+        0.2
+      ]
+    },
+    "cereal": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "delta": 0.06666666666666667,
+      "people_and_photo_ci95": [
+        -0.13333333333333333,
+        0.26666666666666666
+      ]
+    },
+    "vase": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          8,
+          9
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "delta": 0.1,
+      "people_and_photo_ci95": [
+        0.0,
+        0.3333333333333333
+      ]
+    },
+    "hotdog": {
+      "panel": "prospective",
+      "by_person_hits": [
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "delta": 0.0,
+      "people_and_photo_ci95": [
+        -0.2,
+        0.2
+      ]
+    }
+  },
+  "predictions_sha256": {
+    "sub-04/registered": "72f1fd34ddbfe9f43442af48c114143996e6f81f89684f17de669c722e0c0106",
+    "sub-05/registered": "527b6fa78016bdf4d7757535ca60e7a51f6db2a5dc34299000bccf91a04f7c82",
+    "sub-01/registered": "6486dac3f12b0ee3a568b012d68e7b6dee4dde5565c99fdbe3ca9bfb41c9d0f6",
+    "sub-04/replicate": "1918825b7aced45dfc86f9c6ac5843b3b035069c7acf84c6cfc80a9d1fd3ab2c",
+    "sub-05/replicate": "342065efcee5b7711ddc3f19d66edc6aca74241a57264542506a4b60cea6efe3",
+    "sub-01/replicate": "22817630300672ecc99d4ced71bbeca9c352e609a8328f278637c7ca45c0f291",
+    "sub-04/fresh": "994e76f2e6d4ba6ac2544ff5bd17e236d411c6fe891a600bec08d5bcd2eb5ca9",
+    "sub-05/fresh": "75c5cbbccc99c314494f6d40f1897f8a6772f1d44a3544deefb8ec2797f0a408",
+    "sub-01/fresh": "775746f13bab6beb86d21167ed30285f4f77f6f6a5bfa02f3e4243ed07c63dcb",
+    "sub-04/prospective": "6744d415a2b0cf28eabffbae84f5f1c8d56756bd3240d204ccc04058af050d8f",
+    "sub-05/prospective": "5423d9edd489d6286b3b170b1f557045ae46bba1b4d714b21c7f0d6eead976c3",
+    "sub-01/prospective": "8e6b5ab1dab7635d28f0ca801decf0c6a48f936ae587e613c34f8ae15632ed4c"
+  },
+  "acquisition_receipts_sha256": {
+    "sub-04": "3c092f32df53e329d35c8c7c1666a397d66db50bb8978168f725eb51f506a43c",
+    "sub-05": "c8be296f8d7456cfbadee0a9aa3f7db8ef958586fc393fdd3812a1b361149346",
+    "sub-01": "b8bfc6752a650bbeace36ce758d937d8e598a69683390e39e6ccb1a6a2b6a18b"
+  },
+  "calibration_provenance": {
+    "sub-04": {
+      "source": "https://huggingface.co/datasets/LidongYang/EEG_Image_decode/resolve/dbe34bb2407164f70883c661c76664f0d596e522/Preprocessed_data_250Hz/sub-04/preprocessed_eeg_training.npy",
+      "revision": "dbe34bb2407164f70883c661c76664f0d596e522",
+      "source_full_lfs_sha256": "a658b1a82504f6f426a53a4a3ac28601b9988ec109b676d85b211a57a13d3e27",
+      "old_design_sha256": "9a887245683d39a4612bb63c43c70f15b2b490be7679e7289be035c96ba0bbe3",
+      "raw_sha256_ordered_digest": "c4875c68208bac2c1ecc321ac537f4ebacbe93875cb008d1c8cec90de162b308",
+      "feature_sha256_ordered_digest": "c351caeb42aea5de8d86cd5a2b9230a4694dd6e1f682856e9dae26c0768b9d4c"
+    },
+    "sub-05": {
+      "source": "https://huggingface.co/datasets/LidongYang/EEG_Image_decode/resolve/dbe34bb2407164f70883c661c76664f0d596e522/Preprocessed_data_250Hz/sub-05/preprocessed_eeg_training.npy",
+      "revision": "dbe34bb2407164f70883c661c76664f0d596e522",
+      "source_full_lfs_sha256": "b9ac68b2bb0d9469d0d8570874f6be9b7d135c031655409c67510907da6fe7c5",
+      "old_design_sha256": "d9d397c424bfc8b374793421ad3140fe0617671b74bec3a9008f31a5e38d6ecb",
+      "raw_sha256_ordered_digest": "f433919e29e40817a60c2c2fffcb6c9e60b1f45c40c5c0a68aaa69f43be772a4",
+      "feature_sha256_ordered_digest": "236ccc950dd296a9fdae251231540015daa9c4fa6952c7979ee90261b312cd7d"
+    },
+    "sub-01": {
+      "source": "https://huggingface.co/datasets/LidongYang/EEG_Image_decode/resolve/dbe34bb2407164f70883c661c76664f0d596e522/Preprocessed_data_250Hz/sub-01/preprocessed_eeg_training.npy",
+      "revision": "dbe34bb2407164f70883c661c76664f0d596e522",
+      "source_full_lfs_sha256": "a6a023c7d8983690aba43f2eaf2e9982739bc0f51981e2e392cb89e014698237",
+      "old_design_sha256": "9d0ebfee32eda1c4d2ac82aac5f7599bd8904936934db8245f1d2770b9f812b9",
+      "raw_sha256_ordered_digest": "59ea714b1f3f80e8c3693a0abf825f2d7bf35f82799761fc15e6f582080272d7",
+      "feature_sha256_ordered_digest": "3d4c3401be2b26eb588ae5a4bccf8a71572ee82053d0dca6e545baad633c3d97"
+    }
+  },
+  "interval_units": "Paired participants and shared true objects. Per-person intervals resample objects; within one object resample people and its ten shared photos. 10,000 draws; rates are fractions.",
+  "advance_to_fifth": false
+}

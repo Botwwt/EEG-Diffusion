@@ -1,5 +1,14 @@
 # EEG reconstruction galleries
 
+## Session-matched objects
+
+Each gallery takes the lowest archive row for every object. The single-person reconstruction uses sub-04's four presentations. The cohort combines sub-04, sub-05 and sub-01, each with four presentations of the same photograph. All twelve stress-test objects share the same recording-session signature. Each decision in the separate four-way experiment receives its registered list of four alternatives. The replay script also makes private three-column sheets with the viewed photograph beside both reconstructions. [Protocol and image measurements](../../../docs/COHORT_SESSION_CONTROLS.md)
+
+| Fixed target panel | One person, four observations | Three people, twelve observations |
+| --- | --- | --- |
+| One recording-session signature, twelve object choices | [Single-person images](photo_angle_sub04_stress12.jpg) | [Cohort images](photo_angle_cohort3_stress12.jpg) |
+| Three separate four-object choice sets | [Single-person images](photo_angle_sub04_new_three4.jpg) | [Cohort images](photo_angle_cohort3_new_three4.jpg) |
+
 ## Twelve additional objects
 
 The same three participants viewed 120 new photographs. These panels show the generated image for the lowest archive row of each object, including mistakes. The two labels identify the viewed object and the EEG prediction used for generation. [Sub-01](photo_angle_sub01_fresh.jpg) · [Sub-04](photo_angle_sub04_fresh.jpg) · [Sub-05](photo_angle_sub05_fresh.jpg) · [Reproduce the original-versus-generated comparison locally](../../../docs/FRESH_PHOTO_VALIDATION.md#reproduce-the-saved-image-comparison)
