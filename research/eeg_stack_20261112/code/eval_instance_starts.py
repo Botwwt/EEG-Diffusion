@@ -103,8 +103,8 @@ def make_conditions(root, rows, native_classes):
     return model(x.cuda()).float()
 
 
-def rollout(pipe, prompts, tokens, start, noise):
-    """Archived s375 Euler-ancestral stepping, 75% first-step hold and coarse tether."""
+def rollout(pipe, prompts, tokens, start, noise, *, first_hold=0.75, tether=True):
+    """Euler-ancestral stepping with the archived s375 hold and tether by default."""
     import torch.nn.functional as F
 
     eps, steps = noise[:, 0], noise[:, 1:]
@@ -130,9 +130,9 @@ def rollout(pipe, prompts, tokens, start, noise):
         down = math.sqrt(max(0.0, nxt**2 - up**2))
         z = z + (down - sigma) * pred + up * steps[:, i]
         anchor = start + nxt * eps
-        if i == 0:
-            z = 0.75 * anchor + 0.25 * z
-        if i in (2, 3):
+        if i == 0 and first_hold:
+            z = first_hold * anchor + (1.0 - first_hold) * z
+        if tether and i in (2, 3):
             low = F.interpolate(
                 F.avg_pool2d(anchor - z, 8), size=(64, 64), mode="bilinear", align_corners=False
             )
