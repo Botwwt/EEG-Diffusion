@@ -1,6 +1,7 @@
 """Score two development-stage H/14 direction changes against the original posterior JPEGs."""
 
 import argparse
+import json
 from pathlib import Path
 from types import SimpleNamespace
 from zipfile import ZipFile
@@ -30,6 +31,13 @@ COLS = (
     "candidate_wrong",
     "candidate_uniform",
 )
+
+
+def save_result(path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(data, indent=2, allow_nan=False) + "\n", encoding="utf8", newline="\n"
+    )
 
 
 def root(a, method):
@@ -310,11 +318,11 @@ def join(a, reg, cfg, methods):
             cases=sources,
         )
     raw = a.work / "candidate_paired_rows.json"
-    save(raw, dict(columns=COLS, records=audit))
+    save_result(raw, dict(columns=COLS, records=audit))
     out["inputs"]["paired_rows_sha256"] = sha(raw)
-    save(a.work / "candidate_summary.json", out)
+    save_result(a.work / "candidate_summary.json", out)
     if a.release:
-        save(a.release, out)
+        save_result(a.release, out)
     for m, v in out["methods"].items():
         print(m, v["pooled"]["dino_intra10"], flush=True)
 

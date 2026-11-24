@@ -1,5 +1,7 @@
 # EEG 图像重建｜当前模型与证据
 
+**论文中应把“画对物体”和“还原这张照片”列成两个终点，并交代记录场次。** 在原第四组，三人融合按词看似达到 116/120，但三人记录场次的组合已经能唯一确定这 12 个类别。控制场次后，在同一组合下做十二选一，融合为 69/120，固定的单人对照为 55/120。在另外三个预先给定的四选一组中，分别为 93/120 和 79/120。三人融合每张使用 12 次物理观测，单人每张使用 4 次。这些是 EEG 解词成绩。[原任务的场次审计](../research/eeg_stack_20261112/results/object_fidelity/cohort_r4_sessions.json) · [同场次十二选一](../research/eeg_stack_20261112/results/object_fidelity/cohort_session_stress12.json) · [新物体分组四选一](../research/eeg_stack_20261112/results/object_fidelity/cohort_session_new4.json)
+
 **按物体优先，主模型保留单人四次 EEG、17 个后部电极、512 类个人校准和八张类内支持图。** 第四组换成另外 12 种物体，同样的三个人观看同一批 120 张原图。后部读出答对 232/360 次，生成图经 CLIP 在 12 个名字中也答对 232/360 次，在全部 1,854 个名字中答对 199/360 次。同一评分器给真实原图命名分别答对 119/120 和 83/120。换全头 63 通道后，对应的三个成图与读出数字是 228、228 和 199。同类十张照片选出实际刺激，后部和全头分别是 42/360 和 40/360。图册按每类最小原始行号选图，包含热狗被改对、衣物被改错等双向变化。[第四组指标与不确定性](FULL_HEAD_512.md) · [固定图册](../research/eeg_stack_20261112/gallery/prospective_sub01.jpg) · [原图命名记录](../research/eeg_stack_20261112/results/object_fidelity/prospective_reference_names.json)
 
 当前有实测增益的研究方向，是用重复记录学习**同类照片之间可重复的 EEG 差异**。在 96 个留出物体的特征配对测试中，同一人的跨场次监督比后部直接读出高 1.53 个百分点，跨人的照片监督高 1.68 个百分点。另一次干预固定生成器，在 sub-04 的 120 张原图上，原来的 EEG 条件认回 14 张，仅给正确物体词认回 13 张，仅给真正的原图视觉特征认回 74 张。这提示照片细节的脑电估计有明显改进空间。跨场次与跨人监督已有文献基础，论文能具体检验的贡献是它们是否把类内差异带进最终图像。[跨场次训练](REPEAT_PHOTO_SUBSPACE.md) · [跨人训练](SHARED_PHOTO_EEG.md) · [视觉条件干预](PHOTO_CONDITION_DIAGNOSTIC.md) · [同类照片错误分析](FRESH_PHOTO_ERRORS.md)
@@ -15,6 +17,12 @@
 新做的单被试实验检查了照片中“周围内容预测不出的部分”。EEG 能从同概念照片中识别一部分局部残差，但显式预测残差在原始视觉特征图库只多认对一张。进一步在训练集以外的 200 张照片上实际生成 800 张图，同类照片差异修正将命中数从 27 提到 28，95% 区间仍跨零。保留为机制诊断，默认模型继续使用 M1a + D2。[实验设计、数据和结论](CONTEXT_RESIDUAL.md)
 
 11 月 25 日补做了逐图细节筛选。按两段 EEG 的预测一致性决定保留多少方向细节，均方误差略降，但在相同的 16×16 视觉特征图库上命中 571/2,640，低于直接预测的 581/2,640。这一版本没有进入图像生成。[逐概念筛选结果](../research/eeg_stack_20261112/results/spatial_detail_sub03_mean4.json)
+
+## 论文贡献和可比范围
+
+ATM 已经把 EEG 映射到视觉表征，再用扩散模型生成图片，并研究了零样本设定。我们的主实验给每个候选物体八张有标注的支持照和对应 EEG。论文比较应对齐候选类别、支持照、单人或多人以及实际观测次数。当前更有辨识度的问题是：在排除记录场次线索后，EEG 能支持多少物体重建，又能恢复多少超出类别的照片细节。[ATM，NeurIPS 2024](https://proceedings.neurips.cc/paper_files/paper/2024/hash/ba5f1233efa77787ff9ec015877dbd1f-Abstract.html) · [THINGS-EEG2 数据论文](https://pubmed.ncbi.nlm.nih.gov/36400378/)
+
+I-JEPA 的原始任务是在表征空间用可见图块预测目标图块。本库借用“从上下文预测目标”的思路，把同类支持图可预测的部分与需要 EEG 解释的剩余部分分开。重复记录提高类内配对、改善是否能传到生成图，以及场次能否独自区分类别，都有实际对照。已有研究系统讨论过 EEG 分类中的时间相关混杂，也已有利用重复记录寻找可靠分量的方法。这里可以主张的是具体协议、控制实验和实测边界；把残差、跨人投影或场次控制本身写成首次提出，证据不足。[I-JEPA，CVPR 2023](https://openaccess.thecvf.com/content/CVPR2023/papers/Assran_Self-Supervised_Learning_From_Images_With_a_Joint-Embedding_Predictive_Architecture_CVPR_2023_paper.pdf) · [EEG 分类中的分块混杂，TPAMI](https://pubmed.ncbi.nlm.nih.gov/33211652/) · [利用重复记录学习可靠分量](https://pubmed.ncbi.nlm.nih.gov/25579449/)
 
 ## 增加个人标定量，以及固定物体后辨认原照片
 

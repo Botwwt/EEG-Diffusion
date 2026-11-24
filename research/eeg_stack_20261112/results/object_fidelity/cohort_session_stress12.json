@@ -1,0 +1,147 @@
+{
+  "subject": "cohort-3",
+  "contributing_subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "physical_trials_per_photo": 12,
+  "individual_trials_per_photo": 4,
+  "panel": "stress12",
+  "scope": "These objects belong to the separate method's 512 added training classes. The frozen original 512 participant encoders have never used them.",
+  "primary": "ordinary_12way",
+  "n_unique_photos": 120,
+  "session_cells": [
+    {
+      "joint_session_ids": [
+        1,
+        4,
+        1,
+        4,
+        2,
+        4
+      ],
+      "source_cell_size": 14,
+      "selected_concepts": [
+        205,
+        217,
+        276,
+        388,
+        414,
+        911,
+        956,
+        1094,
+        1354,
+        1358,
+        1372,
+        1405
+      ]
+    }
+  ],
+  "design_sha256": "ebe8c6ec8710ec8a4886e095b89a87ce479bc42b38ad484d5c829aa0137b6599",
+  "target_feature_receipts": {
+    "sub-04": "3c092f32df53e329d35c8c7c1666a397d66db50bb8978168f725eb51f506a43c",
+    "sub-05": "c8be296f8d7456cfbadee0a9aa3f7db8ef958586fc393fdd3812a1b361149346",
+    "sub-01": "b8bfc6752a650bbeace36ce758d937d8e598a69683390e39e6ccb1a6a2b6a18b"
+  },
+  "predictions_sha256": "431b0b3af72458e5505e3eb829d0a7fe24cead10618576c01d503d16f3811973",
+  "driver_sha256": "af13b7bf933bbe249c256aad85043a6c0851475c575871a56d9e59b321b7783b",
+  "decisions": {
+    "ordinary_12way": {
+      "n": 120,
+      "candidates": 12,
+      "uniform_chance": 0.08333333333333333,
+      "session_classifier_expected_hits": 10,
+      "observed": {
+        "cohort": {
+          "hits": 69.0,
+          "accuracy": 0.575,
+          "object_bootstrap_ci95": [
+            0.45833333333333326,
+            0.6916666666666668
+          ]
+        },
+        "misaligned": {
+          "hits": 36.0,
+          "accuracy": 0.3,
+          "object_bootstrap_ci95": [
+            0.20833333333333337,
+            0.39166666666666666
+          ]
+        },
+        "sub-04": {
+          "hits": 55.0,
+          "accuracy": 0.4583333333333333,
+          "object_bootstrap_ci95": [
+            0.3333333333333333,
+            0.5666666666666668
+          ]
+        },
+        "sub-05": {
+          "hits": 45.0,
+          "accuracy": 0.375,
+          "object_bootstrap_ci95": [
+            0.25,
+            0.5166666666666667
+          ]
+        },
+        "sub-01": {
+          "hits": 44.0,
+          "accuracy": 0.36666666666666664,
+          "object_bootstrap_ci95": [
+            0.25833333333333336,
+            0.48333333333333334
+          ]
+        },
+        "mean_single": {
+          "hits": 48.0,
+          "accuracy": 0.4,
+          "object_bootstrap_ci95": [
+            0.2972222222222222,
+            0.5055555555555556
+          ]
+        }
+      },
+      "cohort_minus": {
+        "sub-04": {
+          "delta_hits": 14.0,
+          "mean": 0.11666666666666667,
+          "object_bootstrap_ci95": [
+            0.041666666666666664,
+            0.19166666666666665
+          ]
+        },
+        "mean_single": {
+          "delta_hits": 21.000000000000004,
+          "mean": 0.17500000000000002,
+          "object_bootstrap_ci95": [
+            0.11944444444444446,
+            0.2333333333333334
+          ]
+        },
+        "misaligned": {
+          "delta_hits": 33.0,
+          "mean": 0.275,
+          "object_bootstrap_ci95": [
+            0.13333333333333333,
+            0.4083333333333334
+          ]
+        }
+      },
+      "correct_by_true_object": [
+        4,
+        6,
+        6,
+        8,
+        6,
+        5,
+        9,
+        3,
+        4,
+        8,
+        8,
+        2
+      ]
+    }
+  }
+}

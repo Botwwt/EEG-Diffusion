@@ -5,7 +5,7 @@
   "intervals": "Paired 95% percentile intervals conditional on these three people. The same twelve true-object clusters are resampled for all people, folds, arms and candidates, 10000 draws, seed 260509. Rates are fractions. No multiplicity adjustment.",
   "inputs": {
     "registration_sha256": "980ac28dcb7b67861b4d83f4f965e836e6c6c4d1d4e475559c7b615a4d0b9b7a",
-    "code_sha256": "ca0af506418ebeeb8864682a02e34365589cce3f2e171319351a43b7960074d5",
+    "code_sha256": "d4664de154ec0afa2232b8b625e426db0205abc336ce5bb105d864cde91b9187",
     "dino_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
     "clip_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
     "clip_reports": {
@@ -13,7 +13,7 @@
       "repeat": "c2b61e22e8ab9ab6df80b7e2f12eaf5ef7b0e06824f084d85b70073820fface2",
       "shared": "09f3c4e7c74cbaf1e820ced5bc1b927fb76f27c1348cdd032ef479f04dcb72e4"
     },
-    "paired_rows_sha256": "8e6f87ccdffe4d88339062caaa33b066c9324e265862c93d7c5ef26b02dbc916"
+    "paired_rows_sha256": "aa4bf97c2ced7bed32e97d0acc929b600d0dfb7b34e5ec20c3f17a9fd3f0221a"
   },
   "methods": {
     "repeat": {
