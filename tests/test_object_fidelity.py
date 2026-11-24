@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 
 def load_scorer():
@@ -17,6 +18,20 @@ def load_scorer():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def test_rendering_uses_the_panel_list_in_the_frozen_design():
+    path = Path(__file__).resolve().parents[1] / "research/eeg_stack_20261112/code"
+    spec = importlib.util.spec_from_file_location("renderer", path / "render_within_photo_ip.py")
+    renderer = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(renderer)
+    assert renderer.panel_names({}) == ["registered", "replicate"]
+    assert renderer.panel_names({"panels": ["fresh"]}) == ["fresh"]
+    for requested in (["registered"], ["fresh", "fresh"], []):
+        with pytest.raises(ValueError):
+            renderer.panel_names({"panels": ["fresh"]}, requested)
+    with pytest.raises(ValueError):
+        renderer.panel_names({"panels": ["../fresh"]})
 
 
 def test_photo_identity_cannot_identify_an_object_through_the_held_out_ordinal():

@@ -1,0 +1,31 @@
+{
+  "locked_utc": "2026-11-24T19:22:13.421340+00:00",
+  "method_sha256": "402cc915e9facee0fb6de395458e8a77961258542b1e0d1448bcda5ea24797f6",
+  "panel_lock_sha256": "e11f1a371894ccf3b31778b2a133aabb6065e27bd26817cd171cf38eb7c960af",
+  "angle_design_sha256": "300c25916d5261fbe75ca35707a7101897cb9241d94b524e16e301dffc7b6e60",
+  "generic_model_sha256": {
+    "sub-04": "febd5fc89585d6636a5b0bde280f13b82e8a4668e627fb27d1f7f0f6a81ca240",
+    "sub-05": "8bd422936dfeca69b56e3c80b13d8be09bdca01bb288e6a5df714417df613cb3",
+    "sub-01": "06094e6fc5fbca608c8e762d9006fb602fbc4b644b23a195319e8ca94d1169a3"
+  },
+  "old_metrics_sha256": {
+    "pixels": "18d87f09f3501a61a8500060743c903e6edb9c7e16ceb315f5735cb9ec47bea6",
+    "dino": "bbc898bb1ab029aa31f7e0f91711c9ed0cfb7c23ec815b4e8c504b56e5b2adcf"
+  },
+  "new_condition_sha256": {
+    "sub-04": "1b9833b56752633b0e6b823e8e0831d047e7da952adf04cc9a0f429d00e18edc",
+    "sub-05": "6ecd645650f148d913c10856e3cd691e5e81d39b5715e782febc72760be1df32",
+    "sub-01": "7c1db9e06d2b335231b2c7c85a5788b7a049775466163a0d14313b6c42bdd7e2"
+  },
+  "subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "registered_queries_per_person": 120,
+  "precondition": "All six old cases scored. No locally completed fresh-angle render receipts, corrected JPEGs or fresh spatial outcomes existed when this lock was written.",
+  "selection": "Reuse exactly the old spatial model, 512 general objects, calibrated gains and all seven arms. Reuse the three participants on 12 different objects. New panel designated for testing, never used for model fitting or choice. One corrected JPEG per query/arm.",
+  "primary_pixel": "Within correct predicted-object queries compare own vs the identical prior on 64-square luma spatial correlation, and own vs wrong on grayscale SSIM among distinct donors with same true object, word and fold. Report the three people separately with true-object cluster bootstrap. Also report RMSE and gradient cosine as in old test.",
+  "primary_identity": "Report DINOv2-S/14 correctly named two-photo assignment vs prior and wrong, plus 10-photo identification on all rows. A layout gain alone does not establish a decoded photo-identity gain. Keep the original 128-class RGB 4x4 comparator and byte-identical base.",
+  "old_results": "DINO correct-pair assignment 107/170 own vs 108/170 prior across the three people and their old panels; both scored 78/720 on intra-object ten-photo retrieval. True-object-cluster intervals for old correct-word luma correlation own minus prior were above zero for all three, as were strict-donor gray SSIM own minus wrong. This motivated a separate geometry/color confirmation with a fresh panel without changing method or eligibility."
+}

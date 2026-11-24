@@ -1,0 +1,83 @@
+{
+  "method": "Frozen 512-concept personal Fisher decoder, 12 object choices, four physical trials per photograph, eight other labeled photographs per object in a fold.",
+  "sample": "Each of three participants viewed the same 120 distinct new photos. Report each participant's 120 queries separately.",
+  "protocol_sha256": "e11f1a371894ccf3b31778b2a133aabb6065e27bd26817cd171cf38eb7c960af",
+  "registration_sha256": "bb2bca550a032190e834053f0f7afaf6579b14047330ac6ff0204b9f8b48f4dd",
+  "session_schedule_sha256": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+  "uncertainty": "Within each fixed participant, resample 12 whole objects with replacement 10,000 times (seed 260510). Rates and percentile 95% limits use fractions. The secondary session null permutes whole object labels within their published session pairs.",
+  "uniform_expected_hits": 10,
+  "uniform_rate": 0.08333333333333333,
+  "participants": {
+    "sub-04": {
+      "n": 120,
+      "hits": 85,
+      "rate": 0.7083333333333334,
+      "rate_ci95": [
+        0.575,
+        0.825
+      ],
+      "strict_pairs_both_words_correct": 34,
+      "possible_pairs": 60,
+      "session_conditioned_expected_hits": 37.41666666666666,
+      "session_conditioned_excess_hits": 47.58333333333334,
+      "session_conditioned_label_permutation_p": 0.0005787037037037037,
+      "source_eeg_sha256": "bfd91f574f2bac9f30762a2fc72d5d1f3f7373a3d44e2cf2ad8c22ee8a59534a",
+      "derived_feature_packet_sha256": "119831b3d419369901302be85fab930b9b4a141ce453223f91d1df2a1079bac3",
+      "condition_sha256": "1b9833b56752633b0e6b823e8e0831d047e7da952adf04cc9a0f429d00e18edc",
+      "predictions_sha256": "64a3f9dd1f1df74cb21a694a937e828e928bdb45923ef9fb41336c060742fda4",
+      "evaluation_sha256": "f19e89f85a6ca3a98b1a5aa0340c04e5339608deead0bd2dbf794052f9be9d42"
+    },
+    "sub-05": {
+      "n": 120,
+      "hits": 60,
+      "rate": 0.5,
+      "rate_ci95": [
+        0.375,
+        0.6333333333333333
+      ],
+      "strict_pairs_both_words_correct": 15,
+      "possible_pairs": 60,
+      "session_conditioned_expected_hits": 38.08333333333333,
+      "session_conditioned_excess_hits": 21.91666666666667,
+      "session_conditioned_label_permutation_p": 0.011574074074074073,
+      "source_eeg_sha256": "95d2e52c284f9855f6abfe9fbc5bff43fac930c49f33af573a5b38ac9c0251dd",
+      "derived_feature_packet_sha256": "50c9025be3fadf3bc0163f00130b95752616fd70c43f6499151f76d6ecaa39a1",
+      "condition_sha256": "6ecd645650f148d913c10856e3cd691e5e81d39b5715e782febc72760be1df32",
+      "predictions_sha256": "d6c685144f4e4f8413ba3d5a5a165d0e6cd78d4909dd73475590f697b2920c21",
+      "evaluation_sha256": "9df081596a4470697b246818acbd5e1ca35197cbd1eb6d75578266f230322383"
+    },
+    "sub-01": {
+      "n": 120,
+      "hits": 64,
+      "rate": 0.5333333333333333,
+      "rate_ci95": [
+        0.35,
+        0.7166666666666667
+      ],
+      "strict_pairs_both_words_correct": 23,
+      "possible_pairs": 60,
+      "session_conditioned_expected_hits": 28.666666666666668,
+      "session_conditioned_excess_hits": 35.33333333333333,
+      "session_conditioned_label_permutation_p": 0.0033950617283950617,
+      "source_eeg_sha256": "bb51c52fef1a16ffbe6e6b3a275b7ffbd426fe9588ad4bd063b299bccf9a6da2",
+      "derived_feature_packet_sha256": "3f78f9768b657b151c733e8e1addb90cad53d68d92c781549574680d107241d3",
+      "condition_sha256": "7c1db9e06d2b335231b2c7c85a5788b7a049775466163a0d14313b6c42bdd7e2",
+      "predictions_sha256": "1441b008aabf9876d6096cc8ba52bdc401293f2c7f1fdba7085b3432c3396122",
+      "evaluation_sha256": "f94794ccd6072172081835c1b222277e862623a2da1dc38a964fbd3e985006da"
+    }
+  },
+  "historical_replay": {
+    "subject": "sub-04",
+    "panel": "registered",
+    "all_240_waveforms_bit_identical": true,
+    "all_120_prediction_ids_identical": true,
+    "word_hits": 86,
+    "max_abs_h14_errors": {
+      "base_own": 0.0,
+      "own": 0.0,
+      "wrong": 0.0,
+      "uniform": 0.0
+    }
+  },
+  "replay_sha256": "cfa86f6a2afc89e89e6d7b6f2f960fb7904ef046a7bbd5b28b91520619523ffd"
+}

@@ -1,0 +1,20 @@
+{
+  "created_utc": "2026-11-24T19:15:29.841431+00:00",
+  "generic_classes": 512,
+  "nested_reference": 128,
+  "subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "panels": [
+    "registered",
+    "replicate"
+  ],
+  "eeg": "Existing standardized 1003-dimensional posterior mean-four design, within-concept centering for ridge fit and the eight same predicted-object calibration EEG for queries; one common 0.3*n ridge penalty.",
+  "spatial": "Aligned crop to 512, area 64-square, 8x8 mean luma BT601, B-minus-luma, R-minus-luma and log(0.025+local luma SD); signed orthonormal DCT per channel. Bands u+v in {0;1,2;3..6;7..14}.",
+  "calibration": "Four object-disjoint generic folds with seed 260519. OOF query and target centered on other-eight support photos. Separate calibration slope per band and channel clipped [0,1.5]. Conservative channel-wise transfer alpha estimated in those same generic OOF photos by MSE when replacing an independent same-class photo with inferred layout, constrained [0,0.5] to protect image detail. Generic surrogate is a real same-class image. All spatial and strength settings fixed before any panel evaluation.",
+  "render": "Angle own JPEG is identical base in every arm. Locally transport smoothed brightness/opponent color means and log contrast; bound local contrast multiplier to [0.75,1.33] and total absolute channel change to 0.2. JPEG95 subsampling=0 for all edited images. Baseline copies bytes, neutral reencodes, prior uses the eight support originals, wrong EEG uses frozen cyclic same-word same-fold donor and own all else identical. Historical 128-class 4x4 direct RGB uses its 340 EEG features and locked 0.35 bilinear transfer on same baseline; also output historical prior.",
+  "primary": "On already fixed old 24 development objects: within correctly named queries compare own vs prior and own vs distinct same-truth same-word/fold wrong on gray SSIM64, luma spatial correlation, RGB RMSE, gradient cosine, DINO final CLS two-photo assignment and same-class ten-photo top1. Personwise concept-cluster intervals. Distinguish general prior improvement from EEG residual. No new panel consulted; no run selects parameters based on target scores.",
+  "decision": "Report all old 3 participants; form no visual identity improvement conclusion without a strict same-word paired gain under an independent image encoder. The same recipe applies to future disjoint panels; no model or OOF update based on old panel scores."
+}

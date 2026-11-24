@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 
 import numpy as np
-from render_within_photo_ip import ARMS, PANELS, check, packet, read, save, sha
+from render_within_photo_ip import ARMS, check, packet, panel_names, read, save, sha
 from score_reconstruction_jpegs import CLIP_SHA, registered
 from score_within_photo_ip import estimate
 
@@ -182,6 +182,7 @@ def case(args, sub, panel, c, score):
 
 def run(args):
     design = read(args.root / "design.json")
+    panels = panel_names(design)
     cohort = getattr(args, "subjects", None) or design["cohort"]
     check(
         len(set(cohort)) == len(cohort) and set(cohort) <= set(design["cohort"]),
@@ -208,13 +209,13 @@ def run(args):
         for key, c in r["cases"].items():
             p, s = key.split("/")
             check(
-                s in cohort and p in PANELS and key not in cases,
+                s in cohort and p in panels and key not in cases,
                 "Duplicate or unregistered case",
             )
             cases[key] = case(args, s, p, c, r)
-    check(set(cases) == {f"{p}/{s}" for s in cohort for p in PANELS}, "Incomplete cohort")
+    check(set(cases) == {f"{p}/{s}" for s in cohort for p in panels}, "Incomplete cohort")
     query_count = sum(case_data["images_per_arm"] for case_data in cases.values())
-    original_count = len(set().union(*(registered(args.references, p)["rows"] for p in PANELS)))
+    original_count = len(set().union(*(registered(args.references, p)["rows"] for p in panels)))
     shared = (
         "These cases use the same photos in both participants."
         if len(cohort) == 2
