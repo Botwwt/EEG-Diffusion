@@ -1,0 +1,23 @@
+{
+  "study": "Protected photo-direction intervention on actual generated images",
+  "subject": "sub-04",
+  "panel": "mix13",
+  "readout": "fresh-mix learned",
+  "seed": 260707,
+  "source_sha256": {
+    "generic_result": "056140fa26f60930c96b632d55a41c172c20ab21585e59afa2c5948dfe4a3491",
+    "generic_design": "9382b8d641db0b02ed84fe17fb2c7e00e5d4d3fc5ef296389c0f95a83f77bf48",
+    "historical_images": "8f1a7465ed664ccf22ee04e8057003ddf4d7d7af0114210983ce137422f2dc9e",
+    "word_design": "e7d8649eab42384dbca1cca0cf139d57d08f415bd0a5ef06f0b648784a4c4243",
+    "eeg": "43b68d1a71c6033db7b8b96738d040d3ce989016d18d52f91f1a027014610d18",
+    "native_packet": "25f8121209dbfd70a139889e35765242c3a2c118befdddd649578fc1eefbc88d",
+    "native_settings": "c13d581aff97fd1f98f02f6ab74b1d441525716201b689846cbbebe5811045f8",
+    "native_scores": "fca51b6738e93262c94cd65a84e90b236f0b20f4ef4b83fb61a26e6b414dcc2e",
+    "renderer": "508e60c1255f8deb518c67af8f9dec3d1f164517b584bcb7a640986edc371593"
+  },
+  "sample": "First menu lexicographically among the four prior sub-04 fresh-mix menus, all 120 queries (12 objects x ten pictures). Keep incorrect word predictions and ten supplemental photos. This menu has known native outcomes. This is a development pilot.",
+  "conditions": "Use the registered native learned word and unit H/14 direction; protect the global training mean, 96 object-centroid PCA axes and row-specific eight-support mean. Train only on the historical 884 external objects. Obtain each row's global prediction from its own EEG and subtract mean predictions for its eight legal supports. Apply the registered halfway rotation to the unprotected native component. Wrong swaps only this increment by the published same-predicted-word/same-fold donor, keeping the recipient's native direction, magnitude, protected coordinates and eight supports. Pass native as the reference-only argument for an identity test. Never use a held-query visual vector or label to calculate a generation input.",
+  "generation": "Regenerate all 360 JPEGs independently as native, own and wrong. Use the same renderer, dictionary, existing predicted-word prompt, batch eight, 512-square four-step Turbo, H/14 IP-Adapter, generic radius, and generators seeded 923761 plus original row. Native SHA must replay all 120 archived JPEGs. Algebraic zero residual must leave native bitwise unchanged after float32 rounding and equal conditions must render identical JPEGs.",
+  "analysis": "Score all actual JPEGs with frozen independent DINOv2-S/14 CLS cosine in the ten real photographs of each true object, using fractional ties. Primary sample all 120. Also report the 110 strict rows; nonself donors; nonself donors of the same true object; and nonself donors where both the common predicted word and the actual object agree. Use the same 10000 percentile draws of complete physical objects (seed 260707) for own-minus-native and own-minus-wrong, with per-row weighting and subsets retaining only eligible rows. Aggregate fixed independent CLIP-L/14 full1854 / closed12 true-object names, true-photo DINO cosine, RGB32 RMSE and luma correlation. Replay every native DINO10/full1854/closed12 result against the previous study. Preserve a fixed lowest-row example per true object.",
+  "gate": "Advance to the other three menus only if both paired all-120 DINO ten-photo accuracy lower 95% bounds are strictly positive for own minus native and own minus wrong, and all-120 full1854 true-object naming credit is at least native. No tuning on these images."
+}

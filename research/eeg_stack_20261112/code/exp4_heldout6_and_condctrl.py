@@ -100,7 +100,7 @@ def train_arm1b_rep_condlyr(arm1_ckpt: Path, res: dict, steps: int = 600, seed: 
         opt.zero_grad(set_to_none=True)
         idx_dev = torch.randint(0, n_tr, (512,), device=dev, generator=g)
         idx_cpu = idx_dev.cpu()
-        s_pair = rng.choice(10, size=2, replace=False)
+        s_pair = rng.choice(res["subject_ids"], size=2, replace=len(res["subject_ids"]) == 1)
 
         with torch.amp.autocast("cuda", dtype=torch.bfloat16):
             l_base = compute_base_anchor_loss(
@@ -109,7 +109,7 @@ def train_arm1b_rep_condlyr(arm1_ckpt: Path, res: dict, steps: int = 600, seed: 
             )
 
             # Same-subject 8 concepts x 10 photos (exact R=4 mean)
-            sid_c = int(rng.integers(0, 10))
+            sid_c = int(rng.choice(res["subject_ids"]))
             c_sel = rng.choice(n_c, size=8, replace=False)
             g_locs = c_groups[c_sel].reshape(-1)
             g_locs_t = torch.from_numpy(g_locs).long()

@@ -1,0 +1,299 @@
+{
+  "design_sha256": "cd2f96fb948c27785185c69155718f141697e80b2ad91da547a7b018f464a409",
+  "fit_receipts_sha256": "b638783d04e7ca2b4fb68af5b462f76807497b15a7a250d7a9603ad36815eb72",
+  "source_sha256": {
+    "prepare_cross_person_confusions.py": "45914459d59169fa98160cd46143fcac08f73c7ec3f007a34f714045e89b72bc",
+    "fit_cross_person_confusions.py": "c00566cf15ad539cf51a049b84de1274a124da8cb22883b32893c9170e2e91e2",
+    "score_cross_person_confusions.py": "6b0ff4b22c8dc6f262570897eff3b8981012e435a7f33d2dea6ef97b72f8ca69"
+  },
+  "decision_sha256": {
+    "sub-04/4": "20d9785de7ca084c4795e81b5684dba36736b3ea46d29aa0fcabce7893798be6",
+    "sub-05/4": "7f0421b6bbd625c1fe3cbb052ae28fdee7b4e12042446b4a838a195878a2c820",
+    "sub-01/4": "a698ba4d92cff034131d5afb3ca257e022825dc1251181cbff00b25e05fe7311",
+    "sub-04/12": "476bf30cbed54c12c9dec49e01d80a4a6400be6cd347dfe658cd7d453c4aef0a",
+    "sub-05/12": "4a9b5ffb4892c918d3f23d4741a31666f19029f64563bf2e3349f5635e741cfd",
+    "sub-01/12": "877eed8dfdbfb2b6befc1db9ab31ab4fceb93baf693af1e4cad269979f0bc052"
+  },
+  "trained_objects": 928,
+  "jointly_session_matched_training_objects": 816,
+  "class_oof_teacher_fits": 12,
+  "training_only_confusion_agreement": {
+    "endpoint": "Explanatory training-only check. For each photo pair, compare the recipient's hybrid wrong-object logit difference to the mean difference in the other viewers. A positive cosine identifies the correct ordering of the two photos.",
+    "jointly_matched_cells": 52,
+    "sampled_objects": 624,
+    "paired_orderings": 9360,
+    "correct_orderings": 6923,
+    "fraction_correct": 0.7396367521367522,
+    "fraction_ci95_by_object": [
+      0.7272435897435897,
+      0.7520299145299145
+    ],
+    "mean_difference_cosine": 0.25421538949012756,
+    "chance": 0.5
+  },
+  "personal_student_fits": 9,
+  "single_subject_test_presentations": 4,
+  "calibration_support_photos_per_candidate": 8,
+  "held_objects": 96,
+  "held_photos": 960,
+  "people": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "sub04_zero_max_weight_error_vs_previous_928_model": 0.0,
+  "endpoint": "Personal same-session object accuracy on the previously studied 96 held generic objects. Same 960 photos per person. Teachers use cross-fitted training EEG only.",
+  "intervals": "Percentage-point contrasts with synchronous whole-object percentile resampling over 96 physical objects, all photos and all three fixed participants, 10000 draws; no population-of-participants inference.",
+  "twelve_way": {
+    "n": 2880,
+    "per_person_n": 960,
+    "hits": {
+      "zero": 1392,
+      "sham": 1385,
+      "matched": 1386,
+      "historical_416": 1257,
+      "fisher": 1196,
+      "zero_neural": 1342,
+      "zero_wrong": 125,
+      "sham_neural": 1333,
+      "sham_wrong": 124,
+      "matched_neural": 1348,
+      "matched_wrong": 124
+    },
+    "per_person": {
+      "sub-04": {
+        "zero": 536,
+        "sham": 530,
+        "matched": 526,
+        "historical_416": 514,
+        "fisher": 475,
+        "zero_neural": 509,
+        "zero_wrong": 34,
+        "sham_neural": 501,
+        "sham_wrong": 34,
+        "matched_neural": 504,
+        "matched_wrong": 34
+      },
+      "sub-05": {
+        "zero": 394,
+        "sham": 395,
+        "matched": 395,
+        "historical_416": 343,
+        "fisher": 321,
+        "zero_neural": 370,
+        "zero_wrong": 48,
+        "sham_neural": 369,
+        "sham_wrong": 46,
+        "matched_neural": 376,
+        "matched_wrong": 47
+      },
+      "sub-01": {
+        "zero": 462,
+        "sham": 460,
+        "matched": 465,
+        "historical_416": 400,
+        "fisher": 400,
+        "zero_neural": 463,
+        "zero_wrong": 43,
+        "sham_neural": 463,
+        "sham_wrong": 44,
+        "matched_neural": 468,
+        "matched_wrong": 43
+      }
+    },
+    "matched_minus": {
+      "sham": {
+        "hits_delta": 1,
+        "gained": 30,
+        "lost": 29,
+        "delta_percentage_points": 0.0347,
+        "ci95_percentage_points": [
+          -0.5208,
+          0.5903
+        ]
+      },
+      "zero": {
+        "hits_delta": -6,
+        "gained": 20,
+        "lost": 26,
+        "delta_percentage_points": -0.2083,
+        "ci95_percentage_points": [
+          -0.6597,
+          0.2083
+        ]
+      },
+      "historical_416": {
+        "hits_delta": 129,
+        "gained": 311,
+        "lost": 182,
+        "delta_percentage_points": 4.4792,
+        "ci95_percentage_points": [
+          2.9861,
+          6.0069
+        ]
+      },
+      "matched_wrong": {
+        "hits_delta": 1262,
+        "gained": 1317,
+        "lost": 55,
+        "delta_percentage_points": 43.8194,
+        "ci95_percentage_points": [
+          39.7917,
+          47.8472
+        ]
+      }
+    },
+    "matched_neural_minus": {
+      "sham": {
+        "hits_delta": 15,
+        "gained": 56,
+        "lost": 41,
+        "delta_percentage_points": 0.5208,
+        "ci95_percentage_points": [
+          -0.2083,
+          1.25
+        ]
+      },
+      "zero": {
+        "hits_delta": 6,
+        "gained": 43,
+        "lost": 37,
+        "delta_percentage_points": 0.2083,
+        "ci95_percentage_points": [
+          -0.3819,
+          0.7986
+        ]
+      }
+    }
+  },
+  "four_way": {
+    "n": 2880,
+    "per_person_n": 960,
+    "hits": {
+      "zero": 2033,
+      "sham": 2029,
+      "matched": 2034,
+      "historical_416": 1905,
+      "fisher": 1916,
+      "zero_neural": 2024,
+      "zero_wrong": 265,
+      "sham_neural": 2021,
+      "sham_wrong": 266,
+      "matched_neural": 2019,
+      "matched_wrong": 259
+    },
+    "per_person": {
+      "sub-04": {
+        "zero": 714,
+        "sham": 714,
+        "matched": 716,
+        "historical_416": 689,
+        "fisher": 690,
+        "zero_neural": 717,
+        "zero_wrong": 72,
+        "sham_neural": 717,
+        "sham_wrong": 73,
+        "matched_neural": 715,
+        "matched_wrong": 73
+      },
+      "sub-05": {
+        "zero": 611,
+        "sham": 607,
+        "matched": 608,
+        "historical_416": 573,
+        "fisher": 587,
+        "zero_neural": 625,
+        "zero_wrong": 116,
+        "sham_neural": 614,
+        "sham_wrong": 115,
+        "matched_neural": 621,
+        "matched_wrong": 113
+      },
+      "sub-01": {
+        "zero": 708,
+        "sham": 708,
+        "matched": 710,
+        "historical_416": 643,
+        "fisher": 639,
+        "zero_neural": 682,
+        "zero_wrong": 77,
+        "sham_neural": 690,
+        "sham_wrong": 78,
+        "matched_neural": 683,
+        "matched_wrong": 73
+      }
+    },
+    "matched_minus": {
+      "sham": {
+        "hits_delta": 5,
+        "gained": 31,
+        "lost": 26,
+        "delta_percentage_points": 0.1736,
+        "ci95_percentage_points": [
+          -0.3125,
+          0.6597
+        ]
+      },
+      "zero": {
+        "hits_delta": 1,
+        "gained": 22,
+        "lost": 21,
+        "delta_percentage_points": 0.0347,
+        "ci95_percentage_points": [
+          -0.4514,
+          0.4861
+        ]
+      },
+      "historical_416": {
+        "hits_delta": 129,
+        "gained": 271,
+        "lost": 142,
+        "delta_percentage_points": 4.4792,
+        "ci95_percentage_points": [
+          2.9861,
+          6.0069
+        ]
+      },
+      "matched_wrong": {
+        "hits_delta": 1775,
+        "gained": 1857,
+        "lost": 82,
+        "delta_percentage_points": 61.6319,
+        "ci95_percentage_points": [
+          58.3333,
+          64.7917
+        ]
+      }
+    },
+    "matched_neural_minus": {
+      "sham": {
+        "hits_delta": -2,
+        "gained": 44,
+        "lost": 46,
+        "delta_percentage_points": -0.0694,
+        "ci95_percentage_points": [
+          -0.6606,
+          0.5556
+        ]
+      },
+      "zero": {
+        "hits_delta": -5,
+        "gained": 33,
+        "lost": 38,
+        "delta_percentage_points": -0.1736,
+        "ci95_percentage_points": [
+          -0.6944,
+          0.3472
+        ]
+      }
+    }
+  },
+  "decision_checks": {
+    "twelve_lower_positive_vs_sham": false,
+    "four_not_lower_vs_sham": true,
+    "twelve_lower_positive_vs_zero": false,
+    "four_not_lower_vs_zero": true,
+    "twelve_not_lower_than_historical": true
+  },
+  "advance": false
+}

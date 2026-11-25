@@ -1,0 +1,410 @@
+{
+  "subject": "sub-04",
+  "n": 960,
+  "objects": 96,
+  "registered_design_sha256": "b2c55b8b6a92e35f019bb3268daa59f9edb283c52bdd82ac2995a9cc7406d06c",
+  "annotation_driver_sha256": "163c49083cec3121875ba7809bad5dc91ab1088012721f774395e47e67b7933f",
+  "fit_driver_sha256": "baa758dcc9476002e638c3244b0f1aef5b89a6b1a838d0a838be4b861abc6a3f",
+  "model_sha256": "1aa0ee96b97718f71a8248e626a9dea01355e7987846a37c2fa4798063b875a1",
+  "predictions_sha256": "916f1261bfd020e3dee6d7bef986db7ac7dcf255eb3014a519e2d8a035406b12",
+  "counts": {
+    "fit_classes": {
+      "n": 3200,
+      "clean_light": 120,
+      "textured": 1852,
+      "uncertain": 1228,
+      "insufficient_background": 43
+    },
+    "calibration_classes": {
+      "n": 960,
+      "clean_light": 44,
+      "textured": 532,
+      "uncertain": 384,
+      "insufficient_background": 9
+    },
+    "evaluation_classes": {
+      "n": 960,
+      "clean_light": 50,
+      "textured": 524,
+      "uncertain": 386,
+      "insufficient_background": 19
+    }
+  },
+  "brier": {
+    "prior": {
+      "n": 574,
+      "objects": 96,
+      "mean": 0.10172970383275261,
+      "ci95": [
+        0.08274157408556856,
+        0.1228609353091931
+      ]
+    },
+    "eeg": {
+      "n": 574,
+      "objects": 96,
+      "mean": 0.08962249107245257,
+      "ci95": [
+        0.07328367860428964,
+        0.10772174305820031
+      ]
+    },
+    "swapped_eeg": {
+      "n": 574,
+      "objects": 96,
+      "mean": 0.10918572897700196,
+      "ci95": [
+        0.08912966954146742,
+        0.13114807301952922
+      ]
+    },
+    "photometry_eeg": {
+      "n": 574,
+      "objects": 96,
+      "mean": 0.0972211472831717,
+      "ci95": [
+        0.07929481407459062,
+        0.11708207309560308
+      ]
+    }
+  },
+  "paired_brier_gain": {
+    "prior": {
+      "n": 574,
+      "objects": 96,
+      "mean": 0.012107212760300053,
+      "ci95": [
+        0.006818871385251236,
+        0.017855855786291657
+      ]
+    },
+    "swapped_eeg": {
+      "n": 574,
+      "objects": 96,
+      "mean": 0.019563237904549405,
+      "ci95": [
+        0.0131006372093881,
+        0.026913969317562316
+      ]
+    },
+    "photometry_eeg": {
+      "n": 574,
+      "objects": 96,
+      "mean": 0.007598656210719129,
+      "ci95": [
+        0.003511309505974837,
+        0.012081953546294705
+      ]
+    }
+  },
+  "accuracy": {
+    "prior": {
+      "confident": {
+        "n": 574,
+        "objects": 96,
+        "mean": 0.8963414634146342,
+        "ci95": [
+          0.8570174649753881,
+          0.929624504147133
+        ]
+      },
+      "light": {
+        "n": 50,
+        "objects": 35,
+        "mean": 0.22,
+        "ci95": [
+          0.0,
+          0.4166666666666667
+        ]
+      },
+      "textured": {
+        "n": 524,
+        "objects": 96,
+        "mean": 0.9608778625954199,
+        "ci95": [
+          0.9364754098360656,
+          0.9802631578947368
+        ]
+      },
+      "balanced_accuracy": 0.59043893129771
+    },
+    "eeg": {
+      "confident": {
+        "n": 574,
+        "objects": 96,
+        "mean": 0.9146341463414634,
+        "ci95": [
+          0.878839590443686,
+          0.9448166486151942
+        ]
+      },
+      "light": {
+        "n": 50,
+        "objects": 35,
+        "mean": 0.32,
+        "ci95": [
+          0.1153571428571429,
+          0.509090909090909
+        ]
+      },
+      "textured": {
+        "n": 524,
+        "objects": 96,
+        "mean": 0.9713740458015268,
+        "ci95": [
+          0.9522821576763485,
+          0.9866920152091255
+        ]
+      },
+      "balanced_accuracy": 0.6456870229007634
+    },
+    "swapped_eeg": {
+      "confident": {
+        "n": 574,
+        "objects": 96,
+        "mean": 0.8710801393728222,
+        "ci95": [
+          0.8267148014440433,
+          0.9090909090909091
+        ]
+      },
+      "light": {
+        "n": 50,
+        "objects": 35,
+        "mean": 0.16,
+        "ci95": [
+          0.021739130434782608,
+          0.3055555555555556
+        ]
+      },
+      "textured": {
+        "n": 524,
+        "objects": 96,
+        "mean": 0.9389312977099237,
+        "ci95": [
+          0.9110648409561453,
+          0.9620264076822348
+        ]
+      },
+      "balanced_accuracy": 0.5494656488549619
+    },
+    "photometry_eeg": {
+      "confident": {
+        "n": 574,
+        "objects": 96,
+        "mean": 0.9041811846689896,
+        "ci95": [
+          0.8678899082568807,
+          0.9344545059403072
+        ]
+      },
+      "light": {
+        "n": 50,
+        "objects": 35,
+        "mean": 0.3,
+        "ci95": [
+          0.08823529411764706,
+          0.4909090909090909
+        ]
+      },
+      "textured": {
+        "n": 524,
+        "objects": 96,
+        "mean": 0.9618320610687023,
+        "ci95": [
+          0.93713163064833,
+          0.981203007518797
+        ]
+      },
+      "balanced_accuracy": 0.6309160305343512
+    }
+  },
+  "opposite_pairs": {
+    "prior": {
+      "n": 18,
+      "objects": 17,
+      "mean": 0.5,
+      "ci95": [
+        0.5,
+        0.5
+      ]
+    },
+    "eeg": {
+      "n": 18,
+      "objects": 17,
+      "mean": 0.9444444444444444,
+      "ci95": [
+        0.8125,
+        1.0
+      ]
+    },
+    "swapped_eeg": {
+      "n": 18,
+      "objects": 17,
+      "mean": 0.05555555555555555,
+      "ci95": [
+        0.0,
+        0.1875
+      ]
+    },
+    "photometry_eeg": {
+      "n": 18,
+      "objects": 17,
+      "mean": 0.7222222222222222,
+      "ci95": [
+        0.5238095238095238,
+        0.9230769230769231
+      ]
+    }
+  },
+  "all_coded_mse": {
+    "prior": {
+      "n": 960,
+      "objects": 96,
+      "mean": 0.08622731770833332,
+      "ci95": [
+        0.07741410221354167,
+        0.09540217773437498
+      ]
+    },
+    "eeg": {
+      "n": 960,
+      "objects": 96,
+      "mean": 0.07846769093922225,
+      "ci95": [
+        0.07032651270236048,
+        0.08705913168223058
+      ]
+    },
+    "swapped_eeg": {
+      "n": 960,
+      "objects": 96,
+      "mean": 0.0932817939630842,
+      "ci95": [
+        0.0835007686399835,
+        0.10343354651809275
+      ]
+    },
+    "photometry_eeg": {
+      "n": 960,
+      "objects": 96,
+      "mean": 0.08311242905698796,
+      "ci95": [
+        0.07425388414774453,
+        0.09236986580604088
+      ]
+    }
+  },
+  "actions": {
+    "all": {
+      "attempts": 80,
+      "uncertain": 30,
+      "precision": {
+        "n": 50,
+        "objects": 39,
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "light": {
+      "attempts": 1,
+      "uncertain": 1,
+      "precision": {
+        "n": 0,
+        "mean": null,
+        "ci95": null
+      }
+    },
+    "texture": {
+      "attempts": 79,
+      "uncertain": 29,
+      "precision": {
+        "n": 50,
+        "objects": 39,
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "gate_passed": false,
+  "examples": [
+    {
+      "group": "clean_light",
+      "row": 263,
+      "word": "anvil",
+      "truth": 1.0,
+      "prior": 0.0625,
+      "eeg": 0.20318047258614705
+    },
+    {
+      "group": "clean_light",
+      "row": 459,
+      "word": "backdrop",
+      "truth": 1.0,
+      "prior": 0.3125,
+      "eeg": 0.3888253296108822
+    },
+    {
+      "group": "varied",
+      "row": 260,
+      "word": "anvil",
+      "truth": 0.0,
+      "prior": 0.1875,
+      "eeg": 0.09168791579090468
+    },
+    {
+      "group": "varied",
+      "row": 261,
+      "word": "anvil",
+      "truth": 0.0,
+      "prior": 0.1875,
+      "eeg": 0.17156014784285917
+    },
+    {
+      "group": "unknown",
+      "row": 267,
+      "word": "anvil",
+      "truth": 0.5,
+      "prior": 0.125,
+      "eeg": 0.01
+    },
+    {
+      "group": "unknown",
+      "row": 450,
+      "word": "backdrop",
+      "truth": 0.5,
+      "prior": 0.375,
+      "eeg": 0.4234117832631734
+    },
+    {
+      "group": "would_prompt_light",
+      "row": 1293,
+      "word": "blouse",
+      "truth": 0.5,
+      "prior": 0.6875,
+      "eeg": 0.7945924546518084
+    },
+    {
+      "group": "would_prompt_texture",
+      "row": 267,
+      "word": "anvil",
+      "truth": 0.5,
+      "prior": 0.125,
+      "eeg": 0.01
+    },
+    {
+      "group": "would_prompt_texture",
+      "row": 451,
+      "word": "backdrop",
+      "truth": 0.5,
+      "prior": 0.375,
+      "eeg": 0.10825218001361603
+    }
+  ]
+}

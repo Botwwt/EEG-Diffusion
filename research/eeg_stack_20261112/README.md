@@ -1,6 +1,6 @@
 # November EEG reconstruction experiments
 
-This directory contains the November Brain-HIVE / SDXL-Turbo studies. The selected R4 reconstruction model is **M1a + D2 at s375**. The [experiment registry](../../docs/EXPERIMENT_REGISTRY.md) connects each scientific question to its evidence and controls. The [selected-model evaluator](code/eval_m1a_d2.py) runs one configuration. The [context-residual pilot](../../docs/CONTEXT_RESIDUAL.md) records the subsequent CPU experiment.
+This directory contains the November Brain-HiVE / SDXL-Turbo studies. The EEG-only benchmark scores the object depicted in a single image first, then its match to the viewed photograph. M1a + D2 at s375 was selected on the historical within-object R4 task. In the ten-person four-repeat comparison, personal Brain-HiVE and personal D2 tied at 14/2,000 exact-name credits. The single-query program accepts a personal EEG array, an encoder checkpoint and a seed. [Benchmark and training protocol](PAPER_BENCHMARK_PROTOCOL.md) · [Results](../../docs/PAPER_BENCHMARK_RESULTS.md) · [Model history](../../docs/OBJECT_LOG_REVIEW.md) · [Single-query program](code/paper_object_infer.py)
 
 | What to read | Where to look |
 | --- | --- |

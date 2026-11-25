@@ -14,8 +14,8 @@ classifiers = ["Development Status :: 3 - Alpha", "Intended Audience :: Science/
 
 [project.optional-dependencies]
 archive = ["paramiko>=3.4,<5"]
-test = ["pytest>=7,<10"]
-dev = ["pytest>=7,<10", "ruff>=0.12,<1", "pytest-cov>=6,<8"]
+test = ["pytest>=7,<10", "Pillow>=9.1"]
+dev = ["pytest>=7,<10", "ruff>=0.12,<1", "pytest-cov>=6,<8", "Pillow>=9.1"]
 report = ["matplotlib>=3.10,<3.11"]
 
 [project.urls]

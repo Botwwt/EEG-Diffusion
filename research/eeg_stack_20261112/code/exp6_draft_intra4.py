@@ -186,7 +186,7 @@ def rollout_4step_step_ips(
     return lt
 
 
-def precompute_or_load_tr14_z0_oof(tr_idx_np: np.ndarray, concept_np: np.ndarray, dev: str = "cuda:0") -> dict:
+def precompute_or_load_tr14_z0_oof(tr_idx_np: np.ndarray, concept_np: np.ndarray, dev: str = "cuda:0", subjects=ALL_SUBS) -> dict:
     """Compute genuine 4-fold concept-disjoint OOF ridge z0 on tr14 for all 10 subs (~67 MB cached in PCA-256)."""
     cache_p = DRAFT_DIR / "z0_oof_tr14_256.pt"
     if cache_p.exists():
@@ -222,9 +222,9 @@ def precompute_or_load_tr14_z0_oof(tr_idx_np: np.ndarray, concept_np: np.ndarray
     WINDOWS = [(12, 62), (10, 75), (15, 90), (10, 125), (0, 250)]
     Z_oof = torch.zeros((10, len(tr_idx_np), n_pca), dtype=torch.float16)
 
-    for sub in ALL_SUBS:
+    for sub in subjects:
         sid = sub - 1
-        X_m4 = torch.from_numpy(np.load(PREP / f"sub-{sub:02d}_train.npy")[tr_idx_np].mean(1)).float()
+        X_m4 = torch.from_numpy(np.load(PREP / f"sub-{sub:02d}_train.npy")[tr_idx_np].mean(1, dtype=np.float32))
         z_sub = torch.zeros((len(tr_idx_np), n_pca), dtype=torch.float32, device=dev)
         for fk in (1, 2, 3, 4):
             val_m = torch.from_numpy(f_tr == fk)
@@ -278,7 +278,7 @@ def train_draft_arm(
     dev: str = "cuda:0",
 ) -> Path:
     """Train one DRaFT-Intra4 arm: d1_simonly_cond | d2_compete4_cond | d3_compete4_steproute_z0."""
-    assert mode in ("d1_simonly_cond", "d2_compete4_cond", "d3_compete4_steproute_z0")
+    assert mode in ("d1_simonly_cond", "d2_positive_half_cond", "d2_compete4_cond", "d3_compete4_steproute_z0")
     out_p = DRAFT_DIR / f"{mode}_st{steps}_s{seed}.pt"
     if out_p.exists():
         print(f"[CACHED] {out_p}", flush=True)
@@ -348,7 +348,7 @@ def train_draft_arm(
 
         for mb in range(n_micro):
             # Sample 1 subject & 1 concept, pick 4 distinct photos from its 10 photos (exact R=4 real EEG!)
-            sid = int(rng.integers(0, 10))
+            sid = int(rng.choice(res["subject_ids"]))
             ci = int(rng.integers(0, n_c))
             pick4 = rng.choice(10, size=4, replace=False)
             locs = torch.tensor(c_groups[ci, pick4], dtype=torch.long)
@@ -414,6 +414,9 @@ def train_draft_arm(
 
             if use_compete:
                 loss_mb = (1.0 * l_ce + 0.50 * l_sim + l_reg) / float(n_micro)
+            elif mode == "d2_positive_half_cond":
+                # Leave the positive and trust coefficients at their D2 values. Only the paired term is removed.
+                loss_mb = (0.50 * l_sim + l_reg) / float(n_micro)
             else:
                 # SimOnly: positive similarity to own GT photo ONLY (NO within-concept competition!)
                 # Weight 12.0 matches d(l_ce)/d(S_ii) = tau*(1-0.25) = 11.25 + 0.50 = 11.75 for exact gradient-scale parity!

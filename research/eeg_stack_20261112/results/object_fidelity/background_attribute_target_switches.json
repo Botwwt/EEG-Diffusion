@@ -1,0 +1,57 @@
+{
+  "design": "dcb8a753301787d41fa5b82bfc4e66c93eebe00e88715cd91760686f512b09c4",
+  "model_sha256": "1aa0ee96b97718f71a8248e626a9dea01355e7987846a37c2fa4798063b875a1",
+  "confirmation_sha256": "fea18f63db60992f0f62645f548a5a996c7103301eec447b7d86bd6d93149757",
+  "target_eeg_sha256": "43b68d1a71c6033db7b8b96738d040d3ce989016d18d52f91f1a027014610d18",
+  "code_sha256": "c1df6fcea1ff101a7043ef4c3e714a1822da52372a4bcead36831a8020499487",
+  "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+  "suffix": " with a visibly varied, textured background",
+  "base_template": "A photo of {readable}.",
+  "suffix_template": "A photo of {readable} with a visibly varied, textured background.",
+  "panels": {
+    "mix13": {
+      "sha256": "e31e5333612dadcffd06d28b9a2c2285ca0f6a6ab97799164ea9dad6ef68e221",
+      "source_h14_sha256": "25f8121209dbfd70a139889e35765242c3a2c118befdddd649578fc1eefbc88d",
+      "source_settings_sha256": "c13d581aff97fd1f98f02f6ab74b1d441525716201b689846cbbebe5811045f8",
+      "rows": 120,
+      "matched": 5,
+      "wrong": 5,
+      "prior": 5,
+      "same_trigger_matched_wrong": 2,
+      "nonself": 106
+    },
+    "mix14": {
+      "sha256": "fae2e378f362515cdb1778c68781af031c4a6a692c4dbe2238f40f45a61af929",
+      "source_h14_sha256": "de283ed9dcdb066deaa61ee281f4e43a6e926c4286204f3766ad2010e99ae08f",
+      "source_settings_sha256": "efc594896dee96e795677996782063746c04523c8e7c340c5b09fe4d19114bad",
+      "rows": 120,
+      "matched": 12,
+      "wrong": 12,
+      "prior": 12,
+      "same_trigger_matched_wrong": 3,
+      "nonself": 103
+    },
+    "mix23": {
+      "sha256": "9e4d02d8344430e3f5ea1ccd2248fb236e00935d4c078aab4d906930674cbfbe",
+      "source_h14_sha256": "8fb8bd05096c9f30deb31ab04d3d2135b38d2def865aa4a6c4336b9cf2d368d7",
+      "source_settings_sha256": "dfbb264807343dd6854260da771d85a839f98e009a27b8e14ae1fc7ba39d4c4a",
+      "rows": 120,
+      "matched": 8,
+      "wrong": 8,
+      "prior": 8,
+      "same_trigger_matched_wrong": 2,
+      "nonself": 104
+    },
+    "mix24": {
+      "sha256": "f307260a7d5936615ce3eaa8df279e7e7c1839cc77379aa05192f3f98eeabdff",
+      "source_h14_sha256": "592a6bfa6f52a521c1e310bce5b775ccb968a1b72a49291a2636639029f89c74",
+      "source_settings_sha256": "3e669bd4ea149540c656315b4e198dcc5b34ab85194ea24821a9ef6358b3c172",
+      "rows": 120,
+      "matched": 7,
+      "wrong": 7,
+      "prior": 7,
+      "same_trigger_matched_wrong": 5,
+      "nonself": 95
+    }
+  }
+}

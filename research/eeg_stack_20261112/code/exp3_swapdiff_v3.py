@@ -178,14 +178,14 @@ def train_raw_swap_v3(
         # 1. Sharp inter-concept anchor (+ optional L_rep_intra)
         idx_dev = torch.randint(0, n_tr, (512,), device=dev, generator=g)
         idx_cpu = idx_dev.cpu()
-        s_pair = rng.choice(10, size=2, replace=False)
+        s_pair = rng.choice(res["subject_ids"], size=2, replace=len(res["subject_ids"]) == 1)
         with torch.amp.autocast("cuda", dtype=torch.bfloat16):
             l_anchor = compute_base_anchor_loss(
                 model, res, int(s_pair[0]), int(s_pair[1]), idx_cpu, idx_dev, g, dev,
                 ls_f, ls_h, ls_b, ls_x, remove_fn_mask=True,
             )
             if w_rep_intra > 0.0:
-                sid_c = int(rng.integers(0, 10))
+                sid_c = int(rng.choice(res["subject_ids"]))
                 c_sel = rng.choice(n_c, size=8, replace=False)
                 l_in = compute_rep_intra_loss(model, res, sid_c, c_sel, g, dev, pack["cone"], ls_in)
                 l_anchor = l_anchor + w_rep_intra * l_in
@@ -196,7 +196,7 @@ def train_raw_swap_v3(
         # 2. Doubly-balanced 2x2 Raw-eps EEG-Swap Denoising Contrast through FROZEN SDXL-Turbo UNet
         step_rec_val, step_sw_val, step_d_val, step_win = 0.0, 0.0, 0.0, 0.0
         for mb in range(n_micro):
-            sid = int(rng.integers(0, 10))
+            sid = int(rng.choice(res["subject_ids"]))
             c_sel = rng.choice(n_c, size=pairs_per_mb, replace=False)
             loc_a, loc_b = [], []
             for ci in c_sel:

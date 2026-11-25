@@ -23,6 +23,8 @@ jobs:
       - run: python -m ruff check src scripts tests
       - run: python -m ruff format --check src scripts tests
       - run: python -m pytest -q
+      - name: Verify the published participant and image score receipts
+        run: python research/eeg_stack_20261112/code/package_paper_scores.py --unpack research/eeg_stack_20261112/results/paper_benchmark_scores.zip "${{ runner.temp }}/paper-benchmark"
       - run: eeg-diffusion verify
       - run: python scripts/verify_research_snapshot.py
       - run: python scripts/build_report.py --check
