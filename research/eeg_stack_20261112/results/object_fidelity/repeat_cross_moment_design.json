@@ -1,0 +1,12 @@
+{
+  "question": "Do cross-electrode products of different physical EEG presentations help name the observed object from four presentations to one person?",
+  "participants": ["sub-04", "sub-05", "sub-01"],
+  "training_universe": "The 128 original non-panel calibration objects in the archived personal EEG source receipts. Ten real photos per object. Previously used development population.",
+  "folds": "Per participant, hold out an entire recording-session pair, fit all waveform standardization and Fisher projections on objects with the other three pairs. All 12 test candidates share the held-out pair. Each photo is evaluated once per participant.",
+  "inputs": "Four stored 17-posterior-electrode waveforms from the pinned subject file. Six successive 80 ms windows from 40 to 520 ms. Subtract each trial/electrode's temporal mean inside each window. Average products only over distinct trial pairs, giving six symmetric 17x17 matrices. Retain their upper triangles. No whole-dataset waveform normalization.",
+  "readout": "Existing 96-direction personal Fisher readout on R4 mean waveform; additional 48-direction Fisher on distinct-trial product features. Candidate score is 75% historical standardized prototype cosine and 25% standardized product-feature cosine. Identical comparator replaces distinct-trial products by the outer product of the R4 mean waveform in each window. Standalone scores and a wrong EEG in the same 12-object menu are diagnostics.",
+  "menu": "Shuffle the ten photo indices of each class once per person. In each fold, set aside the same two slots per class and use the other eight as EEG-labeled supports. The candidate menu contains 11 random other held-out classes plus the evaluated one, shuffled before scoring. Primary uses one menu per decision.",
+  "decision": "Advance to the historical 512-class fitting task only if pooled 12-way object accuracy gains have a positive lower bound against the mean-waveform Fisher baseline and a positive point estimate against the same 75/25 mix using products of the average waveform. Otherwise retain the baseline.",
+  "uncertainty": "10,000 paired draws of the 128 whole objects, keeping all ten photos and all three separately fitted people. Conditional on these people and overlapping menus. Comparisons exploratory.",
+  "seed": 261127
+}

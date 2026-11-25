@@ -1,0 +1,37 @@
+{
+  "design_sha256": "d956331f7a003fd900ecdc1a427970c9059447be87202e38801a1f33eee4ebcb",
+  "driver_sha256": "ef6059da356a407f6acbc35a366260776acc5dfb393379ab3ee152d18681b9f3",
+  "fit_receipt_sha256": "c0058ad4d017250b27d939ab46bc4e96f7521625977d5583a335e7f4f210625c",
+  "feature_receipt_sha256": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+  "evaluation": {
+    "pair_assignment": {
+      "n": 4320,
+      "hits": {
+        "posterior": 3179.0,
+        "deep": 3318.0,
+        "mixed": 3333.0,
+        "exchanged": 1991.0
+      },
+      "mixed_minus_posterior": 0.035648148148148144,
+      "ci95": [
+        0.02337962962962963,
+        0.04791666666666666
+      ]
+    },
+    "within_ten": {
+      "n": 960,
+      "hits": {
+        "posterior": 22.0,
+        "deep": 19.0,
+        "mixed": 19.0,
+        "exchanged": 14.0
+      },
+      "mixed_minus_posterior": -0.0031250000000000006,
+      "ci95": [
+        -0.008333333333333333,
+        0.0020833333333333333
+      ]
+    }
+  },
+  "advance": false
+}

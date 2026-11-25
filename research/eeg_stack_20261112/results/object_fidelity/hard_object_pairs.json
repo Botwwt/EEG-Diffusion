@@ -1,0 +1,426 @@
+{
+  "design_sha256": "7efc5a919234e7d38279bfe1bdff1ffcb6d4d2cc5c2087d355316f9b0d187cf3",
+  "source_sha256": "0239b6e1e795d740b5978a4be97a2af9367a73af1830fae2aa4182a277b021bf",
+  "participants": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "uncertainty": "Synchronized whole-object paired percentage differences (fraction units); three fixed participants. Same generic classes resampled together for both menu widths; independent panel strata.",
+  "checks": "All native and incumbent episodic predictions replayed at every row. Wrong EEG from same supplied menu and fold. Target 4-way vocabulary provided by registered ordinal. All panels and generic check split previously studied.",
+  "results": {
+    "generic_4": {
+      "n": 2880,
+      "hits": {
+        "native": 1755,
+        "episodic": 1800,
+        "hard_pairs": 1813,
+        "orientation_sham": 1605,
+        "wrong_eeg": 343
+      },
+      "hard_pairs_minus": {
+        "native": {
+          "delta": 0.02013888888888889,
+          "ci95": [
+            0.006944444444444444,
+            0.03333333333333333
+          ]
+        },
+        "episodic": {
+          "delta": 0.0045138888888888885,
+          "ci95": [
+            -0.0020833333333333333,
+            0.011111111111111112
+          ]
+        },
+        "orientation_sham": {
+          "delta": 0.07222222222222222,
+          "ci95": [
+            0.05347222222222222,
+            0.09097222222222222
+          ]
+        },
+        "wrong_eeg": {
+          "delta": 0.5104166666666666,
+          "ci95": [
+            0.47604166666666664,
+            0.5444444444444444
+          ]
+        }
+      },
+      "by_subject": {
+        "sub-04": {
+          "n": 960,
+          "hits": {
+            "native": 647,
+            "episodic": 645,
+            "hard_pairs": 658,
+            "orientation_sham": 565,
+            "wrong_eeg": 97
+          }
+        },
+        "sub-05": {
+          "n": 960,
+          "hits": {
+            "native": 514,
+            "episodic": 539,
+            "hard_pairs": 538,
+            "orientation_sham": 506,
+            "wrong_eeg": 138
+          }
+        },
+        "sub-01": {
+          "n": 960,
+          "hits": {
+            "native": 594,
+            "episodic": 616,
+            "hard_pairs": 617,
+            "orientation_sham": 534,
+            "wrong_eeg": 108
+          }
+        }
+      }
+    },
+    "generic_12": {
+      "n": 2880,
+      "hits": {
+        "native": 1095,
+        "episodic": 1137,
+        "hard_pairs": 1121,
+        "orientation_sham": 836,
+        "wrong_eeg": 160
+      },
+      "hard_pairs_minus": {
+        "native": {
+          "delta": 0.009027777777777777,
+          "ci95": [
+            -0.0038194444444444443,
+            0.022569444444444444
+          ]
+        },
+        "episodic": {
+          "delta": -0.005555555555555556,
+          "ci95": [
+            -0.013888888888888888,
+            0.002777777777777778
+          ]
+        },
+        "orientation_sham": {
+          "delta": 0.09895833333333333,
+          "ci95": [
+            0.07951388888888888,
+            0.11875
+          ]
+        },
+        "wrong_eeg": {
+          "delta": 0.33368055555555554,
+          "ci95": [
+            0.29583333333333334,
+            0.371875
+          ]
+        }
+      },
+      "by_subject": {
+        "sub-04": {
+          "n": 960,
+          "hits": {
+            "native": 437,
+            "episodic": 454,
+            "hard_pairs": 447,
+            "orientation_sham": 316,
+            "wrong_eeg": 43
+          }
+        },
+        "sub-05": {
+          "n": 960,
+          "hits": {
+            "native": 305,
+            "episodic": 314,
+            "hard_pairs": 312,
+            "orientation_sham": 229,
+            "wrong_eeg": 67
+          }
+        },
+        "sub-01": {
+          "n": 960,
+          "hits": {
+            "native": 353,
+            "episodic": 369,
+            "hard_pairs": 362,
+            "orientation_sham": 291,
+            "wrong_eeg": 50
+          }
+        }
+      }
+    },
+    "stress12": {
+      "n": 360,
+      "hits": {
+        "native": 144,
+        "episodic": 147,
+        "hard_pairs": 148,
+        "orientation_sham": 124,
+        "wrong_eeg": 34
+      },
+      "hard_pairs_minus": {
+        "native": {
+          "delta": 0.011111111111111112,
+          "ci95": [
+            -0.03333333333333333,
+            0.05
+          ]
+        },
+        "episodic": {
+          "delta": 0.002777777777777778,
+          "ci95": [
+            -0.022222222222222223,
+            0.027777777777777776
+          ]
+        },
+        "orientation_sham": {
+          "delta": 0.06666666666666667,
+          "ci95": [
+            -0.002777777777777778,
+            0.1361111111111111
+          ]
+        },
+        "wrong_eeg": {
+          "delta": 0.31666666666666665,
+          "ci95": [
+            0.22777777777777777,
+            0.41944444444444445
+          ]
+        }
+      },
+      "by_subject": {
+        "sub-04": {
+          "n": 120,
+          "hits": {
+            "native": 55,
+            "episodic": 56,
+            "hard_pairs": 56,
+            "orientation_sham": 49,
+            "wrong_eeg": 16
+          }
+        },
+        "sub-05": {
+          "n": 120,
+          "hits": {
+            "native": 45,
+            "episodic": 46,
+            "hard_pairs": 46,
+            "orientation_sham": 32,
+            "wrong_eeg": 8
+          }
+        },
+        "sub-01": {
+          "n": 120,
+          "hits": {
+            "native": 44,
+            "episodic": 45,
+            "hard_pairs": 46,
+            "orientation_sham": 43,
+            "wrong_eeg": 10
+          }
+        }
+      }
+    },
+    "new_three4": {
+      "n": 360,
+      "hits": {
+        "native": 233,
+        "episodic": 247,
+        "hard_pairs": 247,
+        "orientation_sham": 201,
+        "wrong_eeg": 57
+      },
+      "hard_pairs_minus": {
+        "native": {
+          "delta": 0.03888888888888889,
+          "ci95": [
+            0.005555555555555556,
+            0.07229166666666564
+          ]
+        },
+        "episodic": {
+          "delta": 0.0,
+          "ci95": [
+            -0.016666666666666666,
+            0.022222222222222223
+          ]
+        },
+        "orientation_sham": {
+          "delta": 0.12777777777777777,
+          "ci95": [
+            0.075,
+            0.18055555555555555
+          ]
+        },
+        "wrong_eeg": {
+          "delta": 0.5277777777777778,
+          "ci95": [
+            0.4361111111111111,
+            0.6166666666666667
+          ]
+        }
+      },
+      "by_subject": {
+        "sub-04": {
+          "n": 120,
+          "hits": {
+            "native": 79,
+            "episodic": 87,
+            "hard_pairs": 87,
+            "orientation_sham": 71,
+            "wrong_eeg": 18
+          }
+        },
+        "sub-05": {
+          "n": 120,
+          "hits": {
+            "native": 67,
+            "episodic": 72,
+            "hard_pairs": 72,
+            "orientation_sham": 56,
+            "wrong_eeg": 24
+          }
+        },
+        "sub-01": {
+          "n": 120,
+          "hits": {
+            "native": 87,
+            "episodic": 88,
+            "hard_pairs": 88,
+            "orientation_sham": 74,
+            "wrong_eeg": 15
+          }
+        }
+      }
+    }
+  },
+  "generic_pooled": {
+    "n": 5760,
+    "hits": {
+      "native": 2850,
+      "episodic": 2937,
+      "hard_pairs": 2934,
+      "orientation_sham": 2441,
+      "wrong_eeg": 503
+    },
+    "hard_pairs_minus": {
+      "native": {
+        "delta": 0.014583333333333334,
+        "ci95": [
+          0.0045138888888888885,
+          0.025173611111111112
+        ]
+      },
+      "episodic": {
+        "delta": -0.0005208333333333333,
+        "ci95": [
+          -0.006423611111111111,
+          0.005381944444444444
+        ]
+      },
+      "orientation_sham": {
+        "delta": 0.08559027777777778,
+        "ci95": [
+          0.07083333333333333,
+          0.10034722222222223
+        ]
+      },
+      "wrong_eeg": {
+        "delta": 0.42204861111111114,
+        "ci95": [
+          0.3894097222222222,
+          0.4555598958333333
+        ]
+      }
+    }
+  },
+  "panels_pooled": {
+    "n": 720,
+    "hits": {
+      "native": 377,
+      "episodic": 394,
+      "hard_pairs": 395,
+      "orientation_sham": 325,
+      "wrong_eeg": 91
+    },
+    "hard_pairs_minus": {
+      "native": {
+        "delta": 0.025,
+        "ci95": [
+          -0.002777777777777778,
+          0.05138888888888889
+        ]
+      },
+      "episodic": {
+        "delta": 0.001388888888888889,
+        "ci95": [
+          -0.013888888888888888,
+          0.018055555555555554
+        ]
+      },
+      "orientation_sham": {
+        "delta": 0.09722222222222222,
+        "ci95": [
+          0.05416666666666667,
+          0.14166666666666666
+        ]
+      },
+      "wrong_eeg": {
+        "delta": 0.4222222222222222,
+        "ci95": [
+          0.35694444444444445,
+          0.4888888888888889
+        ]
+      }
+    }
+  },
+  "gate": {
+    "generic_positive_lower_vs_native_episodic_and_sham": false,
+    "generic_each_width_nonnegative": false,
+    "target_each_panel_nonnegative": true,
+    "target_positive_lower_vs_native_and_episodic": false
+  },
+  "advance": false,
+  "receipts": {
+    "sub-04": {
+      "subject": "sub-04",
+      "design_sha256": "7efc5a919234e7d38279bfe1bdff1ffcb6d4d2cc5c2087d355316f9b0d187cf3",
+      "source_sha256": "0239b6e1e795d740b5978a4be97a2af9367a73af1830fae2aa4182a277b021bf",
+      "historical_episodic_model_sha256": "38c7576b5a8976f674e34633e69fddc31ddceadb4379354b996fde8302ac381f",
+      "predictions_sha256": {
+        "generic_4": "cdf90db5966b2dd0b8bfe430f0f7369fceb3c25a6265893bd54f8b72de847347",
+        "generic_12": "1b7baaedd540e036e8ac27eefb1bee69567d0f791a28e05963628f1a42724580",
+        "stress12": "cdb9a4e28c7e3655e99f75aa6571c2ce84fed85969d231aac701285f22f8bf3b",
+        "new_three4": "ff1995e2cd7520fcb0a3ca991cb01eb94eb1a06c3d365ae3ae64c3f4b1514463"
+      }
+    },
+    "sub-05": {
+      "subject": "sub-05",
+      "design_sha256": "7efc5a919234e7d38279bfe1bdff1ffcb6d4d2cc5c2087d355316f9b0d187cf3",
+      "source_sha256": "0239b6e1e795d740b5978a4be97a2af9367a73af1830fae2aa4182a277b021bf",
+      "historical_episodic_model_sha256": "bc7324541a59439c537a5e7d05a7974b168e9d39170b631996b68fa3d1f8cb33",
+      "predictions_sha256": {
+        "generic_4": "c697e598bf6f366104ca66394904d231f67323a184ec0dd3f863b378b5815fd7",
+        "generic_12": "9e4221db8c89a033b9feaecec706d1327c7c24bf51c85873b53502e6665c4388",
+        "stress12": "6970abcc23f6cb76f88ae99a41505cb3db2f4816b89c556c3389fa2c22fbcf21",
+        "new_three4": "92e393fda8056b32dd95f9c719c959c460610b79e5e8ae58a0958b45dbabcf8c"
+      }
+    },
+    "sub-01": {
+      "subject": "sub-01",
+      "design_sha256": "7efc5a919234e7d38279bfe1bdff1ffcb6d4d2cc5c2087d355316f9b0d187cf3",
+      "source_sha256": "0239b6e1e795d740b5978a4be97a2af9367a73af1830fae2aa4182a277b021bf",
+      "historical_episodic_model_sha256": "cbc3998bb34556f6f7f9ba4699a50fa3a7352d5454bc06472cd56f6677fa0c28",
+      "predictions_sha256": {
+        "generic_4": "93d17cb606d3fa1f6118aaad205a3bd120b7b7d39f64ce8254afff04e89c8d00",
+        "generic_12": "109fd1a10e1e147259b6ff86b58cd4757ec12173a8c61821935ddf68e087ecf1",
+        "stress12": "deccefc96025e0863a50daf114a5aebabf5b197e70c44c62e82d195bf90f797a",
+        "new_three4": "08ec081a1247e29262ee40a6ff1baf70201eef32a4bb3506d381b8e401ff8e34"
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Job scripts (as run for this folder's experiments)
 
+The registered personal twelve-object experiment uses Slurm. Generate the transfer bundles with `package_personal_confirmation.py`. Its render archive contains the conditions and generator. Independent scoring archives carry the evaluation registrations. Stage the bundles beside `run_personal_confirmation.sbatch` and set `ARCHIVE` to the generator environment and model archive, with the dictionary and ViT-H adapter in the submit directory's `official/` folder. Submit the render first, use its successful Slurm job as a dependency for CLIP scoring, and pass the printed SHA-256 of each bundle in `BUNDLE_SHA`. The array maps indices 0, 1 and 2 to sub-04, sub-05 and sub-01. [Personal panel replay](../../../docs/PERSONAL12_CONFIRMATION.md) · [Trial-model preparation](../../../docs/TRIAL_OBJECT_PERSONAL12.md)
+
 Shell wrappers that queued the experiments on 8-GPU nodes without a scheduler (tmux sessions, one or two jobs per
 card). Use the [GPU replay guide](../README.md#gpu-replay) and the [original environment recipes](../EXPERIMENT_HISTORY.md)
 to run a specific experiment. These wrappers assume the original working layout.

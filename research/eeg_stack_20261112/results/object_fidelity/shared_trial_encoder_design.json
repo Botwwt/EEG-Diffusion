@@ -1,0 +1,47 @@
+{
+  "study": "Generic-only development of shared photo supervision for single-person R4 object recognition",
+  "participants": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "scope": "Same 416 generic training and 96 previously used evaluation objects for all people. No target or panel EEG, target score or photograph. Each subject evaluated on only their own recordings. Both menus compare exactly the historical subject-specific same-session candidates, folds and eight support photos, repeated identically for all models. Largest jointly matched cell in the 96-object set has six objects; there is no common strict twelve-way candidate menu across all three people.",
+  "seed": 260553,
+  "bootstrap_seed": 260552,
+  "bootstrap_draws": 10000,
+  "architecture": "One 63->48 linear spatial convolution per person. One shared copy of the original depthwise temporal convolution, learned within-person trial precision, time-pooling and 96D output MLP; standardize each person's inputs using that person's 416 training classes only. New model initialization, no pretrained weights or score-dependent selection. Keep the fixed 50:50 average of single-person standardized Fisher and neural 12- or 4-way cosine prototype scores in every arm.",
+  "optimization": "Each shared model gets 750 AdamW updates, lr .0006, cosine annealing to zero, weight decay .02, global grad norm clip 5; one 12-object episode per person per step, 10 photos/object; sample all 12 objects from one recording-session pair of the anchor person, cycle session cells. Start identical NumPy streams per subject as original random seed, preserving their exact historical training class/photo sampling. Use an independent seeded stream for the same within-object sham rotation schedule in each arm. Share initialization, dropout stream, minibatches, forward passes, architecture, optimizer and number of examples across the three shared arms. Each single-person comparison also has 750 episodes of its own, using unchanged original code and seed; shared models pool training from three people.",
+  "loss": "For each participant compute the original object loss and complementary-repeat within-object matching loss (weight .2). Compute in addition full-4 EEG embeddings with dropout off on the same 12 training objects for the anchor and two other people, retaining the exact photo order. Within each object center each person's ten embeddings and L2 normalize. Match the anchor photo separately to each other person's ten EEG embeddings of that same object by cosine softmax, logit multiplier 10; teachers detached, no across-object logits. Average this cross-person loss over both partners and add it at coefficient .2. Optimize the mean across the three anchor-person losses. Only the anchor's own object loss ranks classes; class-pair schedules in the other people cannot directly identify a positive photo among the ten of one class.",
+  "controls": "Matched cross-person same photo, same architecture and budget with sham nonzero cyclic shifts uniformly drawn for each anchor/object/partner/step, and no auxiliary gradient (coefficient 0). The independent single-person encoder for each person is fitted only on their own 416 objects; recover archived generic sub-04 features and mixed decisions exactly. All arms have the same single-person eight-shot EEG calibration at evaluation. No photographs or embeddings from other people are presented to a query or prototype.",
+  "decision": "Primary: correct mixed 12-way decisions across all three participants, equally weighted. Resample the 96 original objects jointly across all people, 10,000 paired draws seed 260552. Advance only if matched-minus-independent and matched-minus-sham both have 95% lower bound >0 and four-way hit differences against both controls are nonnegative. Always report no-auxiliary contrast as a mechanistic control; a superiority claim about same-photo supervision additionally requires matched gains over no auxiliary. Report counts by subject and pooled. Otherwise stop at generic.",
+  "inputs": {
+    "original_fit": "a51bad609270be7c9e02b1a1300a42c6e330586282c1b1ef1aa41230d311d908",
+    "original_protocol": "0550559ca3aeafc75da0196c42ccf70a636656f05f0a25549b477e266f4d5cd1",
+    "menu_driver": "0239b6e1e795d740b5978a4be97a2af9367a73af1830fae2aa4182a277b021bf",
+    "baseline_driver": "293933ff79a20d2101a430f2892eb05307ea1e8a823a0abefa64773d0455443e",
+    "native_score": "b1c50126a9fea0dd0c173311d4bcf04ae32ec1336961bb41017257609f8bd05d",
+    "archived_04": "2390c125ed276f1b3425bcff2d474796da3420600e2fc166b9bf7e87779af056",
+    "archived_04_score": "4c095a9bfdcfda1216bc726670a4a8e20f6ffc3b38415413fe3e66b15526b165",
+    "schedules": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a"
+  },
+  "per_subject": {
+    "sub-04": {
+      "trials": "77e73482e09df0f02a2d8e6331ffa3bc6da84cc42b4cc06808dda634c41ee5f4",
+      "split": "38c7576b5a8976f674e34633e69fddc31ddceadb4379354b996fde8302ac381f",
+      "expanded": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+      "previous": "a698d13d2ea9ee93b171372a6f6f87fc765edca609af7be92a0ee07df7348a66"
+    },
+    "sub-05": {
+      "trials": "2812c800f58b637f97d9ef37411acf6dfb941e405c282e7b19fd554e10e34183",
+      "split": "bc7324541a59439c537a5e7d05a7974b168e9d39170b631996b68fa3d1f8cb33",
+      "expanded": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f",
+      "previous": "54d0c2fe027d7eb6c87fc3db09a5c230c9a1a3f5a0402c037b27383a3a754efc"
+    },
+    "sub-01": {
+      "trials": "e56713af00079c63c02fe585e660bf3b8be7801d837dfde6dce7e124c39d4182",
+      "split": "cbc3998bb34556f6f7f9ba4699a50fa3a7352d5454bc06472cd56f6677fa0c28",
+      "expanded": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9",
+      "previous": "badcf196ed66b2eb92a0b183e66a1f27d743f8daec4666201f078cf7bd7fb94e"
+    }
+  }
+}

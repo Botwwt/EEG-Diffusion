@@ -1,5 +1,11 @@
 # EEG reconstruction galleries
 
+## Personal twelve-object menus with matching recording sessions
+
+Each of the twelve tiles per person uses the first archive row of one object. Each reconstruction uses four EEG presentations from that individual. The menus span 29 distinct objects and every candidate within a menu shares a recording-session pair. [Sub-04](photo_angle_sub04_personal12.jpg) · [Sub-05](photo_angle_sub05_personal12.jpg) · [Sub-01](photo_angle_sub01_personal12.jpg) · [Baseline accuracy and how to reproduce paired sheets with originals](../../../docs/PERSONAL12_CONFIRMATION.md)
+
+The trial-encoder comparisons show both models at the same row and noise seed for every object. [First participant, sub-04](personal12_trial_sub04.jpg) · [Replication, sub-05](personal12_trial_sub05.jpg) · [Replication, sub-01](personal12_trial_sub01.jpg)
+
 ## Single-person reconstruction on 200 unfamiliar objects
 
 One participant viewed each photograph 80 times. The fixed sheet includes every twentieth stimulus in archive order. It shows how scaling the EEG-derived visual condition changes the generated object and what happens when another stimulus supplies that condition. [Generated images](official_repeat_sub04_r80.jpg) · [Stimulus identities, prompts and scoring](../../../docs/OFFICIAL_REPEAT_IMAGES.md)

@@ -1,0 +1,117 @@
+{
+  "n": 320,
+  "held_objects": 32,
+  "fit_objects": 96,
+  "named_people": [
+    "sub-04",
+    "sub-05",
+    "sub-01",
+    "sub-02",
+    "sub-06",
+    "sub-07",
+    "sub-08",
+    "sub-09",
+    "sub-10"
+  ],
+  "physical_observations_per_query": 36,
+  "design_sha256": "2e12e67fab09fc0df1282acbd6227752d2c81e1fee44f15837822140aacd825e",
+  "selection_sha256": "1cebcb231679c317fe8af8f47c7ffc76a724027a4b87ce6191e99bebff91b23d",
+  "calibration_sha256": "2bdd5a39ed5c60f30f6ab1507957c8e451ff3acf82e6967be4691d586bbd1989",
+  "shape_sha256": "26f367c1a0687262fa8e2fc5f85bb333792a446902036c8f0cb5c764defcb055",
+  "development": "The previous DINO selector had been evaluated on these same 32 classes. All shrinkage fitting used only class-wise out-of-fold predictions on the other 96.",
+  "slope": 0.5371940144059565,
+  "loss": {
+    "own": 0.14101192619390818,
+    "prior": 0.14183054266216785,
+    "wrong": 0.14202169520931984,
+    "hard_own": 0.14797684874592298,
+    "hard_prior": 0.14691036353756984,
+    "hard_wrong": 0.14744516340233058,
+    "medoid": 0.14738673218873732,
+    "legal_oracle": 0.11324825426178128
+  },
+  "control_minus_own": {
+    "prior": {
+      "delta": 0.0008186164682596499,
+      "ci95": [
+        9.520831126034188e-05,
+        0.0016441334774739832
+      ],
+      "n_better": 165,
+      "n_tied": 0,
+      "n_worse": 155
+    },
+    "wrong": {
+      "delta": 0.00100976901541165,
+      "ci95": [
+        0.0004102084800405038,
+        0.001665875689624366
+      ],
+      "n_better": 171,
+      "n_tied": 0,
+      "n_worse": 149
+    },
+    "hard_own": {
+      "delta": 0.006964922552014761,
+      "ci95": [
+        0.002986064449916216,
+        0.0131824788379799
+      ],
+      "n_better": 198,
+      "n_tied": 0,
+      "n_worse": 122
+    },
+    "hard_prior": {
+      "delta": 0.005898437343661595,
+      "ci95": [
+        0.001785741878368373,
+        0.012243819931332316
+      ],
+      "n_better": 190,
+      "n_tied": 0,
+      "n_worse": 130
+    },
+    "hard_wrong": {
+      "delta": 0.006433237208422367,
+      "ci95": [
+        0.002634071774344842,
+        0.012671300859544031
+      ],
+      "n_better": 192,
+      "n_tied": 0,
+      "n_worse": 128
+    },
+    "medoid": {
+      "delta": 0.0063748059948291235,
+      "ci95": [
+        0.002323492821157401,
+        0.012689088556429097
+      ],
+      "n_better": 197,
+      "n_tied": 0,
+      "n_worse": 123
+    },
+    "legal_oracle": {
+      "delta": -0.02776367193212693,
+      "ci95": [
+        -0.034811209515228585,
+        -0.02128611965729022
+      ],
+      "n_better": 46,
+      "n_tied": 0,
+      "n_worse": 274
+    }
+  },
+  "hard_prior_minus_hard_own": {
+    "delta": -0.0010664852083531666,
+    "ci95": [
+      -0.002239865582206117,
+      -5.917117067563672e-06
+    ],
+    "n_better": 24,
+    "n_tied": 265,
+    "n_worse": 31
+  },
+  "advance": true,
+  "uncertainty": "Mean absolute normalized log-radius error. Positive control-minus-own favors own. 10000 paired 32-object bootstrap replicates."
+}

@@ -1,0 +1,183 @@
+{
+  "design_sha256": "b59be92edeecc475b10f6a72d1481285c921665bca0bc3b72b5dbf3ac2579f46",
+  "source_sha256": "3bb98b4104316a5b39dd557722623de781a9a4b87abc3a71e97d29314ad7f233",
+  "schedule_sha256": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+  "participants": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "unique_objects": 128,
+  "unique_photographs": 1280,
+  "queries": 3840,
+  "counts_by_person": {
+    "sub-04": {
+      "fisher": 433,
+      "distinct_trials": 425,
+      "mean_products": 430,
+      "distinct_only": 221,
+      "wrong_query": 81
+    },
+    "sub-05": {
+      "fisher": 302,
+      "distinct_trials": 292,
+      "mean_products": 283,
+      "distinct_only": 156,
+      "wrong_query": 82
+    },
+    "sub-01": {
+      "fisher": 306,
+      "distinct_trials": 312,
+      "mean_products": 317,
+      "distinct_only": 181,
+      "wrong_query": 77
+    }
+  },
+  "hits": {
+    "fisher": 1041,
+    "distinct_trials": 1029,
+    "mean_products": 1030,
+    "distinct_only": 558,
+    "wrong_query": 240
+  },
+  "distinct_trials_minus": {
+    "fisher": {
+      "delta": -0.003125,
+      "ci95": [
+        -0.013802083333333333,
+        0.0078125
+      ]
+    },
+    "mean_products": {
+      "delta": -0.0002604166666666666,
+      "ci95": [
+        -0.009635416666666665,
+        0.009375
+      ]
+    },
+    "wrong_query": {
+      "delta": 0.20546875000000003,
+      "ci95": [
+        0.17708333333333334,
+        0.2343815104166666
+      ]
+    }
+  },
+  "advance": false,
+  "receipts": {
+    "sub-04": {
+      "source_receipt_sha256": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+      "predictions_sha256": "268c6181ce8815018433ff752be417f0d77bcbbfecc77b802fb0abf7dcbe84ba",
+      "folds": [
+        {
+          "session_pair": [
+            1,
+            3
+          ],
+          "fit": 90,
+          "test": 38
+        },
+        {
+          "session_pair": [
+            1,
+            4
+          ],
+          "fit": 89,
+          "test": 39
+        },
+        {
+          "session_pair": [
+            2,
+            3
+          ],
+          "fit": 103,
+          "test": 25
+        },
+        {
+          "session_pair": [
+            2,
+            4
+          ],
+          "fit": 102,
+          "test": 26
+        }
+      ]
+    },
+    "sub-05": {
+      "source_receipt_sha256": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f",
+      "predictions_sha256": "147494bb1d004605fa12150227c50804b6ec3e7ed80dc34fa68c183137f3dfd8",
+      "folds": [
+        {
+          "session_pair": [
+            1,
+            3
+          ],
+          "fit": 105,
+          "test": 23
+        },
+        {
+          "session_pair": [
+            1,
+            4
+          ],
+          "fit": 97,
+          "test": 31
+        },
+        {
+          "session_pair": [
+            2,
+            3
+          ],
+          "fit": 93,
+          "test": 35
+        },
+        {
+          "session_pair": [
+            2,
+            4
+          ],
+          "fit": 89,
+          "test": 39
+        }
+      ]
+    },
+    "sub-01": {
+      "source_receipt_sha256": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9",
+      "predictions_sha256": "eaa932f471842138cfbbd0dcf159a27d6739156a7bd33b7e0338830519c0111c",
+      "folds": [
+        {
+          "session_pair": [
+            1,
+            3
+          ],
+          "fit": 85,
+          "test": 43
+        },
+        {
+          "session_pair": [
+            1,
+            4
+          ],
+          "fit": 97,
+          "test": 31
+        },
+        {
+          "session_pair": [
+            2,
+            3
+          ],
+          "fit": 104,
+          "test": 24
+        },
+        {
+          "session_pair": [
+            2,
+            4
+          ],
+          "fit": 98,
+          "test": 30
+        }
+      ]
+    }
+  }
+}

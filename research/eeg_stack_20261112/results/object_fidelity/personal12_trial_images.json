@@ -1,0 +1,767 @@
+{
+  "study": "sub-04, four physical trials per stimulus, five fixed folds with eight support photos per candidate object. The baseline Fisher score on this panel was known before the mixed readout registration.",
+  "population": {
+    "participant": "sub-04",
+    "physical_trials_per_photo": 4,
+    "stimuli": 120,
+    "objects": 12,
+    "stimuli_per_object": 10,
+    "session_pair": [
+      2,
+      3
+    ],
+    "generated_jpegs": 720
+  },
+  "provenance": {
+    "trial_design": "6c2f49313a12bc9e6c5b2952749c3e55766fa3c54063b6586e27d415b9d8e537",
+    "trial_receipt": "b5b813a3750e3e9ab7199ffb13077e41e0bcd4c02f04f57280662a9521d71e21",
+    "registration": "bc122169aeb93074f1b38e2a0530b9e051b666c002e11c919c5693d09185825e",
+    "source": "34b0833ae182b2056633f5b34f2cb3f3df0ca727ef3611843694c6d6108bcdfa",
+    "source_photo_sha_in_row_order": "a720ff29e6b4e9db098a457ba0b1e90ed983536446e54f35657ce9b5e42ee321",
+    "independent_clip": {
+      "scorer_sha256": "94ce10e250b2b4f1860f6be0f777ae788b0f4571b3e39bfb024bc1f97a9aefc5",
+      "manifest_sha256": "91e75aa52fbb0addc004eeb38a87aa237f48e0d6bdbd5f5cc3d0d0e839d1b145",
+      "dictionary_sha256": "1aebc7a2c35edcfcfffc63934754440c90534ccc46df0537db41dc6197450132",
+      "model_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836"
+    },
+    "independent_dino_model_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+    "readouts": {
+      "fisher": {
+        "conditions": "f5165fba5efbfb3bfe174ee52bb5c7ee206d0abb003a8c0e63df692f1d7b9ca7",
+        "settings": "017f01eca7c3f628bf7daa91deb133b61ba6d8d1ddbeca15a68782d7b8716f72",
+        "words": "60def1ec01568e0dc432ca610d9db65cf69e91562c1885cdc9434932bea39416",
+        "clip": "4450e543fe12acd9d16254c8ffe61568a22fadbd817016c48f8581468a3c34a9",
+        "dino": "8bb15db7145ce78d7e405f62bf9f60380ac2ef8fdb4d05a414fe4cb5db8349f4",
+        "dino_summary": "e33957913ddad52bbf0a89a0ece4c2e31d985da9094b180a41870c1765c8615d"
+      },
+      "trial_plus_fisher": {
+        "conditions": "facbb9afee9c536bdaabf3dc8aab731423ffcace0cb5eb6626623e363d3c540d",
+        "settings": "ddb3491dd08e1885d747db69f0c856430a38192565a66faab08933377502e158",
+        "words": "f7eeac967c2bc48b7c2ed02474404e99bae7d5a4bf771a2e52dcf2c8c34fbd5d",
+        "clip": "2b7f54c623d78989980299989911ba4006d3deac01da2184976c967ae1e03886",
+        "dino": "9076a7808e493bade24f450b51458c56bbf150077532599a1a19d16dc8d02453",
+        "dino_summary": "b74b3840e0b9d44ce537245086c6271c1656d21e3b2a51626d90574dceabae3b"
+      }
+    },
+    "private_score_rows_sha256": "3a64dbb436da5e191b7f98f1b200e754a24c0e4a17afbd82fb404040a63c0e86"
+  },
+  "definitions": {
+    "full1854": "OpenAI CLIP-L/14 names the true object against all 1,854 dictionary words.",
+    "closed12": "The same scorer names the true object among the twelve panel words.",
+    "dino_within10": "DINOv2-S/14 identifies the exact photograph among ten photos of its true category.",
+    "strict": "Only a true-category pair for which both images received the correct word from both heads can contribute to the matched comparison. Ties split credit.",
+    "intervals": "Paired percentile 95% bounds on rates, resampling twelve whole true categories with replacement, 10000 draws, seed 260552. Credits count fractional ties. Subset counts are descriptive."
+  },
+  "eeg_word": {
+    "n": 120,
+    "credits": {
+      "fisher": {
+        "word": 53.0
+      },
+      "trial_plus_fisher": {
+        "word": 65.0
+      }
+    },
+    "trial_minus_fisher": {
+      "word": {
+        "net_credit": 12.0,
+        "delta_rate": 0.1,
+        "ci95_rate": [
+          0.024999999999999967,
+          0.18333333333333324
+        ],
+        "improved": 16,
+        "worsened": 4,
+        "unchanged": 100
+      }
+    }
+  },
+  "changed_words": 31,
+  "original_photo_naming": {
+    "n": 120,
+    "full1854": 100.0,
+    "closed12": 119.0,
+    "source_sha256": "c9b9403ef0c7670c1a0ce00414b5eba15d8a23187ac07fa2b9da8f8fdc7771e0"
+  },
+  "word_correctness_groups": {
+    "gain": 16,
+    "loss": 4,
+    "both_correct": 49,
+    "both_incorrect": 51
+  },
+  "parity": {
+    "own": {
+      "same_word_rows": 89,
+      "same_word_equal_jpegs": 89,
+      "same_word_bitwise_equal_conditions": 89,
+      "same_word_bitwise_equal_conditions_and_jpegs": 89,
+      "max_abs_condition_difference_same_word": 0.0,
+      "changed_word_rows": 31,
+      "changed_word_equal_jpegs": 0
+    },
+    "uniform": {
+      "same_word_rows": 89,
+      "same_word_equal_jpegs": 89,
+      "same_word_bitwise_equal_conditions": 89,
+      "same_word_bitwise_equal_conditions_and_jpegs": 89,
+      "max_abs_condition_difference_same_word": 0.0,
+      "changed_word_rows": 31,
+      "changed_word_equal_jpegs": 0
+    },
+    "wrong": {
+      "same_word_rows": 89,
+      "same_word_equal_jpegs": 54,
+      "same_word_bitwise_equal_conditions": 54,
+      "same_word_bitwise_equal_conditions_and_jpegs": 54,
+      "max_abs_condition_difference_same_word": 0.11959920823574066,
+      "changed_word_rows": 31,
+      "changed_word_equal_jpegs": 0
+    }
+  },
+  "strict_eligibility": {
+    "fisher": 14,
+    "trial_plus_fisher": 22,
+    "common": 13
+  },
+  "images": {
+    "full1854": {
+      "n": 120,
+      "credits": {
+        "fisher": {
+          "own": 45.0,
+          "uniform": 47.0,
+          "wrong": 48.0
+        },
+        "trial_plus_fisher": {
+          "own": 55.0,
+          "uniform": 59.0,
+          "wrong": 56.0
+        }
+      },
+      "trial_minus_fisher": {
+        "own": {
+          "net_credit": 10.0,
+          "delta_rate": 0.08333333333333333,
+          "ci95_rate": [
+            0.024999999999999967,
+            0.15000000000000002
+          ],
+          "improved": 12,
+          "worsened": 2,
+          "unchanged": 106
+        },
+        "uniform": {
+          "net_credit": 12.0,
+          "delta_rate": 0.1,
+          "ci95_rate": [
+            0.033333333333333326,
+            0.16666666666666674
+          ],
+          "improved": 14,
+          "worsened": 2,
+          "unchanged": 104
+        },
+        "wrong": {
+          "net_credit": 8.0,
+          "delta_rate": 0.06666666666666667,
+          "ci95_rate": [
+            -0.008333333333333304,
+            0.14999999999999997
+          ],
+          "improved": 12,
+          "worsened": 4,
+          "unchanged": 104
+        }
+      },
+      "own_minus_control": {
+        "fisher": {
+          "uniform": {
+            "net_credit": -2.0,
+            "delta_rate": -0.016666666666666666,
+            "ci95_rate": [
+              -0.06666666666666665,
+              0.033333333333333326
+            ],
+            "improved": 3,
+            "worsened": 5,
+            "unchanged": 112
+          },
+          "wrong": {
+            "net_credit": -3.0,
+            "delta_rate": -0.025,
+            "ci95_rate": [
+              -0.05833333333333335,
+              0.00833333333333336
+            ],
+            "improved": 1,
+            "worsened": 4,
+            "unchanged": 115
+          }
+        },
+        "trial_plus_fisher": {
+          "uniform": {
+            "net_credit": -4.0,
+            "delta_rate": -0.03333333333333333,
+            "ci95_rate": [
+              -0.07500000000000001,
+              0.008333333333333304
+            ],
+            "improved": 4,
+            "worsened": 8,
+            "unchanged": 108
+          },
+          "wrong": {
+            "net_credit": -1.0,
+            "delta_rate": -0.008333333333333333,
+            "ci95_rate": [
+              -0.06666666666666665,
+              0.05833333333333335
+            ],
+            "improved": 4,
+            "worsened": 5,
+            "unchanged": 111
+          }
+        }
+      }
+    },
+    "closed12": {
+      "n": 120,
+      "credits": {
+        "fisher": {
+          "own": 52.0,
+          "uniform": 53.0,
+          "wrong": 52.0
+        },
+        "trial_plus_fisher": {
+          "own": 65.0,
+          "uniform": 65.0,
+          "wrong": 65.0
+        }
+      },
+      "trial_minus_fisher": {
+        "own": {
+          "net_credit": 13.0,
+          "delta_rate": 0.10833333333333334,
+          "ci95_rate": [
+            0.033333333333333326,
+            0.18333333333333335
+          ],
+          "improved": 16,
+          "worsened": 3,
+          "unchanged": 101
+        },
+        "uniform": {
+          "net_credit": 12.0,
+          "delta_rate": 0.1,
+          "ci95_rate": [
+            0.024999999999999967,
+            0.18333333333333324
+          ],
+          "improved": 16,
+          "worsened": 4,
+          "unchanged": 100
+        },
+        "wrong": {
+          "net_credit": 13.0,
+          "delta_rate": 0.10833333333333334,
+          "ci95_rate": [
+            0.033333333333333326,
+            0.18333333333333335
+          ],
+          "improved": 16,
+          "worsened": 3,
+          "unchanged": 101
+        }
+      },
+      "own_minus_control": {
+        "fisher": {
+          "uniform": {
+            "net_credit": -1.0,
+            "delta_rate": -0.008333333333333333,
+            "ci95_rate": [
+              -0.025000000000000022,
+              0.0
+            ],
+            "improved": 0,
+            "worsened": 1,
+            "unchanged": 119
+          },
+          "wrong": {
+            "net_credit": 0.0,
+            "delta_rate": 0.0,
+            "ci95_rate": [
+              0.0,
+              0.0
+            ],
+            "improved": 1,
+            "worsened": 1,
+            "unchanged": 118
+          }
+        },
+        "trial_plus_fisher": {
+          "uniform": {
+            "net_credit": 0.0,
+            "delta_rate": 0.0,
+            "ci95_rate": [
+              0.0,
+              0.0
+            ],
+            "improved": 0,
+            "worsened": 0,
+            "unchanged": 120
+          },
+          "wrong": {
+            "net_credit": 0.0,
+            "delta_rate": 0.0,
+            "ci95_rate": [
+              0.0,
+              0.0
+            ],
+            "improved": 0,
+            "worsened": 0,
+            "unchanged": 120
+          }
+        }
+      }
+    },
+    "dino_within10": {
+      "n": 120,
+      "credits": {
+        "fisher": {
+          "own": 7.0,
+          "uniform": 12.0,
+          "wrong": 12.0
+        },
+        "trial_plus_fisher": {
+          "own": 8.0,
+          "uniform": 11.0,
+          "wrong": 10.0
+        }
+      },
+      "trial_minus_fisher": {
+        "own": {
+          "net_credit": 1.0,
+          "delta_rate": 0.008333333333333333,
+          "ci95_rate": [
+            -0.03333333333333333,
+            0.05
+          ],
+          "improved": 4,
+          "worsened": 3,
+          "unchanged": 113
+        },
+        "uniform": {
+          "net_credit": -1.0,
+          "delta_rate": -0.008333333333333333,
+          "ci95_rate": [
+            -0.03333333333333334,
+            0.01666666666666667
+          ],
+          "improved": 1,
+          "worsened": 2,
+          "unchanged": 117
+        },
+        "wrong": {
+          "net_credit": -2.0,
+          "delta_rate": -0.016666666666666666,
+          "ci95_rate": [
+            -0.058333333333333334,
+            0.033333333333333326
+          ],
+          "improved": 3,
+          "worsened": 5,
+          "unchanged": 112
+        }
+      },
+      "own_minus_control": {
+        "fisher": {
+          "uniform": {
+            "net_credit": -5.0,
+            "delta_rate": -0.041666666666666664,
+            "ci95_rate": [
+              -0.09999999999999999,
+              0.008333333333333331
+            ],
+            "improved": 2,
+            "worsened": 7,
+            "unchanged": 111
+          },
+          "wrong": {
+            "net_credit": -5.0,
+            "delta_rate": -0.041666666666666664,
+            "ci95_rate": [
+              -0.06666666666666668,
+              -0.016666666666666663
+            ],
+            "improved": 3,
+            "worsened": 8,
+            "unchanged": 109
+          }
+        },
+        "trial_plus_fisher": {
+          "uniform": {
+            "net_credit": -3.0,
+            "delta_rate": -0.025,
+            "ci95_rate": [
+              -0.08333333333333333,
+              0.033333333333333326
+            ],
+            "improved": 4,
+            "worsened": 7,
+            "unchanged": 109
+          },
+          "wrong": {
+            "net_credit": -2.0,
+            "delta_rate": -0.016666666666666666,
+            "ci95_rate": [
+              -0.058333333333333334,
+              0.02500000000000001
+            ],
+            "improved": 3,
+            "worsened": 5,
+            "unchanged": 112
+          }
+        }
+      }
+    },
+    "dino_pairs_shared_correct_words": {
+      "n": 13,
+      "credits": {
+        "fisher": {
+          "own": 10.0,
+          "uniform": 3.0,
+          "wrong": 5.0
+        },
+        "trial_plus_fisher": {
+          "own": 10.0,
+          "uniform": 3.0,
+          "wrong": 5.0
+        }
+      },
+      "trial_minus_fisher": {
+        "own": {
+          "net_credit": 0.0,
+          "delta_rate": 0.0,
+          "ci95_rate": [
+            0.0,
+            0.0
+          ],
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 13
+        },
+        "uniform": {
+          "net_credit": 0.0,
+          "delta_rate": 0.0,
+          "ci95_rate": [
+            0.0,
+            0.0
+          ],
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 13
+        },
+        "wrong": {
+          "net_credit": 0.0,
+          "delta_rate": 0.0,
+          "ci95_rate": [
+            -0.2727272727272727,
+            0.25083333333332125
+          ],
+          "improved": 1,
+          "worsened": 1,
+          "unchanged": 11
+        }
+      },
+      "own_minus_control": {
+        "fisher": {
+          "uniform": {
+            "net_credit": 7.0,
+            "delta_rate": 0.5384615384615384,
+            "ci95_rate": [
+              0.18181818181818177,
+              1.0
+            ],
+            "improved": 8,
+            "worsened": 1,
+            "unchanged": 4
+          },
+          "wrong": {
+            "net_credit": 5.0,
+            "delta_rate": 0.38461538461538464,
+            "ci95_rate": [
+              0.1428571428571429,
+              0.8
+            ],
+            "improved": 6,
+            "worsened": 1,
+            "unchanged": 6
+          }
+        },
+        "trial_plus_fisher": {
+          "uniform": {
+            "net_credit": 7.0,
+            "delta_rate": 0.5384615384615384,
+            "ci95_rate": [
+              0.18181818181818177,
+              1.0
+            ],
+            "improved": 8,
+            "worsened": 1,
+            "unchanged": 4
+          },
+          "wrong": {
+            "net_credit": 5.0,
+            "delta_rate": 0.38461538461538464,
+            "ci95_rate": [
+              0.1428571428571429,
+              0.8
+            ],
+            "improved": 6,
+            "worsened": 1,
+            "unchanged": 6
+          }
+        }
+      }
+    },
+    "clip_pairs_shared_correct_words": {
+      "n": 13,
+      "credits": {
+        "fisher": {
+          "own": 9.0,
+          "uniform": 6.0,
+          "wrong": 5.0
+        },
+        "trial_plus_fisher": {
+          "own": 9.0,
+          "uniform": 6.0,
+          "wrong": 5.0
+        }
+      },
+      "trial_minus_fisher": {
+        "own": {
+          "net_credit": 0.0,
+          "delta_rate": 0.0,
+          "ci95_rate": [
+            0.0,
+            0.0
+          ],
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 13
+        },
+        "uniform": {
+          "net_credit": 0.0,
+          "delta_rate": 0.0,
+          "ci95_rate": [
+            0.0,
+            0.0
+          ],
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 13
+        },
+        "wrong": {
+          "net_credit": 0.0,
+          "delta_rate": 0.0,
+          "ci95_rate": [
+            0.0,
+            0.0
+          ],
+          "improved": 0,
+          "worsened": 0,
+          "unchanged": 13
+        }
+      },
+      "own_minus_control": {
+        "fisher": {
+          "uniform": {
+            "net_credit": 3.0,
+            "delta_rate": 0.23076923076923078,
+            "ci95_rate": [
+              -0.2272727272727273,
+              0.8461538461538461
+            ],
+            "improved": 5,
+            "worsened": 2,
+            "unchanged": 6
+          },
+          "wrong": {
+            "net_credit": 4.0,
+            "delta_rate": 0.3076923076923077,
+            "ci95_rate": [
+              -0.10526315789473684,
+              0.8571428571428571
+            ],
+            "improved": 5,
+            "worsened": 1,
+            "unchanged": 7
+          }
+        },
+        "trial_plus_fisher": {
+          "uniform": {
+            "net_credit": 3.0,
+            "delta_rate": 0.23076923076923078,
+            "ci95_rate": [
+              -0.2272727272727273,
+              0.8461538461538461
+            ],
+            "improved": 5,
+            "worsened": 2,
+            "unchanged": 6
+          },
+          "wrong": {
+            "net_credit": 4.0,
+            "delta_rate": 0.3076923076923077,
+            "ci95_rate": [
+              -0.10526315789473684,
+              0.8571428571428571
+            ],
+            "improved": 5,
+            "worsened": 1,
+            "unchanged": 7
+          }
+        }
+      }
+    }
+  },
+  "matched_images_by_eeg_word": {
+    "full1854": {
+      "same_word": {
+        "n": 89,
+        "fisher_own_credit": 43.0,
+        "trial_own_credit": 43.0,
+        "improved": 0,
+        "worsened": 0
+      },
+      "changed_word": {
+        "n": 31,
+        "fisher_own_credit": 2.0,
+        "trial_own_credit": 12.0,
+        "improved": 12,
+        "worsened": 2
+      },
+      "gain": {
+        "n": 16,
+        "fisher_own_credit": 0.0,
+        "trial_own_credit": 12.0,
+        "improved": 12,
+        "worsened": 0
+      },
+      "loss": {
+        "n": 4,
+        "fisher_own_credit": 2.0,
+        "trial_own_credit": 0.0,
+        "improved": 0,
+        "worsened": 2
+      },
+      "both_correct": {
+        "n": 49,
+        "fisher_own_credit": 43.0,
+        "trial_own_credit": 43.0,
+        "improved": 0,
+        "worsened": 0
+      },
+      "both_incorrect": {
+        "n": 51,
+        "fisher_own_credit": 0.0,
+        "trial_own_credit": 0.0,
+        "improved": 0,
+        "worsened": 0
+      }
+    },
+    "closed12": {
+      "same_word": {
+        "n": 89,
+        "fisher_own_credit": 49.0,
+        "trial_own_credit": 49.0,
+        "improved": 0,
+        "worsened": 0
+      },
+      "changed_word": {
+        "n": 31,
+        "fisher_own_credit": 3.0,
+        "trial_own_credit": 16.0,
+        "improved": 16,
+        "worsened": 3
+      },
+      "gain": {
+        "n": 16,
+        "fisher_own_credit": 0.0,
+        "trial_own_credit": 16.0,
+        "improved": 16,
+        "worsened": 0
+      },
+      "loss": {
+        "n": 4,
+        "fisher_own_credit": 3.0,
+        "trial_own_credit": 0.0,
+        "improved": 0,
+        "worsened": 3
+      },
+      "both_correct": {
+        "n": 49,
+        "fisher_own_credit": 49.0,
+        "trial_own_credit": 49.0,
+        "improved": 0,
+        "worsened": 0
+      },
+      "both_incorrect": {
+        "n": 51,
+        "fisher_own_credit": 0.0,
+        "trial_own_credit": 0.0,
+        "improved": 0,
+        "worsened": 0
+      }
+    },
+    "dino_within10": {
+      "same_word": {
+        "n": 89,
+        "fisher_own_credit": 4.0,
+        "trial_own_credit": 4.0,
+        "improved": 0,
+        "worsened": 0
+      },
+      "changed_word": {
+        "n": 31,
+        "fisher_own_credit": 3.0,
+        "trial_own_credit": 4.0,
+        "improved": 4,
+        "worsened": 3
+      },
+      "gain": {
+        "n": 16,
+        "fisher_own_credit": 1.0,
+        "trial_own_credit": 2.0,
+        "improved": 2,
+        "worsened": 1
+      },
+      "loss": {
+        "n": 4,
+        "fisher_own_credit": 0.0,
+        "trial_own_credit": 1.0,
+        "improved": 1,
+        "worsened": 0
+      },
+      "both_correct": {
+        "n": 49,
+        "fisher_own_credit": 2.0,
+        "trial_own_credit": 2.0,
+        "improved": 0,
+        "worsened": 0
+      },
+      "both_incorrect": {
+        "n": 51,
+        "fisher_own_credit": 4.0,
+        "trial_own_credit": 3.0,
+        "improved": 1,
+        "worsened": 2
+      }
+    }
+  },
+  "generated_gallery": {
+    "filename": "personal12_trial_sub04.jpg",
+    "sha256": "3983906aa0f107319acfc8bfc483502a54eabee556cc9c8c89e87140fcd6dcb1",
+    "selection": "Smallest original row per registered true category; left Fisher, right mixed. Both images generated."
+  }
+}

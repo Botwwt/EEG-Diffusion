@@ -1,0 +1,84 @@
+{
+  "protocol_sha256": "ae40d1d6ed8fedb55f22442097e0d850b47c6680561d1e98ce7727635110d148",
+  "participant_results": {
+    "sub-05": {
+      "subject": "sub-05",
+      "protocol_sha256": "ae40d1d6ed8fedb55f22442097e0d850b47c6680561d1e98ce7727635110d148",
+      "registration_sha256": "ead79f00dc4dabaad7868c2ecf4315fc96e0008a04c4e8c34d36f90eb62a1ee6",
+      "fit_sha256": "833d72a471ce4ba3e23ede3a58904430d3b047946d137f9600a743d785822949",
+      "weights_sha256": "029662a69062a6733d56df3086815f747d09a7d82d76756b473908092f78c92c",
+      "inputs_sha256": "2812c800f58b637f97d9ef37411acf6dfb941e405c282e7b19fd554e10e34183",
+      "fisher_word_replay_count": 120,
+      "reconstructed_fisher_max_abs_visual_error": 0.0,
+      "same_word_rows": 90,
+      "effective_wrong_donors": 108,
+      "n": 120,
+      "n_objects": 12,
+      "word_hits": {
+        "fisher": 56,
+        "trial_only": 55,
+        "mixed": 54
+      },
+      "mixed_minus_fisher": {
+        "gains": 7,
+        "losses": 9,
+        "delta": -0.016666666666666666,
+        "ci95": [
+          -0.09166666666666667,
+          0.05833333333333334
+        ]
+      },
+      "mixed_packet_sha256": "7bbe6f13b5532f02b407a5525f41c85a114fa6ce972a49c4df764a9b1c758a4d",
+      "render_design_sha256": "8f77b3df3c32687089895b03b045ab45b52a0f2ad7756f8e81394bc2ed3013d5",
+      "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+      "original_fisher_packet_sha256": "4b610c8becdbe2a38ab07859ee3ad7af9b1d360a700d37f88888bcc981c87a5e",
+      "raw_results_sha256": "1f2d7bb75a97c7e2ba34a85b21f44e52d52f773ce721ce07300b5c228b73e187",
+      "word_predictions_sha256": "a60de7309d6bf306455012c26d4881f2199c6b3fe6d24f19c142b165958996c1"
+    },
+    "sub-01": {
+      "subject": "sub-01",
+      "protocol_sha256": "ae40d1d6ed8fedb55f22442097e0d850b47c6680561d1e98ce7727635110d148",
+      "registration_sha256": "593d402fb2e254ba4b731312b15bddd7dc1f58482584cb7893314c277ca7c67a",
+      "fit_sha256": "6af0128c5fc50fb232131d8914cbdffeeb507ee67045e7fcd6ca5a3fbd931998",
+      "weights_sha256": "c0913064639664b39e9cb1fd6f9b719f6817a9d78482d0cf07260a90b88e76a3",
+      "inputs_sha256": "e56713af00079c63c02fe585e660bf3b8be7801d837dfde6dce7e124c39d4182",
+      "fisher_word_replay_count": 120,
+      "reconstructed_fisher_max_abs_visual_error": 0.0,
+      "same_word_rows": 85,
+      "effective_wrong_donors": 102,
+      "n": 120,
+      "n_objects": 12,
+      "word_hits": {
+        "fisher": 52,
+        "trial_only": 56,
+        "mixed": 68
+      },
+      "mixed_minus_fisher": {
+        "gains": 19,
+        "losses": 3,
+        "delta": 0.13333333333333333,
+        "ci95": [
+          0.075,
+          0.19166666666666665
+        ]
+      },
+      "mixed_packet_sha256": "a610060ca5062cd585b40183af5d6d2878cc0807d7d912c0c66f57a52c14c5fc",
+      "render_design_sha256": "2e8851bf67f087631f1c928d4525156f9434bd21d0121c2564dfaccb47547724",
+      "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+      "original_fisher_packet_sha256": "83760baff77b6333b8020529e43463b8a25ba98690343e708de34563bda75082",
+      "raw_results_sha256": "babfdecc55b0167e5889663dffbd80c644d31df5b2eb1fa522e1f37443509856",
+      "word_predictions_sha256": "5d5a07698bc087177cd3de7a8d1af8ec060d34bc253927b11964dc36c2c4009b"
+    }
+  },
+  "pooled": {
+    "n_person_photo_queries": 240,
+    "distinct_objects": 21,
+    "distinct_photographs": 210,
+    "mixed_minus_fisher": 0.058333333333333334,
+    "ci95": [
+      0.016,
+      0.10434782608695652
+    ],
+    "sampling_unit": "Resample distinct objects, retaining both people's rows when the object is shared. Participant population uncertainty is not estimated."
+  }
+}

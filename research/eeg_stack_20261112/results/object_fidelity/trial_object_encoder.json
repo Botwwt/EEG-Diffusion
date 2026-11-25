@@ -1,0 +1,240 @@
+{
+  "subject": "sub-04",
+  "design_sha256": "0550559ca3aeafc75da0196c42ccf70a636656f05f0a25549b477e266f4d5cd1",
+  "trainer_sha256": "a51bad609270be7c9e02b1a1300a42c6e330586282c1b1ef1aa41230d311d908",
+  "scorer_sha256": "b1c50126a9fea0dd0c173311d4bcf04ae32ec1336961bb41017257609f8bd05d",
+  "summarizer_sha256": "840c211a6abcf74a9b1c303597fdc27c877953a38d1058e08b62a9dddf4cb59c",
+  "run": "Single sub-04; four real presentations per photograph, 63-channel learned encoder. Fixed half-weight fusion with the 17-channel Fisher. No image features. Generic models fit on 416 objects; target models refit on all 512. Four-way and twelve-way generic decisions concern the same 960 photos.",
+  "intervals": "Percentile paired intervals resample whole objects with 10000 draws, seed 260552. The two disjoint original target panels pool one 12-class and one provided four-class menu by independently bootstrapping their twelve objects. These are historical development panels.",
+  "generic": {
+    "training_objects": 416,
+    "evaluation_objects": 96,
+    "updates": 750,
+    "weights_sha256": "1dd3376ec981ac298b99c9518d1ac73b07a3fe4af5d18f7b2bffd5afd693a74d",
+    "embedding_packet_sha256": "2390c125ed276f1b3425bcff2d474796da3420600e2fc166b9bf7e87779af056",
+    "training_receipt_sha256": "c0058ad4d017250b27d939ab46bc4e96f7521625977d5583a335e7f4f210625c",
+    "score_sha256": "4c095a9bfdcfda1216bc726670a4a8e20f6ffc3b38415413fe3e66b15526b165",
+    "row_packet_sha256": {
+      "generic_4": "8a02729705a4ac1904895ca3c9bf6d5ddb6cc867a90e83a99fc5ee6339dcef01",
+      "generic_12": "3b42418f31b5dad26cde31b9f02507335c4d219aafb55f25fcf6e29789e956cc"
+    },
+    "results": {
+      "generic_4": {
+        "n": 960,
+        "hits": {
+          "fisher": 647,
+          "episodic": 645,
+          "encoder": 681,
+          "mixed": 689,
+          "wrong_eeg": 79
+        },
+        "mixed_minus": {
+          "fisher": {
+            "delta": 0.04375,
+            "ci95": [
+              0.019791666666666666,
+              0.06669270833333295
+            ]
+          },
+          "episodic": {
+            "delta": 0.04583333333333333,
+            "ci95": [
+              0.025,
+              0.06770833333333333
+            ]
+          },
+          "encoder": {
+            "delta": 0.008333333333333333,
+            "ci95": [
+              -0.016666666666666666,
+              0.03333333333333333
+            ]
+          },
+          "wrong_eeg": {
+            "delta": 0.6354166666666666,
+            "ci95": [
+              0.5885416666666666,
+              0.68125
+            ]
+          }
+        }
+      },
+      "generic_12": {
+        "n": 960,
+        "hits": {
+          "fisher": 437,
+          "episodic": 454,
+          "encoder": 474,
+          "mixed": 514,
+          "wrong_eeg": 33
+        },
+        "mixed_minus": {
+          "fisher": {
+            "delta": 0.08020833333333334,
+            "ci95": [
+              0.05,
+              0.109375
+            ]
+          },
+          "episodic": {
+            "delta": 0.0625,
+            "ci95": [
+              0.03125,
+              0.09375
+            ]
+          },
+          "encoder": {
+            "delta": 0.041666666666666664,
+            "ci95": [
+              0.011458333333333333,
+              0.07083333333333333
+            ]
+          },
+          "wrong_eeg": {
+            "delta": 0.5010416666666667,
+            "ci95": [
+              0.446875,
+              0.55625
+            ]
+          }
+        }
+      }
+    },
+    "advance": true
+  },
+  "target": {
+    "training_objects": 512,
+    "evaluation_objects": 24,
+    "updates": 750,
+    "weights_sha256": "e7f3d23f4981074fc86bad22fddd8a0878030df31311fa61e7e8909ffc19b35b",
+    "embedding_packet_sha256": "8ac2bf7ccd286b05ebd4e8b92a68c720119c87a9e540401f6ff13445c71428a5",
+    "training_receipt_sha256": "33e90449a9f0193f4a765d73bbf2f780473e4536cfa5d945f2295ed0e82a21bd",
+    "score_sha256": "f100537206dce7260f95e12f248558a5828c18b3a0deaf2f4c12dffa0a89b132",
+    "row_packet_sha256": {
+      "stress12": "7e523fa61d4f462cf8d00db4274364e905bf721968927a546a89daf596dc115b",
+      "new_three4": "143c5eae315f72ccd1bd95f933ef7324b606678d19c25c32d48b37dcef2e1417"
+    },
+    "results": {
+      "stress12": {
+        "n": 120,
+        "hits": {
+          "fisher": 55,
+          "episodic": 56,
+          "encoder": 49,
+          "mixed": 57,
+          "wrong_eeg": 10
+        },
+        "mixed_minus": {
+          "fisher": {
+            "delta": 0.016666666666666666,
+            "ci95": [
+              -0.041666666666666664,
+              0.06666666666666667
+            ]
+          },
+          "episodic": {
+            "delta": 0.008333333333333333,
+            "ci95": [
+              -0.05,
+              0.06666666666666667
+            ]
+          },
+          "encoder": {
+            "delta": 0.06666666666666667,
+            "ci95": [
+              -0.008333333333333333,
+              0.15
+            ]
+          },
+          "wrong_eeg": {
+            "delta": 0.39166666666666666,
+            "ci95": [
+              0.275,
+              0.5083333333333333
+            ]
+          }
+        }
+      },
+      "new_three4": {
+        "n": 120,
+        "hits": {
+          "fisher": 79,
+          "episodic": 87,
+          "encoder": 86,
+          "mixed": 85,
+          "wrong_eeg": 19
+        },
+        "mixed_minus": {
+          "fisher": {
+            "delta": 0.05,
+            "ci95": [
+              0.008333333333333333,
+              0.08333333333333333
+            ]
+          },
+          "episodic": {
+            "delta": -0.016666666666666666,
+            "ci95": [
+              -0.06666666666666667,
+              0.025
+            ]
+          },
+          "encoder": {
+            "delta": -0.008333333333333333,
+            "ci95": [
+              -0.06666666666666667,
+              0.041666666666666664
+            ]
+          },
+          "wrong_eeg": {
+            "delta": 0.55,
+            "ci95": [
+              0.44166666666666665,
+              0.65
+            ]
+          }
+        }
+      }
+    },
+    "panel_stratified": {
+      "n": 240,
+      "hits": {
+        "fisher": 134,
+        "episodic": 143,
+        "encoder": 135,
+        "mixed": 142,
+        "wrong_eeg": 29
+      },
+      "mixed_minus": {
+        "fisher": {
+          "delta": 0.03333333333333333,
+          "ci95": [
+            0.0,
+            0.06666666666666667
+          ]
+        },
+        "episodic": {
+          "delta": -0.004166666666666667,
+          "ci95": [
+            -0.041666666666666664,
+            0.03333333333333333
+          ]
+        },
+        "encoder": {
+          "delta": 0.029166666666666667,
+          "ci95": [
+            -0.016666666666666666,
+            0.07916666666666666
+          ]
+        },
+        "wrong_eeg": {
+          "delta": 0.4708333333333333,
+          "ci95": [
+            0.39166666666666666,
+            0.5458333333333333
+          ]
+        }
+      }
+    }
+  }
+}

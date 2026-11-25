@@ -1,0 +1,141 @@
+{
+  "protocol_sha256": "ca64956a955ed185db3fee39de104932135815e8da7381fdfa0b27f8fd44ae26",
+  "driver_sha256": "038cba02f8d9bb0d7737b9a66b05c9efc1c4e4d6a0ce8d097c96f99be4c9f091",
+  "fit_receipts_sha256": {
+    "individual": "cbe45ec14a5fe21af8a15b6b1a8cdf4bff364ff19c9744b63181b091fbe2dd4d",
+    "shared_only": "33e1297e037b09f6c5a6711399c0b00457d25c81e0c159d4acb030a59184c427",
+    "cross_sham": "e2381735600fc3eeace7e8d064af062fd3b7ffa68f461c4b2cab1e9d5d34ad2b",
+    "cross_matched": "1c46ef27cb57e5fad063c152ff4269b4d89ea7c0ca7fd5c5cd00444138708291"
+  },
+  "held_out_objects": 96,
+  "distinct_photos": 960,
+  "participant_photo_queries_per_menu": 2880,
+  "individual_sub04_exact_embedding_and_predictions_replay": true,
+  "decision_sha256": {
+    "sub-04/4": "73abfb29117713bd3b89bb486bb07954c1c9109dae798328a77c5f719fd6113d",
+    "sub-04/12": "49b8271686720352075ca63ab50921074e96327197b872246a5dcc8073ac1996",
+    "sub-05/4": "0385497ebf16e53e50a388c0b39a63c0729742a1c17d633a9b37749e35e44762",
+    "sub-05/12": "228300b7bc5c1c23314e01eb296208df2e3395e7365c7a85ee13f80d7c5d550a",
+    "sub-01/4": "58333939a96c7cf37942b31489362c3da4b3049e44ddb77ce8393560dea47517",
+    "sub-01/12": "8341a993ecdc1258275ba828fbdbb30a19904e275b1eefd0366939fdc60dd5d0"
+  },
+  "twelve_way": {
+    "n": 2880,
+    "per_person": {
+      "sub-04": {
+        "individual": 514,
+        "shared_only": 514,
+        "cross_sham": 508,
+        "cross_matched": 518,
+        "fisher": 437
+      },
+      "sub-05": {
+        "individual": 343,
+        "shared_only": 342,
+        "cross_sham": 344,
+        "cross_matched": 338,
+        "fisher": 305
+      },
+      "sub-01": {
+        "individual": 400,
+        "shared_only": 410,
+        "cross_sham": 406,
+        "cross_matched": 423,
+        "fisher": 353
+      }
+    },
+    "hits": {
+      "individual": 1257,
+      "shared_only": 1266,
+      "cross_sham": 1258,
+      "cross_matched": 1279,
+      "fisher": 1095
+    },
+    "matched_minus": {
+      "individual": {
+        "hit_difference": 22,
+        "delta": 0.007638888888888889,
+        "ci95": [
+          -0.008333333333333333,
+          0.022916666666666665
+        ]
+      },
+      "shared_only": {
+        "hit_difference": 13,
+        "delta": 0.0045138888888888885,
+        "ci95": [
+          -0.007638888888888889,
+          0.017361111111111112
+        ]
+      },
+      "cross_sham": {
+        "hit_difference": 21,
+        "delta": 0.007291666666666667,
+        "ci95": [
+          -0.004861111111111111,
+          0.019444444444444445
+        ]
+      }
+    }
+  },
+  "four_way": {
+    "n": 2880,
+    "per_person": {
+      "sub-04": {
+        "individual": 689,
+        "shared_only": 690,
+        "cross_sham": 684,
+        "cross_matched": 696,
+        "fisher": 647
+      },
+      "sub-05": {
+        "individual": 573,
+        "shared_only": 562,
+        "cross_sham": 563,
+        "cross_matched": 577,
+        "fisher": 514
+      },
+      "sub-01": {
+        "individual": 643,
+        "shared_only": 654,
+        "cross_sham": 656,
+        "cross_matched": 651,
+        "fisher": 594
+      }
+    },
+    "hits": {
+      "individual": 1905,
+      "shared_only": 1906,
+      "cross_sham": 1903,
+      "cross_matched": 1924,
+      "fisher": 1755
+    },
+    "matched_minus": {
+      "individual": {
+        "hit_difference": 19,
+        "delta": 0.006597222222222222,
+        "ci95": [
+          -0.006597222222222222,
+          0.019444444444444445
+        ]
+      },
+      "shared_only": {
+        "hit_difference": 18,
+        "delta": 0.00625,
+        "ci95": [
+          -0.003472222222222222,
+          0.01597222222222222
+        ]
+      },
+      "cross_sham": {
+        "hit_difference": 21,
+        "delta": 0.007291666666666667,
+        "ci95": [
+          -0.001736111111111111,
+          0.016319444444444445
+        ]
+      }
+    }
+  },
+  "advance": false
+}

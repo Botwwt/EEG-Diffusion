@@ -1,0 +1,31 @@
+{
+  "protocol_sha256": "6c2f49313a12bc9e6c5b2952749c3e55766fa3c54063b6586e27d415b9d8e537",
+  "registration_sha256": "bc122169aeb93074f1b38e2a0530b9e051b666c002e11c919c5693d09185825e",
+  "historical_embedding_max_abs_replay": 0.0,
+  "reconstructed_fisher_max_abs_visual_error": 0.0,
+  "fisher_word_replay_count": 120,
+  "same_word_rows": 89,
+  "effective_wrong_donors": 107,
+  "n": 120,
+  "n_objects": 12,
+  "word_hits": {
+    "fisher": 53,
+    "trial_only": 58,
+    "mixed": 65
+  },
+  "mixed_minus_fisher": {
+    "gains": 16,
+    "losses": 4,
+    "delta": 0.1,
+    "ci95": [
+      0.024999999999999998,
+      0.18333333333333332
+    ]
+  },
+  "mixed_packet_sha256": "facbb9afee9c536bdaabf3dc8aab731423ffcace0cb5eb6626623e363d3c540d",
+  "render_design_sha256": "47ba7da8104d53369e200dbbc676706e89dfb191364f196dfac82714b7d99555",
+  "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+  "original_fisher_packet_sha256": "f5165fba5efbfb3bfe174ee52bb5c7ee206d0abb003a8c0e63df692f1d7b9ca7",
+  "raw_results_sha256": "d9f23966a8eb550ce1895bb957b402dfbde33450a173ea822c03413601523a6a",
+  "word_predictions_sha256": "f7eeac967c2bc48b7c2ed02474404e99bae7d5a4bf771a2e52dcf2c8c34fbd5d"
+}
