@@ -1,0 +1,67 @@
+{
+  "aim": "Single-person four-trial EEG prediction of photograph-specific foreground pose, including a continuous two-dimensional orientation signal. New analysis of previously used objects and known mixed-decoder renders.",
+  "subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "known": "Earlier four-axis center/log-axis-spread study in two participants: same-object ten-way identification prior 53 versus own 54/480, strict two-photo 50 versus 52/97. Class-relative grayscale SSIM confidence intervals spanned zero in all four participant panels. Current personal12 mixed classifier word counts already known: 65,54,68/120 (04,05,01). New pose prediction has not been scored.",
+  "split": "Same 416 fitting and 96 development objects in the historical 512 calibration pool. Ten photos per object. For photo-residual validation, use the known single object and eight labeled off-fold supports. Five deterministic folds, offset pair //2, both held-out photos absent from supports; the other held photo provides a genuine same-object wrong-EEG comparison. No visual target data in an EEG feature. Primary uncertainty jointly resamples the 96 original objects preserving three people and ten photos.",
+  "outcome": "Use published U2NetP soft saliency in the 512 center crop, resampled to 320. Pixel centers are fractional x right/y down. Five outputs are horizontal and vertical centroid, log sqrt(trace(C)), (Cxx-Cyy)/trace(C), and 2*Cxy/trace(C), from full weighted central covariance. Do not threshold saliency or compare raw principal-axis angles. The magnitude of the double-angle vector equals anisotropy. Report normalization and number of finite/degenerate masks. Degenerate masks stop export for the affected case.",
+  "predictors": "Independent per-person posterior-1003 and 96-unit original single-person TrialObjectEncoder features. Center predictors and pose over ten training pictures within object; standardize each predictor using training-only within-object SD floor 1e-5. Fit each head by linear ridge with penalty .5 times number of rows. Motion for a query is its predicted value minus mean of its eight predicted supports. Standardized OOF predictions determine nonnegative independent gains for each output coordinate and each of two heads by joint nonnegative least squares, one fit per coordinate over four object-disjoint inner folds of 416 (permutation seed 260564). Clip each coefficient to [0,2]. Each inner deep head repeats the frozen 750-update generic single-person learning rule on only the remaining 312 classes; final 416 uses the already frozen 416 network. Phase two refits the linear heads on full 512 using frozen personal 512 representations, reuses OOF gains without tuning.",
+  "metrics": "Use signed own improvement in squared error versus eight-support mean and same-object other-photo EEG; positive means lower error. Primary endpoint is the sum of squared errors in the double-angle vector divided by twice the equally weighted training anisotropy component variance (one shared scale). Secondary endpoint average of five normalized component errors. Standardize center and log-radius using fitting-set within-object SD; both direction components share RMS of their within-object SDs. Whole-object paired percentile CI, 10000 draws seed 260552, with all people preserved, also separately per person. Report each coordinate, availability and raw/comparison scores. Evidence of orientation decoding requires positive primary lower 95% bounds vs both controls; otherwise mark absence of demonstrated orientation and retain center/scale evidence separately. Export all three packets requested, irrespective of gate; generated-image results separately establish usefulness.",
+  "packet": "Keep each subject mixed personal12 order, words, folds, support rows and donor rows. Use only eight allowed priors per predicted word. Uniform = coordinate mean of those 8 physical photo pose vectors. Own=uniform+estimated difference versus support EEG. Wrong=other query own mapped by prior same-word/same-fold cyclic rule, singleton self. Project centers to [0,1], log radius to [log(1/320),log(sqrt(.5))], and anisotropy vector to norm <=.99. All predictions are registered against the original row, subject and model, before any personal12 reference error scoring. The same stimulus may be queried in one fold and serve as a labeled support in another. Never give query photos, truth or masks to the renderer.",
+  "arm_order": [
+    "own",
+    "uniform",
+    "wrong"
+  ],
+  "keys": [
+    "center_x",
+    "center_y",
+    "log_radius",
+    "anisotropy_xx_yy",
+    "anisotropy_xy"
+  ],
+  "inputs": {
+    "u2netp": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+    "image_archive": "b91edf1a316142406a2ae28bdbb673712f1d5c38f57c0aec9dcfb5da446cabf1",
+    "image_row_manifest": "dafc55af7366974feae0e11418680990ff8d74707ec5b89e398fd5a26567c473",
+    "legacy_geometry": "b8762fc29add4bb498fd453708a9c2a22eac9909eac7a92c4ced0f37eb7e742d",
+    "training_code": "a51bad609270be7c9e02b1a1300a42c6e330586282c1b1ef1aa41230d311d908",
+    "generic_416_fits": "cbe45ec14a5fe21af8a15b6b1a8cdf4bff364ff19c9744b63181b091fbe2dd4d",
+    "schedules": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a"
+  },
+  "people": {
+    "sub-04": {
+      "mixed_conditions": "facbb9afee9c536bdaabf3dc8aab731423ffcace0cb5eb6626623e363d3c540d",
+      "mixed_decisions": "d9f23966a8eb550ce1895bb957b402dfbde33450a173ea822c03413601523a6a",
+      "fit512": "e7f3d23f4981074fc86bad22fddd8a0878030df31311fa61e7e8909ffc19b35b",
+      "fit416": "1dd3376ec981ac298b99c9518d1ac73b07a3fe4af5d18f7b2bffd5afd693a74d",
+      "split": "38c7576b5a8976f674e34633e69fddc31ddceadb4379354b996fde8302ac381f",
+      "generic_source": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+      "target_posterior": "cd309366412bf35a3aeea567cb28e24a620a2ba857b79211bc8762331a7c4c3c",
+      "registration": "bc122169aeb93074f1b38e2a0530b9e051b666c002e11c919c5693d09185825e"
+    },
+    "sub-05": {
+      "mixed_conditions": "7bbe6f13b5532f02b407a5525f41c85a114fa6ce972a49c4df764a9b1c758a4d",
+      "mixed_decisions": "1f2d7bb75a97c7e2ba34a85b21f44e52d52f773ce721ce07300b5c228b73e187",
+      "fit512": "029662a69062a6733d56df3086815f747d09a7d82d76756b473908092f78c92c",
+      "fit416": "bcb1beb705cb29abc182531e3ce7de1715e12784d1e22bb8381995f6cff8b992",
+      "split": "bc7324541a59439c537a5e7d05a7974b168e9d39170b631996b68fa3d1f8cb33",
+      "generic_source": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f",
+      "target_posterior": "de157705977bb0f14d42c193da3597429ec6816c08c8fda53486e8e986a1fa7f",
+      "registration": "ead79f00dc4dabaad7868c2ecf4315fc96e0008a04c4e8c34d36f90eb62a1ee6"
+    },
+    "sub-01": {
+      "mixed_conditions": "a610060ca5062cd585b40183af5d6d2878cc0807d7d912c0c66f57a52c14c5fc",
+      "mixed_decisions": "babfdecc55b0167e5889663dffbd80c644d31df5b2eb1fa522e1f37443509856",
+      "fit512": "c0913064639664b39e9cb1fd6f9b719f6817a9d78482d0cf07260a90b88e76a3",
+      "fit416": "f3ea1965c82c07518e11b9938c9c9c16700091767986639bbffa20b26b4d27fd",
+      "split": "cbc3998bb34556f6f7f9ba4699a50fa3a7352d5454bc06472cd56f6677fa0c28",
+      "generic_source": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9",
+      "target_posterior": "9e1012c5f1727e093dd7efcd1fedfbdf0de234c51b851f5ebc6bc1579764e448",
+      "registration": "593d402fb2e254ba4b731312b15bddd7dc1f58482584cb7893314c277ca7c67a"
+    }
+  }
+}

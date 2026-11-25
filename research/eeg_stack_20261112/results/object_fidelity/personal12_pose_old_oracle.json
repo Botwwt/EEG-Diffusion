@@ -1,0 +1,73 @@
+{
+  "design_sha256": "83e7551af17a3425233888d16942fc400740615f44dc58fcc576a09a74a72a5f",
+  "source_settings_sha256": "3113fd0501ebaa615463e41c32b541d36e61b6466f1518ef2311772924db5ce4",
+  "stimulus_zip_sha256": "b91edf1a316142406a2ae28bdbb673712f1d5c38f57c0aec9dcfb5da446cabf1",
+  "foreground_sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+  "n": 120,
+  "objects": 12,
+  "group": "registered/single-1",
+  "metrics": {
+    "neutral": {
+      "center_l2": 0.12341492445540571,
+      "absolute_log_radius": 0.1761728354383198,
+      "anisotropy_l2": 0.43901626616266487,
+      "rgb_rmse512": 0.32015910781919954,
+      "dino_within10": 12.0,
+      "dino_object12": 86.0
+    },
+    "oracle": {
+      "center_l2": 0.0663571798256618,
+      "absolute_log_radius": 0.10458663726062181,
+      "anisotropy_l2": 0.3154937777152568,
+      "rgb_rmse512": 0.3126683430125316,
+      "dino_within10": 19.0,
+      "dino_object12": 86.0
+    }
+  },
+  "units": "DINO entries are correct credits out of 120. Paired DINO effects are rates. Center and RGB measures use [0,1] image units.",
+  "oracle_minus_neutral_favorable": {
+    "center_l2": {
+      "favorable_delta": 0.0570577446297439,
+      "ci95": [
+        0.04764914965197129,
+        0.06645004889410817
+      ]
+    },
+    "absolute_log_radius": {
+      "favorable_delta": 0.071586198177698,
+      "ci95": [
+        0.052515026631128815,
+        0.09045941970258765
+      ]
+    },
+    "anisotropy_l2": {
+      "favorable_delta": 0.12352248844740803,
+      "ci95": [
+        0.08097691981465151,
+        0.1637373196865079
+      ]
+    },
+    "rgb_rmse512": {
+      "favorable_delta": 0.007490764806667964,
+      "ci95": [
+        0.005620413195962707,
+        0.009426281598086159
+      ]
+    },
+    "dino_within10": {
+      "favorable_delta": 0.058333333333333334,
+      "ci95": [
+        0.008333333333333333,
+        0.11666666666666668
+      ]
+    },
+    "dino_object12": {
+      "favorable_delta": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "passes_mechanism_gate": true
+}

@@ -23,6 +23,10 @@ Each participant's twelve candidate objects shared a recording-session pair. The
 
 The first participant gained ten full-vocabulary image hits. The two separately registered replications gained eleven together (from 100 to 111 of 240 images), with +12 hits in sub-01 and −1 in sub-05. The selected model more often depicts the correct object. Recognition of the particular photograph remains near one in ten. Intervals resample objects while keeping the observed people together. [First comparison and replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [All twelve objects per person, side by side](research/eeg_stack_20261112/gallery/GALLERY.md#personal-twelve-object-menus-with-matching-recording-sessions)
 
+### Can the EEG place the object like the viewed photograph?
+
+On the same 360 queries we held the generated image fixed and allowed an EEG readout to move, resize and rotate its foreground. The encoder predicted foreground orientation better than the eight-photo mean on 96 held-out development objects in the same dataset. On the final edited JPEGs, DINOv2 identified 44/360 exact photos with the query EEG, 45/360 with the eight-photo mean and 42/360 with exchanged EEG. Re-encoding the unedited source gave 41/360. Full-vocabulary naming fell from 166/360 in the matched-codec control to 151/360 after the query EEG edit. The support mean accounted for most of the measured layout improvement. The selected model above still uses the original diffusion output. [Edited images, controls and replay](docs/PERSONAL12_POSE_EVALUATION.md) · [EEG pose readout](docs/PERSONAL_POSE_READOUT.md) · [Four-region visual feature experiment](docs/REGIONAL_PHOTO_FEATURES.md)
+
 ### Results on an earlier shared 12-object panel
 
 We locked the 12 objects, 120 photos, folds, model and primary photo-identification endpoint before inspecting their EEG or scoring images. The same three previously studied people viewed all 120 photos. Each row below includes every query, including incorrect EEG words. [Registration and per-participant image results](docs/FRESH_PHOTO_VALIDATION.md)
