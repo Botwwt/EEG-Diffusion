@@ -1,0 +1,33 @@
+{
+  "experiment": "Single-person same-session EEG object recognition with support-defined hard-negative pairs.",
+  "participants": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "physical_repetitions": 4,
+  "inputs": "17 posterior EEG channels, 1003 fixed R4 features, 8 labeled calibration photos per candidate. No image, other participant, or query label as predictor. A four-word menu is provided as extra information in new_three4.",
+  "split": "Replay the previous episodic object split and RNG exactly. Hold the same 96 of 512 generic objects out of all fitting, four object-disjoint OOF folds inside the remaining 416. Fit the registered native and session-centered 96-D Fisher bases out of fold. Repeat OOF training on all 512 for the two previously studied target panels. All target objects are excluded.",
+  "episodes": "Separate 4- and 12-candidate menus from exactly the same session pair; independently shuffled 8 support / 2 query photo folds. For each candidate take its two nearest OTHER candidate centroids by native Fisher unit-vector cosine from permitted supports alone; ties by candidate menu order.",
+  "pair_features": "For the two 96-D bases and each of their three contiguous 32-coordinate bands, whiten the difference of two candidate means by their pooled diagonal support variance shrunk halfway to its band-average variance. Project the focal EEG and both sets of 8 supports onto that discriminating direction. Fit a signed midpoint margin in units of pooled projected within-class noise, and an unequal-variance Gaussian log likelihood ratio with each class variance shrunk halfway to their pooled projected noise. Fixed support mean estimation inflation 9/8. Clip both signed contrasts to [-4,+4].",
+  "fitting": "True candidate versus its two closest support-defined rivals at each object-disjoint OOF episode. Fit one intercept-free logistic residual on the 12 pair features at fixed native Fisher standardized cosine logit-difference offset. Average the two menu-size losses equally, ridge 0.1/2 squared coefficient norm. Sham flips training pair orientation labels by fair coin per two-query focal episode with same targets/supports and optimizer. No tuning.",
+  "test": "Start with the earlier 16-score episodic classifier, standardized per query over the permitted menu. For each candidate add 0.5 times the average learned pair residual against its two nearest allowed support-centroid competitors. Each query is decoded independently. Wrong EEG in target uses the previous row derangement within recipient fold/menu; generic uses the two held-out peer EEGs from the next cyclic candidate in this same menu. All correct and wrong queries see exactly the same candidate supports.",
+  "checks": "Reproduce all original per-row Fisher and episodic choices in both generic menus as well as stress12 and new_three4 for each participant. Use the public ordinal menu mapping for target inference before reading truth, with 12 or 4 allowed words.",
+  "endpoints": "Exact top-1 object label, participant-specific hits, paired differences vs native, previous episodic, orientation-sham and wrong-EEG controls. Keep the three people fixed and resample shared object IDs (10000 percentile bootstrap, seed 260551); synchronize both generic menu sizes for each of the same 96 classes; resample 12 objects independently per target panel. Target panels and generic split are previously studied, not a new untouched dataset.",
+  "gate": "Advance only if generic combined paired lower 95% bounds vs native Fisher, old episodic and orientation-sham are all strictly positive, with no menu declining vs old episodic; AND both target panels nonnegative vs old episodic, with pooled target lower bounds vs native and old episodic strictly positive. Otherwise stop. No new panel or generation.",
+  "episode_seed": 260545,
+  "sham_seed": 260550,
+  "bootstrap_seed": 260551,
+  "neighbors": 2,
+  "pair_ridge": 0.1,
+  "residual_mixture": 0.5,
+  "sources": {
+    "previous_design": "ff20f2572ffb9371dd4f3756d65f146aee4bfee6b6589dc675af7639cbeda8bc",
+    "previous_program": "293933ff79a20d2101a430f2892eb05307ea1e8a823a0abefa64773d0455443e",
+    "previous_aggregates_and_receipts": "4cf1ce5f2a6d70ff7b4dd519867010d086c23acec1ec59df9ae58ec0dd81f82d",
+    "ordinal_menus": "a17f1d8058b59cbe85edc60119fb9cba8bf0da8e124176a63ea7eb5a7cc5fc30",
+    "panels_sha256": "ebe8c6ec8710ec8a4886e095b89a87ce479bc42b38ad484d5c829aa0137b6599",
+    "training_universe_sha256": "f30831aab67d1b735985876710c51eddc3bd60729c0ccc72e803c02f7f34088d",
+    "session_schedule_sha256": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "question": "After the four-trial object encoder is frozen, do its features carry additional information about which of two photographs of the same object was viewed?",
+  "participant": "sub-04, four physical trials per photo",
+  "scope": "Historical 416 training objects and disjoint 96 development objects. These 96 have been used to evaluate previous classifiers. The new personal12 panel is excluded from this stage.",
+  "input": "Use the frozen 416-class encoder and its stored normalization. Encode the 416 objects and verify the 96 held-out class embeddings against the original fit. Use the 17 posterior electrode features and the verified author H/14 bank in matching stimulus order.",
+  "model": "Fit separate fixed ridge regressions on class-centered training photo features, using EEG from the frozen 96-dimensional encoder and the historical posterior features. Remove the training object mean from targets and use unit H/14 images. Standardize EEG dimensions on class-centered training rows. Use the historical ridge coefficient 2.0, no output whitening. Average predicted residuals with weights one half each.",
+  "evaluation": "In each of all 45 pairs per held-out object, the other eight photos supply the same H/14 prior and eight EEG predictions supply the center for both candidate predictions. Compare both joint assignments. As a second endpoint use five consecutive photo pairs, hold both out, reconstruct each query direction from the other eight and rank all ten H/14 references by cosine. This is a known-correct-word feature-space diagnostic. Report the posterior, deep, equal mix, and mixed predictions rolled by one photo within each object.",
+  "gate": "Advance to a separately registered render comparison only if mixed minus posterior has positive paired 95% object-bootstrap lower bound on the 45-pair endpoint and no fewer ten-way hits. All weights and folds fixed for the study.",
+  "bootstrap_seed": 260554,
+  "bootstrap_draws": 10000
+}

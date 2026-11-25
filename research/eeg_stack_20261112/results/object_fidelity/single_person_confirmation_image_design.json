@@ -1,0 +1,25 @@
+{
+  "experiment": "Prospective evaluation of the already selected individual 17-channel 512-object Fisher object readout and native within-object H/14 conditioner. Separate from any later learned head. The 29 objects were selected by metadata alone before fetching their target EEG.",
+  "panel": "personal12",
+  "participant_order": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "acquisition_per_query": 4,
+  "session_condition": "All twelve choices have the same pair of acquisition sessions for that individual. Separate individual fit and menu; no between-person EEG averaging.",
+  "panel_sha256": "b6a7413bfc9c36e7035e52028cc37935f10c49f0b5f614d16f956c64ba6940ae",
+  "compact_panel_sha256": "ec3113036a24f53b1dd9ff0dbe125bdee29212cdf7f52a016e512adbb4b0099d",
+  "source_sha256": {
+    "selection": "914c9a527049783f23e25d1bdd2c3137e5fdd4ed69d18b1ce617853f9d53e79a",
+    "angular_scale": "06e8f4d5c34554dd0e076347c519aa24a2b0f5bd89d785cce9632b0721dcd60d",
+    "radius": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+    "render_base": "f9c25a82cee35b5c3b87e7718e2a9244b6ef26c97033507d40c33941c3551c03",
+    "registered_native_readout": "e48f34cde3ae950e2986fd591e356ab2c70da4b3fd099910d1f3ed429fc04250",
+    "registered_visual_embedding": "7b7f61af99c6973ef2da914ce98395cc1a7746617ab9fa377d8044af771a7939",
+    "renderer": "508e60c1255f8deb518c67af8f9dec3d1f164517b584bcb7a640986edc371593"
+  },
+  "model": "Locked native Fisher96 on the same 512 generic objects fitted separately per person, four trial mean from both session halves. Per query choose by cosine to measured EEG centroids from eight allowed EEG supports per allowed word. Native within-object 512-class visual head, existing generic angular gain/cap and fixed radius; read eight support H14 embeddings only from the selected word and off-fold photos.",
+  "generation": "Use the base IP-Adapter ViT-H and SDXL-Turbo, four steps, one JPEG per row/arm. Same predicted word, noise seed 923761+original training row, eight allowed support photos, radius and settings across matched, uniform, wrong. Uniform is the eight-image mean direction, own is the query direction, wrong borrows the complete own vector including its angle from previous ordinal in same predicted word and fold; singleton unchanged. Three people separately x 120 x 3 = 1080 images.",
+  "endpoints": "Per-person 12-choice EEG object hits first, compare independent CLIP 12-word and full-1854 word scores of own generated images and original references. DINO within-object 10-photo top-one, strict two-photo paired assignment, RGB/luminance and own versus uniform/wrong as diagnostic end points. Chance for EEG 12-choice and session-only=10/120; ten-photo chance=12/120. Report each participant then equal-weight pooled effects and paired 95% whole-object uncertainty carrying repeated photos across persons. Keep originals in evaluation only; no output-based selection or tuning."
+}

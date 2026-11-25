@@ -1,0 +1,278 @@
+{
+  "image_design_sha256": "770b30c32efa062b358929299c864c424ed7f6662a1ff61ed1570753b41980f8",
+  "blind_sha256": "513428d860f1aaf02032a0e160716b58c84cb9665f99c4e61ed6e40c828d31aa",
+  "jpeg_manifest_sha256": {
+    "registered": "115deb3b94d4f12bf53a8ac40f6e759d903f570e36f536e2a0e6c2352cf25473",
+    "replicate": "754a401472fd83e8b00cb336e92dbff3c6c4f492b011bde2de548792e06d8571"
+  },
+  "scorer_sha256": "9f65de88bab8637304ff9bb54abf1d1be9c1b43131aeb200de6dadf67520f432",
+  "reference_zip_sha256": "b91edf1a316142406a2ae28bdbb673712f1d5c38f57c0aec9dcfb5da446cabf1",
+  "foreground_model_sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+  "dino_model_sha256": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+  "condition_sha256": {
+    "registered": "498ee504c51ed7d339f2c810ca87ac8e3702b7107f3965bfdf26ebfe8244feed",
+    "replicate": "45d31ef05524bf3ddb47d3ce32303f6aa137b448aeea5321eaed59ad224b4fe3"
+  },
+  "donor_eligibility": {
+    "registered": {
+      "total": 120,
+      "exchanged": 111,
+      "exchanged_and_same_true_class": 58
+    },
+    "replicate": {
+      "total": 120,
+      "exchanged": 112,
+      "exchanged_and_same_true_class": 73
+    }
+  },
+  "panels": [
+    "registered",
+    "replicate"
+  ],
+  "n_photos": 240,
+  "photos_per_object": 10,
+  "objects": 24,
+  "jpegs": 960,
+  "observed_people": 9,
+  "physical_trials_per_photo": 36,
+  "measures": "Within each panel DINO entries give correct credit out of 120; aggregate DINO entries give rates. Shape is mean absolute normalized log radius. Positive paired deltas favor matched EEG on every outcome.",
+  "per_panel": {
+    "registered": {
+      "neutral": {
+        "shape_l1": 0.16863994300365448,
+        "dino_within10": 8.0,
+        "dino_photo120": 6.0,
+        "dino_object12": 86.0,
+        "rgb_rmse32": 0.29744778871536254,
+        "luma_correlation32": 0.013645504914053579
+      },
+      "prior": {
+        "shape_l1": 0.15920305252075195,
+        "dino_within10": 8.0,
+        "dino_photo120": 6.0,
+        "dino_object12": 86.0,
+        "rgb_rmse32": 0.29728004075586795,
+        "luma_correlation32": 0.014507339412385072
+      },
+      "own": {
+        "shape_l1": 0.16220074892044067,
+        "dino_within10": 8.0,
+        "dino_photo120": 6.0,
+        "dino_object12": 86.0,
+        "rgb_rmse32": 0.29727825510005157,
+        "luma_correlation32": 0.014567345450199923
+      },
+      "wrong": {
+        "shape_l1": 0.1602378487586975,
+        "dino_within10": 8.0,
+        "dino_photo120": 6.0,
+        "dino_object12": 86.0,
+        "rgb_rmse32": 0.2972808875143528,
+        "luma_correlation32": 0.014511569752707591
+      }
+    },
+    "replicate": {
+      "neutral": {
+        "shape_l1": 0.15427421033382416,
+        "dino_within10": 9.0,
+        "dino_photo120": 6.0,
+        "dino_object12": 94.0,
+        "rgb_rmse32": 0.302016069740057,
+        "luma_correlation32": 0.04155077188081314
+      },
+      "prior": {
+        "shape_l1": 0.15133221447467804,
+        "dino_within10": 11.0,
+        "dino_photo120": 7.0,
+        "dino_object12": 94.0,
+        "rgb_rmse32": 0.30177304670214655,
+        "luma_correlation32": 0.0427098311958684
+      },
+      "own": {
+        "shape_l1": 0.15024830400943756,
+        "dino_within10": 11.0,
+        "dino_photo120": 7.0,
+        "dino_object12": 94.0,
+        "rgb_rmse32": 0.30177089646458627,
+        "luma_correlation32": 0.042764791746028666
+      },
+      "wrong": {
+        "shape_l1": 0.15048813819885254,
+        "dino_within10": 11.0,
+        "dino_photo120": 7.0,
+        "dino_object12": 94.0,
+        "rgb_rmse32": 0.3017735222975413,
+        "luma_correlation32": 0.04272806857768433
+      }
+    }
+  },
+  "overall": {
+    "neutral": {
+      "shape_l1": 0.16145707666873932,
+      "dino_within10": 0.07083333333333335,
+      "dino_photo120": 0.05000000000000001,
+      "dino_object12": 0.75,
+      "rgb_rmse32": 0.2997319292277098,
+      "luma_correlation32": 0.02759813839743336
+    },
+    "prior": {
+      "shape_l1": 0.1552676260471344,
+      "dino_within10": 0.07916666666666666,
+      "dino_photo120": 0.05416666666666667,
+      "dino_object12": 0.75,
+      "rgb_rmse32": 0.2995265437290073,
+      "luma_correlation32": 0.028608585304126743
+    },
+    "own": {
+      "shape_l1": 0.15622451901435852,
+      "dino_within10": 0.07916666666666666,
+      "dino_photo120": 0.05416666666666667,
+      "dino_object12": 0.75,
+      "rgb_rmse32": 0.2995245757823189,
+      "luma_correlation32": 0.028666068598114297
+    },
+    "wrong": {
+      "shape_l1": 0.15536299347877502,
+      "dino_within10": 0.07916666666666666,
+      "dino_photo120": 0.05416666666666667,
+      "dino_object12": 0.75,
+      "rgb_rmse32": 0.29952720490594703,
+      "luma_correlation32": 0.02861981916519597
+    }
+  },
+  "paired": {
+    "neutral": {
+      "shape_l1": {
+        "favorable_delta": 0.005232547875493765,
+        "ci95": [
+          -0.0002458612550981338,
+          0.0100887565407902
+        ]
+      },
+      "dino_within10": {
+        "favorable_delta": 0.008333333333333333,
+        "ci95": [
+          -0.0125,
+          0.029166666666666664
+        ]
+      },
+      "dino_photo120": {
+        "favorable_delta": 0.004166666666666667,
+        "ci95": [
+          -0.012500000000000002,
+          0.020833333333333336
+        ]
+      },
+      "dino_object12": {
+        "favorable_delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "rgb_rmse32": {
+        "favorable_delta": 0.0002073534453908623,
+        "ci95": [
+          0.00010181795650472516,
+          0.0003199198034902424
+        ]
+      },
+      "luma_correlation32": {
+        "favorable_delta": 0.0010679302006809364,
+        "ci95": [
+          0.00033583126334176834,
+          0.0018048890087458633
+        ]
+      }
+    },
+    "prior": {
+      "shape_l1": {
+        "favorable_delta": -0.0009568973327986896,
+        "ci95": [
+          -0.002985862549394369,
+          0.0008603220572695127
+        ]
+      },
+      "dino_within10": {
+        "favorable_delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "dino_photo120": {
+        "favorable_delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "dino_object12": {
+        "favorable_delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "rgb_rmse32": {
+        "favorable_delta": 1.9679466883350725e-06,
+        "ci95": [
+          -7.190650018552962e-06,
+          1.1131875216959887e-05
+        ]
+      },
+      "luma_correlation32": {
+        "favorable_delta": 5.748329398755218e-05,
+        "ci95": [
+          -9.503103189666685e-06,
+          0.00012540649696237918
+        ]
+      }
+    },
+    "wrong": {
+      "shape_l1": {
+        "favorable_delta": -0.0008615395054221153,
+        "ci95": [
+          -0.004931759228929877,
+          0.0035921654547564686
+        ]
+      },
+      "dino_within10": {
+        "favorable_delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "dino_photo120": {
+        "favorable_delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "dino_object12": {
+        "favorable_delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "rgb_rmse32": {
+        "favorable_delta": 2.6291236281406525e-06,
+        "ci95": [
+          -7.461956702181261e-06,
+          1.2762627253933011e-05
+        ]
+      },
+      "luma_correlation32": {
+        "favorable_delta": 4.624943291832846e-05,
+        "ci95": [
+          -2.224836772860238e-05,
+          0.00011290189939780464
+        ]
+      }
+    }
+  },
+  "passes_image_gate": false
+}

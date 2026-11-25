@@ -1,0 +1,141 @@
+{
+  "design_sha256": "eb3e802a7b98f4aa5a8b8504927c7f00bd1232c106894f3844e796a40d543733",
+  "selection_sha256": "7af8d8cbe85c7ba7b15549ea8695b1fe608b494fc79ddb6ca8f411657884c9ee",
+  "shape_sha256": "26f367c1a0687262fa8e2fc5f85bb333792a446902036c8f0cb5c764defcb055",
+  "observations": 320,
+  "objects": 32,
+  "supports_per_query": 8,
+  "physical_trials_per_photo": 36,
+  "mean_l1": {
+    "matched": 0.1905889174027029,
+    "medoid": 0.14738673218873732,
+    "wrong_eeg": 0.19556185608989934,
+    "best_legal_oracle": 0.11324825426178128,
+    "true_patch_oracle": 0.1940765371141405,
+    "random_mean": 0.20270579409004624
+  },
+  "control_minus_matched": {
+    "medoid": {
+      "delta": -0.04320218521396555,
+      "ci95": [
+        -0.05648198758862606,
+        -0.03105937740808307
+      ]
+    },
+    "wrong_eeg": {
+      "delta": 0.004972938687196421,
+      "ci95": [
+        -0.00034059817610573406,
+        0.010556989095279806
+      ]
+    },
+    "best_legal_oracle": {
+      "delta": -0.07734066314092161,
+      "ci95": [
+        -0.09363117490867759,
+        -0.06180665663209904
+      ]
+    },
+    "true_patch_oracle": {
+      "delta": 0.003487619711437637,
+      "ci95": [
+        -0.008377862783522472,
+        0.015494671320978308
+      ]
+    },
+    "random_mean": {
+      "delta": 0.012116876687343375,
+      "ci95": [
+        0.003619231648415638,
+        0.020710727298719794
+      ]
+    }
+  },
+  "diagnostic_medoid_minus": {
+    "matched": {
+      "delta": -0.04320218521396555,
+      "ci95": [
+        -0.05648198758862606,
+        -0.03105937740808307
+      ]
+    },
+    "medoid": {
+      "delta": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "wrong_eeg": {
+      "delta": -0.04817512390116197,
+      "ci95": [
+        -0.06301428563855012,
+        -0.034070859648422575
+      ]
+    },
+    "best_legal_oracle": {
+      "delta": 0.034138477926956054,
+      "ci95": [
+        0.025216590326791723,
+        0.04547825806037417
+      ]
+    },
+    "true_patch_oracle": {
+      "delta": -0.046689804925403186,
+      "ci95": [
+        -0.06548561473886816,
+        -0.030351720992674233
+      ]
+    },
+    "random_mean": {
+      "delta": -0.05531906190130892,
+      "ci95": [
+        -0.06948186739644,
+        -0.04243841260423508
+      ]
+    }
+  },
+  "counts_at_true_best": {
+    "matched": 43,
+    "medoid": 70,
+    "wrong_eeg": 38,
+    "best_legal_oracle": 320,
+    "true_patch_oracle": 63
+  },
+  "exact_selected_true_patch_support": 82,
+  "same_selection_as_wrong": 64,
+  "pair_diagnostics": {
+    "matched": {
+      "smaller": 0,
+      "ties": 320,
+      "larger": 0
+    },
+    "medoid": {
+      "smaller": 81,
+      "ties": 39,
+      "larger": 200
+    },
+    "wrong_eeg": {
+      "smaller": 135,
+      "ties": 64,
+      "larger": 121
+    },
+    "best_legal_oracle": {
+      "smaller": 0,
+      "ties": 43,
+      "larger": 277
+    },
+    "true_patch_oracle": {
+      "smaller": 114,
+      "ties": 82,
+      "larger": 124
+    },
+    "random_mean": {
+      "smaller": 210,
+      "ties": 0,
+      "larger": 110
+    }
+  },
+  "advance": false,
+  "interpretation": "Absolute log-radius error; lower is better. Intervals resample 32 whole held-out objects, 10000 draws. Oracle scores use the identical eight distinct permitted support photographs and target shape only for evaluation. No formal target set opens unless both gate conditions pass."
+}

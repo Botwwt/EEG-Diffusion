@@ -8,9 +8,22 @@ Reconstructing viewed photographs from EEG. The primary task is to draw the righ
 
 ## Selected model for calibrated objects
 
-**Predict an object word, then draw one image with a photo-specific EEG condition.** A personal Fisher projection learns 96 directions from 17 posterior EEG electrodes on 512 other objects (5,120 distinct calibration photos per participant). At inference, each of the 12 candidate objects has eight labeled support photos and their EEG. The closest EEG prototype supplies the word. A second decoder estimates how the query differs from the eight supports in H/14 image-feature space. A gain estimated on separate calibration objects scales that difference. A frozen ViT-H IP-Adapter and four SDXL-Turbo steps render one image. The query photograph enters evaluation after generation. [Architecture and matched controls](docs/PHOTO_STRUCTURE.md) · [Prepare EEG and run inference](docs/FRESH_PHOTO_REPLAY.md)
+**For one person with four EEG presentations and twelve calibrated candidate objects, use the four-trial encoder plus Fisher.** Two encoders score the same candidates. One learns from four separate 63-electrode EEG trials, including a training task that matches complementary trial pairs from one photo. The other uses a 17-electrode posterior Fisher projection. Their standardized scores have equal weight. Both train on 512 other objects. At inference each candidate has eight labeled support photos and their EEG. The predicted word selects the supports. A separate visual decoder adds an EEG estimate of the photo-specific difference to their mean H/14 feature. A frozen ViT-H IP-Adapter and four SDXL-Turbo steps draw one image. The query photo enters evaluation after generation. [Run one EEG query and render it](docs/PERSONAL_OBJECT_INFERENCE.md) · [Training and component controls](docs/TRIAL_OBJECT_ABLATION.md) · [Visual decoder](docs/PHOTO_STRUCTURE.md)
 
-### Results on 12 additional objects
+### Recognition with recording sessions held fixed
+
+Each participant's twelve candidate objects shared a recording-session pair. The 360 participant–photo queries cover 290 distinct photographs of 29 objects. The models use the same diffusion seed for each query. On all 264 queries where the word stayed the same, the generated images matched byte for byte. [Panel registration and original Fisher results](docs/PERSONAL12_CONFIRMATION.md) · [Paired image scores and intervals](research/eeg_stack_20261112/results/object_fidelity/personal12_trial_replication_images.json)
+
+| Endpoint on 360 queries | Fisher | Trial encoder + Fisher | Paired difference in percentage points (95% interval) |
+| --- | ---: | ---: | ---: |
+| Correct EEG object word among 12 | 161 | **187** | +7.22 [3.14, 11.43] |
+| Generated JPEG named correctly among 12 words | 160 | **187** | +7.50 [3.53, 11.62] |
+| Generated JPEG named correctly among 1,854 words | 145 | **166** | +5.83 [2.06, 9.71] |
+| Viewed photo ranked first among ten photos of its object, DINOv2 | **43** | 42 | −0.28 [−2.65, 2.35] |
+
+The first participant gained ten full-vocabulary image hits. The two separately registered replications gained eleven together (from 100 to 111 of 240 images), with +12 hits in sub-01 and −1 in sub-05. The selected model more often depicts the correct object. Recognition of the particular photograph remains near one in ten. Intervals resample objects while keeping the observed people together. [First comparison and replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [All twelve objects per person, side by side](research/eeg_stack_20261112/gallery/GALLERY.md#personal-twelve-object-menus-with-matching-recording-sessions)
+
+### Results on an earlier shared 12-object panel
 
 We locked the 12 objects, 120 photos, folds, model and primary photo-identification endpoint before inspecting their EEG or scoring images. The same three previously studied people viewed all 120 photos. Each row below includes every query, including incorrect EEG words. [Registration and per-participant image results](docs/FRESH_PHOTO_VALIDATION.md)
 

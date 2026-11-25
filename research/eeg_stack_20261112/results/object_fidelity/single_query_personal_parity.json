@@ -1,0 +1,49 @@
+{
+  "task": "Agreement of single-query decisions and native H/14 conditions with each participant's frozen mixed-head rendering inputs.",
+  "compared_queries": 360,
+  "participants": {
+    "sub-04": {
+      "subject": "sub-04",
+      "rows": 120,
+      "fold": null,
+      "word_matches": 120,
+      "max_abs_error": {
+        "own": 0.0,
+        "uniform": 0.0
+      },
+      "model_sha256": "e7f3d23f4981074fc86bad22fddd8a0878030df31311fa61e7e8909ffc19b35b",
+      "cached_heads_sha256": "3cc1f425f83ed03107667ecbf4d56dc58460a2828a99beca05d4e483ef78450f",
+      "comparison_packet_sha256": "facbb9afee9c536bdaabf3dc8aab731423ffcace0cb5eb6626623e363d3c540d",
+      "single_query_driver_sha256": "c0a681cd72f5ca920bc2e18b2ba45e10527b54b73b8de9cf0707b3c6793ef357"
+    },
+    "sub-05": {
+      "subject": "sub-05",
+      "rows": 120,
+      "fold": null,
+      "word_matches": 120,
+      "max_abs_error": {
+        "own": 0.0,
+        "uniform": 0.0
+      },
+      "model_sha256": "029662a69062a6733d56df3086815f747d09a7d82d76756b473908092f78c92c",
+      "cached_heads_sha256": "50a0abb371276de039dbaa4695134116bbbed13072f892d86d6e9ad7232b433f",
+      "comparison_packet_sha256": "7bbe6f13b5532f02b407a5525f41c85a114fa6ce972a49c4df764a9b1c758a4d",
+      "single_query_driver_sha256": "c0a681cd72f5ca920bc2e18b2ba45e10527b54b73b8de9cf0707b3c6793ef357"
+    },
+    "sub-01": {
+      "subject": "sub-01",
+      "rows": 120,
+      "fold": null,
+      "word_matches": 120,
+      "max_abs_error": {
+        "own": 0.0,
+        "uniform": 0.0
+      },
+      "model_sha256": "c0913064639664b39e9cb1fd6f9b719f6817a9d78482d0cf07260a90b88e76a3",
+      "cached_heads_sha256": "0bea1ab69a836bd1327a0f5dd749939da2a6e605e75f4085f44e7c0ec68a5800",
+      "comparison_packet_sha256": "a610060ca5062cd585b40183af5d6d2878cc0807d7d912c0c66f57a52c14c5fc",
+      "single_query_driver_sha256": "c0a681cd72f5ca920bc2e18b2ba45e10527b54b73b8de9cf0707b3c6793ef357"
+    }
+  },
+  "units": "Maximum absolute difference over float32 coordinates. Each case uses four query trials and 12 by 8 different labeled support photos with their own four trials."
+}

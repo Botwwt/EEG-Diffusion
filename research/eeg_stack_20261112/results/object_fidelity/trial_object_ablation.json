@@ -1,0 +1,252 @@
+{
+  "design_sha256": "51ae4dd7c897975822e91241b93818d3943781fba527750142ec11eaaea781d4",
+  "source_sha256": "38f277c40073f4ed55190daf462fd1cff567c6d2d5cbb202c23162dc98713e0b",
+  "full_replay": {
+    "max_embedding_absolute_error": 0.0,
+    "max_weight_absolute_error": 0.0,
+    "exact_predictions": {
+      "generic_4": 960,
+      "generic_12": 960
+    }
+  },
+  "participant": "sub-04",
+  "training_objects": 416,
+  "held_objects": 96,
+  "updates": 750,
+  "same_initialization_and_random_streams": {
+    "initial_state": "24498caa61adfcc539672449c3e5f84d6db6414fc99d2dbbc86ab3aee9a46c8c",
+    "episode_stream": "6e8c2341faafa3c49c84eecd09677e4c9f60f250cd4e1db0913d7997a873313d",
+    "post_update_rng_stream": "be0dcd7c71e0b34ba6b5ea58a2768c7eb39f0fa2c4a7c1eb70dcaedcca7f59d8"
+  },
+  "intervals": "Absolute differences in top-1 accuracy, paired by 96 whole held objects. 10000 percentile draws, seed 260552. Positive favors the full/weighted/photo-loss direction as named. The original full-run performance was known before this post hoc component study.",
+  "model_weights_sha256": {
+    "weighted_pair": "1dd3376ec981ac298b99c9518d1ac73b07a3fe4af5d18f7b2bffd5afd693a74d",
+    "weighted_none": "39e1cc5d3d6cbbcd8117d1d3b646d0bf5133d25600f8da864e426b103f018815",
+    "mean_pair": "de41a053b4d8b5055b254714bad9de4f55fa3c3c870f263db94c24da1f0c8cd5",
+    "mean_none": "ae1778e6f901fd425289b54ae8efb6941394a022400d69318dd742466081177e"
+  },
+  "training_receipt_sha256": {
+    "weighted_pair": "f28d18449a242462af6b1828e0c52be10d60e44b07b41c7634d6af202ec88562",
+    "weighted_none": "b8d506de480f147c652fd019a8e1bbfe86a120839627c63cd288909737034deb",
+    "mean_pair": "085570c6ff1d7282d177d691e55d513d9d514e3a8e8459bff0cb7e0ec91e6906",
+    "mean_none": "bb15807db868b7d00ad514e827613faac8ce1f1a6876b6f5646d5e3e03815751"
+  },
+  "cases": {
+    "generic_12": {
+      "deep": {
+        "n": 960,
+        "hits": {
+          "weighted_pair": 474,
+          "weighted_none": 433,
+          "mean_pair": 470,
+          "mean_none": 441
+        },
+        "full_minus": {
+          "weighted_none": {
+            "delta": 0.04270833333333334,
+            "ci95": [
+              0.020833333333333343,
+              0.06460937499999962
+            ]
+          },
+          "mean_pair": {
+            "delta": 0.004166666666666667,
+            "ci95": [
+              -0.014583333333333335,
+              0.022916666666666665
+            ]
+          },
+          "mean_none": {
+            "delta": 0.034374999999999996,
+            "ci95": [
+              0.011458333333333334,
+              0.05833333333333333
+            ]
+          }
+        },
+        "marginal_weighted_minus_mean": {
+          "delta": -0.0020833333333333333,
+          "ci95": [
+            -0.01614583333333333,
+            0.011979166666666664
+          ]
+        },
+        "marginal_pair_minus_no_pair": {
+          "delta": 0.036458333333333336,
+          "ci95": [
+            0.017708333333333336,
+            0.05572916666666666
+          ]
+        },
+        "interaction": {
+          "delta": 0.012499999999999999,
+          "ci95": [
+            -0.009375000000000003,
+            0.03541666666666666
+          ]
+        }
+      },
+      "mixed": {
+        "n": 960,
+        "hits": {
+          "weighted_pair": 514,
+          "weighted_none": 488,
+          "mean_pair": 508,
+          "mean_none": 484
+        },
+        "full_minus": {
+          "weighted_none": {
+            "delta": 0.027083333333333338,
+            "ci95": [
+              0.007291666666666672,
+              0.046875
+            ]
+          },
+          "mean_pair": {
+            "delta": 0.006249999999999999,
+            "ci95": [
+              -0.006250000000000003,
+              0.019791666666666662
+            ]
+          },
+          "mean_none": {
+            "delta": 0.03125,
+            "ci95": [
+              0.011458333333333333,
+              0.05104166666666667
+            ]
+          }
+        },
+        "marginal_weighted_minus_mean": {
+          "delta": 0.005208333333333331,
+          "ci95": [
+            -0.005208333333333335,
+            0.015625
+          ]
+        },
+        "marginal_pair_minus_no_pair": {
+          "delta": 0.026041666666666668,
+          "ci95": [
+            0.009895833333333338,
+            0.04218750000000001
+          ]
+        },
+        "interaction": {
+          "delta": 0.0020833333333333324,
+          "ci95": [
+            -0.013541666666666665,
+            0.01669270833333296
+          ]
+        }
+      }
+    },
+    "generic_4": {
+      "deep": {
+        "n": 960,
+        "hits": {
+          "weighted_pair": 681,
+          "weighted_none": 641,
+          "mean_pair": 672,
+          "mean_none": 646
+        },
+        "full_minus": {
+          "weighted_none": {
+            "delta": 0.041666666666666664,
+            "ci95": [
+              0.02395833333333333,
+              0.06041666666666667
+            ]
+          },
+          "mean_pair": {
+            "delta": 0.009375000000000001,
+            "ci95": [
+              -0.0052083333333333304,
+              0.02395833333333333
+            ]
+          },
+          "mean_none": {
+            "delta": 0.03645833333333332,
+            "ci95": [
+              0.016666666666666663,
+              0.05729166666666666
+            ]
+          }
+        },
+        "marginal_weighted_minus_mean": {
+          "delta": 0.0020833333333333307,
+          "ci95": [
+            -0.009375000000000001,
+            0.013554687499999812
+          ]
+        },
+        "marginal_pair_minus_no_pair": {
+          "delta": 0.034374999999999996,
+          "ci95": [
+            0.017708333333333326,
+            0.05156249999999999
+          ]
+        },
+        "interaction": {
+          "delta": 0.014583333333333337,
+          "ci95": [
+            -0.0020833333333333324,
+            0.03125000000000001
+          ]
+        }
+      },
+      "mixed": {
+        "n": 960,
+        "hits": {
+          "weighted_pair": 689,
+          "weighted_none": 684,
+          "mean_pair": 688,
+          "mean_none": 682
+        },
+        "full_minus": {
+          "weighted_none": {
+            "delta": 0.005208333333333332,
+            "ci95": [
+              -0.009375000000000007,
+              0.020833333333333332
+            ]
+          },
+          "mean_pair": {
+            "delta": 0.0010416666666666654,
+            "ci95": [
+              -0.01041666666666667,
+              0.012500000000000002
+            ]
+          },
+          "mean_none": {
+            "delta": 0.007291666666666666,
+            "ci95": [
+              -0.007291666666666672,
+              0.022916666666666658
+            ]
+          }
+        },
+        "marginal_weighted_minus_mean": {
+          "delta": 0.0015624999999999999,
+          "ci95": [
+            -0.0078125,
+            0.010937499999999998
+          ]
+        },
+        "marginal_pair_minus_no_pair": {
+          "delta": 0.005729166666666667,
+          "ci95": [
+            -0.006250000000000002,
+            0.017708333333333336
+          ]
+        },
+        "interaction": {
+          "delta": -0.0010416666666666682,
+          "ci95": [
+            -0.014583333333333332,
+            0.012500000000000002
+          ]
+        }
+      }
+    }
+  }
+}

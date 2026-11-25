@@ -1,0 +1,95 @@
+{
+  "study": "Independent evaluation of the fixed 512-object personal posterior R4 reconstruction in three new recording-session-matched 12-object menus.",
+  "registration_sha256": "b6a7413bfc9c36e7035e52028cc37935f10c49f0b5f614d16f956c64ba6940ae",
+  "participants": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "panel": "personal12",
+  "acquisition": "Each participant supplies four physical EEG presentations of each of 120 query photographs. The three fixed participants have different, partly overlapping twelve-object menus and eight separate calibration photo EEGs per candidate per fold.",
+  "cohort_counts": {
+    "participant_photo_queries": 360,
+    "distinct_objects": 29,
+    "distinct_originals": 290,
+    "generated_jpegs": 1080
+  },
+  "data": "Evaluate completed 512x512 generated JPEGs, with own, uniform and wrong conditioning sharing recipient word, diffusion seed and object supports. Compare every model arm on every eligible row. Actual target photographs and true words enter only evaluation.",
+  "reference_sha256": {
+    "sub-04": "bc122169aeb93074f1b38e2a0530b9e051b666c002e11c919c5693d09185825e",
+    "sub-05": "ead79f00dc4dabaad7868c2ecf4315fc96e0008a04c4e8c34d36f90eb62a1ee6",
+    "sub-01": "593d402fb2e254ba4b731312b15bddd7dc1f58482584cb7893314c277ca7c67a"
+  },
+  "frozen_gallery_lowest_row_by_object": {
+    "sub-04": {
+      "bag": 510,
+      "chicken_wire": 2840,
+      "crane": 3780,
+      "duct_tape": 4610,
+      "eye": 4910,
+      "flour": 5420,
+      "fungus": 5670,
+      "nail": 9260,
+      "rollerblade": 11750,
+      "stockings": 13860,
+      "tab": 14300,
+      "terrarium": 14630
+    },
+    "sub-05": {
+      "chinchilla": 2910,
+      "enchilada": 4840,
+      "eye": 4910,
+      "food_processor": 5500,
+      "gumball": 6350,
+      "hairspray": 6480,
+      "painting": 9710,
+      "pulpit": 11070,
+      "rollerblade": 11750,
+      "terrarium": 14630,
+      "ukulele": 15520,
+      "undershirt": 15540
+    },
+    "sub-01": {
+      "bag": 510,
+      "breakfast": 1740,
+      "bulletproof_vest": 1920,
+      "cardboard": 2420,
+      "file2": 5090,
+      "gumball": 6350,
+      "hairspray": 6480,
+      "melon": 8810,
+      "nail_file": 9280,
+      "riser": 11640,
+      "shelf": 12530,
+      "undershirt": 15540
+    }
+  },
+  "primary": "All-query object classification of saved own JPEGs: OpenAI CLIP-L/14 top-1 in the supplied 12 labels per person and in the complete 1,854-label dictionary. Fractional credit for tied text embeddings. Also report EEG word accuracy separately.",
+  "secondary": "All-query same-object 10-photo identification by uncentered normalized DINOv2-S/14 CLS and centered CLIP-L/14, 32x32 RGB RMSE and spatial luminance Pearson against paired originals; 10-photo RGB/luma rank. Strict two-photo assignment using raw CLIP and DINO requires both outputs share the correct true word and fold. Report correct-word-and-reciprocal-donor strict comparison separately; wrong EEG in a singleton label/fold may reuse the recipient. Include denominator for every subset.",
+  "controls": "Own minus uniform and own minus wrong on identical rows/pairs, plus the wrong-EEG comparison conditional on a distinct donor with the same true object, predicted word and fold. Positive is more accurate/higher correlation, lower RMSE is preferable.",
+  "uncertainty": "10,000 bootstrap draws (seed 260554), sampling the 29 unique physical object identities with replacement. Each selected cluster retains all of its photos, arms and fixed people who saw that object; point estimates weight eligible participant-query rows equally, not 360 independent photos. Per-person CIs similarly resample their 12 objects. Use actual eligible counts in each draw and omit only draws with no eligible observations. Strict pairs count each valid two-photo assignment once.",
+  "gallery": "Show lowest original archive row per object separately for each person, alphabetical output including prediction failures. Public panels contain generated own JPEGs; original/own pairs stay in private outputs.",
+  "model_hashes": {
+    "dino_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "dino_files": {
+      "config.json": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+      "model.safetensors": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+      "preprocessor_config.json": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
+    },
+    "clip_L14": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836"
+  },
+  "stimulus_sha256": {
+    "things_training_images_zip": "b91edf1a316142406a2ae28bdbb673712f1d5c38f57c0aec9dcfb5da446cabf1",
+    "original_row_manifest": "dafc55af7366974feae0e11418680990ff8d74707ec5b89e398fd5a26567c473"
+  },
+  "source_sha256": {
+    "score_fresh_photo.py": "afcd4ef3dec4b05d920372c5b27563480b9ca9b0313812e4eb7ec58c13abc7e4",
+    "score_within_photo_dino.py": "f61a36a47edd194941d5445c5e699203042e04b991b712e3c0d62f25da323930",
+    "score_within_photo_ip.py": "94ce10e250b2b4f1860f6be0f777ae788b0f4571b3e39bfb024bc1f97a9aefc5",
+    "score_reconstruction_jpegs.py": "ffecc6a6d1045e5d76dce02b5d06779a80693a39885d34ce9d658e76d8613ab3",
+    "score_official_objects.py": "7a746bdef1ebd00585c509a2f3b5a7469dc23798aab40e84c85b869222e8538d",
+    "score_object_panel.py": "d30f8a672fcaed91f006c8407e24b09d300dc621ad291ba5b7784c1769c86094",
+    "render_within_photo_ip.py": "508e60c1255f8deb518c67af8f9dec3d1f164517b584bcb7a640986edc371593",
+    "refine_registered_color.py": "2a62e1c86736dd71cfd53b194767e59c0afa1e0d4d1fd902f2d92aeaf43a982a"
+  }
+}

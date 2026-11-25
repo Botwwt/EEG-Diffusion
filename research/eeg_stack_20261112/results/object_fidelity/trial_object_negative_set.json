@@ -1,0 +1,73 @@
+{
+  "design_sha256": "5136188bb02ca0e99e3fa0fefa80c126d6fb5654698717ac51395ffa5bae8495",
+  "source_sha256": "65aa50b33bb769e18e033fcfab8420163958e7fdc4c136f8cd604d714c1d0ae9",
+  "shared_trainer_sha256": "38f277c40073f4ed55190daf462fd1cff567c6d2d5cbb202c23162dc98713e0b",
+  "within_object_receipt_sha256": "f28d18449a242462af6b1828e0c52be10d60e44b07b41c7634d6af202ec88562",
+  "same_initialization_and_random_streams": {
+    "initial_state": "24498caa61adfcc539672449c3e5f84d6db6414fc99d2dbbc86ab3aee9a46c8c",
+    "episode_stream": "6e8c2341faafa3c49c84eecd09677e4c9f60f250cd4e1db0913d7997a873313d",
+    "post_update_rng_stream": "be0dcd7c71e0b34ba6b5ea58a2768c7eb39f0fa2c4a7c1eb70dcaedcca7f59d8"
+  },
+  "files_sha256": {
+    "model.safetensors": "bfb7e976d84b5a269c85c99f97158d21dede629b5d5b32c07b16d6d9fe902987",
+    "embeddings.npz": "7ab586d10e5004fcc63abff20ed476012abc6bc55a14415c1ef4d56e5aad82cc",
+    "generic_12.npz": "ac8c1556dc62fa0faa9dcc947654398a15fbbba1388071729c5e4d89a78f9d78",
+    "generic_4.npz": "a3e014cf44ccf9ec6bef7a26d5dd195fee21fbaf7c25a41adf9798ddb6940c86"
+  },
+  "denominator": "One sub-04; 416 training objects, 96 held objects, 10 photographs per object; each observed in both menu widths.",
+  "cases": {
+    "generic_4": {
+      "mixed": {
+        "n": 960,
+        "within_object": 689,
+        "cross_object": 684,
+        "gained": 12,
+        "lost": 7,
+        "within_minus_cross": 0.005208333333333333,
+        "ci95": [
+          -0.003125,
+          0.014583333333333334
+        ]
+      },
+      "deep": {
+        "n": 960,
+        "within_object": 681,
+        "cross_object": 676,
+        "gained": 18,
+        "lost": 13,
+        "within_minus_cross": 0.005208333333333333,
+        "ci95": [
+          -0.00625,
+          0.017708333333333333
+        ]
+      }
+    },
+    "generic_12": {
+      "mixed": {
+        "n": 960,
+        "within_object": 514,
+        "cross_object": 511,
+        "gained": 11,
+        "lost": 8,
+        "within_minus_cross": 0.003125,
+        "ci95": [
+          -0.00625,
+          0.0125
+        ]
+      },
+      "deep": {
+        "n": 960,
+        "within_object": 474,
+        "cross_object": 478,
+        "gained": 20,
+        "lost": 24,
+        "within_minus_cross": -0.004166666666666667,
+        "ci95": [
+          -0.017708333333333333,
+          0.009375
+        ]
+      }
+    }
+  },
+  "positive_primary_lower_bound": false
+}
