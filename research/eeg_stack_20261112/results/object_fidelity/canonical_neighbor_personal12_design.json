@@ -1,0 +1,32 @@
+{
+  "study": "Separate post-development support-centered local-appearance experiment, single-person sub-04 R4, personal12. Historical R80 bridge gate failed; no official 200 data or images. The own personal12 word score (65/120) and earlier image outcomes were known. No candidate condition or candidate JPEG was inspected before this registration.",
+  "seed": 260574,
+  "subjects": [
+    "sub-04"
+  ],
+  "n_queries": 120,
+  "physical_trials_per_photo": 4,
+  "generic": "The prior R4 development experiment increased within-object pair credit by 1.22 percentage points [0.55,1.90], while full-gallery top one changed 30 to 29/1280. Before creating the new target packet, check the support-centered algebra on the same 128 previously scored objects (descriptive, no selection or gate). Generate their base residual by fitting within-object EEG-to-unit-H14 ridge (2n penalty) on the 884 external training objects. Use two held photos and eight other supports per indicated true class. Set native to the normalized sum of unnormalized support mean and the predicted query-minus-support EEG visual residual, retaining that native angle. Report within-ten and native gallery metrics for matched and exchanged updates. This general sanity check does not replicate personal12 word decisions.",
+  "readout": "Locked K=128, cosine-softmax temperature .08, equal .50 blend, original rank-32 CCA trained on exactly 884 non-panel concepts, ten photos each. For each registered target/supported EEG row, retrieve only those 8840 original generic training-photo H14 vectors to form a normalized weighted average H14 estimate. Reorder by permanent stimulus ID verified against physical R4 rows. The query original, query-class training images and candidate-pool target images are absent from this lookup. The existing stored uniform H14 condition already encodes the authorized eight support images for the predicted word.",
+  "generation": "For row i, let A be its frozen eight-support unit prior and B its frozen native own H14. Project the local predicted H14 of the query minus the mean local predicted H14 of the eight support EEGs to the tangent plane at A; normalize this new direction. With unit native tangent b and native angle theta from B around A, render direction cos(theta)*A + sin(theta)*unit(0.5*b+0.5*local). A zero/undefined local reverts to b. Wrong uses the other original same-word, same-fold query local direction with identical supports, retaining recipient b and theta. Uniform is not the baseline. Native and zero-new-retrieval-term arms are the exact original B, byte-identical; draw native once, copy it to zero and declare the alias in settings. Native, matched and wrong generate three actual images per row from the same frozen word, seed 923761+original row, H14 radius, 512 pixels and four Turbo steps. The source native word, eight supports, donor and batch size must match the old run. Seal all conditions and safe row metadata before accessing any original-photo scores.",
+  "image_evaluation": "Primary: DINOv2 CLS exact 10-way original-photo identification among photos of the true object on all 120 recipient rows. Compare own against native and wrong using paired hit changes. Report separately the other-query comparison among genuine nonself donors with the same true object, predicted word and fold. Primary promotion requires a positive lower paired 95% object-bootstrap bound for own minus native, a positive own-minus-wrong point estimate on the strict donor subset and no drop in all-1854 true-object naming credit by independent L/14 relative to native. Secondary: strict two-photo joint DINO assignment for same truth/fold with both decoded words correct, tie half; full-1854 and closed12 true-object naming on all 120; separately give predicted-word correspondence if available. Fixed bootstrap 10000 draws seed 260574, resample 12 original object IDs with all paired queries; a subset with missing objects resamples its represented IDs; use count-weighted ratio for unequal group sizes. Score zero as an identity control; a pixel mismatch to prior native must be documented. Known panel, one person; no independent confirmation claim. No target-guided sample or parameter selection.",
+  "comparison_arms": [
+    "native",
+    "own",
+    "wrong",
+    "zero"
+  ],
+  "source_sha256": {
+    "canonical_registration": "3b05a596410064177ee5b3122b095ba250ab5cf43260e35cf41c67fe2153efd1",
+    "generic_estimator": "e8ac23a216ffff017753032573ac14557709fb65bd218f5786899da5205a9cc3",
+    "canonical_metrics": "24e03dc2d8b1b7bdb2456d8cc0d8f4b9d925c1e81d19a469ca106995b70e71fe",
+    "selection": "14900d718ac36dad3512b96f10bfd02ed484b9a6f81b20131db6ee06ce28c3b1",
+    "old_design": "47ba7da8104d53369e200dbbc676706e89dfb191364f196dfac82714b7d99555",
+    "radius": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+    "baseline": "facbb9afee9c536bdaabf3dc8aab731423ffcace0cb5eb6626623e363d3c540d",
+    "word_manifest": "f7eeac967c2bc48b7c2ed02474404e99bae7d5a4bf771a2e52dcf2c8c34fbd5d",
+    "target_waveforms": "cd309366412bf35a3aeea567cb28e24a620a2ba857b79211bc8762331a7c4c3c",
+    "prior_jpeg_manifest": "ddb3491dd08e1885d747db69f0c856430a38192565a66faab08933377502e158",
+    "renderer": "508e60c1255f8deb518c67af8f9dec3d1f164517b584bcb7a640986edc371593"
+  }
+}

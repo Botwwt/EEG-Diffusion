@@ -1,0 +1,294 @@
+{
+  "design_sha256": "e7d8649eab42384dbca1cca0cf139d57d08f415bd0a5ef06f0b648784a4c4243",
+  "scorer_sha256": "3ee53253f540b00c15f2295b759add291c8ec7cb5947bd787117bd20a0c8ed2d",
+  "participant": "sub-04",
+  "weight": 0.5907766654022144,
+  "weight_sha256": "f6dbbd10d8b21390fbb35d5763cd6c538cd1e6f96ab710a565eb332d553011be",
+  "fit_sha256": "a59be0a8e9fd2a405406625ae7b053352d9e062a36f23f9ca02665501a54d432",
+  "target_sha256": "43b68d1a71c6033db7b8b96738d040d3ce989016d18d52f91f1a027014610d18",
+  "decision_sha256": {
+    "mix13": "bbc59786e7801572cbca0a875789bbc7f78c7df856e387f6a29800d8aada430a",
+    "mix14": "80f4f2148d139ecf537af232c0d00b24b956c631a6d92198a7895a89edd55bbc",
+    "mix23": "aed588941b68c7967767bd7162356d7022274d43fe7473fe6ce4da293c7b8b03",
+    "mix24": "bce9cf96bbe04cc386ce1b1b240b5330231fc3fa307a9b2ab625c9cb9884ccc5"
+  },
+  "populations": {
+    "strict": {
+      "n": 350,
+      "objects": 35,
+      "hits": {
+        "legacy": 159,
+        "learned": 176,
+        "equal": 173,
+        "neural": 182,
+        "fisher": 154,
+        "legacy_fisher": 133,
+        "legacy_neural": 146,
+        "legacy_wrong": 13,
+        "learned_wrong": 17,
+        "equal_wrong": 16,
+        "neural_wrong": 15,
+        "fisher_wrong": 13,
+        "legacy_fisher_wrong": 15,
+        "legacy_neural_wrong": 14
+      },
+      "per_menu_hits": {
+        "mix13": {
+          "legacy": 59,
+          "learned": 69,
+          "equal": 69,
+          "neural": 72,
+          "fisher": 61,
+          "legacy_fisher": 50,
+          "legacy_neural": 56,
+          "legacy_wrong": 3,
+          "learned_wrong": 6,
+          "equal_wrong": 5,
+          "neural_wrong": 4,
+          "fisher_wrong": 4,
+          "legacy_fisher_wrong": 5,
+          "legacy_neural_wrong": 3
+        },
+        "mix14": {
+          "legacy": 39,
+          "learned": 40,
+          "equal": 39,
+          "neural": 43,
+          "fisher": 31,
+          "legacy_fisher": 30,
+          "legacy_neural": 35,
+          "legacy_wrong": 1,
+          "learned_wrong": 3,
+          "equal_wrong": 3,
+          "neural_wrong": 1,
+          "fisher_wrong": 3,
+          "legacy_fisher_wrong": 3,
+          "legacy_neural_wrong": 1
+        },
+        "mix23": {
+          "legacy": 22,
+          "learned": 26,
+          "equal": 24,
+          "neural": 24,
+          "fisher": 26,
+          "legacy_fisher": 17,
+          "legacy_neural": 19,
+          "legacy_wrong": 2,
+          "learned_wrong": 1,
+          "equal_wrong": 1,
+          "neural_wrong": 0,
+          "fisher_wrong": 0,
+          "legacy_fisher_wrong": 1,
+          "legacy_neural_wrong": 2
+        },
+        "mix24": {
+          "legacy": 39,
+          "learned": 41,
+          "equal": 41,
+          "neural": 43,
+          "fisher": 36,
+          "legacy_fisher": 36,
+          "legacy_neural": 36,
+          "legacy_wrong": 7,
+          "learned_wrong": 7,
+          "equal_wrong": 7,
+          "neural_wrong": 10,
+          "fisher_wrong": 6,
+          "legacy_fisher_wrong": 6,
+          "legacy_neural_wrong": 8
+        }
+      },
+      "learned_minus": {
+        "legacy": {
+          "net": 17,
+          "gains": 30,
+          "losses": 13,
+          "delta_pp": 4.857142857142857,
+          "ci95_pp": [
+            1.1428571428571428,
+            8.571428571428571
+          ]
+        },
+        "equal": {
+          "net": 3,
+          "gains": 4,
+          "losses": 1,
+          "delta_pp": 0.8571428571428571,
+          "ci95_pp": [
+            -0.2857142857142857,
+            2.0
+          ]
+        },
+        "neural": {
+          "net": -6,
+          "gains": 19,
+          "losses": 25,
+          "delta_pp": -1.7142857142857142,
+          "ci95_pp": [
+            -6.0,
+            2.5714285714285716
+          ]
+        },
+        "fisher": {
+          "net": 22,
+          "gains": 38,
+          "losses": 16,
+          "delta_pp": 6.285714285714286,
+          "ci95_pp": [
+            2.2857142857142856,
+            10.0
+          ]
+        },
+        "learned_wrong": {
+          "net": 159,
+          "gains": 170,
+          "losses": 11,
+          "delta_pp": 45.42857142857143,
+          "ci95_pp": [
+            39.142857142857146,
+            52.0
+          ]
+        }
+      }
+    },
+    "all": {
+      "n": 480,
+      "objects": 48,
+      "hits": {
+        "legacy": 230,
+        "learned": 246,
+        "equal": 245,
+        "neural": 245,
+        "fisher": 221,
+        "legacy_fisher": 196,
+        "legacy_neural": 209,
+        "legacy_wrong": 19,
+        "learned_wrong": 24,
+        "equal_wrong": 22,
+        "neural_wrong": 21,
+        "fisher_wrong": 16,
+        "legacy_fisher_wrong": 19,
+        "legacy_neural_wrong": 22
+      },
+      "per_menu_hits": {
+        "mix13": {
+          "legacy": 68,
+          "learned": 78,
+          "equal": 78,
+          "neural": 80,
+          "fisher": 69,
+          "legacy_fisher": 58,
+          "legacy_neural": 65,
+          "legacy_wrong": 3,
+          "learned_wrong": 6,
+          "equal_wrong": 5,
+          "neural_wrong": 4,
+          "fisher_wrong": 4,
+          "legacy_fisher_wrong": 6,
+          "legacy_neural_wrong": 3
+        },
+        "mix14": {
+          "legacy": 64,
+          "learned": 63,
+          "equal": 62,
+          "neural": 63,
+          "fisher": 52,
+          "legacy_fisher": 51,
+          "legacy_neural": 55,
+          "legacy_wrong": 2,
+          "learned_wrong": 4,
+          "equal_wrong": 4,
+          "neural_wrong": 2,
+          "fisher_wrong": 3,
+          "legacy_fisher_wrong": 3,
+          "legacy_neural_wrong": 4
+        },
+        "mix23": {
+          "legacy": 54,
+          "learned": 62,
+          "equal": 61,
+          "neural": 58,
+          "fisher": 60,
+          "legacy_fisher": 46,
+          "legacy_neural": 52,
+          "legacy_wrong": 6,
+          "learned_wrong": 6,
+          "equal_wrong": 5,
+          "neural_wrong": 4,
+          "fisher_wrong": 2,
+          "legacy_fisher_wrong": 3,
+          "legacy_neural_wrong": 5
+        },
+        "mix24": {
+          "legacy": 44,
+          "learned": 43,
+          "equal": 44,
+          "neural": 44,
+          "fisher": 40,
+          "legacy_fisher": 41,
+          "legacy_neural": 37,
+          "legacy_wrong": 8,
+          "learned_wrong": 8,
+          "equal_wrong": 8,
+          "neural_wrong": 11,
+          "fisher_wrong": 7,
+          "legacy_fisher_wrong": 7,
+          "legacy_neural_wrong": 10
+        }
+      },
+      "learned_minus": {
+        "legacy": {
+          "net": 16,
+          "gains": 36,
+          "losses": 20,
+          "delta_pp": 3.3333333333333335,
+          "ci95_pp": [
+            0.20833333333333334,
+            6.666666666666667
+          ]
+        },
+        "equal": {
+          "net": 1,
+          "gains": 5,
+          "losses": 4,
+          "delta_pp": 0.20833333333333334,
+          "ci95_pp": [
+            -1.25,
+            1.4583333333333333
+          ]
+        },
+        "neural": {
+          "net": 1,
+          "gains": 31,
+          "losses": 30,
+          "delta_pp": 0.20833333333333334,
+          "ci95_pp": [
+            -3.3333333333333335,
+            3.5416666666666665
+          ]
+        },
+        "fisher": {
+          "net": 25,
+          "gains": 50,
+          "losses": 25,
+          "delta_pp": 5.208333333333333,
+          "ci95_pp": [
+            2.0833333333333335,
+            8.333333333333334
+          ]
+        },
+        "learned_wrong": {
+          "net": 222,
+          "gains": 235,
+          "losses": 13,
+          "delta_pp": 46.25,
+          "ci95_pp": [
+            40.833333333333336,
+            51.875
+          ]
+        }
+      }
+    }
+  },
+  "images_authorized_by_registered_gate": true
+}

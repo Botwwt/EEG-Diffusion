@@ -1,0 +1,117 @@
+{
+  "registration_sha256": "1c3a68f20f8dc8da7208bb47754314f70860509d3b658a6e2ce4ff9771b9a1a1",
+  "design_sha256": "b215d2e0d12971506177cad7e7959731b4ebbed80daa18f6bafe69679aeaec4d",
+  "packet_sha256": "8f9f41e5e0a5fec5272fcf70077dfaaba0ef33212d657384d729bf2d58d58c51",
+  "bundle_sha256": "cc05672fb9cd554f6bdab3d6f18260931cd62f596bae337d0f94aff3fac0042d",
+  "package_script_sha256": "aa003b4851f3ce91a7f28f303f543911ed999e61c6b6a4e3f7888b28a1cc3476",
+  "renderer_sha256": "98e536a1d4984f0f2e7487e1987d6b7ef30a03164a2f6a0ef535e63a53c0f1cb",
+  "slurm_sha256": "93b95bde58a55c2d0d1fc4d2ffd72add00f0c0fdf95c7c7897ce582e7d2524e9",
+  "generic_check_sha256": "d6a327fae7ffdf99b5e30b5774a6e6cb72d3c2239a827bf0b4f0a9380b8c4b91",
+  "generic_check": {
+    "design_sha256": "1c3a68f20f8dc8da7208bb47754314f70860509d3b658a6e2ce4ff9771b9a1a1",
+    "fit_objects": 884,
+    "held_objects": 128,
+    "queries": 1280,
+    "n_support": 8,
+    "metrics": {
+      "native": {
+        "top1": 29.0,
+        "top5": 327.0,
+        "mrr": 0.17764629138195046,
+        "target_cosine": 0.8256404257638451,
+        "within10": 29.0,
+        "within_pair": 0.3123263888888889
+      },
+      "own": {
+        "top1": 28.0,
+        "top5": 321.0,
+        "mrr": 0.17805804174126724,
+        "target_cosine": 0.8262094357775384,
+        "within10": 28.0,
+        "within_pair": 0.31371527777777775
+      },
+      "wrong": {
+        "top1": 26.0,
+        "top5": 315.0,
+        "mrr": 0.17468310024671546,
+        "target_cosine": 0.82489982941444,
+        "within10": 26.0,
+        "within_pair": 0.3076388888888889
+      }
+    },
+    "own_minus": {
+      "native": {
+        "within10": {
+          "delta": -0.00078125,
+          "ci95": [
+            -0.00390625,
+            0.0023437500000000003
+          ]
+        },
+        "within_pair": {
+          "delta": 0.0013888888888888885,
+          "ci95": [
+            -0.0008680555555555564,
+            0.003645833333333333
+          ]
+        },
+        "mrr": {
+          "delta": 0.0004117503593167704,
+          "ci95": [
+            -0.0018167569477165687,
+            0.0026093420051101434
+          ]
+        },
+        "target_cosine": {
+          "delta": 0.0005690100136931615,
+          "ci95": [
+            0.00043574334452732067,
+            0.0007076625327566033
+          ]
+        }
+      },
+      "wrong": {
+        "within10": {
+          "delta": 0.0015625,
+          "ci95": [
+            -0.0015625,
+            0.004687500000000001
+          ]
+        },
+        "within_pair": {
+          "delta": 0.00607638888888889,
+          "ci95": [
+            0.003038194444444445,
+            0.009114583333333332
+          ]
+        },
+        "mrr": {
+          "delta": 0.0033749414945517652,
+          "ci95": [
+            0.0011501901494982854,
+            0.005759183761342634
+          ]
+        },
+        "target_cosine": {
+          "delta": 0.00130960636309838,
+          "ci95": [
+            0.001093775510571081,
+            0.0015281847997509442
+          ]
+        }
+      }
+    }
+  },
+  "source_native_packet_sha256": "facbb9afee9c536bdaabf3dc8aab731423ffcace0cb5eb6626623e363d3c540d",
+  "source_eeg_sha256": "cd309366412bf35a3aeea567cb28e24a620a2ba857b79211bc8762331a7c4c3c",
+  "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+  "n_queries": 120,
+  "n_nonself_donor": 107,
+  "n_distinct_conditions": 3,
+  "zero_alias": "native",
+  "native_byte_identity": true,
+  "recipient_angle_range_radians": [
+    0.20600179665005225,
+    0.6896048702305981
+  ]
+}

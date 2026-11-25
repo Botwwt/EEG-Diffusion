@@ -1,0 +1,101 @@
+{
+  "design_sha256": "d40ae3afec2cc57f20a8566c3c9b4d2397d48221411f27b0fb5fc585162c1cb2",
+  "source_sha256": "ae2ae1c5ccf4ebb1ab20c8bc1ac0d50168b94660c01fb59538085f1b08f26cf2",
+  "rule_sha256": "1f9ffc93d02a6bd0a6f2a6df07e44090d904f634b09efd3dd952651397312ba9",
+  "per_query_sha256": "e70128b707ff229ad09b233c4b1c0c1ab113142ebaf54a1b09eb71b630a6a105",
+  "held_embedding_receipt_sha256": "c99d45b047f7e78cdc43b3a3b75554ce78b4c883137343cdc3ae35fe26cb8860",
+  "held_historical_decisions_sha256": "3b42418f31b5dad26cde31b9f02507335c4d219aafb55f25fcf6e29789e956cc",
+  "fraction_unit": "percentage points for paired differences",
+  "subject": "sub-04",
+  "training_objects": 416,
+  "held_objects": 96,
+  "n": 960,
+  "candidates": 12,
+  "support_photos": 8,
+  "trials": 4,
+  "top_two_contains_truth_diagnostic_only": 662,
+  "baseline_reproduced": 514,
+  "calibration": {
+    "threshold": 0.5,
+    "flips": 509,
+    "corrected": 135,
+    "newly_wrong": 111,
+    "wrong_to_wrong": 263,
+    "net": 24
+  },
+  "calibration_conditional_rows": 2504,
+  "baseline_replay_max_score_error": 4.385380947269368e-15,
+  "full_embedding_replay_max_error": 0.0,
+  "hits": {
+    "baseline": 514,
+    "own": 504,
+    "fixed_own": 506,
+    "shuffled": 356,
+    "fixed_shuffled": 458
+  },
+  "changes_from_baseline": {
+    "own": {
+      "flips": 106,
+      "corrected": 23,
+      "newly_wrong": 33,
+      "wrong_to_wrong": 50,
+      "net": -10
+    },
+    "fixed_own": {
+      "flips": 96,
+      "corrected": 23,
+      "newly_wrong": 31,
+      "wrong_to_wrong": 42,
+      "net": -8
+    },
+    "shuffled": {
+      "flips": 389,
+      "corrected": 55,
+      "newly_wrong": 213,
+      "wrong_to_wrong": 121,
+      "net": -158
+    },
+    "fixed_shuffled": {
+      "flips": 219,
+      "corrected": 38,
+      "newly_wrong": 94,
+      "wrong_to_wrong": 87,
+      "net": -56
+    }
+  },
+  "comparisons": {
+    "own_minus_baseline": {
+      "net": -10,
+      "delta_pp": -1.0416666666666665,
+      "ci95_pp": [
+        -2.708333333333333,
+        0.5208333333333335
+      ]
+    },
+    "own_minus_shuffled": {
+      "net": 148,
+      "delta_pp": 15.416666666666668,
+      "ci95_pp": [
+        11.354166666666666,
+        19.47916666666666
+      ]
+    },
+    "fixed_own_minus_baseline": {
+      "net": -8,
+      "delta_pp": -0.8333333333333334,
+      "ci95_pp": [
+        -2.1875,
+        0.5208333333333333
+      ]
+    },
+    "fixed_own_minus_fixed_shuffled": {
+      "net": 48,
+      "delta_pp": 5.0,
+      "ci95_pp": [
+        2.5,
+        7.5
+      ]
+    }
+  },
+  "advance_to_target": false
+}

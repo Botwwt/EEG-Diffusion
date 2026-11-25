@@ -1,0 +1,114 @@
+{
+  "timing": "Descriptive test specified after the primary results. Separate participants, menus and interventions.",
+  "scorer_sha256": "6a08c609550df5840760aa3b886e269847516c8deccac2266c23f3756e97071c",
+  "methods": "Full 512px center crop. Luminance in [0,1], horizontal and vertical forward differences over every adjacent pair. Per-image RMS gradient magnitude, then average over 120 photos. Absolute difference from the original edge RMS and cosine to the native generated gradient vector are separate diagnostics. Larger edge energy may arise from texture, noise or compression. Seed 260570, 10000 whole-object paired draws.",
+  "by_subject": {
+    "sub-04": {
+      "n": 120,
+      "objects": 12,
+      "source_settings_sha256": "ddb3491dd08e1885d747db69f0c856430a38192565a66faab08933377502e158",
+      "edited_settings_sha256": "575a6416960b83d01693179a69c60f989728606c760e16888943085c2830d682",
+      "reference_mean_edge_rms": 0.04141070773855535,
+      "edge_rms": {
+        "means": {
+          "native": 0.03550520603359833,
+          "mean": 0.004018524692386409,
+          "medoid": 0.006027942828923698,
+          "own": 0.005889819087440775,
+          "wrong": 0.005851240293069783
+        },
+        "own_minus_native": {
+          "delta": -0.029615386946157552,
+          "ci95": [
+            -0.033993852142440585,
+            -0.025280119417987586
+          ]
+        }
+      },
+      "absolute_reference_energy_error": {
+        "means": {
+          "native": 0.012543505010181878,
+          "mean": 0.03739218304616894,
+          "medoid": 0.035382764909631645,
+          "own": 0.03552088865111457,
+          "wrong": 0.03555946744548556
+        },
+        "own_minus_native": {
+          "delta": 0.022977383640932696,
+          "ci95": [
+            0.018934493974830924,
+            0.0271505465582587
+          ]
+        }
+      },
+      "cosine_of_gradients_to_native": {
+        "means": {
+          "native": 1.0,
+          "mean": 0.03531530515265192,
+          "medoid": 0.025314348074018434,
+          "own": 0.026429995894287125,
+          "wrong": 0.02611066254997553
+        },
+        "own_minus_native": {
+          "delta": -0.9735700041057129,
+          "ci95": [
+            -0.9793379075138187,
+            -0.9676887540065118
+          ]
+        }
+      }
+    },
+    "sub-05": {
+      "n": 120,
+      "objects": 12,
+      "source_settings_sha256": "8c3f8ab3496f5d224fc9d47e245d14ebb99063c93beb9f3040ec3a98b2c149ae",
+      "edited_settings_sha256": "e42b1828cd6be6763e7ddc79f8c0ea237e8ca6926c1f029730330ba3fef425a5",
+      "reference_mean_edge_rms": 0.03664412517435342,
+      "edge_rms": {
+        "means": {
+          "native": 0.03114971904749762,
+          "prior": 0.02166326191277174,
+          "own": 0.021635841174367173,
+          "wrong": 0.021636031696381605
+        },
+        "own_minus_native": {
+          "delta": -0.009513877873130445,
+          "ci95": [
+            -0.010641105922788996,
+            -0.008149874629155765
+          ]
+        }
+      },
+      "absolute_reference_energy_error": {
+        "means": {
+          "native": 0.010481541484755113,
+          "prior": 0.015683891479088947,
+          "own": 0.015717774002974597,
+          "wrong": 0.01570127634786972
+        },
+        "own_minus_native": {
+          "delta": 0.0052362325182194825,
+          "ci95": [
+            0.0029072669369720255,
+            0.007342463282704314
+          ]
+        }
+      },
+      "cosine_of_gradients_to_native": {
+        "means": {
+          "native": 1.0,
+          "prior": 0.7650030876542654,
+          "own": 0.765045990632703,
+          "wrong": 0.7646712283804806
+        },
+        "own_minus_native": {
+          "delta": -0.23495400936729696,
+          "ci95": [
+            -0.25358717750961657,
+            -0.21614734635260127
+          ]
+        }
+      }
+    }
+  }
+}

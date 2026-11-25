@@ -1,0 +1,15 @@
+{
+  "subject": "sub-04",
+  "split": "Use only the 416 generic fit classes to train the reversal rule. Reserve the historical 96-class development split for one evaluation under the original twelve-candidate menu, supports, same session pairs and four physical presentations. The historical baseline of 514/960 was already public. No target panels enter this study.",
+  "base_receipt_sha256": "c0058ad4d017250b27d939ab46bc4e96f7521625977d5583a335e7f4f210625c",
+  "base_score_sha256": "4c095a9bfdcfda1216bc726670a4a8e20f6ffc3b38415413fe3e66b15526b165",
+  "raw_manifest_sha256": "77e73482e09df0f02a2d8e6331ffa3bc6da84cc42b4cc06808dda634c41ee5f4",
+  "session_manifest_sha256": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+  "seed": 260625,
+  "training": "Divide the 416 objects into two recording-pair-stratified groups. Refit the original 750-update neural encoder and Fisher projection independently on the other group to form each calibration group's scores, representations and same-session twelve-object menus. Each object supplies ten distinct held-photo queries against eight other support photos. Train a ridge-logistic pair rule on its out-of-class evidence. Fix regularization C=0.1 with standardized features. Rows with neither finalist correct have zero payoff for either choice and do not train the conditional logistic loss.",
+  "representations": "Use both historical standardized base-score gaps, plus differences between runner and leader using four single trials, all six two-trial subsets and their complementary support views, early vs late cross-session evidence, and support dispersion and rank consistency from the eight independent support photographs. No additional physical repetitions. Positive orientation favors the original runner.",
+  "decision": "Cross-fit the logistic rule over four object groups inside the 416 calibration objects. Choose the cutoff from 0.50, 0.55, 0.60, 0.65, 0.70 or never flip to maximize all-query net corrections, breaking ties toward fewer flips. Freeze before evaluating the held 96. Fixed secondary: average the Fisher, full-encoder and complementary-pair standardized evidence equally and re-rank only the original two.",
+  "control": "Keep both finalists, their base Fisher and deep scores, and their original eight support photos. Exchange only the extra per-trial query views with a different held photo from another candidate in the same source menu, using the archived cyclic candidate permutation. Apply the same fit and cutoff. Report corrections, newly wrong choices and wrong-to-wrong changes.",
+  "gate": "Before any new target inference or generation, the primary must add at least ten correct decisions per 960 and the paired 95% whole-object bootstrap lower bounds must exceed zero against both the original mixture and the exchanged-extra-evidence control. A positive generic result authorizes separate target-category and generated-image tests.",
+  "intervals": "Resample 96 whole truth objects, preserving their ten photographs and paired methods. 10000 percentile bootstrap replicates, seed 260625. Intervals describe this single participant and the frozen menus."
+}

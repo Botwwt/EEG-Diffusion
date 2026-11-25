@@ -1,0 +1,21 @@
+{
+  "participant": "sub-04",
+  "hypothesis": "More distinct calibration objects improve the learned EEG trial encoder's recognition of held objects beyond a matched increase in optimization steps.",
+  "data": "Use the original fixed 416 fitting and 96 held generic objects and the pre-existing independently sampled 512 additions. Generic encoder training uses either 416 or 928 distinct objects. Each object contains ten photographs with four physical EEG presentations. No held object is fitted at the generic stage. The three personal12 menus' 29 unique object IDs are excluded from all fits. The added classes include stress12, so that menu is ineligible for this study.",
+  "candidate_protocol": "Use the historical generic_12 and generic_4 menus, eight separate support photographs per candidate, original queries and object identities. At every cell keep the original 416-object Fisher predictions fixed. At the conditional personal12 application retain the original 512-object Fisher, H14 predictor and angular map. Once generic scores are frozen, a passing result refits the trial encoder on the full original 512 plus 512 additions and applies it to the separate personal12 menu.",
+  "factorial": "Cross 416 vs 928 generic training objects with exactly 750 vs 1500 optimizer steps. Keep the original encoder, four-trial reliability pooling and 0.2 within-photo loss. Use the original same-session 12-class episodes, seed 260553, AdamW, and fixed per-cell cosine-decay horizon equal to that cell's total updates. Sort training objects by their official integer IDs within each cell. Refit the historical cell and check exact held choices and embedding parity. No selection over checkpoints or data-dependent extension.",
+  "primary": "Twelve-way equal mix of standardized neural and Fisher prototype cosine scores. Test 928/1500 minus both 416/1500 and historical 416/750, paired at query level. Report all four cells, neural-only, gains/losses, factorial main effects and interaction. Secondary four-way scores use the same 960 photographs.",
+  "gate": "Require positive twelve-way net hits against both original 416/750 and matched-budget 416/1500, and a strictly positive whole-object bootstrap 95% lower bound against 416/1500. Four-way accuracy must not decline against either comparator. Check all rules jointly before fitting a separate personal12 generation packet; image performance needs actual generated-image assessment.",
+  "bootstrap": {"unit": "one of 96 held objects with all ten photos and methods paired", "draws": 10000, "seed": 260552},
+  "sources": {
+    "original_generic_receipt": "c0058ad4d017250b27d939ab46bc4e96f7521625977d5583a335e7f4f210625c",
+    "original_generic_score": "4c095a9bfdcfda1216bc726670a4a8e20f6ffc3b38415413fe3e66b15526b165",
+    "original_generic_manifest": "77e73482e09df0f02a2d8e6331ffa3bc6da84cc42b4cc06808dda634c41ee5f4",
+    "extra_design": "f30831aab67d1b735985876710c51eddc3bd60729c0ccc72e803c02f7f34088d",
+    "extra_subject_receipt": "3c092f32df53e329d35c8c7c1666a397d66db50bb8978168f725eb51f506a43c",
+    "personal_menus": "b6a7413bfc9c36e7035e52028cc37935f10c49f0b5f614d16f956c64ba6940ae",
+    "sessions": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+    "factorial_trainer": "38f277c40073f4ed55190daf462fd1cff567c6d2d5cbb202c23162dc98713e0b"
+  },
+  "acquisition": "Fetch only complete raw object byte ranges with exact HTTP status, content range, byte count and the existing per-object SHA256. Reuse the twelve previously validated stress12 objects. Write cropped first-125-sample float32 four-trial arrays only. Expected new transfer for 500 objects is 2520000000 bytes."
+}
