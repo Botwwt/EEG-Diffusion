@@ -1,0 +1,203 @@
+{
+  "protocol": {
+    "purpose": "Independent object identity confirmation for fixed participants, each separately at R4. Confirm a candidate only after freezing its code, generic-only fit/checkpoints, selection rule and comparator. This registration selects stimuli and folds.",
+    "reference_model": "Personal 512 generic class posterior Fisher with eight labeled calibration EEGs per word. Candidate and baseline must share the 12-word menu and eight supports and each omit both queries from every class and fold.",
+    "acquisition": "Every measured query is a single person's four original THINGS-EEG2 repetitions. Each person's twelve classes share that person's pair of acquisition sessions. Menus differ by participant. Chance and the equal-prior session-only oracle are 10/120 for each participant. Never join participants' signals.",
+    "selection": "Start with the previously locked 88 reserves, remove 12 previously sampled new_three4 and 12 still protected fifth. For each person take their largest remaining single-person session-pair cell; break ties lexicographically. In fixed order sub-04, sub-05, sub-01 draw 12 without replacement. Overlap across participants is allowed.",
+    "participants": [
+      "sub-04",
+      "sub-05",
+      "sub-01"
+    ],
+    "selection_rng": "NumPy default_rng (PCG64)",
+    "selection_seed": 261128,
+    "fold_seed_base": 261129,
+    "fold_seed": "fold_seed_base + integer subject ID, independent stream per person",
+    "source_sha256": {
+      "double": "f30831aab67d1b735985876710c51eddc3bd60729c0ccc72e803c02f7f34088d",
+      "cohorts": "ebe8c6ec8710ec8a4886e095b89a87ce479bc42b38ad484d5c829aa0137b6599",
+      "sessions": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+      "conservative": "4502051fade1bedb84f59acb4972495c81abccf6af8b0238e930292cbba0c89b",
+      "training_rows": "dafc55af7366974feae0e11418680990ff8d74707ec5b89e398fd5a26567c473",
+      "official_personal": "3631b4228d6ca550f0fe7d8e787b9c1e54a71011533cc106c255fb856b6243e6",
+      "sub-04": {
+        "expanded": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+        "physical": "0abd7a129aacf3114bbe882caa81316e9d46fed8b03fcb50436203682b02687c"
+      },
+      "sub-05": {
+        "expanded": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f",
+        "physical": "26d82e7d94e4f97e81789f87b1bee576d477ac5f49a43082885d009731d8af91"
+      },
+      "sub-01": {
+        "expanded": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9",
+        "physical": "f2228f543ce5adaf23b25aa7a769e68b4f8d5823a2fb818a59764c68b5a92a94"
+      }
+    }
+  },
+  "archive_scope": {
+    "distinct_concepts": 29,
+    "distinct_photos": 290,
+    "paired_decisions": 360,
+    "original_stimulus_bank": "Previously available generic visual features/photos and possible third-party pretraining; new target waves/decisions for the tested personally fit heads.",
+    "analysis": "Top-one on all 120 rows per person, candidate minus Fisher hits and per-person paired whole-object intervals. Report mean participant difference and a pooled 95% interval from 10000 draws of global unique object IDs with replacement, using the same draw multiplicities for every participant and all ten photos. Compute participant rates on observations resampled for that person then average, redrawing if any person has zero weight. Bootstrap seed 261130. State fixed participants and participant-specific menus."
+  },
+  "candidate_metadata": {
+    "ordered_by": "Increasing original THINGS-EEG2 training concept ID among the 64 survivors of the frozen exclusion rule",
+    "words": [
+      "bag",
+      "bandanna",
+      "belt_buckle",
+      "bookshelf",
+      "breakfast",
+      "bulletproof_vest",
+      "cardboard",
+      "carriage",
+      "chicken_wire",
+      "chili",
+      "chin",
+      "chinchilla",
+      "coil",
+      "counter",
+      "crane",
+      "diving_board",
+      "duct_tape",
+      "enchilada",
+      "eye",
+      "file2",
+      "flour",
+      "food_processor",
+      "fungus",
+      "globe",
+      "gumball",
+      "hairspray",
+      "insole",
+      "jetski",
+      "maggot",
+      "mallet",
+      "melon",
+      "mouse2",
+      "nail",
+      "nail_file",
+      "otter",
+      "painting",
+      "peach",
+      "pearl",
+      "pesto",
+      "pineapple",
+      "pliers",
+      "pulpit",
+      "riser",
+      "rollerblade",
+      "sheet",
+      "shelf",
+      "shower_curtain",
+      "ski_boots",
+      "ski_lift",
+      "skirt",
+      "stockings",
+      "sword",
+      "tab",
+      "terrarium",
+      "thorn",
+      "tricycle",
+      "tulip",
+      "tupperware",
+      "ukulele",
+      "undershirt",
+      "vacuum",
+      "valve",
+      "vegetable",
+      "waterwheel"
+    ],
+    "session_codebook": [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "session_codes": {
+      "sub-04": "2101023020033120202020212333333323003302113221101120223223310230",
+      "sub-05": "1223010010232213233203023330331220330010232330300231132003331202",
+      "sub-01": "1333111023231002201131321100021301230212331201032223122013013320"
+    }
+  },
+  "selected": {
+    "sub-04": {
+      "session_pair": [
+        2,
+        3
+      ],
+      "source_cell_size": 19,
+      "selected_concepts": [
+        51,
+        284,
+        378,
+        461,
+        491,
+        542,
+        567,
+        926,
+        1175,
+        1386,
+        1430,
+        1463
+      ]
+    },
+    "sub-05": {
+      "session_pair": [
+        2,
+        4
+      ],
+      "source_cell_size": 22,
+      "selected_concepts": [
+        291,
+        484,
+        491,
+        550,
+        635,
+        648,
+        971,
+        1107,
+        1175,
+        1463,
+        1552,
+        1554
+      ]
+    },
+    "sub-01": {
+      "session_pair": [
+        1,
+        4
+      ],
+      "source_cell_size": 18,
+      "selected_concepts": [
+        51,
+        174,
+        192,
+        242,
+        509,
+        635,
+        648,
+        881,
+        928,
+        1164,
+        1253,
+        1554
+      ]
+    }
+  },
+  "expanded_lock_sha256": "b6a7413bfc9c36e7035e52028cc37935f10c49f0b5f614d16f956c64ba6940ae",
+  "before_target": "Panel membership and all five folds fixed from metadata before reading target EEG, fitting to a retained query, viewing an original or scoring a model. A candidate and its advancement rule need a separate pre-target registration."
+}
