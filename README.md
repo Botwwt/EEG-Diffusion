@@ -29,7 +29,13 @@ On a fourth panel with **twelve different objects**, the same posterior readout 
 
 Each tile shows the true object label and the word decoded from EEG. A single fixed rule selected the examples, including errors. The replay guide also builds private side-by-side comparisons with the original stimuli. [Sub-04 gallery](research/eeg_stack_20261112/gallery/photo_angle_sub04_fresh.jpg) · [Sub-05 gallery](research/eeg_stack_20261112/gallery/photo_angle_sub05_fresh.jpg) · [Image replay](docs/FRESH_PHOTO_VALIDATION.md#reproduce-the-saved-image-comparison)
 
+## Single-person reconstruction without target-class EEG supports
+
+On the official 200-photo test, sub-04 viewed each stimulus 80 times. The decoder can generate with a continuous EEG estimate and the same prompt, “A photograph.”, for every query. Scaling the estimated visual deviation from the training-image mean raised DINOv2 retrieval from **10/200 to 20/200** against the actual photographs. The paired gain was 5.0 percentage points (95% interval 1.0 to 9.0). Independent CLIP photo retrieval rose from **5/200 to 17/200**. Full 1,854-label naming gave **2/200** for both versions. With the EEG-decoded object word added to the prompt, angular calibration raised DINOv2 retrieval from **13/200 to 24/200** (paired gain 5.5 points, 95% interval 1.0 to 10.0). CLIP named **4/200** correctly at both angles. At the calibrated angle, the named arm retrieved four more photos than the generic prompt with DINOv2 (95% interval for the difference −2.5 to +6.5 points). Each test object has a single photograph, so this benchmark cannot resolve same-object photographic detail. [Physical EEG and calibration](docs/OFFICIAL_REPEAT_OBJECT.md) · [Generated images, naming and controls](docs/OFFICIAL_REPEAT_IMAGES.md)
+
 ## Other experiments
+
+With the object word fixed, a separate study pooled four presentations from each of nine viewers of the same photograph. Across two previously studied panels, the generated object was named correctly on **180/240** queries within the panel vocabulary. Independent DINOv2 identified the viewed photo among ten of the same object on **30/240** ordinary pooled reconstructions. Doubling the difference between matched and support-mean diffusion predictions gave **37/240**, compared with **22/240** for exchanged EEG. The gain over the ordinary pooled reconstruction was 2.9 percentage points (95% interval −0.4 to +6.7), and RGB error increased. Each query uses 36 physical presentations. [Fixed-word acquisition study and image controls](docs/FIXED_WORD_PHOTO_DOSE.md)
 
 | Question | Evidence | Results and code |
 | --- | --- | --- |

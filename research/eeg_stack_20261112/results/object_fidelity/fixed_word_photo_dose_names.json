@@ -1,0 +1,178 @@
+{
+  "n": 240,
+  "objects": 24,
+  "fixed_word_correct": 180,
+  "clip_sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+  "receipts": {
+    "single-1/registered": {
+      "source": "bfbfbe23fa667250344ecf2cdaa524f88c69e2d2451b8e742d5c555862dfcc17",
+      "settings": "3113fd0501ebaa615463e41c32b541d36e61b6466f1518ef2311772924db5ce4"
+    },
+    "cohort-3/registered": {
+      "source": "bfbfbe23fa667250344ecf2cdaa524f88c69e2d2451b8e742d5c555862dfcc17",
+      "settings": "c1bf3b192b12f14655762d71c2fc7e83a90d182929cdd1b1503be40974872404"
+    },
+    "cohort-9/registered": {
+      "source": "bfbfbe23fa667250344ecf2cdaa524f88c69e2d2451b8e742d5c555862dfcc17",
+      "settings": "43e9c07430ea95533f71f1a315461d1ca3218a304fc2e0dfa54262ad03e95340"
+    },
+    "guided-9/registered": {
+      "source": "eb59e270119c402d0881c360cb1a8ef389fff3f1759281c981b7c3296f6317f5",
+      "settings": "d6760b48e3d8827c67d16be81fe252f3faca96092277679dcab6247aa8c0cbf8"
+    },
+    "single-1/replicate": {
+      "source": "1a06d9ded7b631ef87b3ddbdae41eea94988cb76cefe2654d69884c9a0246401",
+      "settings": "97dcba948bb3b99a812bcfecc29c8e7eebfb7fdbb12fd6f41ffc31fe6616783e"
+    },
+    "cohort-3/replicate": {
+      "source": "1a06d9ded7b631ef87b3ddbdae41eea94988cb76cefe2654d69884c9a0246401",
+      "settings": "98570cbc5ff2d90c3c3b2b7e679a8c61259f0600ae854fddc806a42186734e7d"
+    },
+    "cohort-9/replicate": {
+      "source": "1a06d9ded7b631ef87b3ddbdae41eea94988cb76cefe2654d69884c9a0246401",
+      "settings": "34724ed9fe8ad885ba65d258f17e9de0aa090309c0e05e0a925f935daebde260"
+    },
+    "guided-9/replicate": {
+      "source": "0e442ba3f90edb4475e5d255590b0c5462100dec237f167a2562e36e5d68ff0b",
+      "settings": "a8d1e2c645c652da920056001e2add2e094006beaeb6f8988f6e906b228f97c1"
+    }
+  },
+  "metrics": {
+    "full1854": {
+      "credits": {
+        "single-1": {
+          "own": 167.0,
+          "uniform": 168.0,
+          "wrong": 171.5
+        },
+        "cohort-3": {
+          "own": 169.0,
+          "uniform": 168.0,
+          "wrong": 169.0
+        },
+        "cohort-9": {
+          "own": 168.0,
+          "uniform": 168.0,
+          "wrong": 169.0
+        },
+        "guided-9": {
+          "own": 167.0,
+          "uniform": 168.0,
+          "wrong": 170.0
+        }
+      },
+      "guided_minus_ordinary_own": {
+        "delta": -0.004166666666666667,
+        "ci95": [
+          -0.0375,
+          0.025
+        ]
+      },
+      "nine_minus_single_own": {
+        "delta": 0.004166666666666667,
+        "ci95": [
+          -0.025,
+          0.029166666666666667
+        ]
+      },
+      "guided_own_minus_wrong": {
+        "delta": -0.0125,
+        "ci95": [
+          -0.05416666666666667,
+          0.020833333333333332
+        ]
+      }
+    },
+    "closed12": {
+      "credits": {
+        "single-1": {
+          "own": 180.0,
+          "uniform": 180.0,
+          "wrong": 180.0
+        },
+        "cohort-3": {
+          "own": 180.0,
+          "uniform": 180.0,
+          "wrong": 180.0
+        },
+        "cohort-9": {
+          "own": 180.0,
+          "uniform": 180.0,
+          "wrong": 180.0
+        },
+        "guided-9": {
+          "own": 180.0,
+          "uniform": 180.0,
+          "wrong": 180.0
+        }
+      },
+      "guided_minus_ordinary_own": {
+        "delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "nine_minus_single_own": {
+        "delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "guided_own_minus_wrong": {
+        "delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "intra10": {
+      "credits": {
+        "single-1": {
+          "own": 28.0,
+          "uniform": 20.0,
+          "wrong": 24.0
+        },
+        "cohort-3": {
+          "own": 21.0,
+          "uniform": 20.0,
+          "wrong": 28.0
+        },
+        "cohort-9": {
+          "own": 32.0,
+          "uniform": 20.0,
+          "wrong": 20.0
+        },
+        "guided-9": {
+          "own": 35.0,
+          "uniform": 20.0,
+          "wrong": 23.0
+        }
+      },
+      "guided_minus_ordinary_own": {
+        "delta": 0.0125,
+        "ci95": [
+          -0.029166666666666667,
+          0.05416666666666667
+        ]
+      },
+      "nine_minus_single_own": {
+        "delta": 0.016666666666666666,
+        "ci95": [
+          -0.029166666666666667,
+          0.0625
+        ]
+      },
+      "guided_own_minus_wrong": {
+        "delta": 0.05,
+        "ci95": [
+          -0.004166666666666667,
+          0.10833333333333334
+        ]
+      }
+    }
+  },
+  "method": "Full and restricted exact name credits. CLIP intra10 uses reference and generated features centered separately by panel and arm. Bootstrap the 24 objects and the fixed viewers together, 10000 draws."
+}

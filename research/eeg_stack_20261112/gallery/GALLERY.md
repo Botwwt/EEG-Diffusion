@@ -1,5 +1,13 @@
 # EEG reconstruction galleries
 
+## Single-person reconstruction on 200 unfamiliar objects
+
+One participant viewed each photograph 80 times. The fixed sheet includes every twentieth stimulus in archive order. It shows how scaling the EEG-derived visual condition changes the generated object and what happens when another stimulus supplies that condition. [Generated images](official_repeat_sub04_r80.jpg) · [Stimulus identities, prompts and scoring](../../../docs/OFFICIAL_REPEAT_IMAGES.md)
+
+## Same-photo comparisons across one, three and nine viewers
+
+Each sheet includes the lowest archive row of every object in its panel. The ordinary comparison uses the same decoded word and eight support photographs in all three conditions. The guidance comparisons show how increasing the influence of the nine viewers' photo-specific EEG affects generation. [Registered panel](fixed_word_dose_registered.jpg) · [Replication panel](fixed_word_dose_replicate.jpg) · [Registered panel with guidance](fixed_word_dose_registered_guided.jpg) · [Replication panel with guidance](fixed_word_dose_replicate_guided.jpg) · [Image-selection rule and results](../../../docs/FIXED_WORD_PHOTO_DOSE.md)
+
 ## Session-matched objects
 
 Each gallery takes the lowest archive row for every object. The single-person reconstruction uses sub-04's four presentations. The cohort combines sub-04, sub-05 and sub-01, each with four presentations of the same photograph. All twelve stress-test objects share the same recording-session signature. Each decision in the separate four-way experiment receives its registered list of four alternatives. The replay script also makes private three-column sheets with the viewed photograph beside both reconstructions. [Protocol and image measurements](../../../docs/COHORT_SESSION_CONTROLS.md)

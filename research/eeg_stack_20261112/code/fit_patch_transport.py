@@ -204,7 +204,10 @@ def render(a, panel, tab, archive, encode, oracle):
                 target = torch.tensor(targets[arm][off : off + len(imgs)], device=a.device).reshape(
                     -1, 384, 4, 4
                 )
-                images = [Image.fromarray(arr) for arr in transport(pixels, descriptors, target, a.limited)]
+                images = [
+                    Image.fromarray(arr)
+                    for arr in transport(pixels, descriptors, target, a.limited)
+                ]
             for j, im in enumerate(images, off):
                 dest = root / arm / f"{j:03d}.jpg"
                 im.save(dest, quality=95)

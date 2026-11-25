@@ -129,6 +129,10 @@ def run(args):
     import torch
     from eval_instance_starts import load_visual_scorer
 
+    read_packet = packet
+    if getattr(args, "fixed_word_dose", False):
+        from render_fixed_word_photo_dose import packet as read_packet
+
     torch.set_grad_enabled(False)
     panels = panel_names(read(args.root / "design.json"), getattr(args, "panels", None))
     records_by_panel = {p: registered(args.reference_dir, p) for p in panels}
@@ -136,7 +140,9 @@ def run(args):
     registered_cases = {}
     for sub in args.subjects:
         for panel, reg in records_by_panel.items():
-            rows, folds, words, donors, support, _, _, signature = packet(args.root, sub, panel)
+            rows, folds, words, donors, support, _, _, signature = read_packet(
+                args.root, sub, panel
+            )
             dest = args.root / "renders" / panel / sub
             marker = dest / "settings.json"
             cfg = read(marker)
@@ -214,10 +220,15 @@ if __name__ == "__main__":
     p.add_argument(
         "--subjects",
         nargs="+",
-        choices=READOUTS,
+        choices=(*READOUTS, "single-1", "cohort-9"),
         default=["sub-04", "sub-05"],
     )
     p.add_argument("--batch-size", type=int, default=32)
     p.add_argument("--panels", nargs="+", help="Defaults to all panels in the frozen design")
+    p.add_argument(
+        "--fixed-word-dose",
+        action="store_true",
+        help="Use the registered 128-class fixed-word EEG packet",
+    )
     args = p.parse_args()
     run(args)

@@ -1,0 +1,531 @@
+{
+  "subject": "sub-04",
+  "unique_queries": 200,
+  "unique_test_objects": 200,
+  "images_per_arm": 200,
+  "generated_jpegs": 600,
+  "gallery_size": 200,
+  "nominal_top1_chance": 0.005,
+  "nominal_expected_mean_rank": 100.5,
+  "interpretation": "One test photograph per object. DINO rank among 200 different objects combines category and photo correspondence. Pixel metrics compare the actual center-cropped RGBs.",
+  "comparisons": "R80 minus its comparator in original metric units. Lower mean rank and RGB RMSE are better; higher top-k, cosine and luminance correlation are better.",
+  "uncertainty": "Percentile bootstrap of the 200 paired stimulus rows, 10,000 draws, one participant, seed 260548; gallery and fitted model held fixed. Intervals are marginal across the contrasts.",
+  "methods": {
+    "dino": "facebook/dinov2-small normalized final CLS cosine",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "pixels": "512-square center crop; BOX-downsample RGB to 32 square in [0,1], RMSE and spatial Pearson luminance with 0.299, 0.587, 0.114 weights.",
+    "ties": "Average ranks and expected top-k credit under uniform ordering within exact ties."
+  },
+  "observed": {
+    "r4_visual": {
+      "dino_top1": {
+        "mean": 0.065,
+        "ci95": [
+          0.035,
+          0.1
+        ],
+        "correct_credit": 13.0
+      },
+      "dino_top5": {
+        "mean": 0.205,
+        "ci95": [
+          0.15,
+          0.265
+        ],
+        "correct_credit": 41.0
+      },
+      "dino_mean_rank": {
+        "mean": 62.44,
+        "ci95": [
+          54.084250000000004,
+          70.810125
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.0882347366553815,
+        "ci95": [
+          0.0725347089808086,
+          0.10453327470579675
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.28305067755281926,
+        "ci95": [
+          0.27414815564826134,
+          0.29206813939288256
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.02517235299231924,
+        "ci95": [
+          0.00045598601206747275,
+          0.05010806362000848
+        ]
+      }
+    },
+    "r80_visual": {
+      "dino_top1": {
+        "mean": 0.1,
+        "ci95": [
+          0.06,
+          0.145
+        ],
+        "correct_credit": 20.0
+      },
+      "dino_top5": {
+        "mean": 0.285,
+        "ci95": [
+          0.22,
+          0.35
+        ],
+        "correct_credit": 57.0
+      },
+      "dino_mean_rank": {
+        "mean": 42.8,
+        "ci95": [
+          35.874875,
+          50.185125
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.12320308941756031,
+        "ci95": [
+          0.10735641380263779,
+          0.13892066081187734
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.27449218720197677,
+        "ci95": [
+          0.2659363832306117,
+          0.28327771192789075
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.031246154842503548,
+        "ci95": [
+          0.007753499792595793,
+          0.05530568402092009
+        ]
+      }
+    },
+    "wrong_visual": {
+      "dino_top1": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "correct_credit": 0.0
+      },
+      "dino_top5": {
+        "mean": 0.025,
+        "ci95": [
+          0.005,
+          0.05
+        ],
+        "correct_credit": 5.0
+      },
+      "dino_mean_rank": {
+        "mean": 99.07,
+        "ci95": [
+          90.75975000000001,
+          107.23025
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.021265919667848722,
+        "ci95": [
+          0.012378675331730572,
+          0.030441599394880954
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.30237838976085185,
+        "ci95": [
+          0.29336809225194155,
+          0.3114313003066927
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.016210370557590285,
+        "ci95": [
+          -0.0032602429544138127,
+          0.03595515664345536
+        ]
+      }
+    }
+  },
+  "paired": {
+    "r80_visual_minus_r4_visual": {
+      "dino_top1": {
+        "delta": 0.035,
+        "paired_ci95": [
+          -0.015,
+          0.085
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.08,
+        "paired_ci95": [
+          0.015,
+          0.145
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -19.64,
+        "paired_ci95": [
+          -28.155,
+          -11.029625000000005
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.034968352762178814,
+        "paired_ci95": [
+          0.01923115820148287,
+          0.05006748817659384
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.008558490350842475,
+        "paired_ci95": [
+          -0.013884366150945425,
+          -0.0034653304386883976
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.006073801850184301,
+        "paired_ci95": [
+          -0.021225606019856322,
+          0.033786805605752264
+        ]
+      }
+    },
+    "r80_visual_minus_wrong_visual": {
+      "dino_top1": {
+        "delta": 0.1,
+        "paired_ci95": [
+          0.06,
+          0.145
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.26,
+        "paired_ci95": [
+          0.2,
+          0.325
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -56.27,
+        "paired_ci95": [
+          -66.340625,
+          -46.14462500000001
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.10193716974971158,
+        "paired_ci95": [
+          0.08505997925358257,
+          0.11862665283114765
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.027886202558875084,
+        "paired_ci95": [
+          -0.03717481989227236,
+          -0.01857559968158603
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.015035784284913258,
+        "paired_ci95": [
+          -0.01231718748125956,
+          0.04320626581678646
+        ]
+      }
+    },
+    "r4_visual_minus_wrong_visual": {
+      "dino_top1": {
+        "delta": 0.065,
+        "paired_ci95": [
+          0.035,
+          0.1
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.18,
+        "paired_ci95": [
+          0.12,
+          0.245
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -36.63,
+        "paired_ci95": [
+          -47.6,
+          -25.474000000000014
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.06696881698753275,
+        "paired_ci95": [
+          0.05023398053073805,
+          0.08467602398959127
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.01932771220803261,
+        "paired_ci95": [
+          -0.02885347169265151,
+          -0.010210055790841582
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.008961982434728955,
+        "paired_ci95": [
+          -0.01936475157741387,
+          0.037365002603231036
+        ]
+      }
+    }
+  },
+  "global_angle_minus_native_angle": {
+    "r4_visual": {
+      "dino_top1": {
+        "delta": 0.025,
+        "paired_ci95": [
+          -0.015,
+          0.065
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.07,
+        "paired_ci95": [
+          0.015,
+          0.13
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -7.89,
+        "paired_ci95": [
+          -16.1455,
+          0.465
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.008757605643426102,
+        "paired_ci95": [
+          -0.004607253008170324,
+          0.02195882652868053
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": 0.006548821404576302,
+        "paired_ci95": [
+          0.0016501362379640343,
+          0.011571985747665168
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.012120114841217937,
+        "paired_ci95": [
+          -0.010416922986858682,
+          0.034817120140304664
+        ]
+      }
+    },
+    "r80_visual": {
+      "dino_top1": {
+        "delta": 0.05,
+        "paired_ci95": [
+          0.01,
+          0.09
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.125,
+        "paired_ci95": [
+          0.06,
+          0.19
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -19.705,
+        "paired_ci95": [
+          -28.26575,
+          -11.239875000000001
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.028893032930025077,
+        "paired_ci95": [
+          0.01481844287719008,
+          0.042876370557629946
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.0014014478772878646,
+        "paired_ci95": [
+          -0.0062274805773049596,
+          0.003517377687618135
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.023976550342810748,
+        "paired_ci95": [
+          0.0017720732236981038,
+          0.04615251297694427
+        ]
+      }
+    },
+    "wrong_visual": {
+      "dino_top1": {
+        "delta": 0.0,
+        "paired_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.02,
+        "paired_ci95": [
+          0.0,
+          0.045
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -0.55,
+        "paired_ci95": [
+          -9.425,
+          8.045249999999996
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": -0.0017993879773709695,
+        "paired_ci95": [
+          -0.011378891477324257,
+          0.007942975433729887
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": 0.01623821638524532,
+        "paired_ci95": [
+          0.011541577806696297,
+          0.021171421119943256
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.005943880605631812,
+        "paired_ci95": [
+          -0.016541361147327634,
+          0.02951603630873867
+        ]
+      }
+    },
+    "change_in_r80_visual_minus_wrong_visual": {
+      "dino_top1": {
+        "delta": 0.05,
+        "paired_ci95": [
+          0.01,
+          0.09
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.105,
+        "paired_ci95": [
+          0.045,
+          0.17
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -19.155,
+        "paired_ci95": [
+          -29.990499999999997,
+          -8.104625000000006
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.030692420907396042,
+        "paired_ci95": [
+          0.01501695890221121,
+          0.04618956776124749
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.01763966426253319,
+        "paired_ci95": [
+          -0.024422854157164692,
+          -0.01073681273311377
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.018032669737178937,
+        "paired_ci95": [
+          -0.009800963371355411,
+          0.045576224698911934
+        ]
+      }
+    },
+    "change_in_r80_visual_minus_r4_visual": {
+      "dino_top1": {
+        "delta": 0.025,
+        "paired_ci95": [
+          -0.03,
+          0.08
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.055,
+        "paired_ci95": [
+          -0.025,
+          0.135
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -11.815,
+        "paired_ci95": [
+          -22.455125,
+          -1.084375000000009
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.02013542728659897,
+        "paired_ci95": [
+          0.0017757258414376525,
+          0.03753196641447769
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.007950269281864167,
+        "paired_ci95": [
+          -0.012699411567300558,
+          -0.003304885333403945
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.01185643550159282,
+        "paired_ci95": [
+          -0.014699089245758834,
+          0.038205533261206605
+        ]
+      }
+    }
+  },
+  "receipts": {
+    "original_archive_sha256": "57ed472cd88f68ccf88e9ecbadf3da91ac222d8548684d5680be95bcf47ec14a",
+    "rows_manifest_sha256": "74773a1ef288b8d1c974a256a6b1c39940949c36842fca1302dc76e641943089",
+    "official_metadata_sha256": "681a75633c59a356a66ca19a277429c1d48a00a98405ff96e53ee0b9f00b397c",
+    "dino_files_sha256": {
+      "config.json": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+      "model.safetensors": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+      "preprocessor_config.json": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
+    },
+    "settings_sha256": "bf95dcd24ecf488a4e01e5e6b1b57170e2100b3a647175039cee1b2488f65b9f",
+    "render_design_sha256": "7b438c4b4870926a9601ef61d6885637eb57463abfd46595f10e006c9764a324",
+    "packet_sha256": "1eb435589733c72cc0f8ac0d2cd139e7310d60e9475841eb985f4e7559ae743d",
+    "scorer_sha256": "d700c694968f21cb096ebc79020058c389a5dfb74701935f41f1dc8d95dbe211",
+    "per_row_scores_sha256": "4fed1c134cbc11e1e53cf40668d273f0e95114c7659694623776008a6d8132fa",
+    "native_score_summary_sha256": "e292b33353123b4767734d99699d7d0b193fff95b93db34ba8ce9b19dc78a09d"
+  }
+}

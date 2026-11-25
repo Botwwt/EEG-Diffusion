@@ -1,0 +1,8 @@
+{
+  "participant": "sub-04",
+  "packet_sha256": "1eb435589733c72cc0f8ac0d2cd139e7310d60e9475841eb985f4e7559ae743d",
+  "arms": ["r4", "r80", "wrong"],
+  "reason": "Complete the named-prompt arm after reviewing the calibrated generic-prompt image results. No additional statistical independence from the 200 official photos is claimed. No coefficient, query, stimulus, prompt word or seed is selected from their evaluation.",
+  "comparison": "Match the global-angle generic images on continuous conditions and row seeds. Match the native-angle named images on prompts, native orientation, observation budgets, radius and seeds. The sole difference from the latter is the already-frozen global-angle transform.",
+  "primary": "Compare full 1854-way CLIP-L/14 object naming per row with both paired comparators. Also report CLIP and DINO 200-original retrieval, spatial RGB and luminance plus wrong EEG, and every twentieth fixed photo. R4/R80 words are EEG predictions over all 1854 names, wrong permutes R80 words and directions together."
+}
