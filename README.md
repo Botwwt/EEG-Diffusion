@@ -47,6 +47,6 @@ To inspect a complete participant after rendering, run `python "$RAD_ROOT/code/p
 | --- | --- |
 | What improved object identity, photo details or layout in the earlier experiments? | [Historical log review](docs/OBJECT_LOG_REVIEW.md) · [Scientific experiment registry](docs/EXPERIMENT_REGISTRY.md) |
 | How does the matched reconstruction compare with published methods? | [Brain-HiVE reproduction and released ATM images](docs/PAPER_BENCHMARK_RESULTS.md) · [Other authors' reported numbers and figure-level checks](research/eeg_stack_20261112/results/paper_benchmark_external.md) |
-| What happens when the candidate objects and eight labeled supports per object are supplied? | [Calibrated object task](docs/OBJECT_FIDELITY.md) · [Session-controlled 12-object replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [Galleries](research/eeg_stack_20261112/gallery/GALLERY.md) |
+| What happens when the candidate objects and eight labeled supports per object are supplied? | [Calibrated object task](docs/OBJECT_FIDELITY.md) · [Session-controlled 12-object replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [Two additional participants](docs/FRESH_PEOPLE_IMAGES.md) · [Galleries](research/eeg_stack_20261112/gallery/GALLERY.md) |
 
 [Citation](CITATION.cff) · [MIT license](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)

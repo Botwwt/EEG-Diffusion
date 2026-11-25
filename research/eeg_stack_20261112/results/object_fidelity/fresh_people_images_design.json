@@ -1,0 +1,28 @@
+{
+  "study": "Two-person replication of the sub-04 image naming experiment. The transferred fixed weight and the sub-04 image results were known. The two-person registered word gate was reported as passed (253 to 281/700) before this image registration was written. No new participant image or image measurement was available.",
+  "subjects": [
+    "sub-05",
+    "sub-01"
+  ],
+  "panels": [
+    "mix13",
+    "mix14",
+    "mix23",
+    "mix24"
+  ],
+  "methods": [
+    "legacy",
+    "learned"
+  ],
+  "word_design_sha256": "2900cd504dafadd1483b9894f617cee0d10204334626e3c0955159903fcc3f83",
+  "word_results_sha256": "4f21516d46783a49fad4fde682134cf9b8b731687f1893a709ae0d959791941d",
+  "discovery_image_design_sha256": "7fb74944ab647d9931a971c4814a09cd1650d84f890bbb1adcfc587c236a7c6d",
+  "discovery_image_result_sha256": "8f1a7465ed664ccf22ee04e8057003ddf4d7d7af0114210983ce137422f2dc9e",
+  "bootstrap_draws": 10000,
+  "seed": 260632,
+  "eligibility": "Read the frozen two-person word result, confirm exact input hash, both registered lower bounds strictly positive and both individual point gains nonnegative. Generate both methods and both people together after passage. Classifier heads, trial counts, prompts, eight supports, four-step Turbo and H14 scale follow the new individual packets. Render all 1920 JPEGs independently, checking every same-word row is byte-identical, plus smallest such original row per person/menu.",
+  "primary": "Independent frozen CLIP-L/14 naming of the true object from the entire 1854-entry THINGS vocabulary, for every query of the shared 35 primary objects, 350 physical photographs, 700 participant-photo observations, including all incorrect EEG words. Report paired learned-minus-legacy percentage points and whole-object bootstrap interval. A positive lower 95% primary bound plus a nonnegative difference in each participant counts as a replication of the direction seen in sub-04. No claim to new object generalization across people or population-level inference.",
+  "secondary": "Same CLIP logits restricted to the person's actual twelve menu names, and independent DINOv2-S/14 true-photo retrieval from the 10 photos of the true object. The eight permitted support images enter this gallery when the word is correct. Split ties equally. Report old and new credits, rowwise gains/losses and intervals separately for each endpoint. Evaluate all 48 objects per participant as a 960-observation sensitivity. Never report photos as independent across participants.",
+  "uncertainty": "In sorted original object-ID order bootstrap shared physical objects, 10000 replicates with seed 260632. Each resampled object carries all its original photographs and every available participant's paired outcomes, even across different menus. Use a ratio of total credit / total observations each draw. Primary 35 objects each weigh 20. Sensitivity union 60 objects; 36 appear in both, 24 in one only, weights 20 or 10. No menu stratification across subjects because the actual session menus regroup shared objects. Give individual object-cluster intervals, four menus per person with counts and point differences. Resample participant identities nowhere.",
+  "galleries": "For each person/menu show the lowest original row in each of 12 registered object slots in order, for 96 participant-photo comparisons. Public sheets display generated images and word annotations, private sheets add originals. Keep same words and supports between both models when the readouts agree; for differing words the prompt and legal supports both change."
+}
