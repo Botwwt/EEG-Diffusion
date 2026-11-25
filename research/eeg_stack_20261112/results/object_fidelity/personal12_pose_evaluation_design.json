@@ -1,0 +1,93 @@
+{
+  "experiment": "Re-segment four frozen personal12 pose edits and evaluate actual saved pixels",
+  "participants": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "domains": {
+    "participant_photo_rows": 360,
+    "distinct_objects": 29,
+    "distinct_photos": 290,
+    "folds": 5,
+    "supports_per_candidate": 8,
+    "queries_per_object": 10
+  },
+  "source_arm": "own JPEG from each participant's frozen mixed trial/Fisher run",
+  "source_settings_sha256": {
+    "sub-04": "ddb3491dd08e1885d747db69f0c856430a38192565a66faab08933377502e158",
+    "sub-05": "8c3f8ab3496f5d224fc9d47e245d14ebb99063c93beb9f3040ec3a98b2c149ae",
+    "sub-01": "ef9cd193604e10c0fe4b3f3066193257b5b4bb43e915bb9efc7cd17838522947"
+  },
+  "registration_sha256": {
+    "sub-04": "bc122169aeb93074f1b38e2a0530b9e051b666c002e11c919c5693d09185825e",
+    "sub-05": "ead79f00dc4dabaad7868c2ecf4315fc96e0008a04c4e8c34d36f90eb62a1ee6",
+    "sub-01": "593d402fb2e254ba4b731312b15bddd7dc1f58482584cb7893314c277ca7c67a"
+  },
+  "gallery_rows": {
+    "sub-04": {
+      "bag": 510,
+      "chicken_wire": 2840,
+      "crane": 3780,
+      "duct_tape": 4610,
+      "eye": 4910,
+      "flour": 5420,
+      "fungus": 5670,
+      "nail": 9260,
+      "rollerblade": 11750,
+      "stockings": 13860,
+      "tab": 14300,
+      "terrarium": 14630
+    },
+    "sub-05": {
+      "chinchilla": 2910,
+      "enchilada": 4840,
+      "eye": 4910,
+      "food_processor": 5500,
+      "gumball": 6350,
+      "hairspray": 6480,
+      "painting": 9710,
+      "pulpit": 11070,
+      "rollerblade": 11750,
+      "terrarium": 14630,
+      "ukulele": 15520,
+      "undershirt": 15540
+    },
+    "sub-01": {
+      "bag": 510,
+      "breakfast": 1740,
+      "bulletproof_vest": 1920,
+      "cardboard": 2420,
+      "file2": 5090,
+      "gumball": 6350,
+      "hairspray": 6480,
+      "melon": 8810,
+      "nail_file": 9280,
+      "riser": 11640,
+      "shelf": 12530,
+      "undershirt": 15540
+    }
+  },
+  "gallery_rule": "Lowest original row in each registered object for each person. Private contact sheets show original / source / neutral / prior / own / wrong; same choices irrespective of outcomes.",
+  "arms": [
+    "neutral",
+    "prior",
+    "own",
+    "wrong"
+  ],
+  "controls": "neutral is a matched-codec unedited source; prior uses eight support images; wrong uses the previously fixed circular same predicted word and fold, preserving self for singletons. Compare own minus prior, own minus wrong and own minus neutral, plus prior minus neutral.",
+  "pose": "Reopen each original and each generated JPEG. Apply pinned U2NetP using center crop, 320px LANCZOS, continuous saliency weights (pred-min)/(max-min). Positions use x right and y down in the unit square. Covariance trace sets log radius; anisotropy vector is [(Cxx-Cyy)/trace,2Cxy/trace].",
+  "segmentation_sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+  "primary": "Mean squared Euclidean error of the actual two-component anisotropy vector versus the original, all 360. Query-specific evidence requires the object-bootstrap 95% upper bound below zero for own minus prior on all rows and own minus wrong within correct-word rows whose nonself donor shares the true object.",
+  "secondary": "Mean Euclidean center error as fraction of image edge, absolute log-radius error. Doubled-angle axis error (0 to 90 degrees) only when original AND all four outputs have anisotropy length >=0.20; report denominator and target-only near-circular counts. Report threshold-free vector error on all. RGB32 RMSE and luminance Pearson. DINOv2-S/14 final unit CLS cosine: true original top1 of ten, all queries; the two-way independent decisions and joint assignment when both words correct, counting one pair once. Eight-support mean cosine per object under the current fold supplies an independent image-only 12-class probe (both viewed and predicted word hits). DINO source-to-edit cosine and class-decision retention test similarity to the actual unedited generated photo.",
+  "groups": [
+    "all",
+    "correct_word",
+    "nonself_same_predicted_word_fold",
+    "correct_word_nonself_same_true_object",
+    "axis_defined_all_arms"
+  ],
+  "uncertainty": "Paired 10000 draws of the global unique object identifiers, seed 260556, same multiplicity across people, all their photos and arms. Ratio-of-counts estimand; report n and contributing objects; no inference over people. Report individual and pooled cases. Strict pairs and independent-two comparisons condition on both mixed-model predictions being correct.",
+  "oracle": "Old-panel true-target pose benchmark independently reported, with a distinct root; excluded from every personal12 count and interval.",
+  "clipping": "Saliency moments represent visible foreground in the saved image; they do not establish human-annotated 3-D pose. Double-angle vector ignores head/tail reversals. Changes in endpoint estimates do not by themselves establish object preservation."
+}
