@@ -1,0 +1,126 @@
+{
+  "design_sha256": "2900cd504dafadd1483b9894f617cee0d10204334626e3c0955159903fcc3f83",
+  "driver_sha256": "1db0819f297aacbb193665f785dc123d4444a47cd2899a33e4c39e6df1202161",
+  "trained": {
+    "sub-05": "012a1ef1a7d1461f0be7e8a1c03cadaa7168dfe57813d24e918de98c98124939",
+    "sub-01": "6e9bdb15d123261b2ca011051e00bb4f9ce23351700a4b8f97a47e527b275eb8"
+  },
+  "decisions": {
+    "sub-05": {
+      "mix13": "c3433f15570febfae6fecf3c0a0bed2ad25b9045ad41aa411bacaa208879f8c2",
+      "mix14": "831dcc37fcb534b093884dabfaa936f73e1e7ee01f2c4e44cf1e88ffcca0f053",
+      "mix23": "ecbe3b098e1cc743013c6b166f594bb1bbd896e4d8ed11c6a6e0a2a4f76e1f95",
+      "mix24": "e8af89bf3c01bd86759e427181b507084b1be8d3d751c4d82897a222b4305dd6"
+    },
+    "sub-01": {
+      "mix13": "addbb0ea3700d5ae8160a85eaa132c4476630fbcf641c014948ae83447204b37",
+      "mix14": "b84254bb9377c544e292e927d68304856218b7e16ba974fe8bd019d02e7ca005",
+      "mix23": "07ad5cb99b09ee02effe2e69174faf30d06d532fbda8148b0e3b97760775f5a2",
+      "mix24": "f5525f4c14f5fece28fa9d8c25e99365614441c6e83501b672aac340503a230c"
+    }
+  },
+  "weight": 0.5907766654022144,
+  "populations": {
+    "primary": {
+      "n": 700,
+      "objects": 35,
+      "hits": {
+        "legacy": 253,
+        "learned": 281,
+        "learned_wrong": 35,
+        "neural": 273,
+        "fisher": 251,
+        "equal": 288
+      },
+      "by_subject": {
+        "sub-05": {
+          "legacy": 118,
+          "learned": 135,
+          "learned_wrong": 16,
+          "neural": 128,
+          "fisher": 122,
+          "equal": 137
+        },
+        "sub-01": {
+          "legacy": 135,
+          "learned": 146,
+          "learned_wrong": 19,
+          "neural": 145,
+          "fisher": 129,
+          "equal": 151
+        }
+      },
+      "paired": {
+        "legacy": {
+          "gained": 72,
+          "lost": 44,
+          "delta_pp": 4.0,
+          "ci95_pp": [
+            1.28571428571429,
+            6.571428571428573
+          ]
+        },
+        "learned_wrong": {
+          "gained": 266,
+          "lost": 20,
+          "delta_pp": 35.14285714285714,
+          "ci95_pp": [
+            28.714285714285715,
+            41.714285714285715
+          ]
+        }
+      }
+    },
+    "all": {
+      "n": 960,
+      "objects": 60,
+      "hits": {
+        "legacy": 353,
+        "learned": 399,
+        "learned_wrong": 53,
+        "neural": 386,
+        "fisher": 346,
+        "equal": 402
+      },
+      "by_subject": {
+        "sub-05": {
+          "legacy": 153,
+          "learned": 183,
+          "learned_wrong": 29,
+          "neural": 172,
+          "fisher": 159,
+          "equal": 182
+        },
+        "sub-01": {
+          "legacy": 200,
+          "learned": 216,
+          "learned_wrong": 24,
+          "neural": 214,
+          "fisher": 187,
+          "equal": 220
+        }
+      },
+      "paired": {
+        "legacy": {
+          "gained": 104,
+          "lost": 58,
+          "delta_pp": 4.791666666666667,
+          "ci95_pp": [
+            2.421052631578946,
+            7.291666666666669
+          ]
+        },
+        "learned_wrong": {
+          "gained": 374,
+          "lost": 28,
+          "delta_pp": 36.041666666666664,
+          "ci95_pp": [
+            30.42105263157895,
+            41.734693877551024
+          ]
+        }
+      }
+    }
+  },
+  "advance": true
+}
