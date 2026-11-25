@@ -1,0 +1,41 @@
+{
+  "packet_sha256": "dd07fc687c8904f822656138644cb5ab564fb361af41764d994dc1766d3338e5",
+  "fit_design_sha256": "63a4a4a5f34fb8ff211a6c9252977dbaedb054dacbb0754dc593b9a73f5ecc81",
+  "image_protocol_sha256": "da220cc643eb979ac249d7b1360192adce8a1ac88531363b99999304aa74959e",
+  "source_sha256": "54f32ff772430d53dfc5b000714bb7763d1768f350aed45c160a05b71f37bb18",
+  "data_sha256": {
+    "training_url": "https://huggingface.co/datasets/LidongYang/EEG_Image_decode/resolve/dbe34bb2407164f70883c661c76664f0d596e522/emb_eeg/ATM_S_eeg_features_sub-04_train.pt",
+    "train_lfs_sha256": "0f6dc610c68f45a0e6c89ab5d5a90d52d443d45fe19ffab90925e0aa269f4233",
+    "train_bytes": 270992243,
+    "test_url": "https://huggingface.co/datasets/LidongYang/EEG_Image_decode/resolve/dbe34bb2407164f70883c661c76664f0d596e522/emb_eeg/ATM_S_eeg_features_sub-04_test.pt",
+    "test_lfs_sha256": "1878b71916e0ff2cec8639198e005f1646f90fcf5c0f86cf488dd472e2f715df",
+    "test_bytes": 820080,
+    "angle_split_sha256": "30e37b34380c205335ec31a76192b081b5f015c1bfe4634b02710348c481609f",
+    "physical_selection_sha256": "d1bee484c5c8d676e9fe8b64e6871009f39adde0e33244b97e975833aa8b434a",
+    "physical_inference_sha256": "ccf8a29d70a5c34f6bf0608b1d4df46295c409439191aa62c7bf640775a46f48",
+    "source_packet_sha256": "1eb435589733c72cc0f8ac0d2cd139e7310d60e9475841eb985f4e7559ae743d",
+    "physical_word_scores_sha256": "38a1eb9df128aabbce761136391e00dd1a2839bddf919da8f6056c14b3ca0acf",
+    "image_protocol_sha256": "da220cc643eb979ac249d7b1360192adce8a1ac88531363b99999304aa74959e",
+    "training_manifest_sha256": "dafc55af7366974feae0e11418680990ff8d74707ec5b89e398fd5a26567c473"
+  },
+  "source_packet_sha256": "1eb435589733c72cc0f8ac0d2cd139e7310d60e9475841eb985f4e7559ae743d",
+  "word_scores_sha256": "b597bf416fe8081591f4790d564f1fb0d0df2655861e94bdfb972658da53c2e4",
+  "generic_validation_sha256": "f1d81ac38985e6e36e4859adb0b9e022719a011d5c5161aab3fd5411e4d79081",
+  "arms": [
+    "r4",
+    "r80",
+    "wrong"
+  ],
+  "aliases": {
+    "r4": "ATM_only_R80",
+    "r80": "dual_R80",
+    "wrong": "wrong_dual_R80"
+  },
+  "radius": 21.945598602294922,
+  "same_observations_per_image": 80,
+  "check": {
+    "words_unchanged": true,
+    "donor_shift": 67,
+    "unit_cosine_ours_atm_mean": 0.7805042862892151
+  }
+}

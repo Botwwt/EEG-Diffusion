@@ -1,0 +1,469 @@
+{
+  "participant": "sub-04",
+  "physical_presentations_per_image": 80,
+  "distinct_photos": 200,
+  "distinct_objects": 200,
+  "interpretation": "All models use the same participant and same 80 EEG presentations. The decoder supplies the same object-word prompt for each matched recipient. The wrong dual condition shifts both the word and the continuous direction together. One original per object makes photo and object identity inseparable in retrieval.",
+  "models": {
+    "atm_only_r80": "Released ATM visual readout plus the frozen physical decoder's word.",
+    "dual_r80": "Fused ATM and physical readouts plus the same frozen word.",
+    "wrong_dual_r80": "Exchanged complete dual condition from another row, recipient seed retained.",
+    "physical_global_r80": "Previous global-angle physical readout plus the same word."
+  },
+  "paired_uncertainty": "Fixed person and 200 paired stimulus IDs, ten thousand percentile bootstrap draws; intervals are marginal. CLIP comparisons also use the original two-sided paired swap procedure.",
+  "observed": {
+    "dual_r80": {
+      "dino_top1": {
+        "mean": 0.16,
+        "ci95": [
+          0.11,
+          0.21
+        ],
+        "hits": 32.0
+      },
+      "dino_top5": {
+        "mean": 0.34,
+        "ci95": [
+          0.275,
+          0.405
+        ],
+        "hits": 68.0
+      },
+      "dino_mean_rank": {
+        "mean": 34.585,
+        "ci95": [
+          28.81,
+          40.755374999999994
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.15646712213473113,
+        "ci95": [
+          0.13653582850979096,
+          0.17644253161723547
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.27208899430930616,
+        "ci95": [
+          0.26383429402858016,
+          0.2806696000732481
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.04704064893995311,
+        "ci95": [
+          0.024554474923040328,
+          0.06940822965392386
+        ]
+      }
+    },
+    "atm_only_r80": {
+      "dino_top1": {
+        "mean": 0.145,
+        "ci95": [
+          0.1,
+          0.195
+        ],
+        "hits": 29.0
+      },
+      "dino_top5": {
+        "mean": 0.36,
+        "ci95": [
+          0.295,
+          0.425
+        ],
+        "hits": 72.0
+      },
+      "dino_mean_rank": {
+        "mean": 35.425,
+        "ci95": [
+          29.21,
+          42.185125
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.15694187500866977,
+        "ci95": [
+          0.13793453325015695,
+          0.17605044331118766
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.2712420589476824,
+        "ci95": [
+          0.26320326887629925,
+          0.27937330762296914
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.04765752022768106,
+        "ci95": [
+          0.023845857744738005,
+          0.07101604461583548
+        ]
+      }
+    },
+    "wrong_dual_r80": {
+      "dino_top1": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "hits": 0.0
+      },
+      "dino_top5": {
+        "mean": 0.035,
+        "ci95": [
+          0.01,
+          0.06
+        ],
+        "hits": 7.0
+      },
+      "dino_mean_rank": {
+        "mean": 101.075,
+        "ci95": [
+          93.30487500000001,
+          109.08049999999999
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.019904653137419088,
+        "ci95": [
+          0.010442586909358724,
+          0.02937813380500157
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.30272725395858285,
+        "ci95": [
+          0.2941034764610231,
+          0.3114904721807688
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.008801872772146948,
+        "ci95": [
+          -0.013740705012557792,
+          0.0312136841566524
+        ]
+      }
+    },
+    "physical_global_r80": {
+      "dino_top1": {
+        "mean": 0.12,
+        "ci95": [
+          0.075,
+          0.165
+        ],
+        "hits": 24.0
+      },
+      "dino_top5": {
+        "mean": 0.315,
+        "ci95": [
+          0.25,
+          0.38
+        ],
+        "hits": 63.0
+      },
+      "dino_mean_rank": {
+        "mean": 42.41,
+        "ci95": [
+          35.71,
+          49.765125
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.13086726899494572,
+        "ci95": [
+          0.11330644682067571,
+          0.14864747575087237
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.2757131876051426,
+        "ci95": [
+          0.26749015926197167,
+          0.28412134540081024
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.029919241454604072,
+        "ci95": [
+          0.005258879343009654,
+          0.054277049264210314
+        ]
+      }
+    }
+  },
+  "paired": {
+    "dual_r80_minus_atm_only_r80": {
+      "dino_top1": {
+        "n": 200,
+        "delta": 0.015,
+        "ci95": [
+          -0.035,
+          0.065
+        ],
+        "left_credit": 32.0,
+        "right_credit": 29.0,
+        "rows_gaining_credit": 14,
+        "rows_losing_credit": 11
+      },
+      "dino_top5": {
+        "n": 200,
+        "delta": -0.02,
+        "ci95": [
+          -0.07,
+          0.03
+        ],
+        "left_credit": 68.0,
+        "right_credit": 72.0,
+        "rows_gaining_credit": 11,
+        "rows_losing_credit": 15
+      },
+      "dino_mean_rank": {
+        "n": 200,
+        "delta": -0.84,
+        "ci95": [
+          -6.515,
+          4.905
+        ]
+      },
+      "dino_correct_cosine": {
+        "n": 200,
+        "delta": -0.0004747528739386597,
+        "ci95": [
+          -0.011144717507070625,
+          0.01008289230885213
+        ]
+      },
+      "rgb_rmse32": {
+        "n": 200,
+        "delta": 0.0008469353616237641,
+        "ci95": [
+          -0.0024603201784193516,
+          0.004378909084945916
+        ]
+      },
+      "luma_pearson32": {
+        "n": 200,
+        "delta": -0.0006168712877279597,
+        "ci95": [
+          -0.016777181767127475,
+          0.015591917553414093
+        ]
+      }
+    },
+    "dual_r80_minus_physical_global_r80": {
+      "dino_top1": {
+        "n": 200,
+        "delta": 0.04,
+        "ci95": [
+          -0.01,
+          0.09
+        ],
+        "left_credit": 32.0,
+        "right_credit": 24.0,
+        "rows_gaining_credit": 17,
+        "rows_losing_credit": 9
+      },
+      "dino_top5": {
+        "n": 200,
+        "delta": 0.025,
+        "ci95": [
+          -0.025,
+          0.075
+        ],
+        "left_credit": 68.0,
+        "right_credit": 63.0,
+        "rows_gaining_credit": 16,
+        "rows_losing_credit": 11
+      },
+      "dino_mean_rank": {
+        "n": 200,
+        "delta": -7.825,
+        "ci95": [
+          -14.265125000000001,
+          -1.6897500000000036
+        ]
+      },
+      "dino_correct_cosine": {
+        "n": 200,
+        "delta": 0.02559985313978541,
+        "ci95": [
+          0.01121328635698956,
+          0.04062443958884341
+        ]
+      },
+      "rgb_rmse32": {
+        "n": 200,
+        "delta": -0.0036241932958364486,
+        "ci95": [
+          -0.006772925656288862,
+          -0.0003646016288548727
+        ]
+      },
+      "luma_pearson32": {
+        "n": 200,
+        "delta": 0.017121407485349033,
+        "ci95": [
+          -0.0019936348831304926,
+          0.035829468061059994
+        ]
+      }
+    },
+    "dual_r80_minus_wrong_dual_r80": {
+      "dino_top1": {
+        "n": 200,
+        "delta": 0.16,
+        "ci95": [
+          0.11,
+          0.21
+        ],
+        "left_credit": 32.0,
+        "right_credit": 0.0,
+        "rows_gaining_credit": 32,
+        "rows_losing_credit": 0
+      },
+      "dino_top5": {
+        "n": 200,
+        "delta": 0.305,
+        "ci95": [
+          0.235,
+          0.375
+        ],
+        "left_credit": 68.0,
+        "right_credit": 7.0,
+        "rows_gaining_credit": 64,
+        "rows_losing_credit": 3
+      },
+      "dino_mean_rank": {
+        "n": 200,
+        "delta": -66.49,
+        "ci95": [
+          -76.18,
+          -56.704750000000004
+        ]
+      },
+      "dino_correct_cosine": {
+        "n": 200,
+        "delta": 0.13656246899731203,
+        "ci95": [
+          0.11500785306046593,
+          0.1581580732724995
+        ]
+      },
+      "rgb_rmse32": {
+        "n": 200,
+        "delta": -0.030638259649276734,
+        "ci95": [
+          -0.039085999334231014,
+          -0.022257990874350077
+        ]
+      },
+      "luma_pearson32": {
+        "n": 200,
+        "delta": 0.03823877616780616,
+        "ci95": [
+          0.012835524759059167,
+          0.06394526006023371
+        ]
+      }
+    },
+    "atm_only_r80_minus_physical_global_r80": {
+      "dino_top1": {
+        "n": 200,
+        "delta": 0.025,
+        "ci95": [
+          -0.035,
+          0.085
+        ],
+        "left_credit": 29.0,
+        "right_credit": 24.0,
+        "rows_gaining_credit": 22,
+        "rows_losing_credit": 17
+      },
+      "dino_top5": {
+        "n": 200,
+        "delta": 0.045,
+        "ci95": [
+          -0.015,
+          0.105
+        ],
+        "left_credit": 72.0,
+        "right_credit": 63.0,
+        "rows_gaining_credit": 24,
+        "rows_losing_credit": 15
+      },
+      "dino_mean_rank": {
+        "n": 200,
+        "delta": -6.985,
+        "ci95": [
+          -15.275,
+          0.8301249999999981
+        ]
+      },
+      "dino_correct_cosine": {
+        "n": 200,
+        "delta": 0.026074606013724067,
+        "ci95": [
+          0.008440307422490299,
+          0.04406922417549997
+        ]
+      },
+      "rgb_rmse32": {
+        "n": 200,
+        "delta": -0.004471128657460213,
+        "ci95": [
+          -0.009646012913435698,
+          0.0006811891701072448
+        ]
+      },
+      "luma_pearson32": {
+        "n": 200,
+        "delta": 0.01773827877307699,
+        "ci95": [
+          -0.008145718516160309,
+          0.042756517047008405
+        ]
+      }
+    }
+  },
+  "provenance": {
+    "fixed_gallery_sha256": "c35e45ef11e4f0c19a6a39438a71c6bda6e676787ca171d1e53f65df5742c7f2",
+    "generated_only_gallery_sha256": "d54c72fe5e496af71f0008294cf7ddcd0864d1a22458bae6013f15cdce6cc60a",
+    "gallery_rows": [
+      0,
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140,
+      160,
+      180
+    ],
+    "dino_weights": {
+      "config.json": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+      "model.safetensors": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+      "preprocessor_config.json": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
+    },
+    "official_originals_sha256": "57ed472cd88f68ccf88e9ecbadf3da91ac222d8548684d5680be95bcf47ec14a",
+    "reference_manifest_sha256": "74773a1ef288b8d1c974a256a6b1c39940949c36842fca1302dc76e641943089",
+    "previous_summary_sha256": "442dca3945ed8d80832c161e4b41b41aaeb98e18cbf7c2665aa96c656f40c6eb",
+    "private_render_settings_sha256": "49404c9c989a53a816448108f193067f3e9fd9155ba354b100854d3d793c78e7",
+    "previous_settings_sha256": "43b50b60b79e9c63b5df494348a457a89f89849489707181354ce2bab906e198",
+    "image_protocol_sha256": "da220cc643eb979ac249d7b1360192adce8a1ac88531363b99999304aa74959e",
+    "released_atm_train_sha256": "0f6dc610c68f45a0e6c89ab5d5a90d52d443d45fe19ffab90925e0aa269f4233",
+    "released_atm_test_sha256": "1878b71916e0ff2cec8639198e005f1646f90fcf5c0f86cf488dd472e2f715df",
+    "fitted_decoder_design_sha256": "63a4a4a5f34fb8ff211a6c9252977dbaedb054dacbb0754dc593b9a73f5ecc81",
+    "frozen_render_design_sha256": "f1d7d32a962230552d4d5093318d75dc1b9673bfc2beae41b629f8dc78174324",
+    "condition_export_receipt_sha256": "1bac0e65cbf18b898088e1ed1585f2dc39bfd35c1475530c2b92ea8ce1285ff7",
+    "packet_sha256": "dd07fc687c8904f822656138644cb5ab564fb361af41764d994dc1766d3338e5",
+    "per_row_sha256": "3e2a2cc52733c7e6fdc4a67997bab1b992803131c93391af4f77f6de579e6147",
+    "scoring_code_sha256": "c248abcbd7e941116ac05f8b6194281eaf9123c6d8ca4571dabb8354c23145a3"
+  }
+}

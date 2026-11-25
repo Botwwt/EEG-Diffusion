@@ -1,0 +1,15 @@
+{
+  "participant": "sub-04",
+  "physical_trials_per_photo": 80,
+  "stimuli": 200,
+  "presentations_total_per_participant": 16000,
+  "hypothesis": "Can two encoders of the same observed EEG recover more about the object in actual generation when words and noise stay fixed?",
+  "comparison": "Archived global-angle R80 visual head vs released ATM-derived R80 vs equal-weight two-encoder R80 vs wrong dual. All aligned arms share the original global-named R80 EEG-decoded word and exact noise seed. The wrong control exchanges word and dual direction together using the existing cyclic donor permutation.",
+  "target_blind": "Only the corresponding EEG outputs supply query words/directions. Official reference images and labels are scoring-only. The old gallery was previously studied; complementarity of the two individual retrieval heads was known.",
+  "evaluation": "All 200 actual 512-square JPEGs per new arm. Primary measure independent CLIP full 1,854-name top-one; secondary same 200-original DINOv2 and CLIP retrieval, RGB and luminance. Bootstrap the same 200 rows in all contrasts. A production change for unfamiliar objects requires improved full naming over old and ATM and positive paired lower bound over old, plus no decrease in DINO relative to old, before external replication. One photograph per object. Fixed gallery every twentieth row including errors.",
+  "condition_format": {
+    "r4": "ATM-only visual condition on the same eighty observations",
+    "r80": "fused ATM and personal visual conditions on the same eighty observations",
+    "wrong": "same dual decoder, global donor cyclic-shift of 67"
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "study": "Dual encoder on a single person's same 80 test presentations per stimulus. These are pre-diffusion feature and object-score results only.",
+  "rng_and_uncertainty": "Two-sided paired percentile intervals resample the 200 fixed, unique object/stimulus identities 10000 times with seed 261127. One photograph per object.",
+  "raw_atm_data": {
+    "train": {
+      "url": "https://huggingface.co/datasets/LidongYang/EEG_Image_decode/resolve/dbe34bb2407164f70883c661c76664f0d596e522/emb_eeg/ATM_S_eeg_features_sub-04_train.pt",
+      "bytes": 270992243,
+      "sha256": "0f6dc610c68f45a0e6c89ab5d5a90d52d443d45fe19ffab90925e0aa269f4233"
+    },
+    "test": {
+      "url": "https://huggingface.co/datasets/LidongYang/EEG_Image_decode/resolve/dbe34bb2407164f70883c661c76664f0d596e522/emb_eeg/ATM_S_eeg_features_sub-04_test.pt",
+      "bytes": 820080,
+      "sha256": "1878b71916e0ff2cec8639198e005f1646f90fcf5c0f86cf488dd472e2f715df"
+    }
+  },
+  "upstream": {
+    "repository_revision": "49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d",
+    "sources": {
+      "Generation_1x1024_reconstruct_sdxl.ipynb": {
+        "url": "https://raw.githubusercontent.com/dongyangli-del/EEG_Image_decode/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/Generation/1x1024_reconstruct_sdxl.ipynb",
+        "sha256": "350def1fd417e9f6675c440212abb6aea135acef2f04c04c0c14e71a56ad3c27"
+      },
+      "Generation_ATMS_reconstruction.py": {
+        "url": "https://raw.githubusercontent.com/dongyangli-del/EEG_Image_decode/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/Generation/ATMS_reconstruction.py",
+        "sha256": "255b509b2d23353c362fdf14885fc3fd920b3964f065ce0ff84e983e1da7024b"
+      },
+      "Generation_eegdatasets_leaveone.py": {
+        "url": "https://raw.githubusercontent.com/dongyangli-del/EEG_Image_decode/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/Generation/eegdatasets_leaveone.py",
+        "sha256": "657ea2ffcb9aafedc778230e148d345172721ffb91c7f7818870d728b3b1744a"
+      },
+      "Retrieval_ATMS_retrieval.py": {
+        "url": "https://raw.githubusercontent.com/dongyangli-del/EEG_Image_decode/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/Retrieval/ATMS_retrieval.py",
+        "sha256": "6bb9e9d7c922e04e555b77d06725fe3754a96436f6a372ca18b793e28220c661"
+      },
+      "Retrieval_eegdatasets_leaveone.py": {
+        "url": "https://raw.githubusercontent.com/dongyangli-del/EEG_Image_decode/49cb3a20a0c1fd35fd2955f78d0e4d0f2939c70d/Retrieval/eegdatasets_leaveone.py",
+        "sha256": "d02a6951d3e53487007a3696c2c059bf2a0f52a496d95b7b1a6c9efd4ea29f18"
+      }
+    },
+    "checkpoint_limitation": "The original authors evaluate all official test labels/images each epoch and report a best epoch; the released feature archives do not prove which checkpoint produced them. Do not claim a fully blind official benchmark. ATM has upstream access to the generic calibration and validation objects; only our downstream ridge excludes them, so this is development evidence. The authors' reconstruction example inserts a learned diffusion prior before rendering. Native unit coordinates and angular distribution require an empirical check before direct reuse.",
+    "training": "The authors' reconstruction code uses a 1024-dimensional EEG vector, regression to OpenCLIP ViT-H/14 image features together with contrastive image loss (training alpha 0.90). preprocessing selects laion2b_s32b_b79k. Official test EEG is averaged over repetitions before encoding; our training approximation averages four released single-presentation feature rows per photograph in published order."
+  },
+  "byte_identical_as_run_and_public_replay_artifacts": {
+    "fit_design.json": "63a4a4a5f34fb8ff211a6c9252977dbaedb054dacbb0754dc593b9a73f5ecc81",
+    "image_protocol.json": "da220cc643eb979ac249d7b1360192adce8a1ac88531363b99999304aa74959e",
+    "render_packet.npz": "dd07fc687c8904f822656138644cb5ab564fb361af41764d994dc1766d3338e5",
+    "render_packet.json": "1bac0e65cbf18b898088e1ed1585f2dc39bfd35c1475530c2b92ea8ce1285ff7",
+    "word_and_gallery_scores.npz": "b597bf416fe8081591f4790d564f1fb0d0df2655861e94bdfb972658da53c2e4",
+    "generic_validation.json": "f1d81ac38985e6e36e4859adb0b9e022719a011d5c5161aab3fd5411e4d79081",
+    "official_evaluation.json": "9c1462af958a045441324e6cfc2c50642d6137e6fc8b8898157e1cdbaef66354"
+  },
+  "independent_replay": {
+    "replay_dir": "fit_replays/8f5460a1d09d0704-f1d81ac38985e6e3",
+    "public_source_sha256": "8f5460a1d09d07044ceb8fa1d9e42c539b81ef9f110192677a45462fc7a8b0ba",
+    "archived_source_sha256": "54f32ff772430d53dfc5b000714bb7763d1768f350aed45c160a05b71f37bb18",
+    "current_receipt_sha256": "b27b9158b1478d0d5eac0929bb49cf20f76aa768a1294553db8ae9d99558de5e",
+    "archived_receipt_sha256": "1bac0e65cbf18b898088e1ed1585f2dc39bfd35c1475530c2b92ea8ce1285ff7",
+    "current_generic_sha256": "f1d81ac38985e6e36e4859adb0b9e022719a011d5c5161aab3fd5411e4d79081",
+    "archived_generic_sha256": "f1d81ac38985e6e36e4859adb0b9e022719a011d5c5161aab3fd5411e4d79081",
+    "generic_float_absolute_tolerance": {
+      "geometry": 1e-09,
+      "mrr": 1e-06
+    },
+    "packet_sha256": "dd07fc687c8904f822656138644cb5ab564fb361af41764d994dc1766d3338e5",
+    "full_native_word_scores_sha256": "b597bf416fe8081591f4790d564f1fb0d0df2655861e94bdfb972658da53c2e4"
+  },
+  "generic": {
+    "mode": "ridge",
+    "raw_generic64_calibration": {
+      "n": 640,
+      "mean_match": 0.34268431172312075,
+      "mean_cross_object": 0.08949345456120786,
+      "margin": 0.25319085716191286,
+      "within_pair": 0.96875,
+      "within10_hits": 534.0,
+      "median_theta": 1.4342823915011849,
+      "median_target_theta": 0.8868992704978196
+    },
+    "gain": 1.9471158545520308,
+    "cap": 1.061957199384292,
+    "validation": {
+      "ours": {
+        "n": 640,
+        "mean_match": 0.4888602176789848,
+        "mean_cross_object": 0.38974592984861384,
+        "margin": 0.09911428783037103,
+        "within_pair": 0.6331597222222222,
+        "within10_hits": 127.0,
+        "median_theta": 0.907563735097534,
+        "median_target_theta": 0.8846994847717945
+      },
+      "atm_raw": {
+        "n": 640,
+        "mean_match": 0.34057650591270044,
+        "mean_cross_object": 0.0850672009211581,
+        "margin": 0.2555093049915424,
+        "within_pair": 0.9732638888888889,
+        "within10_hits": 546.0,
+        "median_theta": 1.4381297211601405,
+        "median_target_theta": 0.8846994847717945
+      },
+      "atm": {
+        "n": 640,
+        "mean_match": 0.6499279929241781,
+        "mean_cross_object": 0.4068023888524717,
+        "margin": 0.24312560407170639,
+        "within_pair": 0.85625,
+        "within10_hits": 338.0,
+        "median_theta": 0.8660885602962098,
+        "median_target_theta": 0.8846994847717945
+      },
+      "dual": {
+        "n": 640,
+        "mean_match": 0.6150105679399166,
+        "mean_cross_object": 0.43060188093620166,
+        "margin": 0.184408687003715,
+        "within_pair": 0.7682291666666666,
+        "within10_hits": 236.0,
+        "median_theta": 0.8154768977934177,
+        "median_target_theta": 0.8846994847717945
+      }
+    },
+    "validation_naming": {
+      "ours": {
+        "n": 640,
+        "top1": 11,
+        "top5": 25,
+        "top10": 46,
+        "median_rank": 205.5,
+        "mrr": 0.03734018855217052
+      },
+      "atm": {
+        "n": 640,
+        "top1": 47,
+        "top5": 155,
+        "top10": 219,
+        "median_rank": 25.0,
+        "mrr": 0.15964099646745308
+      },
+      "dual": {
+        "n": 640,
+        "top1": 39,
+        "top5": 112,
+        "top10": 179,
+        "median_rank": 33.0,
+        "mrr": 0.13121978918102614
+      }
+    },
+    "upstream_order_check": "Held generic own versus within-class and cross-class alignment by official row ID; features are read as float32 raw Torch storage, no pickle execution.",
+    "passed": true,
+    "design_sha256": "63a4a4a5f34fb8ff211a6c9252977dbaedb054dacbb0754dc593b9a73f5ecc81"
+  },
+  "official": {
+    "naming": {
+      "ours": {
+        "n": 200,
+        "top1": 6,
+        "top5": 19,
+        "top10": 35,
+        "median_rank": 65.0,
+        "mrr": 0.07601492295807961
+      },
+      "ATM": {
+        "n": 200,
+        "top1": 2,
+        "top5": 8,
+        "top10": 16,
+        "median_rank": 150.0,
+        "mrr": 0.036498766157714205
+      },
+      "dual": {
+        "n": 200,
+        "top1": 4,
+        "top5": 18,
+        "top10": 37,
+        "median_rank": 68.0,
+        "mrr": 0.07314866050980245
+      },
+      "wrong_dual": {
+        "n": 200,
+        "top1": 0,
+        "top5": 0,
+        "top10": 1,
+        "median_rank": 924.5,
+        "mrr": 0.002944386807665006
+      }
+    },
+    "official200_word_only": {
+      "ours": {
+        "n": 200,
+        "top1": 27,
+        "top5": 83,
+        "top10": 106,
+        "median_rank": 9.0,
+        "mrr": 0.2576946263815717
+      },
+      "ATM": {
+        "n": 200,
+        "top1": 16,
+        "top5": 51,
+        "top10": 75,
+        "median_rank": 17.0,
+        "mrr": 0.17469923297866616
+      },
+      "dual": {
+        "n": 200,
+        "top1": 31,
+        "top5": 84,
+        "top10": 118,
+        "median_rank": 7.0,
+        "mrr": 0.28483816802319234
+      },
+      "wrong_dual": {
+        "n": 200,
+        "top1": 2,
+        "top5": 2,
+        "top10": 9,
+        "median_rank": 98.5,
+        "mrr": 0.028117020609489042
+      }
+    },
+    "native_direction_photo200": {
+      "ours_global": {
+        "n": 200,
+        "top1": 17,
+        "top5": 48,
+        "top10": 69,
+        "median_rank": 21.0,
+        "mrr": 0.17789216580584644
+      },
+      "ATM": {
+        "n": 200,
+        "top1": 33,
+        "top5": 92,
+        "top10": 127,
+        "median_rank": 7.0,
+        "mrr": 0.297571937955282
+      },
+      "dual": {
+        "n": 200,
+        "top1": 26,
+        "top5": 79,
+        "top10": 110,
+        "median_rank": 8.0,
+        "mrr": 0.25489856737565686
+      },
+      "wrong_dual": {
+        "n": 200,
+        "top1": 0,
+        "top5": 4,
+        "top10": 8,
+        "median_rank": 97.0,
+        "mrr": 0.02599350594885566
+      }
+    },
+    "n": 200,
+    "paired_word_readout": {
+      "top1": {
+        "ours": {
+          "gained": 3,
+          "lost": 5,
+          "delta": -0.01,
+          "ci95": [
+            -0.04,
+            0.015
+          ]
+        },
+        "ATM": {
+          "gained": 2,
+          "lost": 0,
+          "delta": 0.01,
+          "ci95": [
+            0.0,
+            0.025
+          ]
+        },
+        "wrong_dual": {
+          "gained": 4,
+          "lost": 0,
+          "delta": 0.02,
+          "ci95": [
+            0.005,
+            0.04
+          ]
+        }
+      },
+      "top5": {
+        "ours": {
+          "gained": 12,
+          "lost": 13,
+          "delta": -0.005,
+          "ci95": [
+            -0.055,
+            0.045
+          ]
+        },
+        "ATM": {
+          "gained": 11,
+          "lost": 1,
+          "delta": 0.05,
+          "ci95": [
+            0.02,
+            0.085
+          ]
+        },
+        "wrong_dual": {
+          "gained": 18,
+          "lost": 0,
+          "delta": 0.09,
+          "ci95": [
+            0.05,
+            0.13
+          ]
+        }
+      }
+    },
+    "packet_sha256": "dd07fc687c8904f822656138644cb5ab564fb361af41764d994dc1766d3338e5",
+    "note": "Full vocabulary naming readout is evaluated offline. Generated image prompts stay locked to the historical physical R80 word for both matched arms. Native_direction_photo200 uses true H14 embeddings only in evaluation. Equal 65/200 from the historical report refers to different readout coordinates."
+  },
+  "first_public_replay": {
+    "public_source_sha256": "3843db107845a3f93d543c9472290b209fd408e4cbc0ea66152b91e9fd585e53",
+    "archived_source_sha256": "54f32ff772430d53dfc5b000714bb7763d1768f350aed45c160a05b71f37bb18",
+    "current_receipt_sha256": "a6b9f339a10e84d32839f51bb0ab4edf22bda5107f9cedcff175b7a57d38b268",
+    "archived_receipt_sha256": "1bac0e65cbf18b898088e1ed1585f2dc39bfd35c1475530c2b92ea8ce1285ff7",
+    "packet_sha256": "dd07fc687c8904f822656138644cb5ab564fb361af41764d994dc1766d3338e5",
+    "full_native_word_scores_sha256": "b597bf416fe8081591f4790d564f1fb0d0df2655861e94bdfb972658da53c2e4"
+  },
+  "blas_thread_replay": {
+    "method": "Each OPENBLAS_NUM_THREADS setting ran the acquire, register, prepare, and score stages in a new output directory. Both complete exports were compared to the historical artifacts. The contemporary driver records the actual generic output for each run in fit_replays, with a separate immutable receipt. The same default output directory also supports replay across thread counts.",
+    "checks_exact_across_1_and_4": {
+      "fit_design.json": "63a4a4a5f34fb8ff211a6c9252977dbaedb054dacbb0754dc593b9a73f5ecc81",
+      "image_protocol.json": "da220cc643eb979ac249d7b1360192adce8a1ac88531363b99999304aa74959e",
+      "render_packet.npz": "dd07fc687c8904f822656138644cb5ab564fb361af41764d994dc1766d3338e5",
+      "render_packet.json": "1bac0e65cbf18b898088e1ed1585f2dc39bfd35c1475530c2b92ea8ce1285ff7",
+      "word_and_gallery_scores.npz": "b597bf416fe8081591f4790d564f1fb0d0df2655861e94bdfb972658da53c2e4",
+      "official_evaluation.json": "9c1462af958a045441324e6cfc2c50642d6137e6fc8b8898157e1cdbaef66354"
+    },
+    "generic_checks": "Report keys, types, strings, gate, counts, within-pair identification and median ranks compare exactly. Other geometry uses absolute tolerance 1e-9, and secondary generic naming MRR uses absolute tolerance 1e-6. The official score report and both model exports compare byte for byte.",
+    "by_openblas_threads": {
+      "1": {
+        "generic_validation_sha256": "57fc90a3afd351c3344be334373479f636586254278c30051f16b99ef5fb6eee",
+        "public_fit_receipt_sha256": "7aab5e6430c37a7d18c22b642fb35d741b1068ee45524155ea3df52d734e9b71",
+        "public_fit_replay_sha256": "d96fd2c9920314526989a3d7195542d76140a1878e4383c94c4bcc0ed48fb218",
+        "changed_fields_absolute_difference": {
+          "gain": 1.1102230246251565e-15,
+          "validation.ours.mean_match": 1.915134717478395e-14,
+          "validation.ours.mean_cross_object": 2.0710655412869983e-12,
+          "validation.ours.margin": 2.0902862774008213e-12,
+          "validation.ours.median_theta": 7.403744284317781e-12,
+          "validation.dual.mean_match": 5.943023850818463e-13,
+          "validation.dual.mean_cross_object": 9.123812816369536e-13,
+          "validation.dual.margin": 1.5067114222944156e-12,
+          "validation.dual.median_theta": 6.685763054292693e-13,
+          "validation_naming.ours.mrr": 2.132491749087806e-07
+        }
+      },
+      "4": {
+        "generic_validation_sha256": "f1d81ac38985e6e36e4859adb0b9e022719a011d5c5161aab3fd5411e4d79081",
+        "public_fit_receipt_sha256": "b27b9158b1478d0d5eac0929bb49cf20f76aa768a1294553db8ae9d99558de5e",
+        "public_fit_replay_sha256": "47316701380dbbfffd2f2d120fb307da7084c773e0a30fbf201a87860b79cd59",
+        "changed_fields_absolute_difference": {}
+      }
+    }
+  }
+}

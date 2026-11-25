@@ -4,6 +4,8 @@
 
 One participant viewed each photograph 80 times. The fixed sheet includes every twentieth stimulus in archive order. It shows how scaling the EEG-derived visual condition changes the generated object and what happens when another stimulus supplies that condition. [Generated images](official_repeat_sub04_r80.jpg) · [Stimulus identities, prompts and scoring](../../../docs/OFFICIAL_REPEAT_IMAGES.md)
 
+A second fixed sheet compares the personal visual decoder, the adapted ATM head, their equal blend and the exchanged blend. The first three share the word and seed for each stimulus. [Two R80 decoders](official_dual_r80.jpg) · [Paired study](../../../docs/DUAL_R80.md)
+
 ## Same-photo comparisons across one, three and nine viewers
 
 Each sheet includes the lowest archive row of every object in its panel. The ordinary comparison uses the same decoded word and eight support photographs in all three conditions. The guidance comparisons show how increasing the influence of the nine viewers' photo-specific EEG affects generation. [Registered panel](fixed_word_dose_registered.jpg) · [Replication panel](fixed_word_dose_replicate.jpg) · [Registered panel with guidance](fixed_word_dose_registered_guided.jpg) · [Replication panel with guidance](fixed_word_dose_replicate_guided.jpg) · [Image-selection rule and results](../../../docs/FIXED_WORD_PHOTO_DOSE.md)

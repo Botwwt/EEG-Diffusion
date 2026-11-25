@@ -27,7 +27,7 @@ arms=(r4 r80 wrong)
 arm=${arms[$SLURM_ARRAY_TASK_ID]}
 selected=("$arm" "${arm}_visual")
 if [[ $series == global_angle ]]; then selected=("${arm}_visual"); fi
-if [[ $series == global_named ]]; then selected=("$arm"); fi
+if [[ $series == global_named || $series == dual_r80 ]]; then selected=("$arm"); fi
 "$py" code/render_official_repeat_images.py render --archive "$ARCHIVE" \
   --adapter "$src/official/ip-adapter_sdxl_vit-h.safetensors" --dictionary "$src/official/dictionary.csv" \
   --design design.json --packet packet.npz --out render --arms "${selected[@]}"
