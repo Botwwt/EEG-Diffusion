@@ -1,0 +1,57 @@
+{
+  "image_design_sha256": "83e7551af17a3425233888d16942fc400740615f44dc58fcc576a09a74a72a5f",
+  "generator_sha256": "fc50b3ba98898b03c67099ee5f9b67401a5c5d8be8bb7fdecea96f2647c85617",
+  "blind_image_manifest_sha256": "91ab6c14ec1b446f121b1807e9c31362f7ac661ac652aa2e6ebbe9338dafabb2",
+  "old_oracle_summary_sha256": "1f2ced74e5aa5c82b41539edad58cb822cda33f07a752d6744422f5350b8a8e5",
+  "synthetic_tests": {
+    "identity_rgb_exact": true,
+    "centering_error_before": 0.0736565292614138,
+    "centering_error_after": 0.014320438961977208,
+    "angle_error_before_degrees": 20.04798442613405,
+    "angle_error_after_degrees": 3.9601221532606163,
+    "edge_fixtures": 3,
+    "fixed_background_edge_exact": true
+  },
+  "participants": {
+    "sub-04": {
+      "queries": 120,
+      "generated_jpegs": 480,
+      "settings_sha256": "847bd728f4b5246b8f91478c73ceb26d88c137bfdeb648935403b191a23414c8",
+      "pose_packet_sha256": "f834cec3def2ce46ce6de62ba559703451b996344d8aaa8da5e4ffe383b5375d",
+      "source_settings_sha256": "ddb3491dd08e1885d747db69f0c856430a38192565a66faab08933377502e158",
+      "source_h14_packet_sha256": "facbb9afee9c536bdaabf3dc8aab731423ffcace0cb5eb6626623e363d3c540d",
+      "distinct_donor_rows": 107,
+      "different_own_wrong_jpegs": 106,
+      "different_own_prior_jpegs": 118,
+      "border_limited_own": 20,
+      "identity_own": 2
+    },
+    "sub-05": {
+      "queries": 120,
+      "generated_jpegs": 480,
+      "settings_sha256": "dbcc7a7fb06015638c705d0b0f3b0eaba5bb34b13137aa9a76da6a8e86047c8b",
+      "pose_packet_sha256": "54115450803cea7dc068f9f90d85e208ab78ed676eb7737728d10090f6c98fd3",
+      "source_settings_sha256": "8c3f8ab3496f5d224fc9d47e245d14ebb99063c93beb9f3040ec3a98b2c149ae",
+      "source_h14_packet_sha256": "7bbe6f13b5532f02b407a5525f41c85a114fa6ce972a49c4df764a9b1c758a4d",
+      "distinct_donor_rows": 108,
+      "different_own_wrong_jpegs": 103,
+      "different_own_prior_jpegs": 114,
+      "border_limited_own": 29,
+      "identity_own": 5
+    },
+    "sub-01": {
+      "queries": 120,
+      "generated_jpegs": 480,
+      "settings_sha256": "99a5f073131a4de8128052dd42e8afeef13d79c10543122ebee4d4340486bb78",
+      "pose_packet_sha256": "c37dcbfc9930c43aa03851b875c6d7ea371c78580741942731ede255493f312c",
+      "source_settings_sha256": "ef9cd193604e10c0fe4b3f3066193257b5b4bb43e915bb9efc7cd17838522947",
+      "source_h14_packet_sha256": "a610060ca5062cd585b40183af5d6d2878cc0807d7d912c0c66f57a52c14c5fc",
+      "distinct_donor_rows": 102,
+      "different_own_wrong_jpegs": 96,
+      "different_own_prior_jpegs": 113,
+      "border_limited_own": 51,
+      "identity_own": 10
+    }
+  },
+  "units": "Each participant supplies four physical readings per queried photograph and 120 matched source JPEGs. Nonidentical JPEGs compare matching recipient rows and the same fixed source and seed. A matrix fraction below one reduces a requested rotation/stretch to keep the visible foreground inside the image. The center can also be limited."
+}

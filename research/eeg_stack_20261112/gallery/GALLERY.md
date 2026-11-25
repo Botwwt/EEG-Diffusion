@@ -6,6 +6,8 @@ Each of the twelve tiles per person uses the first archive row of one object. Ea
 
 The trial-encoder comparisons show both models at the same row and noise seed for every object. [First participant, sub-04](personal12_trial_sub04.jpg) · [Replication, sub-05](personal12_trial_sub05.jpg) · [Replication, sub-01](personal12_trial_sub01.jpg)
 
+The foreground-pose sheets use the same fixed row for each object and show the unedited generated image beside three pose edits using the eight-support mean, query EEG and exchanged EEG. [Sub-04](pose_personal12_sub-04.jpg) · [Sub-05](pose_personal12_sub-05.jpg) · [Sub-01](pose_personal12_sub-01.jpg) · [Foreground measurements and independent image scores](../../../docs/PERSONAL12_POSE_EVALUATION.md)
+
 ## Single-person reconstruction on 200 unfamiliar objects
 
 One participant viewed each photograph 80 times. The fixed sheet includes every twentieth stimulus in archive order. It shows how scaling the EEG-derived visual condition changes the generated object and what happens when another stimulus supplies that condition. [Generated images](official_repeat_sub04_r80.jpg) · [Stimulus identities, prompts and scoring](../../../docs/OFFICIAL_REPEAT_IMAGES.md)
