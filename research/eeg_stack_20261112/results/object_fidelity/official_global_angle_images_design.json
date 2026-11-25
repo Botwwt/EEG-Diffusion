@@ -1,0 +1,9 @@
+{
+  "participant": "sub-04",
+  "packet_sha256": "1eb435589733c72cc0f8ac0d2cd139e7310d60e9475841eb985f4e7559ae743d",
+  "calibration_design_sha256": "bc9ceb7bf41dd309683a4c2bd87bbc91c02d4eb17557cef073b9287c923dcd81",
+  "arms": ["r4_visual", "r80_visual", "wrong_visual"],
+  "source": "Same 200 official stimuli, physical trials, noise seeds, radius, four diffusion steps, independent 1854-way naming scorer and generic prompt as the native repeat-budget render. Global angle gain was selected for follow-up after the generic 640-photo result. This development comparison measures the image effect of that decision.",
+  "primary": "Full-dictionary CLIP-L/14 object naming, paired by recipient row against each corresponding native JPEG. Also report matched R80 against exchanged R80 and R4, and all DINOv2 and pixel outcomes. Each fixed gallery shows every twentieth official query.",
+  "controls": "Use general prompt A photograph. in all arms. Exchange R80 direction using np.roll(arange(200),67) and preserve recipient seed 923761+row. The official benchmark includes one photograph per object."
+}

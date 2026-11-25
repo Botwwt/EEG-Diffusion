@@ -1,0 +1,525 @@
+{
+  "subject": "sub-04",
+  "official_photos": 200,
+  "official_photos_per_object": 1,
+  "budgets": [
+    4,
+    8,
+    16,
+    32,
+    80
+  ],
+  "interpretation": "Word predictions search all 1854 categories. Official 200-name and actual-image galleries enter only scoring. One picture per official object cannot isolate within-object photo identity. Image-rendering outcomes are reported separately.",
+  "generic_selection": {
+    "held_objects": 128,
+    "photos": 1280,
+    "fitted_objects": 884,
+    "choice": "joint_32",
+    "chosen": {
+      "n": 1280,
+      "top1": 13,
+      "top5": 51,
+      "top10": 90,
+      "median_rank": 209.0,
+      "mrr": 0.03284900717796069
+    },
+    "standard_ridge": {
+      "n": 1280,
+      "top1": 4,
+      "top5": 28,
+      "top10": 57,
+      "median_rank": 314.0,
+      "mrr": 0.020023444210667922
+    }
+  },
+  "official_top_k_counts_by_generic_training_objects": {
+    "512": {
+      "all1854_top1": [
+        1,
+        2,
+        2,
+        3,
+        7
+      ],
+      "all1854_top5": [
+        4,
+        7,
+        12,
+        15,
+        18
+      ],
+      "wrong1854_top1": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "wrong1854_top5": [
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "names200_top1": [
+        8,
+        14,
+        19,
+        24,
+        24
+      ],
+      "photo200_top1": [
+        19,
+        29,
+        28,
+        40,
+        43
+      ],
+      "wrong_photo200_top1": [
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "grand_voltage_mean1854_top1": [
+        1,
+        1,
+        2,
+        2,
+        3
+      ]
+    },
+    "1012": {
+      "all1854_top1": [
+        0,
+        1,
+        4,
+        5,
+        6
+      ],
+      "all1854_top5": [
+        6,
+        12,
+        15,
+        16,
+        19
+      ],
+      "wrong1854_top1": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "wrong1854_top5": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "names200_top1": [
+        13,
+        20,
+        20,
+        21,
+        27
+      ],
+      "photo200_top1": [
+        22,
+        37,
+        40,
+        55,
+        65
+      ],
+      "wrong_photo200_top1": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "grand_voltage_mean1854_top1": [
+        0,
+        2,
+        2,
+        3,
+        5
+      ]
+    }
+  },
+  "denominator_per_budget": 200,
+  "r80_released_sub04_atm": {
+    "full1854_direct_text": {
+      "n": 200,
+      "top1": 2,
+      "top5": 8,
+      "top10": 16,
+      "median_rank": 150.0,
+      "mrr": 0.036498766157714205
+    },
+    "official200_names": {
+      "n": 200,
+      "top1": 16,
+      "top5": 51,
+      "top10": 75,
+      "median_rank": 17.0,
+      "mrr": 0.17469923297866616
+    },
+    "eval_only_actual_image_200": {
+      "n": 200,
+      "top1": 65,
+      "top5": 131,
+      "top10": 158,
+      "median_rank": 3.0,
+      "mrr": 0.4685491776682772
+    }
+  },
+  "r80_standard_ridge": {
+    "full1854": {
+      "n": 200,
+      "top1": 0,
+      "top5": 10,
+      "top10": 19,
+      "median_rank": 124.0,
+      "mrr": 0.037605683935492275
+    },
+    "official200_names": {
+      "n": 200,
+      "top1": 11,
+      "top5": 52,
+      "top10": 76,
+      "median_rank": 17.0,
+      "mrr": 0.16249127551925008
+    },
+    "eval_only_actual_image_200": {
+      "n": 200,
+      "top1": 39,
+      "top5": 90,
+      "top10": 114,
+      "median_rank": 7.5,
+      "mrr": 0.3147977438015963
+    }
+  },
+  "r80_related_category_exploratory": {
+    "definition": "Scoring only, after the full-vocabulary inference freeze. For each official object keep other official objects sharing any manually assigned THINGS broad category. Exclude missing-category or singleton menus. These are different object identities, each with a single photograph.",
+    "chosen": {
+      "names": {
+        "n": 194,
+        "top1_credit": 61.0,
+        "expected_random_hits": 13.858395196882636,
+        "median_options": 20.5,
+        "min_options": 2,
+        "max_options": 84
+      },
+      "eval_only_actual_images": {
+        "n": 194,
+        "top1_credit": 96.0,
+        "expected_random_hits": 13.858395196882636,
+        "median_options": 20.5,
+        "min_options": 2,
+        "max_options": 84
+      }
+    },
+    "released_atm": {
+      "names": {
+        "n": 194,
+        "top1_credit": 44.0,
+        "expected_random_hits": 13.858395196882636,
+        "median_options": 20.5,
+        "min_options": 2,
+        "max_options": 84
+      },
+      "eval_only_actual_images": {
+        "n": 194,
+        "top1_credit": 95.0,
+        "expected_random_hits": 13.858395196882636,
+        "median_options": 20.5,
+        "min_options": 2,
+        "max_options": 84
+      }
+    }
+  },
+  "official_paired_differences": {
+    "intervals": "10,000 percentile bootstrap draws of 200 paired object/stimulus identities, seed 260543. Conditional on this one person and the registered repeat permutation. Differences are fractions.",
+    "full1854_r80_minus_atm_text": {
+      "top1": {
+        "n": 200,
+        "difference": 0.02,
+        "ci95": [
+          -0.005,
+          0.05
+        ],
+        "gained": 6,
+        "lost": 2
+      },
+      "top5": {
+        "n": 200,
+        "difference": 0.055,
+        "ci95": [
+          0.01,
+          0.1
+        ],
+        "gained": 17,
+        "lost": 6
+      }
+    },
+    "full1854_r80_minus_r4": {
+      "top1": {
+        "n": 200,
+        "difference": 0.03,
+        "ci95": [
+          0.01,
+          0.055
+        ],
+        "gained": 6,
+        "lost": 0
+      },
+      "top5": {
+        "n": 200,
+        "difference": 0.065,
+        "ci95": [
+          0.02,
+          0.11
+        ],
+        "gained": 18,
+        "lost": 5
+      }
+    },
+    "full1854_r80_minus_ridge": {
+      "top1": {
+        "n": 200,
+        "difference": 0.03,
+        "ci95": [
+          0.01,
+          0.055
+        ],
+        "gained": 6,
+        "lost": 0
+      },
+      "top5": {
+        "n": 200,
+        "difference": 0.045,
+        "ci95": [
+          0.0,
+          0.09
+        ],
+        "gained": 16,
+        "lost": 7
+      }
+    },
+    "full1854_r80_minus_wrong": {
+      "top1": {
+        "n": 200,
+        "difference": 0.03,
+        "ci95": [
+          0.01,
+          0.055
+        ],
+        "gained": 6,
+        "lost": 0
+      },
+      "top5": {
+        "n": 200,
+        "difference": 0.09,
+        "ci95": [
+          0.05,
+          0.135
+        ],
+        "gained": 19,
+        "lost": 1
+      }
+    },
+    "names200_r80_minus_atm": {
+      "n": 200,
+      "difference": 0.055,
+      "ci95": [
+        0.0,
+        0.11
+      ],
+      "gained": 21,
+      "lost": 10
+    },
+    "names200_r80_minus_r4": {
+      "n": 200,
+      "difference": 0.07,
+      "ci95": [
+        0.025,
+        0.115
+      ],
+      "gained": 19,
+      "lost": 5
+    },
+    "actual_image200_r80_minus_atm": {
+      "n": 200,
+      "difference": 0.0,
+      "ci95": [
+        -0.075,
+        0.075
+      ],
+      "gained": 28,
+      "lost": 28
+    },
+    "actual_image200_r80_minus_r4": {
+      "n": 200,
+      "difference": 0.215,
+      "ci95": [
+        0.145,
+        0.285
+      ],
+      "gained": 50,
+      "lost": 7
+    }
+  },
+  "native_h14_generic": {
+    "n": 1280,
+    "training_classes": 884,
+    "held_generic_classes": 128,
+    "actual_photo_cosine": 0.6334234530712888,
+    "shuffled_photo_cosine": 0.5933419030000385,
+    "median_direction_cosine_to_train_mean": 0.9623729479076617,
+    "actual_photo_top1_within_10_per_held_generic_class": 159,
+    "mean4_unit_to_h14": "Frozen direct physical-to-native 1024-dimensional ridge companion, using 1280 held generic training photographs for verification. These generic objects have ten distinct pictures each."
+  },
+  "native_h14_official_r80": {
+    "note": "Raw native 1024-dimensional ridge condition before IP-Adapter. This differs from the selected 32-dimensional CCA-space retrieval metric.",
+    "raw_cosine_to_own_original": 0.6503922170441777,
+    "raw_cosine_to_shuffled_original": 0.6093444451822417,
+    "raw_cosine_eval_only_official200": {
+      "n": 200,
+      "top1": 4,
+      "top5": 13,
+      "top10": 30,
+      "median_rank": 63.5,
+      "mrr": 0.0629273320316645
+    }
+  },
+  "generic_angle": {
+    "fitted_objects": 884,
+    "calibration_objects": 64,
+    "validation_objects": 64,
+    "photos_per_object": 10,
+    "arms": {
+      "native": {
+        "within_class_pairwise_win": 0.5430555555555555,
+        "within_class_top1": 83.0,
+        "raw_target_cosine": 0.6313051346233358,
+        "wrong_same_class_cosine": 0.6231676966978273,
+        "median_angle_radians": 0.27947075727407217
+      },
+      "global": {
+        "within_class_pairwise_win": 0.6331597222222222,
+        "within_class_top1": 127.0,
+        "raw_target_cosine": 0.4888602333788543,
+        "wrong_same_class_cosine": 0.46609358174036847,
+        "median_angle_radians": 0.9075638742789305
+      },
+      "predictable": {
+        "within_class_pairwise_win": 0.5567708333333333,
+        "within_class_top1": 88.0,
+        "raw_target_cosine": 0.6296499747242003,
+        "wrong_same_class_cosine": 0.6184756722755009,
+        "median_angle_radians": 0.3504557095515243
+      }
+    },
+    "predictable_minus": {
+      "native": {
+        "within_pair": {
+          "delta": 0.013715277777777778,
+          "ci95": [
+            0.0076388888888888895,
+            0.019791666666666662
+          ]
+        },
+        "top1": {
+          "delta": 0.0078125,
+          "ci95": [
+            -0.00625,
+            0.021875000000000002
+          ]
+        },
+        "raw_cosine": {
+          "delta": -0.0016551598991355685,
+          "ci95": [
+            -0.0026569790662443193,
+            -0.0006874390373669589
+          ]
+        }
+      },
+      "global": {
+        "within_pair": {
+          "delta": -0.07638888888888888,
+          "ci95": [
+            -0.09027777777777778,
+            -0.06232638888888889
+          ]
+        },
+        "top1": {
+          "delta": -0.0609375,
+          "ci95": [
+            -0.08906250000000002,
+            -0.034375
+          ]
+        },
+        "raw_cosine": {
+          "delta": 0.14078974134534594,
+          "ci95": [
+            0.13425722680378524,
+            0.14755943457858206
+          ]
+        }
+      }
+    },
+    "predictable_passed_gate": false,
+    "global_minus_native": {
+      "within_pair": {
+        "delta": 0.09010416666666668,
+        "ci95": [
+          0.0734375,
+          0.10711805555555556
+        ]
+      },
+      "top1": {
+        "delta": 0.06875,
+        "ci95": [
+          0.0375,
+          0.103125
+        ]
+      },
+      "raw_cosine": {
+        "delta": -0.1424449012444815,
+        "ci95": [
+          -0.14970192294843546,
+          -0.13541564252348845
+        ]
+      }
+    },
+    "interval_unit": "Paired whole-object bootstrap, 10000 draws of 64 generic classes. Rank differences are fractions, raw cosine has its own units.",
+    "selection_history": "The generic 128 had previously been used for choosing the original semantic model rank. Gain and cap use only 64 calibration objects. The decision to render global gain followed inspection of the disjoint 64-object generic comparison."
+  },
+  "global_packet": {
+    "sha256": "1eb435589733c72cc0f8ac0d2cd139e7310d60e9475841eb985f4e7559ae743d",
+    "gain": 3.2474376826288287,
+    "cap_radians": 1.061957199384292,
+    "design_sha256": "bc9ceb7bf41dd309683a4c2bd87bbc91c02d4eb17557cef073b9287c923dcd81",
+    "unit_center_sha256": "1bc5f45413985b1d61a4e8f2689e60eb5473a40a7bee1a27250249a2cc9ef678"
+  },
+  "source_hashes": {
+    "original_physical_test_sha256": "cba83bc49213f8783d29e1717e63c0b429967601ea417adf6671dbfd2336c03e",
+    "extracted_eeg_sha256": "67778be2a22427321ff2ac57a4545af9d8a5bd904f9a066f0e0d4ebd3418bade",
+    "source_reports_sha256": {
+      "design": "3631b4228d6ca550f0fe7d8e787b9c1e54a71011533cc106c255fb856b6243e6",
+      "selection": "d1bee484c5c8d676e9fe8b64e6871009f39adde0e33244b97e975833aa8b434a",
+      "native_generic_validation": "a7f170dca685b9e17c15d2003d6a805145e64c56542c50de0b71adb669798e34",
+      "inference_receipt": "ccf8a29d70a5c34f6bf0608b1d4df46295c409439191aa62c7bf640775a46f48",
+      "evaluation": "fec56d65b615f80f5e2d09a6f22020f252622fb0f9a5c94a0b23f9921825c75a",
+      "angles/design": "30e37b34380c205335ec31a76192b081b5f015c1bfe4634b02710348c481609f",
+      "angles/calibration": "76517c337445aeefae23937b97e78da47af56a8c77067ff67c524fde3d23655b",
+      "angles/validation": "314cf2c183bc536087f082ee826f3a9c616ebccf33ce666ae692d69afb4456aa",
+      "sub-04/render_packet": "1bf3f9a8d8b0a6bdd70f2114438abc03f96c144f00fbc28633c8c44c4a163c49",
+      "sub-04/global_angle_packet": "427b036f0d0bfb2772fa77faf8657bb1c2145c25df96ae8d94871faf59ff6eae"
+    }
+  }
+}

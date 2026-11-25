@@ -1,0 +1,91 @@
+{
+  "study": "Same-stimulus photo residual dose on two previously studied development panels. The nested people and all settings are fixed. No new population or prospective test is claimed.",
+  "panels": [
+    "registered",
+    "replicate"
+  ],
+  "nested_contributors": {
+    "single-1": [
+      "sub-04"
+    ],
+    "cohort-3": [
+      "sub-04",
+      "sub-05",
+      "sub-01"
+    ],
+    "cohort-9": [
+      "sub-04",
+      "sub-05",
+      "sub-01",
+      "sub-02",
+      "sub-06",
+      "sub-07",
+      "sub-08",
+      "sub-09",
+      "sub-10"
+    ]
+  },
+  "physical_repetitions_per_person": 4,
+  "word_task": "Use the previously frozen sub-04 512-object posterior R4 object choice, eight support rows, donor map, uniform H14 vector and individual angular magnitude. Other observers never vote on the word. The query EEG is available separately from every contributor for the very same photograph.",
+  "visual_fit": "Each person's R4 (17 posterior electrodes, the original 1003 features) is fit on exactly the same original 128 generic objects, 10 photos each. Standardize within-object demeaned EEG, map to within-object demeaned unit H14 features with the fixed original ridge 2.0 and no visual whitening. No selection in these data.",
+  "pooling": "For each predicted word, subtract the mean predicted EEG embedding of its eight support rows, project to the tangent of the frozen support prior, normalize each participant's tangent, normalize the equal sum. Every dose uses the old 512 sub-04 recipient angle and unit prior. The wrong arm retains that recipient angle, using the frozen wrong row's cohort tangent from the same word and fold. Uniform is byte-identical at every dose. The old single-person 512 head is reported as a separate reference.",
+  "primary": [
+    "All 240 queries: top-1 raw cosine of each unit H14 condition against the ten original photos of its true object. The decoder only gets the predicted word. Eight class support images appear in the ten-way evaluation gallery whenever that word is correct.",
+    "Two-way summed cosine assignment for a same-true-object, same-fold pair, conditional on both frozen words being correct. Ties split equally."
+  ],
+  "secondary": "All ten-way hits restricted to correct predicted words; ten-way when subtracting the same frozen unit support prior from both decision and candidate (zero residual ties); strict two-way restricted to pairs sharing both recorded sessions for all nine; strict two-way where the frozen donors are the two actual partners; independently classified single members of strict pairs after subtracting the prior.",
+  "comparisons": "Report 1,3,9 observation groups plus native512 reference; same-word/fold wrong and uniform controls. Two-sided paired percentile 95% CI on nine minus one, nine minus three, three minus one and nine minus native, uniform and wrong. Resample whole object clusters jointly across models and within each panel for combined statistics, 10,000 draws, seed 261125.",
+  "acquisition": "Fixed participants, 4, 12 or 36 actual presentations per photo. Panel photos and labels were used historically; this is a predeclared new comparison on development stimuli. Different people view the same stimuli, so do not count people or repetitions as independent test cases.",
+  "setup": "Each arm uses the same frozen four-step Turbo/IP protocol, 923761+original row, and radius from the original 32 generic image calibration. Only support embeddings are accessed at packet preparation. Score target photo embeddings only after every packet is frozen.",
+  "visual_sha256": "b8156300f59d058600fc9a2c9e1586c5fbd4a113f236031acc64c6511d56b432",
+  "sources": {
+    "generic_receipts": {
+      "sub-04": "568f94cf365f3a5f48a63ecf3b970ea4681e649b89fcfef08ca7b709e8e86755",
+      "sub-05": "af1942bacf2f200b2bac950424ce08b3dc9d465b13f675fa76c639feeacfe8a4",
+      "sub-01": "a3023e360a693499996693d7d76b74743f13fe37ad3cff6b9e546d7978e530d3",
+      "sub-02": "08a2498f62b41cec8e060097b5bc6355c64f00f7e1e89200284fa79bb5e4f7e0",
+      "sub-06": "b2730e6a9f4cac257a95baf14b869baac5fe636d1813fb8335113cea6f7b6207",
+      "sub-07": "8efbdb9b67482b06a1c8924b1d302a147c6f43ed9981cba0457869775f63c110",
+      "sub-08": "7e4fd0c479414b03be6ccebe7001f07640c566d9faf57bfd1de544f90837ed6e",
+      "sub-09": "f3e2771ad63fbd2936e123bb7338a8cc026a7bc9c2886c967baa953698f3c420",
+      "sub-10": "617867152fb3fd9d48e9b18e685b9e2bae288bf1e8492c869acc9a1c995e3c5e"
+    },
+    "target_half_receipts": {
+      "sub-04": "e4de82831968c2306d69f032734c9f6bec9b3481b56ce9814aff9eae18c53217",
+      "sub-05": "a48948a76f9e7ff758079902069c0358b5231ad9c553c5c818ae2d37efff0876",
+      "sub-01": "2f7034b2af89b6764911483d3019a2be2f41791896cab8b9c597cb55c9b0060c",
+      "sub-02": "2cf4094a35e39b28b322886d67b18b197f5275efafc56e243e43e1630bc40ce4",
+      "sub-06": "b8dc8d960e6842f392545179db69f4e86bcc6d0c5c8aed07c311762db7600083",
+      "sub-07": "fff0ec75aea684a0423bfbefcce4c16b94020bd02305b3869a3bb2b7d4546c83",
+      "sub-08": "7d997a73822d5104fe680d6d0336947c4187a93d2e2f7f59b94bc9586434b8b5",
+      "sub-09": "0bf83bea6f7ab16d16aafb68529a792038d77b2247ddb7eb1ce7f3c033e7bb25",
+      "sub-10": "37af4217dadb207575234d43b8cd2ec0b5974cda2b49a1d355f42c2b65c5dfd4"
+    },
+    "target_full_receipts": {
+      "sub-04": "0abd7a129aacf3114bbe882caa81316e9d46fed8b03fcb50436203682b02687c",
+      "sub-05": "26d82e7d94e4f97e81789f87b1bee576d477ac5f49a43082885d009731d8af91",
+      "sub-01": "f2228f543ce5adaf23b25aa7a769e68b4f8d5823a2fb818a59764c68b5a92a94",
+      "sub-02": "63b832f47aee6445c6489e543ec7722dea8a24d87ac273eead8e76dc79caf683",
+      "sub-06": "3db2abb8c40c676a3577fbe868712bbd240aed0e3dd025ac3c8e5b2cd1eeece1",
+      "sub-07": "3eae0fa79c520bc012a1dd274b1c87d67d35cee68d2393b85863e74f5bc62273",
+      "sub-08": "aa588fcee89d98126ca196a9b7ffa613e785f564680302d8e037b14537387b04",
+      "sub-09": "1400c634968a9cd47bbe50fc063a97f24d8e239acea26b5cafd7dda5ffd1ebf5",
+      "sub-10": "d56cd1bf0bf2353f92d5c72aa5d176e5043246bc524ace1800a279f197432836"
+    },
+    "registration": {
+      "registered": "f623b24d73d0024c23642ffa0309ba05078f591b2d723770ac12a93459de327a",
+      "replicate": "d7646f9fcd7958818a26d6d82483316d75c42ee295dc77f545e48258741d452b"
+    },
+    "words": {
+      "registered": "957f5194ce8b4bb30961433279f1569114ea2c298d1ae8ce98319203828a5030",
+      "replicate": "37abc39480fbfa7b58ad9bfcabbb2235af2cc488e5e15ce6151bbeaabf33f92d"
+    },
+    "native_packets": {
+      "registered": "eb9555f55cce9e398ae8b8dfd0296b435d684989269bf96598603f14d4a6d909",
+      "replicate": "d6e134b65c43c9f7ff37518ad92823281ba6a97f3014361ee713022807c56078"
+    },
+    "prior_radius": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+    "angle_design": "f9c25a82cee35b5c3b87e7718e2a9244b6ef26c97033507d40c33941c3551c03",
+    "visual_selection": "914c9a527049783f23e25d1bdd2c3137e5fdd4ed69d18b1ce617853f9d53e79a"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "design_sha256": "bc9ceb7bf41dd309683a4c2bd87bbc91c02d4eb17557cef073b9287c923dcd81",
+  "original_packet_sha256": "214c21ee3c1c53e7d40927a536d9684b164e11fe9a94ec1c9e8d6ed1257a1983",
+  "packet_sha256": "1eb435589733c72cc0f8ac0d2cd139e7310d60e9475841eb985f4e7559ae743d",
+  "unit_center_sha256": "1bc5f45413985b1d61a4e8f2689e60eb5473a40a7bee1a27250249a2cc9ef678",
+  "center_encoding": "C-order float64 little endian, 1024 values",
+  "original_mean_sha256": "a6169aa2cf845871d6e2488f4b421b30304648215d0129f2273335956a34523d",
+  "direction_encoding": "C-order float32 little endian, 200 by 1024",
+  "scalar_radius": 21.945598602294922,
+  "gain": 3.2474376826288287,
+  "cap_radians": 1.061957199384292,
+  "directions": {
+    "r4": {
+      "input_unit_direction_sha256": "086fe832197dcad1dfe2808108f2604ee720ea4045c9523d0a489c45bc2b40a1",
+      "output_unit_direction_sha256": "f369e9fe7832dc6e2ae5ba76b32d9340f4965c20463cc6745a667b455b7a397f",
+      "original_median_theta": 0.2584646681559553,
+      "adjusted_median_theta": 0.8393479029978047,
+      "n_at_cap": 23
+    },
+    "r80": {
+      "input_unit_direction_sha256": "26d68ffa074936276ac4c904e797e525bd3e3ab4ab1b1f8df6ed711e6b6ad242",
+      "output_unit_direction_sha256": "adcf17f80b6456bdf20522753e45045d8d5487587f105305d074b14b742cc791",
+      "original_median_theta": 0.18905321337255715,
+      "adjusted_median_theta": 0.6139385291281105,
+      "n_at_cap": 4
+    }
+  }
+}

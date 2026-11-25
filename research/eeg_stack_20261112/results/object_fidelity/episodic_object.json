@@ -1,0 +1,374 @@
+{
+  "design_sha256": "ff20f2572ffb9371dd4f3756d65f146aee4bfee6b6589dc675af7639cbeda8bc",
+  "source_sha256": "293933ff79a20d2101a430f2892eb05307ea1e8a823a0abefa64773d0455443e",
+  "scope": "Developmental reuse of two previously scored menus, three individually trained and tested R4 participants. Bootstrap draws resample object identities shared across participants and preserve both menu-size strata.",
+  "checks": "Exact historical single-participant Fisher decisions for all 720 participant-photo queries; generic and both panel concept sets disjoint.",
+  "results": {
+    "generic_4": {
+      "objects": 96,
+      "queries_per_person": 960,
+      "people": [
+        "sub-04",
+        "sub-05",
+        "sub-01"
+      ],
+      "candidates": 4,
+      "hits": {
+        "sub-04": {
+          "native": 647,
+          "centered": 629,
+          "episodic": 645,
+          "training_sham": 42
+        },
+        "sub-05": {
+          "native": 514,
+          "centered": 520,
+          "episodic": 539,
+          "training_sham": 76
+        },
+        "sub-01": {
+          "native": 594,
+          "centered": 603,
+          "episodic": 616,
+          "training_sham": 55
+        }
+      },
+      "sums": {
+        "native": 1755,
+        "centered": 1752,
+        "episodic": 1800,
+        "training_sham": 173
+      },
+      "paired_episodic_minus": {
+        "native": {
+          "delta_accuracy": 0.015625,
+          "object_bootstrap_ci95": [
+            0.004166666666666667,
+            0.027430555555555555
+          ]
+        },
+        "centered": {
+          "delta_accuracy": 0.016666666666666666,
+          "object_bootstrap_ci95": [
+            0.005555555555555556,
+            0.027777777777777776
+          ]
+        },
+        "training_sham": {
+          "delta_accuracy": 0.5649305555555556,
+          "object_bootstrap_ci95": [
+            0.5270833333333333,
+            0.6017361111111111
+          ]
+        }
+      }
+    },
+    "generic_12": {
+      "objects": 96,
+      "queries_per_person": 960,
+      "people": [
+        "sub-04",
+        "sub-05",
+        "sub-01"
+      ],
+      "candidates": 12,
+      "hits": {
+        "sub-04": {
+          "native": 437,
+          "centered": 433,
+          "episodic": 454,
+          "training_sham": 7
+        },
+        "sub-05": {
+          "native": 305,
+          "centered": 295,
+          "episodic": 314,
+          "training_sham": 15
+        },
+        "sub-01": {
+          "native": 353,
+          "centered": 342,
+          "episodic": 369,
+          "training_sham": 12
+        }
+      },
+      "sums": {
+        "native": 1095,
+        "centered": 1070,
+        "episodic": 1137,
+        "training_sham": 34
+      },
+      "paired_episodic_minus": {
+        "native": {
+          "delta_accuracy": 0.014583333333333334,
+          "object_bootstrap_ci95": [
+            0.0038194444444444443,
+            0.025694444444444443
+          ]
+        },
+        "centered": {
+          "delta_accuracy": 0.02326388888888889,
+          "object_bootstrap_ci95": [
+            0.011111111111111112,
+            0.03576388888888889
+          ]
+        },
+        "training_sham": {
+          "delta_accuracy": 0.38298611111111114,
+          "object_bootstrap_ci95": [
+            0.34479166666666666,
+            0.4215277777777778
+          ]
+        }
+      }
+    },
+    "stress12": {
+      "objects": 12,
+      "queries_per_person": 120,
+      "people": [
+        "sub-04",
+        "sub-05",
+        "sub-01"
+      ],
+      "candidates": 12,
+      "hits": {
+        "sub-04": {
+          "native": 55,
+          "centered": 55,
+          "episodic": 56,
+          "training_sham": 0,
+          "wrong_eeg": 14
+        },
+        "sub-05": {
+          "native": 45,
+          "centered": 43,
+          "episodic": 46,
+          "training_sham": 3,
+          "wrong_eeg": 8
+        },
+        "sub-01": {
+          "native": 44,
+          "centered": 46,
+          "episodic": 45,
+          "training_sham": 1,
+          "wrong_eeg": 11
+        }
+      },
+      "sums": {
+        "native": 144,
+        "centered": 144,
+        "episodic": 147,
+        "training_sham": 4,
+        "wrong_eeg": 33
+      },
+      "paired_episodic_minus": {
+        "native": {
+          "delta_accuracy": 0.008333333333333333,
+          "object_bootstrap_ci95": [
+            -0.027777777777777776,
+            0.03888888888888889
+          ]
+        },
+        "centered": {
+          "delta_accuracy": 0.008333333333333333,
+          "object_bootstrap_ci95": [
+            -0.016666666666666666,
+            0.03333333333333333
+          ]
+        },
+        "training_sham": {
+          "delta_accuracy": 0.3972222222222222,
+          "object_bootstrap_ci95": [
+            0.2916666666666667,
+            0.5083333333333333
+          ]
+        },
+        "wrong_eeg": {
+          "delta_accuracy": 0.31666666666666665,
+          "object_bootstrap_ci95": [
+            0.225,
+            0.4166666666666667
+          ]
+        }
+      }
+    },
+    "new_three4": {
+      "objects": 12,
+      "queries_per_person": 120,
+      "people": [
+        "sub-04",
+        "sub-05",
+        "sub-01"
+      ],
+      "candidates": 4,
+      "hits": {
+        "sub-04": {
+          "native": 79,
+          "centered": 83,
+          "episodic": 87,
+          "training_sham": 6,
+          "wrong_eeg": 18
+        },
+        "sub-05": {
+          "native": 67,
+          "centered": 68,
+          "episodic": 72,
+          "training_sham": 4,
+          "wrong_eeg": 24
+        },
+        "sub-01": {
+          "native": 87,
+          "centered": 84,
+          "episodic": 88,
+          "training_sham": 3,
+          "wrong_eeg": 17
+        }
+      },
+      "sums": {
+        "native": 233,
+        "centered": 235,
+        "episodic": 247,
+        "training_sham": 13,
+        "wrong_eeg": 59
+      },
+      "paired_episodic_minus": {
+        "native": {
+          "delta_accuracy": 0.03888888888888889,
+          "object_bootstrap_ci95": [
+            0.005555555555555556,
+            0.075
+          ]
+        },
+        "centered": {
+          "delta_accuracy": 0.03333333333333333,
+          "object_bootstrap_ci95": [
+            -0.013888888888888888,
+            0.07222222222222222
+          ]
+        },
+        "training_sham": {
+          "delta_accuracy": 0.65,
+          "object_bootstrap_ci95": [
+            0.5472222222222223,
+            0.7388888888888889
+          ]
+        },
+        "wrong_eeg": {
+          "delta_accuracy": 0.5222222222222223,
+          "object_bootstrap_ci95": [
+            0.4361111111111111,
+            0.6111111111111112
+          ]
+        }
+      }
+    }
+  },
+  "combined_episodic_minus": {
+    "native": {
+      "delta_accuracy": 0.02361111111111111,
+      "panel_stratified_object_bootstrap_ci95": [
+        0.0,
+        0.04722222222222222
+      ]
+    },
+    "centered": {
+      "delta_accuracy": 0.020833333333333332,
+      "panel_stratified_object_bootstrap_ci95": [
+        -0.005555555555555556,
+        0.044444444444444446
+      ]
+    },
+    "training_sham": {
+      "delta_accuracy": 0.5236111111111111,
+      "panel_stratified_object_bootstrap_ci95": [
+        0.45,
+        0.5958333333333333
+      ]
+    },
+    "wrong_eeg": {
+      "delta_accuracy": 0.41944444444444445,
+      "panel_stratified_object_bootstrap_ci95": [
+        0.35694444444444445,
+        0.4861111111111111
+      ]
+    }
+  },
+  "advance": false,
+  "receipts": {
+    "sub-04": {
+      "subject": "sub-04",
+      "design_sha256": "ff20f2572ffb9371dd4f3756d65f146aee4bfee6b6589dc675af7639cbeda8bc",
+      "source_sha256": "293933ff79a20d2101a430f2892eb05307ea1e8a823a0abefa64773d0455443e",
+      "training_receipt_sha256": "5814b21bf3fe3a0b6fe46c3db7cb11025029057a8044deb5fd25e64b47390bd0",
+      "model_sha256": "38c7576b5a8976f674e34633e69fddc31ddceadb4379354b996fde8302ac381f",
+      "panels": {
+        "stress12": {
+          "compact_sha256": "3c092f32df53e329d35c8c7c1666a397d66db50bb8978168f725eb51f506a43c",
+          "original_predictions_sha256": "431b0b3af72458e5505e3eb829d0a7fe24cead10618576c01d503d16f3811973",
+          "exact_original_decisions": 120
+        },
+        "new_three4": {
+          "compact_sha256": "32f971485143b1f84ac492e6434068be926e88be56368c5a73034e0e4558ed18",
+          "original_predictions_sha256": "ad93eda49b3e9899b6ae6ed889a76d6d4204a43b0f57733a2ec9b4295335dc61",
+          "exact_original_decisions": 120
+        }
+      },
+      "prediction_sha256": {
+        "stress12": "3f884175634a816ff160e0f0fedb1667f03e222bc3a8041807ec143cafcaf505",
+        "new_three4": "78ed789b9982017a25f12dd4bd72c4a993b55828611e07e3afa544dc29b7c7af",
+        "generic_4": "581d8e4fbc9e4ba184379598fc39afac6ca3bcc9f88909a9cb30542761f2cae8",
+        "generic_12": "d5efe7ac76299b515c58fc6d54c2d74e239e17a7e151f39084b9b6aa65eef133"
+      }
+    },
+    "sub-05": {
+      "subject": "sub-05",
+      "design_sha256": "ff20f2572ffb9371dd4f3756d65f146aee4bfee6b6589dc675af7639cbeda8bc",
+      "source_sha256": "293933ff79a20d2101a430f2892eb05307ea1e8a823a0abefa64773d0455443e",
+      "training_receipt_sha256": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f",
+      "model_sha256": "bc7324541a59439c537a5e7d05a7974b168e9d39170b631996b68fa3d1f8cb33",
+      "panels": {
+        "stress12": {
+          "compact_sha256": "c8be296f8d7456cfbadee0a9aa3f7db8ef958586fc393fdd3812a1b361149346",
+          "original_predictions_sha256": "431b0b3af72458e5505e3eb829d0a7fe24cead10618576c01d503d16f3811973",
+          "exact_original_decisions": 120
+        },
+        "new_three4": {
+          "compact_sha256": "964fe63aef2f64a2d3429fde2d68438c4298e62286c8f851d6484d9e73a57d6c",
+          "original_predictions_sha256": "ad93eda49b3e9899b6ae6ed889a76d6d4204a43b0f57733a2ec9b4295335dc61",
+          "exact_original_decisions": 120
+        }
+      },
+      "prediction_sha256": {
+        "stress12": "63ddcbf56b0243bd96e6c89ee138cdf469953f286e9c83b88cb9ce4df783034d",
+        "new_three4": "c24670fc0f4337b6dd5d03e987e8b79241aa9ab1629d0f7560724097a4e0dac2",
+        "generic_4": "bf1a34137a56bc5bea2db0269f0e3be2ebec2c0cd720d5cb55b524020d633c0b",
+        "generic_12": "cba832eaeeb938e6b1c867d1f26d9400dd8a75a6f3decfc33454fcc45ed715cd"
+      }
+    },
+    "sub-01": {
+      "subject": "sub-01",
+      "design_sha256": "ff20f2572ffb9371dd4f3756d65f146aee4bfee6b6589dc675af7639cbeda8bc",
+      "source_sha256": "293933ff79a20d2101a430f2892eb05307ea1e8a823a0abefa64773d0455443e",
+      "training_receipt_sha256": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9",
+      "model_sha256": "cbc3998bb34556f6f7f9ba4699a50fa3a7352d5454bc06472cd56f6677fa0c28",
+      "panels": {
+        "stress12": {
+          "compact_sha256": "b8bfc6752a650bbeace36ce758d937d8e598a69683390e39e6ccb1a6a2b6a18b",
+          "original_predictions_sha256": "431b0b3af72458e5505e3eb829d0a7fe24cead10618576c01d503d16f3811973",
+          "exact_original_decisions": 120
+        },
+        "new_three4": {
+          "compact_sha256": "e9cd111d730cee17269a7a40562ade510845c7906a8aa72469a1b904341cede7",
+          "original_predictions_sha256": "ad93eda49b3e9899b6ae6ed889a76d6d4204a43b0f57733a2ec9b4295335dc61",
+          "exact_original_decisions": 120
+        }
+      },
+      "prediction_sha256": {
+        "stress12": "28dfb278e6e81c172dd8264f7985ec717580967bcc285fb42c617e8ee38b6dd3",
+        "new_three4": "bec25366aaf35617b004fd884fc01150ba96a1e3dadfee2a4be7c86c36515bc7",
+        "generic_4": "9e044784b17e091a4f6e24425ba31c6fa02fa598051a20a14b08532df4422ba1",
+        "generic_12": "e449c22ce1758905b4ae5c8d309f25c60f3188e547db063d5160ca0c5f0011cf"
+      }
+    }
+  }
+}
