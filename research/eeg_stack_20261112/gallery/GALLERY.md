@@ -4,6 +4,8 @@
 
 Sub-04 viewed 35 primary objects in four session-matched twelve-object menus. Each sheet shows both independently generated images for the smallest original row of every candidate, including supplemental objects and classification errors. [Sessions 1 and 3](fresh_mix_mix13.jpg) · [Sessions 1 and 4](fresh_mix_mix14.jpg) · [Sessions 2 and 3](fresh_mix_mix23.jpg) · [Sessions 2 and 4](fresh_mix_mix24.jpg) · [Scores on all 960 generated JPEGs](../../../docs/FRESH_MIX_IMAGES.md)
 
+Sub-05 and sub-01 saw the same primary photographs in independently defined session-matched menus. Each sheet shows the original and expanded models' generated images for the lowest row of every object. [Sub-05 sessions 1+3](fresh_people_sub-05_mix13.jpg) · [1+4](fresh_people_sub-05_mix14.jpg) · [2+3](fresh_people_sub-05_mix23.jpg) · [2+4](fresh_people_sub-05_mix24.jpg). [Sub-01 sessions 1+3](fresh_people_sub-01_mix13.jpg) · [1+4](fresh_people_sub-01_mix14.jpg) · [2+3](fresh_people_sub-01_mix23.jpg) · [2+4](fresh_people_sub-01_mix24.jpg). [Independent two-person image evaluation](../../../docs/FRESH_PEOPLE_IMAGES.md)
+
 ## Personal twelve-object menus with matching recording sessions
 
 On sub-04 the support-view comparison holds the EEG-decoded word fixed while changing which calibration photograph supplies the coarse starting image. Each object appears at its lowest archive row. [Generated views](support_view_sub04.jpg) · [Source of the starting images and independent scores](../../../docs/SUPPORT_VIEW.md)

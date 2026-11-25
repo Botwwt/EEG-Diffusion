@@ -8,9 +8,21 @@ Reconstructing viewed photographs from EEG. The primary task is to draw the righ
 
 ## Selected model for calibrated objects
 
-**For one person with four EEG presentations and twelve calibrated candidate objects, use the four-trial encoder plus Fisher.** Two encoders score the same candidates. One learns from four separate 63-electrode EEG trials, including a training task that matches complementary trial pairs from one photo. The other uses a 17-electrode posterior Fisher projection. Their standardized scores have equal weight. Both train on 512 other objects. At inference each candidate has eight labeled support photos and their EEG. The predicted word selects the supports. A separate visual decoder adds an EEG estimate of the photo-specific difference to their mean H/14 feature. A frozen ViT-H IP-Adapter and four SDXL-Turbo steps draw one image. The query photo enters evaluation after generation. [Run one EEG query and render it](docs/PERSONAL_OBJECT_INFERENCE.md) · [Training and component controls](docs/TRIAL_OBJECT_ABLATION.md) · [Visual decoder](docs/PHOTO_STRUCTURE.md)
+**For a person with four EEG presentations and twelve calibrated object candidates, use the two EEG encoders trained on 1,024 objects.** The first encoder processes four separate 63-electrode trials. A posterior Fisher projection supplies a second score. The model combines their standardized scores with weights of 59.1% and 40.9%, fitted on training data from sub-04 and then fixed for sub-05 and sub-01. Each participant has their own two fitted encoders. The predicted word selects eight permitted support photos. The visual decoder combines their average H/14 image feature with a photo-specific estimate from EEG. A frozen IP-Adapter and four SDXL-Turbo steps produce one image. The query photo is used in evaluation. [First participant and inference](docs/FRESH_MIX.md) · [Replication in two more people](docs/FRESH_PEOPLE.md) · [Image results, fixed galleries and replay](docs/FRESH_PEOPLE_IMAGES.md)
 
-### Recognition with recording sessions held fixed
+### What improved on saved images
+
+In the two-person replication, expanding training from 512 to 1,024 objects helped the generator draw the correct kind of object. Both people saw the same 350 primary photographs. Their recording sessions determined how the 35 objects were grouped into twelve-object menus. Each photo was held out from its eight support examples. The intervals below resample objects, keeping both people's observations together. [Original registration and paired results](docs/FRESH_PEOPLE_IMAGES.md)
+
+| Endpoint on the two replication participants | Original / 700 | Expanded / 700 | Paired gain in percentage points (95% interval) |
+| --- | ---: | ---: | ---: |
+| EEG selects the correct object among twelve | 253 | **281** | +4.00 [1.29, 6.57] |
+| Independent CLIP names the generated image among 1,854 objects | 218 | **243** | +3.57 [0.86, 6.14] |
+| DINOv2 identifies the viewed photograph among ten of the same object | 67 | 72 | +0.71 [−1.00, 2.57] |
+
+Full-vocabulary naming improved from 107 to 123.5 out of 350 in sub-05, and from 111 to 119.5 in sub-01. Tied first places split the credit. Exact-photo retrieval with the expanded model was 10.3%, close to the 10% chance rate. Across the primary and supplemental objects, all 631 pairs with unchanged words gave identical JPEG bytes in independent draws. [Two-person word results](docs/FRESH_PEOPLE.md) · [Generated-image comparison](docs/FRESH_PEOPLE_IMAGES.md)
+
+### Earlier 512-object model on three session-matched menus
 
 Each participant's twelve candidate objects shared a recording-session pair. The 360 participant–photo queries cover 290 distinct photographs of 29 objects. The models use the same diffusion seed for each query. On all 264 queries where the word stayed the same, the generated images matched byte for byte. [Panel registration and original Fisher results](docs/PERSONAL12_CONFIRMATION.md) · [Paired image scores and intervals](research/eeg_stack_20261112/results/object_fidelity/personal12_trial_replication_images.json)
 
@@ -21,9 +33,9 @@ Each participant's twelve candidate objects shared a recording-session pair. The
 | Generated JPEG named correctly among 1,854 words | 145 | **166** | +5.83 [2.06, 9.71] |
 | Viewed photo ranked first among ten photos of its object, DINOv2 | **43** | 42 | −0.28 [−2.65, 2.35] |
 
-The first participant gained ten full-vocabulary image hits. The two separately registered replications gained eleven together (from 100 to 111 of 240 images), with +12 hits in sub-01 and −1 in sub-05. The selected model more often depicts the correct object. Recognition of the particular photograph remains near one in ten. Intervals resample objects while keeping the observed people together. [First comparison and replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [All twelve objects per person, side by side](research/eeg_stack_20261112/gallery/GALLERY.md#personal-twelve-object-menus-with-matching-recording-sessions)
+The first participant gained ten full-vocabulary image hits. The two separately registered replications gained eleven together (from 100 to 111 of 240 images), with +12 hits in sub-01 and −1 in sub-05. The 512-object fusion more often depicts the correct object than Fisher alone on these menus. Recognition of the particular photograph remains near one in ten. Intervals resample objects while keeping the observed people together. [First comparison and replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [All twelve objects per person, side by side](research/eeg_stack_20261112/gallery/GALLERY.md#personal-twelve-object-menus-with-matching-recording-sessions)
 
-### A larger decoder for sub-04
+### First evaluation of the expanded decoder in sub-04
 
 On four new session-matched menus, the larger personal decoder improved the object shown in the saved JPEG. Both EEG branches trained on 1,024 other objects. Training-only calibration assigned 59.1% of the score to the trial encoder and 40.9% to Fisher. Each query still used four presentations and eight supports per candidate. The visual decoder and diffusion sampler used the same weights and query seeds. [Training and single-query inference](docs/FRESH_MIX.md)
 
@@ -33,7 +45,7 @@ On four new session-matched menus, the larger personal decoder improved the obje
 | Generated image named correctly among 1,854 words | 141 | 157.5 | +4.71 [1.29, 8.14] |
 | Exact photo identified among ten of its object | 44 | 46 | +0.57 [−1.71, 2.86] |
 
-On this participant we select the larger decoder for drawing the object. The half credit comes from a tie in full-vocabulary naming. Across all 480 queries including the supplemental objects, the 365 with unchanged EEG words gave byte-identical JPEGs from the two models. The 512-object model has the three-participant image comparison above. [Evaluation on saved JPEGs and fixed galleries](docs/FRESH_MIX_IMAGES.md)
+The half credit comes from a tie in full-vocabulary naming. Across all 480 queries including the supplemental objects, the 365 with unchanged EEG words gave byte-identical JPEGs from the two models. The two additional participants above used the same mixture weights. [Evaluation on saved JPEGs and fixed galleries](docs/FRESH_MIX_IMAGES.md)
 
 ### Can the EEG place the object like the viewed photograph?
 
