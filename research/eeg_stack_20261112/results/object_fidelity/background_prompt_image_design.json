@@ -1,0 +1,18 @@
+{
+  "confirmation_sha256": "dcb8a753301787d41fa5b82bfc4e66c93eebe00e88715cd91760686f512b09c4",
+  "subject": "sub-04",
+  "menus": [
+    "mix13",
+    "mix14",
+    "mix23",
+    "mix24"
+  ],
+  "seed": 260702,
+  "suffix": " with a visibly varied, textured background",
+  "scope": "Conditional development experiment on the four previously measured sub-04 menus, 480 rows, 48 objects. The attribute decoder and the external 512-object confirmation rule are frozen before generating these images. The primary object model, EEG feature vector, diffusion seed, word, support set, original 512-object calibration per visual head, resolution, batch size and four Turbo steps follow fresh_mix's learned arm. Words may be wrong. No query original may enter selection. Only run if the external attribute confirmation gate passes.",
+  "generation": "For every menu precompute just two potential outcomes per query at the same seed: unchanged object prompt and that prompt with the literal suffix. Use the archived 480 native JPEGs, verifying full hashes and independently re-rendering their first complete eight-row batch per menu. The worker only receives frozen EEG conditions and the prompt manifest. The independent naming encoder always uses the original dictionary. Base, matched, wrong, and rate-matched class prior select between the two images using the separately sealed flags; selecting the same flag must give identical image bytes.",
+  "primary": "Evaluate all 480. Original and generated background scores use the registered U2Netp strict-background scalar: 0 clearly textured, .5 ambiguous or insufficient pixels, 1 clearly light/clean. Report mean squared disagreement of these scalar scores to original on all rows. Report results including every mistaken object, then clear reference labels only and every changed row with its denominator. Uncertain originals and outputs stay in the primary denominator. Report the original/texture-only oracle bank as two potential treatments, never label texture-only output a matched EEG result.",
+  "photo": "DINOv2-S/14 exact same-object photo among ten for all rows; CLIP-L/14 full 1854 and menu 12 naming; show RGB32 difference, separate the 350 historical strict originals from all 480 as sensitivity. Show matched-minus-base, matched-minus-rate-matched-prior, and matched-minus-exchanged in natural units with 10000 whole-object paired resamples stratified by original four menus; seed 260702, same resamples across arms and outcomes.",
+  "decision": "Evidence of background improvement requires lower mean background disagreement than base, rate-matched prior and wrong with 95% paired intervals strictly below zero for all three, and no lost full-vocabulary naming credit. Evidence of improved exact photo identity additionally requires a strictly positive lower bound of matched-minus-native DINO10. Report uncertainty and fallback rate whatever the result.",
+  "gallery": "Show all four fixed menus using smallest original row per object. Additional diagnostic examples include the first triggered and first unchanged row by source order for each panel if present, labeled with denominators."
+}

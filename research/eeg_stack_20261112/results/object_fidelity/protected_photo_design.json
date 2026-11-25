@@ -1,0 +1,15 @@
+{
+  "seed": 260706,
+  "subject": "sub-04",
+  "sources": {
+    "parent_image_study": "1bc53cf8f4f567ffdf7f4c3f319d400768d6a626760d358b52ac744bd830ff6a",
+    "canonical_protocol": "3b05a596410064177ee5b3122b095ba250ab5cf43260e35cf41c67fe2153efd1",
+    "generic_splits": "3631b4228d6ca550f0fe7d8e787b9c1e54a71011533cc106c255fb856b6243e6",
+    "angle": "06e8f4d5c34554dd0e076347c519aa24a2b0f5bd89d785cce9632b0721dcd60d",
+    "estimator": "14900d718ac36dad3512b96f10bfd02ed484b9a6f81b20131db6ee06ce28c3b1"
+  },
+  "population": "Historical sub-04 generic split, 884 outside objects for both predictors and between-object axes; 128 held objects with ten photos each. These held objects have been used in earlier feature studies. No target-panel learning, hyperparameter grid or target generator outcome. Known generic object labels supply the common eight support photos, equally for all comparators.",
+  "model": "Train the same native within-object ridge and the frozen global canonical EEG-to-H14 estimator on 884 generic objects. Predict each of the 1280 held photographs on its own. Consecutive pairs define five folds, each with eight support photos. Use the existing within-object ridge to predict a support-relative displacement, and rotate from the support mean at the existing calibrated angle. The protected visual basis consists of the unit global image mean, the first 96 between-object principal directions in its orthogonal complement learned only on the 884 training classes, and the residual of the current eight support-image mean. Preserve the native vector's projection onto all of these axes and the norm of the remaining component. Rotate only its remaining direction halfway towards the orthogonalized difference of the global EEG prediction for the query and averaged global EEG predictions of all eight admissible supports. No other target photo EEG is used for matched conditions. Wrong exchanges only the added residual using the other held photo of the same true object and fold. Reference-only bound rotates the unprotected native component fully into the true photo's residual direction while preserving every protected cosine; it never enters matched inference.",
+  "endpoints": "Primary informative margin is cosine to the viewed H14 feature minus cosine to the other same-object held photo, all 1280 rows. Report ten-way (including supports), two-way with fractional ties, nine pair comparisons, global H14 retrieval and true target cosine. Paired 10000 bootstraps of 128 full objects with seed 260706; report all differences, including matched vs native and matched vs wrong. Max deviation of every protected coordinate and support cosine must be below 2e-6; bound oracle must have positive mean margin vs native.",
+  "gate": "For a new image pilot, require strictly positive lower 95% bounds for matched-minus-native and matched-minus-wrong in held-foil margin AND a positive ten-way identification count gain over native. Any future actual images would require independent DINO and full-vocabulary naming. This probe carries no image-level success claim."
+}

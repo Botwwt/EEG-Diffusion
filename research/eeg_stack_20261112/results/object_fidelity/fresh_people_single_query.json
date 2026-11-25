@@ -1,0 +1,162 @@
+{
+  "queries": 960,
+  "device": "cuda",
+  "design_sha256": "2900cd504dafadd1483b9894f617cee0d10204334626e3c0955159903fcc3f83",
+  "word_result_sha256": "4f21516d46783a49fad4fde682134cf9b8b731687f1893a709ae0d959791941d",
+  "participants": {
+    "sub-05": {
+      "subject": "sub-05",
+      "device": "cuda",
+      "queries": 480,
+      "menus": {
+        "mix13": {
+          "queries": 120,
+          "exact": {
+            "word": 120,
+            "supports": 120,
+            "own": 120,
+            "uniform": 120
+          },
+          "packet_sha256": "df61e774b2d3ba5dd9745c7a2405a4b640e5b7c682e886fde6e85ec4651c1761",
+          "decision_sha256": "c3433f15570febfae6fecf3c0a0bed2ad25b9045ad41aa411bacaa208879f8c2"
+        },
+        "mix14": {
+          "queries": 120,
+          "exact": {
+            "word": 120,
+            "supports": 120,
+            "own": 120,
+            "uniform": 120
+          },
+          "packet_sha256": "05e2e88d536c1bedb418bd1607cfd01b9326a6803ab4d759d06a767d38d7d5b6",
+          "decision_sha256": "831dcc37fcb534b093884dabfaa936f73e1e7ee01f2c4e44cf1e88ffcca0f053"
+        },
+        "mix23": {
+          "queries": 120,
+          "exact": {
+            "word": 120,
+            "supports": 120,
+            "own": 120,
+            "uniform": 120
+          },
+          "packet_sha256": "9c0a87a9c72474ab77f61c393f1285c4167f4c9c1645f742dcc7047fe1125083",
+          "decision_sha256": "ecbe3b098e1cc743013c6b166f594bb1bbd896e4d8ed11c6a6e0a2a4f76e1f95"
+        },
+        "mix24": {
+          "queries": 120,
+          "exact": {
+            "word": 120,
+            "supports": 120,
+            "own": 120,
+            "uniform": 120
+          },
+          "packet_sha256": "f33f2a319f74b03832fb9d146d9f2f5f8dff78b70e78ae3ef55d8f30ae277e96",
+          "decision_sha256": "e8af89bf3c01bd86759e427181b507084b1be8d3d751c4d82897a222b4305dd6"
+        }
+      },
+      "max_abs_error": {
+        "own": 0.0,
+        "uniform": 0.0,
+        "mixed_scores": 1.0581520599739491e-06,
+        "fisher_scores": 8.519573935217295e-14,
+        "trial_scores": 1.7911202727649567e-06
+      },
+      "model_receipt_sha256": "ae07e873464843f624132aba6cedb79501a75000ebab6e8f368c48766a9861ff",
+      "weights_sha256": "3fbfb2ecc4035bc6ac8ac86a304336b7ceac2217a205310553537f7f3fdae870",
+      "heads_sha256": "55afe9c2844aab64ab2bfa79958c73719375d82fb3b4e440bf23a9465c9313ca",
+      "robustness": {
+        "rejected": [
+          "query_truth_field",
+          "wrong_participant",
+          "duplicate_word",
+          "duplicate_support",
+          "query_reused_as_support",
+          "wrong_montage",
+          "shifted_time",
+          "missing_repeat",
+          "nonfinite_eeg",
+          "invalid_support_image"
+        ],
+        "channel_reorder_exact": true
+      },
+      "driver_sha256": "04e110d98bb5a48f5e7fe060cbfb50310cabbf8ffb7fc22997764911f392bac2"
+    },
+    "sub-01": {
+      "subject": "sub-01",
+      "device": "cuda",
+      "queries": 480,
+      "menus": {
+        "mix13": {
+          "queries": 120,
+          "exact": {
+            "word": 120,
+            "supports": 120,
+            "own": 120,
+            "uniform": 120
+          },
+          "packet_sha256": "539f0102fdae842b830389b856ff154b4d6ad203c3a9586a3c67ccb12bbd4451",
+          "decision_sha256": "addbb0ea3700d5ae8160a85eaa132c4476630fbcf641c014948ae83447204b37"
+        },
+        "mix14": {
+          "queries": 120,
+          "exact": {
+            "word": 120,
+            "supports": 120,
+            "own": 120,
+            "uniform": 120
+          },
+          "packet_sha256": "b6b1162d68a5e065dec031bc63ac209f6dd1c855f8a09cfbe20c1fd139f5d36c",
+          "decision_sha256": "b84254bb9377c544e292e927d68304856218b7e16ba974fe8bd019d02e7ca005"
+        },
+        "mix23": {
+          "queries": 120,
+          "exact": {
+            "word": 120,
+            "supports": 120,
+            "own": 120,
+            "uniform": 120
+          },
+          "packet_sha256": "011d6ec8be4a605fe5db69a93fa6e3563374781bc2f88f7cb243070bd34adace",
+          "decision_sha256": "07ad5cb99b09ee02effe2e69174faf30d06d532fbda8148b0e3b97760775f5a2"
+        },
+        "mix24": {
+          "queries": 120,
+          "exact": {
+            "word": 120,
+            "supports": 120,
+            "own": 120,
+            "uniform": 120
+          },
+          "packet_sha256": "8971da22cb270d27200ac51cdda64f33feb5bd4c20ef44f58f9a0c59767837bc",
+          "decision_sha256": "f5525f4c14f5fece28fa9d8c25e99365614441c6e83501b672aac340503a230c"
+        }
+      },
+      "max_abs_error": {
+        "own": 0.0,
+        "uniform": 0.0,
+        "mixed_scores": 1.204663085951907e-06,
+        "fisher_scores": 4.618527782440651e-14,
+        "trial_scores": 2.039117580010519e-06
+      },
+      "model_receipt_sha256": "0b6183842bc72281fd92efc20cd82e7912058ca6cb4c1300e0b981796df7b0c9",
+      "weights_sha256": "b23c3529fabee790c2b67ab62d11e9d64bafa4ac2e49a3c22b06ff2336a833bf",
+      "heads_sha256": "fb9b5af94df2f84f08224862e7c98c4a361ddf2ac62a4a2b3c7b4fb9acfe7d7d",
+      "robustness": {
+        "rejected": [
+          "query_truth_field",
+          "wrong_participant",
+          "duplicate_word",
+          "duplicate_support",
+          "query_reused_as_support",
+          "wrong_montage",
+          "shifted_time",
+          "missing_repeat",
+          "nonfinite_eeg",
+          "invalid_support_image"
+        ],
+        "channel_reorder_exact": true
+      },
+      "driver_sha256": "04e110d98bb5a48f5e7fe060cbfb50310cabbf8ffb7fc22997764911f392bac2"
+    }
+  }
+}

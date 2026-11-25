@@ -1,0 +1,27 @@
+{
+  "subject": "sub-04",
+  "panel": "personal12",
+  "seed": 260643,
+  "source_sha256": {
+    "native_settings": "ddb3491dd08e1885d747db69f0c856430a38192565a66faab08933377502e158",
+    "condition": "facbb9afee9c536bdaabf3dc8aab731423ffcace0cb5eb6626623e363d3c540d",
+    "radius": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+    "canonical_selection": "14900d718ac36dad3512b96f10bfd02ed484b9a6f81b20131db6ee06ce28c3b1",
+    "eeg": "cd309366412bf35a3aeea567cb28e24a620a2ba857b79211bc8762331a7c4c3c",
+    "ref": "bc122169aeb93074f1b38e2a0530b9e051b666c002e11c919c5693d09185825e",
+    "global_fit": "e8ac23a216ffff017753032573ac14557709fb65bd218f5786899da5205a9cc3"
+  },
+  "population": "All 120 previously scored participant-photo rows across the same 12 objects. The published native result (8/120 photo and 55/120 full-vocabulary) and earlier neighbor results were known when this protocol was specified. Keep every error. This is a development experiment.",
+  "eeg_model": "Frozen 884-object global H14 predictor from four measured EEG trials. Its stored training-only rank-32 canonical neighborhood, k=128, mix=0.50, global gain and cap are reused. Predict each row independently. For all four real-EEG conditions use the archived native word, eight selected supports, visual radius, batch order and diffusion seed.",
+  "arms": {
+    "native": "Archived conditional EEG vector; must replay all 120 native JPEGs exactly.",
+    "matched": "Normalized sum with equal weights of the native conditional direction and the entire global EEG estimate for this query. Angle to native support prior may change.",
+    "prior": "Same native direction, combined with the normalized average of the eight global EEG estimates for the permissible support photos.",
+    "wrong": "Same native direction, combined with the global estimate from the frozen same-word, same-fold donor. Twelve-class truth is absent from all four generation paths.",
+    "reference": "SEPARATE evaluation-only intervention: the true original photograph H14 direction at the frozen radius with the original predicted word and seed.",
+    "foil": "SEPARATE evaluation-only intervention: H14 direction of the other held-out photo of the same true object and fold, using the recipient predicted word and seed."
+  },
+  "separation": "Freeze the EEG input packet before preparing the reference intervention. Render on separate workers from separate input archives. Only the evaluation-only archive supplies true reference vectors. The reference and foil images can diagnose visual-conditioning capacity and cannot count towards EEG reconstruction.",
+  "endpoints": "DINOv2-S/14 retrieval of the original among ten same-object photos including all available supports. CLIP-L/14 naming among 1854 and the fixed 12 words. True cosine, full-frame RGB RMSE and luminance correlation, correct-vs-wrong decoded word strata. Compare matched with native, prior and wrong: paired whole-object bootstrap, 10000 draws with the fixed seed. Separately compare true versus foil at the fixed query word and seed. Native naming and within-ten row credits must replay the published baseline. Gallery uses the smallest row number for every object.",
+  "advance": "Real EEG candidate advances only if lower 95% DINO-ten interval is positive against native and prior, its all-row point difference against wrong is positive, and full-1854 naming credit does not fall versus native. No alternative mixing coefficient or choice from the observed recipients. Diagnostic true-image conditions never enter this decision."
+}

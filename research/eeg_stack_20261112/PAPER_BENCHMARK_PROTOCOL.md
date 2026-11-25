@@ -94,6 +94,8 @@ python "$code/paper_middle_teacher.py" --prepare
 python "$code/paper_middle_teacher.py" --subject 1
 python "$code/paper_rgb_object.py" --subject 1 --steps 32
 python "$code/paper_native_spread.py" --subject 1
+python "$code/paper_peer_teacher.py" --prepare
+python "$code/paper_peer_teacher.py" --subject 1
 python "$code/paper_render.py" --subject 1 --budgets dev-r4 --arms token-final-aux token-middle-aux
 for arm in token-final-aux token-middle-aux; do
     python "$code/paper_score.py" "$RAD_ROOT/images/personal/$arm/dev-r4/sub-01" dev

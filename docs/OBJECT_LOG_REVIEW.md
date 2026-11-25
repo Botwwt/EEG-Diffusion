@@ -41,6 +41,10 @@
 
 另把历史角度校准的思路放回同一个 Brain‑HiVE 生成器，全部校准参数折入原有编码器的最后一层。仅校正训练均值，开发命名从 5 到 7/400，同类十图从 79 到 77；再按训练概念折外预测校正分散程度，命名为 5/400，同类十图为 83。后一步更有利于区分照片，开放命名仍需独立证据。[零额外推理操作的实现](../research/eeg_stack_20261112/code/paper_native_spread.py) · [同生成器消融](PAPER_BENCHMARK_RESULTS.md)
 
+O13 启发的检验同样只在训练时使用其他九人的 EEG。各人的视觉预测按整个训练物体交叉验证，再把其余九人的预测平均。使用同照片教师或同类另一照片教师，两臂的开发命名均为 3/400，同类十图分别为 74 和 65/400。训练人数和数据量在两臂相同，推理各用一个人的四次 EEG。这一轮完成的训练对照均未满足入选八人确认的预设标准，因此保留原生紧凑路径作为比较基线。[跨人教师与配对控制](../research/eeg_stack_20261112/code/paper_peer_teacher.py) · [两人实测](PAPER_BENCHMARK_RESULTS.md)
+
 ## 档案范围
+
+校准任务另保存了两人复验及其单查询入口、跨人混淆学习、背景属性和提示、全局照片条件、保护物体身份的局部修正。扩展个人解码器在另两人上把 1,854 词命名由 218 提到 243/700，这里仍提供 12 个已校准物体。背景提示的联合晋级条件未通过；保护照片细节的成图文件记录的是注册设计。设计和真正落盘的成图结果分别标明。[两人校准复验](../research/eeg_stack_20261112/results/object_fidelity/fresh_people_images.json) · [单查询记录](../research/eeg_stack_20261112/results/object_fidelity/fresh_people_single_query.json) · [跨人混淆](../research/eeg_stack_20261112/results/object_fidelity/cross_person_confusions.json) · [背景提示](../research/eeg_stack_20261112/results/object_fidelity/background_prompt_images.json) · [全局照片成图](../research/eeg_stack_20261112/results/object_fidelity/global_photo_images.json) · [保护照片条件的设计](../research/eeg_stack_20261112/results/object_fidelity/protected_photo_images_design.json)
 
 本次核对覆盖十月至十一月的历史报告目录（240 份 Markdown、CSV 和 JSON）、36 份早期结构化证据、O 系列与 SwapDiff/DRaFT/M1/M2 的原始数表，以及工作区物体保真目录的 209 份 JSON（含 77 份设计文件）。同一批生成图的阶段性日志、版本更新和重新评分合并解读。早期有些算力作业只留有报告、哈希或汇总数值；文中的配对区间使用可取回的逐项记录，其余注明原报口径。当前正式基准提供可重新汇总的逐刺激评分包。[早期报告](../research/eeg/reports) · [结构化证据](../research/eeg/evidence) · [十一月结果](../research/eeg_stack_20261112/results) · [按任务索引](EXPERIMENT_REGISTRY.md)
