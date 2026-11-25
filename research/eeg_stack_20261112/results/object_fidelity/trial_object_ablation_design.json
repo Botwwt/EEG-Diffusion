@@ -1,0 +1,41 @@
+{
+  "study": "Post hoc development-set 2-by-2 component analysis of the frozen single-person trial encoder; the full encoder result on these 96 objects is already known.",
+  "subject": "sub-04",
+  "phase": "Generic held objects only. No target panel, tuning, early stopping, checkpoint selection or generation.",
+  "original_design_sha256": "0550559ca3aeafc75da0196c42ccf70a636656f05f0a25549b477e266f4d5cd1",
+  "original_train_sha256": "a51bad609270be7c9e02b1a1300a42c6e330586282c1b1ef1aa41230d311d908",
+  "original_scorer_sha256": "b1c50126a9fea0dd0c173311d4bcf04ae32ec1336961bb41017257609f8bd05d",
+  "original_full_generic_training_receipt": "c0058ad4d017250b27d939ab46bc4e96f7521625977d5583a335e7f4f210625c",
+  "original_full_generic_score": "4c095a9bfdcfda1216bc726670a4a8e20f6ffc3b38415413fe3e66b15526b165",
+  "seed": 260553,
+  "updates": 750,
+  "bootstrap_seed": 260552,
+  "bootstrap_draws": 10000,
+  "train_objects": 416,
+  "held_objects": 96,
+  "factors": {
+    "reliability": "Full learned channel-specific downweighting by squared deviation from the within-photo trial mean, or uniform arithmetic mean over the very same trials. Keep the same parameterization and initial model weights in both arms; the reliability parameter has no effect for uniform pooling.",
+    "photo_loss": "The same complementary two-repetition per-photo representations enter a 10-way within-object photo matching loss at coefficient 0.2 or zero. Always calculate left and right, photo logits and both cross-entropies, including when coefficient is zero."
+  },
+  "arms": {
+    "weighted_pair": [
+      true,
+      0.2
+    ],
+    "weighted_none": [
+      true,
+      0.0
+    ],
+    "mean_pair": [
+      false,
+      0.2
+    ],
+    "mean_none": [
+      false,
+      0.0
+    ]
+  },
+  "controls": "All four training runs use the original fixed session-matched episode sequence, photorow orders, trial splits, dropout calls, full vs half-query alternation and optimizer. Audit identical initialization and per-step trial/episode RNG stream; replay all original full-encoder decisions row by row at both candidate menu sizes. Input scaling from the same 416 training objects.",
+  "endpoints": "Report all four arms in the original 12-way and 4-way generic menus with eight authorized calibration rows per candidate. For each report pure deep and equal-weight standardized deep/Fisher top-1, all 960 queries each. Primary is 12-way mixed. Pair the full arm against each ablation. Also give the marginal reliability and marginal photo-loss contrasts averaged over the opposite switch and their difference-in-differences.",
+  "uncertainty": "Resample the 96 whole physical object identities with replacement, 10000 draws (260552), keeping every participant photo and all arms together. Percentile paired CIs in fraction units. These descriptive intervals describe objects for one participant and one fixed seed; adaptation to the previously inspected split limits transfer conclusions."
+}

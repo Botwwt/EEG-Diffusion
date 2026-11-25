@@ -1,0 +1,47 @@
+{
+  "study": "Independent participant replication of the frozen sub-04 four-trial encoder and equal-weight Fisher classifier on personal12. Each participant supplies four physical trials per photograph. The participants have distinct EEG; their two menus may share photographs.",
+  "participants": [
+    "sub-05",
+    "sub-01"
+  ],
+  "stage_at_registration": "Known sub-04 mixed 65/120 versus Fisher 53/120, trial-only 58. Known Fisher counts for sub-05 and sub-01 (56 and 52). No trial-head predictions or outcomes on either replication target menu inspected. The support design and original Fisher renderings were already used.",
+  "training": "Independently initialize and train each participant on the identical ordered 512 generic objects with only their own EEG. Use exact original fit, training-only mean and SD, 63 x 125 samples from four physical trials in recorded order; seed 260553, default initialization, one final fit of 750 updates. No sub-04 weights, early stopping, tuning, participant selection, gate or retraining.",
+  "classification": "For each participant only, unchanged 17-channel 96D Fisher and four-trial 96D encoder; for each query normalize prototype cosine scores across the existing 12-word menu exactly as in sub-04. Primary 50:50 arithmetic average. Each object and fold supplies its eight calibrated photos, excluding both held-out photos. Separate pure-encoder diagnostic. All 12 objects per person in one recording-session pair.",
+  "generation": "Per participant reproduce all old Fisher word decisions and H14 visual conditions; unchanged native H14 prior/residual angle, radius, generator, seed 923761+original row. Only change predicted word and consequent existing support set. Own/uniform/same-predicted-word and fold donor; singleton self. Render all 120 rows x 3 arms for each participant irrespective of score. No original query images in predictions or rendering.",
+  "analysis": "Report hits, paired gains/losses and object-bootstrap intervals separately per person with 10000 draws, seed 260552. Report both outcomes whether positive or negative. Pooled supplementary intervals must keep shared object identity across participants. Same predeclared generated-image naming/CLIP, DINO within-ten, strict assignment and controls as in sub-04. No participant-population generalization.",
+  "inputs": {
+    "sub04_protocol": "6c2f49313a12bc9e6c5b2952749c3e55766fa3c54063b6586e27d415b9d8e537",
+    "sub04_word_result": "b5b813a3750e3e9ab7199ffb13077e41e0bcd4c02f04f57280662a9521d71e21",
+    "source_training_driver": "a51bad609270be7c9e02b1a1300a42c6e330586282c1b1ef1aa41230d311d908",
+    "source_protocol": "0550559ca3aeafc75da0196c42ccf70a636656f05f0a25549b477e266f4d5cd1",
+    "sub04_packager": "226ecf37f05d58db8551431e0cb7703aaa9fb871a9409eb0f424b383222af0a4",
+    "registration_receipt": "8bdade2a9d80e94d79167c8cc2f43bb906f9d6f7f7067ac540cc1ca7fd619624",
+    "physical_sessions": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+    "renderer": "508e60c1255f8deb518c67af8f9dec3d1f164517b584bcb7a640986edc371593",
+    "radius": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247"
+  },
+  "by_subject": {
+    "sub-05": {
+      "known_fisher_hits": 56,
+      "inputs": {
+        "expanded": "9db2d4c6da913b2dde040a5dea1ea18f5d37cbd73ebe603888546aad0557141f",
+        "model_training_order": "bc7324541a59439c537a5e7d05a7974b168e9d39170b631996b68fa3d1f8cb33",
+        "physical_receipt": "b973152552e6fb993db823d74b73de2197f7715b84bc24f23e4f3271e0ce7fa3",
+        "physical_posterior": "de157705977bb0f14d42c193da3597429ec6816c08c8fda53486e8e986a1fa7f",
+        "reference": "ead79f00dc4dabaad7868c2ecf4315fc96e0008a04c4e8c34d36f90eb62a1ee6",
+        "original_packet": "4b610c8becdbe2a38ab07859ee3ad7af9b1d360a700d37f88888bcc981c87a5e"
+      }
+    },
+    "sub-01": {
+      "known_fisher_hits": 52,
+      "inputs": {
+        "expanded": "7f6c19c2be3f7fc0cd6f40354301fb04dffb9c449eca8f6c54c382d78372c1d9",
+        "model_training_order": "cbc3998bb34556f6f7f9ba4699a50fa3a7352d5454bc06472cd56f6677fa0c28",
+        "physical_receipt": "055b484e044ae7e76e95f3b80138417b3892e37442ea395c8bdec5726b2cf45e",
+        "physical_posterior": "9e1012c5f1727e093dd7efcd1fedfbdf0de234c51b851f5ebc6bc1579764e448",
+        "reference": "593d402fb2e254ba4b731312b15bddd7dc1f58482584cb7893314c277ca7c67a",
+        "original_packet": "83760baff77b6333b8020529e43463b8a25ba98690343e708de34563bda75082"
+      }
+    }
+  }
+}

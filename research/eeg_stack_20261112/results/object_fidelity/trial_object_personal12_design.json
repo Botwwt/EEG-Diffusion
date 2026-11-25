@@ -1,0 +1,31 @@
+{
+  "study": "sub-04 single-person R4 trial encoder plus Fisher versus locked original Fisher, on the same personal12 confirmation images. The prior Fisher word count on these photos and earlier training/development results were known; no mixed/encoder scores on these photos were inspected before this registration.",
+  "participant": "sub-04",
+  "stimuli": 120,
+  "objects": 12,
+  "physical_trials_per_photo": 4,
+  "session_pair": [
+    2,
+    3
+  ],
+  "fit": "Use the trained 512-class sub-04 checkpoint exactly. Replay released old-panel features to verify input scaling, crop, trial and channel order. Apply 63 channels and 125 post-onset samples from all 4 physical observations, recorded order, stored train-only scale/mean, clamp to [-12,12], no optimizer, no hyperparameter or checkpoint selection.",
+  "decision": "On each of 5 pre-existing folds use 8 EEG supports per word from other folds. Each single branch uses the unchanged similarities function (cosine normalization and per-query across-word standardization) and its 12-word argmax; primary mixed word uses equal average of the Fisher96 and trial-encoder96 score vectors. Retain the pure deep head as a word-only diagnostic. Ground truth is absent from all prediction functions.",
+  "generation": "Freeze previous row ordering, five folds, full twelve-word menu, eight support identities for each candidate word, original within-photo H14 readout and angular gain/cap/radius, renderer/seed 923761+original row. Feed only the mixed predicted word, its permitted off-fold H14 supports and native EEG photo residual. Recompute own, uniform and same-predicted-word same-fold donor in frozen ordinal order; donor own orientation and magnitude shift intact, singleton self. A new predicted word selects its pre-registered eight supports. Rows retaining the old word must reproduce the old own/uniform conditions to numerical tolerance.",
+  "evaluation": "Report all 120 paired word decisions for mixed and Fisher, gains/losses and whole-object paired 95% bootstrap, 10000 draws seed 260552 (12 categories); deep-only secondary. For actual images retain the pre-registered per-row paired CLIP 12-name and full1854 results, DINO within-ten photo score, strict two-photo assignment, wrong/mean controls. Separate same-word versus changed-word descriptions. No changes after this single-person comparison; images or original labels only in evaluation.",
+  "inputs": {
+    "trial_design": "0550559ca3aeafc75da0196c42ccf70a636656f05f0a25549b477e266f4d5cd1",
+    "training_driver": "a51bad609270be7c9e02b1a1300a42c6e330586282c1b1ef1aa41230d311d908",
+    "model": "e7f3d23f4981074fc86bad22fddd8a0878030df31311fa61e7e8909ffc19b35b",
+    "historical_embeddings": "8ac2bf7ccd286b05ebd4e8b92a68c720119c87a9e540401f6ff13445c71428a5",
+    "fit_receipt": "33e90449a9f0193f4a765d73bbf2f780473e4536cfa5d945f2295ed0e82a21bd",
+    "development_readouts": "f100537206dce7260f95e12f248558a5828c18b3a0deaf2f4c12dffa0a89b132",
+    "decision_driver": "b1c50126a9fea0dd0c173311d4bcf04ae32ec1336961bb41017257609f8bd05d",
+    "panel_lock": "b6a7413bfc9c36e7035e52028cc37935f10c49f0b5f614d16f956c64ba6940ae",
+    "single_person_protocol": "57900a06ac4b385bc8cf05aa1ac50fe530dd147acb2a6993a9f973b6589f0670",
+    "baseline_inputs": "8bdade2a9d80e94d79167c8cc2f43bb906f9d6f7f7067ac540cc1ca7fd619624",
+    "baseline_conditions": "f5165fba5efbfb3bfe174ee52bb5c7ee206d0abb003a8c0e63df692f1d7b9ca7",
+    "registration": "bc122169aeb93074f1b38e2a0530b9e051b666c002e11c919c5693d09185825e",
+    "sealed_eeg_receipt": "8393c6ccf060678c9612075c77b7ab5683be6ec40d4aae66552552c19b47a1fd",
+    "intervention_renderer": "508e60c1255f8deb518c67af8f9dec3d1f164517b584bcb7a640986edc371593"
+  }
+}

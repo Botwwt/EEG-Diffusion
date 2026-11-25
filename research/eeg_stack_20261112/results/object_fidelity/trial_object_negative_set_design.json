@@ -1,0 +1,15 @@
+{
+  "study": "One post hoc negative-set control for the EEG-only auxiliary trial-pair loss; generic sub-04 data only. Original full and 2x2 ablation outcomes are already known.",
+  "subject": "sub-04",
+  "seed": 260553,
+  "updates": 750,
+  "bootstrap_seed": 260552,
+  "bootstrap_draws": 10000,
+  "original_ablation_design_sha256": "51ae4dd7c897975822e91241b93818d3943781fba527750142ec11eaaea781d4",
+  "original_ablation_driver_sha256": "38f277c40073f4ed55190daf462fd1cff567c6d2d5cbb202c23162dc98713e0b",
+  "original_ablation_result_sha256": "94c43e5ef8273ce7a1647d6b3c80879e319b790673f1c0a231bb54e95ffea9de",
+  "full_arm_receipt_sha256": "f28d18449a242462af6b1828e0c52be10d60e44b07b41c7634d6af202ec88562",
+  "prior": "Zhou et al., Journal of Visualized Experiments 2026, DOI 10.3791/73434, uses repeated trials for the same image as positives and other batch conditions as negatives during graph-stream pretraining. This comparison tests a negative-set choice within our existing architecture and does not implement their system.",
+  "intervention": "All four physical presentations, 416 training objects, 96 held development objects, original seed, architecture, optimizer, updates, shared and per-step random draws, dropout call schedule, auxiliary coefficient 0.2 and 10 candidates per photo are fixed. In the new weighted-pooling arm, the left EEG pair matches the complementary right pair of the same photo. Nine negative right pairs are taken from the same shuffled photo slot in nine distinct other objects in that same-session 12-object episode. Given query class slot c, photo slot p and softmax position j, use right[(c+(j-p)%10)%12,p]. Keeping the positive logit at j=p preserves the label and target logit slot. The comparison arm uses nine different photos of the same object.",
+  "primary": "Held generic 12-way, 50:50 standardized deep/Fisher object top-1. Report within-object minus cross-object pair classification, per 96-class paired bootstrap. Also show both encoder-only and 4-way endpoints. A strictly positive paired lower 95% bound supports an advantage for this negative set on this developmental endpoint; otherwise record inconclusive or opposite. No new target panels, tuning, or rendering."
+}
