@@ -1,0 +1,33 @@
+{
+  "study": "Single weak correction of the predicted clean latent during four-step SDXL-Turbo",
+  "scope": "Sub-05 personal12, a previously studied participant and panel. Developmental test of a new generation intervention, all 120 queries, four recorded presentations. No model fitting, outcome-selected parameters or new target object words.",
+  "sources": {
+    "registration": "ead79f00dc4dabaad7868c2ecf4315fc96e0008a04c4e8c34d36f90eb62a1ee6",
+    "eeg": "de157705977bb0f14d42c193da3597429ec6816c08c8fda53486e8e986a1fa7f",
+    "frozen_model": "8bd422936dfeca69b56e3c80b13d8be09bdca01bb288e6a5df714417df613cb3",
+    "model_receipt": "934e5d263e7d13a3d8bd1e46390293ea2dd95222cbf0738f419354f7bbd0c740",
+    "previous_pixel_settings": "b1a95ed91368ec63baedfc7760eaee88a2c65f3b4bf777250742fd50611f3b7e",
+    "conditions": "7bbe6f13b5532f02b407a5525f41c85a114fa6ce972a49c4df764a9b1c758a4d",
+    "native_settings": "8c3f8ab3496f5d224fc9d47e245d14ebb99063c93beb9f3040ec3a98b2c149ae",
+    "native_run": "bbd1d06c93ea65410cac9a8d717758dbab096792c8dafbf7747dc194658d8888",
+    "radius": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+    "spatial_code": "f32d5520a78989a7fdff8210a14e69a88ddad794dd6fad3879994e2803d714aa",
+    "native_code": "508e60c1255f8deb518c67af8f9dec3d1f164517b584bcb7a640986edc371593"
+  },
+  "cohort": "sub-05",
+  "panel": "personal12",
+  "arms": [
+    "native",
+    "prior",
+    "own",
+    "wrong"
+  ],
+  "inputs": "Use prior frozen 512-class personal spatial DCT ridge and its learned per-band gains. The eight permitted supports of the previously predicted object provide the mean; append the EEG-predicted residual about its support EEG mean; wrong exchanges that residual with the registered same-word, same-fold donor. Inverse DCT reconstructs an 8x8 grid of luminance, blue-minus-luminance, red-minus-luminance, and log local contrast. The first three recover 8x8 RGB clipped to [0,1]; local contrast is excluded. Support photo crops only, never current-fold query photos. No image-specific JPEG residual or target pose.",
+  "generation": "All four arms share the same original 120 words, recipient H14 directions, radius, seeds (923761+archive row) and original batch size 8. Four Euler ancestral steps [999,749,499,249] in the exact native text-to-image pipeline. Encode the bilinearly expanded 8x8 RGB anchor with the frozen float32 VAE posterior mode and model scaling. At t=499 only, current x0 = x - sigma*epsilon. In a 64x64 latent, take 8x8 non-overlapping area means to form an 8x8 grid (4 latent channels); bilinearly upsample the difference of the anchor and x0 block means to 64x64 with align_corners=False. Add 0.35 times this low-frequency residual to x0 by passing epsilon - 0.35*upsampled_difference/sigma to the original scheduler step. Same native noise draw, other three steps unchanged. Native bypasses the hook completely; every native JPEG must hash identically to its archived source before any corrected case may be scored.",
+  "primary": "All-query DINOv2-S/14 within-object ten-photo top1, 120 rows. Candidate advancement needs own point estimate greater than native and prior, paired 95% lower bound above zero against wrong from 10,000 true-class bootstrap draws (seed 260570) and own 1854-name CLIP credit at least native. Fixed development screen, no participant-population inference.",
+  "secondary": "CLIP L/14 full 1854 and supplied 12 naming; 32x32 sRGB RMSE and luminance Pearson; independent and strict DINO two-photo assignment when both words correct. The eight supports are part of the ten-photo evaluation gallery for a correct word; the two query photos remain held out. Report if a benefit is attributable to the support prior or shared by wrong recipients.",
+  "gallery": "Lowest archive row for every true object, include mistakes. Public sheet only generated images; local sheet adds originals.",
+  "step": 499,
+  "gain": 0.35,
+  "bootstrap_seed": 260570
+}
