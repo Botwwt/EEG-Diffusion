@@ -1,0 +1,5 @@
+{
+  "source": "Follow-up on the same two previously scored panels after inspecting the local deformation of the fixed basketball hoop and birdhouse examples. All three inputs, patient-specific R4 fit, targets, optimizer, arms, scores, and advancement rule follow patch_transport_design.json.",
+  "change": "Constrain the two-dimensional displacement field to Lipschitz constant at most 0.25 in normalized image coordinates. Bound the norms of its horizontal and vertical derivatives from the maximum neighboring knot differences, combine with the Frobenius bound, and scale the entire field down when needed. Use the conservative 16-token-grid spacing on both the 16-token and 512-pixel sampling grids. This limits local stretching, compression and folding.",
+  "checks": "Run neutral, prior, matched and exchanged EEG on every query and freeze their hashes before the positive control. Report exactly the same independent H14, DINO CLS and pixel outcomes, including the positive control with true patch targets. This is a development ablation using the same photos."
+}

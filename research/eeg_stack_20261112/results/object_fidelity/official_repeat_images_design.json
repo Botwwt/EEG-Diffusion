@@ -1,0 +1,11 @@
+{
+  "participant": "sub-04",
+  "stimuli": "All 200 official test photographs in public row order, one exemplar per object. An earlier feature study used this benchmark. This is a development evaluation.",
+  "packet_sha256": "214c21ee3c1c53e7d40927a536d9684b164e11fe9a94ec1c9e8d6ed1257a1983",
+  "arms": ["r4", "r80", "wrong", "r4_visual", "r80_visual", "wrong_visual"],
+  "conditions": "The first two arms use the EEG word selected from all 1854 unique IDs and the continuous native H14 ridge direction at that budget. Wrong uses another row's R80 word and direction together. The three visual arms use the matching continuous direction and a shared generic prompt. Per-query scores never choose a prompt or seed.",
+  "prompts": "Named arms use A photo of {dictionary word}. Visual-only arms use A photograph.",
+  "seeds": "923761 + recipient stimulus row, shared between every arm. Donor indices are np.roll(arange(200), 67).",
+  "generator": "Pinned SDXL Turbo, four steps, guidance zero, ViT-H IP-Adapter scale 1, generic visual radius 21.945598602294922. One 512px JPEG per arm per query. No official test image or answer is accessible to the generation command.",
+  "outcomes": "Primary object naming uses CLIP-L/14 and all 1854 labels. Compare matched R80 to matched R4 and exchanged R80 within each prompt type. Report restricted 200 names, DINOv2 and CLIP-L/14 retrieval among all 200 originals, RGB error and luminance correlation. Bootstrap entire recipient stimulus rows, 10000 draws. One exemplar per object limits interpretation of original-image retrieval to object-plus-photo correspondence."
+}

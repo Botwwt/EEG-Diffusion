@@ -1,0 +1,19 @@
+{
+  "protocol": "Single-participant same-session episodic support matching v1",
+  "participants": ["sub-04", "sub-05", "sub-01"],
+  "physical_trials_per_photo": 4,
+  "features": "Existing 17 posterior electrodes, 1003 R4 design columns, 512 generic training concepts per participant. No image features, other participants' EEG or target outcomes in fitting.",
+  "panels_sha256": "ebe8c6ec8710ec8a4886e095b89a87ce479bc42b38ad484d5c829aa0137b6599",
+  "training_universe_sha256": "f30831aab67d1b735985876710c51eddc3bd60729c0ccc72e803c02f7f34088d",
+  "session_schedule_sha256": "c6ecbe3e12d3f5445df59a63d0a9568db0a523b643c137d44d29a4ddb3ca0f5a",
+  "generic_validation": "Seed 260545, uniformly hold 96 of the sorted 512 generic classes without replacement, fit the remaining 416. Validate on the 96. Refit on all 512 using the same method for both registered target menus. No parameter selection.",
+  "training_episodes": "Four deterministic shuffled object folds. Both Fisher bases fitted excluding the whole episode fold. Within each participant's identical recording-session pair, draw three or eleven peer objects without replacement for each focal object and each of five photo folds. Eight support EEGs per candidate, two test photographs of the focal class; all ten focal photos evaluated once per menu size. Equal loss weight by menu size.",
+  "bases": "Native 96-dimensional weighted Fisher and a second identical Fisher basis after subtracting recording-pair means from the generic class centroids in only the between-class covariance. Session IDs absent at target inference.",
+  "scores_per_basis": ["native centroid cosine", "menu-centered centroid cosine", "mean of two highest menu-centered individual-support cosines", "negative squared centroid distance", "diagonal predictive Gaussian log density using 50 percent class sample variance and 50 percent pooled within-class variance", "centered centroid cosine on weakest 32 kept directions", "centered centroid cosine on middle 32 directions", "centered centroid cosine on strongest 32 directions"],
+  "fit": "Standardize each of sixteen scores across candidate classes per query. Fit conditional softmax with 0.05/2 times squared L2 distance to unit native-cosine coefficient and zero remaining coefficients. Fixed L-BFGS. Train-label sham uses identical episodes with random nonzero class shifts, same native prior. Wrong-EEG sham uses a fixed nonzero cyclic row shift within the same fold and supplied menu. No query-query normalization or statistics.",
+  "comparators": ["native Fisher", "native Fisher with menu-centering alone", "shifted training-label model", "within-menu shifted query EEG"],
+  "menu": "stress12 uses all twelve words; new_three4 uses its three prespecified four-word menus. Reuse exact rows, folds, eight supports and registered single-person Fisher results. Exclude all panel classes from all fitting.",
+  "primary": "Fixed single-person model averaged across the three people for the same physical objects. Paired bootstrap whole true objects with all people kept together, ten thousand draws; stratify by panel when combining the two choices. Descriptive per-person and generic held-out counts.",
+  "advance": "Each panel mean difference vs native Fisher nonnegative; mean across panels has positive lower 95% bound vs native and training-label sham, and positive mean vs centered cosine. Results on both previously evaluated panels are developmental.",
+  "seed": 260545
+}
