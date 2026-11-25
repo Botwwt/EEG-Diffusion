@@ -1,0 +1,17 @@
+{
+  "protocol": "Secondary follow-up of a named comparator in the prior subspace experiment. The 64 validation classes were examined before selecting the comparator for generation. The same 64 validation classes cannot provide an independent confirmation of this follow-up.",
+  "population": "Single participant sub-04; 200 official test objects with one distinct photo per object; compare 4 versus 80 measured EEG presentations, with a sample-matched 80-repeat wrong-EEG control.",
+  "source_angle_design_sha256": "30e37b34380c205335ec31a76192b081b5f015c1bfe4634b02710348c481609f",
+  "source_angle_fit_sha256": "76517c337445aeefae23937b97e78da47af56a8c77067ff67c524fde3d23655b",
+  "source_generic_validation_sha256": "314cf2c183bc536087f082ee826f3a9c616ebccf33ce666ae692d69afb4456aa",
+  "native_packet_sha256": "214c21ee3c1c53e7d40927a536d9684b164e11fe9a94ec1c9e8d6ed1257a1983",
+  "original_object_design_sha256": "3631b4228d6ca550f0fe7d8e787b9c1e54a71011533cc106c255fb856b6243e6",
+  "native_model_sha256": "22ed8db674fe63d14f319a2db6086936d1224a689783b2bf1db04a777280e46b",
+  "calibrated_gain": 3.2474376826288287,
+  "calibrated_cap_radians": 1.061957199384292,
+  "fit": "Scalar gain is median real H14 angle / median predicted H14 angle across the 64 generic calibration classes, using ten generic photos each. The cap is the 95th percentile of true calibration angles. The failed direction-dependent candidate remains a separate experiment.",
+  "export": "Use the unit direction of the 1012-class training image mean as sphere center. For each original native unit estimate retain its tangent direction and set theta_new=min(gain*theta, cap). Return a unit vector to the identical ViT-H IP-Adapter. Original donor permutation, full-1854 word predictions, scalar radius and row order are copied exactly.",
+  "generation": "Compare native and globally scaled R4, R80 and deranged R80 directions under the identical generic prompt, noise seed, recipient order, text, adapter radius and diffusion schedule. No target labels, target image pixels or target image embeddings are used to form these conditions.",
+  "outcomes": "Reopen actual JPEGs and score independent full-1854 object names and official 200-photo retrieval, including wrong-EEG and R4 controls. The true 200 names or images may enter scoring only. One photo per object precludes within-object photograph discrimination.",
+  "no_tuning": "No adjustment to gain, cap, H14 readout, amplitudes or sampling using official labels, images or rendered outcomes."
+}

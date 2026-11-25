@@ -1,0 +1,840 @@
+{
+  "subject": "sub-04",
+  "unique_queries": 200,
+  "unique_test_objects": 200,
+  "images_per_arm": 200,
+  "generated_jpegs": 600,
+  "gallery_size": 200,
+  "nominal_top1_chance": 0.005,
+  "nominal_expected_mean_rank": 100.5,
+  "interpretation": "One test photograph per object. DINO rank among 200 different objects combines category and photo correspondence. Pixel metrics compare the actual center-cropped RGBs.",
+  "comparisons": "R80 minus its comparator in original metric units. Lower mean rank and RGB RMSE are better; higher top-k, cosine and luminance correlation are better.",
+  "uncertainty": "Percentile bootstrap of the 200 paired stimulus rows, 10,000 draws, one participant, seed 260548; gallery and fitted model held fixed. Intervals are marginal across the contrasts.",
+  "methods": {
+    "dino": "facebook/dinov2-small normalized final CLS cosine",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "pixels": "512-square center crop; BOX-downsample RGB to 32 square in [0,1], RMSE and spatial Pearson luminance with 0.299, 0.587, 0.114 weights.",
+    "ties": "Average ranks and expected top-k credit under uniform ordering within exact ties."
+  },
+  "observed": {
+    "r4": {
+      "dino_top1": {
+        "mean": 0.06,
+        "ci95": [
+          0.03,
+          0.095
+        ],
+        "correct_credit": 12.0
+      },
+      "dino_top5": {
+        "mean": 0.195,
+        "ci95": [
+          0.14,
+          0.25
+        ],
+        "correct_credit": 39.0
+      },
+      "dino_mean_rank": {
+        "mean": 60.66,
+        "ci95": [
+          52.934875000000005,
+          68.55037499999999
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.08831058329991913,
+        "ci95": [
+          0.07207382429066614,
+          0.10532998788271579
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.28487132757902145,
+        "ci95": [
+          0.2761032357849181,
+          0.293669727569446
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.017919118453050036,
+        "ci95": [
+          -0.0074652472720217935,
+          0.04336013775547968
+        ]
+      }
+    },
+    "r80": {
+      "dino_top1": {
+        "mean": 0.12,
+        "ci95": [
+          0.075,
+          0.165
+        ],
+        "correct_credit": 24.0
+      },
+      "dino_top5": {
+        "mean": 0.315,
+        "ci95": [
+          0.25,
+          0.38
+        ],
+        "correct_credit": 63.0
+      },
+      "dino_mean_rank": {
+        "mean": 42.41,
+        "ci95": [
+          35.71,
+          49.765125
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.13086726899494572,
+        "ci95": [
+          0.11330644682067571,
+          0.14864747575087237
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.2757131876051426,
+        "ci95": [
+          0.26749015926197167,
+          0.28412134540081024
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.029919241454604072,
+        "ci95": [
+          0.005258879343009654,
+          0.054277049264210314
+        ]
+      }
+    },
+    "wrong": {
+      "dino_top1": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "correct_credit": 0.0
+      },
+      "dino_top5": {
+        "mean": 0.03,
+        "ci95": [
+          0.01,
+          0.055
+        ],
+        "correct_credit": 6.0
+      },
+      "dino_mean_rank": {
+        "mean": 102.5,
+        "ci95": [
+          94.245,
+          110.645125
+        ]
+      },
+      "dino_correct_cosine": {
+        "mean": 0.01730333033711931,
+        "ci95": [
+          0.008091154576981622,
+          0.026606647522385604
+        ]
+      },
+      "rgb_rmse32": {
+        "mean": 0.3009963099658489,
+        "ci95": [
+          0.2922993740290403,
+          0.3098378312196583
+        ]
+      },
+      "luma_pearson32": {
+        "mean": 0.013252607854921382,
+        "ci95": [
+          -0.007299842299737585,
+          0.0337096398562976
+        ]
+      }
+    }
+  },
+  "paired": {
+    "r80_minus_r4": {
+      "dino_top1": {
+        "delta": 0.06,
+        "paired_ci95": [
+          0.01,
+          0.11
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.12,
+        "paired_ci95": [
+          0.055,
+          0.185
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -18.25,
+        "paired_ci95": [
+          -27.500375,
+          -8.975
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.04255668569502657,
+        "paired_ci95": [
+          0.021917031690996413,
+          0.06305533484886505
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.00915813997387886,
+        "paired_ci95": [
+          -0.014739427253603936,
+          -0.0036896992884576335
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.012000123001554038,
+        "paired_ci95": [
+          -0.017249674657865952,
+          0.04103096116154468
+        ]
+      }
+    },
+    "r80_minus_wrong": {
+      "dino_top1": {
+        "delta": 0.12,
+        "paired_ci95": [
+          0.075,
+          0.165
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.285,
+        "paired_ci95": [
+          0.215,
+          0.35
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -60.09,
+        "paired_ci95": [
+          -70.64,
+          -49.325
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.1135639386578264,
+        "paired_ci95": [
+          0.09364975682410037,
+          0.13322350923400103
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.02528312236070633,
+        "paired_ci95": [
+          -0.03410422651469708,
+          -0.0165351480729878
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.0166666335996827,
+        "paired_ci95": [
+          -0.013974804363516046,
+          0.04621333923478142
+        ]
+      }
+    },
+    "r4_minus_wrong": {
+      "dino_top1": {
+        "delta": 0.06,
+        "paired_ci95": [
+          0.03,
+          0.095
+        ]
+      },
+      "dino_top5": {
+        "delta": 0.165,
+        "paired_ci95": [
+          0.105,
+          0.225
+        ]
+      },
+      "dino_mean_rank": {
+        "delta": -41.84,
+        "paired_ci95": [
+          -52.315124999999995,
+          -31.184875
+        ]
+      },
+      "dino_correct_cosine": {
+        "delta": 0.07100725296279982,
+        "paired_ci95": [
+          0.05273346118202796,
+          0.08968643665101074
+        ]
+      },
+      "rgb_rmse32": {
+        "delta": -0.01612498238682747,
+        "paired_ci95": [
+          -0.02504649750702083,
+          -0.007405564395710826
+        ]
+      },
+      "luma_pearson32": {
+        "delta": 0.004666510598128657,
+        "paired_ci95": [
+          -0.026146141780364285,
+          0.03449456446200176
+        ]
+      }
+    }
+  },
+  "receipts": {
+    "packet_sha256": "1eb435589733c72cc0f8ac0d2cd139e7310d60e9475841eb985f4e7559ae743d",
+    "render_design_sha256": "bd011a3261ded54875ec8a38519f7802e75d5c68512b3e858ffed5886dba948d",
+    "settings_sha256": "43b50b60b79e9c63b5df494348a457a89f89849489707181354ce2bab906e198",
+    "original_archive_sha256": "57ed472cd88f68ccf88e9ecbadf3da91ac222d8548684d5680be95bcf47ec14a",
+    "rows_manifest_sha256": "74773a1ef288b8d1c974a256a6b1c39940949c36842fca1302dc76e641943089",
+    "dino_files_sha256": {
+      "config.json": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+      "model.safetensors": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+      "preprocessor_config.json": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
+    },
+    "native_summary_sha256": "e292b33353123b4767734d99699d7d0b193fff95b93db34ba8ce9b19dc78a09d",
+    "generic_summary_sha256": "2f63cc3aa39c8c434d206a9f25338b1c549ba09f3f4163b444297e850533880d",
+    "per_row_scores_sha256": "ba7725c33b11d36884690b7da4042a85f0ed13bb51171f42dfd067551ddab698",
+    "scorer_sha256": "d9a8c761fe5a313698efecbb898d9262e578097a95c8951c20f56ad03b036df4"
+  },
+  "history": "Third stage, added after examining the first six arms and the three calibrated-angle fixed-prompt arms on these same 200 official photographs. Conditional contrasts for this participant and this fixed gallery.",
+  "across_settings": {
+    "r4": {
+      "calibrated_named_minus_native_named": {
+        "dino_top1": {
+          "n": 200,
+          "delta": 0.005,
+          "ci95": [
+            -0.025,
+            0.035
+          ],
+          "left_credit": 12.0,
+          "right_credit": 11.0,
+          "rows_gaining_credit": 5,
+          "rows_losing_credit": 4
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": 0.06,
+          "ci95": [
+            0.01,
+            0.11
+          ],
+          "left_credit": 39.0,
+          "right_credit": 27.0,
+          "rows_gaining_credit": 20,
+          "rows_losing_credit": 8
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": -9.095,
+          "ci95": [
+            -16.825,
+            -1.184875000000002
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": 0.006572631346969861,
+          "ci95": [
+            -0.00469745414389261,
+            0.01794219659197617
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": 0.008508004546165467,
+          "ci95": [
+            0.003785193882882595,
+            0.013306883724406362
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": 0.008448361836945542,
+          "ci95": [
+            -0.014399419127532065,
+            0.03147175662693654
+          ]
+        }
+      },
+      "calibrated_named_minus_calibrated_generic": {
+        "dino_top1": {
+          "n": 200,
+          "delta": -0.005,
+          "ci95": [
+            -0.045,
+            0.035
+          ],
+          "left_credit": 12.0,
+          "right_credit": 13.0,
+          "rows_gaining_credit": 7,
+          "rows_losing_credit": 8
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": -0.01,
+          "ci95": [
+            -0.065,
+            0.045
+          ],
+          "left_credit": 39.0,
+          "right_credit": 41.0,
+          "rows_gaining_credit": 16,
+          "rows_losing_credit": 18
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": -1.78,
+          "ci95": [
+            -8.655499999999998,
+            5.075124999999998
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": 7.5846644537656e-05,
+          "ci95": [
+            -0.012880747087870006,
+            0.01293172612538034
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": 0.001820650026202202,
+          "ci95": [
+            -0.0004979423675686121,
+            0.004083146413788199
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": -0.007253234539269206,
+          "ci95": [
+            -0.02259149677298373,
+            0.007736435501514758
+          ]
+        }
+      },
+      "change_in_naming_effect_after_calibration": {
+        "dino_top1": {
+          "n": 200,
+          "delta": -0.02,
+          "ci95": [
+            -0.07,
+            0.03
+          ],
+          "left_credit": -1.0,
+          "right_credit": 3.0,
+          "rows_gaining_credit": 11,
+          "rows_losing_credit": 14
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": -0.01,
+          "ci95": [
+            -0.08,
+            0.06
+          ],
+          "left_credit": -2.0,
+          "right_credit": 0.0,
+          "rows_gaining_credit": 20,
+          "rows_losing_credit": 22
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": -1.205,
+          "ci95": [
+            -11.13025,
+            8.795249999999996
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": -0.002184974296456244,
+          "ci95": [
+            -0.016857713744183305,
+            0.012551207379705857
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": 0.0019591831415891646,
+          "ci95": [
+            -0.000748834379017353,
+            0.004647524461150169
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": -0.0036717530042723913,
+          "ci95": [
+            -0.022960072376380914,
+            0.015484286691723408
+          ]
+        }
+      }
+    },
+    "r80": {
+      "calibrated_named_minus_native_named": {
+        "dino_top1": {
+          "n": 200,
+          "delta": 0.055,
+          "ci95": [
+            0.01,
+            0.1
+          ],
+          "left_credit": 24.0,
+          "right_credit": 13.0,
+          "rows_gaining_credit": 17,
+          "rows_losing_credit": 6
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": 0.105,
+          "ci95": [
+            0.045,
+            0.165
+          ],
+          "left_credit": 63.0,
+          "right_credit": 42.0,
+          "rows_gaining_credit": 30,
+          "rows_losing_credit": 9
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": -16.66,
+          "ci95": [
+            -24.0655,
+            -9.024625000000006
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": 0.022975597760504597,
+          "ci95": [
+            0.008411892615126558,
+            0.037088682992030816
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": 0.003241945281624794,
+          "ci95": [
+            -0.001246144438162446,
+            0.0077813928630203
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": 0.00761840153386109,
+          "ci95": [
+            -0.012219204352278473,
+            0.02698422725553126
+          ]
+        }
+      },
+      "calibrated_named_minus_calibrated_generic": {
+        "dino_top1": {
+          "n": 200,
+          "delta": 0.02,
+          "ci95": [
+            -0.025,
+            0.065
+          ],
+          "left_credit": 24.0,
+          "right_credit": 20.0,
+          "rows_gaining_credit": 13,
+          "rows_losing_credit": 9
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": 0.03,
+          "ci95": [
+            -0.035,
+            0.095
+          ],
+          "left_credit": 63.0,
+          "right_credit": 57.0,
+          "rows_gaining_credit": 24,
+          "rows_losing_credit": 18
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": -0.39,
+          "ci95": [
+            -6.73525,
+            6.120374999999995
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": 0.007664179577385403,
+          "ci95": [
+            -0.006880995029517654,
+            0.02272060633537306
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": 0.0012210004031658172,
+          "ci95": [
+            -0.0008111557532101869,
+            0.0033331395890563724
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": -0.0013269133878994722,
+          "ci95": [
+            -0.01496808963879635,
+            0.012429281731917827
+          ]
+        }
+      },
+      "change_in_naming_effect_after_calibration": {
+        "dino_top1": {
+          "n": 200,
+          "delta": 0.005,
+          "ci95": [
+            -0.055,
+            0.06
+          ],
+          "left_credit": 4.0,
+          "right_credit": 3.0,
+          "rows_gaining_credit": 14,
+          "rows_losing_credit": 10
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": -0.02,
+          "ci95": [
+            -0.095,
+            0.055
+          ],
+          "left_credit": 6.0,
+          "right_credit": 10.0,
+          "rows_gaining_credit": 26,
+          "rows_losing_credit": 28
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": 3.045,
+          "ci95": [
+            -6.300749999999999,
+            12.595125
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": -0.005917435169520484,
+          "ci95": [
+            -0.021315750026620214,
+            0.00892902589913862
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": 0.004643393158912659,
+          "ci95": [
+            0.0020911346580833197,
+            0.007316827343776821
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": -0.01635814880894966,
+          "ci95": [
+            -0.0365753317773182,
+            0.0032469399691258836
+          ]
+        }
+      }
+    },
+    "wrong": {
+      "calibrated_named_minus_native_named": {
+        "dino_top1": {
+          "n": 200,
+          "delta": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "left_credit": 0.0,
+          "right_credit": 0.0,
+          "rows_gaining_credit": 0,
+          "rows_losing_credit": 0
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": 0.01,
+          "ci95": [
+            -0.015,
+            0.035
+          ],
+          "left_credit": 6.0,
+          "right_credit": 4.0,
+          "rows_gaining_credit": 4,
+          "rows_losing_credit": 2
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": -2.465,
+          "ci95": [
+            -10.000499999999999,
+            5.135124999999998
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": -0.004149354169458652,
+          "ci95": [
+            -0.013020759341590941,
+            0.004384618083666559
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": 0.01786958657205105,
+          "ci95": [
+            0.013515331989154219,
+            0.02239890523441136
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": 0.0003167419694389645,
+          "ci95": [
+            -0.020265558000043603,
+            0.021060037133896606
+          ]
+        }
+      },
+      "calibrated_named_minus_calibrated_generic": {
+        "dino_top1": {
+          "n": 200,
+          "delta": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "left_credit": 0.0,
+          "right_credit": 0.0,
+          "rows_gaining_credit": 0,
+          "rows_losing_credit": 0
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": 0.005,
+          "ci95": [
+            -0.015,
+            0.03
+          ],
+          "left_credit": 6.0,
+          "right_credit": 5.0,
+          "rows_gaining_credit": 3,
+          "rows_losing_credit": 2
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": 3.43,
+          "ci95": [
+            -3.47,
+            10.515125
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": -0.003962589330729407,
+          "ci95": [
+            -0.011341396744463115,
+            0.0033929867586323117
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": -0.0013820797950029372,
+          "ci95": [
+            -0.003203870475292206,
+            0.00041464826092123963
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": -0.0029577627026689097,
+          "ci95": [
+            -0.015037652104139107,
+            0.008980548451343948
+          ]
+        }
+      },
+      "change_in_naming_effect_after_calibration": {
+        "dino_top1": {
+          "n": 200,
+          "delta": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "left_credit": 0.0,
+          "right_credit": 0.0,
+          "rows_gaining_credit": 0,
+          "rows_losing_credit": 0
+        },
+        "dino_top5": {
+          "n": 200,
+          "delta": -0.01,
+          "ci95": [
+            -0.04,
+            0.015
+          ],
+          "left_credit": 1.0,
+          "right_credit": 3.0,
+          "rows_gaining_credit": 3,
+          "rows_losing_credit": 5
+        },
+        "dino_mean_rank": {
+          "n": 200,
+          "delta": -1.915,
+          "ci95": [
+            -11.62525,
+            7.765249999999996
+          ]
+        },
+        "dino_correct_cosine": {
+          "n": 200,
+          "delta": -0.0023499661920876815,
+          "ci95": [
+            -0.012749650405293016,
+            0.007957700183133931
+          ]
+        },
+        "rgb_rmse32": {
+          "n": 200,
+          "delta": 0.001631370186805725,
+          "ci95": [
+            -0.0009375636503100395,
+            0.004224645152688025
+          ]
+        },
+        "luma_pearson32": {
+          "n": 200,
+          "delta": -0.005627138636192849,
+          "ci95": [
+            -0.02488456219265314,
+            0.01299166695517287
+          ]
+        }
+      }
+    }
+  }
+}

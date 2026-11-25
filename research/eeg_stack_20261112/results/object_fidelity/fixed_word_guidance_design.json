@@ -1,0 +1,23 @@
+{
+  "study": "Development follow-up on the two previously studied fixed-word panels. Compare completed JPEGs under one prespecified score extrapolation to the original cohort-9 four-step images.",
+  "population": "For each of 240 distinct query photographs, nine named people each supplied four EEG presentations. The 36 observations describe one shared photograph. The previous sub-04 readout fixes the predicted word and eight same-word support photographs outside each query fold.",
+  "panels": ["registered", "replicate"],
+  "subject": "cohort-9",
+  "rows_per_panel": 120,
+  "design_sha256": "e304cc422fa1fef0755643e2ff6a4a5abb335f9109899fc89b0c121e4d211f58",
+  "original_study_sha256": "b3f0f4d5db5a9645bd87c4764c60f4bda61a68e73183e1f15f21cd639470c3a5",
+  "radius_sha256": "a3309f1cac9e85a4aa619586b723cb18837f0e86035e7354930f66dbfd8bb247",
+  "original_renderer_sha256": "508e60c1255f8deb518c67af8f9dec3d1f164517b584bcb7a640986edc371593",
+  "packet_sha256": {
+    "registered": "03ebb201ac88b81f50765c147c56d9c281ed8c3ceecb15b6ecba378fef2fbe33",
+    "replicate": "08d575a2ca78e5007cc75a6b074705f7bb32d554319f39e072d0986ec5c231e4"
+  },
+  "factor": 2.0,
+  "arms": ["uniform", "own", "wrong"],
+  "formula": "At each current latent and timestep with identical text conditioning, run the frozen U-Net for the uniform image condition and separately for the selected EEG image condition. Use eps_uniform + 2 * (eps_selected - eps_uniform), calculated in float32 and cast back to the original noise dtype before the one ordinary scheduler step. If the selected and uniform input are identical in the model dtype, take eps_uniform unchanged. Uniform uses one ordinary forward pass.",
+  "controls": "Wrong uses the original same-predicted-word and same-fold donor direction, recipient angular magnitude and recipient seed. The uniform direction is the identical eight-support mean. Original ordinary own, wrong and uniform JPEGs from the same two packets supply the direct comparator.",
+  "sampling": "Original SDXL-Turbo and official ViT-H IP-Adapter at scale one, identical word prompt, no text classifier-free guidance, original eight-row batches, 512 square, seed 923761 plus original training-array row per image. Euler ancestral epsilon prediction at timesteps 999,749,499,249. One scheduler update and one random stream per recipient step. Three arms x 120 photographs x two panels gives 720 JPEGs.",
+  "parity": "Independently generate every uniform control through the ordinary four-step pipeline. Require its JPEG SHA-256 to match the original renderer for all 240 images before treating the study as valid. The registered comparison uses identical adapter, generator, dictionary, packet, seeds, batch size and encoding.",
+  "evidence": "Rerun the pre-existing independent object-name, exact-photo and within-object pair scoring on completed JPEGs. Use the same original photographs across arms. Selection of factor two precedes viewing these guided images. The earlier generic and panel feature comparisons motivated the experiment. One factor is tested.",
+  "related_work": "Ho and Salimans, Classifier-Free Diffusion Guidance (https://arxiv.org/abs/2207.12598), combines score estimates. Here both scores have the same predicted text and a different image condition. Ye et al., IP-Adapter (https://arxiv.org/abs/2308.06721), supplies the frozen image-prompt adapter."
+}
