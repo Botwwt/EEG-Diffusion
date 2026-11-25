@@ -1,0 +1,14 @@
+{
+  "hypothesis": "A learned representation of the four individual presentations, with reliability pooling and same-recording-pair object supervision, improves single-person recognition of objects not used to train the encoder.",
+  "subject": "sub-04",
+  "data": "Four physical repeats, 63 channels, first 125 stored post-stimulus samples at 250 Hz. All statistics and weights fitted on training objects only. No visual embedding or target-class EEG used to train these weights.",
+  "generic": "Use the archived episodic classifier's fixed split of 416 training and 96 development objects and precisely the historical generic episodes and support rows. These development objects have been used in previous experiments.",
+  "target": "If the generic rule passes, refit the same algorithm for the same number of updates on all 512 generic objects. Evaluate the 12-way stress12 and provided four-way new_three4 menus already studied.",
+  "architecture": "Each trial passes through a shared linear 63-to-48 spatial projection and a depthwise temporal convolution. Pool four trials independently per latent channel, giving less weight to a trial as its temporal deviation from the across-trial mean increases. Retain signed features in 25 successive time bins. A temporal convolution and linear projector produce 96 unit-normalized dimensions.",
+  "training": "Within each optimization episode all 12 objects have the same session pair. Shuffle each object's ten photos. Two complementary pairs of physical trials supply two views. For each query exclude its two held-out photos from its object's eight support photos. Alternate two-repeat and full-four query representations. Train with cross-entropy on the 12 object scores plus 0.2 times a ten-way same-object loss that matches complementary EEG trial pairs of one photograph. One seed, 750 AdamW updates, learning rate 0.0006, cosine decay, weight decay 0.02.",
+  "primary": "Standardize each 12-way vector of prototype cosine scores as in the historical readout and average equal weights of deep and Fisher scores. Report both separately, the archived episodic classifier and exchanged EEG. No checkpoint or coefficient selected using development scores.",
+  "gate": "Primary generic twelve-way mixed accuracy must have a positive 95% whole-object bootstrap lower bound against Fisher and a nonnegative hit difference against the previous episodic classifier. Also report the four-way task. The sealed object panel is separate.",
+  "seed": 260553,
+  "bootstrap_seed": 260552,
+  "bootstrap_draws": 10000
+}
