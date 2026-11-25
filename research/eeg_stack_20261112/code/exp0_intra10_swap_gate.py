@@ -72,7 +72,7 @@ def get_concept_splits():
     return concept, ok, tr_idx, f0_all10, f0_idx, sel50_cids, sel50_idx
 
 
-def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int = 150) -> Path:
+def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int = 150, subjects=ALL_SUBS) -> Path:
     """Train clean O13/O14-style shared-trunk cross-sub baseline strictly on tr14 (folds 1..4, ZERO fold-0 access)."""
     ckpt_p = OUT_DIR / f"arm0_tr14_xbrain_s{seed}.pt"
     if ckpt_p.exists():
@@ -98,10 +98,10 @@ def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int =
     h14_norm = float(H14_tr.norm(dim=1).mean())
     b32_norm = float(B32_tr.norm(dim=1).mean())
 
-    x_tr_all = []
-    for s in ALL_SUBS:
+    x_tr_all = {}
+    for s in subjects:
         arr = np.load(PREP / f"sub-{s:02d}_train.npy")[tr_idx_np]
-        x_tr_all.append(torch.from_numpy(arr).half())
+        x_tr_all[s - 1] = torch.from_numpy(arr).half()
 
     kv_full = OnConeKVProjector(str(PREP / "unet_kv_metric.pt"), device=dev)
     kv_full.calibrate_fold(F_tr)
@@ -110,7 +110,7 @@ def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int =
     fe_vis = FusionEncoderModel.from_pretrained(str(PRIOR), subfolder="fusion_encoder").vision_model.to(dev).float().eval().requires_grad_(False)
 
     model = CrossSubjectHorizonEncoder(n_subs=10, num_layers=3, dropout=0.20, in_drop=0.15).to(dev)
-    for sid in range(10):
+    for sid in x_tr_all:
         model.ebs[sid].fit_from_fold(x_tr_all[sid].float().to(dev))
 
     log_sf = nn.Parameter(torch.tensor(2.6592, device=dev))
@@ -135,16 +135,14 @@ def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int =
     for ep in range(epochs):
         model.train()
         perm = torch.randperm(n_tr, device=dev, generator=g)
-        sub_order = rng_np.permutation(10)
+        sub_order = rng_np.permutation(list(x_tr_all))
         for b in range(spr):
             idx = perm[b * bs:(b + 1) * bs]
             if len(idx) < 32:
                 continue
             idx_c = idx.cpu()
-            sid_a = int(sub_order[(2 * b) % 10])
-            sid_b = int(sub_order[(2 * b + 1) % 10])
-            if sid_b == sid_a:
-                sid_b = (sid_a + 1) % 10
+            sid_a = int(sub_order[(2 * b) % len(sub_order)])
+            sid_b = int(sub_order[(2 * b + 1) % len(sub_order)])
             raw_a = x_tr_all[sid_a][idx_c].float().to(dev)
             raw_b = x_tr_all[sid_b][idx_c].float().to(dev)
             xa, ka = sample_sub_repeats(raw_a, g)

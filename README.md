@@ -6,7 +6,13 @@ Reconstructing viewed photographs from EEG. The primary task is to draw the righ
 
 [![checks](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml/badge.svg)](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml)
 
-## Selected model for calibrated objects
+## Reconstruction from EEG alone
+
+The primary comparison uses the THINGS-EEG2 test set. Each method receives the same four EEG recordings of the same photograph from one participant. It generates one image with an empty text prompt, four denoising steps and a shared per-stimulus seed. The original photographs and object names enter only during scoring. The second panel holds out 50 further objects, each with ten distinct photographs, to measure which photograph the reconstruction preserves. Both panels include a control that exchanges EEG between stimuli. [Paired results and coverage](docs/PAPER_BENCHMARK_RESULTS.md) · [Evaluation protocol and reproduction](research/eeg_stack_20261112/PAPER_BENCHMARK_PROTOCOL.md)
+
+Brain-HiVE uses a participant-specific encoder and frozen image projection. Our M1a + D2 model adds a repeat-aware EEG readout, a participant-specific prediction of low-frequency layout, and training that links generated images to their matching EEG. The benchmark includes both single-participant and ten-participant training, with matched ablations for the additional losses. [Per-participant estimates and intervals](research/eeg_stack_20261112/results/paper_benchmark.json)
+
+## Earlier experiments with calibrated objects
 
 **For one person with four EEG presentations and twelve calibrated candidate objects, use the four-trial encoder plus Fisher.** Two encoders score the same candidates. One learns from four separate 63-electrode EEG trials, including a training task that matches complementary trial pairs from one photo. The other uses a 17-electrode posterior Fisher projection. Their standardized scores have equal weight. Both train on 512 other objects. At inference each candidate has eight labeled support photos and their EEG. The predicted word selects the supports. A separate visual decoder adds an EEG estimate of the photo-specific difference to their mean H/14 feature. A frozen ViT-H IP-Adapter and four SDXL-Turbo steps draw one image. The query photo enters evaluation after generation. [Run one EEG query and render it](docs/PERSONAL_OBJECT_INFERENCE.md) · [Training and component controls](docs/TRIAL_OBJECT_ABLATION.md) · [Visual decoder](docs/PHOTO_STRUCTURE.md)
 

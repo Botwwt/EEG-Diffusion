@@ -18,7 +18,7 @@ PREP = ROOT / "data/prep"
 PRIOR = ROOT / "models/Fusion-Prior-H14_B32_VAE"
 TURBO = ROOT / "models/sdxl-turbo"
 HIVE = ROOT / "code/Brain-HIVE"
-RUNS = ROOT / "runs"
+RUNS = Path(os.environ.get("EEG_RUNS_ROOT", ROOT / "runs"))
 
 # The 17 occipito-parietal channels of the paper (Sec. 4.1 / App. B).
 CH17 = ["P7", "P5", "P3", "P1", "Pz", "P2", "P4", "P6", "P8", "PO7", "PO3", "POz", "PO4", "PO8", "O1", "Oz", "O2"]

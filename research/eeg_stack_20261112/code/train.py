@@ -14,6 +14,7 @@ Training-input modes (how the 4 single-trial repeats of an image become one inpu
 """
 import argparse
 import itertools
+import json
 import math
 import sys
 import time
@@ -47,6 +48,8 @@ p.add_argument("--target", default="fused", choices=["fused", "h14"],
                     "instead of the Fusion-Prior output F; the image tower is then the identity")
 p.add_argument("--tag", required=True)
 p.add_argument("--save_model", type=int, default=1)
+p.add_argument("--paper-fit-only", action="store_true",
+               help="Use the locked paper training rows, save the encoder, and exit before any evaluation data are loaded.")
 p.add_argument("--save_cond", type=int, default=1, help="0: keep only metrics.json and the small mean vectors")
 args = p.parse_args()
 
@@ -55,6 +58,8 @@ out = RUNS / "enc" / args.tag / f"sub-{args.sub:02d}" / f"fold{args.fold}_seed{a
 out.mkdir(parents=True, exist_ok=True)
 if (out / "metrics.json").exists():
     print("already done:", out)
+    sys.exit(0)
+if args.paper_fit_only and (out / "fit.json").exists() and (out / "brain_model.pt").exists():
     sys.exit(0)
 
 sys.path.insert(0, str(HIVE))
@@ -76,7 +81,7 @@ transformers.set_seed(args.seed)
 
 # ---------------------------------------------------------------- data
 x_tr = torch.from_numpy(np.load(PREP / f"sub-{args.sub:02d}_train.npy"))  # [16540, 4, 17, 250]
-x_te = torch.from_numpy(np.load(PREP / f"sub-{args.sub:02d}_test.npy"))   # [200, 80, 17, 250]
+x_te = x_tr[:0] if args.paper_fit_only else torch.from_numpy(np.load(PREP / f"sub-{args.sub:02d}_test.npy"))
 if args.chan == "typo":  # official reconstruction script: Oz listed where POz belongs
     a, b = CH17.index("POz"), CH17.index("Oz")
     x_tr[:, :, a], x_te[:, :, a] = x_tr[:, :, b].clone(), x_te[:, :, b].clone()
@@ -84,22 +89,28 @@ if args.chkeep:  # same subset for every subject and fold of a seed
     args.chlist = np.sort(np.random.default_rng(args.seed).choice(17, args.chkeep, replace=False)).tolist()
     drop = [c for c in range(17) if c not in args.chlist]
     x_tr[:, :, drop], x_te[:, :, drop] = 0, 0
-x_tr = x_tr[..., args.t0:args.t1].contiguous().to(dev)
+x_tr = x_tr[..., args.t0:args.t1].contiguous().to(dev, dtype=torch.float32)
 x_te = x_te[..., args.t0:args.t1].contiguous().to(dev)
 sfx = f"_{args.emb}" if args.emb else ""
 emb_tr = {k: v.float().to(dev) for k, v in torch.load(PREP / f"emb_train{sfx}.pt", weights_only=True).items()}
 F_tr = torch.from_numpy(np.load(PREP / f"F_train{sfx}.npy")).to(dev)   # the encoder's own target space (candidates for identification)
-F_te = torch.from_numpy(np.load(PREP / f"F_test{sfx}.npy")).to(dev)
-F_te_clean = torch.from_numpy(np.load(PREP / "F_test.npy")).to(dev)
+if not args.paper_fit_only:
+    F_te = torch.from_numpy(np.load(PREP / f"F_test{sfx}.npy")).to(dev)
+    F_te_clean = torch.from_numpy(np.load(PREP / "F_test.npy")).to(dev)
 H14 = "CLIP-ViT-H-14-laion2B-s32B-b79K"
 if args.target == "h14":  # targets = raw ViT-H/14 image embeddings (1024-d, same width as F)
     assert not args.emb
     emb_tr = {H14: emb_tr[H14]}
     F_tr = emb_tr[H14]
-    F_te = F_te_clean = torch.load(PREP / "emb_test.pt", weights_only=True)[H14].float().to(dev)
+    if not args.paper_fit_only:
+        F_te = F_te_clean = torch.load(PREP / "emb_test.pt", weights_only=True)[H14].float().to(dev)
 concept = torch.from_numpy(np.load(PREP / "train_concept.npy"))
 img_fold = torch.from_numpy(concept_folds(1654, args.nfold))[concept]
 tr_idx = (torch.arange(len(concept)) if args.fold < 0 else torch.nonzero(img_fold != args.fold).squeeze(1)).to(dev)
+if args.paper_fit_only:
+    assert args.fold in (-1, 0) and args.mode == "r4" and args.chan == "correct"
+    if args.fold == 0:
+        tr_idx = torch.tensor(json.loads((PREP / "paper_split.json").read_text())["train_rows"], device=dev)
 ho_idx = (torch.empty(0, dtype=torch.long) if args.fold < 0 else torch.nonzero(img_fold == args.fold).squeeze(1)).to(dev)
 n_tr = len(tr_idx)
 
@@ -189,6 +200,12 @@ for ep in range(args.epochs):
         tot += float(loss) * len(idx)
     log.append(tot / n_tr)
 train_seconds = time.time() - t_start
+if args.paper_fit_only:
+    tmp = out / "brain_model.pt.partial"
+    torch.save({k: v.cpu() for k, v in model.brain_model.state_dict().items()}, tmp)
+    tmp.replace(out / "brain_model.pt")
+    write_json(out / "fit.json", dict(args=vars(args), n_train=n_tr, steps=total, epoch_loss=log, seconds=train_seconds))
+    sys.exit(0)
 
 # ---------------------------------------------------------------- condition-level evaluation
 model.eval()

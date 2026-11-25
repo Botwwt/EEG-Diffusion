@@ -108,7 +108,7 @@ def forward_with_trunk(model: CrossSubjectHorizonEncoder, x: torch.Tensor, sid: 
     return model.head_f(c_ens), model.head_h14(c_ens), model.head_b32(c_ens), c_ens
 
 
-def build_tr14_resources(dev: str):
+def build_tr14_resources(dev: str, subjects=ALL_SUBS):
     concept_np, ok_np, tr_idx_np, f0_all10, f0_idx, sel50_cids, sel50_idx = get_concept_splits()
     c_fold = concept_folds(1654, 5, seed=20261112)
     # Build mapping: for each valid tr14 concept with all 10 ok images -> array of 10 local indices inside tr_idx_np
@@ -128,10 +128,10 @@ def build_tr14_resources(dev: str):
     lat_tr_cpu = torch.from_numpy(lat_tr).half()
     del lat_tr
 
-    x_tr_all = []
-    for s in ALL_SUBS:
+    x_tr_all = {}
+    for s in subjects:
         arr = np.load(PREP / f"sub-{s:02d}_train.npy")[tr_idx_np]
-        x_tr_all.append(torch.from_numpy(arr).half())  # [13225, 4, 17, 250] fp16 on CPU
+        x_tr_all[s - 1] = torch.from_numpy(arr).half()
 
     kv_full = OnConeKVProjector(str(PREP / "unet_kv_metric.pt"), device=dev)
     kv_full.calibrate_fold(F_tr)
@@ -149,6 +149,7 @@ def build_tr14_resources(dev: str):
         "B32_tr": B32_tr,
         "lat_tr_cpu": lat_tr_cpu,
         "x_tr_all": x_tr_all,
+        "subject_ids": np.array(list(x_tr_all)),
         "kv_full": kv_full,
     }
 
@@ -240,7 +241,7 @@ def train_arm1_rep_intra(arm0_ckpt: Path, res: dict, steps: int = 800, seed: int
         # 1. Inter-concept anchor (bs=512, fn_mask REMOVED)
         idx_dev = torch.randint(0, n_tr, (512,), device=dev, generator=g)
         idx_cpu = idx_dev.cpu()
-        s_pair = rng.choice(10, size=2, replace=False)
+        s_pair = rng.choice(res["subject_ids"], size=2, replace=len(res["subject_ids"]) == 1)
         with torch.amp.autocast("cuda", dtype=torch.bfloat16):
             l_base = compute_base_anchor_loss(
                 model, res, int(s_pair[0]), int(s_pair[1]), idx_cpu, idx_dev, g, dev,
@@ -249,7 +250,7 @@ def train_arm1_rep_intra(arm0_ckpt: Path, res: dict, steps: int = 800, seed: int
 
             # 2. Within-concept 10-way InfoNCE + exact 2x2 representation swap on 8 concepts (80 images = 360 pairs!)
             # Same subject per concept, R=4 mean EEG!
-            sid_c = int(rng.integers(0, 10))
+            sid_c = int(rng.choice(res["subject_ids"]))
             c_sel = rng.choice(n_c, size=8, replace=False)
             g_locs = c_groups[c_sel].reshape(-1)  # [80]
             g_locs_t = torch.from_numpy(g_locs).long()
