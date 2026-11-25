@@ -1,0 +1,103 @@
+{
+  "experiment": "Eight frozen generated alternatives, EEG pose plus H/14 selection",
+  "scope": "Two previously studied panels. Three previously studied people. Original H14 and inverse-EEG selector scores are known. New choice method, controls, and outcome gate fixed prior to selecting or evaluating any new picks. Development experiment.",
+  "subjects": [
+    "sub-04",
+    "sub-05",
+    "sub-01"
+  ],
+  "panels": [
+    "registered",
+    "replicate"
+  ],
+  "n": {
+    "people": 3,
+    "objects": 24,
+    "unique_original_photos": 240,
+    "person_photo_queries": 720,
+    "generated_jpegs": 960,
+    "candidates_per_query": 8,
+    "strict_correct_word_pairs": 170
+  },
+  "bank_design": "69d76b700de91c68cc42c675f64c26ca7791aab7e934dec561c8b8e8f84d0c7a",
+  "bank_manifests": {
+    "registered": "8add3f8f8f53b127c71ab04df1cd8b1bda44aa766cc62140f2a6bd94d5616c93",
+    "replicate": "728235605c34dc8912ed8922d0eb8399a9ae1b2a13b68c53440d2fbc65cc5174"
+  },
+  "registration": {
+    "registered": "f623b24d73d0024c23642ffa0309ba05078f591b2d723770ac12a93459de327a",
+    "replicate": "d7646f9fcd7958818a26d6d82483316d75c42ee295dc77f545e48258741d452b"
+  },
+  "sources": {
+    "sub-04": {
+      "physical_ranges": "0abd7a129aacf3114bbe882caa81316e9d46fed8b03fcb50436203682b02687c",
+      "posterior_packet": "6008fff62233e34c43e7c2a209b45b8bf87178d2883c16ca48ca149a425c77e8",
+      "pose_model": "70193df1446b05211944081bb713c323bee7dc92ea9437be9aeb73a4002a5317",
+      "pose_model_receipt": "4ae1658f2a2e1b3a2b6f10db11885d5207eecd77f6066d17c02ffab7ac0df1ce",
+      "trial_encoder": "e7f3d23f4981074fc86bad22fddd8a0878030df31311fa61e7e8909ffc19b35b",
+      "H14_prediction": {
+        "registered": "a7537b197614fb71cba1ccbae19d76d96d9231bde9d26b144022ffbc5fa2a3a0",
+        "replicate": "0626a56496dbdbeaec251318fd9eacffbc0bb1f7809ae61833adee5580726192"
+      },
+      "old_selection": {
+        "registered": "e6bb741b2da5c9d5cfd014acbfdb63a15b9285282ee8920925d239921509070d",
+        "replicate": "66ba76429efbab2af0fa391331c5bc917323871f5b2bd8929057c15195657541"
+      }
+    },
+    "sub-05": {
+      "physical_ranges": "26d82e7d94e4f97e81789f87b1bee576d477ac5f49a43082885d009731d8af91",
+      "posterior_packet": "56d69fd701080d8f710202d4213971c1676fd66c51d7501b8aff6c0e6f481b5d",
+      "pose_model": "495d8cbd4dde654a0e2905fe3c7bdc167b8fb428d804318b1a07a8f93d5aea12",
+      "pose_model_receipt": "eeb8b683f1b74f49e26f05d7033d4d070cc7e89c39449a0a70aa59e3082906b0",
+      "trial_encoder": "029662a69062a6733d56df3086815f747d09a7d82d76756b473908092f78c92c",
+      "H14_prediction": {
+        "registered": "4a1c89ba61090f546d85491395f8374000470d0fc96681ec8618ada0fc1f4f05",
+        "replicate": "ab3b7e0be188af14727309e161f8f56c22e87aee65ceba2419caca8f6f8cd95f"
+      },
+      "old_selection": {
+        "registered": "255cc97fec7924a5ae5ab10df489b5976ab9122345bd7cbb4ed952ae2525d378",
+        "replicate": "13ccc48a83a7dddf48fa7dd7ef0336bcc7133fa359dcb95a3196395f789b1e1e"
+      }
+    },
+    "sub-01": {
+      "physical_ranges": "f2228f543ce5adaf23b25aa7a769e68b4f8d5823a2fb818a59764c68b5a92a94",
+      "posterior_packet": "2fcbdc21b83e75752c7435400591a4f1e2cb246a5326efb5c322beebdf668b4f",
+      "pose_model": "6ca6a67d549ffdb6bc942b7c9afdd49da46870cf0c3e2e13a674e834dcb16c66",
+      "pose_model_receipt": "1a53ba06f9e88ad5da189506f23734945c976b0f9f87faeedebfe07e1123079d",
+      "trial_encoder": "c0913064639664b39e9cb1fd6f9b719f6817a9d78482d0cf07260a90b88e76a3",
+      "H14_prediction": {
+        "registered": "57cc764edda37bd1729bd89d8a67d0495a30542b924cea73b93aa563abf7f18a",
+        "replicate": "01e5477d55a51bc619198f64c7240e2c2f3bb77f243ceff7294363f66dd73491"
+      },
+      "old_selection": {
+        "registered": "12962b162eee0e7b37c5ab4195172656c33b9de637eb52eacf9f791fb47ade8f",
+        "replicate": "421e22b12da430de02a9095cb4019322fe1ceb337cafc23f0bc55c393417de4b"
+      }
+    }
+  },
+  "generic_pose": "e0a87ff17149c08d7058031a3996a64d13f3c906c28a0c416ebedb98323c521f",
+  "prior_reports": {
+    "generated_bank_dino.json": "5d0afcde6c3ffcaedf5f308216f695e3014b13bbfe4b8be545825bc31a20f52f",
+    "generated_bank_clip.json": "c7b606f407679afd4928e05247f935a733694d5eeeb0959a667eb27c0cd0cded"
+  },
+  "segmentation_sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+  "selection": "Hold the previously decoded posterior512 word, fold, eight supports, donor and eight seeds fixed. Reopen only the synthetic bank JPEGs to measure unit-square center, log root-trace radius, and image-plane anisotropy (two components) using U2NetP. For each person reconstruct posterior R4 and full trial encoder inputs from the four actual repeats. Apply the frozen 512-generic within-object pose ridge and learned OOF head gains to query EEG minus the predicted word eight-support EEG mean. The candidate-domain anchor is the arithmetic mean of the eight synthetic foreground vectors for that word and fold. Constrain(anchor + predicted shift) with the original pose bounds. No target photos, target features, evaluation models, query class or target pose data may be accessed by selection.",
+  "fusion": "Higher is better. Pose score is negative squared Euclidean distance to the pose prediction in 5 dimensions, standardized using only the frozen generic pose SD. H14 own and wrong use historical prior-subtracted unit residual cosine, uniform the historical support-prior cosine. Sum the ranks (equal fixed weight, average ranks on ties) over the eight candidate JPEGs. Choose the smallest index on ties. There is no fitted fusion weight or search.",
+  "arms": [
+    "joint",
+    "wrong",
+    "mean",
+    "pose_only",
+    "old_h14",
+    "old_uniform",
+    "fixed0"
+  ],
+  "controls": "wrong exchanges both modalities via frozen same-word/same-fold donor, including self for singletons. mean uses zero EEG pose residual and historical H14 full prior. pose_only uses only own learned pose metric. old_h14/old_uniform/fixed0 replay the original choices. Each arm uses the exact same pool and one existing generated JPEG.",
+  "oracle": "After sealing all 720 method choices, compute a separate nondeployable DINO upper bound: pick candidate with the best own-original minus strongest of nine same-object rival cosine margin, then lowest index. This maximizes attainable ten-way DINO success wherever a candidate can win. The word and eight-image pool are fixed. No use in selection or parameter tuning. The resulting CLIP/strict-pair scores use those same oracle picks.",
+  "outcomes": "Primary all-query DINOv2-S/14 top1 among ten original photos of the actual object. Promote only if the lower paired 95% object-bootstrap bound is strictly positive versus old H14, zero-EEG mean and wrong EEG. Report 720-row descriptive values and paired estimates for 24 object clusters, fixed people; per-person and per-panel results. Secondary strict joint assignment and two independent comparisons conditional on both words correct, raw target cosine, independent CLIP full1854/within10, and oracle/first. Describe generated-candidate DINO variation and feasibility per row. Tied retrieval scores share credit.",
+  "uncertainty": "Seed 260559, 10000 paired bootstrap resamples of globally distinct object IDs retaining all participant/photo observations. Ratio-of-counts mean. 95% percentile intervals conditional on these fixed participants. Do not treat 720 rows or repeated uses of 960 bank JPEGs as independent.",
+  "evaluation_files": {
+    "dino": "4dc8db1549ddc408e1be7a704168b9af522771774aa66fbc1127beb4216611ab",
+    "clip": "f92c5bd3d5a599b4e6af197f2b6be28c368d685adaa5f730810d821a2c790496"
+  }
+}
