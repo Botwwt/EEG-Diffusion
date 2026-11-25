@@ -28,15 +28,24 @@ def metadata(data):
     base = read(expected["original_generic_receipt"])
     double = read(expected["extra_design"])
     native = read(expected["extra_subject_receipt"])
-    personal = {c for d in read(expected["personal_menus"])["panels"].values()
-                for c in d["selected_concepts"]}
-    fit, held, extra = (set(v) for v in (base["train_classes"], base["test_classes"],
-                                         double["extra_objects"]))
-    check((len(fit), len(held), len(extra), len(personal)) == (416, 96, 512, 29)
-          and not fit & held and not (fit | held) & extra and not (fit | held | extra) & personal
-          and fit | held == set(double["old_objects"])
-          and set(native["raw_sha256"]) == {str(c) for c in extra}
-          and native["source_full_lfs_sha256"] == SOURCE_SHA, "Class partition or source changed")
+    personal = {
+        c
+        for d in read(expected["personal_menus"])["panels"].values()
+        for c in d["selected_concepts"]
+    }
+    fit, held, extra = (
+        set(v) for v in (base["train_classes"], base["test_classes"], double["extra_objects"])
+    )
+    check(
+        (len(fit), len(held), len(extra), len(personal)) == (416, 96, 512, 29)
+        and not fit & held
+        and not (fit | held) & extra
+        and not (fit | held | extra) & personal
+        and fit | held == set(double["old_objects"])
+        and set(native["raw_sha256"]) == {str(c) for c in extra}
+        and native["source_full_lfs_sha256"] == SOURCE_SHA,
+        "Class partition or source changed",
+    )
     return base, sorted(extra), native
 
 
@@ -46,8 +55,11 @@ def acquire(args):
     check(native["source"] == source and set(groups["stress12"]) <= set(extra), "Release mismatch")
     original = args.data / "trial-object-inputs/sub-04"
     reuse = read(original / "stress12.json")
-    check(sha(original / "stress12.json") ==
-          "07367d90c79371d3cd5d80d784ee3b2b38da5c87d4e38663bf199309a0421061", "Reuse receipt")
+    check(
+        sha(original / "stress12.json")
+        == "07367d90c79371d3cd5d80d784ee3b2b38da5c87d4e38663bf199309a0421061",
+        "Reuse receipt",
+    )
     out = args.out / "extra"
     out.mkdir(parents=True, exist_ok=True)
     options = SimpleNamespace(out=out, raw_cache=None, offline=args.offline)
@@ -58,20 +70,25 @@ def acquire(args):
         rec = out / f"{c:04d}.json"
         if rec.exists():
             value = read(rec)
-            check(value["source_raw_sha256"] == raw_sha and value["output_sha256"] == sha(dest),
-                  f"Incorrect cached EEG for {c}")
+            check(
+                value["source_raw_sha256"] == raw_sha and value["output_sha256"] == sha(dest),
+                f"Incorrect cached EEG for {c}",
+            )
             return value
         if c in groups["stress12"]:
             record = reuse["blocks"][str(c)]
             src = original / dest.name
-            check(record["source_raw_sha256"] == raw_sha and sha(src) == record["output_sha256"],
-                  f"Cached stimulus mismatch {c}")
+            check(
+                record["source_raw_sha256"] == raw_sha and sha(src) == record["output_sha256"],
+                f"Cached stimulus mismatch {c}",
+            )
             if not dest.exists():
                 # The files are on the same research drive. No second copy of the raw EEG.
                 try:
                     dest.hardlink_to(src)
                 except OSError:
                     import shutil
+
                     shutil.copyfile(src, dest)
             check(sha(dest) == record["output_sha256"], "Bad linked crop")
             value = {k: record[k] for k in ("source_raw_sha256", "output_sha256")}
@@ -87,10 +104,19 @@ def acquire(args):
             results[str(queue[future])] = future.result()
             if j % 32 == 0:
                 print(j, "/512 verified", flush=True)
-    freeze(out / "receipt.json", dict(subject="sub-04", design_sha256=sha(DESIGN),
-           source_sha256=SOURCE_SHA, raw_manifest_sha256=RECEIPTS["double-calibration/features"],
-           object_ids=extra, shape=[10, 4, 63, 125], dtype="float32",
-           blocks={str(c): results[str(c)] for c in extra}))
+    freeze(
+        out / "receipt.json",
+        dict(
+            subject="sub-04",
+            design_sha256=sha(DESIGN),
+            source_sha256=SOURCE_SHA,
+            raw_manifest_sha256=RECEIPTS["double-calibration/features"],
+            object_ids=extra,
+            shape=[10, 4, 63, 125],
+            dtype="float32",
+            blocks={str(c): results[str(c)] for c in extra},
+        ),
+    )
 
 
 if __name__ == "__main__":

@@ -48,7 +48,9 @@ def extract(model, raw, mu, sd):
     with torch.inference_mode():
         for block in raw.flatten(0, 1).split(128):
             signal = model.trials(((block - mu) / sd).clamp(-12, 12))
-            result.append(torch.stack([model.aggregate(signal[:, list(v)]) for v in VIEWS], 1).cpu())
+            result.append(
+                torch.stack([model.aggregate(signal[:, list(v)]) for v in VIEWS], 1).cpu()
+            )
     return torch.cat(result).numpy().reshape(len(raw), 10, len(VIEWS), 96)
 
 
@@ -66,18 +68,26 @@ def run(a):
         folder.mkdir(parents=True, exist_ok=True)
         dest = folder / "views.npz"
         receipt = folder / "receipt.json"
-        signature = dict(design_sha256=sha(DESIGN), training_source_sha256=sha(Path(__file__)),
-                         base_trainer_sha256=sha(Path(__file__).with_name("fit_trial_object_encoder.py")),
-                         train_classes=train.tolist(), test_classes=test.tolist())
-        require(signature["base_trainer_sha256"] == read(a.base / "receipt.json")["source_sha256"],
-                "Original encoder source differs")
+        signature = dict(
+            design_sha256=sha(DESIGN),
+            training_source_sha256=sha(Path(__file__)),
+            base_trainer_sha256=sha(Path(__file__).with_name("fit_trial_object_encoder.py")),
+            train_classes=train.tolist(),
+            test_classes=test.tolist(),
+        )
+        require(
+            signature["base_trainer_sha256"] == read(a.base / "receipt.json")["source_sha256"],
+            "Original encoder source differs",
+        )
         if receipt.exists():
             prior = read(receipt)
             require(prior == dict(signature, packet_sha256=sha(dest)), "Changed cached embeddings")
             continue
         if name == "held":
             path = a.base / "model.safetensors"
-            require(sha(path) == read(a.base / "receipt.json")["weights_sha256"], "Changed full fit")
+            require(
+                sha(path) == read(a.base / "receipt.json")["weights_sha256"], "Changed full fit"
+            )
             state = load_file(path)
             mu, sd = state.pop("input_mean").to(device), state.pop("input_scale").to(device)
             model = TrialObjectEncoder().to(device)
@@ -100,10 +110,12 @@ def run(a):
 
 
 def paths(p):
-    for key, value in dict(raw="outputs/trial-object-inputs/sub-04",
-                           base="outputs/trial-object-encoder/generic",
-                           sessions="outputs/object-transfer/sessions.json",
-                           out="outputs/trial-top-two").items():
+    for key, value in dict(
+        raw="outputs/trial-object-inputs/sub-04",
+        base="outputs/trial-object-encoder/generic",
+        sessions="outputs/object-transfer/sessions.json",
+        out="outputs/trial-top-two/replay",
+    ).items():
         p.add_argument("--" + key, type=Path, default=Path(value))
 
 

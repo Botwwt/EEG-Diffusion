@@ -1,0 +1,37 @@
+{
+  "design_sha256": "e7d8649eab42384dbca1cca0cf139d57d08f415bd0a5ef06f0b648784a4c4243",
+  "driver_sha256": "7a9bda2c92647094f20e2cc48dfcb2fa214deb04b2a79a2031783f6387f13319",
+  "heads_sha256": "38a786d58fe6bf877c827553c38c28110fec4625383bfcaf32672cfa45b5a60e",
+  "weights_sha256": "4ed0b85bd766ad9959de9b433234b277f9460ce39f431afdf5a3d96f20e955ac",
+  "subject": "sub-04",
+  "device": "cuda",
+  "fold": null,
+  "queries": 480,
+  "menus": {
+    "mix13": {
+      "queries": 120,
+      "word_matches": 120,
+      "packet_sha256": "25f8121209dbfd70a139889e35765242c3a2c118befdddd649578fc1eefbc88d"
+    },
+    "mix14": {
+      "queries": 120,
+      "word_matches": 120,
+      "packet_sha256": "de283ed9dcdb066deaa61ee281f4e43a6e926c4286204f3766ad2010e99ae08f"
+    },
+    "mix23": {
+      "queries": 120,
+      "word_matches": 120,
+      "packet_sha256": "8fb8bd05096c9f30deb31ab04d3d2135b38d2def865aa4a6c4336b9cf2d368d7"
+    },
+    "mix24": {
+      "queries": 120,
+      "word_matches": 120,
+      "packet_sha256": "592a6bfa6f52a521c1e310bce5b775ccb968a1b72a49291a2636639029f89c74"
+    }
+  },
+  "max_abs_error": {
+    "own": 0.0,
+    "uniform": 0.0,
+    "mixed_scores": 7.831962024196226e-07
+  }
+}

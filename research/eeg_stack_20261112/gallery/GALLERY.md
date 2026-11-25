@@ -2,6 +2,10 @@
 
 ## Personal twelve-object menus with matching recording sessions
 
+On sub-04 the support-view comparison holds the EEG-decoded word fixed while changing which calibration photograph supplies the coarse starting image. Each object appears at its lowest archive row. [Generated views](support_view_sub04.jpg) · [Source of the starting images and independent scores](../../../docs/SUPPORT_VIEW.md)
+
+Two further comparisons hold the word, noise and four diffusion steps fixed. The first updates the visual direction using training-photo neighbors. The second adds an EEG estimate of color and layout to one intermediate diffusion step. [Visual-direction update on sub-04](canonical_neighbor_personal12_sub04.jpg) · [Color-layout update on sub-05](lowband_guidance_sub05.jpg)
+
 Each of the twelve tiles per person uses the first archive row of one object. Each reconstruction uses four EEG presentations from that individual. The menus span 29 distinct objects and every candidate within a menu shares a recording-session pair. [Sub-04](photo_angle_sub04_personal12.jpg) · [Sub-05](photo_angle_sub05_personal12.jpg) · [Sub-01](photo_angle_sub01_personal12.jpg) · [Baseline accuracy and how to reproduce paired sheets with originals](../../../docs/PERSONAL12_CONFIRMATION.md)
 
 The trial-encoder comparisons show both models at the same row and noise seed for every object. [First participant, sub-04](personal12_trial_sub04.jpg) · [Replication, sub-05](personal12_trial_sub05.jpg) · [Replication, sub-01](personal12_trial_sub01.jpg)
@@ -15,6 +19,8 @@ One participant viewed each photograph 80 times. The fixed sheet includes every 
 A second fixed sheet compares the personal visual decoder, the adapted ATM head, their equal blend and the exchanged blend. The first three share the word and seed for each stimulus. [Two R80 decoders](official_dual_r80.jpg) · [Paired study](../../../docs/DUAL_R80.md)
 
 ## Same-photo comparisons across one, three and nine viewers
+
+On two earlier panels, a single-person experiment used EEG pose and image-feature predictions to select one of eight diffusion samples. The matching and exchanged EEG selections are shown on the same fixed rows. [First panel](pose_candidate_sub04_registered.jpg) · [Replication panel](pose_candidate_sub04_replicate.jpg) · [Selection rules and scores for all three people](../../../docs/POSE_CANDIDATES.md)
 
 Each sheet includes the lowest archive row of every object in its panel. The ordinary comparison uses the same decoded word and eight support photographs in all three conditions. The guidance comparisons show how increasing the influence of the nine viewers' photo-specific EEG affects generation. [Registered panel](fixed_word_dose_registered.jpg) · [Replication panel](fixed_word_dose_replicate.jpg) · [Registered panel with guidance](fixed_word_dose_registered_guided.jpg) · [Replication panel with guidance](fixed_word_dose_replicate_guided.jpg) · [Image-selection rule and results](../../../docs/FIXED_WORD_PHOTO_DOSE.md)
 
