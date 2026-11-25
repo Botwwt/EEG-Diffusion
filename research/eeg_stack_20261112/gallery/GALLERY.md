@@ -1,5 +1,9 @@
 # EEG reconstruction galleries
 
+## Comparing the 512- and 1,024-object decoders on new objects
+
+Sub-04 viewed 35 primary objects in four session-matched twelve-object menus. Each sheet shows both independently generated images for the smallest original row of every candidate, including supplemental objects and classification errors. [Sessions 1 and 3](fresh_mix_mix13.jpg) · [Sessions 1 and 4](fresh_mix_mix14.jpg) · [Sessions 2 and 3](fresh_mix_mix23.jpg) · [Sessions 2 and 4](fresh_mix_mix24.jpg) · [Scores on all 960 generated JPEGs](../../../docs/FRESH_MIX_IMAGES.md)
+
 ## Personal twelve-object menus with matching recording sessions
 
 On sub-04 the support-view comparison holds the EEG-decoded word fixed while changing which calibration photograph supplies the coarse starting image. Each object appears at its lowest archive row. [Generated views](support_view_sub04.jpg) · [Source of the starting images and independent scores](../../../docs/SUPPORT_VIEW.md)

@@ -23,6 +23,18 @@ Each participant's twelve candidate objects shared a recording-session pair. The
 
 The first participant gained ten full-vocabulary image hits. The two separately registered replications gained eleven together (from 100 to 111 of 240 images), with +12 hits in sub-01 and −1 in sub-05. The selected model more often depicts the correct object. Recognition of the particular photograph remains near one in ten. Intervals resample objects while keeping the observed people together. [First comparison and replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [All twelve objects per person, side by side](research/eeg_stack_20261112/gallery/GALLERY.md#personal-twelve-object-menus-with-matching-recording-sessions)
 
+### A larger decoder for sub-04
+
+On four new session-matched menus, the larger personal decoder improved the object shown in the saved JPEG. Both EEG branches trained on 1,024 other objects. Training-only calibration assigned 59.1% of the score to the trial encoder and 40.9% to Fisher. Each query still used four presentations and eight supports per candidate. The visual decoder and diffusion sampler used the same weights and query seeds. [Training and single-query inference](docs/FRESH_MIX.md)
+
+| Endpoint on 350 photos of 35 held-out objects | Original 512-object model | Larger model | Paired change in percentage points (95% interval) |
+| --- | ---: | ---: | ---: |
+| Correct EEG word among 12 | 159 | 176 | +4.86 [1.14, 8.57] |
+| Generated image named correctly among 1,854 words | 141 | 157.5 | +4.71 [1.29, 8.14] |
+| Exact photo identified among ten of its object | 44 | 46 | +0.57 [−1.71, 2.86] |
+
+On this participant we select the larger decoder for drawing the object. The half credit comes from a tie in full-vocabulary naming. Across all 480 queries including the supplemental objects, the 365 with unchanged EEG words gave byte-identical JPEGs from the two models. The 512-object model has the three-participant image comparison above. [Evaluation on saved JPEGs and fixed galleries](docs/FRESH_MIX_IMAGES.md)
+
 ### Can the EEG place the object like the viewed photograph?
 
 On the same 360 queries we held the generated image fixed and allowed an EEG readout to move, resize and rotate its foreground. The encoder predicted foreground orientation better than the eight-photo mean on 96 held-out development objects in the same dataset. On the final edited JPEGs, DINOv2 identified 44/360 exact photos with the query EEG, 45/360 with the eight-photo mean and 42/360 with exchanged EEG. Re-encoding the unedited source gave 41/360. Full-vocabulary naming fell from 166/360 in the matched-codec control to 151/360 after the query EEG edit. The support mean accounted for most of the measured layout improvement. The selected model above still uses the original diffusion output. [Edited images, controls and replay](docs/PERSONAL12_POSE_EVALUATION.md) · [EEG pose readout](docs/PERSONAL_POSE_READOUT.md) · [Four-region visual feature experiment](docs/REGIONAL_PHOTO_FEATURES.md)
