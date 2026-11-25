@@ -1,0 +1,24 @@
+{
+  "protocol": "Frozen image evaluation following the sub-04 four-menu object readout. EEG word counts on the 35 strict objects (159/350 legacy and 176/350 learned) were known. No generated image, generated-image embedding, image score, or sampler output was available at registration.",
+  "subject": "sub-04",
+  "repetitions": 4,
+  "word_design_sha256": "e7d8649eab42384dbca1cca0cf139d57d08f415bd0a5ef06f0b648784a4c4243",
+  "word_result_sha256": "aa3b65d9723a26aad73633a8140499bc0d233c739f2a4ce2a94e80ee3b290ae9",
+  "panels": [
+    "mix13",
+    "mix14",
+    "mix23",
+    "mix24"
+  ],
+  "arms": [
+    "legacy",
+    "learned"
+  ],
+  "seed": 260628,
+  "bootstrap": 10000,
+  "populations": "Primary: every row of the predesignated 35 original objects, including both incorrect and correct decoded words (110/80/50/110 rows). Secondary: all 48 nonoverlapping original objects, 480 rows. Every subject, menu, gallery, word list, and eight-support set stays fixed at inference.",
+  "generation": "Draw the legacy and learned own conditions independently for all 480 rows each, using the old 512-object H/14 posterior readout with each selected word's eight legal supports. Same seed 923761+original row, batch order, batch size eight, SDXL-Turbo four steps, original code and radius. Same-word conditions must agree exactly, including ordered support rows and float32 H/14 bytes. Check all same-word JPEGs byte-for-byte and separately the first same-word row in each menu (fixed by smallest original row ID). Report counts. No query original or evaluator label enters the renderer.",
+  "endpoints": "Primary image outcome: frozen independent CLIP-L/14 naming among 1854 THINGS concepts of the true stimulus object. Secondary: exact same logits within the predesignated 12 names; independent DINOv2-S/14 top-one identification among the 10 true-object originals, including all eight allowed support originals as candidates. Unit CLS cosine, fractional top-one ties throughout. Report point estimates and marginal intervals for all three; an improvement in photo identity requires its own evidence. Wrong predicted words remain in the denominators.",
+  "inference": "For both populations, compute learned-minus-legacy counts and percentage-point changes, partial tie credit gains/losses, paired 95% percentile intervals, 10000 draws, seed 260628. Resample whole original objects within each of four menus with replacement, preserving all ten row pairs, same draws across metrics. Report per-menu counts and leave-one-menu-out pooled point differences. Positive lower bound on primary 350-row 1854-word naming supports an image naming improvement for this participant, fitted models and menu design. Other endpoints descriptive. Single participant and one noise draw per photo; intervals do not quantify across-subject or across-noise uncertainty.",
+  "galleries": "Four panels, first image by lowest original row for each of 12 true objects in the locked menu order, 48 rows total. Private version original/legacy/learned; shareable version only generated JPEGs, annotated true word and both predicted words. No selection by changed word, rank, performance, or appearance."
+}
