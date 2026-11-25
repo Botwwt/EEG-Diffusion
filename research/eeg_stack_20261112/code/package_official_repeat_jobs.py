@@ -12,14 +12,20 @@ PUBLIC = CODE.parent / "results/object_fidelity"
 
 
 def package(a):
-    native = a.series == "repeat"
-    designs = {
-        "repeat": "official_repeat_images_design.json",
-        "global_angle": "official_global_angle_images_design.json",
-        "global_named": "official_global_named_images_design.json",
+    inputs = {
+        "repeat": (PUBLIC / "official_repeat_images_design.json", "render_packet.npz"),
+        "global_angle": (
+            PUBLIC / "official_global_angle_images_design.json",
+            "global_angle_packet.npz",
+        ),
+        "global_named": (
+            PUBLIC / "official_global_named_images_design.json",
+            "global_angle_packet.npz",
+        ),
+        "dual_r80": (a.subject / "dual-r80/render_design.json", "dual-r80/render_packet.npz"),
     }
-    design = PUBLIC / designs[a.series]
-    packet = a.subject / ("render_packet.npz" if native else "global_angle_packet.npz")
+    design, packet_name = inputs[a.series]
+    packet = a.subject / packet_name
     check(
         sha(packet) == read(design)["packet_sha256"], "EEG export differs from the selected design"
     )
@@ -50,7 +56,9 @@ def package(a):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--series", choices=("repeat", "global_angle", "global_named"), required=True)
+    p.add_argument(
+        "--series", choices=("repeat", "global_angle", "global_named", "dual_r80"), required=True
+    )
     p.add_argument("--out", required=True, type=Path)
     p.add_argument("--subject", type=Path, default=Path("outputs/official-repeat-object/sub-04"))
     p.add_argument(
