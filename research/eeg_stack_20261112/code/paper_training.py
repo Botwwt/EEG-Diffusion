@@ -115,7 +115,7 @@ def train(stage, subjects):
             train_raw_swap_v3(name, REP, res, pipe.unet, pipe.scheduler.alphas_cumprod, adapter, proj, prompt, pooled, dims,
                               use_cond_layer=True, w_rep_intra=.5, w_rec=1.5, w_swap=.45 if stage == "swap" else 0., steps=600)
         else:
-            mode = "d1_simonly_cond" if stage == "d1" else "d2_compete4_cond"
+            mode = {"d1": "d1_simonly_cond", "d2-positive-half": "d2_positive_half_cond", "d2": "d2_compete4_cond"}[stage]
             oof = precompute_or_load_tr14_z0_oof(res["tr_idx_np"], res["concept_np"], subjects=subjects)
             train_draft_arm(mode, SWAP, res, oof, pipe.unet, pipe.scheduler, pipe.vae, adapter, proj,
                             vision(EMB_KEYS[0], torch.bfloat16), vision(EMB_KEYS[1], torch.bfloat16),
@@ -124,7 +124,7 @@ def train(stage, subjects):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("stage", choices=("backbone", "rep", "matched", "swap", "rec", "d1", "d2", "b32", "oof"))
+    p.add_argument("stage", choices=("backbone", "rep", "matched", "swap", "rec", "d1", "d2", "d2-positive-half", "b32", "oof"))
     p.add_argument("--subject", type=int, choices=range(1, 11))
     a = p.parse_args()
     expected = "shared" if not a.subject else f"personal-{a.subject:02d}"

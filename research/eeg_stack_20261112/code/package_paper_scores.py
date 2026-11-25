@@ -8,12 +8,14 @@ import zipfile
 from pathlib import Path
 
 import numpy as np
+import paper_inception_delta as inception
 from PIL import Image
 
 
 def export(root, dest):
     receipts = []
     dino = []
+    corrected = []
     preview_rows = {"official": np.linspace(0, 199, 16, dtype=int).tolist(),
                     "fresh": [10 * i + j for i in (0, 4, 10, 18, 26, 36, 43, 49) for j in (0, 1)]}
     with zipfile.ZipFile(dest.with_suffix(".partial"), "w", zipfile.ZIP_DEFLATED, compresslevel=2) as z:
@@ -24,6 +26,10 @@ def export(root, dest):
                 z.write(root / name, name)
         for fit in sorted(root.glob("fits/*/enc/native/sub-*/fold*_seed2025/fit.json")):
             z.write(fit, fit.relative_to(root).as_posix())
+        for pattern in ("audit/archived/sub-*.json", "audit/replay/*/*/sub-*.json",
+                        "fits/personal-*/enc/object_tokens/sub-*/token-*.json"):
+            for receipt in sorted(root.glob(pattern)):
+                z.write(receipt, receipt.relative_to(root).as_posix())
         folders = [*root.glob("images/*/*/*/sub-*/scores.json"), *root.glob("side/*/*/scored/scores.json"),
                    *root.glob("external/atm-sub*/scores.json"), *root.glob("calibration/dev/*/scores.json"),
                    *root.glob("exploratory/*/dev-r4/sub-*/scores.json")]
@@ -41,6 +47,17 @@ def export(root, dest):
             for name in ("render.json", "manifest.csv"):
                 if (folder / name).is_file():
                     z.write(folder / name, (rel / name).as_posix())
+            if (folder / f"{inception.STEM}.json").is_file():
+                summary, _ = inception.read_sidecar(folder)
+                cells = (folder / f"{inception.STEM}.npz").read_bytes()
+                receipt = (folder / f"{inception.STEM}.json").read_bytes()
+                if (hashlib.sha256(cells).hexdigest() != summary["observations_sha256"] or json.loads(receipt) != summary
+                        or summary["source_sha256"]["scores.json"] != receipts[-1]["scores_sha256"]):
+                    raise ValueError(f"Inception sidecar changed during export in {rel}")
+                z.writestr((rel / f"{inception.STEM}.json").as_posix(), receipt)
+                z.writestr((rel / f"{inception.STEM}.npz").as_posix(), cells)
+                corrected.append(dict(folder=rel.as_posix(), n=summary["n"], scores_sha256=hashlib.sha256(receipt).hexdigest(),
+                                      observations_sha256=summary["observations_sha256"]))
             if (folder / "dino.json").is_file():
                 report = (folder / "dino.json").read_bytes()
                 data = json.loads(report)
@@ -81,7 +98,7 @@ def export(root, dest):
             z.writestr((folder / "features.npz").as_posix(), obs)
             features.append(dict(folder=folder.as_posix(), n=record["n"], scores_sha256=hashlib.sha256(meta).hexdigest(),
                                  observations_sha256=record["observations_sha256"]))
-        z.writestr("coverage.json", json.dumps({"rows": receipts, "features": features, "dino": dino,
+        z.writestr("coverage.json", json.dumps({"rows": receipts, "features": features, "dino": dino, "inception_official": corrected,
                                                "preview_rows": preview_rows}, indent=1))
     dest.with_suffix(".partial").replace(dest)
     print("Saved", len(receipts), "complete scoring runs to", dest, flush=True)
@@ -97,7 +114,13 @@ def unpack(archive, dest):
         if any(dest not in (dest / name).resolve().parents for name in names):
             raise ValueError("Export member outside the destination")
         coverage = json.loads(source.read("coverage.json"))
-        for section, receipt, obs in (("rows", "scores.json", "observations.npz"), ("features", "features.json", "features.npz")):
+        raw_index = {r["folder"]: r for r in coverage["rows"]}
+        side_names = {f"{inception.STEM}.json", f"{inception.STEM}.npz"}
+        declared = {f"{r['folder']}/{name}" for r in coverage.get("inception_official", []) for name in side_names}
+        if declared != {name for name in names if name.rsplit("/", 1)[-1] in side_names}:
+            raise ValueError("Inception sidecar files and the export manifest differ")
+        for section, receipt, obs in (("rows", "scores.json", "observations.npz"), ("features", "features.json", "features.npz"),
+                                      ("inception_official", f"{inception.STEM}.json", f"{inception.STEM}.npz")):
             groups = coverage.get(section, [])
             if len(groups) != len({row["folder"] for row in groups}):
                 raise ValueError(f"Duplicate {section} folder")
@@ -110,6 +133,22 @@ def unpack(archive, dest):
                         and hashlib.sha256(observations).hexdigest() == row["observations_sha256"] == meta["observations_sha256"]
                         and meta["n"] == row["n"]):
                     raise ValueError(f"Score or observation receipt mismatch in {folder}")
+                if section == "inception_official":
+                    primary = raw_index.get(folder)
+                    source_score = json.loads(source.read(f"{folder}/scores.json"))
+                    if (primary is None or primary["n"] != meta["n"] or meta["method"] != inception.METHOD
+                            or meta["weights_sha256"] != inception.WEIGHTS_SHA256 or meta["gallery_sha256"] != inception.GALLERY[meta["panel"]]
+                            or source_score["panel"] != meta["panel"]
+                            or source_score.get("ordered_image_hashes_sha256") != meta["ordered_image_hashes_sha256"]):
+                        raise ValueError(f"Inception sidecar differs from its primary score in {folder}")
+                    bound = {"scores.json": primary["scores_sha256"], "observations.npz": primary["observations_sha256"]}
+                    for filename, key in (("render.json", "render_sha256"), ("manifest.csv", "source_manifest_sha256")):
+                        if key in source_score:
+                            bound[filename] = hashlib.sha256(source.read(f"{folder}/{filename}")).hexdigest()
+                            if bound[filename] != source_score[key]:
+                                raise ValueError(f"Inception {filename} binding differs in {folder}")
+                    if len(bound) <= 2 or meta["source_sha256"] != bound:
+                        raise ValueError(f"Inception bindings differ from primary inputs in {folder}")
         for row in coverage.get("dino", []):
             folder = row["folder"]
             meta = source.read(f"{folder}/dino.json")
@@ -124,8 +163,8 @@ def unpack(archive, dest):
             with tempfile.NamedTemporaryFile(dir=path.parent, delete=False) as tmp:
                 tmp.write(source.read(name))
             Path(tmp.name).replace(path)
-    print("Verified", len(coverage["rows"]), "RGB,", len(coverage.get("features", [])), "EEG-feature and",
-          len(coverage.get("dino", [])), "DINO runs")
+    print("Verified", len(coverage["rows"]), "RGB,", len(coverage.get("features", [])), "EEG-feature,",
+          len(coverage.get("dino", [])), "DINO and", len(coverage.get("inception_official", [])), "official Inception runs")
 
 
 def scores_archive(source_path, output):
@@ -141,9 +180,13 @@ def scores_archive(source_path, output):
             if len(parts) >= 3:
                 keep |= parts[:2] == ("data", "prep") and parts[-1] in split_files
                 keep |= parts[0] == "fits" and parts[-1] == "fit.json"
+                keep |= (parts[0] == "fits" and "object_tokens" in parts and parts[-1].startswith("token-")
+                         and parts[-1].endswith(".json"))
+                keep |= parts[:2] in (("audit", "archived"), ("audit", "replay")) and parts[-1].endswith(".json")
                 keep |= parts[0] == "features" and parts[-1] in ("features.json", "features.npz")
                 keep |= parts[0] in ("images", "side", "external", "calibration", "exploratory") and parts[-1] in (
-                    "scores.json", "observations.npz", "render.json", "manifest.csv", "dino.json", "dino_rows.npz")
+                    "scores.json", "observations.npz", "render.json", "manifest.csv", "dino.json", "dino_rows.npz",
+                    f"{inception.STEM}.json", f"{inception.STEM}.npz")
             if keep:
                 info = zipfile.ZipInfo(name)
                 dst.writestr(info, src.read(name), compress_type=zipfile.ZIP_DEFLATED, compresslevel=8)

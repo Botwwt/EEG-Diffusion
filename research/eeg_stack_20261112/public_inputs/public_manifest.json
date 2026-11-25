@@ -1,0 +1,315 @@
+{
+  "source_listings": {
+    "eeg": "https://huggingface.co/api/datasets/Haitao999/things-eeg/tree/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten?recursive=true&limit=100",
+    "visual": "https://huggingface.co/api/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/tree/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg?limit=100",
+    "image": "https://api.osf.io/v2/nodes/y63gw/files/osfstorage/",
+    "preprocessed_original": "https://api.osf.io/v2/nodes/anp5v/files/osfstorage/"
+  },
+  "brainhive_revision": "4201b820a37bfbac2b298694f62e928dbac2b7e9",
+  "eeg_dataset_revision": "944f0d50e37e125eb6b7b98d14a41571c9ed0ef7",
+  "visual_embeddings_revision": "4efe61ddfde96eea962c391ec01736d42d9b60ef",
+  "fusion_prior_revision": "135a284109e71f5cde3d3e6d5dee6268a3c7987a",
+  "assets": [
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-01/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-01/test.pt",
+      "bytes": 509060116,
+      "sha256": "9c46ba085e6d62733f957178754c341ce630ea43e7fc366626d9bb6536b119e6"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-01/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-01/train.pt",
+      "bytes": 2106803096,
+      "sha256": "815931d6e9eadcda5b1edd054248f81c1e9a42dd4abafe5eb075a80269090f20"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-02/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-02/test.pt",
+      "bytes": 509059689,
+      "sha256": "30d3e905e2a036b4b7897f15162a67c33825a76c3531149b911a92dfbe9732db"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-02/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-02/train.pt",
+      "bytes": 2106802667,
+      "sha256": "b3e797dc48e8585e36b7a71a6fb40f837061e62fc24c992cab84431fdb110d21"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-03/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-03/test.pt",
+      "bytes": 509059689,
+      "sha256": "614e8518569469eb39e36fe77b8f01b427e5077be99fd63858d25d988d7acd7a"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-03/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-03/train.pt",
+      "bytes": 2106802667,
+      "sha256": "94acbc554a5b179c19e280b2f8025704c91294be610f425d85c58c8f33f83776"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-04/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-04/test.pt",
+      "bytes": 509059689,
+      "sha256": "ff6c6db74748c1f1548c3b05eeb2b43760ad9ee965204fbf544a7d403928a042"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-04/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-04/train.pt",
+      "bytes": 2106802667,
+      "sha256": "d2a24081c559e77c88adbe152018f48476f5e5ae4995fe7496aaab72660a92f8"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-05/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-05/test.pt",
+      "bytes": 509059689,
+      "sha256": "f684fc02fcb2b49c865efba447f996d37e88d78a7ff1de86a8d949424e45572e"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-05/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-05/train.pt",
+      "bytes": 2106802667,
+      "sha256": "ded2b3f518347e9aa0a5dd9efe3744a35a7f19edcd743564c09d162d38b8890d"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-06/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-06/test.pt",
+      "bytes": 509059689,
+      "sha256": "92f726cdfec3e070dd95d6991ff079ec16c33d58dc849d087dec93886b6e3cc8"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-06/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-06/train.pt",
+      "bytes": 2106802667,
+      "sha256": "11768a5fa84f76c4b8067ab950df40bf906e71c75ff656cb8a1dbfbdef2c07b3"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-07/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-07/test.pt",
+      "bytes": 509059689,
+      "sha256": "857aa1a32a9ca0712136c7ac3c9c3339de6abdad0e4c7bcc4c4f84ae3c413a98"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-07/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-07/train.pt",
+      "bytes": 2106802667,
+      "sha256": "b858327f80d1b0fa4fffc1c9da26d72786ec9ee4833ce462feae4b136ce68a9a"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-08/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-08/test.pt",
+      "bytes": 509060116,
+      "sha256": "edb9a693eda47033c930f78640da39bdf6ea826424f6d41183066d48b6f4af86"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-08/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-08/train.pt",
+      "bytes": 2106803096,
+      "sha256": "c5997c48df5e1ef976066f63f6d13dc8ed9babaabe8d75a8f2d8592770c018b3"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-09/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-09/test.pt",
+      "bytes": 509059689,
+      "sha256": "3253745fb7665e09644a95601e674ebfc5f98b0f158c8c77465f360bbe160a52"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-09/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-09/train.pt",
+      "bytes": 2106802667,
+      "sha256": "aec05e4dfeb822a30cba6b5955927a8bd1d9a4dee8d007a65b69bd11d36b19c1"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-10/test.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-10/test.pt",
+      "bytes": 509059689,
+      "sha256": "cf1d42ba724c54e6fb4f4d112ad71817fac189bea567bc5e83586b81116d2921"
+    },
+    {
+      "group": "eeg",
+      "path": "data/things-eeg/Preprocessed_data_250Hz_whiten/sub-10/train.pt",
+      "url": "https://huggingface.co/datasets/Haitao999/things-eeg/resolve/944f0d50e37e125eb6b7b98d14a41571c9ed0ef7/Preprocessed_data_250Hz_whiten/sub-10/train.pt",
+      "bytes": 2106802667,
+      "sha256": "61cb24fc9269d7760af9d12e2f32439c65a7aea5ae59f8c4efc6109a437fdeee"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_test_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_test_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00000-of-00001.parquet",
+      "bytes": 81860,
+      "sha256": "cb49e10de22978881ff519758589a821479dc83a88b17426f6096c3aa5f8ec95"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_test_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00001-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_test_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00001-of-00001.parquet",
+      "bytes": 81854,
+      "sha256": "5968f907019ce478ca932f974f3d9423f74e97d1634797697d6c0a7cb07b6d3d"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_test_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_test_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00000-of-00001.parquet",
+      "bytes": 157558,
+      "sha256": "90056e00f8c017aecd099e84912dfaf0cc8dcd492f645d85fca714bd1016519d"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_test_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00001-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_test_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00001-of-00001.parquet",
+      "bytes": 157584,
+      "sha256": "00d27ba35ff83a6846d16bf7c7b7a2c997a2ec5ddec5d40de0035f94baedc36e"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_test_vae-part-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_test_vae-part-00000-of-00001.parquet",
+      "bytes": 598525,
+      "sha256": "129f254d87d59bc00b3c3a8c7c3d921c586e384264872ba0587e78d2a95f6466"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_test_vae-part-00001-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_test_vae-part-00001-of-00001.parquet",
+      "bytes": 598505,
+      "sha256": "137e27571d9995b2f2e5fb2531f1ad1ac95aa48b7e462223c349758e664cf373"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_train_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_train_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00000-of-00001.parquet",
+      "bytes": 6390940,
+      "sha256": "1b20c70c5f421f4d7670c8334148e0f3069144fc09090310dbe2751693be2772"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_train_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00001-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_train_CLIP-ViT-B-32-laion2B-s34B-b79K-part-00001-of-00001.parquet",
+      "bytes": 6323084,
+      "sha256": "99975145f9db28c6794511206449cf29508da50282c2050aeca63f6e9d413669"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_train_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_train_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00000-of-00001.parquet",
+      "bytes": 13224425,
+      "sha256": "6a6ce7853323fffec863db119d9c8f325604072692e86e786e9a56c779aff0cc"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_train_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00001-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_train_CLIP-ViT-H-14-laion2B-s32B-b79K-part-00001-of-00001.parquet",
+      "bytes": 13239809,
+      "sha256": "5dd340c9614f886330cf8d6182258ab0b28ad0c9ebaa3a771590d14da2636c42"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_train_vae-part-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_train_vae-part-00000-of-00001.parquet",
+      "bytes": 31954210,
+      "sha256": "3ec7b49d2789c076962ec3320203ef341d95cbeb4043fbb87781c9850cb47888"
+    },
+    {
+      "group": "visual",
+      "path": "data/things-eeg/embeddings/things_train_vae-part-00001-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fakekungfu/Brain-HIVE_Visual_Embeddings/resolve/4efe61ddfde96eea962c391ec01736d42d9b60ef/things-eeg/things_train_vae-part-00001-of-00001.parquet",
+      "bytes": 31957823,
+      "sha256": "873d04f07a1ae823a99c334dfd02d54daf1090d55e4a9a6699ee0140629011c0"
+    },
+    {
+      "group": "images",
+      "path": "image_set/LICENSE.txt",
+      "url": "https://osf.io/download/3765v/",
+      "bytes": 3159,
+      "sha256": "ea94c104d2319aa65d82f4b179531141d3ec1483547826c3a72cfd45015673dc"
+    },
+    {
+      "group": "images",
+      "path": "image_set/test_images.zip",
+      "url": "https://osf.io/download/znu7b/",
+      "bytes": 8129948,
+      "sha256": "57ed472cd88f68ccf88e9ecbadf3da91ac222d8548684d5680be95bcf47ec14a"
+    },
+    {
+      "group": "images",
+      "path": "image_set/training_images.zip",
+      "url": "https://osf.io/download/3v527/",
+      "bytes": 655039265,
+      "sha256": "dc9cc627141ba230641f729f84b80eb01f0a963d288c971eefcf76b4a7581f3a"
+    },
+    {
+      "group": "images",
+      "path": "image_set/image_metadata.npy",
+      "url": "https://osf.io/download/qkgtf/",
+      "bytes": 656579,
+      "sha256": "681a75633c59a356a66ca19a277429c1d48a00a98405ff96e53ee0b9f00b397c"
+    },
+    {
+      "group": "images",
+      "path": "image_set/things_concepts.tsv",
+      "url": "https://raw.githubusercontent.com/ViCCo-Group/THINGSvision/57e91c9754dfea8579ffc58c0ae42d9dc60080af/data/files/things_concepts.tsv",
+      "bytes": 497467,
+      "sha256": "f6eb4ec6fcad61e50a746bee820f98d1595fe655e9e210a9a407e9a17fd8cee4"
+    },
+    {
+      "group": "fusion-encoder",
+      "path": "fusion-prior-source/fusion_encoder/config.json",
+      "url": "https://huggingface.co/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/135a284109e71f5cde3d3e6d5dee6268a3c7987a/fusion_encoder/config.json",
+      "bytes": 274,
+      "sha256": "4f72dcc0d21583817047b5987a5589213abecbb706a8c261431e298650a422b3"
+    },
+    {
+      "group": "fusion-encoder",
+      "path": "fusion-prior-source/fusion_encoder/diffusion_pytorch_model.safetensors",
+      "url": "https://huggingface.co/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/135a284109e71f5cde3d3e6d5dee6268a3c7987a/fusion_encoder/diffusion_pytorch_model.safetensors",
+      "bytes": 77616504,
+      "sha256": "b345fca423c5fe43178999ae38255bc2297011ce85c1ed664f5d54a9843e6e96"
+    },
+    {
+      "group": "fusion-adapters",
+      "path": "fusion-prior-source/proj/config.json",
+      "url": "https://huggingface.co/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/135a284109e71f5cde3d3e6d5dee6268a3c7987a/proj/config.json",
+      "bytes": 151,
+      "sha256": "fd0191a5a9483bc5dd80a134e580e245a89683d35046e76a2ccdba4696ca3f90"
+    },
+    {
+      "group": "fusion-adapters",
+      "path": "fusion-prior-source/proj/diffusion_pytorch_model.safetensors",
+      "url": "https://huggingface.co/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/135a284109e71f5cde3d3e6d5dee6268a3c7987a/proj/diffusion_pytorch_model.safetensors",
+      "bytes": 33603920,
+      "sha256": "8ef44b68e2692abf01e4e6e7717a316b9260369a32ea7b958d5dfe35bb8661b2"
+    },
+    {
+      "group": "fusion-adapters",
+      "path": "fusion-prior-source/attn_adapter/config.json",
+      "url": "https://huggingface.co/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/135a284109e71f5cde3d3e6d5dee6268a3c7987a/attn_adapter/config.json",
+      "bytes": 9928,
+      "sha256": "826690d58e42cbe68718ad81fecc0c3be7d234718406a45f6af068d19e51bf38"
+    },
+    {
+      "group": "fusion-adapters",
+      "path": "fusion-prior-source/attn_adapter/diffusion_pytorch_model.safetensors",
+      "url": "https://huggingface.co/fakekungfu/Fusion-Prior-H14_B32_VAE/resolve/135a284109e71f5cde3d3e6d5dee6268a3c7987a/attn_adapter/diffusion_pytorch_model.safetensors",
+      "bytes": 1363164152,
+      "sha256": "75a023a59cd2ea6f0488e090cea765f6dfda4042cf038be234c286160849c968"
+    }
+  ]
+}

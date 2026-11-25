@@ -278,7 +278,7 @@ def train_draft_arm(
     dev: str = "cuda:0",
 ) -> Path:
     """Train one DRaFT-Intra4 arm: d1_simonly_cond | d2_compete4_cond | d3_compete4_steproute_z0."""
-    assert mode in ("d1_simonly_cond", "d2_compete4_cond", "d3_compete4_steproute_z0")
+    assert mode in ("d1_simonly_cond", "d2_positive_half_cond", "d2_compete4_cond", "d3_compete4_steproute_z0")
     out_p = DRAFT_DIR / f"{mode}_st{steps}_s{seed}.pt"
     if out_p.exists():
         print(f"[CACHED] {out_p}", flush=True)
@@ -414,6 +414,9 @@ def train_draft_arm(
 
             if use_compete:
                 loss_mb = (1.0 * l_ce + 0.50 * l_sim + l_reg) / float(n_micro)
+            elif mode == "d2_positive_half_cond":
+                # Leave the positive and trust coefficients at their D2 values. Only the paired term is removed.
+                loss_mb = (0.50 * l_sim + l_reg) / float(n_micro)
             else:
                 # SimOnly: positive similarity to own GT photo ONLY (NO within-concept competition!)
                 # Weight 12.0 matches d(l_ce)/d(S_ii) = tau*(1-0.25) = 11.25 + 0.50 = 11.75 for exact gradient-scale parity!

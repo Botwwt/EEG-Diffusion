@@ -1,100 +1,52 @@
 # EEG-Diffusion
 
-Reconstructing viewed photographs from EEG. The primary task is to draw the right object from four presentations of one photograph to one participant. We also test whether the image preserves details that distinguish that photograph from nine others of the same object.
+Reconstructing a viewed photograph from one person's EEG. The primary outcome is whether the generated image depicts the right object. The second is whether it preserves the particular photograph among ten views of that object.
 
-[中文研究摘要](docs/CURRENT_RESEARCH.md) · [Experiment registry](docs/EXPERIMENT_REGISTRY.md) · [Reconstruction galleries](research/eeg_stack_20261112/gallery/GALLERY.md) · [Reproduction guide](docs/REPRODUCIBILITY.md)
+[中文实验总结](docs/OBJECT_LOG_REVIEW.md) · [Benchmark results](docs/PAPER_BENCHMARK_RESULTS.md) · [Training and inference](research/eeg_stack_20261112/PAPER_BENCHMARK_PROTOCOL.md) · [Public inputs](research/eeg_stack_20261112/public_inputs/README.md)
 
 [![checks](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml/badge.svg)](https://github.com/Botwwt/EEG-Diffusion/actions/workflows/checks.yml)
 
-## Reconstruction from EEG alone
+## Results from EEG alone
 
-The primary comparison uses the THINGS-EEG2 test set. Each method receives the same four EEG recordings of the same photograph from one participant. It generates one image with an empty text prompt, four denoising steps and a shared per-stimulus seed. The original photographs and object names enter only during scoring. The second panel holds out 50 further objects, each with ten distinct photographs, to measure which photograph the reconstruction preserves. Both panels include a control that exchanges EEG between stimuli. [Paired results and coverage](docs/PAPER_BENCHMARK_RESULTS.md) · [Evaluation protocol and reproduction](research/eeg_stack_20261112/PAPER_BENCHMARK_PROTOCOL.md)
+The THINGS-EEG2 official gallery has 200 objects and ten participants. Each method draws one image from the same participant's EEG with an empty prompt, four denoising steps and a shared stimulus-specific seed. A frozen evaluator names the generated image from 1,854 nouns. The image retrieval column counts how often the exact original ranks first among all 200 photos. Ties share credit. These matched personal fits use the same 1,323 training concepts. [Per-person scores, complete image metrics and 95% paired intervals](docs/PAPER_BENCHMARK_RESULTS.md)
 
-Brain-HiVE uses a participant-specific encoder and frozen image projection. Our M1a + D2 model adds a repeat-aware EEG readout, a participant-specific prediction of low-frequency layout, and training that links generated images to their matching EEG. The benchmark includes both single-participant and ten-participant training, with matched ablations for the additional losses. [Per-participant estimates and intervals](research/eeg_stack_20261112/results/paper_benchmark.json)
+| Training and model | Physical presentations | Object name / 2,000 | Original photo / 2,000 | SSIM |
+| --- | ---: | ---: | ---: | ---: |
+| Personal Brain-HiVE, paper projection | 4 | 14 | 94 | 0.3122 |
+| Personal M1a + D2 | 4 | 14 | 88 | 0.4306 |
+| Personal Brain-HiVE, paper projection | 80 | 37 | 206 | 0.3273 |
+| Personal M1a + D2 | 80 | 28 | 176 | 0.4359 |
+| M1a + D2, ten-person training | 80 | 51 | 228 | 0.4267 |
 
-## Earlier experiments with calibrated objects
+The personal D2 model improves four-repeat SSIM by 0.1185 (95% interval 0.1081 to 0.1288). Both personal methods depict few identifiable objects. Shared training raises the R80 naming count by 14 over personal Brain-HiVE, with a paired interval of −1.15 to +2.45 percentage points. On a second gallery of 50 held-out objects with ten photos each, the personal models identify 899 and 884 of 5,000 exact within-object photos, respectively. The protocol documents prior feature-level exposure of part of this gallery. [Paired comparisons and gallery history](research/eeg_stack_20261112/PAPER_BENCHMARK_PROTOCOL.md)
 
-**For one person with four EEG presentations and twelve calibrated candidate objects, use the four-trial encoder plus Fisher.** Two encoders score the same candidates. One learns from four separate 63-electrode EEG trials, including a training task that matches complementary trial pairs from one photo. The other uses a 17-electrode posterior Fisher projection. Their standardized scores have equal weight. Both train on 512 other objects. At inference each candidate has eight labeled support photos and their EEG. The predicted word selects the supports. A separate visual decoder adds an EEG estimate of the photo-specific difference to their mean H/14 feature. A frozen ViT-H IP-Adapter and four SDXL-Turbo steps draw one image. The query photo enters evaluation after generation. [Run one EEG query and render it](docs/PERSONAL_OBJECT_INFERENCE.md) · [Training and component controls](docs/TRIAL_OBJECT_ABLATION.md) · [Visual decoder](docs/PHOTO_STRUCTURE.md)
+## Models
 
-### Recognition with recording sessions held fixed
+**Compact single-query baseline.** Average the selected presentations, encode the result once with a participant-specific BrainMLP, apply the frozen Brain-HiVE fusion adapter and image projection, then condition SDXL-Turbo on four visual tokens. Each draw starts from noise. The program takes preprocessed EEG, a fitted encoder and a seed. Training-only experiments compare photo and category targets, vision layers, rendered-image supervision and calibration of the visual condition. [Single-query program](research/eeg_stack_20261112/code/paper_object_infer.py) · [Experimental decisions](docs/OBJECT_LOG_REVIEW.md)
 
-Each participant's twelve candidate objects shared a recording-session pair. The 360 participant–photo queries cover 290 distinct photographs of 29 objects. The models use the same diffusion seed for each query. On all 264 queries where the word stayed the same, the generated images matched byte for byte. [Panel registration and original Fisher results](docs/PERSONAL12_CONFIRMATION.md) · [Paired image scores and intervals](research/eeg_stack_20261112/results/object_fidelity/personal12_trial_replication_images.json)
+**M1a + D2.** M1a combines a repeat-weighted evoked response with individually encoded EEG presentations. A separate model predicts low-frequency layout. D2 trains four reconstructed images to match their four source photographs within the same object category. During generation the query uses only EEG. The historical 19.64% result measures the ten-photo within-object task. [Historical R4 evaluator](research/eeg_stack_20261112/code/eval_m1a_d2.py) · [Matched loss and readout ablations](docs/PAPER_BENCHMARK_RESULTS.md)
 
-| Endpoint on 360 queries | Fisher | Trial encoder + Fisher | Paired difference in percentage points (95% interval) |
-| --- | ---: | ---: | ---: |
-| Correct EEG object word among 12 | 161 | **187** | +7.22 [3.14, 11.43] |
-| Generated JPEG named correctly among 12 words | 160 | **187** | +7.50 [3.53, 11.62] |
-| Generated JPEG named correctly among 1,854 words | 145 | **166** | +5.83 [2.06, 9.71] |
-| Viewed photo ranked first among ten photos of its object, DINOv2 | **43** | 42 | −0.28 [−2.65, 2.35] |
+## Reproduce the benchmark
 
-The first participant gained ten full-vocabulary image hits. The two separately registered replications gained eleven together (from 100 to 111 of 240 images), with +12 hits in sub-01 and −1 in sub-05. The selected model more often depicts the correct object. Recognition of the particular photograph remains near one in ten. Intervals resample objects while keeping the observed people together. [First comparison and replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [All twelve objects per person, side by side](research/eeg_stack_20261112/gallery/GALLERY.md#personal-twelve-object-menus-with-matching-recording-sessions)
-
-### A larger decoder for sub-04
-
-On four new session-matched menus, the larger personal decoder improved the object shown in the saved JPEG. Both EEG branches trained on 1,024 other objects. Training-only calibration assigned 59.1% of the score to the trial encoder and 40.9% to Fisher. Each query still used four presentations and eight supports per candidate. The visual decoder and diffusion sampler used the same weights and query seeds. [Training and single-query inference](docs/FRESH_MIX.md)
-
-| Endpoint on 350 photos of 35 held-out objects | Original 512-object model | Larger model | Paired change in percentage points (95% interval) |
-| --- | ---: | ---: | ---: |
-| Correct EEG word among 12 | 159 | 176 | +4.86 [1.14, 8.57] |
-| Generated image named correctly among 1,854 words | 141 | 157.5 | +4.71 [1.29, 8.14] |
-| Exact photo identified among ten of its object | 44 | 46 | +0.57 [−1.71, 2.86] |
-
-On this participant we select the larger decoder for drawing the object. The half credit comes from a tie in full-vocabulary naming. Across all 480 queries including the supplemental objects, the 365 with unchanged EEG words gave byte-identical JPEGs from the two models. The 512-object model has the three-participant image comparison above. [Evaluation on saved JPEGs and fixed galleries](docs/FRESH_MIX_IMAGES.md)
-
-### Can the EEG place the object like the viewed photograph?
-
-On the same 360 queries we held the generated image fixed and allowed an EEG readout to move, resize and rotate its foreground. The encoder predicted foreground orientation better than the eight-photo mean on 96 held-out development objects in the same dataset. On the final edited JPEGs, DINOv2 identified 44/360 exact photos with the query EEG, 45/360 with the eight-photo mean and 42/360 with exchanged EEG. Re-encoding the unedited source gave 41/360. Full-vocabulary naming fell from 166/360 in the matched-codec control to 151/360 after the query EEG edit. The support mean accounted for most of the measured layout improvement. The selected model above still uses the original diffusion output. [Edited images, controls and replay](docs/PERSONAL12_POSE_EVALUATION.md) · [EEG pose readout](docs/PERSONAL_POSE_READOUT.md) · [Four-region visual feature experiment](docs/REGIONAL_PHOTO_FEATURES.md)
-
-### Results on an earlier shared 12-object panel
-
-We locked the 12 objects, 120 photos, folds, model and primary photo-identification endpoint before inspecting their EEG or scoring images. The same three previously studied people viewed all 120 photos. Each row below includes every query, including incorrect EEG words. [Registration and per-participant image results](docs/FRESH_PHOTO_VALIDATION.md)
-
-| Outcome on the 360 participant–photo queries | Own EEG | Eight-support visual mean | Wrong EEG from the same predicted word and fold |
-| --- | ---: | ---: | ---: |
-| Correct EEG word among 12 | 209/360 (58.1%) | Same words | Same words |
-| Generated image named correctly among 1,854 labels, CLIP-L/14 | 135/360 (37.5%) | 141/360 | 142/360 |
-| Viewed photo ranks first among ten of its object, DINOv2 | 44/360 (12.2%) | 51/360 | 43/360 |
-| Viewed photo ranks first among ten of its object, CLIP-L/14 | 29/360 (8.1%) | 32/360 | 38/360 |
-
-With naming restricted to the 12 registered words, CLIP recognized the generated objects in 208/360 queries. The same scorer assigned the correct name to 71/120 **original photographs** among 1,854 labels, and to 119/120 among twelve. For the primary DINOv2 photograph test, chance is 10%. Own EEG minus the eight-support mean was **−1.94 percentage points** (paired 95% interval −5.28 to +1.39). The model can often draw the correct kind of object. Identifying the exact viewed photograph remains an open problem. [Original-photo naming by object](research/eeg_stack_20261112/results/object_fidelity/fresh_reference_names.json) · [Photo-level scores and uncertainty](research/eeg_stack_20261112/results/object_fidelity/fresh_photo_dino_pixels.json)
-
-On a fourth panel with **twelve different objects**, the same posterior readout decoded the correct word for **232/360** queries. CLIP named 232/360 generated images among those twelve words and **199/360 (55.3%)** among 1,854 labels. Same-object photo identification was **42/360** with DINOv2, compared with **31/360** for the mean and **38/360** for wrong EEG. A proposed 63-electrode object readout gave 228 correct words, 199 full-vocabulary image hits and 40 same-object photo hits. We retained the 17-electrode readout. The two panels use different objects and share participants. [Fourth-panel design, paired comparison and examples](docs/FULL_HEAD_512.md)
-
-![One EEG-generated image for the lowest archive row of each of the twelve fresh objects in sub-01](research/eeg_stack_20261112/gallery/photo_angle_sub01_fresh.jpg)
-
-Each tile shows the true object label and the word decoded from EEG. A single fixed rule selected the examples, including errors. The replay guide also builds private side-by-side comparisons with the original stimuli. [Sub-04 gallery](research/eeg_stack_20261112/gallery/photo_angle_sub04_fresh.jpg) · [Sub-05 gallery](research/eeg_stack_20261112/gallery/photo_angle_sub05_fresh.jpg) · [Image replay](docs/FRESH_PHOTO_VALIDATION.md#reproduce-the-saved-image-comparison)
-
-## Single-person reconstruction without target-class EEG supports
-
-On the official 200-photo test, sub-04 viewed each stimulus 80 times. The decoder can generate with a continuous EEG estimate and the same prompt, “A photograph.”, for every query. Scaling the estimated visual deviation from the training-image mean raised DINOv2 retrieval from **10/200 to 20/200** against the actual photographs. The paired gain was 5.0 percentage points (95% interval 1.0 to 9.0). Independent CLIP photo retrieval rose from **5/200 to 17/200**. Full 1,854-label naming gave **2/200** for both versions. With the EEG-decoded object word added to the prompt, angular calibration raised DINOv2 retrieval from **13/200 to 24/200** (paired gain 5.5 points, 95% interval 1.0 to 10.0). CLIP named **4/200** correctly at both angles. At the calibrated angle, the named arm retrieved four more photos than the generic prompt with DINOv2 (95% interval for the difference −2.5 to +6.5 points). Each test object has a single photograph, so this benchmark cannot resolve same-object photographic detail. [Physical EEG and calibration](docs/OFFICIAL_REPEAT_OBJECT.md) · [Generated images, naming and controls](docs/OFFICIAL_REPEAT_IMAGES.md)
-
-We also compared two visual decoders of the **same 80 presentations**, holding the decoded word and seed fixed. Independent DINO retrieval gave 24/200 for the personal head, 29/200 for a head fitted to released ATM features and 32/200 for their equal blend. CLIP full-vocabulary naming on the generated images gave 4, 4 and 3 hits respectively. We retained the personal model for the object-first task. [Paired results and upstream training details](docs/DUAL_R80.md) · [Fixed gallery](research/eeg_stack_20261112/gallery/official_dual_r80.jpg)
-
-## Other experiments
-
-With the object word fixed, a separate study pooled four presentations from each of nine viewers of the same photograph. Across two previously studied panels, the generated object was named correctly on **180/240** queries within the panel vocabulary. Independent DINOv2 identified the viewed photo among ten of the same object on **30/240** ordinary pooled reconstructions. Doubling the difference between matched and support-mean diffusion predictions gave **37/240**, compared with **22/240** for exchanged EEG. The gain over the ordinary pooled reconstruction was 2.9 percentage points (95% interval −0.4 to +6.7), and RGB error increased. Each query uses 36 physical presentations. [Fixed-word acquisition study and image controls](docs/FIXED_WORD_PHOTO_DOSE.md)
-
-| Question | Evidence | Results and code |
-| --- | --- | --- |
-| How much object recognition survives a recording-session control? | On twelve objects recorded in the same combination of sessions, CLIP named 55/120 single-person and 69/120 three-person generated images among the twelve labels. Full-vocabulary credits were 48 and 59.5. DINO identified 15/120 exact photos for each. Three people contribute twelve physical observations per picture. | [Session audit and matched-object experiments](docs/COHORT_SESSION_CONTROLS.md) · [Fixed examples](research/eeg_stack_20261112/gallery/GALLERY.md#session-matched-objects) |
-| Where is the generator losing the identity of the photo? | On 120 third-panel images from sub-04, replacing only the EEG word by the true word gave 13 same-object photo hits versus 14 from EEG. Supplying the exact viewed-photo H/14 feature instead gave 74. The latter is a reference-input diagnostic. | [Condition substitutions, pixel scores and paired intervals](docs/PHOTO_CONDITION_DIAGNOSTIC.md) |
-| Which EEG features distinguish photographs of the same object? | On 96 held-out generic objects, direct H/14 prediction gave 9,371/12,960 correct pair assignments. Cross-session reproducibility gave 9,569 and cross-participant supervision gave 9,589. All three people improved in feature space. | [Repeat recordings](docs/REPEAT_PHOTO_SUBSPACE.md) · [Other participants as training teachers](docs/SHARED_PHOTO_EEG.md) · [Generator-gradient experiment](docs/IP_DENOISER_GRADIENT.md) |
-| Does personal calibration help draw the right object? | With 128 other calibration objects and seven additional people, Brain-HIVE image naming rose from 503/1,680 (29.9%) to 678.5/1,680 (40.4%). On the earlier panels in three people, expanding calibration from 128 to 512 objects raised naming from 321.5/720 to 406.5/720. | [Seven participants](docs/OBJECT_FIDELITY.md) · [Calibration-size comparison](docs/PHOTO_STRUCTURE.md#personal-calibration-size-and-scalp-coverage) |
-| Does the H/14 condition carry information about the individual photo? | On two earlier 12-object panels, CLIP named 433/720 own-EEG images. When both EEG words were correct and two photos had to be assigned jointly, CLIP gave 115/170 for own EEG, 89/170 for the mean and 64/170 for wrong EEG. All-query ten-photo identification was 65/720 for CLIP and 78/720 for DINOv2. | [H/14 angle and eight-candidate controls](docs/PHOTO_STRUCTURE.md#calibrating-the-residual-angle-before-generation) |
-| Can EEG recover color and composition? | Low-frequency color and local contrast improved a strict grayscale SSIM comparison against swapped EEG in three participants on fresh objects. All four spatial variants had 39/72 correct DINOv2 pair assignments. | [Spatial residuals](docs/SPATIAL_PHOTO.md) · [Foreground and support experiments](docs/PHOTO_STRUCTURE.md) · [Local visual prediction errors](docs/CONTEXT_RESIDUAL.md) |
-| Which model leads the separate ten-participant R4 benchmark? | M1a + D2 at s375 identified 982/5,000 photographs (19.64%) within concept. All ten participants saw the same 500 photographs. The benchmark uses VAE-decoded references and a shared noise seed within each concept. | [Architecture, matched controls and evaluation protocol](docs/EXPERIMENT_REGISTRY.md) |
-| What happens with unfamiliar objects or more repeats? | On a separate sub-03 R4 panel without target-class examples, 60/200 generated images were assigned to the correct one of 20 concepts. The separate official 80-repeat, 200-stimulus benchmark gave 18.46% for O14 across ten people. | [Unregistered-object R4 study](docs/OBJECT_FIDELITY.md) · [Official R80 study](research/eeg_stack_20261112/O12_O13_O14_REPORT.md) |
-
-## Run the checks
-
-The public numerical audits run on a CPU with Python 3.11 or newer. GPU reconstruction additionally requires the EEG and image archives, model weights and research environments listed in the replay guide. [Installation](docs/INSTALLATION.md) · [Model assets and GPU replay](docs/REPRODUCIBILITY.md)
+The numerical release covers all 368 prespecified participant–method–budget combinations and 103,600 scored image outputs, including the external ATM images. It contains individual observations, stimulus IDs, score definitions, and hashes of inputs and generated outputs. Rebuild the tables on a CPU with Python 3.11 or newer.
 
 ```bash
 python -m pip install -e '.[dev]'
-python -m eeg_diffusion verify-r4
-python -m eeg_diffusion verify-stack
-python -m eeg_diffusion verify
+python research/eeg_stack_20261112/code/package_paper_scores.py --unpack research/eeg_stack_20261112/results/paper_benchmark_scores.zip outputs/paper-benchmark/verified
+python research/eeg_stack_20261112/code/build_paper_benchmark_report.py --root outputs/paper-benchmark/verified
 python -m pytest -q
 ```
 
-[Citation](CITATION.cff) · [MIT license](LICENSE) · [Third-party assets](THIRD_PARTY_NOTICES.md)
+For GPU generation, stage the THINGS EEG and photograph archives, the pinned visual targets, and the frozen Brain-HiVE and SDXL weights. The data guide verifies the 17 posterior channels and the exact row ordering. The protocol includes commands for training, rendering, scoring and one-query inference. [Input preparation](research/eeg_stack_20261112/public_inputs/README.md) · [GPU protocol](research/eeg_stack_20261112/PAPER_BENCHMARK_PROTOCOL.md) · [Environment and third-party assets](docs/REPRODUCIBILITY.md)
+
+To inspect a complete participant after rendering, run `python "$RAD_ROOT/code/paper_full_gallery.py" sub-01 personal`. It builds a local HTML gallery in stimulus order with all 200 original photos, Brain-HiVE reconstructions and D2 reconstructions side by side. [Gallery builder](research/eeg_stack_20261112/code/paper_full_gallery.py)
+
+## Experiment archive
+
+| Question | Evidence |
+| --- | --- |
+| What improved object identity, photo details or layout in the earlier experiments? | [Historical log review](docs/OBJECT_LOG_REVIEW.md) · [Scientific experiment registry](docs/EXPERIMENT_REGISTRY.md) |
+| How does the matched reconstruction compare with published methods? | [Brain-HiVE reproduction and released ATM images](docs/PAPER_BENCHMARK_RESULTS.md) · [Other authors' reported numbers and figure-level checks](research/eeg_stack_20261112/results/paper_benchmark_external.md) |
+| What happens when the candidate objects and eight labeled supports per object are supplied? | [Calibrated object task](docs/OBJECT_FIDELITY.md) · [Session-controlled 12-object replication](docs/TRIAL_OBJECT_PERSONAL12.md) · [Galleries](research/eeg_stack_20261112/gallery/GALLERY.md) |
+
+[Citation](CITATION.cff) · [MIT license](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)

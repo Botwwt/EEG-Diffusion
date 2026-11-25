@@ -32,9 +32,13 @@ SUBJECTS = tuple(f"sub-{i:02}" for i in range(1, 11))
 TRACKS = ("personal", "shared", "native-full", "external")
 BUDGETS = ("official-r4", "official-r4-balanced", "official-r80", "fresh-r4", "dev-r4")
 PANELS = {"official": (200, 200), "fresh": (500, 50), "dev": (200, 20)}
-FACTOR_CONDITION = {"native-layout": "native-paper", "d2-no-layout": "d2"}
+FACTOR_CONDITION = {"native-layout": "native-paper", "d2-no-layout": "d2", "d2-reference": "d2",
+                    "token-reliable-wrong": "token-reliable"}
 INSTANCE_ARMS = ("instance-native", "instance-direct", "instance-residual")
-NO_LAYOUT = ("native-code", "native-paper", "d2-no-layout", *INSTANCE_ARMS)
+TOKEN_ARMS = ("token-photo", "token-object", "token-reliable", "token-reliable-wrong")
+AUX_ARMS = ("token-final-aux", "token-middle-aux", "token-rgb-photo", "token-rgb-sibling", "token-center-only", "token-center-spread",
+            "token-peer-own", "token-peer-sibling")
+NO_LAYOUT = ("native-code", "native-paper", "d2-no-layout", *INSTANCE_ARMS, *TOKEN_ARMS, *AUX_ARMS)
 COMMON_METRICS = ("pixcorr", "ssim", "alex2_2way", "alex5_2way", "inception_2way", "clip_2way",
                   "effnet_distance", "swav_distance", "clip_image_top1", "generated_name1854",
                   "original_name1854")
@@ -274,6 +278,10 @@ def internal_source(folder, arm, sub, budget, rows, labels, receipt, reg, verify
             raw_labels = labels[np.argsort(order)]
             require(panel == "official" or np.array_equal(raw_labels, raw_labels[donor]),
                     "Within-concept wrong-EEG control crosses concepts")
+        elif arm["method"] == "token-reliable-wrong":
+            raw_labels = labels[np.argsort(order)]
+            require(np.array_equal(donor, np.roll(np.arange(n), n // 2)) and np.all(raw_labels != raw_labels[donor]),
+                    "Object-identity negative control must exchange all EEG across different objects")
         else:
             require(np.array_equal(donor, np.arange(n)), "Unexpected EEG donor for aligned arm")
     seeds = None
@@ -367,6 +375,9 @@ def arm_spec(selector, default_track, external, budget):
                 "The full native fit accepts native-code and native-paper only on the official gallery")
     semantic = FACTOR_CONDITION.get(method, method)
     training = "personal" if semantic in ("native-code", "native-paper", *INSTANCE_ARMS) else track
+    if method in ("token-peer-own", "token-peer-sibling"):
+        require(track == "personal", "Each peer-supervised encoder belongs to one inference participant")
+        training = "one personal student, nine training EEG teachers"
     layout = "noise" if method in NO_LAYOUT else "ridge-shell"
     return dict(method=method, track=track, training=track if track == "native-full" else training,
                 training_participants_per_fit=1 if training == "personal" else 10,

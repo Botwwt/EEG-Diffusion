@@ -1,5 +1,7 @@
 # EEG reconstruction experiment registry
 
+The main open reconstruction task uses one participant's EEG, an empty prompt and one four-step draw. On the official ten-person R4 panel, the personal native and D2 arms tied at 14/2,000 full-vocabulary object-name credits. [Complete paired benchmark](PAPER_BENCHMARK_RESULTS.md) · [Historical findings and model selection](OBJECT_LOG_REVIEW.md) · [Registered inputs](../research/eeg_stack_20261112/PAPER_BENCHMARK_PROTOCOL.md)
+
 | Intended use | Selected model or experiment | Evidence |
 | --- | --- | --- |
 | Does a larger personal EEG decoder draw new objects more accurately? | At equal updates the larger neural branch gave 509 vs 458/960 development hits. Refitting both branches and calibrating their weights improved correct words from 159 to 176/350 on 35 new objects from one person. Full-vocabulary JPEG naming credit rose from 141 to 157.5/350. Same-object photo identification was 44 and 46/350. | [Training-size control](SCALE_TRIAL_OBJECT.md) · [Decoder and inference](FRESH_MIX.md) · [Real image comparison](FRESH_MIX_IMAGES.md) |
