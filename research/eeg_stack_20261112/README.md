@@ -4,6 +4,7 @@ This directory contains the November Brain-HiVE / SDXL-Turbo studies. The EEG-on
 
 | What to read | Where to look |
 | --- | --- |
+| **PhotoEEG-Cascade (2026-11-27)**: `F`-native blueprint → `SDXL-Base-1.0` photorealistic cascade (`R = 80`, All-10 `B5` & strict single-subject `O8`, 100% zero evaluator leakage; `22.90%` DINOv2 T1, `20.80%` CLIP Img T1, `94.70%` AlexNet5, `81.59%` Inception, `10/10` Holm-Bonferroni wins on DINOv2 cos/patch8 & EffNet) | **[PhotoEEG-Cascade report](PHOTO_FIDELITY_REPORT.md)** · [B5 All-10 JSON](results/photoeeg_cascade_all10_b5.json) · [O8 All-10 JSON](results/photoeeg_cascade_all10_o8.json) · [Spaced-12 gallery](gallery/photoeeg_cascade_b5_sub08_spaced12.jpg) |
 | ObjEEG-Diff and its 13-method object-recognizability benchmark. The report includes test-set adaptation and four-candidate selection experiments. | [ObjEEG-Diff report](OBJ_RECOG_BENCHMARK_REPORT.md) · [All-10 stats](results/objbench_all10_stats.json) |
 | The full ten-participant R80 comparison, with four original-system baselines scored against the same photographs | [Unified reconstruction tables](../../docs/PAPER_UNIFORM_RECONSTRUCTION.md) |
 | Open naming before generation, ground-truth token rank, and full-dimensional visual flow | [Readout and intervention results](TOKEN_GATE_ZERO_STUDY.md) |
