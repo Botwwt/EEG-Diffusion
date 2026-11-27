@@ -8,7 +8,7 @@ EEG-to-image reconstruction from one participant's physical EEG presentations. W
 
 ## Official THINGS-EEG2 reconstruction
 
-The full common-renderer experiment covers ten participants, 200 unseen concepts and two physical repeat budgets. Each method produces one image per query from EEG. All six methods use the same generator, predicted layout, empty prompt and seed schedule. The evaluator uses the same official gallery and complete 1,854-entry vocabulary for every method.
+The full common-renderer experiment covers ten participants, 200 unseen concepts and two physical repeat budgets. Each method produces one image per query from EEG. All six methods have access to the same ten-participant training split and use the same generator, predicted layout, empty prompt and seed schedule. The evaluator uses the same official gallery and complete 1,854-entry vocabulary for every method.
 
 Each row summarizes 2,000 reconstructions. Naming is Top-1 over 1,854 names, and photo retrieval is Top-1 over 200 originals. Bold marks the best point estimate for each metric at a given repeat budget.
 
@@ -34,9 +34,21 @@ Each row summarizes 2,000 reconstructions. Naming is Top-1 over 1,854 names, and
 | Ridge | 0.35% | 0.35% | 1.30% | 1.85% | 0.1817 | 0.3968 | 0.6616 | 0.6717 | 0.5623 | 0.5771 | 0.9482 | 0.6146 |
 | EEG-Diffusion (ours) | **2.40%** | **2.08%** | **11.45%** | **16.25%** | **0.2384** | **0.4267** | **0.8769** | **0.9158** | **0.7782** | **0.7990** | **0.8540** | **0.5272** |
 
-The paired gains in DINOv2 exact-photograph retrieval are 3.75 percentage points [1.05, 6.70] at R4 and 8.70 [5.25, 12.30] at R80. The SigLIP2 naming intervals include zero. The separate native-system comparison includes ATM, CognitionCapturer, Brain-HiVE and ENIGMA. Our method reaches 0.4267 SSIM, and ENIGMA leads in both exact-photograph rankers.
+The paired gains in DINOv2 exact-photograph retrieval are 3.75 percentage points [1.05, 6.70] at R4 and 8.70 [5.25, 12.30] at R80. The SigLIP2 naming intervals include zero. [Scoring details and paired intervals](research/icme2027/experiments/full-metric-benchmark/RESULTS.md) · [R80 fixed samples](research/icme2027/experiments/full-metric-benchmark/figures/common-r80-fixed-panel.png)
 
-[Detailed scores and DINOv2 appendix](research/icme2027/experiments/full-metric-benchmark/RESULTS.md) · [Native-system table](research/icme2027/NATIVE.md) · [R80 fixed samples](research/icme2027/experiments/full-metric-benchmark/figures/common-r80-fixed-panel.png)
+### R80 · Native pipelines
+
+Each row covers the same ten participants and 200 official photos, with one image per query and a common evaluator. ATM and CognitionCapturer use author-released images. Brain-HiVE and ENIGMA use reproduced native pipelines.
+
+| Method | CLIP name ↑ | SigLIP2 name ↑ | CLIP photo ↑ | DINOv2 photo ↑ | PixCorr ↑ | SSIM ↑ | AlexNet(2) ↑ | AlexNet(5) ↑ | Inception ↑ | CLIP two-way ↑ | EffNet ↓ | SwAV ↓ |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| ATM | 1.050% | 1.375% | 7.200% | 9.200% | 0.1314 | 0.3142 | 0.7613 | 0.8353 | 0.6922 | 0.7399 | 0.9026 | 0.5906 |
+| CognitionCapturer | 0.550% | 0.713% | 5.150% | 7.050% | 0.1509 | 0.3565 | 0.7546 | 0.8127 | 0.6699 | 0.7159 | 0.9096 | 0.5887 |
+| Brain-HiVE | 2.025% | **2.275%** | 12.050% | 13.450% | 0.1951 | 0.3288 | 0.8330 | 0.8948 | 0.7476 | 0.7998 | 0.8783 | 0.5654 |
+| ENIGMA | 1.913% | 1.975% | **13.150%** | **16.200%** | 0.1818 | 0.3319 | 0.8473 | 0.9069 | 0.7716 | **0.8256** | 0.8675 | 0.5430 |
+| EEG-Diffusion (ours) | **2.550%** | 2.075% | 11.400% | 16.150% | **0.2384** | **0.4267** | **0.8769** | **0.9158** | **0.7786** | 0.7992 | **0.8540** | **0.5272** |
+
+[Native training and sampling settings](docs/PAPER_UNIFORM_RECONSTRUCTION.md) · [Native score audit](research/icme2027/NATIVE.md)
 
 ## Method
 
