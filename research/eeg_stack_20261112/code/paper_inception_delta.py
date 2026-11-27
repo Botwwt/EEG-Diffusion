@@ -176,9 +176,10 @@ def query(folder, primary, gallery):
                     and [r["reference_member"] for r in external] == gallery.members
                     and [r["reference_sha256"] for r in external] == gallery.hashes,
                     f"External reconstruction/source alignment differs in {folder}")
-            expected_subject = re.fullmatch(r"atm-sub(\d{2})", folder.name)
-            require(expected_subject and {r["subject"] for r in external} == {f"sub-{expected_subject[1]}"}
-                    and {r["draw"] for r in external} == {"0"}, f"External subject or draw differs in {folder}")
+            cohort = re.fullmatch(r"(atm|cogcap)-sub(\d{2})", folder.name)
+            require(cohort and {r["subject"] for r in external} == {f"sub-{cohort[2]}"}
+                    and {r["draw"] for r in external} == {"0" if cohort[1] == "atm" else "published"},
+                    f"External subject or draw differs in {folder}")
             declared.append([r["reconstruction_sha256"] for r in external])
             names = [r["filename"] for r in external]
             require(len(set(names)) == n and all(Path(s).name == s and "\\" not in s and "/" not in s for s in names),

@@ -30,7 +30,7 @@ FACTOR_CONDITION = {"native-layout": "native-paper", "d2-no-layout": "d2", "d2-r
 INSTANCE_ARMS = ("instance-native", "instance-direct", "instance-residual")
 TOKEN_ARMS = ("token-photo", "token-object", "token-reliable", "token-final-aux", "token-middle-aux",
               "token-rgb-photo", "token-rgb-sibling", "token-center-only", "token-center-spread",
-              "token-peer-own", "token-peer-sibling")
+              "token-peer-own", "token-peer-sibling", "object-margin-uniform", "object-margin-hard")
 NO_LAYOUT = {"native-code", "native-paper", "d2-no-layout", "token-reliable-wrong", *TOKEN_ARMS, *INSTANCE_ARMS}
 WINDOWS = ((12, 62), (10, 75), (15, 90), (10, 125), (0, 250))
 
@@ -295,10 +295,16 @@ def condition(arm, sub, x, group, adapter=None, proj=None, *, features_only=Fals
     return completed(torch.cat(ips))
 
 
-def draw_images(out, pipe, vae, prompts, tokens, seeds, z0s=None, *, batch_starts=None, batch_complete=None):
+def draw_images(out, pipe, vae, prompts, tokens, seeds, z0s=None, *, batch_starts=None, batch_complete=None,
+                clean_update=None, layout_strength=.375, layout_low_keep=(8, .11, .02),
+                remix_initial_layout=True):
     prompt, pooled, dims = prompts
     if prompt.shape[0] != pooled.shape[0] or prompt.shape[0] not in (1, len(seeds)):
         raise ValueError("Expected a shared prompt or a separate text condition for each EEG query")
+    per_step = isinstance(tokens, tuple)
+    if per_step:
+        require(len(tokens) == 4 and all(len(t) == len(seeds) for t in tokens),
+                "Expected one image condition for each query and denoising step")
     with_layout = z0s is not None
     if not with_layout:
         assert math.isclose(float(pipe.scheduler.init_noise_sigma), float(pipe.scheduler.sigmas[0]), rel_tol=1e-6)
@@ -308,13 +314,18 @@ def draw_images(out, pipe, vae, prompts, tokens, seeds, z0s=None, *, batch_start
         batch = slice(start, start + 8)
         noise = [torch.randn(5, 4, 64, 64, generator=torch.Generator().manual_seed(s)) for s in seeds[batch]]
         eps, *steps = torch.stack(noise).cuda().unbind(1)
-        ip = tokens[batch].cuda()
+        ip = (tuple(t[batch].cuda() for t in tokens) if per_step else (tokens[batch].cuda(),) * 4)
         z0 = z0s[batch].cuda() if with_layout else torch.zeros_like(eps)
         text, pooled_text = (prompt, pooled) if len(prompt) == 1 else (prompt[batch], pooled[batch])
-        text = text.to(device=ip.device, dtype=ip.dtype)
-        pooled_text = pooled_text.to(device=ip.device, dtype=ip.dtype)
-        z = rollout_4step_step_ips(pipe.unet, pipe.scheduler, [ip] * 4, z0, eps, steps, text, pooled_text, dims,
-                                   .375 if with_layout else 0., (8, .11, .02) if with_layout else None)
+        text = text.to(device=ip[0].device, dtype=ip[0].dtype)
+        pooled_text = pooled_text.to(device=ip[0].device, dtype=ip[0].dtype)
+        changes = {} if clean_update is None else {"clean_update": lambda step, current: clean_update(batch, step, current)}
+        if not remix_initial_layout:
+            changes["remix_initial_layout"] = False
+        z = rollout_4step_step_ips(
+            pipe.unet, pipe.scheduler, ip, z0, eps, steps, text, pooled_text, dims,
+            layout_strength if with_layout else 0., layout_low_keep if with_layout else None, **changes,
+        )
         image = (vae.decode(z.float() / vae.config.scaling_factor).sample.float() * .5 + .5).clamp(0, 1)
         assert torch.isfinite(image).all()
         pixels = image.mul(255).round().byte().permute(0, 2, 3, 1).cpu().numpy()
@@ -380,12 +391,13 @@ def donor_rows(arm, panel, labels):
 def render(a):
     sub = a.subject
     track = track_for(RUNS, sub)
+    output_root = getattr(a, "output_root", None) or ROOT / "images"
     if track == "native-full" and (any(not b.startswith("official-") for b in a.budgets)
                                    or any(arm not in ("native-paper", "native-code") for arm in a.arms)):
         raise ValueError("The full 1,654-concept native fit is for the official 200-stimulus split")
     for arm in a.arms:
         for budget in a.budgets:
-            final = ROOT / f"images/{track}/{arm}/{budget}/sub-{sub:02d}/render.json"
+            final = output_root / f"{track}/{arm}/{budget}/sub-{sub:02d}/render.json"
             if final.is_file() and not final.parent.with_name("." + final.parent.name + ".render-v2").exists():
                 require(json.loads(final.read_bytes()).get("render_cache_version") == 2,
                         f"Historical render has no v2 input binding; preserve this folder: {final.parent}")
@@ -437,7 +449,7 @@ def render(a):
         seeds = [query_seed(panel, i) for i in range(len(x))]
         assert len(set(seeds)) == len(x)
         for arm in a.arms:
-            out = ROOT / f"images/{track}/{arm}/{budget}/sub-{sub:02d}"
+            out = output_root / f"{track}/{arm}/{budget}/sub-{sub:02d}"
             source_arm = FACTOR_CONDITION.get(arm, arm)
             prepared = condition_files(source_arm, sub, files)
             cp = prepared[2]
@@ -472,4 +484,5 @@ if __name__ == "__main__":
     p.add_argument("--subject", type=int, required=True, choices=range(1, 11))
     p.add_argument("--arms", nargs="+", choices=("native-code", "native-paper", *ARMS, *FACTOR_CONDITION, *INSTANCE_ARMS, *TOKEN_ARMS), required=True)
     p.add_argument("--budgets", nargs="+", choices=BUDGETS, required=True)
+    p.add_argument("--output-root", type=Path, help="Write an independent images tree for a paired replay")
     render(p.parse_args())

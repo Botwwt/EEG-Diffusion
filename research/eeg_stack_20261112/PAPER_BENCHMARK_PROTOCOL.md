@@ -102,10 +102,30 @@ for arm in token-final-aux token-middle-aux; do
 done
 ```
 
-For an individual preprocessed query, supply a floating-point array with axes `presentations × 17 electrodes × 250 samples` in the pinned posterior-channel order. Choose the seed before generation. The native and compact experimental checkpoints all load into the same program.
+For an individual preprocessed query, supply a floating-point array with axes `presentations × 17 electrodes × 250 samples` in the pinned posterior-channel order. Choose the seed before generation. The native and compact photo-token BrainMLP checkpoints use `paper_object_infer.py`.
 
 ```sh
 python "$code/paper_object_infer.py" --eeg one_query.npy \
     --checkpoint "$EEG_RUNS_ROOT/enc/native/sub-01/fold0_seed2025/brain_model.pt" \
+    --seed 20261125 --output reconstruction.png
+```
+
+### Shared M1a+D2 training and inference
+
+Train the shared 1,323-concept fit after preparing the registered EEG, visual targets and B/32 alignment. Run these stages on a compute node. The default cross-person weight is .25 in backbone, representation and swap training. D2 trains the condition residual and uses the saved swap encoder.
+
+```sh
+code="$RAD_ROOT/code"
+export EEG_RUNS_ROOT="$RAD_ROOT/fits/shared"
+for stage in backbone rep swap d2; do
+    python "$code/paper_training.py" "$stage"
+done
+```
+
+The shared inference entry point uses the registered split, the selected participant's layout checkpoint and its receipt, the D2 checkpoint and its referenced swap checkpoint, and the frozen generator. A new fit can register subject 01's layout with `paper_render.py --subject 1 --arms d2-reference --budgets official-r4`. The query accepts four or eighty physical presentations and renders one image using the benchmark's four denoising steps.
+
+```sh
+export EEG_RUNS_ROOT="$RAD_ROOT/fits/shared"
+python "$code/paper_shared_infer.py" --eeg one_query.npy --subject 1 \
     --seed 20261125 --output reconstruction.png
 ```

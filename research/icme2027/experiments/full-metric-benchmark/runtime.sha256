@@ -1,0 +1,5 @@
+4c9e9de11333ddfe5114bc872c9f370509198acf0b87a832a0ab9458e2bd0550  transformers-4.57.6-py3-none-any.whl
+369cc9fc8cc10cb24143873a0d95438bb8ee257bb80c71989e3ee290e8d72c67  tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+7bcc9ad17d5b3f07b57c78e79d527102d08313caa278a641993acddcb894548d  huggingface_hub-0.36.0-py3-none-any.whl
+e58b47f933aca74c6a60a79dcb21d5b9e47416256c795c2d58d55cec27f9551d  sentencepiece-0.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+712319fbdddb46f21abb66cd33cb9e491a5763b2febd8f228251add221981135  protobuf-5.28.3-cp38-abi3-manylinux2014_x86_64.whl

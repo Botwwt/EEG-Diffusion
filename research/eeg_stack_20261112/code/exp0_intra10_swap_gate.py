@@ -58,7 +58,7 @@ ALL_SUBS = tuple(range(1, 11))
 DEV_SUBS = (2, 5, 8, 9)
 
 
-def get_concept_splits():
+def get_concept_splits(full_training=False):
     concept = np.load(PREP / "train_concept.npy")
     ok = np.load(PREP / "lat512_train_ok.npy").astype(bool)
     c_fold = concept_folds(1654, 5, seed=20261112)
@@ -66,16 +66,23 @@ def get_concept_splits():
     tr14_all10 = np.array([cid for cid in np.where(c_fold != 0)[0] if ok[concept == cid].all()], dtype=np.int64)
     rng = np.random.default_rng(20261122)
     sel50_cids = np.sort(rng.choice(f0_all10, size=50, replace=False))
-    tr_idx = np.where((c_fold[concept] != 0) & ok)[0]
+    tr_idx = np.flatnonzero(ok) if full_training else np.flatnonzero((c_fold[concept] != 0) & ok)
     f0_idx = np.concatenate([np.where(concept == cid)[0] for cid in f0_all10])
     sel50_idx = np.concatenate([np.where(concept == cid)[0] for cid in sel50_cids])
     return concept, ok, tr_idx, f0_all10, f0_idx, sel50_cids, sel50_idx
 
 
-def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int = 150, subjects=ALL_SUBS) -> Path:
-    """Train clean O13/O14-style shared-trunk cross-sub baseline strictly on tr14 (folds 1..4, ZERO fold-0 access)."""
-    ckpt_p = OUT_DIR / f"arm0_tr14_xbrain_s{seed}.pt"
+def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int = 150, subjects=ALL_SUBS,
+                           *, full_training=False, crossbrain_weight=0.25) -> Path:
+    """Train the shared encoder under the held-concept or official training scope."""
+    if crossbrain_weight not in (0.0, 0.25):
+        raise ValueError("Use the original cross-person objective or the matched zero-weight control")
+    scope = "full" if full_training else "tr14"
+    ckpt_p = OUT_DIR / f"arm0_{scope}_xbrain_s{seed}.pt"
     if ckpt_p.exists():
+        saved = torch.load(ckpt_p, map_location="meta", weights_only=True)
+        if saved.get("crossbrain_weight", 0.25) != crossbrain_weight:
+            raise ValueError(f"Cross-person objective differs from the checkpoint: {ckpt_p}")
         print(f"[CACHED] {ckpt_p}", flush=True)
         return ckpt_p
 
@@ -83,7 +90,7 @@ def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int =
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
-    concept_np, ok_np, tr_idx_np, _, _, _, _ = get_concept_splits()
+    concept_np, ok_np, tr_idx_np, _, _, _, _ = get_concept_splits(full_training)
     tr_idx = torch.from_numpy(tr_idx_np).long()
     n_tr = len(tr_idx)
 
@@ -129,9 +136,9 @@ def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int =
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: max(0.0, 0.5 * (1.0 + math.cos(math.pi * s / total))))
     g = torch.Generator(device=dev).manual_seed(seed)
     rng_np = np.random.default_rng(seed)
-    lam_x = 0.25
+    lam_x = crossbrain_weight
 
-    print(f"[TRAIN Arm0 tr14] n_tr={n_tr}, epochs={epochs}, bs={bs}, seed={seed} ...", flush=True)
+    print(f"[TRAIN Arm0 {scope}] n_tr={n_tr}, epochs={epochs}, bs={bs}, seed={seed} ...", flush=True)
     for ep in range(epochs):
         model.train()
         perm = torch.randperm(n_tr, device=dev, generator=g)
@@ -237,6 +244,7 @@ def train_or_load_arm0_tr14(dev: str = "cuda:0", seed: int = 2025, epochs: int =
             "b32_norm": b32_norm,
             "seed": seed,
             "epochs": epochs,
+            "crossbrain_weight": crossbrain_weight,
         },
         ckpt_p,
     )

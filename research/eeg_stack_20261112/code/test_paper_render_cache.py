@@ -63,6 +63,32 @@ class CacheTest(unittest.TestCase):
     def run_images(self, generate=pixels, request=None):
         return cache.render_transaction(self.out, self.request if request is None else request, generate, lambda: None)
 
+    def test_draw_images_passes_the_matching_tokens_for_each_denoising_step(self):
+        r = renderer(self.root)
+        pipe = SimpleNamespace(unet=None, scheduler=SimpleNamespace(init_noise_sigma=1., sigmas=[1.]))
+        vae = SimpleNamespace(config=SimpleNamespace(scaling_factor=1.),
+                              decode=lambda latent: SimpleNamespace(sample=latent[:, :3]))
+        prompt = (torch.zeros(1, 2, 3), torch.zeros(1, 3), torch.zeros(1, 6))
+        seeds = list(range(11))
+        object_tokens = torch.arange(11).float()[:, None, None]
+        full_tokens = object_tokens + 100
+        passed = []
+
+        def rollout(unet, scheduler, tokens, z0, noise, *args):
+            passed.append(torch.stack(tokens))
+            return noise[:, :, :2, :2]
+
+        r.rollout_4step_step_ips = rollout
+        with patch.object(torch.Tensor, "cuda", lambda x: x):
+            r.draw_images(self.root, pipe, vae, prompt,
+                          (object_tokens, object_tokens, full_tokens, full_tokens), seeds,
+                          batch_starts=[8])
+            r.draw_images(self.root, pipe, vae, prompt, full_tokens, seeds, batch_starts=[8])
+        assert (self.root / "00010.png").exists()
+        assert len(passed) == 2
+        torch.testing.assert_close(passed[0], torch.stack([object_tokens[8:]] * 2 + [full_tokens[8:]] * 2))
+        torch.testing.assert_close(passed[1], torch.stack([full_tokens[8:]] * 4))
+
     def test_interrupt_resume_and_bit_exact_scored_repair(self):
         def interrupted(folder, starts, done):
             pixels(folder, starts[:1], done)

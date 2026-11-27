@@ -138,22 +138,34 @@ def rollout_4step_step_ips(
     atid: torch.Tensor,
     smap_c: float,
     low_keep,
+    *,
+    clean_update=None,
+    remix_initial_layout=True,
+    start_latent=None,
+    start_step=0,
+    stop_step=4,
 ) -> torch.Tensor:
     """Exact 4-step differentiable Euler-Ancestral rollout supporting per-step ips_steps[0..3]."""
     B = z0.shape[0]
     dt = unet.dtype
     steps = 4
+    if (not 0 <= start_step < stop_step <= steps
+            or (start_step > 0) != (start_latent is not None)
+            or (start_latent is not None and start_latent.shape != z0.shape)):
+        raise ValueError("The continuation requires the matching raw Euler state and step")
     timesteps = scheduler.timesteps
     sigmas = scheduler.sigmas
-    hold_val = 2.0 * smap_c if smap_c > 0.0 else 0.0
+    hold_val = 2.0 * smap_c if remix_initial_layout else 0.0
     sig0 = float(sigmas[0])
     lt = (z0.float() + sig0 * eps_init.float()) if smap_c > 0.0 else (sig0 * eps_init.float())
+    if start_latent is not None:
+        lt = start_latent.float()
 
     pe_b = pe.expand(B, -1, -1).to(dt)
     ppe_b = ppe.expand(B, -1).to(dt)
     atid_b = atid.expand(B, -1).to(dt)
 
-    for i_step in range(steps):
+    for i_step in range(start_step, stop_step):
         sigma = float(sigmas[i_step])
         sigma_next = float(sigmas[i_step + 1])
         t_cur = timesteps[i_step].expand(B)
@@ -167,6 +179,10 @@ def rollout_4step_step_ips(
             added_cond_kwargs={"text_embeds": ppe_b, "time_ids": atid_b},
             cross_attention_kwargs={"ip_hidden_states": ips_b},
         ).sample.float()
+        if clean_update is not None:
+            delta = clean_update(i_step, lt - sigma * eps_pred)
+            if delta is not None:
+                eps_pred = eps_pred - delta / sigma
 
         sigma_up = min(sigma_next, math.sqrt((sigma_next ** 2) * (sigma ** 2 - sigma_next ** 2) / (sigma ** 2))) if sigma_next > 0 else 0.0
         sigma_down = math.sqrt(max(0.0, sigma_next ** 2 - sigma_up ** 2))
@@ -187,14 +203,20 @@ def rollout_4step_step_ips(
 
 
 def precompute_or_load_tr14_z0_oof(tr_idx_np: np.ndarray, concept_np: np.ndarray, dev: str = "cuda:0", subjects=ALL_SUBS) -> dict:
-    """Compute genuine 4-fold concept-disjoint OOF ridge z0 on tr14 for all 10 subs (~67 MB cached in PCA-256)."""
+    """Fit a ridge prediction for each training row with its concept fold held out."""
     cache_p = DRAFT_DIR / "z0_oof_tr14_256.pt"
     if cache_p.exists():
         print(f"[CACHED] {cache_p}", flush=True)
-        return torch.load(cache_p, map_location="cpu", weights_only=True)
+        cached = torch.load(cache_p, map_location="cpu", weights_only=True)
+        if cached["Z_oof"].shape[1] != len(tr_idx_np):
+            raise ValueError("The cached layout predictions use a different training scope")
+        return cached
 
     t0 = time.time()
-    print("[PRECOMPUTE] 4-fold concept-disjoint OOF z0_ridge on tr14 for all 10 subs ...", flush=True)
+    c_fold = concept_folds(1654, 5, seed=20261112)
+    f_tr = c_fold[concept_np[tr_idx_np]]
+    retained = np.unique(f_tr)
+    print(f"[PRECOMPUTE] {len(retained)} concept-disjoint folds for {len(tr_idx_np)} layouts", flush=True)
     lat_all = np.load(PREP / "lat512_train.npy")[tr_idx_np]
     Y_tr = torch.from_numpy(lat_all).float().to(dev).flatten(1)
     del lat_all
@@ -217,8 +239,6 @@ def precompute_or_load_tr14_z0_oof(tr_idx_np: np.ndarray, concept_np: np.ndarray
     rms_real_lp4 = float(F.avg_pool2d(Yc.view(-1, 4, 64, 64), 4).flatten(1).pow(2).sum(1).mean().sqrt())
     del Yc
 
-    c_fold = concept_folds(1654, 5, seed=20261112)
-    f_tr = c_fold[concept_np[tr_idx_np]]  # values in {1, 2, 3, 4}
     WINDOWS = [(12, 62), (10, 75), (15, 90), (10, 125), (0, 250)]
     Z_oof = torch.zeros((10, len(tr_idx_np), n_pca), dtype=torch.float16)
 
@@ -226,7 +246,7 @@ def precompute_or_load_tr14_z0_oof(tr_idx_np: np.ndarray, concept_np: np.ndarray
         sid = sub - 1
         X_m4 = torch.from_numpy(np.load(PREP / f"sub-{sub:02d}_train.npy")[tr_idx_np].mean(1, dtype=np.float32))
         z_sub = torch.zeros((len(tr_idx_np), n_pca), dtype=torch.float32, device=dev)
-        for fk in (1, 2, 3, 4):
+        for fk in retained:
             val_m = torch.from_numpy(f_tr == fk)
             tr_m = ~val_m
             preds = []

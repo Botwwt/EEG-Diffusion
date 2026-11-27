@@ -118,7 +118,11 @@ def train_raw_swap_v3(
     dev: str = "cuda:0",
 ) -> Path:
     out_p = OUT_DIR / f"{tag}_st{steps}_s{seed}.pt"
+    crossbrain_weight = res.get("crossbrain_weight", 0.25)
     if out_p.exists():
+        saved = torch.load(out_p, map_location="meta", weights_only=True)
+        if saved.get("crossbrain_weight", 0.25) != crossbrain_weight:
+            raise ValueError("Cached denoising fit uses a different cross-person loss weight")
         print(f"[CACHED] {out_p}", flush=True)
         return out_p
 
@@ -164,7 +168,7 @@ def train_raw_swap_v3(
 
     print(
         f"[TRAIN {tag}] init={init_ckpt.name} steps={steps} use_cl={use_cond_layer} "
-        f"w_rep_intra={w_rep_intra} w_rec={w_rec} w_swap={w_swap}",
+        f"w_rep_intra={w_rep_intra} w_rec={w_rec} w_swap={w_swap} crossbrain_weight={crossbrain_weight}",
         flush=True,
     )
     model.train()
@@ -293,6 +297,7 @@ def train_raw_swap_v3(
             "cone": pack["cone"],
             "arm": tag,
             "steps": steps,
+            "crossbrain_weight": crossbrain_weight,
         },
         out_p,
     )

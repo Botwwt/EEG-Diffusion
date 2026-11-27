@@ -1,0 +1,92 @@
+{
+  "source_sha256": "d180ffe97b0cd8e9983f2afe61abc5eb44dcb7caec257cb4a0cd9002b2e2a6a3",
+  "rows": {
+    "ATM": [
+      1.05,
+      1.375,
+      7.2,
+      9.2,
+      0.1314,
+      0.3142,
+      0.7613,
+      0.8353,
+      0.6922,
+      0.7399,
+      0.9026,
+      0.5906
+    ],
+    "CognitionCapturer": [
+      0.55,
+      0.713,
+      5.15,
+      7.05,
+      0.1509,
+      0.3565,
+      0.7546,
+      0.8127,
+      0.6699,
+      0.7159,
+      0.9096,
+      0.5887
+    ],
+    "Brain-HiVE": [
+      2.025,
+      2.275,
+      12.05,
+      13.45,
+      0.1951,
+      0.3288,
+      0.833,
+      0.8948,
+      0.7476,
+      0.7998,
+      0.8783,
+      0.5654
+    ],
+    "ENIGMA": [
+      1.913,
+      1.975,
+      13.15,
+      16.2,
+      0.1818,
+      0.3319,
+      0.8473,
+      0.9069,
+      0.7716,
+      0.8256,
+      0.8675,
+      0.543
+    ],
+    "Ours": [
+      2.55,
+      2.075,
+      11.4,
+      16.15,
+      0.2384,
+      0.4267,
+      0.8769,
+      0.9158,
+      0.7786,
+      0.7992,
+      0.854,
+      0.5272
+    ]
+  },
+  "metric_order": [
+    "clip_name_pct",
+    "siglip2_name_pct",
+    "clip_photo_top1_pct",
+    "dinov2_photo_top1_pct",
+    "pixcorr",
+    "ssim",
+    "alex2_2way",
+    "alex5_2way",
+    "inception_2way",
+    "clip_2way",
+    "effnet_distance",
+    "swav_distance"
+  ],
+  "n_per_system": 2000,
+  "repository_source_sha256": "80592067774af943dcfd880cd07586fd5971450080348501cbecce83ab9b9438",
+  "repository_source": "docs/PAPER_UNIFORM_RECONSTRUCTION.md"
+}

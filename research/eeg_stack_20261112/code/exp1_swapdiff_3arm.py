@@ -41,7 +41,7 @@ for d in [ROOT / "code/exp_w7", ROOT / "code/exp_w6", ROOT / "code/rad", ROOT / 
     if d.exists() and str(d) not in sys.path:
         sys.path.insert(0, str(d))
 
-from common import EMB_KEYS, HIVE, PREP, PRIOR, RUNS, TURBO, concept_folds, write_json
+from common import EMB_KEYS, HIVE, PREP, PRIOR, RUNS, TURBO, write_json
 from deep_enc import sample_sub_repeats
 from exp0_intra10_swap_gate import (
     ALL_SUBS,
@@ -108,13 +108,12 @@ def forward_with_trunk(model: CrossSubjectHorizonEncoder, x: torch.Tensor, sid: 
     return model.head_f(c_ens), model.head_h14(c_ens), model.head_b32(c_ens), c_ens
 
 
-def build_tr14_resources(dev: str, subjects=ALL_SUBS):
-    concept_np, ok_np, tr_idx_np, f0_all10, f0_idx, sel50_cids, sel50_idx = get_concept_splits()
-    c_fold = concept_folds(1654, 5, seed=20261112)
-    # Build mapping: for each valid tr14 concept with all 10 ok images -> array of 10 local indices inside tr_idx_np
+def build_tr14_resources(dev: str, subjects=ALL_SUBS, *, full_training=False):
+    concept_np, ok_np, tr_idx_np, f0_all10, f0_idx, sel50_cids, sel50_idx = get_concept_splits(full_training)
+    # Index complete ten-photo groups from the active training scope.
     g2loc = {int(g): i for i, g in enumerate(tr_idx_np)}
     tr14_c_groups = []
-    for cid in np.where(c_fold != 0)[0]:
+    for cid in np.unique(concept_np[tr_idx_np]):
         g_ids = np.where(concept_np == cid)[0]
         if len(g_ids) == 10 and ok_np[g_ids].all():
             tr14_c_groups.append([g2loc[int(g)] for g in g_ids])
@@ -201,13 +200,17 @@ def compute_base_anchor_loss(model, res, sid_a, sid_b, idx_cpu, idx_dev, g, dev,
         + 0.40 * _xbrain_nce(ha, hb, sc_x, mh)
         + 0.25 * _xbrain_nce(ba, bb, sc_x, mb)
     )
-    return l_vis + 0.25 * l_xb
+    return l_vis + res.get("crossbrain_weight", 0.25) * l_xb
 
 
 def train_arm1_rep_intra(arm0_ckpt: Path, res: dict, steps: int = 800, seed: int = 2025, dev: str = "cuda:0") -> Path:
     """Arm 1: Representation-only within-concept 2x2 swap + 10-way Intra-Concept InfoNCE (F_perp, L_KV, H14, B32)."""
     out_p = OUT_DIR / f"arm1_rep_intra_st{steps}_s{seed}.pt"
+    crossbrain_weight = res.get("crossbrain_weight", 0.25)
     if out_p.exists():
+        saved = torch.load(out_p, map_location="meta", weights_only=True)
+        if saved.get("crossbrain_weight", 0.25) != crossbrain_weight:
+            raise ValueError("Cached representation fit uses a different cross-person loss weight")
         print(f"[CACHED] {out_p}", flush=True)
         return out_p
 
@@ -233,7 +236,8 @@ def train_arm1_rep_intra(arm0_ckpt: Path, res: dict, steps: int = 800, seed: int
     n_c = len(c_groups)
     n_tr = len(res["tr_idx_np"])
 
-    print(f"[TRAIN Arm1_RepIntra] steps={steps}, 16 same-concept pairs + 8 full 10-img concepts/step ...", flush=True)
+    print(f"[TRAIN Arm1_RepIntra] steps={steps}, crossbrain_weight={crossbrain_weight}, "
+          "16 same-concept pairs + 8 full 10-img concepts/step ...", flush=True)
     model.train()
     for step in range(1, steps + 1):
         opt.zero_grad(set_to_none=True)
@@ -314,6 +318,7 @@ def train_arm1_rep_intra(arm0_ckpt: Path, res: dict, steps: int = 800, seed: int
             "cone": pack["cone"],
             "arm": "Arm1_RepIntra",
             "steps": steps,
+            "crossbrain_weight": crossbrain_weight,
         },
         out_p,
     )

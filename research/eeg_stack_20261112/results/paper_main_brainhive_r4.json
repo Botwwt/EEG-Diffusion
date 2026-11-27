@@ -1,0 +1,236 @@
+{
+  "arm": "native-paper",
+  "training": "native-full",
+  "panel": "official-r4",
+  "n": 2000,
+  "subjects": {
+    "1": {
+      "render_sha256": "14ba0bc7010434e812c9f2dcd1c11531ef728de5405c784ab7c4c919338956f1",
+      "observations_sha256": "65cf51fd5226328a03451acd371c3dddfde6d68d04dd5bd105063a9473540ff0",
+      "means": {
+        "generated_name1854": 0.01,
+        "clip_image_top1": 0.055,
+        "pixcorr": 0.15678653048796057,
+        "ssim": 0.3168423891517842,
+        "alex2_2way": 0.7644472361809045,
+        "alex5_2way": 0.8458040201005025,
+        "inception_2way": 0.6743969849246231,
+        "clip_2way": 0.6706281407035175,
+        "swav_distance": 0.6190419051437192,
+        "effnet_distance": 0.9236318490361366
+      },
+      "checkpoint_sha256": "9f5b2b0f2f33e2561f83c7f473f1d3509b9bba68c42fa5722082e707e673ab65",
+      "siglip2_name_credits": 2.0
+    },
+    "2": {
+      "render_sha256": "a4d330e74b0e5a8365bce9643ef62cc98aaff297db226656194f31ba21c8da25",
+      "observations_sha256": "788c0142a909212d7b1591c02312f52749f0d847e2eb4c198ba18f44842ab7b8",
+      "means": {
+        "generated_name1854": 0.005,
+        "clip_image_top1": 0.04,
+        "pixcorr": 0.13729467485984206,
+        "ssim": 0.30732607196506706,
+        "alex2_2way": 0.709497487437186,
+        "alex5_2way": 0.7787688442211055,
+        "inception_2way": 0.6340703517587939,
+        "clip_2way": 0.6984422110552764,
+        "swav_distance": 0.6431252227261962,
+        "effnet_distance": 0.9460864947734532
+      },
+      "checkpoint_sha256": "dcaa2f3f49423dab007c412d311105d206b0f91c90877f128c743c8bb5663fd1",
+      "siglip2_name_credits": 1.0
+    },
+    "3": {
+      "render_sha256": "a2f2b3e32223a46f5c7bd0b1e2a7e0377ae29ffb029a53c6add54070c1bd4064",
+      "observations_sha256": "ba90cf308c27c1d9cafe9a714722ce387f3659fc131c849e6486249beed132da",
+      "means": {
+        "generated_name1854": 0.0,
+        "clip_image_top1": 0.04,
+        "pixcorr": 0.1415626721554098,
+        "ssim": 0.3087650476572055,
+        "alex2_2way": 0.729572864321608,
+        "alex5_2way": 0.7746733668341709,
+        "inception_2way": 0.6220854271356784,
+        "clip_2way": 0.6973869346733669,
+        "swav_distance": 0.6424220265663172,
+        "effnet_distance": 0.9275464175404876
+      },
+      "checkpoint_sha256": "455a3a1d6298d0bb96c69a901df0d0c8c39542412354506c2d65d129ea6b61a4",
+      "siglip2_name_credits": 0.0
+    },
+    "4": {
+      "render_sha256": "27411775c606fcb86ed835e9fa7e4275698cf0c64e864e2e20768ad37b4ef013",
+      "observations_sha256": "2c38235685d23916123c4c4fdfd320cc8c4616d8a9dda84eefd292d2aa8448e9",
+      "means": {
+        "generated_name1854": 0.01,
+        "clip_image_top1": 0.065,
+        "pixcorr": 0.13064879118402645,
+        "ssim": 0.2953919396522969,
+        "alex2_2way": 0.7114824120603015,
+        "alex5_2way": 0.7812060301507537,
+        "inception_2way": 0.6731658291457286,
+        "clip_2way": 0.6930904522613065,
+        "swav_distance": 0.6277480205644586,
+        "effnet_distance": 0.9194348342309488
+      },
+      "checkpoint_sha256": "03d237addf60f26eed30213f0ad5bb6c1e5a97b5fd385f47d2b9b7b45a4fae4d",
+      "siglip2_name_credits": 4.0
+    },
+    "5": {
+      "render_sha256": "befa910ebdbffd0380d29f5de550f013f648d7e9add242826964c44013f3423a",
+      "observations_sha256": "0acbbe03f6520916a95d4334a2f7521a76ab81826bb8912fa1e58dd1d37acc30",
+      "means": {
+        "generated_name1854": 0.0,
+        "clip_image_top1": 0.025,
+        "pixcorr": 0.1422337363888376,
+        "ssim": 0.30775261319992003,
+        "alex2_2way": 0.6869597989949751,
+        "alex5_2way": 0.7193467336683416,
+        "inception_2way": 0.5920603015075377,
+        "clip_2way": 0.6427638190954774,
+        "swav_distance": 0.6665121305818918,
+        "effnet_distance": 0.9585678191287481
+      },
+      "checkpoint_sha256": "7e8035976f8af13e81c78e8ca7b77e47b3150c40b0da821811097a6ba11c701d",
+      "siglip2_name_credits": 1.0
+    },
+    "6": {
+      "render_sha256": "4dc43c9c60b84cb153570bf1872b82f933fc60d2790f9c43edc7e14e13b74640",
+      "observations_sha256": "4951e07bf50411ad150ad16f71ead50a960869ccfd53c558146dc6e5cdca9328",
+      "means": {
+        "generated_name1854": 0.005,
+        "clip_image_top1": 0.03,
+        "pixcorr": 0.15076805256645853,
+        "ssim": 0.3116454217028666,
+        "alex2_2way": 0.684497487437186,
+        "alex5_2way": 0.7732663316582915,
+        "inception_2way": 0.5970854271356784,
+        "clip_2way": 0.6672613065326632,
+        "swav_distance": 0.6558491450341544,
+        "effnet_distance": 0.9418397235228949
+      },
+      "checkpoint_sha256": "44f2afb6ff610a39d50126ae9e8435a18d9d76e534c7a0e69adf26d7a391d2cb",
+      "siglip2_name_credits": 0.0
+    },
+    "7": {
+      "render_sha256": "ed77a8b1c21b4803f5e43372c080c1886e3053ea528addd2d87276016e247705",
+      "observations_sha256": "7f2c5b2d5b3533275e6e3fabf516dfa01d2b57a103edfdbdd9b3fa2bab3f360a",
+      "means": {
+        "generated_name1854": 0.005,
+        "clip_image_top1": 0.055,
+        "pixcorr": 0.15915428229904066,
+        "ssim": 0.34549584568980185,
+        "alex2_2way": 0.7470100502512562,
+        "alex5_2way": 0.8270854271356786,
+        "inception_2way": 0.6476884422110553,
+        "clip_2way": 0.7193216080402012,
+        "swav_distance": 0.6178312648341207,
+        "effnet_distance": 0.9201625600911999
+      },
+      "checkpoint_sha256": "ac65d1540b40711e0491b00a883efd31b1838bb9b4fd4b2aeb23be7ca0b834ec",
+      "siglip2_name_credits": 2.0
+    },
+    "8": {
+      "render_sha256": "36720ba768087e2af015872d24869aabb2e05e7a12c281d1f31806ff1a42e038",
+      "observations_sha256": "9b001549ddf8f774585c03bd96ef0beb8b85114cf9bcebb245d22ec037b266ff",
+      "means": {
+        "generated_name1854": 0.015,
+        "clip_image_top1": 0.06,
+        "pixcorr": 0.17202719829030846,
+        "ssim": 0.3280007983740068,
+        "alex2_2way": 0.7340452261306533,
+        "alex5_2way": 0.7900502512562815,
+        "inception_2way": 0.6391206030150753,
+        "clip_2way": 0.7122361809045227,
+        "swav_distance": 0.6363325975071823,
+        "effnet_distance": 0.9355763633351105
+      },
+      "checkpoint_sha256": "f134e604a8af1276415a2ecec59b3102b7f0bf3aba3c79e1935418fc21791eca",
+      "siglip2_name_credits": 4.0
+    },
+    "9": {
+      "render_sha256": "f982f0146c687fb421c1e8dd79452fcb7355b5e918d1fa07c9e638f794c57e20",
+      "observations_sha256": "eae172e8ead814cbf0affc255067f4e7fca84b34487def6898884f71621fdcbe",
+      "means": {
+        "generated_name1854": 0.0,
+        "clip_image_top1": 0.02,
+        "pixcorr": 0.14405603214972845,
+        "ssim": 0.30644288942726594,
+        "alex2_2way": 0.6858542713567839,
+        "alex5_2way": 0.740929648241206,
+        "inception_2way": 0.6034673366834171,
+        "clip_2way": 0.614748743718593,
+        "swav_distance": 0.6585344060729187,
+        "effnet_distance": 0.9554124339405732
+      },
+      "checkpoint_sha256": "dddf78017d80c24fc5f7e0127884beca17b0592cd3aaaa163d656cdf883134e9",
+      "siglip2_name_credits": 0.0
+    },
+    "10": {
+      "render_sha256": "5e429b9680fe88ceb5bed947e70510102c2b8592ac60be36569f52434065e6c7",
+      "observations_sha256": "b0f9b60c9194fd984eecfc0173e103548f72c90489215afa0d5a465f851d388d",
+      "means": {
+        "generated_name1854": 0.01,
+        "clip_image_top1": 0.045,
+        "pixcorr": 0.15365422928193564,
+        "ssim": 0.3187602091230282,
+        "alex2_2way": 0.7376381909547739,
+        "alex5_2way": 0.8388190954773869,
+        "inception_2way": 0.7092713567839195,
+        "clip_2way": 0.7476633165829146,
+        "swav_distance": 0.6097816811009927,
+        "effnet_distance": 0.8965558840049561
+      },
+      "checkpoint_sha256": "fb79beb19e9c79f75af99e6597eb888a8cc608dbb3d8754d842c901b1f3cdfba",
+      "siglip2_name_credits": 2.0
+    }
+  },
+  "means": {
+    "generated_name1854": 0.006,
+    "clip_image_top1": 0.0435,
+    "pixcorr": 0.14881861996635481,
+    "ssim": 0.31464232259432434,
+    "alex2_2way": 0.7191005025125629,
+    "alex5_2way": 0.7869949748743719,
+    "inception_2way": 0.6392412060301507,
+    "clip_2way": 0.686354271356784,
+    "swav_distance": 0.6377178400131951,
+    "effnet_distance": 0.9324814379604509
+  },
+  "images_sha256": "fb58dd8bdae7aa093f345fefc6fa7803f91826d79a38325167f058cc7f82365b",
+  "scorer_sha256": "b99cae6753cd55e3a1640eeb7f7239ad3fe1b9cef4af8953fe12bdf836be7e6d",
+  "metric_weights_receipt_sha256": "b5e7d614081446094fbe8a29f33f3b40bcf4f5c25ad3d7e3857581cd993759fb",
+  "torch": "2.8.0+cu128",
+  "device": "NVIDIA GeForce RTX 4080 SUPER",
+  "training_concepts": 1654,
+  "physical_repeats": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "draws": 1,
+  "unet_calls_per_draw": 4,
+  "siglip2": {
+    "model": "google/siglip2-base-patch16-224@75de2d55ec2d0b4efc50b3e9ad70dba96a7b2fa2",
+    "model_files_sha256": {
+      "config.json": "fe8b5fe6d5734360678fd71c11c21e1ea3364bd8598d34295d9206335973ffd7",
+      "model.safetensors": "612923381c76ec5a9bed335d1c48827e3f2e506ac31b044b63b2031fadee6a0b",
+      "preprocessor_config.json": "9b36b57ebaf20f09bf4c22100ccc21877ea6bfe5aead0c00c59f8af8ccefacfc",
+      "special_tokens_map.json": "baec30ea10906f16adb8c18af7a34023002c1746542612b8b41c9f09e1351351",
+      "tokenizer.json": "cb9140fae3ac5122c972d37adf83e1248471a38147ad76f8215c8872c6fd8322",
+      "tokenizer.model": "61a7b147390c64585d6c3543dd6fc636906c9af3865a5548f27f31aee1d4c8e2",
+      "tokenizer_config.json": "14afe629fe4959b9e0d51e1852b8d9f7ad074f90a1a7125a4fcdd17f06e78fc8"
+    },
+    "transformers_version": "4.57.6",
+    "code_sha256": "64638f714bb316270c5c6e8f74ca96a19e1add669db9239febe80d5d36df2610",
+    "sources": {
+      "concepts": "8450a4e843040aad18972a5ced111e7a0da4c482e94081e336452f3aa3876514",
+      "photographs": "e534427d01d13f4134cab32bf2364c0d1acf1845a46f12cec51281432eb4bd97",
+      "photo_zip": "57ed472cd88f68ccf88e9ecbadf3da91ac222d8548684d5680be95bcf47ec14a"
+    },
+    "credits": 16.0,
+    "original_credits": 177.25
+  },
+  "original_clip_name1854": 0.85125
+}

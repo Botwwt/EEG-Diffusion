@@ -1,0 +1,32 @@
+{
+  "sources": {
+    "lat512_train.npy": "1ef421de5a9be7150a203a70b0a87d36aaa4a5a4260ade5a424a9d9b4fa87120",
+    "paper_split.json": "05405262a3e507240207cfd31771fa8d96f61255176ab23d8e3612f4aa98d92d",
+    "train_concept.npy": "b70fe2f81856369a2a89ac8a9bcd6b8456e6e97ba741a6103524c61d6f790555",
+    "training-photo-dino.pt": "bdaefd8baa2e0d6171c089b0ce89da731d2798ee769f3c055e4ac2a22e57be47"
+  },
+  "subjects": [
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12
+  ],
+  "unique_photos": 465,
+  "unique_concepts": 208,
+  "average_coarse_layout_cosine_near": 0.7407732605934143,
+  "average_coarse_layout_cosine_random": 0.04749158397316933,
+  "rows": 13230,
+  "episodes": 120,
+  "actual_photograph_scores": {
+    "correct_name": 405,
+    "correct_exchange": 480,
+    "total": 480
+  },
+  "episode_sequence_sha256": "fd897c3117aeff2733d029ccc67d1036e6a77e894fd9861f9f9faf50d7e289f5"
+}

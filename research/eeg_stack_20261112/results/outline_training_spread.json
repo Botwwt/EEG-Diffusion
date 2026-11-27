@@ -1,0 +1,15 @@
+{
+ "split_sha256": "05405262a3e507240207cfd31771fa8d96f61255176ab23d8e3612f4aa98d92d",
+ "masks_train_sha256": "844a13b7a65e0698cfbc5a2e414fb833e4cc8ad3737b2ab5dbf8bf91634edc18",
+ "n_registered_train": 13230,
+ "out_of_fold_gain": {
+  "1": {
+   "gain": 4.847450615752533,
+   "physical_sha256": "3c779d81202572a880cf546999309f99bc174e0bb5ad939339eb6840c35fc611"
+  },
+  "3": {
+   "gain": 4.860874446498909,
+   "physical_sha256": "7faecefd7c4ea76676fb3cb0b98a55f3beab266eb5e912b29d885545a7b9fba0"
+  }
+ }
+}

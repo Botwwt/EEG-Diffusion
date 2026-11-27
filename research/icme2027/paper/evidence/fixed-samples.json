@@ -1,0 +1,60 @@
+{
+  "panel": "official-r80",
+  "subject": 1,
+  "rows": [
+    0,
+    29,
+    92,
+    154
+  ],
+  "records": [
+    {
+      "row": 0,
+      "object": "aircraft_carrier",
+      "sha256": {
+        "original": "53678dcbe326b4e70682c14475eba597cf60025dea1dd7497e75b36bd872162e",
+        "atm": "546438eacb461d95e6b8c19387b3abd475b31dc7901a7055d7f663c35a005183",
+        "cognition": "4b1655971636f1c8c6484d192103f5271f345d4d7e2de3875a116c0406bbbb4c",
+        "brain-hive": "b44b4c0dfc6a382ce56c54b32aedd0fe23c5719d11bfc1436762aeb0245197a8",
+        "ours": "29aec3b1bb816df15c37e062a678efdc78b3242be27643c9252b985ccab97209",
+        "enigma": "a6c9c7b239c3f691de1979b9b1975591f3a335c542a04bb761c80e89cd2e8143"
+      }
+    },
+    {
+      "row": 29,
+      "object": "candlestick",
+      "sha256": {
+        "original": "3de0a13a5a10546e5f94304c393c626b2c6e3f9551af3a2abd72f6dbe0c99b60",
+        "atm": "6d1121fd52d157bb2001a6445f088cdad82ca777a4b23a8c8efc25f60b4612f2",
+        "cognition": "ef569e554004956c664cc0f1e594980d499a25cf7c6d7154702724b93e8b31fd",
+        "brain-hive": "5a345e67335a9db2a6c4daa5a1e1bbfc259d6b024414f64db57c1143e3da47e3",
+        "ours": "a996763c4437eab91736c3884174b467e92aa2e84b967e0ee2a6bd1c93f90b85",
+        "enigma": "16c06204582efb08226f387c2deab8191d376210024cbeda9d2d0e3e6ebae235"
+      }
+    },
+    {
+      "row": 92,
+      "object": "handbrake",
+      "sha256": {
+        "original": "1d51c5332c4dec4b7f4cd8b89953117cddf4d164f9bbafd4d700ec5b65a4b4e8",
+        "atm": "45ceaa3e9f5cc47f2f11a87505e78dfbb02b74658374ce70f530e522bb507bd7",
+        "cognition": "3b6665b62775f91ef92283df67081d1fd931ec029a410e68801d0f6ef2b869f1",
+        "brain-hive": "8c010e868046d0413344994c62154bede6c932d9d0c4598a2356ee300f5b5119",
+        "ours": "9534ddac19b63fe89306f2889b263d8ff26252b93ee040b4b30640c8046896f2",
+        "enigma": "79347d0d14c1133aab5f37ee3e9107d01f8bff44b3765fc15f0b0d0a5f736d69"
+      }
+    },
+    {
+      "row": 154,
+      "object": "sandal",
+      "sha256": {
+        "original": "bb5f0969660d00d9f98b9c3f390b8aba7dc5e2b0b00a1cdcc04fcaf7c7ffc469",
+        "atm": "2809ba312aad78da81b6aa69c299c7c1ec0a2ab53cc9d6ff955ca171680de029",
+        "cognition": "6e19d6df871b2b8316a96f8df2a490b0ba0e0ddc64cb3f1908f1ef6941528e37",
+        "brain-hive": "4200947af26741434f7cf20e1d124e013ca788e1fb2376e71d86559d95d2dfcf",
+        "ours": "d9bb37c7ec162c998c54481e9d48f8d55925b59d240de5f792a50fd0d6dabee8",
+        "enigma": "b8f3d2aa31136bda095718560dbad560d1dc86fc892b1b600b92c6a070efc562"
+      }
+    }
+  ]
+}

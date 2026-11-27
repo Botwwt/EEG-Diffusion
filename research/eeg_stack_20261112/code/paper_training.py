@@ -12,8 +12,8 @@ import torch
 from PIL import Image
 from torchvision import transforms as T
 
-from common import EMB_KEYS, PREP, PRIOR, ROOT, TURBO
-from exp0_intra10_swap_gate import ALL_SUBS, OUT_DIR, train_or_load_arm0_tr14
+from common import EMB_KEYS, PREP, PRIOR, ROOT, RUNS, TURBO, write_json
+from exp0_intra10_swap_gate import ALL_SUBS, OUT_DIR, get_concept_splits, train_or_load_arm0_tr14
 from exp1_swapdiff_3arm import build_tr14_resources, train_arm1_rep_intra
 from exp3_swapdiff_v3 import train_raw_swap_v3
 from exp4_heldout6_and_condctrl import train_arm1b_rep_condlyr
@@ -27,6 +27,7 @@ SWAP = OUT_DIR / "arm3b_rep_rawswap_condlyr_st600_s2025.pt"
 REC = OUT_DIR / "arm3b_rec_only_st600_s2025.pt"
 D1 = DRAFT_DIR / "d1_simonly_cond_st120_s2025.pt"
 D2 = DRAFT_DIR / "d2_compete4_cond_st120_s2025.pt"
+FULL_BASE = OUT_DIR / "arm0_full_xbrain_s2025.pt"
 
 
 def check_eeg(subjects, split="train"):
@@ -91,19 +92,36 @@ def b32_alignment():
     torch.save(fix, PREP / "b32_fix.pt")
 
 
-def train(stage, subjects):
+def check_full_training():
+    labels, available, rows, *_ = get_concept_splits(full_training=True)
+    ids = json.loads((PREP / "train_ids.json").read_bytes())["ids"]
+    test = json.loads((PREP / "test_ids.json").read_bytes())["ids"]
+    classes, counts = np.unique(labels, return_counts=True)
+    if len(ids) != 16540 or len(set(ids)) != len(ids) or len(test) != 200 or set(ids).intersection(test):
+        raise ValueError("Expected the complete and disjoint official train and test photo registrations")
+    if len(classes) != 1654 or not np.all(counts == 10) or not np.all(available) or not np.array_equal(rows, np.arange(16540)):
+        raise ValueError("Every official training concept needs ten registered photos and available layout targets")
+    return dict(scope="official-training", photos=len(ids), concepts=len(classes), people=list(ALL_SUBS),
+                seed=2025, encoder_epochs=150, rep_steps=800, swap_steps=600, d2_steps=120)
+
+
+def train(stage, subjects, *, full_training=False, crossbrain_weight=0.25):
     torch.manual_seed(2025)
     torch.cuda.manual_seed_all(2025)
+    if stage not in ("backbone", "rep", "swap", "rec") and crossbrain_weight != 0.25:
+        raise ValueError("Set the cross-person weight for an encoder training stage")
     if stage == "b32":
         b32_alignment()
         return
     if stage == "backbone":
         check_eeg(subjects)
-        train_or_load_arm0_tr14(subjects=subjects)
+        train_or_load_arm0_tr14(subjects=subjects, full_training=full_training, crossbrain_weight=crossbrain_weight)
         return
-    res = build_tr14_resources("cuda", subjects=subjects)
+    res = build_tr14_resources("cuda", subjects=subjects, full_training=full_training)
+    res["crossbrain_weight"] = crossbrain_weight
+    backbone = FULL_BASE if full_training else BASE
     if stage == "rep":
-        train_arm1_rep_intra(BASE, res, steps=800)
+        train_arm1_rep_intra(backbone, res, steps=800)
     elif stage == "matched":
         train_arm1b_rep_condlyr(REP, res, steps=600)
     elif stage == "oof":
@@ -126,8 +144,19 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("stage", choices=("backbone", "rep", "matched", "swap", "rec", "d1", "d2", "d2-positive-half", "b32", "oof"))
     p.add_argument("--subject", type=int, choices=range(1, 11))
+    p.add_argument("--full-training", action="store_true")
+    p.add_argument("--crossbrain-weight", type=float, choices=(0., .25), default=.25,
+                   help="Cross-person alignment weight for the current encoder training stage")
     a = p.parse_args()
-    expected = "shared" if not a.subject else f"personal-{a.subject:02d}"
+    expected = "shared-full" if a.full_training else "shared" if not a.subject else f"personal-{a.subject:02d}"
     if a.stage != "b32" and Path(os.environ["EEG_RUNS_ROOT"]).name != expected:
         raise ValueError("Use an isolated output root for the requested participant group")
-    train(a.stage, ALL_SUBS if not a.subject else (a.subject,))
+    if a.full_training:
+        if a.subject or a.stage == "b32":
+            raise ValueError("Full training changes only the shared EEG and D2 fits")
+        protocol = check_full_training()
+        completed = RUNS / f"{a.stage}-training.json"
+    train(a.stage, ALL_SUBS if not a.subject else (a.subject,), full_training=a.full_training,
+          crossbrain_weight=a.crossbrain_weight)
+    if a.full_training:
+        write_json(completed, dict(stage=a.stage, **protocol))
